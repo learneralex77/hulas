@@ -50,7 +50,7 @@
                     <ul class="list-inline mt-3 mb-0">
                         <li class="list-inline-item">
                             <a class="link-fx text-dual fs-sm fw-semibold text-uppercase"
-                                href="void:;">{{ auth()->user()->username }}</a>
+                                href="void:;">{{ auth()->check() ? auth()->user()->username : 'Guest' }}</a>
                         </li>
                         <li class="list-inline-item">
                             <a class="link-fx text-dual" data-toggle="layout" data-action="dark_mode_toggle"

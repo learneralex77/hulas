@@ -1,0 +1,99 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\ContactUs;
+use Illuminate\Http\Request;
+
+class ContactUsController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $contacts = ContactUs::latest()->paginate(10);
+        return view('contact-us.index', compact('contacts'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('contact-us.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone_number' => 'required|string|max:20',
+            'contact_remarks' => 'nullable|string',
+        ]);
+        
+        $data = $request->all();
+        
+        // Handle boolean values
+        $data['is_contacted'] = $request->has('is_contacted');
+        
+        ContactUs::create($data);
+        
+        return redirect()->route('contact-us.index')
+            ->with('success', 'Contact inquiry created successfully.');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(ContactUs $contactUs)
+    {
+        return view('contact-us.show', compact('contactUs'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(ContactUs $contactUs)
+    {
+        return view('contact-us.edit', compact('contactUs'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, ContactUs $contactUs)
+    {
+        $validated = $request->validate([
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone_number' => 'required|string|max:20',
+            'contact_remarks' => 'nullable|string',
+        ]);
+        
+        $data = $request->all();
+        
+        // Handle boolean values
+        $data['is_contacted'] = $request->has('is_contacted');
+        
+        $contactUs->update($data);
+        
+        return redirect()->route('contact-us.index')
+            ->with('success', 'Contact inquiry updated successfully.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(ContactUs $contactUs)
+    {
+        $contactUs->delete();
+        
+        return redirect()->route('contact-us.index')
+            ->with('success', 'Contact inquiry deleted successfully.');
+    }
+}

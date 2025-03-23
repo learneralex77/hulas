@@ -13,12 +13,15 @@ class UserTableSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'superadmin',
-            'username' => 'superadmin',
-            'email' => 'superadmin@codebase.np',
-            'password' => Hash::make('Codebase@0802'),
-            'is_active' => true,
-        ]);
+        // Check if the user already exists
+        if (!User::where('username', 'superadmin')->exists()) {
+            User::create([
+                'name' => 'superadmin',
+                'username' => 'superadmin',
+                'email' => 'superadmin@codebase.np',
+                'password' => Hash::make('Codebase@0802'),
+                'is_active' => true,
+            ]);
+        }
     }
 }

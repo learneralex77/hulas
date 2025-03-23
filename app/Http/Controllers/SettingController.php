@@ -1,0 +1,164 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Setting;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+class SettingController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $settings = Setting::all();
+        return view('settings.index', compact('settings'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('settings.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:190',
+            'feedback_notify_email' => 'required|email|max:190',
+            'agent_notify_email' => 'required|email|max:190',
+            'description' => 'required|string',
+            'email' => 'required|email|max:190',
+            'PO_Box' => 'required|string|max:100',
+            'canonical_url' => 'required|string|max:190',
+            'keyword' => 'required|string',
+            'google_maplink' => 'nullable|string|max:190',
+            'schema_markup' => 'nullable|string',
+            'facebook' => 'nullable|string|max:190',
+            'twitter' => 'nullable|string|max:190',
+            'linkedin' => 'nullable|string|max:190',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'primary_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'secondary_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = $request->except(['logo', 'primary_logo', 'secondary_logo']);
+
+        // Handle logo uploads
+        if ($request->hasFile('logo')) {
+            $data['logo'] = $request->file('logo')->store('settings', 'public');
+        }
+
+        if ($request->hasFile('primary_logo')) {
+            $data['primary_logo'] = $request->file('primary_logo')->store('settings', 'public');
+        }
+
+        if ($request->hasFile('secondary_logo')) {
+            $data['secondary_logo'] = $request->file('secondary_logo')->store('settings', 'public');
+        }
+
+        Setting::create($data);
+
+        return redirect()->route('settings.index')
+            ->with('success', 'Settings created successfully.');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Setting $setting)
+    {
+        return view('settings.show', compact('setting'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Setting $setting)
+    {
+        return view('settings.edit', compact('setting'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Setting $setting)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:190',
+            'feedback_notify_email' => 'required|email|max:190',
+            'agent_notify_email' => 'required|email|max:190',
+            'description' => 'required|string',
+            'email' => 'required|email|max:190',
+            'PO_Box' => 'required|string|max:100',
+            'canonical_url' => 'required|string|max:190',
+            'keyword' => 'required|string',
+            'google_maplink' => 'nullable|string|max:190',
+            'schema_markup' => 'nullable|string',
+            'facebook' => 'nullable|string|max:190',
+            'twitter' => 'nullable|string|max:190',
+            'linkedin' => 'nullable|string|max:190',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'primary_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'secondary_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = $request->except(['logo', 'primary_logo', 'secondary_logo']);
+
+        // Handle logo uploads
+        if ($request->hasFile('logo')) {
+            if ($setting->logo) {
+                Storage::disk('public')->delete($setting->logo);
+            }
+            $data['logo'] = $request->file('logo')->store('settings', 'public');
+        }
+
+        if ($request->hasFile('primary_logo')) {
+            if ($setting->primary_logo) {
+                Storage::disk('public')->delete($setting->primary_logo);
+            }
+            $data['primary_logo'] = $request->file('primary_logo')->store('settings', 'public');
+        }
+
+        if ($request->hasFile('secondary_logo')) {
+            if ($setting->secondary_logo) {
+                Storage::disk('public')->delete($setting->secondary_logo);
+            }
+            $data['secondary_logo'] = $request->file('secondary_logo')->store('settings', 'public');
+        }
+
+        $setting->update($data);
+
+        return redirect()->route('settings.index')
+            ->with('success', 'Settings updated successfully.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Setting $setting)
+    {
+        // Delete the logo files
+        if ($setting->logo) {
+            Storage::disk('public')->delete($setting->logo);
+        }
+        if ($setting->primary_logo) {
+            Storage::disk('public')->delete($setting->primary_logo);
+        }
+        if ($setting->secondary_logo) {
+            Storage::disk('public')->delete($setting->secondary_logo);
+        }
+
+        $setting->delete();
+
+        return redirect()->route('settings.index')
+            ->with('success', 'Settings deleted successfully.');
+    }
+}

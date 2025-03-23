@@ -31,6 +31,8 @@
         @include('layouts.footer')
         <!-- END Footer -->
     </div>
+    @yield('scripts')
+    @stack('scripts')
     <!-- END Page Container -->
 </body>
 

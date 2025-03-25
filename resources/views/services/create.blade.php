@@ -15,9 +15,6 @@
                         <a class="btn btn-sm btn-alt-primary" href="{{ route('services.index') }}">
                             <i class="fa fa-arrow-left"></i> Back
                         </a>
-                        <button type="submit" class="btn btn-sm btn-alt-success">
-                            <i class="fa fa-check"></i> Save
-                        </button>
                     </div>
                 </div>
                 <div class="block-content">
@@ -41,9 +38,9 @@
                             </div>
                             
                             <div class="mb-4">
-                                <div class="form-check">
+                                <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="is_published" name="is_published" value="1" {{ old('is_published') ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="is_published">Publish</label>
+                                    <label class="form-check-label" for="is_published">Published</label>
                                 </div>
                             </div>
                             
@@ -88,6 +85,13 @@
                                         <i class="fa fa-plus"></i> Add Another Entry
                                     </button>
                                 </div>
+                            </div>
+
+                            <!-- Save button at the bottom -->
+                            <div class="text-center mt-4">
+                                <button type="submit" class="btn btn-alt-success">
+                                    <i class="fa fa-check"></i> Save Service
+                                </button>
                             </div>
                         </div>
                     </div>

@@ -12,55 +12,51 @@
                 <div class="block-header block-header-default">
                     <h3 class="block-title">Add Service</h3>
                     <div class="block-options">
-                        <a class="btn btn-sm btn-alt-secondary" href="{{ route('services.index') }}">
-                            <i class="fa fa-arrow-left me-1"></i> Back
+                        <a class="btn btn-sm btn-alt-primary" href="{{ route('services.index') }}">
+                            <i class="fa fa-arrow-left"></i> Back
                         </a>
-                        <button type="submit" class="btn btn-sm btn-alt-primary">
-                            <i class="fa fa-check me-1"></i> Save
+                        <button type="submit" class="btn btn-sm btn-alt-success">
+                            <i class="fa fa-check"></i> Save
                         </button>
                     </div>
                 </div>
                 <div class="block-content">
                     <div class="row justify-content-center">
                         <div class="col-md-10 col-lg-8">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="display_order">Display Order</label>
+                                    <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order" value="{{ old('display_order', 0) }}">
+                                    @error('display_order')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="file">File (Image or PDF)</label>
+                                    <input type="file" class="form-control @error('file') is-invalid @enderror" id="file" name="file">
+                                    @error('file')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            
                             <div class="mb-4">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="display_order">Display Order</label>
-                                            <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order" value="{{ old('display_order', 0) }}">
-                                            @error('display_order')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="file">File (Image or PDF)</label>
-                                            <input type="file" class="form-control @error('file') is-invalid @enderror" id="file" name="file">
-                                            @error('file')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="is_published" name="is_published" value="1" {{ old('is_published') ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="is_published">Publish</label>
                                 </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <!-- Dynamic section for names, icons, and descriptions -->
+                            <div class="mb-4">
+                                <h4>Service Details <small class="text-muted">(You can add multiple entries)</small></h4>
                                 
-                                <div class="mb-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="is_published" name="is_published" value="1" {{ old('is_published') ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="is_published">Publish</label>
-                                    </div>
-                                </div>
-                                
-                                <hr>
-                                
-                                <!-- Dynamic section for names, icons, and descriptions -->
-                                <div class="mb-4">
-                                    <h4>Service Details <small class="text-muted">(You can add multiple entries)</small></h4>
-                                    
-                                    <div id="service-details-container">
-                                        <div class="service-detail-item border rounded p-3 mb-3">
-                                            <div class="mb-3">
+                                <div id="service-details-container">
+                                    <div class="service-detail-item border rounded p-3 mb-3">
+                                        <div class="row mb-3">
+                                            <div class="col-md-6">
                                                 <label class="form-label" for="names_0">Name <span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control @error('names.0') is-invalid @enderror" id="names_0" name="names[]" value="{{ old('names.0') }}" required>
                                                 @error('names.0')
@@ -68,29 +64,29 @@
                                                 @enderror
                                             </div>
                                             
-                                            <div class="mb-3">
+                                            <div class="col-md-6">
                                                 <label class="form-label" for="icons_0">Icon (FontAwesome Class)</label>
                                                 <input type="text" class="form-control @error('icons.0') is-invalid @enderror" id="icons_0" name="icons[]" value="{{ old('icons.0') }}" placeholder="fa fa-example">
                                                 @error('icons.0')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            
-                                            <div class="mb-3">
-                                                <label class="form-label" for="descriptions_0">Description</label>
-                                                <textarea class="form-control @error('descriptions.0') is-invalid @enderror" id="descriptions_0" name="descriptions[]" rows="3">{{ old('descriptions.0') }}</textarea>
-                                                @error('descriptions.0')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label class="form-label" for="descriptions_0">Description</label>
+                                            <textarea class="form-control @error('descriptions.0') is-invalid @enderror" id="descriptions_0" name="descriptions[]" rows="3">{{ old('descriptions.0') }}</textarea>
+                                            @error('descriptions.0')
+                                                <div class="invalid-feedback">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
-                                    
-                                    <div class="text-center">
-                                        <button type="button" class="btn btn-sm btn-alt-success" id="add-service-detail">
-                                            <i class="fa fa-plus me-1"></i> Add Another Entry
-                                        </button>
-                                    </div>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-service-detail">
+                                        <i class="fa fa-plus"></i> Add Another Entry
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -119,14 +115,16 @@
                         <i class="fa fa-times"></i>
                     </button>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="names_${detailIndex}">Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="names_${detailIndex}" name="names[]" required>
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label" for="icons_${detailIndex}">Icon (FontAwesome Class)</label>
-                    <input type="text" class="form-control" id="icons_${detailIndex}" name="icons[]" placeholder="fa fa-example">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label" for="names_${detailIndex}">Name <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="names_${detailIndex}" name="names[]" required>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label class="form-label" for="icons_${detailIndex}">Icon (FontAwesome Class)</label>
+                        <input type="text" class="form-control" id="icons_${detailIndex}" name="icons[]" placeholder="fa fa-example">
+                    </div>
                 </div>
                 
                 <div class="mb-3">

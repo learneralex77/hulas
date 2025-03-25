@@ -13,33 +13,63 @@
                 <div class="block-header block-header-default">
                     <h3 class="block-title">Edit About Us Information</h3>
                     <div class="block-options">
-                        <a href="{{ route('about-us.index') }}" class="btn btn-alt-secondary">
-                            <i class="fa fa-arrow-left mr-1"></i> Back
+                        <a href="{{ route('about-us.index') }}" class="btn btn-sm btn-alt-primary">
+                            <i class="fa fa-arrow-left"></i> Back
                         </a>
-                        <button type="submit" class="btn btn-alt-primary">
-                            <i class="fa fa-check mr-1"></i> Save
-                        </button>
                     </div>
                 </div>
                 <div class="block-content">
                     <div class="row justify-content-center">
                         <div class="col-md-10 col-lg-8">
-                            <div class="mb-4">
-                                <label class="form-label" for="tagline">Tagline <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('tagline') is-invalid @enderror" id="tagline" name="tagline" value="{{ old('tagline', $aboutUs->tagline) }}" required>
-                                @error('tagline')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                            <!-- Row 1: Tagline and Years of Experience -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="tagline">Tagline <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('tagline') is-invalid @enderror" id="tagline" name="tagline" value="{{ old('tagline', $aboutUs->tagline) }}" required>
+                                    @error('tagline')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="years_of_experience">Years of Experience</label>
+                                    <input type="number" class="form-control @error('years_of_experience') is-invalid @enderror" id="years_of_experience" name="years_of_experience" value="{{ old('years_of_experience', $aboutUs->years_of_experience) }}" min="0">
+                                    @error('years_of_experience')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
 
-                            <div class="mb-4">
-                                <label class="form-label" for="years_of_experience">Years of Experience</label>
-                                <input type="number" class="form-control @error('years_of_experience') is-invalid @enderror" id="years_of_experience" name="years_of_experience" value="{{ old('years_of_experience', $aboutUs->years_of_experience) }}" min="0">
-                                @error('years_of_experience')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                            <!-- Row 2: Video Link and Image -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="video_link">Video Link</label>
+                                    <input type="text" class="form-control @error('video_link') is-invalid @enderror" id="video_link" name="video_link" value="{{ old('video_link', $aboutUs->video_link) }}">
+                                    @error('video_link')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="image">Image</label>
+                                    <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
+                                    <div class="form-text">
+                                        Allowed types: JPG, PNG, GIF. Max size: 2MB. Leave empty to keep the current image.
+                                    </div>
+                                    @error('image')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                    
+                                    <div id="image-preview" class="mt-2">
+                                        @if($aboutUs->image)
+                                            <div class="mb-2">
+                                                <p class="mb-1">Current Image:</p>
+                                                <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="Current Image" class="img-fluid rounded" style="max-height: 200px;">
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
 
+                            <!-- Short Description -->
                             <div class="mb-4">
                                 <label class="form-label" for="short_description">Short Description</label>
                                 <textarea class="form-control @error('short_description') is-invalid @enderror" id="short_description" name="short_description" rows="3">{{ old('short_description', $aboutUs->short_description) }}</textarea>
@@ -48,6 +78,7 @@
                                 @enderror
                             </div>
 
+                            <!-- Main Description -->
                             <div class="mb-4">
                                 <label class="form-label" for="description">Description <span class="text-danger">*</span></label>
                                 <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="5" required>{{ old('description', $aboutUs->description) }}</textarea>
@@ -56,38 +87,15 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-4">
-                                <label class="form-label" for="video_link">Video Link</label>
-                                <input type="text" class="form-control @error('video_link') is-invalid @enderror" id="video_link" name="video_link" value="{{ old('video_link', $aboutUs->video_link) }}">
-                                @error('video_link')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-4">
-                                <label class="form-label" for="image">Image</label>
-                                <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*">
-                                <div class="form-text">
-                                    Allowed types: JPG, PNG, GIF. Max size: 2MB. Leave empty to keep the current image.
-                                </div>
-                                @error('image')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                                
-                                <div id="image-preview" class="mt-2">
-                                    @if($aboutUs->image)
-                                        <div class="mb-2">
-                                            <p class="mb-1">Current Image:</p>
-                                            <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="Current Image" class="img-fluid rounded" style="max-height: 200px;">
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-
                             <hr>
 
                             <div class="mb-4">
-                                <h4>Mission & Vision <small class="text-muted">(You can add multiple items)</small></h4>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4>Mission & Vision <small class="text-muted">(You can add multiple items)</small></h4>
+                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-mission-vision">
+                                        <i class="fa fa-plus"></i> Add Another Item
+                                    </button>
+                                </div>
                                 
                                 <div id="mission-vision-container">
                                     @if(is_array($aboutUs->mission_vision) && count($aboutUs->mission_vision) > 0)
@@ -102,23 +110,25 @@
                                                     </div>
                                                 @endif
                                                 
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="mission_vision_titles_{{ $index }}">Title <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('mission_vision_titles.'.$index) is-invalid @enderror" id="mission_vision_titles_{{ $index }}" name="mission_vision_titles[]" value="{{ old('mission_vision_titles.'.$index, $item['title'] ?? '') }}" required>
-                                                    @error('mission_vision_titles.'.$index)
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                                
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="mission_vision_icons_{{ $index }}">Icon <span class="text-danger">*</span></label>
-                                                    <input type="text" class="form-control @error('mission_vision_icons.'.$index) is-invalid @enderror" id="mission_vision_icons_{{ $index }}" name="mission_vision_icons[]" value="{{ old('mission_vision_icons.'.$index, $item['icon'] ?? '') }}" required>
-                                                    <div class="form-text">
-                                                        Enter a Font Awesome icon name (e.g., "check", "flag", "bullseye"). View icons at <a href="https://fontawesome.com/v5/search?m=free" target="_blank">Font Awesome</a>.
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <label class="form-label" for="mission_vision_titles_{{ $index }}">Title <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control @error('mission_vision_titles.'.$index) is-invalid @enderror" id="mission_vision_titles_{{ $index }}" name="mission_vision_titles[]" value="{{ old('mission_vision_titles.'.$index, $item['title'] ?? '') }}" required>
+                                                        @error('mission_vision_titles.'.$index)
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
                                                     </div>
-                                                    @error('mission_vision_icons.'.$index)
-                                                        <div class="invalid-feedback">{{ $message }}</div>
-                                                    @enderror
+                                                    
+                                                    <div class="col-md-6">
+                                                        <label class="form-label" for="mission_vision_icons_{{ $index }}">Icon <span class="text-danger">*</span></label>
+                                                        <input type="text" class="form-control @error('mission_vision_icons.'.$index) is-invalid @enderror" id="mission_vision_icons_{{ $index }}" name="mission_vision_icons[]" value="{{ old('mission_vision_icons.'.$index, $item['icon'] ?? '') }}" required>
+                                                        <div class="form-text">
+                                                            Enter a Font Awesome icon name (e.g., "check", "flag").
+                                                        </div>
+                                                        @error('mission_vision_icons.'.$index)
+                                                            <div class="invalid-feedback">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
                                                 </div>
                                                 
                                                 <div class="mb-3">
@@ -132,23 +142,25 @@
                                         @endforeach
                                     @else
                                         <div class="mission-vision-item card p-3 bg-light mb-3">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="mission_vision_titles_0">Title <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('mission_vision_titles.0') is-invalid @enderror" id="mission_vision_titles_0" name="mission_vision_titles[]" value="{{ old('mission_vision_titles.0') }}" required>
-                                                @error('mission_vision_titles.0')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                            
-                                            <div class="mb-3">
-                                                <label class="form-label" for="mission_vision_icons_0">Icon <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('mission_vision_icons.0') is-invalid @enderror" id="mission_vision_icons_0" name="mission_vision_icons[]" value="{{ old('mission_vision_icons.0') }}" required>
-                                                <div class="form-text">
-                                                    Enter a Font Awesome icon name (e.g., "check", "flag", "bullseye"). View icons at <a href="https://fontawesome.com/v5/search?m=free" target="_blank">Font Awesome</a>.
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="mission_vision_titles_0">Title <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('mission_vision_titles.0') is-invalid @enderror" id="mission_vision_titles_0" name="mission_vision_titles[]" value="{{ old('mission_vision_titles.0') }}" required>
+                                                    @error('mission_vision_titles.0')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
-                                                @error('mission_vision_icons.0')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
+                                                
+                                                <div class="col-md-6">
+                                                    <label class="form-label" for="mission_vision_icons_0">Icon <span class="text-danger">*</span></label>
+                                                    <input type="text" class="form-control @error('mission_vision_icons.0') is-invalid @enderror" id="mission_vision_icons_0" name="mission_vision_icons[]" value="{{ old('mission_vision_icons.0') }}" required>
+                                                    <div class="form-text">
+                                                        Enter a Font Awesome icon name (e.g., "check", "flag").
+                                                    </div>
+                                                    @error('mission_vision_icons.0')
+                                                        <div class="invalid-feedback">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
                                             </div>
                                             
                                             <div class="mb-3">
@@ -161,10 +173,13 @@
                                         </div>
                                     @endif
                                 </div>
-                                
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-alt-success" id="add-mission-vision">
-                                        <i class="fa fa-plus me-1"></i> Add Another Item
+                            </div>
+                            
+                            <!-- Save Button at Bottom -->
+                            <div class="row mb-4">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-alt-success">
+                                        <i class="fa fa-check"></i> Update About Us
                                     </button>
                                 </div>
                             </div>
@@ -255,22 +270,29 @@
             headerDiv.appendChild(title);
             headerDiv.appendChild(removeBtn);
             
-            const titleDiv = document.createElement('div');
-            titleDiv.className = 'mb-3';
-            titleDiv.innerHTML = `
+            // Create a row for title and icon fields
+            const fieldsRow = document.createElement('div');
+            fieldsRow.className = 'row mb-3';
+            
+            const titleCol = document.createElement('div');
+            titleCol.className = 'col-md-6';
+            titleCol.innerHTML = `
                 <label class="form-label" for="mission_vision_titles_${missionVisionCount}">Title <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="mission_vision_titles_${missionVisionCount}" name="mission_vision_titles[]" required>
             `;
             
-            const iconDiv = document.createElement('div');
-            iconDiv.className = 'mb-3';
-            iconDiv.innerHTML = `
+            const iconCol = document.createElement('div');
+            iconCol.className = 'col-md-6';
+            iconCol.innerHTML = `
                 <label class="form-label" for="mission_vision_icons_${missionVisionCount}">Icon <span class="text-danger">*</span></label>
                 <input type="text" class="form-control" id="mission_vision_icons_${missionVisionCount}" name="mission_vision_icons[]" required>
                 <div class="form-text">
-                    Enter a Font Awesome icon name (e.g., "check", "flag", "bullseye"). View icons at <a href="https://fontawesome.com/v5/search?m=free" target="_blank">Font Awesome</a>.
+                    Enter a Font Awesome icon name (e.g., "check", "flag").
                 </div>
             `;
+            
+            fieldsRow.appendChild(titleCol);
+            fieldsRow.appendChild(iconCol);
             
             const descDiv = document.createElement('div');
             descDiv.className = 'mb-3';
@@ -280,8 +302,7 @@
             `;
             
             newItem.appendChild(headerDiv);
-            newItem.appendChild(titleDiv);
-            newItem.appendChild(iconDiv);
+            newItem.appendChild(fieldsRow);
             newItem.appendChild(descDiv);
             
             container.appendChild(newItem);

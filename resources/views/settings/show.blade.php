@@ -10,12 +10,20 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Settings Details</h3>
                 <div class="block-options">
-                    <a href="{{ route('settings.index') }}" class="btn btn-alt-secondary">
-                        <i class="fa fa-arrow-left mr-1"></i> Back
+                <a href="{{ route('settings.edit', $setting) }}" class="btn btn-sm btn-alt-success me-1">
+                        <i class="fa fa-edit"></i> Edit
                     </a>
-                    <a href="{{ route('settings.edit', $setting) }}" class="btn btn-alt-primary">
-                        <i class="fa fa-edit mr-1"></i> Edit
+                    <a href="{{ route('settings.index') }}" class="btn btn-sm btn-alt-primary me-1">
+                        <i class="fa fa-arrow-left"></i> Back
                     </a>
+                   
+                    <form action="{{ route('settings.destroy', $setting) }}" method="POST" ">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-alt-danger" onclick="return confirm('Are you sure you want to delete these settings?')">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="block-content">

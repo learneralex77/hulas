@@ -13,11 +13,11 @@
                 <div class="block-header block-header-default">
                     <h3 class="block-title">Edit Images</h3>
                     <div class="block-options">
-                        <a href="{{ route('become-an-agent.index') }}" class="btn btn-alt-secondary">
-                            <i class="fa fa-arrow-left mr-1"></i> Back
+                        <a href="{{ route('become-an-agent.index') }}" class="btn btn-sm btn-alt-primary">
+                            <i class="fa fa-arrow-left"></i> Back
                         </a>
-                        <button type="submit" class="btn btn-alt-primary">
-                            <i class="fa fa-check mr-1"></i> Update
+                        <button type="submit" class="btn btn-sm btn-alt-success">
+                            <i class="fa fa-check"></i> Update
                         </button>
                     </div>
                 </div>
@@ -57,15 +57,14 @@
                             </div>
 
                             <div class="mb-4">
-                                <h4>Add New Images</h4>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4>Add New Images</h4>
+                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-image-btn">
+                                        <i class="fa fa-plus"></i> Add New Image
+                                    </button>
+                                </div>
                                 <div id="new-image-container">
                                     <!-- New images will be added here -->
-                                </div>
-                                
-                                <div class="text-center mt-4">
-                                    <button type="button" class="btn btn-alt-success" id="add-image-btn">
-                                        <i class="fa fa-plus me-1"></i> Add New Image
-                                    </button>
                                 </div>
                             </div>
                         </div>

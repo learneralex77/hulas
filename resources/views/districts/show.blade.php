@@ -10,60 +10,109 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">District Details</h3>
                 <div class="block-options">
-                    <a href="{{ route('districts.index') }}" class="btn btn-sm btn-alt-primary">
-                        <i class="fa fa-arrow-left"></i> Back to List
-                    </a>
-                    <a href="{{ route('districts.edit', $district) }}" class="btn btn-sm btn-alt-success">
-                        <i class="fa fa-pencil-alt"></i> Edit
-                    </a>
+                    <form action="{{ route('districts.destroy', $district) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this district?');" style="display: inline-block; margin: 0;">
+                        @csrf
+                        @method('DELETE')
+                        <a href="{{ route('districts.index') }}" class="btn btn-sm btn-alt-secondary me-1">
+                            <i class="fa fa-arrow-left"></i> Back
+                        </a>
+                        <a href="{{ route('districts.edit', $district) }}" class="btn btn-sm btn-alt-primary me-1">
+                            <i class="fa fa-pencil-alt"></i> Edit
+                        </a>
+                        <button type="submit" class="btn btn-sm btn-alt-danger">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="block-content">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <table class="table table-bordered">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
                             <tr>
-                                <th style="width: 30%;">ID</th>
-                                <td>{{ $district->id }}</td>
-                            </tr>
-                            <tr>
-                                <th>Name</th>
+                                <th style="width: 30%;">Name</th>
                                 <td>{{ $district->name }}</td>
                             </tr>
                             <tr>
-                                <th>Display Order</th>
+                                <th>Zone</th>
+                                <td>
+                                    @if($district->zone)
+                                        <a href="{{ route('zones.show', $district->zone) }}">{{ $district->zone->name }}</a>
+                                    @else
+                                        N/A
+                                    @endif
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4 class="mt-4">Additional Information</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th style="width: 30%;">Display Order</th>
                                 <td>{{ $district->display_order }}</td>
                             </tr>
                             <tr>
                                 <th>Status</th>
                                 <td>
-                                    @if ($district->is_published)
+                                    @if($district->is_published)
                                         <span class="badge bg-success">Published</span>
                                     @else
                                         <span class="badge bg-warning">Draft</span>
                                     @endif
                                 </td>
                             </tr>
-                            <tr>
-                                <th>Created At</th>
-                                <td>{{ $district->created_at->format('M d, Y H:i A') }}</td>
-                            </tr>
-                            <tr>
-                                <th>Updated At</th>
-                                <td>{{ $district->updated_at->format('M d, Y H:i A') }}</td>
-                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h4 class="mt-4">Branches in this District</h4>
+                @if($district->branches && $district->branches->count() > 0)
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($district->branches as $branch)
+                                    <tr>
+                                        <td>{{ $branch->name }}</td>
+                                        <td>{{ $branch->phone_number }}</td>
+                                        <td>
+                                            @if($branch->is_published)
+                                                <span class="badge bg-success">Published</span>
+                                            @else
+                                                <span class="badge bg-warning">Draft</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('branches.show', $branch) }}" class="btn btn-sm btn-info">
+                                                <i class="fa fa-eye"></i> View
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
-                        
-                        <div class="mt-4">
-                            <form action="{{ route('districts.destroy', $district) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this district?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fa fa-trash me-1"></i> Delete District
-                                </button>
-                            </form>
-                        </div>
                     </div>
+                @else
+                    <div class="alert alert-info">
+                        No branches found in this district.
+                    </div>
+                @endif
+
+                <div class="text-center mt-4">
+                    <a href="{{ route('districts.index') }}" class="btn btn-alt-secondary">
+                        <i class="fa fa-arrow-left me-1"></i> Back to List
+                    </a>
                 </div>
             </div>
         </div>

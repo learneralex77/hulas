@@ -104,6 +104,14 @@ class GalleryController extends Controller
         $gallery = Gallery::findOrFail($id);
         $data = $request->all();
         
+        // Handle featured image deletion
+        if ($request->has('delete_featured_image') && $request->delete_featured_image == 1 && !$request->hasFile('featured_image')) {
+            if ($gallery->featured_image && Storage::disk('public')->exists($gallery->featured_image)) {
+                Storage::disk('public')->delete($gallery->featured_image);
+            }
+            $data['featured_image'] = null;
+        }
+        
         // Handle featured image upload
         if ($request->hasFile('featured_image')) {
             // Delete old image if exists

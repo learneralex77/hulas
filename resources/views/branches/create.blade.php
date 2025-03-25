@@ -1,91 +1,111 @@
 @extends('layouts.main')
 
 @section('title')
-    Add Branch
+    Create Branch
 @endsection
 
 @section('content')
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Add Branch</h3>
+                <h3 class="block-title">Create Branch</h3>
                 <div class="block-options">
-                    <a href="{{ route('branches.index') }}" class="btn btn-sm btn-alt-secondary">
-                        <i class="fa fa-arrow-left me-1"></i> Back
+                    <a href="{{ route('branches.index') }}" class="btn btn-sm btn-alt-primary">
+                        <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>
             </div>
             <div class="block-content">
-                <form action="{{ route('branches.store') }}" method="POST">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="{{ route('branches.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    
-                    <div class="row push">
-                        <div class="col-lg-8 col-xl-5">
-                            <div class="mb-4">
-                                <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
-                                @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Name and Phone fields in one row -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="name">Branch Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
+                                    @error('name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="phone">Phone Number <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}" required>
+                                    @error('phone')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
-                            
-                            <div class="mb-4">
-                                <label class="form-label" for="district_id">District <span class="text-danger">*</span></label>
-                                <select class="form-select @error('district_id') is-invalid @enderror" id="district_id" name="district_id" required>
-                                    <option value="">-- Select District --</option>
-                                    @foreach($districts as $district)
-                                        <option value="{{ $district->id }}" {{ old('district_id') == $district->id ? 'selected' : '' }}>
-                                            {{ $district->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('district_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+
+                            <!-- Email and District fields in one row -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="email">Email</label>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="district_id">District <span class="text-danger">*</span></label>
+                                    <select class="form-select @error('district_id') is-invalid @enderror" id="district_id" name="district_id" required>
+                                        <option value="">Select District</option>
+                                        @foreach($districts as $district)
+                                            <option value="{{ $district->id }}" {{ old('district_id') == $district->id ? 'selected' : '' }}>
+                                                {{ $district->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('district_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
-                            
+
+                            <!-- Address field (full width) -->
                             <div class="mb-4">
-                                <label class="form-label" for="address">Address</label>
-                                <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" rows="3">{{ old('address') }}</textarea>
+                                <label class="form-label" for="address">Address <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" required>
                                 @error('address')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            
-                            <div class="mb-4">
-                                <label class="form-label" for="phone_number">Phone Number</label>
-                                <input type="text" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" value="{{ old('phone_number') }}">
-                                @error('phone_number')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label class="form-label" for="email">Email</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
-                                @error('email')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label class="form-label" for="display_order">Display Order</label>
-                                <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order" value="{{ old('display_order', 0) }}">
-                                @error('display_order')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            
-                            <div class="mb-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="is_published" name="is_published" checked>
-                                    <label class="form-check-label" for="is_published">Published</label>
+
+                            <!-- Display Order and Status fields in one row -->
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="display_order">Display Order</label>
+                                    <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order" value="{{ old('display_order', 0) }}">
+                                    <small class="text-muted">Higher values appear first</small>
+                                    @error('display_order')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Status</label>
+                                    <div class="mt-2">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="is_published" name="is_published" value="1" {{ old('is_published', '1') == '1' ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="is_published">Published</label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            
+
                             <div class="mb-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-save me-1"></i> Save
+                                    <i class="fa fa-save me-1"></i> Save Branch
                                 </button>
                             </div>
                         </div>

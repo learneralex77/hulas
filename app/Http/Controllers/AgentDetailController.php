@@ -13,7 +13,7 @@ class AgentDetailController extends Controller
      */
     public function index()
     {
-        $agentDetails = AgentDetail::with('district')->get();
+        $agentDetails = AgentDetail::with('district')->paginate(10);
         return view('agent-details.index', compact('agentDetails'));
     }
 

@@ -45,16 +45,16 @@
                                     <td>{{ Str::limit($agentForm->address, 30) }}</td>
                                     <td class="text-center">
                                         <div class="btn-group">
-                                            <a href="{{ route('agent-forms.show', $agentForm) }}" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="View">
+                                            <a href="{{ route('agent-forms.show', $agentForm) }}" class="btn btn-sm btn-info" title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('agent-forms.edit', $agentForm) }}" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit">
+                                            <a href="{{ route('agent-forms.edit', $agentForm) }}" class="btn btn-sm btn-primary" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('agent-forms.destroy', $agentForm) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this agent form?')">
+                                            <form action="{{ route('agent-forms.destroy', $agentForm) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this agent form?')">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-alt-secondary text-danger" data-bs-toggle="tooltip" title="Delete">
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>

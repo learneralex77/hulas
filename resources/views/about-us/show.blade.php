@@ -10,12 +10,20 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">About Us Information</h3>
                 <div class="block-options">
-                    <a href="{{ route('about-us.index') }}" class="btn btn-sm btn-alt-secondary">
-                        <i class="fa fa-arrow-left me-1"></i> Back
+                <a href="{{ route('about-us.edit', $aboutUs) }}" class="btn btn-sm btn-alt-success me-1">
+                        <i class="fa fa-pencil-alt"></i> Edit
                     </a>
-                    <a href="{{ route('about-us.edit', $aboutUs) }}" class="btn btn-sm btn-alt-primary">
-                        <i class="fa fa-pencil-alt me-1"></i> Edit
+                    <a href="{{ route('about-us.index') }}" class="btn btn-sm btn-alt-primary me-1">
+                        <i class="fa fa-arrow-left"></i> Back
                     </a>
+                   
+                    <form action="{{ route('about-us.destroy', $aboutUs) }}" method="POST" style="display: inline-block; margin: 0;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-alt-danger" onclick="return confirm('Are you sure you want to delete this item?')">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="block-content">
@@ -26,40 +34,42 @@
                                 <h3 class="block-title">General Information</h3>
                             </div>
                             <div class="block-content">
-                                <table class="table table-bordered">
-                                    <tbody>
-                                        <tr>
-                                            <th style="width: 30%;">Tagline</th>
-                                            <td>{{ $aboutUs->tagline }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Years of Experience</th>
-                                            <td>{{ $aboutUs->years_of_experience ?? 'N/A' }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Video Link</th>
-                                            <td>
-                                                @if($aboutUs->video_link)
-                                                    <a href="{{ $aboutUs->video_link }}" target="_blank">{{ $aboutUs->video_link }}</a>
-                                                @else
-                                                    N/A
-                                                @endif
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>Short Description</th>
-                                            <td>{{ $aboutUs->short_description ?? 'N/A' }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Created At</th>
-                                            <td>{{ $aboutUs->created_at->format('M d, Y H:i:s') }}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Updated At</th>
-                                            <td>{{ $aboutUs->updated_at->format('M d, Y H:i:s') }}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th style="width: 30%;">Tagline</th>
+                                                <td>{{ $aboutUs->tagline }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Years of Experience</th>
+                                                <td>{{ $aboutUs->years_of_experience ?? 'N/A' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Video Link</th>
+                                                <td>
+                                                    @if($aboutUs->video_link)
+                                                        <a href="{{ $aboutUs->video_link }}" target="_blank">{{ $aboutUs->video_link }}</a>
+                                                    @else
+                                                        N/A
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Short Description</th>
+                                                <td>{{ $aboutUs->short_description ?? 'N/A' }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Created At</th>
+                                                <td>{{ $aboutUs->created_at->format('M d, Y H:i A') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Updated At</th>
+                                                <td>{{ $aboutUs->updated_at->format('M d, Y H:i A') }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

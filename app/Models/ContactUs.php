@@ -37,4 +37,12 @@ class ContactUs extends Model
     protected $casts = [
         'is_contacted' => 'boolean',
     ];
+    
+    /**
+     * Get the route key name for Laravel's route model binding.
+     */
+    public function getRouteKeyName()
+    {
+        return 'id';
+    }
 }

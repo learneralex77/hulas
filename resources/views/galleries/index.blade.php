@@ -17,77 +17,80 @@
             </div>
             <div class="block-content">
                 @if (session('success'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
 
-                <table class="table table-bordered table-striped table-vcenter">
-                    <thead>
-                        <tr>
-                            <th style="width: 50px;">ID</th>
-                            <th style="width: 80px;">Featured Image</th>
-                            <th>Title</th>
-                            <th>Status</th>
-                            <th>Featured</th>
-                            <th>Order</th>
-                            <th style="width: 15%;">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($galleries as $gallery)
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
+                        <thead>
                             <tr>
-                                <td class="text-center">{{ $gallery->id }}</td>
-                                <td class="text-center">
-                                    @if($gallery->featured_image)
-                                        <img src="{{ asset('storage/' . $gallery->featured_image) }}" alt="{{ $gallery->title }}" class="img-thumbnail" style="max-height: 50px;">
-                                    @else
-                                        <span class="text-muted"><i class="fa fa-image"></i></span>
-                                    @endif
-                                </td>
-                                <td>{{ $gallery->title }}</td>
-                                <td>
-                                    @if ($gallery->is_published)
-                                        <span class="badge bg-success">Published</span>
-                                    @else
-                                        <span class="badge bg-warning">Draft</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if ($gallery->is_featured)
-                                        <span class="badge bg-info">Featured</span>
-                                    @else
-                                        <span class="badge bg-secondary">No</span>
-                                    @endif
-                                </td>
-                                <td>{{ $gallery->display_order }}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <a href="{{ route('galleries.show', $gallery->id) }}" class="btn btn-sm btn-info" title="View">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route('galleries.edit', $gallery->id) }}" class="btn btn-sm btn-primary" title="Edit">
-                                            <i class="fa fa-pencil-alt"></i>
-                                        </a>
-                                        <form action="{{ route('galleries.destroy', $gallery->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this gallery?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger" title="Delete">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
+                                <th class="text-center" style="width: 50px;">ID</th>
+                                <th class="d-none d-sm-table-cell" style="width: 80px;">Image</th>
+                                <th>Title</th>
+                                <th class="text-center">Status</th>
+                                <th class="d-none d-md-table-cell text-center">Featured</th>
+                                <th class="d-none d-lg-table-cell text-center" style="width: 70px;">Order</th>
+                                <th class="text-center" style="width: 120px;">Actions</th>
                             </tr>
-                        @empty
-                            <tr>
-                                <td colspan="7" class="text-center">No galleries found</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @forelse ($galleries as $gallery)
+                                <tr>
+                                    <td class="text-center">{{ $gallery->id }}</td>
+                                    <td class="d-none d-sm-table-cell text-center">
+                                        @if($gallery->featured_image)
+                                            <img src="{{ asset('storage/' . $gallery->featured_image) }}" alt="{{ $gallery->title }}" class="img-thumbnail" style="max-height: 50px;">
+                                        @else
+                                            <span class="text-muted"><i class="fa fa-image"></i></span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $gallery->title }}</td>
+                                    <td class="text-center">
+                                        @if ($gallery->is_published)
+                                            <span class="badge bg-success">Published</span>
+                                        @else
+                                            <span class="badge bg-warning">Draft</span>
+                                        @endif
+                                    </td>
+                                    <td class="d-none d-md-table-cell text-center">
+                                        @if ($gallery->is_featured)
+                                            <span class="badge bg-info">Featured</span>
+                                        @else
+                                            <span class="badge bg-secondary">No</span>
+                                        @endif
+                                    </td>
+                                    <td class="d-none d-lg-table-cell text-center">{{ $gallery->display_order }}</td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <a href="{{ route('galleries.show', $gallery->id) }}" class="btn btn-sm btn-info" title="View">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('galleries.edit', $gallery->id) }}" class="btn btn-sm btn-primary" title="Edit">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </a>
+                                            <form action="{{ route('galleries.destroy', $gallery->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this gallery?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="7" class="text-center">No galleries found</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
                 
-                <div class="mt-4">
+                <div class="d-flex justify-content-center mt-4">
                     {{ $galleries->links() }}
                 </div>
             </div>

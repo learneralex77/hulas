@@ -29,21 +29,43 @@ class ZoneController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
+        // Log incoming request data for debugging
+        \Log::info('Zone store method called', [
+            'request_data' => $request->all(),
+            'request_method' => $request->method(),
+            'request_path' => $request->path(),
         ]);
-
-        $data = $request->all();
         
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
-        
-        Zone::create($data);
-
-        return redirect()->route('zones.index')
-            ->with('success', 'Zone created successfully.');
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'display_order' => 'nullable|integer',
+                'is_published' => 'nullable|boolean',
+            ]);
+            
+            \Log::info('Zone validation passed');
+            
+            $data = $request->all();
+            
+            // Set boolean values
+            $data['is_published'] = $request->has('is_published');
+            
+            \Log::info('Attempting to create zone', ['data' => $data]);
+            
+            $zone = Zone::create($data);
+            
+            \Log::info('Zone created successfully', ['zone_id' => $zone->id]);
+            
+            return redirect()->route('zones.index')
+                ->with('success', 'Zone created successfully.');
+        } catch (\Exception $e) {
+            \Log::error('Error creating zone', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return back()->withInput()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
     }
 
     /**

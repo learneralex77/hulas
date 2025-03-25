@@ -8,29 +8,30 @@
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Edit Designation</h3>
+                <h3 class="block-title">Edit Designation: {{ $designation->name }}</h3>
                 <div class="block-options">
                     <a href="{{ route('designations.index') }}" class="btn btn-sm btn-alt-secondary">
-                        <i class="fa fa-arrow-left"></i> Back to List
+                        <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>
             </div>
             <div class="block-content">
                 @if ($errors->any())
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <ul class="mb-0">
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
 
                 <form action="{{ route('designations.update', $designation) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    <div class="row push">
-                        <div class="col-lg-8 col-xl-5">
+                    <div class="row">
+                        <div class="col-lg-6">
                             <div class="mb-4">
                                 <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $designation->name) }}" required>
@@ -38,7 +39,8 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-
+                        </div>
+                        <div class="col-lg-6">
                             <div class="mb-4">
                                 <label class="form-label" for="display_order">Display Order</label>
                                 <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order" value="{{ old('display_order', $designation->display_order) }}">
@@ -46,7 +48,11 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-lg-12">
                             <div class="mb-4">
                                 <label class="form-label d-block">Status</label>
                                 <div class="form-check form-switch">
@@ -55,7 +61,11 @@
                                 </div>
                                 <small class="text-muted">Toggle to set the visibility status</small>
                             </div>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-lg-12">
                             <div class="mb-4">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-save"></i> Update Designation

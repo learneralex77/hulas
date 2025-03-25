@@ -12,6 +12,8 @@ class NewsEventCategory extends Model
 
     protected $fillable = [
         'name',
+        'slug',
+        'description',
         'display_order',
         'is_published'
     ];

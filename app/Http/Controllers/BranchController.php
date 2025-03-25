@@ -31,25 +31,47 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'nullable|string',
-            'phone_number' => 'nullable|string|max:20',
-            'email' => 'nullable|email|max:255',
-            'district_id' => 'required|exists:districts,id',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
+        // Log incoming request data for debugging
+        \Log::info('Branch store method called', [
+            'request_data' => $request->all(),
+            'request_method' => $request->method(),
+            'request_path' => $request->path(),
         ]);
-
-        $data = $request->all();
         
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
-        
-        Branch::create($data);
-
-        return redirect()->route('branches.index')
-            ->with('success', 'Branch created successfully.');
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'address' => 'nullable|string',
+                'phone_number' => 'nullable|string|max:20',
+                'email' => 'nullable|email|max:255',
+                'district_id' => 'required|exists:districts,id',
+                'display_order' => 'nullable|integer',
+                'is_published' => 'nullable|boolean',
+            ]);
+            
+            \Log::info('Branch validation passed');
+            
+            $data = $request->all();
+            
+            // Set boolean values
+            $data['is_published'] = $request->has('is_published');
+            
+            \Log::info('Attempting to create branch', ['data' => $data]);
+            
+            $branch = Branch::create($data);
+            
+            \Log::info('Branch created successfully', ['branch_id' => $branch->id]);
+            
+            return redirect()->route('branches.index')
+                ->with('success', 'Branch created successfully.');
+        } catch (\Exception $e) {
+            \Log::error('Error creating branch', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return back()->withInput()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
     }
 
     /**

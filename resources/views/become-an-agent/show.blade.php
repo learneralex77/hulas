@@ -10,37 +10,40 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">View Images</h3>
                 <div class="block-options">
-                    <a href="{{ route('become-an-agent.index') }}" class="btn btn-sm btn-alt-secondary">
-                        <i class="fa fa-arrow-left me-1"></i> Back
-                    </a>
-                    <a href="{{ route('become-an-agent.edit', $becomeAnAgent) }}" class="btn btn-sm btn-alt-primary">
+                <a href="{{ route('become-an-agent.edit', $becomeAnAgent) }}" class="btn btn-sm btn-alt-success">
                         <i class="fa fa-pencil-alt me-1"></i> Edit
                     </a>
+                    <a href="{{ route('become-an-agent.index') }}" class="btn btn-sm btn-alt-primary">
+                        <i class="fa fa-arrow-left me-1"></i> Back
+                    </a>
+                   
                 </div>
             </div>
             <div class="block-content">
                 <div class="row justify-content-center">
                     <div class="col-md-10">
-                        <table class="table table-bordered mb-4">
-                            <tbody>
-                                <tr>
-                                    <th style="width: 200px;">ID</th>
-                                    <td>{{ $becomeAnAgent->id }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Image Count</th>
-                                    <td>{{ is_array($becomeAnAgent->images) ? count($becomeAnAgent->images) : 0 }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Created At</th>
-                                    <td>{{ $becomeAnAgent->created_at->format('M d, Y H:i:s') }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Updated At</th>
-                                    <td>{{ $becomeAnAgent->updated_at->format('M d, Y H:i:s') }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-bordered mb-4">
+                                <tbody>
+                                    <tr>
+                                        <th style="width: 200px;">ID</th>
+                                        <td>{{ $becomeAnAgent->id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Image Count</th>
+                                        <td>{{ is_array($becomeAnAgent->images) ? count($becomeAnAgent->images) : 0 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Created At</th>
+                                        <td>{{ $becomeAnAgent->created_at->format('M d, Y H:i:s') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Updated At</th>
+                                        <td>{{ $becomeAnAgent->updated_at->format('M d, Y H:i:s') }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                         <h4>Images Gallery</h4>
                         <div class="row">

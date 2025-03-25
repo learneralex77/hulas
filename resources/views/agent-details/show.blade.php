@@ -10,37 +10,52 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Agent Details Information</h3>
                 <div class="block-options">
-                    <a class="btn btn-sm btn-alt-secondary" href="{{ route('agent-details.index') }}">
-                        <i class="fa fa-arrow-left me-1"></i> Back
+                <a class="btn btn-sm btn-alt-success" href="{{ route('agent-details.edit', $agentDetail) }}">
+                        <i class="fa fa-pencil-alt"></i> Edit
                     </a>
-                    <a class="btn btn-sm btn-alt-primary" href="{{ route('agent-details.edit', $agentDetail) }}">
-                        <i class="fa fa-pencil-alt me-1"></i> Edit
+                    <a class="btn btn-sm btn-alt-primary" href="{{ route('agent-details.index') }}">
+                        <i class="fa fa-arrow-left"></i> Back
                     </a>
+                   
                 </div>
             </div>
             <div class="block-content">
-                <div class="row justify-content-center">
-                    <div class="col-md-10">
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <th style="width: 30%;">ID</th>
-                                    <td>{{ $agentDetail->id }}</td>
-                                </tr>
-                                <tr>
-                                    <th>District</th>
-                                    <td>{{ $agentDetail->district->name ?? 'N/A' }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Created At</th>
-                                    <td>{{ $agentDetail->created_at->format('M d, Y H:i:s') }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Updated At</th>
-                                    <td>{{ $agentDetail->updated_at->format('M d, Y H:i:s') }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th style="width: 40%;">ID</th>
+                                                <td>{{ $agentDetail->id }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>District</th>
+                                                <td>{{ $agentDetail->district->name ?? 'N/A' }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th style="width: 40%;">Created At</th>
+                                                <td>{{ $agentDetail->created_at->format('M d, Y H:i A') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Updated At</th>
+                                                <td>{{ $agentDetail->updated_at->format('M d, Y H:i A') }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         
                         <h4 class="mt-4">Agent Information</h4>
                         
@@ -64,26 +79,40 @@
                                         <h3 class="block-title">{{ $i == 0 ? 'Primary Entry' : 'Additional Entry #' . $i }}</h3>
                                     </div>
                                     <div class="block-content">
-                                        <table class="table table-borderless">
-                                            <tbody>
-                                                <tr>
-                                                    <th style="width: 30%;">State Agent Name</th>
-                                                    <td>{{ $stateAgentNames[$i] ?? 'N/A' }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Address</th>
-                                                    <td>{{ $addresses[$i] ?? 'N/A' }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Contact Number</th>
-                                                    <td>{{ $contactNos[$i] ?? 'N/A' }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Contact Person</th>
-                                                    <td>{{ $contactPersons[$i] ?? 'N/A' }}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="table-responsive">
+                                                    <table class="table table-borderless">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th style="width: 40%;">State Agent Name</th>
+                                                                <td>{{ $stateAgentNames[$i] ?? 'N/A' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Contact Number</th>
+                                                                <td>{{ $contactNos[$i] ?? 'N/A' }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="table-responsive">
+                                                    <table class="table table-borderless">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th style="width: 40%;">Contact Person</th>
+                                                                <td>{{ $contactPersons[$i] ?? 'N/A' }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Address</th>
+                                                                <td>{{ $addresses[$i] ?? 'N/A' }}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             @endfor

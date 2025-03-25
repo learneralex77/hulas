@@ -17,65 +17,72 @@
             </div>
             <div class="block-content">
                 @if (session('success'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 @endif
 
-                <table class="table table-bordered table-striped table-vcenter">
-                    <thead>
-                        <tr>
-                            <th style="width: 50px;">ID</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Slug</th>
-                            <th>Order</th>
-                            <th>Status</th>
-                            <th>Parent</th>
-                            <th style="width: 15%;">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($menus as $menu)
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
+                        <thead>
                             <tr>
-                                <td class="text-center">{{ $menu->id }}</td>
-                                <td>{{ $menu->bname }}</td>
-                                <td>{{ Str::limit($menu->description, 50) }}</td>
-                                <td>{{ $menu->slug }}</td>
-                                <td>{{ $menu->display_order }}</td>
-                                <td>
-                                    @if ($menu->is_published)
-                                        <span class="badge bg-success">Published</span>
-                                    @else
-                                        <span class="badge bg-warning">Draft</span>
-                                    @endif
-                                </td>
-                                <td>{{ $menu->parent ? $menu->parent->bname : '-' }}</td>
-                                <td class="text-center">
-                                    <div class="btn-group">
-                                        <a href="{{ route('menus.show', $menu) }}" class="btn btn-sm btn-info" title="View">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                        <a href="{{ route('menus.edit', $menu) }}" class="btn btn-sm btn-primary" title="Edit">
-                                            <i class="fa fa-pencil-alt"></i>
-                                        </a>
-                                        <form action="{{ route('menus.destroy', $menu) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this menu?')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger" title="Delete">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
+                                <th class="text-center" style="width: 50px;">ID</th>
+                                <th>Name</th>
+                                <th class="d-none d-md-table-cell">Description</th>
+                                <th class="d-none d-sm-table-cell">Slug</th>
+                                <th class="text-center" style="width: 70px;">Order</th>
+                                <th class="text-center">Status</th>
+                                <th class="d-none d-lg-table-cell">Parent</th>
+                                <th class="text-center" style="width: 120px;">Actions</th>
                             </tr>
-                        @empty
-                            <tr>
-                                <td colspan="8" class="text-center">No menus found</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @forelse ($menus as $menu)
+                                <tr>
+                                    <td class="text-center">{{ $menu->id }}</td>
+                                    <td>{{ $menu->bname }}</td>
+                                    <td class="d-none d-md-table-cell">{{ Str::limit($menu->description, 50) }}</td>
+                                    <td class="d-none d-sm-table-cell">{{ $menu->slug }}</td>
+                                    <td class="text-center">{{ $menu->display_order }}</td>
+                                    <td class="text-center">
+                                        @if ($menu->is_published)
+                                            <span class="badge bg-success">Published</span>
+                                        @else
+                                            <span class="badge bg-warning">Draft</span>
+                                        @endif
+                                    </td>
+                                    <td class="d-none d-lg-table-cell">{{ $menu->parent ? $menu->parent->bname : '-' }}</td>
+                                    <td class="text-center">
+                                        <div class="btn-group">
+                                            <a href="{{ route('menus.show', $menu) }}" class="btn btn-sm btn-info" title="View">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('menus.edit', $menu) }}" class="btn btn-sm btn-primary" title="Edit">
+                                                <i class="fa fa-pencil-alt"></i>
+                                            </a>
+                                            <form action="{{ route('menus.destroy', $menu) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this menu?')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="8" class="text-center">No menus found</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $menus->links() }}
+                </div>
             </div>
         </div>
     </div>

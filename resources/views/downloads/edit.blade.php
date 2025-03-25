@@ -11,7 +11,7 @@
                 <h3 class="block-title">Edit Download</h3>
                 <div class="block-options">
                     <a href="{{ route('downloads.index') }}" class="btn btn-sm btn-alt-secondary">
-                        <i class="fa fa-arrow-left"></i> Back to List
+                        <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>
             </div>

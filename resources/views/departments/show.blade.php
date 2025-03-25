@@ -14,56 +14,44 @@
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
                     <a href="{{ route('departments.index') }}" class="btn btn-sm btn-alt-secondary">
-                        <i class="fa fa-arrow-left"></i> Back to List
+                        <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>
             </div>
             <div class="block-content">
                 <div class="row">
-                    <div class="col-md-8">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th style="width: 200px;">ID</th>
-                                <td>{{ $department->id }}</td>
-                            </tr>
-                            <tr>
-                                <th>Name</th>
-                                <td>{{ $department->name }}</td>
-                            </tr>
-                            <tr>
-                                <th>Display Order</th>
-                                <td>{{ $department->display_order }}</td>
-                            </tr>
-                            <tr>
-                                <th>Status</th>
-                                <td>
-                                    @if ($department->is_published)
-                                        <span class="badge bg-success">Published</span>
-                                    @else
-                                        <span class="badge bg-warning">Draft</span>
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Created</th>
-                                <td>{{ $department->created_at->format('M d, Y H:i') }}</td>
-                            </tr>
-                            <tr>
-                                <th>Last Updated</th>
-                                <td>{{ $department->updated_at->format('M d, Y H:i') }}</td>
-                            </tr>
-                        </table>
+                    <div class="col-lg-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th class="text-center" style="width: 200px;">ID</th>
+                                        <td>{{ $department->id }}</td>
+                                        <th class="text-center" style="width: 200px;">Name</th>
+                                        <td>{{ $department->name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center">Display Order</th>
+                                        <td>{{ $department->display_order }}</td>
+                                        <th class="text-center">Status</th>
+                                        <td class="text-center">
+                                            @if ($department->is_published)
+                                                <span class="badge bg-success">Published</span>
+                                            @else
+                                                <span class="badge bg-warning">Draft</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center">Created</th>
+                                        <td>{{ $department->created_at->format('M d, Y H:i') }}</td>
+                                        <th class="text-center">Last Updated</th>
+                                        <td>{{ $department->updated_at->format('M d, Y H:i') }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-
-                <div class="mt-4">
-                    <form action="{{ route('departments.destroy', $department) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this department? This action cannot be undone.');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">
-                            <i class="fa fa-trash"></i> Delete Department
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>

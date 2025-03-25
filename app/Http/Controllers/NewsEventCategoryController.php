@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\NewsEventCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class NewsEventCategoryController extends Controller
 {
@@ -31,6 +32,8 @@ class NewsEventCategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
             'display_order' => 'nullable|integer',
             'is_published' => 'nullable|boolean',
         ]);
@@ -39,6 +42,11 @@ class NewsEventCategoryController extends Controller
         
         // Set boolean values
         $data['is_published'] = $request->has('is_published');
+        
+        // Generate slug if empty
+        if (empty($data['slug']) && !empty($data['name'])) {
+            $data['slug'] = Str::slug($data['name']);
+        }
         
         NewsEventCategory::create($data);
 
@@ -69,6 +77,8 @@ class NewsEventCategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
             'display_order' => 'nullable|integer',
             'is_published' => 'nullable|boolean',
         ]);
@@ -77,6 +87,11 @@ class NewsEventCategoryController extends Controller
         
         // Set boolean values
         $data['is_published'] = $request->has('is_published');
+        
+        // Generate slug if empty
+        if (empty($data['slug']) && !empty($data['name'])) {
+            $data['slug'] = Str::slug($data['name']);
+        }
         
         $newsEventCategory->update($data);
 

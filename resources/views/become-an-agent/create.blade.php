@@ -12,11 +12,11 @@
                 <div class="block-header block-header-default">
                     <h3 class="block-title">Add Images</h3>
                     <div class="block-options">
-                        <a href="{{ route('become-an-agent.index') }}" class="btn btn-alt-secondary">
-                            <i class="fa fa-arrow-left mr-1"></i> Back
+                        <a href="{{ route('become-an-agent.index') }}" class="btn btn-sm btn-alt-primary">
+                            <i class="fa fa-arrow-left"></i> Back
                         </a>
-                        <button type="submit" class="btn btn-alt-primary">
-                            <i class="fa fa-check mr-1"></i> Save
+                        <button type="submit" class="btn btn-sm btn-alt-success">
+                            <i class="fa fa-check"></i> Save
                         </button>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
 
                             <div class="mb-4 text-center">
                                 <button type="button" class="btn btn-alt-success" id="add-image-btn">
-                                    <i class="fa fa-plus me-1"></i> Add Another Image
+                                    <i class="fa fa-plus"></i> Add Another Image
                                 </button>
                             </div>
                         </div>

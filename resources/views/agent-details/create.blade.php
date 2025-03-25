@@ -12,37 +12,44 @@
                 <div class="block-header block-header-default">
                     <h3 class="block-title">Add Agent Details</h3>
                     <div class="block-options">
-                        <a class="btn btn-sm btn-alt-secondary" href="{{ route('agent-details.index') }}">
-                            <i class="fa fa-arrow-left me-1"></i> Back
+                        <a class="btn btn-sm btn-alt-primary" href="{{ route('agent-details.index') }}">
+                            <i class="fa fa-arrow-left"></i> Back
                         </a>
-                        <button type="submit" class="btn btn-sm btn-alt-primary">
-                            <i class="fa fa-check me-1"></i> Save
+                        <button type="submit" class="btn btn-sm btn-alt-success">
+                            <i class="fa fa-check"></i> Save
                         </button>
                     </div>
                 </div>
                 <div class="block-content">
                     <div class="row justify-content-center">
                         <div class="col-md-10 col-lg-8">
-                            <div class="mb-4">
-                                <label class="form-label" for="district_id">District <span class="text-danger">*</span></label>
-                                <select class="form-select @error('district_id') is-invalid @enderror" id="district_id" name="district_id" required>
-                                    <option value="">Select District</option>
-                                    @foreach($districts as $district)
-                                        <option value="{{ $district->id }}" {{ old('district_id') == $district->id ? 'selected' : '' }}>
-                                            {{ $district->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('district_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label class="form-label" for="district_id">District <span class="text-danger">*</span></label>
+                                    <select class="form-select @error('district_id') is-invalid @enderror" id="district_id" name="district_id" required>
+                                        <option value="">Select District</option>
+                                        @foreach($districts as $district)
+                                            <option value="{{ $district->id }}" {{ old('district_id') == $district->id ? 'selected' : '' }}>
+                                                {{ $district->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('district_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                                 
                             <hr>
                             
                             <!-- State Agent Names Section -->
                             <div class="mb-4">
-                                <h4>State Agent Names <small class="text-muted">(You can add multiple entries)</small></h4>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h4>State Agent Names <small class="text-muted">(You can add multiple entries)</small></h4>
+                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-agent-name">
+                                        <i class="fa fa-plus"></i> Add Name
+                                    </button>
+                                </div>
                                 
                                 <div id="agent-names-container">
                                     <div class="mb-3">
@@ -57,19 +64,18 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
-                                <div class="text-end mb-4">
-                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-agent-name">
-                                        <i class="fa fa-plus me-1"></i> Add Another Agent Name
-                                    </button>
-                                </div>
                             </div>
                             
                             <hr>
                             
                             <!-- Addresses Section -->
                             <div class="mb-4">
-                                <h4>Addresses <small class="text-muted">(You can add multiple entries)</small></h4>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h4>Addresses <small class="text-muted">(You can add multiple entries)</small></h4>
+                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-address">
+                                        <i class="fa fa-plus"></i> Add Address
+                                    </button>
+                                </div>
                                 
                                 <div id="addresses-container">
                                     <div class="mb-3">
@@ -83,19 +89,18 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
-                                <div class="text-end mb-4">
-                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-address">
-                                        <i class="fa fa-plus me-1"></i> Add Another Address
-                                    </button>
-                                </div>
                             </div>
                             
                             <hr>
                             
                             <!-- Contact Numbers Section -->
                             <div class="mb-4">
-                                <h4>Contact Numbers <small class="text-muted">(You can add multiple entries)</small></h4>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h4>Contact Numbers <small class="text-muted">(You can add multiple entries)</small></h4>
+                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-contact-no">
+                                        <i class="fa fa-plus"></i> Add Number
+                                    </button>
+                                </div>
                                 
                                 <div id="contact-nos-container">
                                     <div class="mb-3">
@@ -110,19 +115,18 @@
                                         @enderror
                                     </div>
                                 </div>
-                                
-                                <div class="text-end mb-4">
-                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-contact-no">
-                                        <i class="fa fa-plus me-1"></i> Add Another Contact Number
-                                    </button>
-                                </div>
                             </div>
                             
                             <hr>
                             
                             <!-- Contact Persons Section -->
                             <div class="mb-4">
-                                <h4>Contact Persons <small class="text-muted">(You can add multiple entries)</small></h4>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h4>Contact Persons <small class="text-muted">(You can add multiple entries)</small></h4>
+                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-contact-person">
+                                        <i class="fa fa-plus"></i> Add Person
+                                    </button>
+                                </div>
                                 
                                 <div id="contact-persons-container">
                                     <div class="mb-3">
@@ -136,12 +140,6 @@
                                             <div class="invalid-feedback d-block">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                </div>
-                                
-                                <div class="text-end mb-4">
-                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-contact-person">
-                                        <i class="fa fa-plus me-1"></i> Add Another Contact Person
-                                    </button>
                                 </div>
                             </div>
                         </div>

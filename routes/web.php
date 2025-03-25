@@ -63,7 +63,9 @@ Route::resource('news-event-categories', NewsEventCategoryController::class);
 Route::resource('publications', PublicationController::class);
 
 // Contact Us Management Routes
-Route::resource('contact-us', ContactUsController::class);
+Route::resource('contact-us', ContactUsController::class)->parameters([
+    'contact-us' => 'contactUs'
+]);
 
 // District Management Routes
 Route::resource('districts', DistrictController::class);

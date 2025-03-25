@@ -16,9 +16,6 @@
                         <a href="{{ route('settings.index') }}" class="btn btn-alt-secondary">
                             <i class="fa fa-arrow-left mr-1"></i> Back
                         </a>
-                        <button type="submit" class="btn btn-alt-primary">
-                            <i class="fa fa-check mr-1"></i> Save
-                        </button>
                     </div>
                 </div>
                 <div class="block-content">

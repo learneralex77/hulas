@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AgentForm;
 use App\Models\District;
+use App\Http\Requests\AgentFormRequest;
 use Illuminate\Http\Request;
 
 class AgentFormController extends Controller
@@ -29,17 +30,11 @@ class AgentFormController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AgentFormRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'number' => 'required|string|max:20',
-            'district_id' => 'required|exists:districts,id',
-            'message' => 'nullable|string',
-            'address' => 'nullable|string',
-        ]);
-
-        AgentForm::create($request->all());
+        $data = $request->validated();
+        
+        AgentForm::create($data);
 
         return redirect()->route('agent-forms.index')
             ->with('success', 'Agent form created successfully.');
@@ -65,17 +60,11 @@ class AgentFormController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AgentForm $agentForm)
+    public function update(AgentFormRequest $request, AgentForm $agentForm)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'number' => 'required|string|max:20',
-            'district_id' => 'required|exists:districts,id',
-            'message' => 'nullable|string',
-            'address' => 'nullable|string',
-        ]);
-
-        $agentForm->update($request->all());
+        $data = $request->validated();
+        
+        $agentForm->update($data);
 
         return redirect()->route('agent-forms.index')
             ->with('success', 'Agent form updated successfully.');

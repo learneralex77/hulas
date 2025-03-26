@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use App\Http\Requests\TeamRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -29,27 +30,15 @@ class TeamController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TeamRequest $request)
     {
-        $request->validate([
-            'type' => 'required|in:' . implode(',', array_keys(Team::getTypes())),
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'description' => 'nullable|string',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
+        $data = $request->validated();
         
         // Handle image upload
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('teams', 'public');
             $data['image'] = $imagePath;
         }
-        
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
         
         Team::create($data);
 
@@ -77,18 +66,9 @@ class TeamController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Team $team)
+    public function update(TeamRequest $request, Team $team)
     {
-        $request->validate([
-            'type' => 'required|in:' . implode(',', array_keys(Team::getTypes())),
-            'name' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'description' => 'nullable|string',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
+        $data = $request->validated();
         
         // Handle image upload
         if ($request->hasFile('image')) {
@@ -100,9 +80,6 @@ class TeamController extends Controller
             $imagePath = $request->file('image')->store('teams', 'public');
             $data['image'] = $imagePath;
         }
-        
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
         
         $team->update($data);
 

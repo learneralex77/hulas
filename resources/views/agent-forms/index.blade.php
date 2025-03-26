@@ -27,7 +27,7 @@
                     <table class="table table-bordered table-striped table-vcenter">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>S.N.</th>
                                 <th>Name</th>
                                 <th>Number</th>
                                 <th>District</th>

@@ -22,47 +22,40 @@
             <div class="block-content">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="row mb-4">
-                            <label class="col-md-2 col-form-label fw-bold">Name</label>
-                            <div class="col-md-6">
-                                {{ $newsEventCategory->name }}
-                            </div>
-                            <label class="col-md-1 col-form-label fw-bold">Status</label>
-                            <div class="col-md-3">
-                                @if($newsEventCategory->is_published)
-                                    <span class="badge bg-success">Published</span>
-                                @else
-                                    <span class="badge bg-danger">Unpublished</span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="row mb-4">
-                            <label class="col-md-2 col-form-label fw-bold">Slug</label>
-                            <div class="col-md-10">
-                                {{ $newsEventCategory->slug }}
-                            </div>
-                        </div>
-
-                        <div class="row mb-4">
-                            <label class="col-md-2 col-form-label fw-bold">Description</label>
-                            <div class="col-md-10">
-                                {!! nl2br(e($newsEventCategory->description)) !!}
-                            </div>
-                        </div>
-
-                        <div class="row mb-4">
-                            <label class="col-md-2 col-form-label fw-bold">Created At</label>
-                            <div class="col-md-10">
-                                {{ $newsEventCategory->created_at->format('F j, Y g:i A') }}
-                            </div>
-                        </div>
-
-                        <div class="row mb-4">
-                            <label class="col-md-2 col-form-label fw-bold">Updated At</label>
-                            <div class="col-md-10">
-                                {{ $newsEventCategory->updated_at->format('F j, Y g:i A') }}
-                            </div>
+                        <h4>Category Information</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <th style="width: 15%;">Name</th>
+                                        <td style="width: 35%;">{{ $newsEventCategory->name }}</td>
+                                        <th style="width: 15%;">Status</th>
+                                        <td style="width: 35%;">
+                                            @if($newsEventCategory->is_published)
+                                                <span class="badge bg-success">Published</span>
+                                            @else
+                                                <span class="badge bg-danger">Unpublished</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Slug</th>
+                                        <td>{{ $newsEventCategory->slug }}</td>
+                                        <th>Display Order</th>
+                                        <td>{{ $newsEventCategory->display_order }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Created At</th>
+                                        <td>{{ $newsEventCategory->created_at->format('F j, Y g:i A') }}</td>
+                                        <th>Updated At</th>
+                                        <td>{{ $newsEventCategory->updated_at->format('F j, Y g:i A') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Description</th>
+                                        <td colspan="3">{!! nl2br(e($newsEventCategory->description)) !!}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

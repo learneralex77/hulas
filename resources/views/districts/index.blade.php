@@ -26,6 +26,7 @@
                     <table class="table table-bordered table-striped table-vcenter">
                         <thead>
                             <tr>
+                                <th>S.N.</th>
                                 <th>Name</th>
                                 <th>Zone</th>
                                 <th>Display Order</th>
@@ -36,6 +37,7 @@
                         <tbody>
                             @forelse ($districts as $district)
                                 <tr>
+                                    <td>{{ $district->id }}</td>
                                     <td>{{ $district->name }}</td>
                                     <td>{{ $district->zone->name ?? 'N/A' }}</td>
                                     <td>{{ $district->display_order }}</td>
@@ -66,7 +68,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="text-center">No districts found</td>
+                                    <td colspan="6" class="text-center">No districts found</td>
                                 </tr>
                             @endforelse
                         </tbody>

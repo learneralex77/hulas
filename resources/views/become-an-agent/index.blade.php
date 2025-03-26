@@ -27,7 +27,7 @@
                     <table class="table table-bordered table-striped table-vcenter">
                         <thead>
                             <tr>
-                                <th style="width: 5%;">ID</th>
+                                <th style="width: 5%;">S.N.</th>
                                 <th>Preview</th>
                                 <th>Image Count</th>
                                 <th>Created At</th>

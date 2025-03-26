@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AboutUs;
+use App\Http\Requests\AboutUsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,7 +36,7 @@ class AboutUsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AboutUsRequest $request)
     {
         // Check if any record already exists
         $exists = AboutUs::exists();
@@ -44,19 +45,7 @@ class AboutUsController extends Controller
                 ->with('error', 'About Us information already exists. You can only edit the existing record.');
         }
 
-        $request->validate([
-            'tagline' => 'required|string|max:255',
-            'description' => 'required|string',
-            'years_of_experience' => 'nullable|integer|min:0',
-            'short_description' => 'nullable|string',
-            'video_link' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'mission_vision_titles.*' => 'required|string|max:255',
-            'mission_vision_icons.*' => 'required|string|max:255',
-            'mission_vision_descriptions.*' => 'required|string',
-        ]);
-
-        $data = $request->except(['_token', 'image', 'mission_vision_titles', 'mission_vision_icons', 'mission_vision_descriptions']);
+        $data = $request->validated();
 
         // Handle image upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -103,21 +92,9 @@ class AboutUsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AboutUs $aboutUs)
+    public function update(AboutUsRequest $request, AboutUs $aboutUs)
     {
-        $request->validate([
-            'tagline' => 'required|string|max:255',
-            'description' => 'required|string',
-            'years_of_experience' => 'nullable|integer|min:0',
-            'short_description' => 'nullable|string',
-            'video_link' => 'nullable|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'mission_vision_titles.*' => 'required|string|max:255',
-            'mission_vision_icons.*' => 'required|string|max:255',
-            'mission_vision_descriptions.*' => 'required|string',
-        ]);
-
-        $data = $request->except(['_token', '_method', 'image', 'mission_vision_titles', 'mission_vision_icons', 'mission_vision_descriptions']);
+        $data = $request->validated();
 
         // Handle image upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -161,7 +138,7 @@ class AboutUsController extends Controller
         }
         
         $aboutUs->delete();
-
+        
         return redirect()->route('about-us.index')
             ->with('success', 'About Us information deleted successfully.');
     }

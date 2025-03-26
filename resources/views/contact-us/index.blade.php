@@ -27,7 +27,7 @@
                     <table class="table table-bordered table-striped table-vcenter">
                         <thead>
                             <tr>
-                                <th style="width: 50px;">ID</th>
+                                <th style="width: 50px;">S.N.</th>
                                 <th>Full Name</th>
                                 <th>Email</th>
                                 <th>Phone Number</th>

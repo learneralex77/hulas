@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Publication;
 use App\Models\NewsEventCategory;
+use App\Http\Requests\PublicationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -37,24 +38,9 @@ class PublicationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PublicationRequest $request)
     {
-        $validated = $request->validate([
-            'news_event_category_id' => 'required|exists:news_event_categories,id',
-            'publication_type' => 'required|in:News,Article,Event',
-            'title' => 'required|string|max:255',
-            'short_description' => 'nullable|string',
-            'content' => 'nullable|string',
-            'published_by' => 'nullable|string|max:255',
-            'display_order' => 'nullable|integer',
-            'external_link' => 'nullable|url|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-        
-        $data = $request->all();
-        
-        // Handle boolean values
-        $data['is_published'] = $request->has('is_published');
+        $data = $request->validated();
         
         // Handle image upload
         if ($request->hasFile('image')) {
@@ -94,24 +80,9 @@ class PublicationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Publication $publication)
+    public function update(PublicationRequest $request, Publication $publication)
     {
-        $validated = $request->validate([
-            'news_event_category_id' => 'required|exists:news_event_categories,id',
-            'publication_type' => 'required|in:News,Article,Event',
-            'title' => 'required|string|max:255',
-            'short_description' => 'nullable|string',
-            'content' => 'nullable|string',
-            'published_by' => 'nullable|string|max:255',
-            'display_order' => 'nullable|integer',
-            'external_link' => 'nullable|url|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-        
-        $data = $request->all();
-        
-        // Handle boolean values
-        $data['is_published'] = $request->has('is_published');
+        $data = $request->validated();
         
         // Handle image upload
         if ($request->hasFile('image')) {

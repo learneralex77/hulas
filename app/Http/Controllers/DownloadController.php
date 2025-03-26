@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Download;
+use App\Http\Requests\DownloadRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,25 +29,15 @@ class DownloadController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DownloadRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'file' => 'required|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,csv,zip|max:10240',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
+        $data = $request->validated();
         
         // Handle file upload
         if ($request->hasFile('file')) {
             $filePath = $request->file('file')->store('downloads', 'public');
             $data['file'] = $filePath;
         }
-        
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
         
         Download::create($data);
 
@@ -73,16 +64,9 @@ class DownloadController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Download $download)
+    public function update(DownloadRequest $request, Download $download)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'file' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,csv,zip|max:10240',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
+        $data = $request->validated();
         
         // Handle file upload
         if ($request->hasFile('file')) {
@@ -97,9 +81,6 @@ class DownloadController extends Controller
             // Keep existing file
             unset($data['file']);
         }
-        
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
         
         $download->update($data);
 

@@ -27,7 +27,7 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 50px;">ID</th>
+                                <th class="text-center" style="width: 50px;">S.N.</th>
                                 <th>Name</th>
                                 <th class="d-none d-md-table-cell">Description</th>
                                 <th class="d-none d-sm-table-cell">Slug</th>
@@ -40,7 +40,7 @@
                         <tbody>
                             @forelse ($menus as $menu)
                                 <tr>
-                                    <td class="text-center">{{ $menu->id }}</td>
+                                    <td class="text-center">{{ $loop->iteration }} </td>
                                     <td>{{ $menu->bname }}</td>
                                     <td class="d-none d-md-table-cell">{{ Str::limit($menu->description, 50) }}</td>
                                     <td class="d-none d-sm-table-cell">{{ $menu->slug }}</td>

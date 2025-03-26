@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Branch;
 use App\Models\District;
+use App\Http\Requests\BranchRequest;
 use Illuminate\Http\Request;
 
 class BranchController extends Controller
@@ -29,7 +30,7 @@ class BranchController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BranchRequest $request)
     {
         // Log incoming request data for debugging
         \Log::info('Branch store method called', [
@@ -39,22 +40,9 @@ class BranchController extends Controller
         ]);
         
         try {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'address' => 'nullable|string',
-                'phone_number' => 'nullable|string|max:20',
-                'email' => 'nullable|email|max:255',
-                'district_id' => 'required|exists:districts,id',
-                'display_order' => 'nullable|integer',
-                'is_published' => 'nullable|boolean',
-            ]);
+            $data = $request->validated();
             
             \Log::info('Branch validation passed');
-            
-            $data = $request->all();
-            
-            // Set boolean values
-            $data['is_published'] = $request->has('is_published');
             
             \Log::info('Attempting to create branch', ['data' => $data]);
             
@@ -94,22 +82,9 @@ class BranchController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Branch $branch)
+    public function update(BranchRequest $request, Branch $branch)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'address' => 'nullable|string',
-            'phone_number' => 'nullable|string|max:20',
-            'email' => 'nullable|email|max:255',
-            'district_id' => 'required|exists:districts,id',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
-        
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
+        $data = $request->validated();
         
         $branch->update($data);
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Designation;
+use App\Http\Requests\DesignationRequest;
 use Illuminate\Http\Request;
 
 class DesignationController extends Controller
@@ -27,18 +28,9 @@ class DesignationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DesignationRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
-        
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
+        $data = $request->validated();
         
         Designation::create($data);
 
@@ -65,18 +57,9 @@ class DesignationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Designation $designation)
+    public function update(DesignationRequest $request, Designation $designation)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
-        
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
+        $data = $request->validated();
         
         $designation->update($data);
 

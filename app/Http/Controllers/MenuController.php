@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Http\Requests\MenuRequest;
 
 class MenuController extends Controller
 {
@@ -13,14 +14,14 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::orderBy('display_order')->get();
+        $menus = Menu::orderBy('display_order')->paginate(10);
         return view('menus.index', compact('menus'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $parentMenus = Menu::orderBy('bname')->get();
         return view('menus.create', compact('parentMenus'));
@@ -29,21 +30,13 @@ class MenuController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MenuRequest $request)
     {
-        $validated = $request->validate([
-            'bname' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-            'parent_id' => 'nullable|exists:menus,id',
-        ]);
-
-        // Generate slug from bname
-        $validated['slug'] = Str::slug($validated['bname']);
+        // Get validated data
+        $validated = $request->validated();
         
-        // Set is_published to false if not in request
-        $validated['is_published'] = $request->has('is_published');
+        // Generate slug from menu name
+        $validated['slug'] = Str::slug($validated['bname']);
 
         Menu::create($validated);
 
@@ -62,7 +55,7 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Menu $menu)
+    public function edit(Menu $menu, Request $request)
     {
         $parentMenus = Menu::where('id', '!=', $menu->id)
             ->orderBy('bname')
@@ -74,21 +67,13 @@ class MenuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Menu $menu)
+    public function update(MenuRequest $request, Menu $menu)
     {
-        $validated = $request->validate([
-            'bname' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-            'parent_id' => 'nullable|exists:menus,id',
-        ]);
-
-        // Generate slug from bname
-        $validated['slug'] = Str::slug($validated['bname']);
+        // Get validated data
+        $validated = $request->validated();
         
-        // Set is_published to false if not in request
-        $validated['is_published'] = $request->has('is_published');
+        // Generate slug from menu name
+        $validated['slug'] = Str::slug($validated['bname']);
 
         $menu->update($validated);
 

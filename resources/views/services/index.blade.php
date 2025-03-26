@@ -26,7 +26,7 @@
                     <table class="table table-bordered table-striped table-vcenter">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>S.N.</th>
                                 <th>Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 15%;">Actions</th>

@@ -18,83 +18,17 @@
                     </div>
                 </div>
                 <div class="block-content">
-                    <div class="row justify-content-center">
-                        <div class="col-md-10 col-lg-8">
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label class="form-label" for="display_order">Display Order</label>
-                                    <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order" value="{{ old('display_order', 0) }}">
-                                    @error('display_order')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label" for="file">File (Image or PDF)</label>
-                                    <input type="file" class="form-control @error('file') is-invalid @enderror" id="file" name="file">
-                                    @error('file')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="is_published" name="is_published" value="1" {{ old('is_published') ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="is_published">Published</label>
-                                </div>
-                            </div>
-                            
-                            <hr>
-                            
-                            <!-- Dynamic section for names, icons, and descriptions -->
-                            <div class="mb-4">
-                                <h4>Service Details <small class="text-muted">(You can add multiple entries)</small></h4>
-                                
-                                <div id="service-details-container">
-                                    <div class="service-detail-item border rounded p-3 mb-3">
-                                        <div class="row mb-3">
-                                            <div class="col-md-6">
-                                                <label class="form-label" for="names_0">Name <span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control @error('names.0') is-invalid @enderror" id="names_0" name="names[]" value="{{ old('names.0') }}" required>
-                                                @error('names.0')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                            
-                                            <div class="col-md-6">
-                                                <label class="form-label" for="icons_0">Icon (FontAwesome Class)</label>
-                                                <input type="text" class="form-control @error('icons.0') is-invalid @enderror" id="icons_0" name="icons[]" value="{{ old('icons.0') }}" placeholder="fa fa-example">
-                                                @error('icons.0')
-                                                    <div class="invalid-feedback">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="mb-3">
-                                            <label class="form-label" for="descriptions_0">Description</label>
-                                            <textarea class="form-control @error('descriptions.0') is-invalid @enderror" id="descriptions_0" name="descriptions[]" rows="3">{{ old('descriptions.0') }}</textarea>
-                                            @error('descriptions.0')
-                                                <div class="invalid-feedback">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-service-detail">
-                                        <i class="fa fa-plus"></i> Add Another Entry
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- Save button at the bottom -->
-                            <div class="text-center mt-4">
-                                <button type="submit" class="btn btn-alt-success">
-                                    <i class="fa fa-check"></i> Save Service
-                                </button>
-                            </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                    </div>
+                    @endif
+                    
+                    @include('services.partials.form')
                 </div>
             </div>
         </form>

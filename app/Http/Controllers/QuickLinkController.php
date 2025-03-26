@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\QuickLink;
+use App\Http\Requests\QuickLinkRequest;
 use Illuminate\Http\Request;
 
 class QuickLinkController extends Controller
@@ -27,19 +28,10 @@ class QuickLinkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(QuickLinkRequest $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'external_link' => 'required|string|max:255',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        // Set is_published to false if not in request
-        $validated['is_published'] = $request->has('is_published');
-
-        QuickLink::create($validated);
+        $data = $request->validated();
+        QuickLink::create($data);
 
         return redirect()->route('quick-links.index')
             ->with('success', 'Quick Link created successfully.');
@@ -64,19 +56,10 @@ class QuickLinkController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, QuickLink $quickLink)
+    public function update(QuickLinkRequest $request, QuickLink $quickLink)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'external_link' => 'required|string|max:255',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        // Set is_published to false if not in request
-        $validated['is_published'] = $request->has('is_published');
-
-        $quickLink->update($validated);
+        $data = $request->validated();
+        $quickLink->update($data);
 
         return redirect()->route('quick-links.index')
             ->with('success', 'Quick Link updated successfully.');

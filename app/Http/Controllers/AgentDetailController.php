@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AgentDetail;
 use App\Models\District;
+use App\Http\Requests\AgentDetailRequest;
 use Illuminate\Http\Request;
 
 class AgentDetailController extends Controller
@@ -29,23 +30,17 @@ class AgentDetailController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AgentDetailRequest $request)
     {
-        $request->validate([
-            'district_id' => 'required|exists:districts,id',
-            'state_agent_names.*' => 'required|string|max:255',
-            'addresses.*' => 'nullable|string',
-            'contact_nos.*' => 'nullable|string|max:20',
-            'contact_persons.*' => 'nullable|string|max:255',
-        ]);
-
+        $data = $request->validated();
+        
         // Create the agent detail with JSON encoded arrays
         AgentDetail::create([
-            'district_id' => $request->input('district_id'),
-            'state_agent_name' => json_encode($request->input('state_agent_names', [])),
-            'address' => json_encode($request->input('addresses', [])),
-            'contact_no' => json_encode($request->input('contact_nos', [])),
-            'contact_person' => json_encode($request->input('contact_persons', [])),
+            'district_id' => $data['district_id'],
+            'state_agent_name' => json_encode($data['state_agent_names'] ?? []),
+            'address' => json_encode($data['addresses'] ?? []),
+            'contact_no' => json_encode($data['contact_nos'] ?? []),
+            'contact_person' => json_encode($data['contact_persons'] ?? []),
         ]);
 
         return redirect()->route('agent-details.index')
@@ -85,23 +80,17 @@ class AgentDetailController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AgentDetail $agentDetail)
+    public function update(AgentDetailRequest $request, AgentDetail $agentDetail)
     {
-        $request->validate([
-            'district_id' => 'required|exists:districts,id',
-            'state_agent_names.*' => 'required|string|max:255',
-            'addresses.*' => 'nullable|string',
-            'contact_nos.*' => 'nullable|string|max:20',
-            'contact_persons.*' => 'nullable|string|max:255',
-        ]);
-
+        $data = $request->validated();
+        
         // Update the agent detail with JSON encoded arrays
         $agentDetail->update([
-            'district_id' => $request->input('district_id'),
-            'state_agent_name' => json_encode($request->input('state_agent_names', [])),
-            'address' => json_encode($request->input('addresses', [])),
-            'contact_no' => json_encode($request->input('contact_nos', [])),
-            'contact_person' => json_encode($request->input('contact_persons', [])),
+            'district_id' => $data['district_id'],
+            'state_agent_name' => json_encode($data['state_agent_names'] ?? []),
+            'address' => json_encode($data['addresses'] ?? []),
+            'contact_no' => json_encode($data['contact_nos'] ?? []),
+            'contact_person' => json_encode($data['contact_persons'] ?? []),
         ]);
 
         return redirect()->route('agent-details.index')

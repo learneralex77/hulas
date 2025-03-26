@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gallery;
+use App\Http\Requests\GalleryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,19 +29,9 @@ class GalleryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GalleryRequest $request)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'gallery_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'links' => 'nullable|string',
-            'is_featured' => 'nullable|boolean',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
+        $data = $request->validated();
         
         // Handle featured image upload
         if ($request->hasFile('featured_image')) {
@@ -57,10 +48,6 @@ class GalleryController extends Controller
             }
             $data['images'] = $images;
         }
-        
-        // Set boolean values
-        $data['is_featured'] = $request->has('is_featured');
-        $data['is_published'] = $request->has('is_published');
         
         Gallery::create($data);
 
@@ -89,20 +76,10 @@ class GalleryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(GalleryRequest $request, string $id)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'featured_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'gallery_images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'links' => 'nullable|string',
-            'is_featured' => 'nullable|boolean',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
         $gallery = Gallery::findOrFail($id);
-        $data = $request->all();
+        $data = $request->validated();
         
         // Handle featured image deletion
         if ($request->has('delete_featured_image') && $request->delete_featured_image == 1 && !$request->hasFile('featured_image')) {
@@ -153,10 +130,6 @@ class GalleryController extends Controller
             
             $data['images'] = $imagesToKeep;
         }
-        
-        // Set boolean values
-        $data['is_featured'] = $request->has('is_featured');
-        $data['is_published'] = $request->has('is_published');
         
         $gallery->update($data);
 

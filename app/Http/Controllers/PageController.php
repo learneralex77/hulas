@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Menu;
 use App\Models\Page;
+use App\Http\Requests\PageRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -31,7 +32,7 @@ class PageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PageRequest $request)
     {
         // Log the incoming request for debugging
         \Log::info('Page store method called', [
@@ -42,18 +43,8 @@ class PageController extends Controller
         ]);
         
         try {
-            // Validate the request data
-            $validated = $request->validate([
-                'title' => 'required|string|max:255',
-                'content' => 'required|string',
-                'menu_id' => 'required|exists:menus,id',
-                'short_description' => 'nullable|string|max:500',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            ]);
-
-            \Log::info('Validation passed', ['validated_data' => $validated]);
-            
-            $data = $validated;
+            $data = $request->validated();
+            \Log::info('Validation passed', ['validated_data' => $data]);
             
             // Generate slug from title
             $data['slug'] = Str::slug($request->title);
@@ -72,12 +63,6 @@ class PageController extends Controller
             // Redirect with success message
             return redirect()->route('pages.index')
                 ->with('success', 'Page created successfully.');
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            \Log::error('Validation error creating page', [
-                'errors' => $e->errors(),
-            ]);
-            
-            return back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             \Log::error('Error creating page', [
                 'error' => $e->getMessage(),
@@ -108,17 +93,9 @@ class PageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Page $page)
+    public function update(PageRequest $request, Page $page)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'menu_id' => 'required|exists:menus,id',
-            'short_description' => 'nullable|string|max:500',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        $data = $validated;
+        $data = $request->validated();
         
         // Generate slug from title if title is changed
         if ($request->title != $page->title) {

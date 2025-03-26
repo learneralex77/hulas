@@ -17,7 +17,8 @@ class Branch extends Model
         'email',
         'is_published',
         'district_id',
-        'display_order'
+        'display_order',
+        'map_iframe'
     ];
 
     protected $casts = [

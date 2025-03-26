@@ -26,6 +26,7 @@
                     <table class="table table-bordered table-striped table-vcenter">
                         <thead>
                             <tr>
+                                <th>S.N.</th>
                                 <th>Branch Name</th>
                                 <th>Address</th>
                                 <th>Phone</th>
@@ -37,6 +38,7 @@
                         <tbody>
                             @forelse ($branches as $branch)
                                 <tr>
+                                    <td>{{ $branch->id }}</td>
                                     <td>{{ $branch->name }}</td>
                                     <td>{{ $branch->address }}</td>
                                     <td>{{ $branch->phone }}</td>

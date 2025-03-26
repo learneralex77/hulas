@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BecomeAnAgent;
+use App\Http\Requests\BecomeAnAgentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,13 +29,10 @@ class BecomeAnAgentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BecomeAnAgentRequest $request)
     {
-        $request->validate([
-            'images' => 'required|array',
-            'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
+        $data = $request->validated();
+        
         $imagesPaths = [];
 
         if ($request->hasFile('images')) {
@@ -79,14 +77,10 @@ class BecomeAnAgentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, BecomeAnAgent $becomeAnAgent)
+    public function update(BecomeAnAgentRequest $request, BecomeAnAgent $becomeAnAgent)
     {
-        $request->validate([
-            'new_images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-            'delete_images' => 'nullable|array',
-            'delete_images.*' => 'numeric',
-        ]);
-
+        $data = $request->validated();
+        
         $imagesPaths = $becomeAnAgent->images ?? [];
 
         // Handle image deletions
@@ -134,7 +128,7 @@ class BecomeAnAgentController extends Controller
     public function destroy(BecomeAnAgent $becomeAnAgent)
     {
         // Delete all associated images from storage
-        if (!empty($becomeAnAgent->images)) {
+        if (!empty($becomeAnAgent->images) && is_array($becomeAnAgent->images)) {
             foreach ($becomeAnAgent->images as $image) {
                 Storage::disk('public')->delete($image);
             }
@@ -147,30 +141,28 @@ class BecomeAnAgentController extends Controller
     }
 
     /**
-     * Remove a specific image from an agent.
+     * Delete a specific image from the become an agent record.
      */
-    public function deleteImage(Request $request, BecomeAnAgent $becomeAnAgent, $index)
+    public function deleteImage(BecomeAnAgent $becomeAnAgent, $index)
     {
-        $imagesPaths = $becomeAnAgent->images;
-        
-        if (isset($imagesPaths[$index])) {
-            // Delete the image from storage
-            Storage::disk('public')->delete($imagesPaths[$index]);
+        $images = $becomeAnAgent->images ?? [];
+
+        if (isset($images[$index])) {
+            // Delete the file from storage
+            Storage::disk('public')->delete($images[$index]);
             
             // Remove from the array
-            unset($imagesPaths[$index]);
+            unset($images[$index]);
             
             // Reindex the array
-            $imagesPaths = array_values($imagesPaths);
+            $images = array_values($images);
             
-            // Update the database
-            $becomeAnAgent->update([
-                'images' => $imagesPaths,
-            ]);
+            // Update the record
+            $becomeAnAgent->update(['images' => $images]);
             
-            return response()->json(['success' => true]);
+            return redirect()->back()->with('success', 'Image deleted successfully.');
         }
         
-        return response()->json(['success' => false], 404);
+        return redirect()->back()->with('error', 'Image not found.');
     }
 }

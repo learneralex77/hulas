@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NewsEventCategory;
+use App\Http\Requests\NewsEventCategoryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -28,20 +29,9 @@ class NewsEventCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(NewsEventCategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
-        
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
+        $data = $request->validated();
         
         // Generate slug if empty
         if (empty($data['slug']) && !empty($data['name'])) {
@@ -73,20 +63,9 @@ class NewsEventCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, NewsEventCategory $newsEventCategory)
+    public function update(NewsEventCategoryRequest $request, NewsEventCategory $newsEventCategory)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
-        
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
+        $data = $request->validated();
         
         // Generate slug if empty
         if (empty($data['slug']) && !empty($data['name'])) {

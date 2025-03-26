@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Http\Requests\DepartmentRequest;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -27,18 +28,9 @@ class DepartmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DepartmentRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
-        
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
+        $data = $request->validated();
         
         Department::create($data);
 
@@ -65,18 +57,9 @@ class DepartmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Department $department)
+    public function update(DepartmentRequest $request, Department $department)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
-        
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
+        $data = $request->validated();
         
         $department->update($data);
 

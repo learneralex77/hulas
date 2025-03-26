@@ -27,7 +27,7 @@
                     <table class="table table-bordered table-striped table-vcenter">
                         <thead>
                             <tr>
-                                <th style="width: 5%;">ID</th>
+                                <th style="width: 5%;">S.N.</th>
                                 <th>District</th>
                                 <th>State Agent Name</th>
                                 <th>Contact Numbers</th>

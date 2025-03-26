@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use App\Http\Requests\SettingRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,28 +29,9 @@ class SettingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SettingRequest $request)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:190',
-            'feedback_notify_email' => 'required|email|max:190',
-            'agent_notify_email' => 'required|email|max:190',
-            'description' => 'required|string',
-            'email' => 'required|email|max:190',
-            'PO_Box' => 'required|string|max:100',
-            'canonical_url' => 'required|string|max:190',
-            'keyword' => 'required|string',
-            'google_maplink' => 'nullable|string|max:190',
-            'schema_markup' => 'nullable|string',
-            'facebook' => 'nullable|string|max:190',
-            'twitter' => 'nullable|string|max:190',
-            'linkedin' => 'nullable|string|max:190',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'primary_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'secondary_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        $data = $request->except(['logo', 'primary_logo', 'secondary_logo']);
+        $data = $request->validated();
 
         // Handle logo uploads
         if ($request->hasFile('logo')) {
@@ -89,28 +71,9 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Setting $setting)
+    public function update(SettingRequest $request, Setting $setting)
     {
-        $validated = $request->validate([
-            'title' => 'required|string|max:190',
-            'feedback_notify_email' => 'required|email|max:190',
-            'agent_notify_email' => 'required|email|max:190',
-            'description' => 'required|string',
-            'email' => 'required|email|max:190',
-            'PO_Box' => 'required|string|max:100',
-            'canonical_url' => 'required|string|max:190',
-            'keyword' => 'required|string',
-            'google_maplink' => 'nullable|string|max:190',
-            'schema_markup' => 'nullable|string',
-            'facebook' => 'nullable|string|max:190',
-            'twitter' => 'nullable|string|max:190',
-            'linkedin' => 'nullable|string|max:190',
-            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'primary_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'secondary_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        $data = $request->except(['logo', 'primary_logo', 'secondary_logo']);
+        $data = $request->validated();
 
         // Handle logo uploads
         if ($request->hasFile('logo')) {

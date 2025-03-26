@@ -27,7 +27,7 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 50px;">ID</th>
+                                <th class="text-center" style="width: 50px;">S.N.</th>
                                 <th class="d-none d-sm-table-cell" style="width: 100px;">Image</th>
                                 <th>Name</th>
                                 <th class="d-none d-md-table-cell">Type</th>

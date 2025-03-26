@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use App\Models\ServiceTranslation;
+use App\Http\Requests\ServiceRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -30,17 +31,10 @@ class ServiceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
-        $request->validate([
-            'names.*' => 'required|string|max:255',
-            'icons.*' => 'nullable|string|max:255',
-            'descriptions.*' => 'nullable|string',
-            'display_order' => 'required|integer|min:0',
-            'is_published' => 'boolean',
-            'file' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg,pdf|max:2048',
-        ]);
-
+        $validated = $request->validated();
+        
         // Create a slug from the first name
         $baseSlug = Str::slug($request->input('names.0'));
         $slug = $baseSlug;
@@ -116,17 +110,10 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Service $service)
+    public function update(ServiceRequest $request, Service $service)
     {
-        $request->validate([
-            'names.*' => 'required|string|max:255',
-            'icons.*' => 'nullable|string|max:255',
-            'descriptions.*' => 'nullable|string',
-            'display_order' => 'required|integer|min:0',
-            'is_published' => 'boolean',
-            'file' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg,pdf|max:2048',
-        ]);
-
+        $validated = $request->validated();
+        
         // Update slug from the first name
         $baseSlug = Str::slug($request->input('names.0'));
         $slug = $baseSlug;
@@ -153,7 +140,7 @@ class ServiceController extends Controller
         $service->update([
             'slug' => $slug,
             'display_order' => $request->input('display_order'),
-            'is_published' => $request->has('is_published'),
+            'is_published' => $request->input('is_published'),
             'file' => $filePath,
         ]);
 

@@ -25,7 +25,7 @@
                 <table class="table table-bordered table-striped table-vcenter">
                     <thead>
                         <tr>
-                            <th style="width: 70px;">ID</th>
+                            <th style="width: 70px;">S.N.</th>
                             <th style="width: 100px;">Image</th>
                             <th>Title</th>
                             <th>Category</th>

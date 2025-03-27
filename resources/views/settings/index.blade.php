@@ -18,6 +18,16 @@
                         <a href="{{ route('settings.edit', $settings->first()) }}" class="btn btn-alt-primary">
                             <i class="fa fa-pencil-alt mr-1"></i> Edit
                         </a>
+
+                        <form action="{{ route('settings.destroy', $settings->first()) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete these settings?');" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-alt-danger">
+                                <i class="fa fa-trash mr-1"></i> Delete
+                            </button>
+                        </form>
+
+                        
                     @endif
                 </div>
             </div>
@@ -200,15 +210,7 @@
                         </div>
                     </div>
 
-                    <div class="text-end">
-                        <form action="{{ route('settings.destroy', $setting) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete these settings?');" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-alt-danger">
-                                <i class="fa fa-trash mr-1"></i> Delete
-                            </button>
-                        </form>
-                    </div>
+                    
                 @endif
             </div>
         </div>

@@ -22,7 +22,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12 mb-3">
         <div class="mb-4">
             <label class="form-label d-block">Status</label>
             <div class="form-check form-switch">
@@ -35,11 +35,9 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-12">
-        <div class="mb-4">
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-save"></i> {{ isset($designation) ? 'Update' : 'Create' }} Designation
-            </button>
-        </div>
+    <div class="col-lg-12 mb-3">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-save"></i> {{ isset($designation) ? 'Update' : 'Create' }} Designation
+        </button>
     </div>
 </div> 

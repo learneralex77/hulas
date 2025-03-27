@@ -1,6 +1,6 @@
 @csrf
-<div class="row justify-content-center">
-    <div class="col-lg-10">
+<div class="row overflow-hidden">
+    <div class="col-lg-10 mx-auto p-3">
         <!-- Row 1: Name and External Link -->
         <div class="row mb-4">
             <div class="col-md-6">
@@ -40,7 +40,7 @@
         </div>
 
         <!-- Submit Button -->
-        <div class="mb-4 text-center">
+        <div class="mb-2">
             <button type="submit" class="btn btn-primary">
                 <i class="fa fa-save"></i> {{ isset($quickLink) ? 'Update' : 'Create' }} Quick Link
             </button>

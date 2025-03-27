@@ -4,9 +4,11 @@
     Edit Menu
 @endsection
 
+
+
 @section('content')
     <div class="content">
-        <div class="block block-rounded">
+        <div class="block block-rounded menu-form-block">
             <div class="block-header block-header-default">
                 <h3 class="block-title">Edit Menu: {{ $menu->bname }}</h3>
                 <div class="block-options">
@@ -15,14 +17,13 @@
                     </a>
                 </div>
             </div>
-            <div class="block-content">
+            <div class="block-content no-bottom-space">
                 <form action="{{ route('menus.update', $menu) }}" method="POST" id="menuForm">
                     @csrf
                     @method('PUT')
                     <!-- Hidden field to store the current form state in URL for refreshes -->
                     <input type="hidden" name="_form_state" value="1">
                     <input type="hidden" name="menu_id" value="{{ $menu->id }}">
-                    
                     @include('menus.partials.form', ['button' => 'Update'])
                 </form>
             </div>

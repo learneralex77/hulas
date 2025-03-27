@@ -12,6 +12,28 @@
     <!-- Modules -->
     @vite(['resources/sass/main.scss', 'resources/js/codebase/app.js'])
 
+    <!-- Custom CSS -->
+    <style>
+        /* Remove border radius from action buttons */
+        .table .btn-group,
+        .table .btn-group .btn {
+            border-radius: 0 !important;
+        }
+        
+        /* Fix spacing issues in forms */
+        .block-content {
+            padding-bottom: 1px !important;
+        }
+        
+        .block-content form .row:last-child {
+            margin-bottom: 0 !important;
+        }
+        
+        .block-content form button[type="submit"] {
+            margin-bottom: 0 !important;
+        }
+    </style>
+
     @yield('styles')
     @stack('styles')
 </head>

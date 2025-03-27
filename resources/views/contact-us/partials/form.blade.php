@@ -35,9 +35,9 @@
             <textarea class="form-control" id="contact_remarks" name="contact_remarks" rows="4">{{ old('contact_remarks', $contactUs->contact_remarks ?? '') }}</textarea>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-3">
             <button type="submit" class="btn btn-primary">
-                <i class="fa fa-save me-1"></i> {{ isset($contactUs) ? 'Update' : 'Save' }} Inquiry
+                <i class="fa fa-save me-1"></i> {{ isset($contactUs) ? 'Update' : 'Create' }} Inquiry
             </button>
         </div>
     </div>

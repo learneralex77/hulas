@@ -121,12 +121,10 @@
         </div>
         
         <div class="row">
-            <div class="col-12">
-                <div class="mb-4">
-                    <button type="submit" class="btn btn-primary" id="submit-btn">
-                        <i class="fa fa-save"></i> {{ isset($gallery) ? 'Update' : 'Create' }} Gallery
-                    </button>
-                </div>
+            <div class="col-12 mb-3">
+                <button type="submit" class="btn btn-primary" id="submit-btn">
+                    <i class="fa fa-save"></i> {{ isset($gallery) ? 'Update' : 'Create' }} Gallery
+                </button>
             </div>
         </div>
     </div>

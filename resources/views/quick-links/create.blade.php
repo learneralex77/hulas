@@ -6,8 +6,8 @@
 
 @section('content')
     <div class="content">
-        <div class="block block-rounded">
-            <div class="block-header block-header-default">
+        <div class="block block-rounded mb-0">
+            <div class="block-header block-header-default bg-transparent border-0">
                 <h3 class="block-title">Create New Quick Link</h3>
                 <div class="block-options">
                     <a href="{{ route('quick-links.index') }}" class="btn btn-sm btn-alt-secondary">
@@ -15,7 +15,7 @@
                     </a>
                 </div>
             </div>
-            <div class="block-content">
+            <div class="block-content p-0">
                 @if ($errors->any())
                     <div class="alert alert-danger alert-dismissible fade show">
                         <ul class="mb-0">

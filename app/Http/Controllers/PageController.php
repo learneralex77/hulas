@@ -102,8 +102,15 @@ class PageController extends Controller
             $data['slug'] = Str::slug($request->title);
         }
         
+        // Handle image deletion if checkbox is checked
+        if ($request->has('delete_image') && $request->delete_image == 1) {
+            if ($page->image && Storage::disk('public')->exists($page->image)) {
+                Storage::disk('public')->delete($page->image);
+            }
+            $data['image'] = null;
+        }
         // Handle image upload
-        if ($request->hasFile('image')) {
+        elseif ($request->hasFile('image')) {
             // Delete old image if exists
             if ($page->image && Storage::disk('public')->exists($page->image)) {
                 Storage::disk('public')->delete($page->image);

@@ -29,86 +29,80 @@ Route::get('/', function () {
     return redirect()->route('dashboard');
 });
 
-Route::get('/dashboard', DashboardController::class)->name('dashboard');
+// All protected admin routes
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
-// Menu Management Routes
-Route::resource('menus', MenuController::class);
+    // Menu Management Routes
+    Route::resource('menus', MenuController::class);
 
-// Page Management Routes
-Route::resource('pages', PageController::class);
+    // Page Management Routes
+    Route::resource('pages', PageController::class);
 
-// Quick Link Management Routes
-Route::resource('quick-links', QuickLinkController::class);
+    // Quick Link Management Routes
+    Route::resource('quick-links', QuickLinkController::class);
 
-// Gallery Management Routes
-Route::resource('galleries', GalleryController::class);
+    // Gallery Management Routes
+    Route::resource('galleries', GalleryController::class);
 
-// Department Management Routes
-Route::resource('departments', DepartmentController::class);
+    // Department Management Routes
+    Route::resource('departments', DepartmentController::class);
 
-// Designation Management Routes
-Route::resource('designations', DesignationController::class);
+    // Designation Management Routes
+    Route::resource('designations', DesignationController::class);
 
-// Team Management Routes
-Route::resource('teams', TeamController::class);
+    // Team Management Routes
+    Route::resource('teams', TeamController::class);
 
-// Download Management Routes
-Route::resource('downloads', DownloadController::class);
-Route::get('downloads/{download}/download-file', [DownloadController::class, 'downloadFile'])->name('downloads.download-file');
+    // Download Management Routes
+    Route::resource('downloads', DownloadController::class);
+    Route::get('downloads/{download}/download-file', [DownloadController::class, 'downloadFile'])->name('downloads.download-file');
 
-// News & Event Category Management Routes
-Route::resource('news-event-categories', NewsEventCategoryController::class);
+    // News & Event Category Management Routes
+    Route::resource('news-event-categories', NewsEventCategoryController::class);
 
-// Publication Management Routes
-Route::resource('publications', PublicationController::class);
+    // Publication Management Routes
+    Route::resource('publications', PublicationController::class);
 
-// Contact Us Management Routes
-Route::resource('contact-us', ContactUsController::class)->parameters([
-    'contact-us' => 'contactUs'
-]);
+    // Contact Us Management Routes
+    Route::resource('contact-us', ContactUsController::class)->parameters([
+        'contact-us' => 'contactUs'
+    ]);
 
-// District Management Routes
-Route::resource('districts', DistrictController::class);
+    // District Management Routes
+    Route::resource('districts', DistrictController::class);
 
-// Zone Management Routes
-Route::resource('zones', ZoneController::class);
+    // Zone Management Routes
+    Route::resource('zones', ZoneController::class);
 
-// Agent Form Management Routes
-Route::resource('agent-forms', AgentFormController::class);
+    // Agent Form Management Routes
+    Route::resource('agent-forms', AgentFormController::class);
 
-// Branch Management Routes
-Route::resource('branches', BranchController::class);
+    // Branch Management Routes
+    Route::resource('branches', BranchController::class);
 
-// Service Management Routes
-Route::resource('services', ServiceController::class);
+    // Service Management Routes
+    Route::resource('services', ServiceController::class);
 
-// Agent Details Management Routes
-Route::resource('agent-details', AgentDetailController::class);
+    // Agent Details Management Routes
+    Route::resource('agent-details', AgentDetailController::class);
 
-// Become an Agent Management Routes
-Route::resource('become-an-agent', BecomeAnAgentController::class);
-Route::delete('become-an-agent/{becomeAnAgent}/images/{index}', [BecomeAnAgentController::class, 'deleteImage'])->name('become-an-agent.delete-image');
+    // Become an Agent Management Routes
+    Route::resource('become-an-agent', BecomeAnAgentController::class);
+    Route::delete('become-an-agent/{becomeAnAgent}/images/{index}', [BecomeAnAgentController::class, 'deleteImage'])->name('become-an-agent.delete-image');
 
-// About Us Management Routes
-Route::resource('about-us', AboutUsController::class)->parameters([
-    'about-us' => 'aboutUs'
-]);
+    // About Us Management Routes
+    Route::resource('about-us', AboutUsController::class)->parameters([
+        'about-us' => 'aboutUs'
+    ]);
 
-// Settings Management Routes
-Route::resource('settings', SettingController::class);
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-//     Route::controller(SettingsController::class)
-//         ->prefix('setting')
-//         ->name('setting.')
-//         ->group(function () {
-//             Route::get('edit', 'edit')->name('edit');
-//             Route::put('update', 'update')->name('update');
-//         });
-// });
+    // Settings Management Routes
+    Route::resource('settings', SettingController::class);
+    
+    // Profile
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
 require __DIR__ . '/auth.php';

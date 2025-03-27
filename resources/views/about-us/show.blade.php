@@ -17,13 +17,17 @@
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
                    
-                    <form action="{{ route('about-us.destroy', $aboutUs) }}" method="POST" style="display: inline-block; margin: 0;">
+                    <!-- <form action="{{ route('about-us.destroy', $aboutUs) }}" method="POST" style="display: inline-block; margin: 0;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-alt-danger" onclick="return confirm('Are you sure you want to delete this item?')">
                             <i class="fa fa-trash"></i> Delete
                         </button>
-                    </form>
+                    </form> -->
+                    <!-- <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip"
+                                                title="Delete" onclick="deleteDepartment({{ $department->id }})"> <i
+                                                    class="fa fa-times">Delete</i>
+                                 </button> -->
                 </div>
             </div>
             <div class="block-content">

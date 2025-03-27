@@ -38,8 +38,8 @@
             </div>
         </div>
 
-        <div class="row mb-4">
-            <div class="col-md-10 offset-md-2">
+        <div class="row mb-10">
+            <div class="col-md-10 offset-md-2 mb-3">
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-save"></i> {{ isset($newsEventCategory) ? 'Update' : 'Create' }} Category
                 </button>

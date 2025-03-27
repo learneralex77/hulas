@@ -6,8 +6,8 @@
 
 @section('content')
     <div class="content">
-        <div class="block block-rounded">
-            <div class="block-header block-header-default">
+        <div class="block block-rounded mb-0">
+            <div class="block-header block-header-default bg-transparent border-0">
                 <h3 class="block-title">Edit Publication</h3>
                 <div class="block-options">
                     <a href="{{ route('publications.index') }}" class="btn btn-sm btn-alt-primary">
@@ -15,7 +15,7 @@
                     </a>
                 </div>
             </div>
-            <div class="block-content">
+            <div class="block-content p-0">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul class="mb-0">

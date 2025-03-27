@@ -29,7 +29,7 @@
 
         <div class="mb-4">
             <button type="submit" class="btn btn-primary">
-                <i class="fa fa-save me-1"></i> {{ isset($zone) ? 'Update' : 'Save' }} Zone
+                <i class="fa fa-save me-1"></i> {{ isset($zone) ? 'Update' : 'Create' }} Zone
             </button>
         </div>
     </div>

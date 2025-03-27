@@ -22,58 +22,56 @@
                     </div>
                 @endif
 
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-vcenter">
-                        <thead>
+                <table class="table table-bordered table-striped table-vcenter">
+                    <thead>
+                        <tr>
+                            <th>S.N.</th>
+                            <th>Name</th>
+                            <th>Zone</th>
+                            <th>Display Order</th>
+                            <th>Status</th>
+                            <th style="width: 15%;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($districts as $district)
                             <tr>
-                                <th>S.N.</th>
-                                <th>Name</th>
-                                <th>Zone</th>
-                                <th>Display Order</th>
-                                <th>Status</th>
-                                <th style="width: 15%;">Actions</th>
+                                <td>{{ $district->id }}</td>
+                                <td>{{ $district->name }}</td>
+                                <td>{{ $district->zone->name ?? 'N/A' }}</td>
+                                <td>{{ $district->display_order }}</td>
+                                <td>
+                                    @if ($district->is_published)
+                                        <span class="badge bg-success">Published</span>
+                                    @else
+                                        <span class="badge bg-warning">Draft</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ route('districts.show', $district) }}" class="btn btn-sm btn-info">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <a href="{{ route('districts.edit', $district) }}" class="btn btn-sm btn-primary">
+                                            <i class="fa fa-pencil-alt"></i>
+                                        </a>
+                                        <form action="{{ route('districts.destroy', $district) }}" method="POST" style="display:inline" onsubmit="return confirm('Are you sure you want to delete this district?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($districts as $district)
-                                <tr>
-                                    <td>{{ $district->id }}</td>
-                                    <td>{{ $district->name }}</td>
-                                    <td>{{ $district->zone->name ?? 'N/A' }}</td>
-                                    <td>{{ $district->display_order }}</td>
-                                    <td>
-                                        @if ($district->is_published)
-                                            <span class="badge bg-success">Published</span>
-                                        @else
-                                            <span class="badge bg-warning">Draft</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <a href="{{ route('districts.show', $district) }}" class="btn btn-sm btn-info">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            <a href="{{ route('districts.edit', $district) }}" class="btn btn-sm btn-primary">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </a>
-                                            <form action="{{ route('districts.destroy', $district) }}" method="POST" style="display:inline" onsubmit="return confirm('Are you sure you want to delete this district?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="text-center">No districts found</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center">No districts found</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
                 
                 <div class="d-flex justify-content-center mt-4">
                     {{ $districts->links() }}

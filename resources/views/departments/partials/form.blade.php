@@ -35,11 +35,9 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-12">
-        <div class="mb-4">
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-save"></i> {{ isset($department) ? 'Update' : 'Create' }} Department
-            </button>
-        </div>
+    <div class="col-lg-12 mb-3">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-save"></i> {{ isset($department) ? 'Update' : 'Create' }} Department
+        </button>
     </div>
 </div> 

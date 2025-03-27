@@ -18,6 +18,16 @@
                         <a href="{{ route('about-us.edit', $aboutUs) }}" class="btn btn-alt-primary">
                             <i class="fa fa-pencil-alt mr-1"></i> Edit
                         </a>
+                        
+                   
+                        <form action="{{ route('about-us.destroy', $aboutUs) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this About Us information?');" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-alt-danger">
+                                <i class="fa fa-trash mr-1"></i> Delete
+                            </button>
+                        </form>
+                      
                     @endif
                 </div>
             </div>
@@ -135,15 +145,6 @@
                         </div>
                     </div>
 
-                    <div class="text-end">
-                        <form action="{{ route('about-us.destroy', $aboutUs) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this About Us information?');" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-alt-danger">
-                                <i class="fa fa-trash mr-1"></i> Delete
-                            </button>
-                        </form>
-                    </div>
                 @endif
             </div>
         </div>

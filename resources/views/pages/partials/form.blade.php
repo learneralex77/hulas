@@ -1,7 +1,7 @@
 {{-- Page form partial that can be used in both create and edit views --}}
 
-<div class="row push">
-    <div class="col-12">
+<div class="row">
+    <div class="col-lg-10 mx-auto">
         <div class="row">
             <div class="col-md-8 col-sm-12">
                 <div class="mb-4">
@@ -30,16 +30,12 @@
             </div>
         </div>
         
-        <div class="row">
-            <div class="col-md-12">
-                <div class="mb-4">
-                    <label class="form-label" for="short_description">Short Description</label>
-                    <textarea class="form-control @error('short_description') is-invalid @enderror" id="short_description" name="short_description" rows="3">{{ old('short_description', $page->short_description ?? '') }}</textarea>
-                    @error('short_description')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
+        <div class="mb-4">
+            <label class="form-label" for="short_description">Short Description</label>
+            <textarea class="form-control @error('short_description') is-invalid @enderror" id="short_description" name="short_description" rows="3">{{ old('short_description', $page->short_description ?? '') }}</textarea>
+            @error('short_description')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
         
         <div class="row">
@@ -81,27 +77,14 @@
                     <div class="mt-2">
                         <small class="text-muted">Recommended image size: 1200x800 pixels</small>
                     </div>
-                    
-                    <div class="mt-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="show_image" id="show_image" value="1" {{ old('show_image', $page->show_image ?? '') ? 'checked' : '' }}>
-                            <label class="form-check-label" for="show_image">
-                                Display image on page
-                            </label>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
         
-        <div class="row">
-            <div class="col-12">
-                <div class="mb-4">
-                    <button type="submit" class="btn btn-primary" id="submit-btn">
-                        <i class="fa fa-save"></i> {{ isset($page) ? 'Update' : 'Create' }} Page
-                    </button>
-                </div>
-            </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary" id="submit-btn">
+                <i class="fa fa-save"></i> {{ isset($page) ? 'Update' : 'Create' }} Page
+            </button>
         </div>
     </div>
 </div>

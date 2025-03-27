@@ -7,7 +7,7 @@
 @section('content')
     <div class="content">
         <div class="block block-rounded">
-            <div class="block-header block-header-default">
+            <div class="block-header block-header-default bg-transparent border-0">
                 <h3 class="block-title">Create New Page</h3>
                 <div class="block-options">
                     <a href="{{ route('pages.index') }}" class="btn btn-sm btn-alt-secondary">
@@ -34,39 +34,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize CKEditor
-        ClassicEditor
-            .create(document.querySelector('#content'))
-            .catch(error => {
-                console.error(error);
-            });
-            
-        // Form submission validation
-        const form = document.getElementById('page-form');
-        form.addEventListener('submit', function(e) {
-            // Validate title
-            if (!document.getElementById('title').value.trim()) {
-                e.preventDefault();
-                alert('Title is ');
-                document.getElementById('title').focus();
-                return false;
-            }
-            
-            // Validate menu
-            if (!document.getElementById('menu_id').value.trim()) {
-                e.preventDefault();
-                alert('Menu is ');
-                document.getElementById('menu_id').focus();
-                return false;
-            }
-            
-            return true;
-        });
-    });
-</script>
-@endpush 
+@endsection 

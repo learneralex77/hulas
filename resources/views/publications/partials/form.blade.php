@@ -1,5 +1,5 @@
-<div class="row">
-    <div class="col-lg-12">
+<div class="row m-0">
+    <div class="col-lg-12 p-3">
         <!-- Category and Publication Type in one row -->
         <div class="row mb-4">
             <div class="col-md-6">
@@ -92,9 +92,9 @@
             </div>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-0 pb-0">
             <button type="submit" class="btn btn-primary">
-                <i class="fa fa-save me-1"></i> {{ isset($publication) ? 'Update' : 'Save' }} Publication
+                <i class="fa fa-save me-1"></i> {{ isset($publication) ? 'Update' : 'Create' }} Publication
             </button>
         </div>
     </div>

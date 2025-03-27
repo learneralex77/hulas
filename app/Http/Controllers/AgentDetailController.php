@@ -52,11 +52,11 @@ class AgentDetailController extends Controller
      */
     public function show(AgentDetail $agentDetail)
     {
-        // Decode JSON data for the view
-        $agentDetail->state_agent_names = json_decode($agentDetail->state_agent_name ?: '[]') ?: [];
-        $agentDetail->addresses = json_decode($agentDetail->address ?: '[]') ?: [];
-        $agentDetail->contact_nos = json_decode($agentDetail->contact_no ?: '[]') ?: [];
-        $agentDetail->contact_persons = json_decode($agentDetail->contact_person ?: '[]') ?: [];
+        // Decode JSON data for the view and ensure they're arrays
+        $agentDetail->state_agent_names = json_decode($agentDetail->state_agent_name ?? '[]', true) ?: [];
+        $agentDetail->addresses = json_decode($agentDetail->address ?? '[]', true) ?: [];
+        $agentDetail->contact_nos = json_decode($agentDetail->contact_no ?? '[]', true) ?: [];
+        $agentDetail->contact_persons = json_decode($agentDetail->contact_person ?? '[]', true) ?: [];
         
         return view('agent-details.show', compact('agentDetail'));
     }
@@ -68,11 +68,11 @@ class AgentDetailController extends Controller
     {
         $districts = District::orderBy('name')->get();
         
-        // Decode JSON data for the view
-        $agentDetail->state_agent_names = json_decode($agentDetail->state_agent_name ?: '[]') ?: [];
-        $agentDetail->addresses = json_decode($agentDetail->address ?: '[]') ?: [];
-        $agentDetail->contact_nos = json_decode($agentDetail->contact_no ?: '[]') ?: [];
-        $agentDetail->contact_persons = json_decode($agentDetail->contact_person ?: '[]') ?: [];
+        // Decode JSON data for the view and ensure they're arrays
+        $agentDetail->state_agent_names = json_decode($agentDetail->state_agent_name ?? '[]', true) ?: [];
+        $agentDetail->addresses = json_decode($agentDetail->address ?? '[]', true) ?: [];
+        $agentDetail->contact_nos = json_decode($agentDetail->contact_no ?? '[]', true) ?: [];
+        $agentDetail->contact_persons = json_decode($agentDetail->contact_person ?? '[]', true) ?: [];
         
         return view('agent-details.edit', compact('agentDetail', 'districts'));
     }

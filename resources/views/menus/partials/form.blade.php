@@ -1,6 +1,6 @@
-<div class="row push">
+<div class="row menu-form-container ">
     <div class="col-12">
-        <div class="row">
+        <div class="row p-3">
             <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
                     <label class="form-label" for="bname">Name <span class="text-danger">*</span></label>
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row px-3">
             <div class="col-lg-9 col-md-8 col-sm-12">
                 <div class="mb-4">
                     <label class="form-label" for="description">Description</label>
@@ -60,16 +60,17 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row p-3 menu-form-footer">
             <div class="col-12">
-                <div class="mb-4">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-save"></i> {{$button}} Menu
-                    </button>
-                    
-                    
+                <div class="row mb-10">
+                    <div class="col-md-10">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-save"></i> {{$button}} Menu
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div class="pb-3"></div>

@@ -7,10 +7,10 @@
 @section('content')
     <div class="content">
         <div class="block block-rounded">
-            <div class="block-header block-header-default">
+            <div class="block-header block-header-default mb-2">
                 <h3 class="block-title">Menu List</h3>
                 <div class="block-options">
-                    <a href="{{ route('menus.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('menus.create') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-plus"></i> Add New Menu
                     </a>
                 </div>
@@ -24,17 +24,17 @@
                 @endif
 
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
+                    <table class="table table-bordered table-striped table-vcenter">
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 50px;">S.N.</th>
+                                <th class="text-center" style="width: 5%;">#</th>
                                 <th>Name</th>
-                                <th class="d-none d-md-table-cell">Description</th>
-                                <th class="d-none d-sm-table-cell">Slug</th>
-                                <th class="text-center" style="width: 70px;">Order</th>
-                                <th class="text-center">Status</th>
-                                <th class="d-none d-lg-table-cell">Parent</th>
-                                <th class="text-center" style="width: 120px;">Actions</th>
+                                <th class="d-none d-md-table-cell" style="width: 15%;">Description</th>
+                                <th class="d-none d-sm-table-cell" style="width: 15%;">Slug</th>
+                                <th class="text-center" style="width: 7%;">Order</th>
+                                <th class="text-center" style="width: 10%;">Status</th>
+                                <th class="d-none d-lg-table-cell" style="width: 15%;">Parent</th>
+                                <th class="text-center" style="width: 13%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

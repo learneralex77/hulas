@@ -11,7 +11,7 @@
                 <h3 class="block-title">Become an Agent Images List</h3>
                 <div class="block-options">
                     <a href="{{ route('become-an-agent.create') }}" class="btn btn-sm btn-primary">
-                        <i class="fa fa-plus me-1"></i> Add New Images
+                        <i class="fa fa-plus me-1"></i> Add New Agent
                     </a>
                 </div>
             </div>

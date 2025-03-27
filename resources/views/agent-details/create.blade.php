@@ -15,135 +15,16 @@
                         <a class="btn btn-sm btn-alt-primary" href="{{ route('agent-details.index') }}">
                             <i class="fa fa-arrow-left"></i> Back
                         </a>
-                        <button type="submit" class="btn btn-sm btn-alt-success">
-                            <i class="fa fa-check"></i> Save
-                        </button>
+                        
                     </div>
                 </div>
                 <div class="block-content">
-                    <div class="row justify-content-center">
-                        <div class="col-md-10 col-lg-8">
-                            <div class="row mb-4">
-                                <div class="col-md-6">
-                                    <label class="form-label" for="district_id">District <span class="text-danger">*</span></label>
-                                    <select class="form-select @error('district_id') is-invalid @enderror" id="district_id" name="district_id" required>
-                                        <option value="">Select District</option>
-                                        @foreach($districts as $district)
-                                            <option value="{{ $district->id }}" {{ old('district_id') == $district->id ? 'selected' : '' }}>
-                                                {{ $district->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('district_id')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                                
-                            <hr>
-                            
-                            <!-- State Agent Names Section -->
-                            <div class="mb-4">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h4>State Agent Names <small class="text-muted">(You can add multiple entries)</small></h4>
-                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-agent-name">
-                                        <i class="fa fa-plus"></i> Add Name
-                                    </button>
-                                </div>
-                                
-                                <div id="agent-names-container">
-                                    <div class="mb-3">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control @error('state_agent_names.0') is-invalid @enderror" 
-                                                id="state_agent_names_0" name="state_agent_names[]" 
-                                                value="{{ old('state_agent_names.0') }}" required
-                                                placeholder="Enter state agent name">
-                                        </div>
-                                        @error('state_agent_names.0')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <hr>
-                            
-                            <!-- Addresses Section -->
-                            <div class="mb-4">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h4>Addresses <small class="text-muted">(You can add multiple entries)</small></h4>
-                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-address">
-                                        <i class="fa fa-plus"></i> Add Address
-                                    </button>
-                                </div>
-                                
-                                <div id="addresses-container">
-                                    <div class="mb-3">
-                                        <div class="input-group">
-                                            <textarea class="form-control @error('addresses.0') is-invalid @enderror" 
-                                                id="addresses_0" name="addresses[]" rows="2"
-                                                placeholder="Enter address">{{ old('addresses.0') }}</textarea>
-                                        </div>
-                                        @error('addresses.0')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <hr>
-                            
-                            <!-- Contact Numbers Section -->
-                            <div class="mb-4">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h4>Contact Numbers <small class="text-muted">(You can add multiple entries)</small></h4>
-                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-contact-no">
-                                        <i class="fa fa-plus"></i> Add Number
-                                    </button>
-                                </div>
-                                
-                                <div id="contact-nos-container">
-                                    <div class="mb-3">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control @error('contact_nos.0') is-invalid @enderror" 
-                                                id="contact_nos_0" name="contact_nos[]" 
-                                                value="{{ old('contact_nos.0') }}"
-                                                placeholder="Enter contact number">
-                                        </div>
-                                        @error('contact_nos.0')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <hr>
-                            
-                            <!-- Contact Persons Section -->
-                            <div class="mb-4">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <h4>Contact Persons <small class="text-muted">(You can add multiple entries)</small></h4>
-                                    <button type="button" class="btn btn-sm btn-alt-success" id="add-contact-person">
-                                        <i class="fa fa-plus"></i> Add Person
-                                    </button>
-                                </div>
-                                
-                                <div id="contact-persons-container">
-                                    <div class="mb-3">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control @error('contact_persons.0') is-invalid @enderror" 
-                                                id="contact_persons_0" name="contact_persons[]" 
-                                                value="{{ old('contact_persons.0') }}"
-                                                placeholder="Enter contact person name">
-                                        </div>
-                                        @error('contact_persons.0')
-                                            <div class="invalid-feedback d-block">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @include('agent-details.partials.form')
+                </div>
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary mb-3">
+                        <i class="fa fa-save me-1"></i> {{ isset($agentDetail) ? 'Update' : 'Create' }} Agent Detail
+                    </button>
                 </div>
             </div>
         </form>

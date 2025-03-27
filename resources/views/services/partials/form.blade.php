@@ -117,9 +117,9 @@
         </div>
 
         <!-- Submit Button -->
-        <div class="text-center mt-4">
-            <button type="submit" class="btn btn-alt-success">
-                <i class="fa fa-check"></i> {{ isset($service) ? 'Update' : 'Save' }} Service
+        <div class="text-center mt-4 mb-3">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-save me-1"></i> {{ isset($service) ? 'Update' : 'Create' }} Service
             </button>
         </div>
     </div>

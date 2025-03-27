@@ -29,7 +29,7 @@
 
         <div class="mb-4">
             <button type="submit" class="btn btn-primary">
-                <i class="fa fa-save me-1"></i> {{ isset($district) ? 'Update' : 'Save' }} District
+                <i class="fa fa-save me-1"></i> {{ isset($district) ? 'Update' : 'Create' }} District
             </button>
         </div>
     </div>

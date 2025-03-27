@@ -30,6 +30,7 @@ class PageRequest extends FormRequest
             'menu_id' => ['required', 'exists:menus,id'],
             'short_description' => ['nullable', 'string', 'max:500'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'delete_image' => ['nullable', 'boolean'],
         ];
 
         // For update operations, add unique slug check
@@ -68,6 +69,7 @@ class PageRequest extends FormRequest
             'menu_id' => 'menu',
             'short_description' => 'short description',
             'image' => 'page image',
+            'delete_image' => 'delete image option',
         ];
     }
 
@@ -96,6 +98,8 @@ class PageRequest extends FormRequest
             'image.image' => 'The file must be an image.',
             'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif.',
             'image.max' => 'The image may not be greater than 2MB.',
+            
+            'delete_image.boolean' => 'The delete image option must be a boolean value.',
         ];
     }
 

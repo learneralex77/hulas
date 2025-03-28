@@ -10,10 +10,12 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Branch Details</h3>
                 <div class="block-options">
-                    <form action="{{ route('branches.destroy', $branch) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this branch?');" style="display: inline-block; margin: 0;">
+                    <form action="{{ route('branches.destroy', $branch) }}" method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this branch?');"
+                        style="display: inline-block; margin: 0;">
                         @csrf
                         @method('DELETE')
-                        <a href="{{ route('branches.index') }}" class="btn btn-sm btn-alt-secondary me-1">
+                        <a href="{{ route('branches.index') }}" class="btn btn-sm btn-alt-primary border me-1">
                             <i class="fa fa-arrow-left"></i> Back
                         </a>
                         <a href="{{ route('branches.edit', $branch) }}" class="btn btn-sm btn-alt-primary me-1">
@@ -52,7 +54,7 @@
                             <tr>
                                 <th>Email</th>
                                 <td>
-                                    @if($branch->email)
+                                    @if ($branch->email)
                                         <a href="mailto:{{ $branch->email }}">{{ $branch->email }}</a>
                                     @else
                                         N/A
@@ -69,7 +71,7 @@
 
                 <h4 class="mt-4">Google Map</h4>
                 <div class="mb-4">
-                    @if($branch->map_iframe)
+                    @if ($branch->map_iframe)
                         {!! $branch->map_iframe !!}
                     @else
                         <div class="alert alert-info">
@@ -97,7 +99,7 @@
                             <tr>
                                 <th style="width: 30%;">Publication Status</th>
                                 <td>
-                                    @if($branch->is_published)
+                                    @if ($branch->is_published)
                                         <span class="badge bg-success">Published</span>
                                     @else
                                         <span class="badge bg-warning">Draft</span>
@@ -132,4 +134,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

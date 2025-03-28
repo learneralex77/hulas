@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Edit Gallery: {{ $gallery->title }}</h3>
                 <div class="block-options">
-                    <a href="{{ route('galleries.index') }}" class="btn btn-sm btn-alt-secondary">
+                    <a href="{{ route('galleries.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>
@@ -27,7 +27,8 @@
                     </div>
                 @endif
 
-                <form action="{{ route('galleries.update', $gallery->id) }}" method="POST" enctype="multipart/form-data" id="gallery-form">
+                <form action="{{ route('galleries.update', $gallery->id) }}" method="POST" enctype="multipart/form-data"
+                    id="gallery-form">
                     @csrf
                     @method('PUT')
                     @include('galleries.partials.form')
@@ -35,4 +36,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

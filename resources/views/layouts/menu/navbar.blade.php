@@ -6,7 +6,8 @@
         <div class="space-x-1">
             <!-- Toggle Sidebar -->
             <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="layout" data-action="sidebar_toggle">
+            <button type="button" class="btn btn-sm btn-alt-primary border" data-toggle="layout"
+                data-action="sidebar_toggle">
                 <i class="fa fa-fw fa-bars"></i>
             </button>
             <!-- END Toggle Sidebar -->
@@ -17,7 +18,7 @@
         <div class="space-x-1">
             <!-- User Dropdown -->
             <div class="dropdown d-inline-block">
-                <button type="button" class="btn btn-sm btn-alt-secondary" id="page-header-user-dropdown"
+                <button type="button" class="btn btn-sm btn-alt-primary border" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-user d-sm-none"></i>
                     <span class="d-none d-sm-inline-block fw-semibold">{{ auth()->user()->username }}</span>

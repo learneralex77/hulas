@@ -10,10 +10,12 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">District Details</h3>
                 <div class="block-options">
-                    <form action="{{ route('districts.destroy', $district) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this district?');" style="display: inline-block; margin: 0;">
+                    <form action="{{ route('districts.destroy', $district) }}" method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this district?');"
+                        style="display: inline-block; margin: 0;">
                         @csrf
                         @method('DELETE')
-                        <a href="{{ route('districts.index') }}" class="btn btn-sm btn-alt-secondary me-1">
+                        <a href="{{ route('districts.index') }}" class="btn btn-sm btn-alt-primary border me-1">
                             <i class="fa fa-arrow-left"></i> Back
                         </a>
                         <a href="{{ route('districts.edit', $district) }}" class="btn btn-sm btn-alt-primary me-1">
@@ -36,7 +38,7 @@
                             <tr>
                                 <th>Zone</th>
                                 <td>
-                                    @if($district->zone)
+                                    @if ($district->zone)
                                         <a href="{{ route('zones.show', $district->zone) }}">{{ $district->zone->name }}</a>
                                     @else
                                         N/A
@@ -58,7 +60,7 @@
                             <tr>
                                 <th>Status</th>
                                 <td>
-                                    @if($district->is_published)
+                                    @if ($district->is_published)
                                         <span class="badge bg-success">Published</span>
                                     @else
                                         <span class="badge bg-warning">Draft</span>
@@ -70,7 +72,7 @@
                 </div>
 
                 <h4 class="mt-4">Branches in this District</h4>
-                @if($district->branches && $district->branches->count() > 0)
+                @if ($district->branches && $district->branches->count() > 0)
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>
@@ -82,12 +84,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($district->branches as $branch)
+                                @foreach ($district->branches as $branch)
                                     <tr>
                                         <td>{{ $branch->name }}</td>
                                         <td>{{ $branch->phone_number }}</td>
                                         <td>
-                                            @if($branch->is_published)
+                                            @if ($branch->is_published)
                                                 <span class="badge bg-success">Published</span>
                                             @else
                                                 <span class="badge bg-warning">Draft</span>
@@ -117,4 +119,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

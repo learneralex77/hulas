@@ -13,7 +13,7 @@
                     <a href="{{ route('galleries.edit', $gallery->id) }}" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
-                    <a href="{{ route('galleries.index') }}" class="btn btn-sm btn-alt-secondary">
+                    <a href="{{ route('galleries.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>
@@ -33,7 +33,7 @@
                                 <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">External Link:</div>
                                     <div class="col-md-8">
-                                        @if($gallery->links)
+                                        @if ($gallery->links)
                                             <a href="{{ $gallery->links }}" target="_blank">{{ $gallery->links }}</a>
                                         @else
                                             <span class="text-muted">Not provided</span>
@@ -83,15 +83,16 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-6 col-md-6">
                         <div class="block block-rounded">
                             <div class="block-header block-header-default">
                                 <h3 class="block-title">Featured Image</h3>
                             </div>
                             <div class="block-content">
-                                @if($gallery->featured_image)
-                                    <img src="{{ asset('storage/' . $gallery->featured_image) }}" alt="{{ $gallery->title }}" class="img-fluid rounded">
+                                @if ($gallery->featured_image)
+                                    <img src="{{ asset('storage/' . $gallery->featured_image) }}"
+                                        alt="{{ $gallery->title }}" class="img-fluid rounded">
                                 @else
                                     <div class="alert alert-info">
                                         <i class="fa fa-info-circle me-1"></i> No featured image available
@@ -107,12 +108,14 @@
                         <h3 class="block-title">Gallery Images</h3>
                     </div>
                     <div class="block-content">
-                        @if(!empty($gallery->images))
+                        @if (!empty($gallery->images))
                             <div class="row">
-                                @foreach($gallery->images as $image)
+                                @foreach ($gallery->images as $image)
                                     <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                                        <a href="{{ asset('storage/' . $image) }}" target="_blank" class="img-link img-link-zoom-in">
-                                            <img src="{{ asset('storage/' . $image) }}" alt="Gallery Image" class="img-fluid img-thumbnail">
+                                        <a href="{{ asset('storage/' . $image) }}" target="_blank"
+                                            class="img-link img-link-zoom-in">
+                                            <img src="{{ asset('storage/' . $image) }}" alt="Gallery Image"
+                                                class="img-fluid img-thumbnail">
                                         </a>
                                     </div>
                                 @endforeach
@@ -127,4 +130,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

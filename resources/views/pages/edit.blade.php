@@ -10,7 +10,7 @@
             <div class="block-header block-header-default bg-transparent border-0">
                 <h3 class="block-title">Edit Page</h3>
                 <div class="block-options">
-                    <a href="{{ route('pages.index') }}" class="btn btn-sm btn-alt-secondary">
+                    <a href="{{ route('pages.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>
@@ -27,7 +27,8 @@
                     </div>
                 @endif
 
-                <form action="{{ route('pages.update', $page->id) }}" method="POST" enctype="multipart/form-data" id="page-form">
+                <form action="{{ route('pages.update', $page->id) }}" method="POST" enctype="multipart/form-data"
+                    id="page-form">
                     @csrf
                     @method('PUT')
                     @include('pages.partials.form')
@@ -35,4 +36,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

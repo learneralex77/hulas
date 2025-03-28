@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Create New Gallery</h3>
                 <div class="block-options">
-                    <a href="{{ route('galleries.index') }}" class="btn btn-sm btn-alt-secondary">
+                    <a href="{{ route('galleries.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>
@@ -27,11 +27,12 @@
                     </div>
                 @endif
 
-                <form action="{{ route('galleries.store') }}" method="POST" enctype="multipart/form-data" id="gallery-form">
+                <form action="{{ route('galleries.store') }}" method="POST" enctype="multipart/form-data"
+                    id="gallery-form">
                     @csrf
                     @include('galleries.partials.form')
                 </form>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

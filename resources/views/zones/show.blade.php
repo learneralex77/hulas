@@ -10,10 +10,12 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Zone Details</h3>
                 <div class="block-options">
-                    <form action="{{ route('zones.destroy', $zone) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this zone?');" style="display: inline-block; margin: 0;">
+                    <form action="{{ route('zones.destroy', $zone) }}" method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this zone?');"
+                        style="display: inline-block; margin: 0;">
                         @csrf
                         @method('DELETE')
-                        <a href="{{ route('zones.index') }}" class="btn btn-sm btn-alt-secondary me-1">
+                        <a href="{{ route('zones.index') }}" class="btn btn-sm btn-alt-primary border me-1">
                             <i class="fa fa-arrow-left"></i> Back
                         </a>
                         <a href="{{ route('zones.edit', $zone) }}" class="btn btn-sm btn-alt-primary me-1">
@@ -117,4 +119,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

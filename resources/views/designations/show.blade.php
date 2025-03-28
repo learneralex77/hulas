@@ -13,7 +13,7 @@
                     <a href="{{ route('designations.edit', $designation) }}" class="btn btn-sm btn-success">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
-                    <a href="{{ route('designations.index') }}" class="btn btn-sm btn-alt-secondary">
+                    <a href="{{ route('designations.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>

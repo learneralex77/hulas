@@ -13,7 +13,7 @@
                     <a href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-alt-primary me-1">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
-                    <a href="{{ route('services.index') }}" class="btn btn-sm btn-alt-secondary me-1">
+                    <a href="{{ route('services.index') }}" class="btn btn-sm btn-alt-primary border me-1">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>

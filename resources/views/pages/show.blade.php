@@ -10,13 +10,13 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Page Details: {{ $page->title }}</h3>
                 <div class="block-options">
-                <a href="{{ route('pages.edit', $page->id) }}" class="btn btn-sm btn-alt-primary">
+                    <a href="{{ route('pages.edit', $page->id) }}" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
-                    <a href="{{ route('pages.index') }}" class="btn btn-sm btn-alt-secondary">
+                    <a href="{{ route('pages.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
-                   
+
                 </div>
             </div>
             <div class="block-content">
@@ -38,7 +38,7 @@
                                 <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">Menu:</div>
                                     <div class="col-md-8">
-                                        @if($page->menu)
+                                        @if ($page->menu)
                                             <a href="{{ route('menus.show', $page->menu) }}">{{ $page->menu->bname }}</a>
                                         @else
                                             <span class="text-muted">No Menu</span>
@@ -75,8 +75,9 @@
                                 <h3 class="block-title">Image</h3>
                             </div>
                             <div class="block-content">
-                                @if($page->image)
-                                    <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->title }}" class="img-fluid rounded">
+                                @if ($page->image)
+                                    <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->title }}"
+                                        class="img-fluid rounded">
                                 @else
                                     <div class="alert alert-info">
                                         <i class="fa fa-image me-1"></i> No image available
@@ -100,4 +101,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

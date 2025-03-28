@@ -13,7 +13,7 @@
                     <a href="{{ route('departments.edit', $department) }}" class="btn btn-sm btn-success">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
-                    <a href="{{ route('departments.index') }}" class="btn btn-sm btn-alt-secondary">
+                    <a href="{{ route('departments.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>

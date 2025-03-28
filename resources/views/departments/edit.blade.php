@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Edit Department: {{ $department->name }}</h3>
                 <div class="block-options">
-                    <a href="{{ route('departments.index') }}" class="btn btn-sm btn-alt-secondary">
+                    <a href="{{ route('departments.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>
@@ -35,4 +35,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

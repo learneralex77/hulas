@@ -10,15 +10,15 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Quick Link Details</h3>
                 <div class="block-options">
-                   
-                        <a href="{{ route('quick-links.edit', $quickLink) }}" class="btn btn-sm btn-alt-primary me-1">
-                            <i class="fa fa-pencil-alt"></i> Edit
-                        </a>
-                        <a href="{{ route('quick-links.index') }}" class="btn btn-sm btn-alt-secondary me-1">
-                            <i class="fa fa-arrow-left"></i> Back
-                        </a>
-                       
-                     
+
+                    <a href="{{ route('quick-links.edit', $quickLink) }}" class="btn btn-sm btn-alt-primary me-1">
+                        <i class="fa fa-pencil-alt"></i> Edit
+                    </a>
+                    <a href="{{ route('quick-links.index') }}" class="btn btn-sm btn-alt-primary border me-1">
+                        <i class="fa fa-arrow-left"></i> Back
+                    </a>
+
+
                     </form>
                 </div>
             </div>
@@ -40,7 +40,8 @@
                                         <td style="width: 35%;">{{ $quickLink->name }}</td>
                                         <th style="width: 15%;">External Link</th>
                                         <td style="width: 35%;">
-                                            <a href="{{ $quickLink->external_link }}" target="_blank">{{ $quickLink->external_link }}</a>
+                                            <a href="{{ $quickLink->external_link }}"
+                                                target="_blank">{{ $quickLink->external_link }}</a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -66,8 +67,8 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </div>
-@endsection 
+@endsection

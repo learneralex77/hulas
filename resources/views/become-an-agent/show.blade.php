@@ -10,13 +10,13 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">View Images</h3>
                 <div class="block-options">
-                <a href="{{ route('become-an-agent.edit', $becomeAnAgent) }}" class="btn btn-sm btn-alt-success">
+                    <a href="{{ route('become-an-agent.edit', $becomeAnAgent) }}" class="btn btn-sm btn-alt-success">
                         <i class="fa fa-pencil-alt me-1"></i> Edit
                     </a>
                     <a href="{{ route('become-an-agent.index') }}" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-arrow-left me-1"></i> Back
                     </a>
-                   
+
                 </div>
             </div>
             <div class="block-content">
@@ -51,11 +51,14 @@
                                 @foreach ($becomeAnAgent->images as $image)
                                     <div class="col-md-4 mb-4">
                                         <div class="card h-100">
-                                            <a href="{{ asset('storage/' . $image) }}" data-lightbox="gallery" data-title="Become an Agent Image">
-                                                <img src="{{ asset('storage/' . $image) }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Image">
+                                            <a href="{{ asset('storage/' . $image) }}" data-lightbox="gallery"
+                                                data-title="Become an Agent Image">
+                                                <img src="{{ asset('storage/' . $image) }}" class="card-img-top"
+                                                    style="height: 200px; object-fit: cover;" alt="Image">
                                             </a>
                                             <div class="card-body p-2">
-                                                <a href="{{ asset('storage/' . $image) }}" class="btn btn-sm btn-alt-secondary w-100" target="_blank">
+                                                <a href="{{ asset('storage/' . $image) }}"
+                                                    class="btn btn-sm btn-alt-primary border w-100" target="_blank">
                                                     <i class="fa fa-external-link-alt me-1"></i> View Full Size
                                                 </a>
                                             </div>
@@ -75,4 +78,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

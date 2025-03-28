@@ -13,7 +13,7 @@
                     <a href="{{ route('news-event-categories.edit', $newsEventCategory) }}" class="btn btn-sm btn-success">
                         <i class="fa fa-edit"></i> Edit
                     </a>
-                    <a href="{{ route('news-event-categories.index') }}" class="btn btn-sm btn-alt-secondary me-2">
+                    <a href="{{ route('news-event-categories.index') }}" class="btn btn-sm btn-alt-primary border me-2">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
 

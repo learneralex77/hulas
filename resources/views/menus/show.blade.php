@@ -14,7 +14,7 @@
                     <a href="{{ route('menus.edit', $menu) }}" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
-                    <a href="{{ route('menus.index') }}" class="btn btn-sm btn-alt-secondary">
+                    <a href="{{ route('menus.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>

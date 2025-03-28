@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Create New News & Event Category</h3>
                 <div class="block-options">
-                    <a href="{{ route('news-event-categories.index') }}" class="btn btn-sm btn-alt-secondary">
+                    <a href="{{ route('news-event-categories.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
                 </div>
@@ -27,11 +27,12 @@
                     </div>
                 @endif
 
-                <form class="form-horizontal" action="{{ route('news-event-categories.store') }}" method="POST" id="category-form">
+                <form class="form-horizontal" action="{{ route('news-event-categories.store') }}" method="POST"
+                    id="category-form">
                     @csrf
                     @include('news-event-categories.partials.form')
                 </form>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

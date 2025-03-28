@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Menu Details: {{ $menu->bname }}</h3>
                 <div class="block-options">
-                    
+
                     <a href="{{ route('menus.edit', $menu) }}" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
@@ -66,7 +66,8 @@
                                     <div class="col-md-4 fw-semibold text-muted">Parent Menu:</div>
                                     <div class="col-md-8">
                                         @if ($menu->parent)
-                                            <a href="{{ route('menus.show', $menu->parent) }}">{{ $menu->parent->bname }}</a>
+                                            <a
+                                                href="{{ route('menus.show', $menu->parent) }}">{{ $menu->parent->bname }}</a>
                                         @else
                                             None
                                         @endif
@@ -117,10 +118,12 @@
                                                 </td>
                                                 <td class="text-center">
                                                     <div class="btn-group">
-                                                        <a href="{{ route('menus.show', $child) }}" class="btn btn-sm btn-info" title="View">
+                                                        <a href="{{ route('menus.show', $child) }}"
+                                                            class="btn btn-sm btn-info" title="View">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
-                                                        <a href="{{ route('menus.edit', $child) }}" class="btn btn-sm btn-primary" title="Edit">
+                                                        <a href="{{ route('menus.edit', $child) }}"
+                                                            class="btn btn-sm btn-success" title="Edit">
                                                             <i class="fa fa-pencil-alt"></i>
                                                         </a>
                                                     </div>
@@ -136,4 +139,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

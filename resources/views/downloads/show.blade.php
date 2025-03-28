@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Download Details: {{ $download->name }}</h3>
                 <div class="block-options">
-                    <a href="{{ route('downloads.edit', $download) }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('downloads.edit', $download) }}" class="btn btn-sm btn-success">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
                     <a href="{{ route('downloads.index') }}" class="btn btn-sm btn-alt-secondary">
@@ -48,7 +48,8 @@
                                         <th class="text-center">File</th>
                                         <td class="text-center">
                                             @if ($download->file)
-                                                <a href="{{ route('downloads.download-file', $download) }}" class="btn btn-alt-primary">
+                                                <a href="{{ route('downloads.download-file', $download) }}"
+                                                    class="btn btn-alt-primary">
                                                     <i class="fa fa-download"></i> Download File
                                                 </a>
                                             @else
@@ -82,4 +83,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

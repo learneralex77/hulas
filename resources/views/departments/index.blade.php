@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Department List</h3>
                 <div class="block-options">
-                    <a href="{{ route('departments.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('departments.create') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-plus"></i> Add New Department
                     </a>
                 </div>
@@ -31,7 +31,7 @@
                                 <th>Name</th>
                                 <th class="d-none d-md-table-cell text-center">Display Order</th>
                                 <th class="text-center">Status</th>
-                                <th class="text-center" style="width: 120px;">Actions</th>
+                                <th class="text-center" style="width: 13%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,14 +48,18 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="{{ route('departments.show', $department) }}" class="btn btn-sm btn-info" title="View">
+                                        <div class="gap-2">
+                                            <a href="{{ route('departments.show', $department) }}"
+                                                class="btn btn-sm btn-info" title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('departments.edit', $department) }}" class="btn btn-sm btn-primary" title="Edit">
+                                            <a href="{{ route('departments.edit', $department) }}"
+                                                class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('departments.destroy', $department) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this department?')">
+                                            <form action="{{ route('departments.destroy', $department) }}" method="POST"
+                                                style="display:inline;"
+                                                onsubmit="return confirm('Are you sure you want to delete this department?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" title="Delete">
@@ -73,11 +77,11 @@
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div class="d-flex justify-content-center mt-4">
                     {{ $departments->links() }}
                 </div>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

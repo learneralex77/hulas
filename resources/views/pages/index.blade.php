@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Page List</h3>
                 <div class="block-options">
-                    <a href="{{ route('pages.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('pages.create') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-plus"></i> Add New Page
                     </a>
                 </div>
@@ -33,7 +33,7 @@
                                 <th class="d-none d-md-table-cell">Slug</th>
                                 <th class="d-none d-lg-table-cell">Menu</th>
                                 <th class="d-none d-xl-table-cell" style="width: 150px;">Created At</th>
-                                <th class="text-center" style="width: 120px;">Actions</th>
+                                <th class="text-center" style="width: 13%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,20 +42,22 @@
                                     <td class="text-center">{{ $page->id }}</td>
                                     <td class="d-none d-sm-table-cell">
                                         @if ($page->image)
-                                            <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->title }}" style="max-height: 40px;" class="img-fluid">
+                                            <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->title }}"
+                                                style="max-height: 40px;" class="img-fluid">
                                         @else
                                             <span class="text-muted"><i class="fa fa-image"></i></span>
                                         @endif
                                     </td>
                                     <td>
                                         {{ $page->title }}
-                                        @if($page->short_description)
-                                            <div class="text-muted fs-sm">{{ Str::limit($page->short_description, 30) }}</div>
+                                        @if ($page->short_description)
+                                            <div class="text-muted fs-sm">{{ Str::limit($page->short_description, 30) }}
+                                            </div>
                                         @endif
                                     </td>
                                     <td class="d-none d-md-table-cell">{{ $page->slug }}</td>
                                     <td class="d-none d-lg-table-cell">
-                                        @if($page->menu)
+                                        @if ($page->menu)
                                             <a href="{{ route('menus.show', $page->menu) }}">{{ $page->menu->bname }}</a>
                                         @else
                                             <span class="text-muted">No Menu</span>
@@ -65,14 +67,18 @@
                                         {{ $page->created_at->format('M d, Y') }}
                                     </td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="{{ route('pages.show', $page) }}" class="btn btn-sm btn-info" title="View">
+                                        <div class="gap-2">
+                                            <a href="{{ route('pages.show', $page) }}" class="btn btn-sm btn-info"
+                                                title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('pages.edit', $page) }}" class="btn btn-sm btn-primary" title="Edit">
+                                            <a href="{{ route('pages.edit', $page) }}" class="btn btn-sm btn-success"
+                                                title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('pages.destroy', $page) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this page?')">
+                                            <form action="{{ route('pages.destroy', $page) }}" method="POST"
+                                                style="display:inline;"
+                                                onsubmit="return confirm('Are you sure you want to delete this page?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" title="Delete">
@@ -90,11 +96,11 @@
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div class="d-flex justify-content-center mt-4">
                     {{ $pages->links() }}
                 </div>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Contact Us Inquiries</h3>
                 <div class="block-options">
-                    <a href="{{ route('contact-us.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('contact-us.create') }}" class="btn btn-sm btn-success">
                         <i class="fa fa-plus me-1"></i> Add New Inquiry
                     </a>
                 </div>
@@ -50,14 +50,18 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="{{ route('contact-us.show', $contact) }}" class="btn btn-sm btn-info" title="View">
+                                        <div class="gap-2">
+                                            <a href="{{ route('contact-us.show', $contact) }}" class="btn btn-sm btn-info"
+                                                title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('contact-us.edit', $contact) }}" class="btn btn-sm btn-primary" title="Edit">
+                                            <a href="{{ route('contact-us.edit', $contact) }}"
+                                                class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('contact-us.destroy', $contact) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this inquiry?')">
+                                            <form action="{{ route('contact-us.destroy', $contact) }}" method="POST"
+                                                style="display:inline;"
+                                                onsubmit="return confirm('Are you sure you want to delete this inquiry?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" title="Delete">
@@ -75,11 +79,11 @@
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div class="d-flex justify-content-center mt-4">
                     {{ $contacts->links() }}
                 </div>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

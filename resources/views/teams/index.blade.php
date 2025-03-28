@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Team List</h3>
                 <div class="block-options">
-                    <a href="{{ route('teams.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('teams.create') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-plus"></i> Add New Member
                     </a>
                 </div>
@@ -33,7 +33,7 @@
                                 <th class="d-none d-md-table-cell">Type</th>
                                 <th class="d-none d-lg-table-cell text-center">Display Order</th>
                                 <th class="text-center">Status</th>
-                                <th class="text-center" style="width: 120px;">Actions</th>
+                                <th class="text-center" style="width: 13%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,7 +42,8 @@
                                     <td class="text-center">{{ $team->id }}</td>
                                     <td class="d-none d-sm-table-cell text-center">
                                         @if ($team->image)
-                                            <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}" class="img-thumbnail" style="max-height: 50px;">
+                                            <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}"
+                                                class="img-thumbnail" style="max-height: 50px;">
                                         @else
                                             <span class="text-muted"><i class="fa fa-image"></i></span>
                                         @endif
@@ -58,14 +59,18 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="{{ route('teams.show', $team) }}" class="btn btn-sm btn-info" title="View">
+                                        <div class="gap-2">
+                                            <a href="{{ route('teams.show', $team) }}" class="btn btn-sm btn-info"
+                                                title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('teams.edit', $team) }}" class="btn btn-sm btn-primary" title="Edit">
+                                            <a href="{{ route('teams.edit', $team) }}" class="btn btn-sm btn-success"
+                                                title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('teams.destroy', $team) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this team member?')">
+                                            <form action="{{ route('teams.destroy', $team) }}" method="POST"
+                                                style="display:inline;"
+                                                onsubmit="return confirm('Are you sure you want to delete this team member?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" title="Delete">
@@ -83,11 +88,11 @@
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div class="d-flex justify-content-center mt-4">
                     {{ $teams->links() }}
                 </div>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

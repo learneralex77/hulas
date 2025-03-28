@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Districts List</h3>
                 <div class="block-options">
-                    <a href="{{ route('districts.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('districts.create') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-plus"></i> Add New District
                     </a>
                 </div>
@@ -52,10 +52,12 @@
                                         <a href="{{ route('districts.show', $district) }}" class="btn btn-sm btn-info">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('districts.edit', $district) }}" class="btn btn-sm btn-primary">
+                                        <a href="{{ route('districts.edit', $district) }}" class="btn btn-sm btn-success">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <form action="{{ route('districts.destroy', $district) }}" method="POST" style="display:inline" onsubmit="return confirm('Are you sure you want to delete this district?')">
+                                        <form action="{{ route('districts.destroy', $district) }}" method="POST"
+                                            style="display:inline"
+                                            onsubmit="return confirm('Are you sure you want to delete this district?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">
@@ -72,11 +74,11 @@
                         @endforelse
                     </tbody>
                 </table>
-                
+
                 <div class="d-flex justify-content-center mt-4">
                     {{ $districts->links() }}
                 </div>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

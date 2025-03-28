@@ -15,13 +15,14 @@ class MenuController extends Controller
     public function index()
     {
         $menus = Menu::orderBy('display_order')->paginate(10);
+
         return view('menus.index', compact('menus'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
         $parentMenus = Menu::orderBy('bname')->get();
         return view('menus.create', compact('parentMenus'));
@@ -32,13 +33,9 @@ class MenuController extends Controller
      */
     public function store(MenuRequest $request)
     {
-        // Get validated data
-        $validated = $request->validated();
-        
-        // Generate slug from menu name
-        $validated['slug'] = Str::slug($validated['bname']);
+        $request['slug'] = Str::slug($request['bname']);
 
-        Menu::create($validated);
+        Menu::create($request->all());
 
         return redirect()->route('menus.index')
             ->with('success', 'Menu created successfully.');
@@ -55,12 +52,12 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Menu $menu, Request $request)
+    public function edit(Menu $menu)
     {
         $parentMenus = Menu::where('id', '!=', $menu->id)
             ->orderBy('bname')
             ->get();
-        
+
         return view('menus.edit', compact('menu', 'parentMenus'));
     }
 
@@ -71,7 +68,7 @@ class MenuController extends Controller
     {
         // Get validated data
         $validated = $request->validated();
-        
+
         // Generate slug from menu name
         $validated['slug'] = Str::slug($validated['bname']);
 
@@ -89,7 +86,7 @@ class MenuController extends Controller
         // Update any child menus to have null parent_id
         Menu::where('parent_id', $menu->id)
             ->update(['parent_id' => null]);
-            
+
         $menu->delete();
 
         return redirect()->route('menus.index')

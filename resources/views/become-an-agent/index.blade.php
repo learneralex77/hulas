@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Become an Agent Images List</h3>
                 <div class="block-options">
-                    <a href="{{ route('become-an-agent.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('become-an-agent.create') }}" class="btn btn-sm btn-success">
                         <i class="fa fa-plus me-1"></i> Add New Agent
                     </a>
                 </div>
@@ -40,7 +40,8 @@
                                     <td>{{ $agent->id }}</td>
                                     <td>
                                         @if (is_array($agent->images) && count($agent->images) > 0)
-                                            <img src="{{ asset('storage/' . $agent->images[0]) }}" alt="Preview" class="img-fluid" style="max-height: 100px;">
+                                            <img src="{{ asset('storage/' . $agent->images[0]) }}" alt="Preview"
+                                                class="img-fluid" style="max-height: 100px;">
                                             @if (count($agent->images) > 1)
                                                 <span class="badge bg-primary">+{{ count($agent->images) - 1 }} more</span>
                                             @endif
@@ -57,14 +58,18 @@
                                     </td>
                                     <td>{{ $agent->created_at->format('M d, Y H:i') }}</td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="{{ route('become-an-agent.show', $agent) }}" class="btn btn-sm btn-info" title="View">
+                                        <div class="gap-2">
+                                            <a href="{{ route('become-an-agent.show', $agent) }}"
+                                                class="btn btn-sm btn-info" title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('become-an-agent.edit', $agent) }}" class="btn btn-sm btn-primary" title="Edit">
+                                            <a href="{{ route('become-an-agent.edit', $agent) }}"
+                                                class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('become-an-agent.destroy', $agent) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this?')">
+                                            <form action="{{ route('become-an-agent.destroy', $agent) }}" method="POST"
+                                                style="display:inline;"
+                                                onsubmit="return confirm('Are you sure you want to delete this?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" title="Delete">
@@ -89,4 +94,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

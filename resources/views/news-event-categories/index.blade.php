@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">News & Event Categories</h3>
                 <div class="block-options">
-                    <a href="{{ route('news-event-categories.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('news-event-categories.create') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-plus"></i> Add New Category
                     </a>
                 </div>
@@ -47,13 +47,17 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="{{ route('news-event-categories.show', $category) }}" class="btn btn-sm btn-info" title="View">
+                                        <a href="{{ route('news-event-categories.show', $category) }}"
+                                            class="btn btn-sm btn-info" title="View">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('news-event-categories.edit', $category) }}" class="btn btn-sm btn-primary" title="Edit">
+                                        <a href="{{ route('news-event-categories.edit', $category) }}"
+                                            class="btn btn-sm btn-success" title="Edit">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <form action="{{ route('news-event-categories.destroy', $category) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this category?')">
+                                        <form action="{{ route('news-event-categories.destroy', $category) }}"
+                                            method="POST" style="display:inline;"
+                                            onsubmit="return confirm('Are you sure you want to delete this category?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger" title="Delete">
@@ -70,11 +74,11 @@
                         @endforelse
                     </tbody>
                 </table>
-                
+
                 <div class="d-flex justify-content-center mt-4">
                     {{ $categories->links() }}
                 </div>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

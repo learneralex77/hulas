@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Quick Links List</h3>
                 <div class="block-options">
-                    <a href="{{ route('quick-links.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('quick-links.create') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-plus"></i> Add New Quick Link
                     </a>
                 </div>
@@ -49,14 +49,18 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="{{ route('quick-links.show', $quickLink) }}" class="btn btn-sm btn-info" title="View">
+                                        <div class="gap-2">
+                                            <a href="{{ route('quick-links.show', $quickLink) }}"
+                                                class="btn btn-sm btn-info" title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('quick-links.edit', $quickLink) }}" class="btn btn-sm btn-primary" title="Edit">
+                                            <a href="{{ route('quick-links.edit', $quickLink) }}"
+                                                class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('quick-links.destroy', $quickLink) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this quick link?')">
+                                            <form action="{{ route('quick-links.destroy', $quickLink) }}" method="POST"
+                                                style="display:inline;"
+                                                onsubmit="return confirm('Are you sure you want to delete this quick link?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" title="Delete">
@@ -77,4 +81,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

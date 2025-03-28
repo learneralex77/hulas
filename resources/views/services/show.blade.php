@@ -34,7 +34,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <tbody>
-                            @foreach($service->translations as $translation)
+                            @foreach ($service->translations as $translation)
                                 <tr>
                                     <th style="width: 30%;">Language</th>
                                     <td>{{ strtoupper($translation->language_code) }}</td>
@@ -42,7 +42,7 @@
                                 <tr>
                                     <th>Names</th>
                                     <td>
-                                        @foreach($translation->names as $name)
+                                        @foreach ($translation->names as $name)
                                             <div>{{ $name }}</div>
                                         @endforeach
                                     </td>
@@ -50,7 +50,7 @@
                                 <tr>
                                     <th>Descriptions</th>
                                     <td>
-                                        @foreach($translation->descriptions as $description)
+                                        @foreach ($translation->descriptions as $description)
                                             <div class="mb-3">{!! nl2br(e($description)) !!}</div>
                                         @endforeach
                                     </td>
@@ -60,10 +60,10 @@
                     </table>
                 </div>
 
-                @if($service->file)
+                @if ($service->file)
                     <h4 class="mt-4">Service File</h4>
                     <div class="mt-2 mb-4">
-                        <a href="{{ asset('storage/' . $service->file) }}" target="_blank" class="btn btn-sm btn-primary">
+                        <a href="{{ asset('storage/' . $service->file) }}" target="_blank" class="btn btn-sm btn-success">
                             <i class="fa fa-download"></i> Download File
                         </a>
                     </div>
@@ -88,7 +88,7 @@
                             <tr>
                                 <th style="width: 30%;">Publication Status</th>
                                 <td>
-                                    @if($service->is_published)
+                                    @if ($service->is_published)
                                         <span class="badge bg-success">Published</span>
                                     @else
                                         <span class="badge bg-warning">Draft</span>
@@ -101,4 +101,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

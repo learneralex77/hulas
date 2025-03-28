@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Downloads List</h3>
                 <div class="block-options">
-                    <a href="{{ route('downloads.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('downloads.create') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-plus"></i> Add New Download
                     </a>
                 </div>
@@ -46,7 +46,8 @@
                                 <td>{{ $download->name }}</td>
                                 <td>
                                     @if ($download->file)
-                                        <a href="{{ route('downloads.download-file', $download) }}" class="btn btn-sm btn-alt-primary">
+                                        <a href="{{ route('downloads.download-file', $download) }}"
+                                            class="btn btn-sm btn-alt-primary">
                                             <i class="fa fa-download"></i> Download
                                         </a>
                                     @else
@@ -63,13 +64,17 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="{{ route('downloads.show', $download) }}" class="btn btn-sm btn-info" title="View">
+                                        <a href="{{ route('downloads.show', $download) }}" class="btn btn-sm btn-info"
+                                            title="View">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('downloads.edit', $download) }}" class="btn btn-sm btn-primary" title="Edit">
+                                        <a href="{{ route('downloads.edit', $download) }}" class="btn btn-sm btn-success"
+                                            title="Edit">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <form action="{{ route('downloads.destroy', $download) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this download? This will also delete the file.')">
+                                        <form action="{{ route('downloads.destroy', $download) }}" method="POST"
+                                            style="display:inline;"
+                                            onsubmit="return confirm('Are you sure you want to delete this download? This will also delete the file.')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger" title="Delete">
@@ -86,11 +91,11 @@
                         @endforelse
                     </tbody>
                 </table>
-                
+
                 <div class="d-flex justify-content-center mt-4">
                     {{ $downloads->links() }}
                 </div>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

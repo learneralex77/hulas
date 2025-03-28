@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Team Member Details: {{ $team->name }}</h3>
                 <div class="block-options">
-                    <a href="{{ route('teams.edit', $team) }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('teams.edit', $team) }}" class="btn btn-sm btn-success">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
                     <a href="{{ route('teams.index') }}" class="btn btn-sm btn-alt-secondary">
@@ -55,7 +55,8 @@
                                         <th class="text-center">Image</th>
                                         <td class="text-center">
                                             @if ($team->image)
-                                                <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}" class="img-fluid rounded" style="max-height: 100px;">
+                                                <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}"
+                                                    class="img-fluid rounded" style="max-height: 100px;">
                                             @else
                                                 <span class="text-muted">No image available</span>
                                             @endif
@@ -68,10 +69,10 @@
                                         <td>{{ $team->updated_at->format('M d, Y H:i') }}</td>
                                     </tr>
                                     @if ($team->description)
-                                    <tr>
-                                        <th class="text-center">Description</th>
-                                        <td colspan="3">{{ $team->description }}</td>
-                                    </tr>
+                                        <tr>
+                                            <th class="text-center">Description</th>
+                                            <td colspan="3">{{ $team->description }}</td>
+                                        </tr>
                                     @endif
                                 </tbody>
                             </table>
@@ -81,4 +82,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

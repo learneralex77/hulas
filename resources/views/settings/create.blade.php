@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="block-content block-content-full block-content-sm bg-body-light text-center">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-sm btn-success">
                         <i class="fa fa-save me-1"></i> Save Settings
                     </button>
                 </div>
@@ -35,50 +35,50 @@
 @endsection
 
 @push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Handle logo preview
-        const previewImage = (input, previewId) => {
-            const preview = document.getElementById(previewId);
-            preview.innerHTML = '';
-            
-            if (input.files && input.files[0]) {
-                const file = input.files[0];
-                if (!file.type.match('image.*')) {
-                    return;
-                }
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle logo preview
+            const previewImage = (input, previewId) => {
+                const preview = document.getElementById(previewId);
+                preview.innerHTML = '';
 
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.className = 'img-fluid rounded';
-                    img.style.maxHeight = '150px';
-                    preview.appendChild(img);
-                };
-                
-                reader.readAsDataURL(file);
-            }
-        };
-        
-        // Main logo preview
-        const logoInput = document.getElementById('logo');
-        logoInput.addEventListener('change', function() {
-            previewImage(this, 'logo-preview');
+                if (input.files && input.files[0]) {
+                    const file = input.files[0];
+                    if (!file.type.match('image.*')) {
+                        return;
+                    }
+
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'img-fluid rounded';
+                        img.style.maxHeight = '150px';
+                        preview.appendChild(img);
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            };
+
+            // Main logo preview
+            const logoInput = document.getElementById('logo');
+            logoInput.addEventListener('change', function() {
+                previewImage(this, 'logo-preview');
+            });
+
+            // Primary logo preview
+            const primaryLogoInput = document.getElementById('primary_logo');
+            primaryLogoInput.addEventListener('change', function() {
+                previewImage(this, 'primary-logo-preview');
+            });
+
+            // Secondary logo preview
+            const secondaryLogoInput = document.getElementById('secondary_logo');
+            secondaryLogoInput.addEventListener('change', function() {
+                previewImage(this, 'secondary-logo-preview');
+            });
         });
-        
-        // Primary logo preview
-        const primaryLogoInput = document.getElementById('primary_logo');
-        primaryLogoInput.addEventListener('change', function() {
-            previewImage(this, 'primary-logo-preview');
-        });
-        
-        // Secondary logo preview
-        const secondaryLogoInput = document.getElementById('secondary_logo');
-        secondaryLogoInput.addEventListener('change', function() {
-            previewImage(this, 'secondary-logo-preview');
-        });
-    });
-</script>
-@endpush 
+    </script>
+@endpush

@@ -10,13 +10,13 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Agent Details List</h3>
                 <div class="block-options">
-                    <a href="{{ route('agent-details.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('agent-details.create') }}" class="btn btn-sm btn-success">
                         <i class="fa fa-plus me-1"></i> Add New Agent Detail
                     </a>
                 </div>
             </div>
             <div class="block-content">
-                @if(session('success'))
+                @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -45,7 +45,7 @@
                                             $names = json_decode($agentDetail->state_agent_name ?: '[]') ?: [];
                                         @endphp
                                         {{ $names[0] ?? '' }}
-                                        @if(is_array($names) && count($names) > 1)
+                                        @if (is_array($names) && count($names) > 1)
                                             <span class="badge bg-info">{{ count($names) }} entries</span>
                                         @endif
                                     </td>
@@ -54,7 +54,7 @@
                                             $contacts = json_decode($agentDetail->contact_no ?: '[]') ?: [];
                                         @endphp
                                         {{ $contacts[0] ?? '' }}
-                                        @if(is_array($contacts) && count($contacts) > 1)
+                                        @if (is_array($contacts) && count($contacts) > 1)
                                             <span class="badge bg-info">{{ count($contacts) }} entries</span>
                                         @endif
                                     </td>
@@ -63,19 +63,23 @@
                                             $persons = json_decode($agentDetail->contact_person ?: '[]') ?: [];
                                         @endphp
                                         {{ $persons[0] ?? '' }}
-                                        @if(is_array($persons) && count($persons) > 1)
+                                        @if (is_array($persons) && count($persons) > 1)
                                             <span class="badge bg-info">{{ count($persons) }} entries</span>
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="{{ route('agent-details.show', $agentDetail) }}" class="btn btn-sm btn-info" title="View">
+                                        <div class="gap-2">
+                                            <a href="{{ route('agent-details.show', $agentDetail) }}"
+                                                class="btn btn-sm btn-info" title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('agent-details.edit', $agentDetail) }}" class="btn btn-sm btn-primary" title="Edit">
+                                            <a href="{{ route('agent-details.edit', $agentDetail) }}"
+                                                class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('agent-details.destroy', $agentDetail) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this agent detail?')">
+                                            <form action="{{ route('agent-details.destroy', $agentDetail) }}"
+                                                method="POST" style="display:inline;"
+                                                onsubmit="return confirm('Are you sure you want to delete this agent detail?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" title="Delete">
@@ -93,11 +97,11 @@
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div class="d-flex justify-content-center mt-4">
                     {{ $agentDetails->links() }}
                 </div>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

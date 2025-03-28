@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Zones List</h3>
                 <div class="block-options">
-                    <a href="{{ route('zones.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('zones.create') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-plus"></i> Add New Zone
                     </a>
                 </div>
@@ -47,14 +47,16 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <div class="btn-group">
+                                        <div class="gap-2">
                                             <a href="{{ route('zones.show', $zone) }}" class="btn btn-sm btn-info">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('zones.edit', $zone) }}" class="btn btn-sm btn-primary">
+                                            <a href="{{ route('zones.edit', $zone) }}" class="btn btn-sm btn-success">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('zones.destroy', $zone) }}" method="POST" style="display:inline" onsubmit="return confirm('Are you sure you want to delete this zone?')">
+                                            <form action="{{ route('zones.destroy', $zone) }}" method="POST"
+                                                style="display:inline"
+                                                onsubmit="return confirm('Are you sure you want to delete this zone?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger">
@@ -72,11 +74,11 @@
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div class="d-flex justify-content-center mt-4">
                     {{ $zones->links() }}
                 </div>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

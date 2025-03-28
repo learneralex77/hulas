@@ -11,8 +11,8 @@
                 <h3 class="block-title">Settings Information</h3>
                 <div class="block-options">
                     @if(!$settings->count())
-                        <a href="{{ route('settings.create') }}" class="btn btn-alt-primary">
-                            <i class="fa fa-plus mr-1"></i> Add Settings
+                        <a href="{{ route('settings.create') }}" class="btn btn-sm btn-alt-primary border">
+                        <i class="fa fa-plus"></i> Add New Settings
                         </a>
                     @else
                         <a href="{{ route('settings.edit', $settings->first()) }}" class="btn btn-alt-primary">
@@ -27,7 +27,7 @@
                             </button>
                         </form>
 
-                        
+
                     @endif
                 </div>
             </div>
@@ -210,9 +210,9 @@
                         </div>
                     </div>
 
-                    
+
                 @endif
             </div>
         </div>
     </div>
-@endsection 
+@endsection

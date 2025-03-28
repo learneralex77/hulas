@@ -10,13 +10,13 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Agent Forms</h3>
                 <div class="block-options">
-                    <a href="{{ route('agent-forms.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('agent-forms.create') }}" class="btn btn-sm btn-success">
                         <i class="fa fa-plus me-1"></i> Add Agent Form
                     </a>
                 </div>
             </div>
             <div class="block-content">
-                @if(session('success'))
+                @if (session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -44,14 +44,18 @@
                                     <td>{{ $agentForm->district->name }}</td>
                                     <td>{{ Str::limit($agentForm->address, 30) }}</td>
                                     <td class="text-center">
-                                        <div class="btn-group">
-                                            <a href="{{ route('agent-forms.show', $agentForm) }}" class="btn btn-sm btn-info" title="View">
+                                        <div class="gap-2">
+                                            <a href="{{ route('agent-forms.show', $agentForm) }}"
+                                                class="btn btn-sm btn-info" title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('agent-forms.edit', $agentForm) }}" class="btn btn-sm btn-primary" title="Edit">
+                                            <a href="{{ route('agent-forms.edit', $agentForm) }}"
+                                                class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('agent-forms.destroy', $agentForm) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this agent form?')">
+                                            <form action="{{ route('agent-forms.destroy', $agentForm) }}" method="POST"
+                                                style="display:inline;"
+                                                onsubmit="return confirm('Are you sure you want to delete this agent form?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger" title="Delete">
@@ -69,11 +73,11 @@
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div class="d-flex justify-content-center mt-4">
                     {{ $agentForms->links() }}
                 </div>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

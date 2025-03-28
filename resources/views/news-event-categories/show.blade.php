@@ -10,13 +10,13 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">News & Event Category Details: {{ $newsEventCategory->name }}</h3>
                 <div class="block-options">
-                <a href="{{ route('news-event-categories.edit', $newsEventCategory) }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('news-event-categories.edit', $newsEventCategory) }}" class="btn btn-sm btn-success">
                         <i class="fa fa-edit"></i> Edit
                     </a>
                     <a href="{{ route('news-event-categories.index') }}" class="btn btn-sm btn-alt-secondary me-2">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
-                    
+
                 </div>
             </div>
             <div class="block-content">
@@ -31,7 +31,7 @@
                                         <td style="width: 35%;">{{ $newsEventCategory->name }}</td>
                                         <th style="width: 15%;">Status</th>
                                         <td style="width: 35%;">
-                                            @if($newsEventCategory->is_published)
+                                            @if ($newsEventCategory->is_published)
                                                 <span class="badge bg-success">Published</span>
                                             @else
                                                 <span class="badge bg-danger">Unpublished</span>
@@ -62,4 +62,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

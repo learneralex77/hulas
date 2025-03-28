@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Publications</h3>
                 <div class="block-options">
-                    <a href="{{ route('publications.create') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('publications.create') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-plus"></i> Add New Publication
                     </a>
                 </div>
@@ -40,16 +40,16 @@
                                 <td class="text-center">{{ $publication->id }}</td>
                                 <td>
                                     @if ($publication->image)
-                                        <img src="{{ asset('storage/' . $publication->image) }}" 
-                                             alt="{{ $publication->title }}" 
-                                             class="img-fluid" style="max-height: 50px;">
+                                        <img src="{{ asset('storage/' . $publication->image) }}"
+                                            alt="{{ $publication->title }}" class="img-fluid" style="max-height: 50px;">
                                     @else
                                         <span class="text-muted">No image</span>
                                     @endif
                                 </td>
                                 <td>
                                     <strong>{{ $publication->title }}</strong>
-                                    <div class="text-muted small">{{ Str::limit($publication->short_description, 50) }}</div>
+                                    <div class="text-muted small">{{ Str::limit($publication->short_description, 50) }}
+                                    </div>
                                 </td>
                                 <td>{{ $publication->category->name ?? 'None' }}</td>
                                 <td>{{ $publication->publication_type }}</td>
@@ -62,13 +62,17 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <a href="{{ route('publications.show', $publication) }}" class="btn btn-sm btn-info" title="View">
+                                        <a href="{{ route('publications.show', $publication) }}" class="btn btn-sm btn-info"
+                                            title="View">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('publications.edit', $publication) }}" class="btn btn-sm btn-primary" title="Edit">
+                                        <a href="{{ route('publications.edit', $publication) }}"
+                                            class="btn btn-sm btn-success" title="Edit">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        <form action="{{ route('publications.destroy', $publication) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this publication?')">
+                                        <form action="{{ route('publications.destroy', $publication) }}" method="POST"
+                                            style="display:inline;"
+                                            onsubmit="return confirm('Are you sure you want to delete this publication?')">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger" title="Delete">
@@ -85,11 +89,11 @@
                         @endforelse
                     </tbody>
                 </table>
-                
+
                 <div class="d-flex justify-content-center mt-4">
                     {{ $publications->links() }}
                 </div>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

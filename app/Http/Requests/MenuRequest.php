@@ -24,7 +24,14 @@ class MenuRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'bname' => ['required', 'string', 'max:255', Rule::unique('menus')->ignore($this->id)],
+            'bname' => [
+                'required', 
+                'string', 
+                'max:255',
+                $this->isMethod('PUT') || $this->isMethod('PATCH')
+                    ? Rule::unique('menus')->ignore($this->route('menu')->id)
+                    : Rule::unique('menus')
+            ],
             'description' => 'nullable|string',
             'display_order' => 'nullable|integer|min:0',
             'is_published' => 'required|boolean',

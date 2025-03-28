@@ -65,11 +65,11 @@
                                         {{ $page->created_at->format('M d, Y') }}
                                     </td>
                                     <td class="text-center">
-                                        <div class="btn-group">
+                                        <div class="gap-2">
                                             <a href="{{ route('pages.show', $page) }}" class="btn btn-sm btn-info" title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('pages.edit', $page) }}" class="btn btn-sm btn-primary" title="Edit">
+                                            <a href="{{ route('pages.edit', $page) }}" class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                             <form action="{{ route('pages.destroy', $page) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this page?')">

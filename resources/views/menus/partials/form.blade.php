@@ -52,6 +52,7 @@
                 <div class="mb-4">
                     <label class="form-label d-block">Status</label>
                     <div class="form-check form-switch">
+                        <input type="hidden" name="is_published" value="0">
                         <input type="checkbox" class="form-check-input" id="is_published" name="is_published" value="1" {{ old('is_published', $menu->is_published ?? 1) ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_published">Published</label>
                     </div>
@@ -60,11 +61,11 @@
             </div>
         </div>
 
-        <div class="row p-3 menu-form-footer">
+        <div class="row p-3 menu-form-footer mb-0">
             <div class="col-12">
                 <div class="row mb-10">
-                    <div class="col-md-10">
-                        <button type="submit" class="btn btn-primary">
+                    <div class="col-md-10 mb-0">
+                        <button type="submit" class="btn btn-sm btn-alt-primary border-0">
                             <i class="fa fa-save"></i> {{$button}} Menu
                         </button>
                     </div>

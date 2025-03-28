@@ -10,7 +10,7 @@
             <div class="block-header block-header-default mb-2">
                 <h3 class="block-title">Menu List</h3>
                 <div class="block-options">
-                    <a href="{{ route('menus.create') }}" class="btn btn-sm btn-alt-primary border">
+                    <a href="{{ route('menus.create') }}" class="btn btn-sm btn-alt-primary border-0">
                         <i class="fa fa-plus"></i> Add New Menu
                     </a>
                 </div>
@@ -54,11 +54,11 @@
                                     </td>
                                     <td class="d-none d-lg-table-cell">{{ $menu->parent ? $menu->parent->bname : '-' }}</td>
                                     <td class="text-center">
-                                        <div class="btn-group">
+                                        <div class="gap-2">
                                             <a href="{{ route('menus.show', $menu) }}" class="btn btn-sm btn-info" title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('menus.edit', $menu) }}" class="btn btn-sm btn-primary" title="Edit">
+                                            <a href="{{ route('menus.edit', $menu) }}" class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                             <form action="{{ route('menus.destroy', $menu) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this menu?')">

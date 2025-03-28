@@ -10,7 +10,7 @@
             <div class="block-header block-header-default mb-2">
                 <h3 class="block-title">Menu List</h3>
                 <div class="block-options">
-                    <a href="{{ route('menus.create') }}" class="btn btn-sm btn-alt-primary border">
+                    <a href="{{ route('menus.create') }}" class="btn btn-sm btn-alt-primary border-0">
                         <i class="fa fa-plus"></i> Add New Menu
                     </a>
                 </div>

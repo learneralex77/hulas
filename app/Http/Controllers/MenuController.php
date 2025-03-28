@@ -6,6 +6,7 @@ use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Http\Requests\MenuRequest;
+use Illuminate\Validation\Rule;
 
 class MenuController extends Controller
 {

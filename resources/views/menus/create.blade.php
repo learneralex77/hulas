@@ -4,26 +4,7 @@
     Create New Menu
 @endsection
 
-@section('styles')
-<style>
-    /* Remove bottom space in menu form */
-    .block-content.no-bottom-space {
-        padding: 0 !important;
-    }
-    
-    .row.menu-form-container {
-        margin-bottom: 0 !important;
-    }
-    
-    .menu-form-footer {
-        margin-bottom: 0 !important;
-    }
-    
-    .block.menu-form-block {
-        margin-bottom: 1rem !important;
-    }
-</style>
-@endsection
+
 
 @section('content')
     <div class="content">

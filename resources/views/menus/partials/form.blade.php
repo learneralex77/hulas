@@ -65,7 +65,7 @@
             <div class="col-12">
                 <div class="row mb-10">
                     <div class="col-md-10 mb-0">
-                        <button type="submit" class="btn btn-sm btn-alt-primary border-0">
+                        <button type="submit" class="btn btn-sm btn-primary">
                             <i class="fa fa-save"></i> {{$button}} Menu
                         </button>
                     </div>

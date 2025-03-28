@@ -88,38 +88,3 @@
         </div>
     </div>
 </div>
-
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize CKEditor
-        ClassicEditor
-            .create(document.querySelector('#content'))
-            .catch(error => {
-                console.error(error);
-            });
-            
-        // Form submission validation
-        const form = document.getElementById('page-form');
-        form.addEventListener('submit', function(e) {
-            // Validate title
-            if (!document.getElementById('title').value.trim()) {
-                e.preventDefault();
-                alert('Title is required');
-                document.getElementById('title').focus();
-                return false;
-            }
-            
-            // Validate menu
-            if (!document.getElementById('menu_id').value.trim()) {
-                e.preventDefault();
-                alert('Menu is required');
-                document.getElementById('menu_id').focus();
-                return false;
-            }
-            
-            return true;
-        });
-    });
-</script>
-@endpush 

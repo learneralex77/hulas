@@ -24,14 +24,7 @@ class MenuRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'bname' => [
-                'required', 
-                'string', 
-                'max:255',
-                $this->isMethod('PUT') || $this->isMethod('PATCH')
-                    ? Rule::unique('menus')->ignore($this->route('menu')->id)
-                    : Rule::unique('menus')
-            ],
+            'bname' => ['required', 'string', 'max:255', Rule::unique('menus')->ignore($this->menu)],
             'description' => 'nullable|string',
             'display_order' => 'nullable|integer|min:0',
             'is_published' => 'required|boolean',
@@ -90,7 +83,7 @@ class MenuRequest extends FormRequest
             'is_published.boolean' => 'The menu status must be either published or unpublished.',
         ];
     }
-    
+
     /**
      * Prepare the data for validation.
      */
@@ -103,7 +96,7 @@ class MenuRequest extends FormRequest
         } else {
             $this->merge(['is_published' => false]);
         }
-        
+
         if (!$this->has('display_order') || $this->display_order === null) {
             $this->merge(['display_order' => 0]);
         }

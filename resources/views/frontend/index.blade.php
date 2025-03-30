@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hulas Remittance</title>
+    <link href="/src/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="navbar"></div>
+
+    <!----------Slider---------->
+    <div id="home-slider"></div>
+    <!----------Slider---------->
+
+    <!-- --------About Us Section-------- -->
+    <div id="home-about"></div>
+    <!----------About Us Section---------->
+
+    <!----------Services Section---------->
+    <div id="home-services-section"></div>
+    <!----------Services Section---------->
+
+    <!-- --------Our Partners Section-------- -->
+    <section class="about flex flex-col xl:flex-row items-center m-10 md:m-20 lg:mx-40 gap-10">
+        <div class="flex flex-1 flex-col space-y-6">
+            <h3 class="text-4xl text-center font-semibold capitalize text-primary">
+                Our partners & Supporters
+            </h3>
+            <div id="default-carousel" class="relative w-full" data-carousel="slide">
+                <!-- Carousel wrapper -->
+                <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                    <!-- Item 1 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="./images/partners/WesternUnion.webp"
+                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="Partners Icon">
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="./images/partners/WesternUnion.webp"
+                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="Partners Icon">
+
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="./images/partners/WesternUnion.webp"
+                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="Partners Icon">
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="./images/partners/WesternUnion.webp"
+                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="Partners Icon">
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                        <img src="./images/partners/WesternUnion.webp"
+                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                            alt="Partners Icon">
+                    </div>
+                </div>
+                <!-- Slider controls -->
+                <!-- <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                  <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                  </svg>
+                  <span class="sr-only">Previous</span>
+              </span>
+          </button>
+          <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+              <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                  <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                  </svg>
+                  <span class="sr-only">Next</span>
+              </span>
+          </button> -->
+            </div>
+    </section>
+    <!----------Our Partners Section---------->
+
+    <div id="home-become-an-agent"></div>
+
+    <div id="footer"></div>
+
+    <script type="module" src="/src/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+</body>
+
+</html>

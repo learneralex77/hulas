@@ -4,6 +4,8 @@
     Edit Become an Agent Images
 @endsection
 
+
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -16,7 +18,7 @@
                 </div>
             </div>
             <div class="block-content">
-                <form action="{{ route('become-an-agent.update', $becomeAnAgent) }}" method="POST" enctype="multipart/form-data" id="agent-form">
+                <form action="{{ route('become-an-agent.update', $becomeAnAgent) }}" method="POST" enctype="multipart/form-data" id="agent-form" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('become-an-agent.partials.form')

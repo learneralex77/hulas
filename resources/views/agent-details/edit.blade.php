@@ -4,6 +4,8 @@
     Edit Agent Details
 @endsection
 
+
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -16,7 +18,7 @@
                 </div>
             </div>
             <div class="block-content">
-                <form action="{{ route('agent-details.update', $agentDetail) }}" method="POST">
+                <form action="{{ route('agent-details.update', $agentDetail) }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('agent-details.partials.form')

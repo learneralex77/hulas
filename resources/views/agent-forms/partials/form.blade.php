@@ -71,10 +71,13 @@
                 <label class="form-label">Status</label>
                 <div class="mt-2">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="is_processed" name="is_processed"
+                        <input class="form-check-input @error('is_processed') is-invalid @enderror" type="checkbox" id="is_processed" name="is_processed"
                             value="1"
                             {{ old('is_processed', $agentForm->is_processed ?? '0') == '1' ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_processed">Processed</label>
+                        @error('is_processed')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>

@@ -8,9 +8,15 @@
     <title>AWT :: @yield('title')</title>
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" href="//cdn.datatables.net/2.2.2/css/dataTables.dataTables.min.css">
+
+
 
     <!-- Modules -->
     @vite(['resources/sass/main.scss', 'resources/js/codebase/app.js'])
+  
 
     <!-- Custom CSS -->
     <style>
@@ -36,6 +42,7 @@
 
     @yield('styles')
     @stack('styles')
+  
 </head>
 
 <body>
@@ -55,7 +62,7 @@
     </div>
     @yield('scripts')
     @stack('scripts')
-    <!-- END Page Container -->
+    <!-- END Page Container -->'
 </body>
 
 </html>

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
 @endsection
 
+
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">

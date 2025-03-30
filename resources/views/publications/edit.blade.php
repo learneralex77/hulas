@@ -4,6 +4,8 @@
     Edit Publication
 @endsection
 
+  
+
 @section('content')
     <div class="content">
         <div class="block block-rounded mb-0">
@@ -16,17 +18,9 @@
                 </div>
             </div>
             <div class="block-content p-0">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul class="mb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                
 
-                <form action="{{ route('publications.update', $publication) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('publications.update', $publication) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('publications.partials.form')

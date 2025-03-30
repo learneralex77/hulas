@@ -4,6 +4,8 @@
     Create Publication
 @endsection
 
+  
+
 @section('content')
     <div class="content">
         <div class="block block-rounded mb-0">
@@ -16,17 +18,9 @@
                 </div>
             </div>
             <div class="block-content p-0">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul class="mb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                
 
-                <form action="{{ route('publications.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('publications.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @csrf
                     @include('publications.partials.form')
                 </form>
@@ -35,9 +29,3 @@
     </div>
 @endsection
 
-@push('scripts')
-<script>
-    // You can add a WYSIWYG editor for the content field here if needed
-    // Example with CKEditor or TinyMCE
-</script>
-@endpush 

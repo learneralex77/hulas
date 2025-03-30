@@ -4,9 +4,11 @@
     Create New Service
 @endsection
 
+
+
 @section('content')
     <div class="content">
-        <form action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
             @csrf
             <div class="block block-rounded">
                 <div class="block-header block-header-default">

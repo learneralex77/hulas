@@ -4,6 +4,8 @@
     Edit Settings
 @endsection
 
+
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -18,7 +20,7 @@
             <div class="block-content">
                 <div class="row justify-content-center">
                     <div class="col-md-12">
-                        <form action="{{ route('settings.update', $setting) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('settings.update', $setting) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                             @csrf
                             @method('PUT')
                             @include('settings.partials.form')

@@ -4,6 +4,8 @@
     Edit Quick Link
 @endsection
 
+  
+
 @section('content')
     <div class="content">
         <div class="block block-rounded mb-0">
@@ -16,18 +18,9 @@
                 </div>
             </div>
             <div class="block-content p-0">
-                @if ($errors->any())
-                    <div class="alert alert-danger alert-dismissible fade show">
-                        <ul class="mb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
+             
 
-                <form action="{{ route('quick-links.update', $quickLink) }}" method="POST" id="quick-link-form">
+                <form action="{{ route('quick-links.update', $quickLink) }}" method="POST" id="quick-link-form" class="needs-validation" novalidate>
                     @method('PUT')
                     @include('quick-links.partials.form')
                 </form>

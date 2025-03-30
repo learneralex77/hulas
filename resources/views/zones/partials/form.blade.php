@@ -24,10 +24,13 @@
                 <label class="form-label">Status</label>
                 <div class="mt-2">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="is_published" name="is_published"
+                        <input class="form-check-input @error('is_published') is-invalid @enderror" type="checkbox" id="is_published" name="is_published"
                             value="1"
                             {{ old('is_published', $zone->is_published ?? '1') == '1' ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_published">Published</label>
+                        @error('is_published')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                         name="name" value="{{ old('name', $download->name ?? '') }}" required>
                     @error('name')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback small">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -20,7 +20,7 @@
                         id="display_order" name="display_order"
                         value="{{ old('display_order', $download->display_order ?? 0) }}">
                     @error('display_order')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback small">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
@@ -50,7 +50,7 @@
                         Allowed file types: PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, CSV, ZIP (max 10MB)
                     </small>
                     @error('file')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback small">{{ $message }}</div>
                     @enderror
                 </div>
             </div>

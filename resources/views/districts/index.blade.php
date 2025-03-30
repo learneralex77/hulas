@@ -4,10 +4,7 @@
     Districts Management
 @endsection
 
-@section('styles')
-    <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-@endsection
+  
 
 @section('content')
     <div class="content">
@@ -89,7 +86,8 @@
                 searching: true,
                 ordering: true,
                 lengthChange: true,
-                pageLength: 5,
+  pageLength: 10, // Set default to 10
+        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]], // Options for entries dropdown
                 columnDefs: [{
                     orderable: false,
                     targets: [4] // Actions column

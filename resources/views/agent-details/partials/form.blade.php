@@ -24,7 +24,7 @@
             <!-- State Agent Names Section -->
             <div class="col-md-6">
                 <div class="d-flex align-items-center mb-2">
-                    <h4 class="mb-0">State Agent Names</h4>
+                    <h4 class="mb-0">State Agent Names <span class="text-danger">*</span></h4>
                     <button type="button" class="btn btn-sm btn-alt-success ms-3" id="add-agent-name">
                         <i class="fa fa-plus"></i> Add Name
                     </button>

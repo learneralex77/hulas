@@ -4,6 +4,8 @@
     Create New Agent Details
 @endsection
 
+
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -16,7 +18,7 @@
                 </div>
             </div>
             <div class="block-content">
-                <form action="{{ route('agent-details.store') }}" method="POST">
+                <form action="{{ route('agent-details.store') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     @include('agent-details.partials.form')
                 </form>

@@ -24,9 +24,11 @@ class AgentFormRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:20', 'regex:/^[0-9+\-\s()]*$/'],
+            'email' => ['required', 'email', 'max:255'],
             'district_id' => ['required', 'exists:districts,id'],
+            'address' => ['required', 'string', 'max:255'],
             'message' => ['nullable', 'string'],
-            'address' => ['nullable', 'string'],
+            'is_processed' => ['nullable', 'boolean'],
         ];
     }
 
@@ -40,9 +42,11 @@ class AgentFormRequest extends FormRequest
         return [
             'name' => 'full name',
             'phone' => 'phone number',
+            'email' => 'email address',
             'district_id' => 'district',
-            'message' => 'message',
             'address' => 'address',
+            'message' => 'message',
+            'is_processed' => 'processed status',
         ];
     }
 
@@ -63,12 +67,29 @@ class AgentFormRequest extends FormRequest
             'phone.max' => 'The phone number may not be greater than 20 characters.',
             'phone.regex' => 'The phone number format is invalid. Please use only numbers, spaces, and these characters: + - ( )',
             
+            'email.required' => 'The email address is required.',
+            'email.email' => 'Please enter a valid email address.',
+            'email.max' => 'The email address may not be greater than 255 characters.',
+            
             'district_id.required' => 'Please select a district.',
             'district_id.exists' => 'The selected district does not exist.',
             
-            'message.string' => 'The message must be a string.',
-            
+            'address.required' => 'The address is required.',
             'address.string' => 'The address must be a string.',
+            'address.max' => 'The address may not be greater than 255 characters.',
+            
+            'message.string' => 'The message must be a string.',
         ];
+    }
+
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation(): void
+    {
+        // Set boolean values correctly
+        $this->merge([
+            'is_processed' => $this->has('is_processed'),
+        ]);
     }
 }

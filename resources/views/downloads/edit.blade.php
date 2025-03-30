@@ -4,6 +4,7 @@
     Edit Download
 @endsection
 
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -16,17 +17,9 @@
                 </div>
             </div>
             <div class="block-content">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul class="mb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+                
 
-                <form action="{{ route('downloads.update', $download) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('downloads.update', $download) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('downloads.partials.form')

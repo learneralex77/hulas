@@ -32,9 +32,12 @@
         <div class="mb-2 ps-0">
             <label class="form-label ps-0" for="is_published">Status</label>
             <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="is_published" name="is_published" value="1"
+                <input class="form-check-input @error('is_published') is-invalid @enderror" type="checkbox" id="is_published" name="is_published" value="1"
                     {{ old('is_published', $service->is_published ?? 0) ? 'checked' : '' }}>
                 <label class="form-check-label" for="is_published">Published</label>
+                @error('is_published')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
         </div>
 

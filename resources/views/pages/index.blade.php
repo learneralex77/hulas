@@ -4,10 +4,7 @@
     Pages
 @endsection
 
-@section('styles')
-    <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-@endsection
+  
 
 @section('content')
     <div class="content">
@@ -22,7 +19,7 @@
             </div>
             <div class="block-content">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-full" id="table1">
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 50px;">S.N.</th>
@@ -99,28 +96,13 @@
 @endsection
 
 @section('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> -->
+    <script src="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
     <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <script>
-        $(document).ready(function() {
-            $('.js-dataTable-full').DataTable({
-                paging: true,
-                searching: true,
-                ordering: true,
-                lengthChange: true,
-                pageLength: 5,
-                columnDefs: [{
-                    orderable: false,
-                    targets: [0, 6] // First column (S.N.) and Actions column
-                }],
-                order: [],
-                language: {
-                    searchPlaceholder: "Search pages...",
-                }
-            });
-        });
+        let table = new DataTable('#table1');
 
         // Success message
         @if (session('success'))

@@ -90,8 +90,13 @@ document.addEventListener('DOMContentLoaded', function() {
             titleInput.name = 'mission_vision_titles[]';
             titleInput.required = true;
 
+            const titleFeedback = document.createElement('div');
+            titleFeedback.className = 'invalid-feedback';
+            titleFeedback.textContent = 'Please enter a title.';
+
             titleCol.appendChild(titleLabel);
             titleCol.appendChild(titleInput);
+            titleCol.appendChild(titleFeedback);
 
             // Icon column
             const iconCol = document.createElement('div');
@@ -113,9 +118,14 @@ document.addEventListener('DOMContentLoaded', function() {
             iconHelp.className = 'form-text';
             iconHelp.textContent = 'Enter a Font Awesome icon name (e.g., "check", "flag").';
 
+            const iconFeedback = document.createElement('div');
+            iconFeedback.className = 'invalid-feedback';
+            iconFeedback.textContent = 'Please enter an icon name.';
+
             iconCol.appendChild(iconLabel);
             iconCol.appendChild(iconInput);
             iconCol.appendChild(iconHelp);
+            iconCol.appendChild(iconFeedback);
 
             row.appendChild(titleCol);
             row.appendChild(iconCol);
@@ -137,8 +147,13 @@ document.addEventListener('DOMContentLoaded', function() {
             descTextarea.rows = 3;
             descTextarea.required = true;
 
+            const descFeedback = document.createElement('div');
+            descFeedback.className = 'invalid-feedback';
+            descFeedback.textContent = 'Please enter a description.';
+
             descriptionGroup.appendChild(descLabel);
             descriptionGroup.appendChild(descTextarea);
+            descriptionGroup.appendChild(descFeedback);
             newItem.appendChild(descriptionGroup);
 
             // Append the new item to the container

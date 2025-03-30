@@ -24,8 +24,8 @@ class BranchRequest extends FormRequest
     {
         $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'address' => ['nullable', 'string'],
-            'phone' => ['nullable', 'string', 'max:20'],
+            'address' => ['required', 'string'],
+            'phone' => ['required', 'string', 'max:20'],
             'phone_number' => ['nullable', 'string', 'max:20'],
             'email' => ['nullable', 'email', 'max:255'],
             'district_id' => ['required', 'exists:districts,id'],
@@ -78,8 +78,10 @@ class BranchRequest extends FormRequest
             'name.max' => 'The branch name may not be greater than 255 characters.',
             'name.unique' => 'A branch with this name already exists.',
             
+            'address.required' => 'The address is required.',
             'address.string' => 'The address must be a string.',
             
+            'phone.required' => 'The phone number is required.',
             'phone.string' => 'The phone number must be a string.',
             'phone.max' => 'The phone number may not be greater than 20 characters.',
             

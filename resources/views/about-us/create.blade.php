@@ -4,6 +4,8 @@
     Create New About Us
 @endsection
 
+
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -16,7 +18,7 @@
                 </div>
             </div>
             <div class="block-content">
-                <form action="{{ route('about-us.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('about-us.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @csrf
                     @include('about-us.partials.form')
                 </form>

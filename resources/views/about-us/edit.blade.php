@@ -4,6 +4,8 @@
     Edit About Us
 @endsection
 
+
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -16,7 +18,7 @@
                 </div>
             </div>
             <div class="block-content">
-                <form action="{{ route('about-us.update', $aboutUs->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('about-us.update', $aboutUs->id) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('about-us.partials.form')

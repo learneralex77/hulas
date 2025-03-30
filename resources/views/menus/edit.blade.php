@@ -5,6 +5,7 @@
 @endsection
 
 
+
 @section('content')
     <div class="content">
         <div class="block block-rounded menu-form-block">
@@ -17,7 +18,7 @@
                 </div>
             </div>
             <div class="block-content no-bottom-space">
-                <form action="{{ route('menus.update', $menu) }}" method="POST" id="menuForm">
+                <form action="{{ route('menus.update', $menu) }}" method="POST" id="menuForm" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('menus.partials.form', ['button' => 'Update'])

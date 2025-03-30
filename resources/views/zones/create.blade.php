@@ -4,6 +4,8 @@
     Create Zone
 @endsection
 
+
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -16,18 +18,9 @@
                 </div>
             </div>
             <div class="block-content">
-                @if($errors->any())
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <ul class="mb-0">
-                            @foreach($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
+               
 
-                <form action="{{ route('zones.store') }}" method="POST">
+                <form action="{{ route('zones.store') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     @include('zones.partials.form')
                 </form>

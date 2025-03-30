@@ -16,15 +16,7 @@
                 </div>
             </div>
             <div class="block-content p-0">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul class="mb-0">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+               
 
                 <form action="{{ route('teams.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf

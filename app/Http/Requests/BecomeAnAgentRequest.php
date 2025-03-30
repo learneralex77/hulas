@@ -28,7 +28,7 @@ class BecomeAnAgentRequest extends FormRequest
             ];
         } else if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             return [
-                'new_images.*' => ['image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+                'images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
                 'delete_images' => ['nullable', 'array'],
                 'delete_images.*' => ['numeric'],
             ];
@@ -47,7 +47,6 @@ class BecomeAnAgentRequest extends FormRequest
         return [
             'images' => 'images',
             'images.*' => 'image',
-            'new_images.*' => 'new image',
             'delete_images' => 'images to delete',
             'delete_images.*' => 'image to delete',
         ];
@@ -67,10 +66,6 @@ class BecomeAnAgentRequest extends FormRequest
             'images.*.image' => 'File must be an image.',
             'images.*.mimes' => 'Image must be a jpeg, png, jpg, or gif file.',
             'images.*.max' => 'Image may not be larger than 2MB.',
-            
-            'new_images.*.image' => 'File must be an image.',
-            'new_images.*.mimes' => 'Image must be a jpeg, png, jpg, or gif file.',
-            'new_images.*.max' => 'Image may not be larger than 2MB.',
             
             'delete_images.array' => 'Delete images must be an array.',
             'delete_images.*.numeric' => 'Image index must be a number.',

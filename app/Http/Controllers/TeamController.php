@@ -92,14 +92,32 @@ class TeamController extends Controller
      */
     public function destroy(Team $team)
     {
-        // Delete image if exists
-        if ($team->image && Storage::disk('public')->exists($team->image)) {
-            Storage::disk('public')->delete($team->image);
-        }
-        
-        $team->delete();
+        try {
+            // Delete image if exists
+            if ($team->image && Storage::disk('public')->exists($team->image)) {
+                Storage::disk('public')->delete($team->image);
+            }
+            
+            $team->delete();
+            
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Team member deleted successfully.'
+                ]);
+            }
 
-        return redirect()->route('teams.index')
-            ->with('success', 'Team member deleted successfully.');
+            return redirect()->route('teams.index')
+                ->with('success', 'Team member deleted successfully.');
+        } catch (\Exception $e) {
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting team member: ' . $e->getMessage()
+                ], 500);
+            }
+
+            return back()->with('error', 'Error deleting team member: ' . $e->getMessage());
+        }
     }
 }

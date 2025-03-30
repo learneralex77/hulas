@@ -83,9 +83,31 @@ class NewsEventCategoryController extends Controller
      */
     public function destroy(NewsEventCategory $newsEventCategory)
     {
-        $newsEventCategory->delete();
+        try {
+            $newsEventCategory->delete();
 
-        return redirect()->route('news-event-categories.index')
-            ->with('success', 'Category deleted successfully.');
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Category deleted successfully.'
+                ]);
+            }
+
+            return redirect()->route('news-event-categories.index')
+                ->with('success', 'Category deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting category: ' . $e->getMessage()
+                ], 500);
+            }
+
+            // For form submit
+            return redirect()->route('news-event-categories.index')
+                ->with('error', 'Error deleting category: ' . $e->getMessage());
+        }
     }
 }

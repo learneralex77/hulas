@@ -161,15 +161,37 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        // Delete the file if it exists
-        if ($service->file) {
-            Storage::disk('public')->delete($service->file);
+        try {
+            // Delete the file if it exists
+            if ($service->file) {
+                Storage::disk('public')->delete($service->file);
+            }
+
+            // Delete the service (translations will cascade due to foreign key constraint)
+            $service->delete();
+
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Service deleted successfully.'
+                ]);
+            }
+            
+            return redirect()->route('services.index')
+                ->with('success', 'Service deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting service: ' . $e->getMessage()
+                ], 500);
+            }
+
+            // For form submit
+            return redirect()->route('services.index')
+                ->with('error', 'Error deleting service: ' . $e->getMessage());
         }
-
-        // Delete the service (translations will cascade due to foreign key constraint)
-        $service->delete();
-
-        return redirect()->route('services.index')
-            ->with('success', 'Service deleted successfully.');
     }
 }

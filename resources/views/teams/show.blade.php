@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Team Member Details: {{ $team->name }}</h3>
                 <div class="block-options">
-                    <a href="{{ route('teams.edit', $team) }}" class="btn btn-sm btn-success">
+                    <a href="{{ route('teams.edit', $team) }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
                     <a href="{{ route('teams.index') }}" class="btn btn-sm btn-alt-primary border">

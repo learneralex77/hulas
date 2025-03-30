@@ -4,27 +4,25 @@
     Contact Us Inquiries
 @endsection
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Contact Us Inquiries</h3>
+                <h3 class="block-title">Contact Us Inquiries List</h3>
                 <div class="block-options">
-                    <a href="{{ route('contact-us.create') }}" class="btn btn-sm btn-success">
+                    <a href="{{ route('contact-us.create') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-plus me-1"></i> Add New Inquiry
                     </a>
                 </div>
             </div>
             <div class="block-content">
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-vcenter">
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
                                 <th style="width: 50px;">S.N.</th>
@@ -32,12 +30,12 @@
                                 <th>Email</th>
                                 <th>Phone Number</th>
                                 <th>Status</th>
-                                <th style="width: 15%;">Actions</th>
+                                <th style="width: 20%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($contacts as $contact)
-                                <tr>
+                                <tr id="contact-row-{{ $contact->id }}">
                                     <td class="text-center">{{ $contact->id }}</td>
                                     <td>{{ $contact->full_name }}</td>
                                     <td>{{ $contact->email }}</td>
@@ -59,15 +57,10 @@
                                                 class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('contact-us.destroy', $contact) }}" method="POST"
-                                                style="display:inline;"
-                                                onsubmit="return confirm('Are you sure you want to delete this inquiry?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
+                                            <button type="button" class="btn btn-sm btn-danger"
+                                                onclick="deleteContact({{ $contact->id }})" title="Delete">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -86,4 +79,105 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-dataTable-full').DataTable({
+                paging: true,
+                searching: true,
+                ordering: true,
+                lengthChange: true,
+                pageLength: 5,
+                columnDefs: [{
+                    orderable: false,
+                    targets: [5] // Actions column
+                }],
+                order: [],
+                language: {
+                    searchPlaceholder: "Search inquiries...",
+                }
+            });
+        });
+
+        // Success message
+        @if (session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        // Error message
+        @if (session('error'))
+            Swal.fire({
+                title: 'Error!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        function deleteContact(contactId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let url = "{{ route('contact-us.destroy', ':id') }}".replace(':id', contactId);
+
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            // Remove the contact row from the table
+                            $('#contact-row-' + contactId).remove();
+
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Contact inquiry has been deleted.',
+                                icon: 'success',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'There was an error deleting the contact inquiry.',
+                                icon: 'error',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 @endsection

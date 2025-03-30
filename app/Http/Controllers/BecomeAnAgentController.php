@@ -79,10 +79,9 @@ class BecomeAnAgentController extends Controller
      */
     public function update(BecomeAnAgentRequest $request, BecomeAnAgent $becomeAnAgent)
     {
-        $data = $request->validated();
-        
+        // Get the existing images
         $imagesPaths = $becomeAnAgent->images ?? [];
-
+        
         // Handle image deletions
         if ($request->has('delete_images') && is_array($request->delete_images)) {
             foreach ($request->delete_images as $index) {
@@ -96,24 +95,44 @@ class BecomeAnAgentController extends Controller
             // Reindex the array
             $imagesPaths = array_values($imagesPaths);
         }
-
-        // Handle new image uploads
-        if ($request->hasFile('new_images')) {
-            foreach ($request->file('new_images') as $image) {
-                if ($image->isValid()) {
-                    $path = $image->store('become-an-agent', 'public');
+        
+        // Handle uploaded images
+        if ($request->hasFile('images')) {
+            $files = $request->file('images');
+            
+            foreach ($files as $key => $file) {
+                // Skip invalid files
+                if (!$file->isValid()) {
+                    continue;
+                }
+                
+                // Store the new image
+                $path = $file->store('become-an-agent', 'public');
+                
+                // Check if we're replacing an existing image at this index
+                if (isset($imagesPaths[$key])) {
+                    // Delete the old image
+                    Storage::disk('public')->delete($imagesPaths[$key]);
+                    // Replace with new image
+                    $imagesPaths[$key] = $path;
+                } else {
+                    // Add as a new image
                     $imagesPaths[] = $path;
                 }
             }
         }
 
-        // Validate that at least one image remains or has been added
+        // Ensure we have at least one image
         if (empty($imagesPaths)) {
             return redirect()->back()
                 ->withInput()
-                ->withErrors(['new_images' => 'At least one image is required. Please add a new image.']);
+                ->withErrors(['images' => 'At least one image is required. Please add a new image.']);
         }
 
+        // Reindex the array to ensure sequential keys
+        $imagesPaths = array_values($imagesPaths);
+        
+        // Update the record
         $becomeAnAgent->update([
             'images' => $imagesPaths,
         ]);
@@ -127,17 +146,39 @@ class BecomeAnAgentController extends Controller
      */
     public function destroy(BecomeAnAgent $becomeAnAgent)
     {
-        // Delete all associated images from storage
-        if (!empty($becomeAnAgent->images) && is_array($becomeAnAgent->images)) {
-            foreach ($becomeAnAgent->images as $image) {
-                Storage::disk('public')->delete($image);
+        try {
+            // Delete all associated images from storage
+            if (!empty($becomeAnAgent->images) && is_array($becomeAnAgent->images)) {
+                foreach ($becomeAnAgent->images as $image) {
+                    Storage::disk('public')->delete($image);
+                }
             }
+
+            $becomeAnAgent->delete();
+
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Agent information deleted successfully.'
+                ]);
+            }
+            
+            return redirect()->route('become-an-agent.index')
+                ->with('success', 'Agent information deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting agent information: ' . $e->getMessage()
+                ], 500);
+            }
+
+            // For form submit
+            return redirect()->route('become-an-agent.index')
+                ->with('error', 'Error deleting agent information: ' . $e->getMessage());
         }
-
-        $becomeAnAgent->delete();
-
-        return redirect()->route('become-an-agent.index')
-            ->with('success', 'Agent information deleted successfully.');
     }
 
     /**

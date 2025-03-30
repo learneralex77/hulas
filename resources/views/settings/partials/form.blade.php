@@ -186,66 +186,14 @@
     </div>
 </div>
 
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Handle logo preview
-        const previewImage = (input, previewId) => {
-            const preview = document.getElementById(previewId);
-            
-            // Remove new preview if exists
-            const newPreview = preview.querySelector('.new-preview');
-            if (newPreview) {
-                preview.removeChild(newPreview);
-            }
-            
-            if (input.files && input.files[0]) {
-                const file = input.files[0];
-                if (!file.type.match('image.*')) {
-                    return;
-                }
-
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    const previewContainer = document.createElement('div');
-                    previewContainer.className = 'new-preview mb-2';
-                    
-                    const previewTitle = document.createElement('p');
-                    previewTitle.className = 'mb-1';
-                    previewTitle.textContent = 'New Image:';
-                    
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.className = 'img-fluid rounded';
-                    img.style.maxHeight = '150px';
-                    
-                    previewContainer.appendChild(previewTitle);
-                    previewContainer.appendChild(img);
-                    preview.appendChild(previewContainer);
-                };
-                
-                reader.readAsDataURL(file);
-            }
-        };
-        
-        // Main logo preview
-        const logoInput = document.getElementById('logo');
-        logoInput.addEventListener('change', function() {
-            previewImage(this, 'logo-preview');
-        });
-        
-        // Primary logo preview
-        const primaryLogoInput = document.getElementById('primary_logo');
-        primaryLogoInput.addEventListener('change', function() {
-            previewImage(this, 'primary-logo-preview');
-        });
-        
-        // Secondary logo preview
-        const secondaryLogoInput = document.getElementById('secondary_logo');
-        secondaryLogoInput.addEventListener('change', function() {
-            previewImage(this, 'secondary-logo-preview');
-        });
-    });
-</script>
-@endpush 
+<!-- Save Button -->
+<div class="row mb-4 mt-1">
+    <div class="col-md-12 text-start mb-3">
+        <button type="submit" class="btn btn-sm btn-success">
+            <i class="fa fa-save me-1"></i> {{ isset($setting) ? 'Update Settings' : 'Create Setting' }}
+        </button>   
+        <a href="{{ route('settings.index') }}" class="btn btn-sm btn-danger ms-2">
+            <i class="fa fa-times"></i> Cancel
+        </a>
+    </div>
+</div> 

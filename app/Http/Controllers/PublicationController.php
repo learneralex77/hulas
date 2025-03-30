@@ -108,14 +108,36 @@ class PublicationController extends Controller
      */
     public function destroy(Publication $publication)
     {
-        // Delete image if exists
-        if ($publication->image && Storage::exists('public/' . $publication->image)) {
-            Storage::delete('public/' . $publication->image);
+        try {
+            // Delete image if exists
+            if ($publication->image && Storage::exists('public/' . $publication->image)) {
+                Storage::delete('public/' . $publication->image);
+            }
+            
+            $publication->delete();
+            
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Publication deleted successfully.'
+                ]);
+            }
+            
+            return redirect()->route('publications.index')
+                ->with('success', 'Publication deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting publication: ' . $e->getMessage()
+                ], 500);
+            }
+
+            // For form submit
+            return redirect()->route('publications.index')
+                ->with('error', 'Error deleting publication: ' . $e->getMessage());
         }
-        
-        $publication->delete();
-        
-        return redirect()->route('publications.index')
-            ->with('success', 'Publication deleted successfully.');
     }
 }

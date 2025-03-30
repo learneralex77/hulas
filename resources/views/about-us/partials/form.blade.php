@@ -78,7 +78,12 @@
 
 <div class="mb-4">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4>Mission & Vision <small class="text-muted">(You can add multiple items)</small></h4>
+        <h4>Mission & Vision</h4>
+        
+    <button type="button" class="btn btn-sm btn-alt-success" id="add-mission-vision">
+        <i class="fa fa-plus"></i> Add Another Item
+    </button>
+
 
     </div>
 
@@ -182,144 +187,15 @@
     </div>
 </div>
 
-<div class="col-md-12 text-center mb-4">
-
-    <button type="button" class="btn btn-sm btn-alt-success" id="add-mission-vision">
-        <i class="fa fa-plus"></i> Add Another Item
-    </button>
-</div>
 
 <!-- Save Button at Bottom -->
 <div class="row mb-4">
-    <div class="col-md-12 text-center">
+    <div class="col-md-12 text-start mb-3">
         <button type="submit" class="btn btn-sm btn-success">
-            <i class="fa fa-save me-1"></i> {{ isset($aboutUs) ? 'Update About Us' : 'Save About Us' }}
+            <i class="fa fa-save me-1"></i> {{ isset($aboutUs) ? 'Update About Us' : 'Create About Us' }}
         </button>
+        <a href="{{ route('about-us.index') }}" class="btn btn-sm btn-danger ms-2">
+            <i class="fa fa-times"></i> Cancel
+        </a>
     </div>
 </div>
-
-@push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle image preview
-            const imageInput = document.getElementById('image');
-            const imagePreview = document.getElementById('image-preview');
-
-            imageInput.addEventListener('change', function() {
-                // Remove new image preview if exists
-                const newPreview = imagePreview.querySelector('.new-image-preview');
-                if (newPreview) {
-                    imagePreview.removeChild(newPreview);
-                }
-
-                if (this.files && this.files[0]) {
-                    const file = this.files[0];
-                    if (!file.type.match('image.*')) {
-                        return;
-                    }
-
-                    const reader = new FileReader();
-
-                    reader.onload = function(e) {
-                        const previewContainer = document.createElement('div');
-                        previewContainer.className = 'new-image-preview mb-2';
-
-                        const previewTitle = document.createElement('p');
-                        previewTitle.className = 'mb-1';
-                        previewTitle.textContent = 'New Image:';
-
-                        const img = document.createElement('img');
-                        img.src = e.target.result;
-                        img.className = 'img-fluid rounded';
-                        img.style.maxHeight = '200px';
-
-                        previewContainer.appendChild(previewTitle);
-                        previewContainer.appendChild(img);
-                        imagePreview.appendChild(previewContainer);
-                    };
-
-                    reader.readAsDataURL(file);
-                }
-            });
-
-            // Handle mission and vision dynamic fields
-            let missionVisionCount =
-                {{ isset($aboutUs) && is_array($aboutUs->mission_vision) ? count($aboutUs->mission_vision) : 1 }};
-            const container = document.getElementById('mission-vision-container');
-            const addButton = document.getElementById('add-mission-vision');
-
-            // Add event listeners to existing remove buttons
-            document.querySelectorAll('.remove-mission-vision').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const item = this.closest('.mission-vision-item');
-                    container.removeChild(item);
-                });
-            });
-
-            addButton.addEventListener('click', function() {
-                const newItem = document.createElement('div');
-                newItem.className = 'mission-vision-item card p-3 bg-light mb-3';
-
-                const headerDiv = document.createElement('div');
-                headerDiv.className = 'd-flex justify-content-between align-items-center mb-2';
-
-                const title = document.createElement('h5');
-                title.className = 'mb-0';
-                title.textContent = `Item #${missionVisionCount + 1}`;
-
-                const removeBtn = document.createElement('button');
-                removeBtn.type = 'button';
-                removeBtn.className = 'btn btn-sm btn-alt-danger remove-mission-vision';
-                removeBtn.innerHTML = '<i class="fa fa-times"></i>';
-                removeBtn.title = 'Remove this item';
-
-                headerDiv.appendChild(title);
-                headerDiv.appendChild(removeBtn);
-
-                // Create a row for title and icon fields
-                const fieldsRow = document.createElement('div');
-                fieldsRow.className = 'row mb-3';
-
-                const titleCol = document.createElement('div');
-                titleCol.className = 'col-md-6';
-                titleCol.innerHTML = `
-                <label class="form-label" for="mission_vision_titles_${missionVisionCount}">Title <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="mission_vision_titles_${missionVisionCount}" name="mission_vision_titles[]" required>
-            `;
-
-                const iconCol = document.createElement('div');
-                iconCol.className = 'col-md-6';
-                iconCol.innerHTML = `
-                <label class="form-label" for="mission_vision_icons_${missionVisionCount}">Icon <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="mission_vision_icons_${missionVisionCount}" name="mission_vision_icons[]" required>
-                <div class="form-text">
-                    Enter a Font Awesome icon name (e.g., "check", "flag").
-                </div>
-            `;
-
-                fieldsRow.appendChild(titleCol);
-                fieldsRow.appendChild(iconCol);
-
-                const descDiv = document.createElement('div');
-                descDiv.className = 'mb-3';
-                descDiv.innerHTML = `
-                <label class="form-label" for="mission_vision_descriptions_${missionVisionCount}">Description <span class="text-danger">*</span></label>
-                <textarea class="form-control" id="mission_vision_descriptions_${missionVisionCount}" name="mission_vision_descriptions[]" rows="3" required></textarea>
-            `;
-
-                newItem.appendChild(headerDiv);
-                newItem.appendChild(fieldsRow);
-                newItem.appendChild(descDiv);
-
-                container.appendChild(newItem);
-
-                // Add event listener to remove button
-                removeBtn.addEventListener('click', function() {
-                    container.removeChild(newItem);
-                });
-
-                missionVisionCount++;
-            });
-        });
-    </script>
-@endpush

@@ -98,6 +98,9 @@
             <button type="submit" class="btn btn-sm btn-success">
                 <i class="fa fa-save me-1"></i> {{ isset($branch) ? 'Update' : 'Create' }} Branch
             </button>
+            <a href="{{ route('branches.index') }}" class="btn btn-sm btn-danger ms-2">
+                <i class="fa fa-times"></i> Cancel
+            </a>
         </div>
     </div>
 </div>

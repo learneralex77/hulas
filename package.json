@@ -19,6 +19,8 @@
     "dependencies": {
         "@popperjs/core": "^2.11.8",
         "bootstrap": "5.3.3",
-        "simplebar": "^6.2.5"
+        "simplebar": "^6.2.5",
+        "sweetalert2": "^11.14.0"
+
     }
 }

@@ -58,27 +58,24 @@ class GalleryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Gallery $gallery)
     {
-        $gallery = Gallery::findOrFail($id);
         return view('galleries.show', compact('gallery'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Gallery $gallery)
     {
-        $gallery = Gallery::findOrFail($id);
         return view('galleries.edit', compact('gallery'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(GalleryRequest $request, string $id)
+    public function update(GalleryRequest $request, Gallery $gallery)
     {
-        $gallery = Gallery::findOrFail($id);
         $data = $request->validated();
         
         // Handle featured image deletion
@@ -140,27 +137,43 @@ class GalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Gallery $gallery)
     {
-        $gallery = Gallery::findOrFail($id);
-        
-        // Delete featured image
-        if ($gallery->featured_image && Storage::disk('public')->exists($gallery->featured_image)) {
-            Storage::disk('public')->delete($gallery->featured_image);
-        }
-        
-        // Delete all gallery images
-        if (!empty($gallery->images)) {
-            foreach ($gallery->images as $image) {
-                if (Storage::disk('public')->exists($image)) {
-                    Storage::disk('public')->delete($image);
+        try {
+            // Delete the featured image if it exists
+            if ($gallery->featured_image && Storage::disk('public')->exists($gallery->featured_image)) {
+                Storage::disk('public')->delete($gallery->featured_image);
+            }
+            
+            // Delete all gallery images if they exist
+            if (!empty($gallery->images)) {
+                foreach ($gallery->images as $image) {
+                    if (Storage::disk('public')->exists($image)) {
+                        Storage::disk('public')->delete($image);
+                    }
                 }
             }
-        }
-        
-        $gallery->delete();
+            
+            $gallery->delete();
+            
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Gallery deleted successfully.'
+                ]);
+            }
 
-        return redirect()->route('galleries.index')
-            ->with('success', 'Gallery deleted successfully.');
+            return redirect()->route('galleries.index')
+                ->with('success', 'Gallery deleted successfully.');
+        } catch (\Exception $e) {
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting gallery: ' . $e->getMessage()
+                ], 500);
+            }
+
+            return back()->with('error', 'Error deleting gallery: ' . $e->getMessage());
+        }
     }
 }

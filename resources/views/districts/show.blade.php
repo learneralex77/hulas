@@ -10,21 +10,15 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">District Details</h3>
                 <div class="block-options">
-                    <form action="{{ route('districts.destroy', $district) }}" method="POST"
-                        onsubmit="return confirm('Are you sure you want to delete this district?');"
-                        style="display: inline-block; margin: 0;">
-                        @csrf
-                        @method('DELETE')
-                        <a href="{{ route('districts.index') }}" class="btn btn-sm btn-alt-primary border me-1">
-                            <i class="fa fa-arrow-left"></i> Back
-                        </a>
+                   
                         <a href="{{ route('districts.edit', $district) }}" class="btn btn-sm btn-alt-primary me-1">
                             <i class="fa fa-pencil-alt"></i> Edit
                         </a>
-                        <button type="submit" class="btn btn-sm btn-alt-danger">
-                            <i class="fa fa-trash"></i> Delete
-                        </button>
-                    </form>
+                        <a href="{{ route('districts.index') }}" class="btn btn-sm btn-alt-primary border me-1">
+                            <i class="fa fa-arrow-left"></i> Back
+                        </a>
+                       
+                       
                 </div>
             </div>
             <div class="block-content">

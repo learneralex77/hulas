@@ -72,9 +72,27 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        $department->delete();
+        try {
+            $department->delete();
+            
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Department deleted successfully.'
+                ]);
+            }
 
-        return redirect()->route('departments.index')
-            ->with('success', 'Department deleted successfully.');
+            return redirect()->route('departments.index')
+                ->with('success', 'Department deleted successfully.');
+        } catch (\Exception $e) {
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting department: ' . $e->getMessage()
+                ], 500);
+            }
+
+            return back()->with('error', 'Error deleting department: ' . $e->getMessage());
+        }
     }
 }

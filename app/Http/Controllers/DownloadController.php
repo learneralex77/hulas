@@ -93,15 +93,37 @@ class DownloadController extends Controller
      */
     public function destroy(Download $download)
     {
-        // Delete file from storage
-        if ($download->file && Storage::disk('public')->exists($download->file)) {
-            Storage::disk('public')->delete($download->file);
-        }
-        
-        $download->delete();
+        try {
+            // Delete file from storage
+            if ($download->file && Storage::disk('public')->exists($download->file)) {
+                Storage::disk('public')->delete($download->file);
+            }
+            
+            $download->delete();
 
-        return redirect()->route('downloads.index')
-            ->with('success', 'Download deleted successfully.');
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Download deleted successfully.'
+                ]);
+            }
+
+            return redirect()->route('downloads.index')
+                ->with('success', 'Download deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting download: ' . $e->getMessage()
+                ], 500);
+            }
+
+            // For form submit
+            return redirect()->route('downloads.index')
+                ->with('error', 'Error deleting download: ' . $e->getMessage());
+        }
     }
     
     /**

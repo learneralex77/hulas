@@ -13,7 +13,7 @@ class QuickLinkController extends Controller
      */
     public function index()
     {
-        $quickLinks = QuickLink::orderBy('display_order')->get();
+        $quickLinks = QuickLink::orderBy('display_order')->paginate(10);
         return view('quick-links.index', compact('quickLinks'));
     }
 
@@ -70,9 +70,31 @@ class QuickLinkController extends Controller
      */
     public function destroy(QuickLink $quickLink)
     {
-        $quickLink->delete();
+        try {
+            $quickLink->delete();
 
-        return redirect()->route('quick-links.index')
-            ->with('success', 'Quick Link deleted successfully.');
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Quick Link deleted successfully.'
+                ]);
+            }
+
+            return redirect()->route('quick-links.index')
+                ->with('success', 'Quick Link deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting quick link: ' . $e->getMessage()
+                ], 500);
+            }
+
+            // For form submit
+            return redirect()->route('quick-links.index')
+                ->with('error', 'Error deleting quick link: ' . $e->getMessage());
+        }
     }
 }

@@ -4,27 +4,25 @@
     Agent Forms
 @endsection
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Agent Forms</h3>
+                <h3 class="block-title">Agent Forms List</h3>
                 <div class="block-options">
-                    <a href="{{ route('agent-forms.create') }}" class="btn btn-sm btn-success">
+                    <a href="{{ route('agent-forms.create') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-plus me-1"></i> Add Agent Form
                     </a>
                 </div>
             </div>
             <div class="block-content">
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-vcenter">
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
                                 <th>S.N.</th>
@@ -32,12 +30,12 @@
                                 <th>Number</th>
                                 <th>District</th>
                                 <th>Address</th>
-                                <th style="width: 15%;">Actions</th>
+                                <th style="width: 20%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse($agentForms as $agentForm)
-                                <tr>
+                                <tr id="agent-form-row-{{ $agentForm->id }}">
                                     <td>{{ $agentForm->id }}</td>
                                     <td>{{ $agentForm->name }}</td>
                                     <td>{{ $agentForm->number }}</td>
@@ -53,15 +51,10 @@
                                                 class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('agent-forms.destroy', $agentForm) }}" method="POST"
-                                                style="display:inline;"
-                                                onsubmit="return confirm('Are you sure you want to delete this agent form?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
+                                            <button type="button" class="btn btn-sm btn-danger" 
+                                                onclick="deleteAgentForm({{ $agentForm->id }})" title="Delete">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -80,4 +73,105 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-dataTable-full').DataTable({
+                paging: true,
+                searching: true,
+                ordering: true,
+                lengthChange: true,
+                pageLength: 5,
+                columnDefs: [{
+                    orderable: false,
+                    targets: [5] // Actions column
+                }],
+                order: [],
+                language: {
+                    searchPlaceholder: "Search agent forms...",
+                }
+            });
+        });
+
+        // Success message
+        @if (session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        // Error message
+        @if (session('error'))
+            Swal.fire({
+                title: 'Error!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        function deleteAgentForm(agentFormId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let url = "{{ route('agent-forms.destroy', ':id') }}".replace(':id', agentFormId);
+
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            // Remove the agent form row from the table
+                            $('#agent-form-row-' + agentFormId).remove();
+
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Agent form has been deleted.',
+                                icon: 'success',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'There was an error deleting the agent form.',
+                                icon: 'error',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 @endsection

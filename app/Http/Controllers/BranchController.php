@@ -32,32 +32,19 @@ class BranchController extends Controller
      */
     public function store(BranchRequest $request)
     {
-        // Log incoming request data for debugging
-        \Log::info('Branch store method called', [
-            'request_data' => $request->all(),
-            'request_method' => $request->method(),
-            'request_path' => $request->path(),
-        ]);
-        
         try {
             $data = $request->validated();
             
-            \Log::info('Branch validation passed');
-            
-            \Log::info('Attempting to create branch', ['data' => $data]);
+            // Ensure phone_number is set if phone is provided
+            if (isset($data['phone']) && !isset($data['phone_number'])) {
+                $data['phone_number'] = $data['phone'];
+            }
             
             $branch = Branch::create($data);
-            
-            \Log::info('Branch created successfully', ['branch_id' => $branch->id]);
             
             return redirect()->route('branches.index')
                 ->with('success', 'Branch created successfully.');
         } catch (\Exception $e) {
-            \Log::error('Error creating branch', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-            
             return back()->withInput()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
@@ -84,12 +71,21 @@ class BranchController extends Controller
      */
     public function update(BranchRequest $request, Branch $branch)
     {
-        $data = $request->validated();
-        
-        $branch->update($data);
+        try {
+            $data = $request->validated();
+            
+            // Ensure phone_number is set if phone is provided
+            if (isset($data['phone']) && !isset($data['phone_number'])) {
+                $data['phone_number'] = $data['phone'];
+            }
+            
+            $branch->update($data);
 
-        return redirect()->route('branches.index')
-            ->with('success', 'Branch updated successfully.');
+            return redirect()->route('branches.index')
+                ->with('success', 'Branch updated successfully.');
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -97,9 +93,31 @@ class BranchController extends Controller
      */
     public function destroy(Branch $branch)
     {
-        $branch->delete();
+        try {
+            $branch->delete();
+            
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Branch deleted successfully.'
+                ]);
+            }
+            
+            return redirect()->route('branches.index')
+                ->with('success', 'Branch deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting branch: ' . $e->getMessage()
+                ], 500);
+            }
 
-        return redirect()->route('branches.index')
-            ->with('success', 'Branch deleted successfully.');
+            // For form submit
+            return redirect()->route('branches.index')
+                ->with('error', 'Error deleting branch: ' . $e->getMessage());
+        }
     }
 }

@@ -85,7 +85,7 @@ Route::middleware('auth')->group(function () {
 
     // Become an Agent Management Routes
     Route::resource('become-an-agent', BecomeAnAgentController::class);
-    Route::delete('become-an-agent/{becomeAnAgent}/images/{index}', [BecomeAnAgentController::class, 'deleteImage'])->name('become-an-agent.delete-image');
+    Route::get('become-an-agent/{becomeAnAgent}/images/{index}', [BecomeAnAgentController::class, 'deleteImage'])->name('become-an-agent.delete-image');
 
     // About Us Management Routes
     Route::resource('about-us', AboutUsController::class)->parameters([

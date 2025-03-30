@@ -34,41 +34,24 @@ class PageController extends Controller
      */
     public function store(PageRequest $request)
     {
-        // Log the incoming request for debugging
-        \Log::info('Page store method called', [
-            'request_data' => $request->all(),
-            'request_method' => $request->method(),
-            'request_ajax' => $request->ajax(),
-            'request_path' => $request->path(),
-        ]);
-        
         try {
             $data = $request->validated();
-            \Log::info('Validation passed', ['validated_data' => $data]);
             
             // Generate slug from title
             $data['slug'] = Str::slug($request->title);
-            \Log::info('Generated slug', ['slug' => $data['slug']]);
             
             // Handle image upload
             if ($request->hasFile('image')) {
                 $data['image'] = $request->file('image')->store('pages', 'public');
-                \Log::info('Image uploaded', ['image_path' => $data['image']]);
             }
 
             // Create the page
             $page = Page::create($data);
-            \Log::info('Page created successfully', ['page_id' => $page->id, 'page_data' => $page->toArray()]);
 
             // Redirect with success message
             return redirect()->route('pages.index')
                 ->with('success', 'Page created successfully.');
         } catch (\Exception $e) {
-            \Log::error('Error creating page', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-            
             return back()->withInput()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
@@ -130,14 +113,32 @@ class PageController extends Controller
      */
     public function destroy(Page $page)
     {
-        // Delete associated image if exists
-        if ($page->image && Storage::disk('public')->exists($page->image)) {
-            Storage::disk('public')->delete($page->image);
-        }
-        
-        $page->delete();
+        try {
+            // Delete associated image if exists
+            if ($page->image && Storage::disk('public')->exists($page->image)) {
+                Storage::disk('public')->delete($page->image);
+            }
+            
+            $page->delete();
 
-        return redirect()->route('pages.index')
-            ->with('success', 'Page deleted successfully.');
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Page deleted successfully.'
+                ]);
+            }
+
+            return redirect()->route('pages.index')
+                ->with('success', 'Page deleted successfully.');
+        } catch (\Exception $e) {
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting page: ' . $e->getMessage()
+                ], 500);
+            }
+
+            return back()->with('error', 'Error deleting page: ' . $e->getMessage());
+        }
     }
 } 

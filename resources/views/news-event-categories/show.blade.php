@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">News & Event Category Details: {{ $newsEventCategory->name }}</h3>
                 <div class="block-options">
-                    <a href="{{ route('news-event-categories.edit', $newsEventCategory) }}" class="btn btn-sm btn-success">
+                    <a href="{{ route('news-event-categories.edit', $newsEventCategory) }}" class="btn btn-sm btn-alt-primary border me-2">
                         <i class="fa fa-edit"></i> Edit
                     </a>
                     <a href="{{ route('news-event-categories.index') }}" class="btn btn-sm btn-alt-primary border me-2">

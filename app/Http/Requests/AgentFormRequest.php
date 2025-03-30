@@ -23,7 +23,7 @@ class AgentFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'number' => ['required', 'string', 'max:20'],
+            'phone' => ['required', 'string', 'max:20', 'regex:/^[0-9+\-\s()]*$/'],
             'district_id' => ['required', 'exists:districts,id'],
             'message' => ['nullable', 'string'],
             'address' => ['nullable', 'string'],
@@ -39,7 +39,7 @@ class AgentFormRequest extends FormRequest
     {
         return [
             'name' => 'full name',
-            'number' => 'phone number',
+            'phone' => 'phone number',
             'district_id' => 'district',
             'message' => 'message',
             'address' => 'address',
@@ -58,9 +58,10 @@ class AgentFormRequest extends FormRequest
             'name.string' => 'The full name must be a string.',
             'name.max' => 'The full name may not be greater than 255 characters.',
             
-            'number.required' => 'The phone number is required.',
-            'number.string' => 'The phone number must be a string.',
-            'number.max' => 'The phone number may not be greater than 20 characters.',
+            'phone.required' => 'The phone number is required.',
+            'phone.string' => 'The phone number must be a string.',
+            'phone.max' => 'The phone number may not be greater than 20 characters.',
+            'phone.regex' => 'The phone number format is invalid. Please use only numbers, spaces, and these characters: + - ( )',
             
             'district_id.required' => 'Please select a district.',
             'district_id.exists' => 'The selected district does not exist.',

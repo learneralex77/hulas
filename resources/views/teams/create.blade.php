@@ -7,7 +7,7 @@
 @section('content')
     <div class="content">
         <div class="block block-rounded mb-0">
-            <div class="block-header block-header-default bg-transparent border-0">
+            <div class="block-header block-header-default">
                 <h3 class="block-title">Create New Team Member</h3>
                 <div class="block-options">
                     <a href="{{ route('teams.index') }}" class="btn btn-sm btn-alt-primary border">

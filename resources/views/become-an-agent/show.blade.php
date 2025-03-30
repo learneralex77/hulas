@@ -10,11 +10,11 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">View Images</h3>
                 <div class="block-options">
-                    <a href="{{ route('become-an-agent.edit', $becomeAnAgent) }}" class="btn btn-sm btn-alt-success">
-                        <i class="fa fa-pencil-alt me-1"></i> Edit
+                    <a href="{{ route('become-an-agent.edit', $becomeAnAgent) }}" class="btn btn-sm btn-alt-primary">
+                        <i class="fa fa-pencil-alt"></i> Edit
                     </a>
                     <a href="{{ route('become-an-agent.index') }}" class="btn btn-sm btn-alt-primary">
-                        <i class="fa fa-arrow-left me-1"></i> Back
+                        <i class="fa fa-arrow-left"></i> Back
                     </a>
 
                 </div>

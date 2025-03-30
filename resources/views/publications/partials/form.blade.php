@@ -1,7 +1,7 @@
 <div class="row m-0">
     <div class="col-lg-12 p-3">
         <!-- Category and Publication Type in one row -->
-        <div class="row mb-4">
+        <div class="row mb-3">
             <div class="col-md-6">
                 <label class="form-label" for="news_event_category_id">Category <span class="text-danger">*</span></label>
                 <select class="form-select" id="news_event_category_id" name="news_event_category_id" required>
@@ -32,25 +32,25 @@
         </div>
 
         <!-- Title -->
-        <div class="mb-4">
+        <div class="mb-3">
             <label class="form-label" for="title">Title <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="title" name="title"
                 value="{{ old('title', $publication->title ?? '') }}" required>
         </div>
 
         <!-- Short Description -->
-        <div class="mb-4">
+        <div class="mb-3">
             <label class="form-label" for="short_description">Short Description</label>
             <textarea class="form-control" id="short_description" name="short_description" rows="3">{{ old('short_description', $publication->short_description ?? '') }}</textarea>
         </div>
 
         <!-- Image -->
-        <div class="mb-4">
+        <div class="mb-3">
             <label class="form-label" for="image">Image</label>
             @if (isset($publication) && $publication->image)
                 <div class="mb-2">
                     <img src="{{ asset('storage/' . $publication->image) }}" alt="{{ $publication->title }}"
-                        class="img-fluid mb-2" style="max-height: 200px;">
+                        class="img-fluid mb-1" style="max-height: 200px;">
                     <div class="small text-muted">Current image</div>
                 </div>
             @endif
@@ -64,13 +64,13 @@
         </div>
 
         <!-- Content -->
-        <div class="mb-4">
+        <div class="mb-3">
             <label class="form-label" for="content">Content</label>
             <textarea class="form-control" id="content" name="content" rows="6">{{ old('content', $publication->content ?? '') }}</textarea>
         </div>
 
         <!-- Published By and Display Order in one row -->
-        <div class="row mb-4">
+        <div class="row mb-3">
             <div class="col-md-6">
                 <label class="form-label" for="published_by">Published By</label>
                 <input type="text" class="form-control" id="published_by" name="published_by"
@@ -85,7 +85,7 @@
         </div>
 
         <!-- External Link and Published Status in one row -->
-        <div class="row mb-4">
+        <div class="row mb-3">
             <div class="col-md-6">
                 <label class="form-label" for="external_link">External Link</label>
                 <input type="url" class="form-control" id="external_link" name="external_link"
@@ -94,7 +94,7 @@
             </div>
             <div class="col-md-6">
                 <label class="form-label">Publication Status</label>
-                <div class="mt-2">
+                <div class="mt-1">
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" id="is_published" name="is_published"
                             value="1"
@@ -105,10 +105,13 @@
             </div>
         </div>
 
-        <div class="mb-0 pb-0">
-            <button type="submit" class="btn btn-sm btn-success">
+        <div class="mb-0">
+            <button type="submit" class="btn btn-sm btn-success mb-0">
                 <i class="fa fa-save me-1"></i> {{ isset($publication) ? 'Update' : 'Create' }} Publication
             </button>
+            <a href="{{ route('publications.index') }}" class="btn btn-sm btn-danger ms-2 mb-0">
+                <i class="fa fa-times"></i> Cancel
+            </a>
         </div>
     </div>
 </div>

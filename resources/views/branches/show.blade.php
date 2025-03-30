@@ -10,21 +10,15 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Branch Details</h3>
                 <div class="block-options">
-                    <form action="{{ route('branches.destroy', $branch) }}" method="POST"
-                        onsubmit="return confirm('Are you sure you want to delete this branch?');"
-                        style="display: inline-block; margin: 0;">
-                        @csrf
-                        @method('DELETE')
+                     <a href="{{ route('branches.edit', $branch) }}" class="btn btn-sm btn-alt-primary me-1">
+                            <i class="fa fa-pencil-alt"></i> Edit
+                        </a>
+                    
                         <a href="{{ route('branches.index') }}" class="btn btn-sm btn-alt-primary border me-1">
                             <i class="fa fa-arrow-left"></i> Back
                         </a>
-                        <a href="{{ route('branches.edit', $branch) }}" class="btn btn-sm btn-alt-primary me-1">
-                            <i class="fa fa-pencil-alt"></i> Edit
-                        </a>
-                        <button type="submit" class="btn btn-sm btn-alt-danger">
-                            <i class="fa fa-trash"></i> Delete
-                        </button>
-                    </form>
+                       
+                       
                 </div>
             </div>
             <div class="block-content">
@@ -126,11 +120,7 @@
                     </table>
                 </div>
 
-                <div class="text-center mt-4">
-                    <a href="{{ route('branches.index') }}" class="btn btn-alt-secondary">
-                        <i class="fa fa-arrow-left me-1"></i> Back to List
-                    </a>
-                </div>
+                
             </div>
         </div>
     </div>

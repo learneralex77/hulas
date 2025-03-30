@@ -1,8 +1,8 @@
 @csrf
-<div class="row overflow-hidden">
-    <div class="col-lg-10 mx-auto p-3">
+<div class="row push px-3">
+    <div class="col-12">
         <!-- Row 1: Name and External Link -->
-        <div class="row mb-4">
+        <div class="row mb-3">
             <div class="col-md-6">
                 <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
@@ -24,7 +24,7 @@
         </div>
 
         <!-- Row 2: Display Order and Status -->
-        <div class="row mb-4">
+        <div class="row mb-3">
             <div class="col-md-6">
                 <label class="form-label" for="display_order">Display Order</label>
                 <input type="number" class="form-control @error('display_order') is-invalid @enderror"
@@ -46,10 +46,14 @@
         </div>
 
         <!-- Submit Button -->
-        <div class="mb-2">
+        <div class="mb-3">
             <button type="submit" class="btn btn-sm btn-success">
                 <i class="fa fa-save"></i> {{ isset($quickLink) ? 'Update' : 'Create' }} Quick Link
             </button>
+            <a href="{{ route('quick-links.index') }}" class="btn btn-sm btn-danger ms-2">
+                <i class="fa fa-times"></i> Cancel
+            </a>
         </div>
     </div>
 </div>
+ 

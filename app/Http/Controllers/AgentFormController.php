@@ -34,6 +34,12 @@ class AgentFormController extends Controller
     {
         $data = $request->validated();
         
+        // Map 'phone' to 'number' for database
+        if (isset($data['phone'])) {
+            $data['number'] = $data['phone'];
+            unset($data['phone']);
+        }
+        
         AgentForm::create($data);
 
         return redirect()->route('agent-forms.index')
@@ -64,6 +70,12 @@ class AgentFormController extends Controller
     {
         $data = $request->validated();
         
+        // Map 'phone' to 'number' for database
+        if (isset($data['phone'])) {
+            $data['number'] = $data['phone'];
+            unset($data['phone']);
+        }
+        
         $agentForm->update($data);
 
         return redirect()->route('agent-forms.index')
@@ -75,9 +87,31 @@ class AgentFormController extends Controller
      */
     public function destroy(AgentForm $agentForm)
     {
-        $agentForm->delete();
+        try {
+            $agentForm->delete();
+            
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Agent form deleted successfully.'
+                ]);
+            }
+            
+            return redirect()->route('agent-forms.index')
+                ->with('success', 'Agent form deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting agent form: ' . $e->getMessage()
+                ], 500);
+            }
 
-        return redirect()->route('agent-forms.index')
-            ->with('success', 'Agent form deleted successfully.');
+            // For form submit
+            return redirect()->route('agent-forms.index')
+                ->with('error', 'Error deleting agent form: ' . $e->getMessage());
+        }
     }
 }

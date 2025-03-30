@@ -32,4 +32,20 @@ class Branch extends Model
     {
         return $this->belongsTo(District::class);
     }
+
+    /**
+     * Map the phone field to phone_number for backwards compatibility.
+     */
+    public function getPhoneAttribute()
+    {
+        return $this->attributes['phone_number'] ?? null;
+    }
+
+    /**
+     * Set the phone_number field when phone is assigned.
+     */
+    public function setPhoneAttribute($value)
+    {
+        $this->attributes['phone_number'] = $value;
+    }
 }

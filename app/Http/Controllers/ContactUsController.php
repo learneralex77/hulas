@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ContactUs;
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactUsRequest;
 
 class ContactUsController extends Controller
 {
@@ -27,7 +28,7 @@ class ContactUsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ContactUsRequest $request)
     {
         $validated = $request->validate([
             'full_name' => 'required|string|max:255',
@@ -66,7 +67,7 @@ class ContactUsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ContactUs $contactUs)
+    public function update(ContactUsRequest $request, ContactUs $contactUs)
     {
         $validated = $request->validate([
             'full_name' => 'required|string|max:255',
@@ -91,9 +92,31 @@ class ContactUsController extends Controller
      */
     public function destroy(ContactUs $contactUs)
     {
-        $contactUs->delete();
-        
-        return redirect()->route('contact-us.index')
-            ->with('success', 'Contact inquiry deleted successfully.');
+        try {
+            $contactUs->delete();
+            
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Contact inquiry deleted successfully.'
+                ]);
+            }
+            
+            return redirect()->route('contact-us.index')
+                ->with('success', 'Contact inquiry deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting contact inquiry: ' . $e->getMessage()
+                ], 500);
+            }
+
+            // For form submit
+            return redirect()->route('contact-us.index')
+                ->with('error', 'Error deleting contact inquiry: ' . $e->getMessage());
+        }
     }
 }

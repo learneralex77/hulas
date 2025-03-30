@@ -84,13 +84,27 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        // Update any child menus to have null parent_id
-        Menu::where('parent_id', $menu->id)
-            ->update(['parent_id' => null]);
+        try {
+            $menu->delete();
 
-        $menu->delete();
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Menu deleted successfully.'
+                ]);
+            }
 
-        return redirect()->route('menus.index')
-            ->with('success', 'Menu deleted successfully.');
+            return redirect()->route('menus.index')
+                ->with('success', 'Menu deleted successfully.');
+        } catch (\Exception $e) {
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting menu: ' . $e->getMessage()
+                ], 500);
+            }
+
+            return back()->with('error', 'Error deleting menu: ' . $e->getMessage());
+        }
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\District;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\DistrictRequest;
 class DistrictController extends Controller
 {
     /**
@@ -27,7 +27,7 @@ class DistrictController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(DistrictRequest $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -65,7 +65,7 @@ class DistrictController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, District $district)
+    public function update(DistrictRequest $request, District $district)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -89,9 +89,31 @@ class DistrictController extends Controller
      */
     public function destroy(District $district)
     {
-        $district->delete();
+        try {
+            $district->delete();
+            
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'District deleted successfully.'
+                ]);
+            }
+            
+            return redirect()->route('districts.index')
+                ->with('success', 'District deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting district: ' . $e->getMessage()
+                ], 500);
+            }
 
-        return redirect()->route('districts.index')
-            ->with('success', 'District deleted successfully.');
+            // For form submit
+            return redirect()->route('districts.index')
+                ->with('error', 'Error deleting district: ' . $e->getMessage());
+        }
     }
 }

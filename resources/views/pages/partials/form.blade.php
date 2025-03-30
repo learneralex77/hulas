@@ -1,7 +1,7 @@
 {{-- Page form partial that can be used in both create and edit views --}}
 
-<div class="row">
-    <div class="col-lg-10 mx-auto">
+<div class="row push">
+    <div class="col-12">
         <div class="row">
             <div class="col-md-8 col-sm-12">
                 <div class="mb-4">
@@ -91,41 +91,9 @@
             <button type="submit" class="btn btn-sm btn-success" id="submit-btn">
                 <i class="fa fa-save"></i> {{ isset($page) ? 'Update' : 'Create' }} Page
             </button>
+            <a href="{{ route('pages.index') }}" class="btn btn-sm btn-danger ms-2">
+                <i class="fa fa-times"></i> Cancel
+            </a>
         </div>
     </div>
 </div>
-
-@push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize CKEditor
-            ClassicEditor
-                .create(document.querySelector('#content'))
-                .catch(error => {
-                    console.error(error);
-                });
-
-            // Form submission validation
-            const form = document.getElementById('page-form');
-            form.addEventListener('submit', function(e) {
-                // Validate title
-                if (!document.getElementById('title').value.trim()) {
-                    e.preventDefault();
-                    alert('Title is required');
-                    document.getElementById('title').focus();
-                    return false;
-                }
-
-                // Validate menu
-                if (!document.getElementById('menu_id').value.trim()) {
-                    e.preventDefault();
-                    alert('Menu is required');
-                    document.getElementById('menu_id').focus();
-                    return false;
-                }
-
-                return true;
-            });
-        });
-    </script>
-@endpush

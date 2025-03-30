@@ -1,6 +1,6 @@
-<div class="row menu-form-container ">
+<div class="row push ">
     <div class="col-12">
-        <div class="row p-3">
+        <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
                     <label class="form-label" for="bname">Name <span class="text-danger">*</span></label>
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="row px-3">
+        <div class="row">
             <div class="col-lg-9 col-md-8 col-sm-12">
                 <div class="mb-4">
                     <label class="form-label" for="description">Description</label>
@@ -67,17 +67,19 @@
             </div>
         </div>
 
-        <div class="row p-3 menu-form-footer mb-0">
-            <div class="col-12">
-                <div class="row mb-10">
-                    <div class="col-md-10">
-                        <button type="submit" class="btn btn-sm btn-success">
+        <div class="mb-3">
+            <div class="mb-0">
+                <div class="mb-0">
+                    <div class="mb-0">
+                        <button type="submit" class="btn btn-sm btn-success mb-0">
                             <i class="fa fa-save"></i> {{ $button }} Menu
                         </button>
+                        <a href="{{ route('menus.index') }}" class="btn btn-sm btn-danger ms-2 mb-0">
+                            <i class="fa fa-times"></i> Cancel
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="pb-3"></div>

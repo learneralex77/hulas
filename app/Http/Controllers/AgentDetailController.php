@@ -102,9 +102,31 @@ class AgentDetailController extends Controller
      */
     public function destroy(AgentDetail $agentDetail)
     {
-        $agentDetail->delete();
+        try {
+            $agentDetail->delete();
+            
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Agent detail deleted successfully.'
+                ]);
+            }
+            
+            return redirect()->route('agent-details.index')
+                ->with('success', 'Agent detail deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting agent detail: ' . $e->getMessage()
+                ], 500);
+            }
 
-        return redirect()->route('agent-details.index')
-            ->with('success', 'Agent details deleted successfully.');
+            // For form submit
+            return redirect()->route('agent-details.index')
+                ->with('error', 'Error deleting agent detail: ' . $e->getMessage());
+        }
     }
 }

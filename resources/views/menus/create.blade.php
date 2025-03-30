@@ -5,7 +5,6 @@
 @endsection
 
 
-
 @section('content')
     <div class="content">
         <div class="block block-rounded menu-form-block">

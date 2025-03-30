@@ -72,6 +72,9 @@
                 <button type="submit" class="btn btn-sm btn-success">
                     <i class="fa fa-save"></i> {{ isset($download) ? 'Update' : 'Create' }} Download
                 </button>
+                <a href="{{ route('downloads.index') }}" class="btn btn-sm btn-danger ms-2">
+                    <i class="fa fa-times"></i> Cancel
+                </a>
             </div>
         </div>
     </div>

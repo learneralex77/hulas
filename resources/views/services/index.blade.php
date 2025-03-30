@@ -4,6 +4,11 @@
     Services Management
 @endsection
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -16,27 +21,48 @@
                 </div>
             </div>
             <div class="block-content">
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-vcenter">
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
                                 <th>S.N.</th>
+                                <th>Name</th>
                                 <th>Display Order</th>
+                                <th>File</th>
                                 <th>Status</th>
-                                <th style="width: 15%;">Actions</th>
+                                <th style="width: 20%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($services as $service)
-                                <tr>
+                                <tr id="service-row-{{ $service->id }}">
                                     <td>{{ $service->id }}</td>
+                                    <td>
+                                        @if ($service->translations->isNotEmpty())
+                                            @php
+                                                $translation = $service->translations->first();
+                                                $names = json_decode($translation->name, true);
+                                            @endphp
+                                            
+                                            @if (!empty($names) && isset($names[0]))
+                                                {{ $names[0] }}
+                                            @else
+                                                <span class="text-muted">Name not found</span>
+                                            @endif
+                                        @else
+                                            <span class="text-muted">No name defined</span>
+                                        @endif
+                                    </td>
                                     <td>{{ $service->display_order }}</td>
+                                    <td>
+                                        @if ($service->file)
+                                            <a href="{{ asset('storage/' . $service->file) }}" target="_blank" class="btn btn-sm btn-alt-info">
+                                                <i class="fa fa-file"></i> View
+                                            </a>
+                                        @else
+                                            <span class="text-muted">No file</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         @if ($service->is_published)
                                             <span class="badge bg-success">Published</span>
@@ -44,7 +70,7 @@
                                             <span class="badge bg-warning">Draft</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <div class="gap-2">
                                             <a href="{{ route('services.show', $service) }}" class="btn btn-sm btn-info">
                                                 <i class="fa fa-eye"></i>
@@ -52,21 +78,16 @@
                                             <a href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-success">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('services.destroy', $service) }}" method="POST"
-                                                style="display:inline"
-                                                onsubmit="return confirm('Are you sure you want to delete this service?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
+                                            <button type="button" class="btn btn-sm btn-danger" 
+                                                onclick="deleteService({{ $service->id }})" title="Delete">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="text-center">No services found</td>
+                                    <td colspan="6" class="text-center">No services found</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -79,4 +100,105 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-dataTable-full').DataTable({
+                paging: true,
+                searching: true,
+                ordering: true,
+                lengthChange: true,
+                pageLength: 5,
+                columnDefs: [{
+                    orderable: false,
+                    targets: [3, 5] // File and Actions columns
+                }],
+                order: [],
+                language: {
+                    searchPlaceholder: "Search services...",
+                }
+            });
+        });
+
+        // Success message
+        @if (session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        // Error message
+        @if (session('error'))
+            Swal.fire({
+                title: 'Error!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        function deleteService(serviceId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "This will delete both the service and its file. You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let url = "{{ route('services.destroy', ':id') }}".replace(':id', serviceId);
+
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            // Remove the service row from the table
+                            $('#service-row-' + serviceId).remove();
+
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Service has been deleted.',
+                                icon: 'success',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'There was an error deleting the service.',
+                                icon: 'error',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 @endsection

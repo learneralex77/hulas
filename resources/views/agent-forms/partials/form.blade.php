@@ -13,7 +13,7 @@
             <div class="col-md-6">
                 <label class="form-label" for="phone">Phone Number <span class="text-danger">*</span></label>
                 <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
-                    name="phone" value="{{ old('phone', $agentForm->phone ?? '') }}" required>
+                    name="phone" value="{{ old('phone', $agentForm->number ?? '') }}" required>
                 @error('phone')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -84,6 +84,9 @@
             <button type="submit" class="btn btn-sm btn-success">
                 <i class="fa fa-save me-1"></i> {{ isset($agentForm) ? 'Update' : 'Create' }} Agent Form
             </button>
+            <a href="{{ route('agent-forms.index') }}" class="btn btn-sm btn-danger ms-2">
+                <i class="fa fa-times"></i> Cancel
+            </a>
         </div>
     </div>
 </div>

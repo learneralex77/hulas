@@ -4,6 +4,11 @@
     Designation Management
 @endsection
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -16,15 +21,8 @@
                 </div>
             </div>
             <div class="block-content">
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('success') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                @endif
-
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive">
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 50px;">S.N.</th>
@@ -36,7 +34,7 @@
                         </thead>
                         <tbody>
                             @forelse ($designations as $designation)
-                                <tr>
+                                <tr id="designation-row-{{ $designation->id }}">
                                     <td class="text-center">{{ $designation->id }}</td>
                                     <td>{{ $designation->name }}</td>
                                     <td class="d-none d-md-table-cell text-center">{{ $designation->display_order }}</td>
@@ -57,15 +55,10 @@
                                                 class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('designations.destroy', $designation) }}" method="POST"
-                                                style="display:inline;"
-                                                onsubmit="return confirm('Are you sure you want to delete this designation?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger" title="Delete">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
+                                            <button type="button" class="btn btn-sm btn-danger"
+                                                onclick="deleteDesignation({{ $designation->id }})" title="Delete">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -84,4 +77,92 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-dataTable-full').DataTable({
+                paging: true,
+                searching: true,
+                ordering: true,
+                lengthChange: true,
+                pageLength: 5,
+                columnDefs: [{
+                    orderable: false,
+                    targets: [0, 4] // First column (S.N.) and Actions column
+                }],
+                order: [],
+                language: {
+                    searchPlaceholder: "Search designations...",
+                }
+            });
+        });
+
+        // Success message
+        @if (session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        function deleteDesignation(designationId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let url = "{{ route('designations.destroy', ':id') }}".replace(':id', designationId);
+
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            // Remove the designation row from the table
+                            $('#designation-row-' + designationId).remove();
+
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Designation has been deleted.',
+                                icon: 'success',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'There was an error deleting the designation.',
+                                icon: 'error',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 @endsection

@@ -25,6 +25,7 @@ class BranchRequest extends FormRequest
         $rules = [
             'name' => ['required', 'string', 'max:255'],
             'address' => ['nullable', 'string'],
+            'phone' => ['nullable', 'string', 'max:20'],
             'phone_number' => ['nullable', 'string', 'max:20'],
             'email' => ['nullable', 'email', 'max:255'],
             'district_id' => ['required', 'exists:districts,id'],
@@ -54,6 +55,7 @@ class BranchRequest extends FormRequest
         return [
             'name' => 'branch name',
             'address' => 'address',
+            'phone' => 'phone number',
             'phone_number' => 'phone number',
             'email' => 'email address',
             'district_id' => 'district',
@@ -77,6 +79,9 @@ class BranchRequest extends FormRequest
             'name.unique' => 'A branch with this name already exists.',
             
             'address.string' => 'The address must be a string.',
+            
+            'phone.string' => 'The phone number must be a string.',
+            'phone.max' => 'The phone number may not be greater than 20 characters.',
             
             'phone_number.string' => 'The phone number must be a string.',
             'phone_number.max' => 'The phone number may not be greater than 20 characters.',
@@ -108,5 +113,27 @@ class BranchRequest extends FormRequest
         if (!$this->has('display_order') || $this->display_order === null) {
             $this->merge(['display_order' => 0]);
         }
+        
+        // Map phone to phone_number for database compatibility
+        if ($this->has('phone')) {
+            $this->merge([
+                'phone_number' => $this->phone
+            ]);
+        }
+    }
+
+    /**
+     * Get data to be validated from the request.
+     */
+    public function validationData()
+    {
+        $data = parent::validationData();
+        
+        // Ensure phone_number is included in validated data
+        if (isset($data['phone'])) {
+            $data['phone_number'] = $data['phone'];
+        }
+        
+        return $data;
     }
 }

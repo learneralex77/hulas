@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Publication Details</h3>
                 <div class="block-options">
-                <a href="{{ route('publications.edit', $publication) }}" class="btn btn-sm btn-alt-success">
+                <a href="{{ route('publications.edit', $publication) }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
                     <a href="{{ route('publications.index') }}" class="btn btn-sm btn-alt-primary">

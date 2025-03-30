@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Agent Details Information</h3>
                 <div class="block-options">
-                <a class="btn btn-sm btn-alt-success" href="{{ route('agent-details.edit', $agentDetail) }}">
+                <a class="btn btn-sm btn-alt-primary" href="{{ route('agent-details.edit', $agentDetail) }}">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
                     <a class="btn btn-sm btn-alt-primary" href="{{ route('agent-details.index') }}">

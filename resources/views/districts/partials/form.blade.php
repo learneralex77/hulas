@@ -33,10 +33,13 @@
             </div>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-3">
             <button type="submit" class="btn btn-sm btn-success">
                 <i class="fa fa-save me-1"></i> {{ isset($district) ? 'Update' : 'Create' }} District
             </button>
+            <a href="{{ route('districts.index') }}" class="btn btn-sm btn-danger ms-2">
+                <i class="fa fa-times"></i> Cancel
+            </a>
         </div>
     </div>
 </div>

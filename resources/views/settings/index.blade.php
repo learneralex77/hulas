@@ -4,6 +4,10 @@
     Settings
 @endsection
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
+@endsection
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -15,30 +19,18 @@
                         <i class="fa fa-plus"></i> Add New Settings
                         </a>
                     @else
-                        <a href="{{ route('settings.edit', $settings->first()) }}" class="btn btn-alt-primary">
-                            <i class="fa fa-pencil-alt mr-1"></i> Edit
+                        <a href="{{ route('settings.edit', $settings->first()) }}" class="btn btn-sm btn-success">
+                            <i class="fa fa-pencil-alt"></i> Edit
                         </a>
 
-                        <form action="{{ route('settings.destroy', $settings->first()) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete these settings?');" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-alt-danger">
-                                <i class="fa fa-trash mr-1"></i> Delete
-                            </button>
-                        </form>
-
-
+                        <button type="button" class="btn btn-sm btn-danger" onclick="deleteSettings({{ $settings->first()->id }})">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
                     @endif
                 </div>
             </div>
             <div class="block-content">
-                @if(session('success'))
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        <h3 class="alert-heading fs-5 fw-bold mb-1">Success</h3>
-                        <p class="mb-0">{{ session('success') }}</p>
-                    </div>
-                @endif
+               
 
                 @if(!$settings->count())
                     <div class="alert alert-info">
@@ -215,4 +207,72 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+    
+    <script>
+        // Success message
+        @if (session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        // Error message
+        @if (session('error'))
+            Swal.fire({
+                title: 'Error!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        function deleteSettings(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this! All settings information including logos will be permanently deleted.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Create a form and submit it
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = "{{ route('settings.destroy', ':id') }}".replace(':id', id);
+                    form.style.display = 'none';
+                    
+                    const csrfToken = document.createElement('input');
+                    csrfToken.type = 'hidden';
+                    csrfToken.name = '_token';
+                    csrfToken.value = '{{ csrf_token() }}';
+                    
+                    const method = document.createElement('input');
+                    method.type = 'hidden';
+                    method.name = '_method';
+                    method.value = 'DELETE';
+                    
+                    form.appendChild(csrfToken);
+                    form.appendChild(method);
+                    document.body.appendChild(form);
+                    
+                    form.submit();
+                }
+            });
+        }
+    </script>
 @endsection

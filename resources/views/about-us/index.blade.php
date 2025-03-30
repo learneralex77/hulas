@@ -4,6 +4,10 @@
     About Us
 @endsection
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
+@endsection
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -11,39 +15,21 @@
                 <h3 class="block-title">About Us Information</h3>
                 <div class="block-options">
                     @if(!$aboutUs)
-                        <a href="{{ route('about-us.create') }}" class="btn btn-alt-primary">
-                            <i class="fa fa-plus mr-1"></i> Add About Us
+                        <a href="{{ route('about-us.create') }}" class="btn btn-sm btn-alt-primary border">
+                            <i class="fa fa-plus"></i> Add About Us
                         </a>
                     @else
-                        <a href="{{ route('about-us.edit', $aboutUs) }}" class="btn btn-alt-primary">
-                            <i class="fa fa-pencil-alt mr-1"></i> Edit
+                        <a href="{{ route('about-us.edit', $aboutUs) }}" class="btn btn-sm btn-success">
+                            <i class="fa fa-pencil-alt"></i> Edit
                         </a>
                         
-                   
-                        <form action="{{ route('about-us.destroy', $aboutUs) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this About Us information?');" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-alt-danger">
-                                <i class="fa fa-trash mr-1"></i> Delete
-                            </button>
-                        </form>
-                      
+                        <button type="button" class="btn btn-sm btn-danger" onclick="deleteAboutUs({{ $aboutUs->id }})">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
                     @endif
                 </div>
             </div>
             <div class="block-content">
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                @if (session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
-
                 @if(!$aboutUs)
                     <div class="alert alert-info">
                         No About Us information has been added yet. Please click the "Add About Us" button to create one.
@@ -149,4 +135,72 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+    
+    <script>
+        // Success message
+        @if (session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        // Error message
+        @if (session('error'))
+            Swal.fire({
+                title: 'Error!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        function deleteAboutUs(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this! All About Us information including images will be permanently deleted.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Create a form and submit it
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = "{{ route('about-us.destroy', ':id') }}".replace(':id', id);
+                    form.style.display = 'none';
+                    
+                    const csrfToken = document.createElement('input');
+                    csrfToken.type = 'hidden';
+                    csrfToken.name = '_token';
+                    csrfToken.value = '{{ csrf_token() }}';
+                    
+                    const method = document.createElement('input');
+                    method.type = 'hidden';
+                    method.name = '_method';
+                    method.value = 'DELETE';
+                    
+                    form.appendChild(csrfToken);
+                    form.appendChild(method);
+                    document.body.appendChild(form);
+                    
+                    form.submit();
+                }
+            });
+        }
+    </script>
 @endsection 

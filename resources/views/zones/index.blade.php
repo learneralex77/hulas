@@ -4,6 +4,11 @@
     Zones Management
 @endsection
 
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+@endsection
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -16,26 +21,20 @@
                 </div>
             </div>
             <div class="block-content">
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped table-vcenter">
+                    <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Display Order</th>
                                 <th>Status</th>
-                                <th style="width: 15%;">Actions</th>
+                                <th style="width: 20%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($zones as $zone)
-                                <tr>
+                                <tr id="zone-row-{{ $zone->id }}">
                                     <td>{{ $zone->id }}</td>
                                     <td>{{ $zone->name }}</td>
                                     <td>{{ $zone->display_order }}</td>
@@ -46,7 +45,7 @@
                                             <span class="badge bg-warning">Draft</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <div class="gap-2">
                                             <a href="{{ route('zones.show', $zone) }}" class="btn btn-sm btn-info">
                                                 <i class="fa fa-eye"></i>
@@ -54,15 +53,10 @@
                                             <a href="{{ route('zones.edit', $zone) }}" class="btn btn-sm btn-success">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <form action="{{ route('zones.destroy', $zone) }}" method="POST"
-                                                style="display:inline"
-                                                onsubmit="return confirm('Are you sure you want to delete this zone?')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>
+                                            <button type="button" class="btn btn-sm btn-danger" 
+                                                onclick="deleteZone({{ $zone->id }})" title="Delete">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -81,4 +75,105 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-dataTable-full').DataTable({
+                paging: true,
+                searching: true,
+                ordering: true,
+                lengthChange: true,
+                pageLength: 5,
+                columnDefs: [{
+                    orderable: false,
+                    targets: [4] // Actions column
+                }],
+                order: [],
+                language: {
+                    searchPlaceholder: "Search zones...",
+                }
+            });
+        });
+
+        // Success message
+        @if (session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        // Error message
+        @if (session('error'))
+            Swal.fire({
+                title: 'Error!',
+                text: '{{ session('error') }}',
+                icon: 'error',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
+        function deleteZone(zoneId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this! This may affect related districts.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let url = "{{ route('zones.destroy', ':id') }}".replace(':id', zoneId);
+
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            // Remove the zone row from the table
+                            $('#zone-row-' + zoneId).remove();
+
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Zone has been deleted.',
+                                icon: 'success',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'There was an error deleting the zone.',
+                                icon: 'error',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 @endsection

@@ -7,7 +7,7 @@
 @section('content')
     <div class="content">
         <div class="block block-rounded mb-0">
-            <div class="block-header block-header-default bg-transparent border-0">
+            <div class="block-header block-header-default">
                 <h3 class="block-title">Edit Publication</h3>
                 <div class="block-options">
                     <a href="{{ route('publications.index') }}" class="btn btn-sm btn-alt-primary">
@@ -36,9 +36,3 @@
     </div>
 @endsection
 
-@push('scripts')
-<script>
-    // You can add a WYSIWYG editor for the content field here if needed
-    // Example with CKEditor or TinyMCE
-</script>
-@endpush 

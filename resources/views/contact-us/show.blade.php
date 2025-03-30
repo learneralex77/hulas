@@ -10,7 +10,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Contact Inquiry Details</h3>
                 <div class="block-options">
-                <a href="{{ route('contact-us.edit', $contactUs) }}" class="btn btn-sm btn-alt-success">
+                <a href="{{ route('contact-us.edit', $contactUs) }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
                     <a href="{{ route('contact-us.index') }}" class="btn btn-sm btn-alt-primary">

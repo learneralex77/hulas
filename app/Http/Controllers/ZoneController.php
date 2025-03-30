@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Zone;
+use App\Http\Requests\ZoneRequest;
 use Illuminate\Http\Request;
 
 class ZoneController extends Controller
@@ -27,15 +28,8 @@ class ZoneController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ZoneRequest $request)
     {
-        // Log incoming request data for debugging
-        \Log::info('Zone store method called', [
-            'request_data' => $request->all(),
-            'request_method' => $request->method(),
-            'request_path' => $request->path(),
-        ]);
-        
         try {
             $request->validate([
                 'name' => 'required|string|max:255',
@@ -43,27 +37,16 @@ class ZoneController extends Controller
                 'is_published' => 'nullable|boolean',
             ]);
             
-            \Log::info('Zone validation passed');
-            
             $data = $request->all();
             
             // Set boolean values
             $data['is_published'] = $request->has('is_published');
             
-            \Log::info('Attempting to create zone', ['data' => $data]);
-            
             $zone = Zone::create($data);
-            
-            \Log::info('Zone created successfully', ['zone_id' => $zone->id]);
             
             return redirect()->route('zones.index')
                 ->with('success', 'Zone created successfully.');
         } catch (\Exception $e) {
-            \Log::error('Error creating zone', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-            
             return back()->withInput()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
@@ -87,7 +70,7 @@ class ZoneController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Zone $zone)
+    public function update(ZoneRequest $request, Zone $zone)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -111,9 +94,31 @@ class ZoneController extends Controller
      */
     public function destroy(Zone $zone)
     {
-        $zone->delete();
+        try {
+            $zone->delete();
+            
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Zone deleted successfully.'
+                ]);
+            }
+            
+            return redirect()->route('zones.index')
+                ->with('success', 'Zone deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting zone: ' . $e->getMessage()
+                ], 500);
+            }
 
-        return redirect()->route('zones.index')
-            ->with('success', 'Zone deleted successfully.');
+            // For form submit
+            return redirect()->route('zones.index')
+                ->with('error', 'Error deleting zone: ' . $e->getMessage());
+        }
     }
 }

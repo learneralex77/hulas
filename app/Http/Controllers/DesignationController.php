@@ -72,9 +72,27 @@ class DesignationController extends Controller
      */
     public function destroy(Designation $designation)
     {
-        $designation->delete();
+        try {
+            $designation->delete();
+            
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Designation deleted successfully.'
+                ]);
+            }
 
-        return redirect()->route('designations.index')
-            ->with('success', 'Designation deleted successfully.');
+            return redirect()->route('designations.index')
+                ->with('success', 'Designation deleted successfully.');
+        } catch (\Exception $e) {
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting designation: ' . $e->getMessage()
+                ], 500);
+            }
+
+            return back()->with('error', 'Error deleting designation: ' . $e->getMessage());
+        }
     }
 }

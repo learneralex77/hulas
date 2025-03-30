@@ -8,7 +8,7 @@
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Edit News & Event Category: {{ $newsEventCategory->name }}</h3>
+                <h3 class="block-title">Edit News & Event Category</h3>
                 <div class="block-options">
                     <a href="{{ route('news-event-categories.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back

@@ -85,57 +85,6 @@
                         </div>
                     </div>
                 </div>
-
-                @if ($menu->children->count() > 0)
-                    <div class="block block-rounded mt-4">
-                        <div class="block-header block-header-default">
-                            <h3 class="block-title">Child Menus</h3>
-                        </div>
-                        <div class="block-content">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Slug</th>
-                                            <th class="text-center">Order</th>
-                                            <th class="text-center">Status</th>
-                                            <th class="text-center">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($menu->children as $child)
-                                            <tr>
-                                                <td>{{ $child->bname }}</td>
-                                                <td>{{ $child->slug }}</td>
-                                                <td class="text-center">{{ $child->display_order }}</td>
-                                                <td class="text-center">
-                                                    @if ($child->is_published)
-                                                        <span class="badge bg-success">Published</span>
-                                                    @else
-                                                        <span class="badge bg-warning">Draft</span>
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    <div class="btn-group">
-                                                        <a href="{{ route('menus.show', $child) }}"
-                                                            class="btn btn-sm btn-info" title="View">
-                                                            <i class="fa fa-eye"></i>
-                                                        </a>
-                                                        <a href="{{ route('menus.edit', $child) }}"
-                                                            class="btn btn-sm btn-success" title="Edit">
-                                                            <i class="fa fa-pencil-alt"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                @endif
             </div>
         </div>
     </div>

@@ -13,7 +13,7 @@ class ZoneController extends Controller
      */
     public function index()
     {
-        $zones = Zone::orderBy('display_order')->paginate(10);
+        $zones = Zone::orderBy('display_order')->get();
         return view('zones.index', compact('zones'));
     }
 

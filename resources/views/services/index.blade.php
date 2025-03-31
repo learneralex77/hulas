@@ -31,9 +31,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($services as $service)
+                            @foreach ($services as $service)
                                 <tr id="service-row-{{ $service->id }}">
-                                    <td>{{ $service->id }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>
                                         @if ($service->translations->isNotEmpty())
                                             @php
@@ -82,47 +82,22 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="text-center">No services found</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
 
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $services->links() }}
-                </div>
+              
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+  
 
     <script>
-        $(document).ready(function() {
-            $('.js-dataTable-full').DataTable({
-                paging: true,
-                searching: true,
-                ordering: true,
-                lengthChange: true,
-  pageLength: 10, // Set default to 10
-        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]], // Options for entries dropdown
-                columnDefs: [{
-                    orderable: false,
-                    targets: [3, 5] // File and Actions columns
-                }],
-                order: [],
-                language: {
-                    searchPlaceholder: "Search services...",
-                }
-            });
-        });
+       
 
         // Success message
         @if (session('success'))

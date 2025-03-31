@@ -140,11 +140,11 @@
         </div>
 
         <!-- Submit Button -->
-        <div class="mb-3">
-            <button type="submit" class="btn btn-sm btn-success mb-0">
+        <div class="mb-0">
+            <button type="submit" class="btn btn-sm btn-success">
                 <i class="fa fa-save me-1"></i> {{ isset($service) ? 'Update' : 'Create' }} Service
             </button>
-            <a href="{{ route('services.index') }}" class="btn btn-sm btn-danger ms-2 mb-0">
+            <a href="{{ route('services.index') }}" class="btn btn-sm btn-danger ms-2">
                 <i class="fa fa-times"></i> Cancel
             </a>
         </div>

@@ -32,9 +32,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($pages as $page)
+                            @foreach ($pages as $page)
                                 <tr id="page-row-{{ $page->id }}">
-                                    <td class="text-center">{{ $page->id }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td class="d-none d-sm-table-cell">
                                         @if ($page->image)
                                             <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->title }}"
@@ -78,32 +78,20 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="7" class="text-center">No pages found</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
 
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $pages->links() }}
-                </div>
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> -->
-    <script src="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
-    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <script>
-        let table = new DataTable('#table1');
-
+     
         // Success message
         @if (session('success'))
             Swal.fire({

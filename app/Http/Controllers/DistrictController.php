@@ -12,7 +12,7 @@ class DistrictController extends Controller
      */
     public function index()
     {
-        $districts = District::orderBy('display_order')->paginate(10);
+        $districts = District::orderBy('display_order')->get();
         return view('districts.index', compact('districts'));
     }
 

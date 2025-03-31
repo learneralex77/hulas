@@ -14,7 +14,7 @@ class BecomeAnAgentController extends Controller
      */
     public function index()
     {
-        $agents = BecomeAnAgent::latest()->paginate(10);
+        $agents = BecomeAnAgent::latest()->get();
         return view('become-an-agent.index', compact('agents'));
     }
 

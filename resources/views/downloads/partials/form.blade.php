@@ -1,6 +1,6 @@
 {{-- Download form partial that can be used in both create and edit views --}}
 
-<div class="row push">
+<div class="row">
     <div class="col-12">
         <div class="row">
             <div class="col-md-6">

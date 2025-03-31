@@ -14,7 +14,7 @@ class DownloadController extends Controller
      */
     public function index()
     {
-        $downloads = Download::orderBy('display_order')->paginate(10);
+        $downloads = Download::orderBy('display_order')->get();
         return view('downloads.index', compact('downloads'));
     }
 

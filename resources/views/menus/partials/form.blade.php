@@ -1,4 +1,4 @@
-<div class="row push ">
+<div class="row ">
     <div class="col-12">
         <div class="row">
             <div class="col-md-6 col-sm-12">
@@ -67,10 +67,8 @@
             </div>
         </div>
 
-        <div class="mb-3">
-            <div class="mb-0">
-                <div class="mb-0">
-                    <div class="mb-0">
+       
+                    <div class="mb-3">
                         <button type="submit" class="btn btn-sm btn-success mb-0">
                             <i class="fa fa-save"></i> {{ $button }} Menu
                         </button>
@@ -78,8 +76,5 @@
                             <i class="fa fa-times"></i> Cancel
                         </a>
                     </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>

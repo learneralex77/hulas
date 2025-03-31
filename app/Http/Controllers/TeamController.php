@@ -14,7 +14,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::orderBy('type')->orderBy('display_order')->paginate(10);
+        $teams = Team::orderBy('type')->orderBy('display_order')->get();
         return view('teams.index', compact('teams'));
     }
 

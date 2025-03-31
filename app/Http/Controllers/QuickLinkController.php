@@ -13,7 +13,7 @@ class QuickLinkController extends Controller
      */
     public function index()
     {
-        $quickLinks = QuickLink::orderBy('display_order')->paginate(10);
+        $quickLinks = QuickLink::orderBy('display_order')->get();
         return view('quick-links.index', compact('quickLinks'));
     }
 

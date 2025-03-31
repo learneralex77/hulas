@@ -1,4 +1,4 @@
-<div class="row push px-0">
+<div class="row px-0">
     <div class="col-12">
         <div class="row mb-3">
             <div class="col-md-6">

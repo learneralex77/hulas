@@ -22,7 +22,7 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full" id="table">
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 5%;">#</th>
+                                <th class="text-center" style="width: 5%;">S.N.</th>
                                 <th>Name</th>
                                 <th class="d-none d-md-table-cell" style="width: 15%;">Description</th>
                                 <th class="d-none d-sm-table-cell" style="width: 15%;">Slug</th>
@@ -33,7 +33,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($menus as $menu)
+                            @foreach ($menus as $menu)
                                 <tr id="menu-row-{{ $menu->id }}">
                                     <td class="text-center">{{ $loop->iteration }} </td>
                                     <td>{{ $menu->bname }}</td>
@@ -65,11 +65,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="8" class="text-center">No menus found</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -79,20 +75,14 @@
 @endsection
 
 @section('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> -->
-    <script src="//cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
-    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+   
 
     <script>
-        let table = new DataTable('#table');
        
-        
-
         function deleteMenu(menuId) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                text: "You won't be able to revert this!",  
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

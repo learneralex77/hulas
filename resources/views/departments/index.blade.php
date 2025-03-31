@@ -37,9 +37,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($departments as $department)
+                            @foreach ($departments as $department)
                                 <tr id="department-row-{{ $department->id }}">
-                                    <td class="text-center">{{ $department->id }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $department->name }}</td>
                                     <td class="d-none d-md-table-cell text-center">{{ $department->display_order }}</td>
                                     <td class="text-center">
@@ -66,48 +66,22 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="text-center">No departments found</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
 
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $departments->links() }}
-                </div>
+            
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
 
     <script>
-        $(document).ready(function() {
-            $('.js-dataTable-full').DataTable({
-                paging: true,
-                searching: true,
-                ordering: true,
-                lengthChange: true,
-  pageLength: 10, // Set default to 10
-        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]], // Options for entries dropdown
-                columnDefs: [{
-                    orderable: false,
-                    targets: [0, 4] // First column (S.N.) and Actions column
-                }],
-                order: [],
-                language: {
-                    searchPlaceholder: "Search departments...",
-                }
-            });
-        });
-
+     
         // Success message
         @if (session('success'))
             Swal.fire({

@@ -14,7 +14,7 @@ class AgentFormController extends Controller
      */
     public function index()
     {
-        $agentForms = AgentForm::with('district')->latest()->paginate(10);
+        $agentForms = AgentForm::with('district')->latest()->get();
         return view('agent-forms.index', compact('agentForms'));
     }
 

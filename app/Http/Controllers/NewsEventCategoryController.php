@@ -14,7 +14,7 @@ class NewsEventCategoryController extends Controller
      */
     public function index()
     {
-        $categories = NewsEventCategory::orderBy('display_order')->paginate(10);
+        $categories = NewsEventCategory::orderBy('display_order')->get();
         return view('news-event-categories.index', compact('categories'));
     }
 

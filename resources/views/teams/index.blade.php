@@ -32,9 +32,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($teams as $team)
+                            @foreach ($teams as $team)
                                 <tr id="team-row-{{ $team->id }}">
-                                    <td class="text-center">{{ $team->id }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td class="d-none d-sm-table-cell text-center">
                                         @if ($team->image)
                                             <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}"
@@ -70,47 +70,22 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="7" class="text-center">No team members found</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
 
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $teams->links() }}
-                </div>
+              
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+    
 
     <script>
-        $(document).ready(function() {
-            $('.js-dataTable-full').DataTable({
-                paging: true,
-                searching: true,
-                ordering: true,
-                lengthChange: true,
-  pageLength: 10, // Set default to 10
-        lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]], // Options for entries dropdown
-                columnDefs: [{
-                    orderable: false,
-                    targets: [0, 1, 6] // S.N., Image, and Actions column
-                }],
-                order: [],
-                language: {
-                    searchPlaceholder: "Search team members...",
-                }
-            });
-        });
+  
 
         // Success message
         @if (session('success'))

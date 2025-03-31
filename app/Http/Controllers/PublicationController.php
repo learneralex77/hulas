@@ -18,7 +18,7 @@ class PublicationController extends Controller
     {
         $publications = Publication::with('category')
             ->orderBy('display_order', 'desc')
-            ->paginate(10);
+            ->get();
         
         return view('publications.index', compact('publications'));
     }

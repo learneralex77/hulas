@@ -13,7 +13,7 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::orderBy('display_order')->paginate(10);
+        $departments = Department::orderBy('display_order')->get();
         return view('departments.index', compact('departments'));
     }
 

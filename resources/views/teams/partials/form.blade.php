@@ -1,6 +1,6 @@
 {{-- Team form partial that can be used in both create and edit views --}}
 
-<div class="row push px-4">
+<div class="row px-4">
     <div class="col-12">
         <!-- Row 1: Type and Name -->
         <div class="row g-2 mb-3 mt-3">
@@ -69,7 +69,7 @@
         </div>
 
         <!-- Submit Button -->
-        <div class="mb-3 ">
+        <div class="mb-3 mt-n2">
             <button type="submit" class="btn btn-sm btn-success">
                 <i class="fa fa-save"></i> {{ isset($team) ? 'Update' : 'Create' }} Team Member
             </button>

@@ -38,7 +38,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-12 mb-3">
+    <div class="col-lg-12 mb-3 mt-n2">
         <button type="submit" class="btn btn-sm btn-success">
             <i class="fa fa-save"></i> {{ isset($department) ? 'Update' : 'Create' }} Department
         </button>

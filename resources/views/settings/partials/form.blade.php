@@ -187,7 +187,7 @@
 </div>
 
 <!-- Save Button -->
-<div class="row mb-4 mt-1">
+<div class="row mb-0 mt-1">
     <div class="col-md-12 text-start mb-3">
         <button type="submit" class="btn btn-sm btn-success">
             <i class="fa fa-save me-1"></i> {{ isset($setting) ? 'Update Settings' : 'Create Setting' }}

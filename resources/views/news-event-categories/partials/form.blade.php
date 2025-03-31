@@ -1,5 +1,5 @@
 @csrf
-<div class="row push">
+<div class="row">
     <div class="col-12 px-2">
         <div class="row mb-3">
             <div class="col-md-8">
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
+        <div class="row mb-0">
             <div class="col-md-12 mb-3">
                 <button type="submit" class="btn btn-sm btn-success">
                     <i class="fa fa-save"></i> {{ isset($newsEventCategory) ? 'Update' : 'Create' }} Category

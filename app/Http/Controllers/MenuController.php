@@ -15,7 +15,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::orderBy('display_order')->paginate(10);
+        $menus = Menu::orderBy('display_order')->get();
 
         return view('menus.index', compact('menus'));
     }

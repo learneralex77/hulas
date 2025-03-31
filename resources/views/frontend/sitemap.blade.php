@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sitemap - Hulas Remittance</title>
-  <link rel="stylesheet" href="/src/styles.css" />
-</head>
-<body>
-  <!-- Navbar -->
-  <div id="navbar"></div>
+@extends('frontend.layouts.app')
+@section('title', 'Home')
+@section('meta', 'Welcome to Goodwill Finance Pvt. Ltd.')
+@section('content')
 
-  <!-- Page Content -->
+ <!-- Page Content -->
   <div class="container mx-auto p-8">
     <h1 class="text-4xl font-bold mb-6">Sitemap</h1>
 
@@ -46,10 +39,8 @@
         </div>
     </div>
 </div>
+@endsection
 
-  <!-- Footer -->
-  <div id="footer"></div>
 
-  <script type="module" src="/src/main.js"></script>
-</body>
-</html>
+@push('scripts')
+@endpush

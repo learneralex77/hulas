@@ -1,25 +1,36 @@
-// tailwind.config.js
+import forms from "@tailwindcss/forms";
+
+/** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
+    "./storage/framework/views/*.php",
+    "./resources/views/**/*.blade.php",
+    "node_modules/preline/dist/*.js",
+  ],
+
   theme: {
     extend: {
       fontFamily: {
         sans: ["Jost", "sans-serif"],
       },
+
       fontSize: {
-        heading: "2.25rem", // Custom size for headings (h1)
-        subheading: "1.5rem", // Custom size for subheadings (h2)
-        paragraph: "1rem", // Custom size for paragraphs
+        heading: "2.25rem",
+        subheading: "1.5rem",
+        paragraph: "1rem",
       },
+
       letterSpacing: {
-        tight: "-0.01em", // Custom letter-spacing for tight text
-        normal: "0", // Normal letter-spacing
+        tight: "-0.01em",
+        normal: "0",
       },
       lineHeight: {
-        heading: "2", // Custom line height for headings
-        paragraph: "1.75", // Line height for paragraphs
+        heading: "2",
+        paragraph: "1.75",
       },
     },
   },
-  plugins: [],
+
+  plugins: [forms],
 };

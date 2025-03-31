@@ -6,15 +6,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="AWT" />
-    <meta name="description" content="{{ $settings->meta_description }}" />
+    {{-- <meta name="description" content="{{ $settings->meta_description }}" />
     <meta name="keywords" content="{{ $settings->keywords }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- {!! $settings->schema_markup !!} -->
 
-    <link rel="canonical" href="{{ $settings->canonical_url }}">
+    <link rel="canonical" href="{{ $settings->canonical_url }}"> --}}
 
     <title>Hulas Remmittance::@yield('title')</title>
-    <link rel="icon" href="{{ asset('assets/img/small-logo.png') }}">
+    <link rel="icon" href="{{ asset('assets/images/icon/icon.jpg') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 

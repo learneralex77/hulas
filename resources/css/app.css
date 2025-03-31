@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*For Alpine js Modal Close on Load*/
+[x-cloak] {
+    display: none !important;
+}
+
+
+.no-bullets-list {
+    list-style-type: none;
+    cursor: pointer;
+}

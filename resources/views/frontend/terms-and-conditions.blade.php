@@ -1,14 +1,8 @@
-<html lang="en">
+@extends('frontend.layouts.app')
+@section('title', 'Home')
+@section('meta', 'Welcome to Goodwill Finance Pvt. Ltd.')
+@section('content')
 
-<head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hulas Remittance</title>
-</head>
-<div id="navbar"></div>
 <div class="p-8 text-justify max-w-4xl mx-auto  bg-white mt-10 text-base">
     <h1 class="text-2xl  font-bold mb-4 ">Terms and Conditions</h1>
     <hr class="border-yellow-400">
@@ -46,8 +40,8 @@
     <p class="mt-2">If you have any questions about these Terms and Conditions, please contact us at <a
             href="mailto:support@example.com" class="text-blue-600 underline">support@example.com</a>.</p>
 </div>
+@endsection
 
-<body>
-</body>
 
-</html>
+@push('scripts')
+@endpush

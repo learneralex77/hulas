@@ -24,7 +24,7 @@
                             <tr>
                                 <th>S.N.</th>
                                 <th>Name</th>
-                                <th>Display Order</th>
+                                <th class="text-left">Display Order</th>
                                 <th>File</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
@@ -50,7 +50,7 @@
                                             <span class="text-muted">No name defined</span>
                                         @endif
                                     </td>
-                                    <td>{{ $service->display_order }}</td>
+                                    <td class="text-center">{{ $service->display_order }}</td>
                                     <td>
                                         @if ($service->file)
                                             <a href="{{ asset('storage/' . $service->file) }}" target="_blank"

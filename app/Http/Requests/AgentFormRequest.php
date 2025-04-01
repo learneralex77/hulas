@@ -47,7 +47,7 @@ class AgentFormRequest extends FormRequest
             'district_id' => 'district',
             'address' => 'address',
             'message' => 'message',
-            'is_processed' => 'processed status',
+            'is_processed' => 'status',
             'display_order' => 'display order',
         ];
     }
@@ -93,7 +93,12 @@ class AgentFormRequest extends FormRequest
     {
         // Set boolean values correctly
         $this->merge([
-            'is_processed' => $this->has('is_processed'),
+            'is_processed' => $this->boolean('is_processed'),
         ]);
+        
+        // Set default display order if not provided
+        if (!$this->has('display_order') || $this->display_order === null) {
+            $this->merge(['display_order' => 0]);
+        }
     }
 }

@@ -70,7 +70,7 @@
 
         <!-- Message and Status fields in one row -->
         <div class="row mb-4">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <label class="form-label" for="message">Message</label>
                 <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" rows="3">{{ old('message', $agentForm->message ?? '') }}</textarea>
                 @error('message')
@@ -82,8 +82,7 @@
                 <div class="mt-2">
                     <div class="form-check form-switch">
                         <input class="form-check-input @error('is_processed') is-invalid @enderror" type="checkbox" id="is_processed" name="is_processed"
-                            value="1"
-                            {{ old('is_processed', $agentForm->is_processed ?? '0') == '1' ? 'checked' : '' }}>
+                            {{ old('is_processed', $agentForm->is_processed ?? false) ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_processed">Processed</label>
                         @error('is_processed')
                             <div class="invalid-feedback">{{ $message }}</div>

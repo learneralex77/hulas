@@ -22,24 +22,32 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
-                                <th>S.N.</th>
+                                <th class="text-left">S.N.</th>
                                 <th>Name</th>
                                 <th>Number</th>
                                 <th>District</th>
-                                <th>Display Order</th>
+                                <th class="text-left">Display Order</th>
                                 <th>Address</th>
+                                <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($agentForms as $agentForm)
                                 <tr id="agent-form-row-{{ $agentForm->id }}">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $agentForm->name }}</td>
                                     <td>{{ $agentForm->number }}</td>
                                     <td>{{ $agentForm->district->name }}</td>
-                                    <td>{{ $agentForm->display_order }}</td>
+                                    <td class="text-center">{{ $agentForm->display_order }}</td>
                                     <td>{{ Str::limit($agentForm->address, 30) }}</td>
+                                    <td>
+                                        @if ($agentForm->is_processed)
+                                            <span class="badge bg-success">Published</span>
+                                        @else
+                                            <span class="badge bg-warning">Draft</span>
+                                        @endif
+                                    </td>
                                     <td class="text-center">
                                         <div class="gap-2">
                                             <a href="{{ route('agent-forms.show', $agentForm) }}"

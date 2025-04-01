@@ -21,6 +21,10 @@ class AgentForm extends Model
         'display_order'
     ];
 
+    protected $casts = [
+        'is_processed' => 'boolean',
+    ];
+
     /**
      * Get the district that the agent form belongs to.
      */

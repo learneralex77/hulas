@@ -32,14 +32,15 @@ class AgentFormController extends Controller
      */
     public function store(AgentFormRequest $request)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
+            AgentForm::create($data);
 
-        // No need to map 'phone' to 'number' anymore as we're using 'number' directly
-
-        AgentForm::create($data);
-
-        return redirect()->route('agent-forms.index')
-            ->with('success', 'Agent form created successfully.');
+            return redirect()->route('agent-forms.index')
+                ->with('success', 'Agent form created successfully.');
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
     }
 
     /**
@@ -64,14 +65,15 @@ class AgentFormController extends Controller
      */
     public function update(AgentFormRequest $request, AgentForm $agentForm)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
+            $agentForm->update($data);
 
-        // No need to map 'phone' to 'number' anymore as we're using 'number' directly
-
-        $agentForm->update($data);
-
-        return redirect()->route('agent-forms.index')
-            ->with('success', 'Agent form updated successfully.');
+            return redirect()->route('agent-forms.index')
+                ->with('success', 'Agent form updated successfully.');
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
     }
 
     /**

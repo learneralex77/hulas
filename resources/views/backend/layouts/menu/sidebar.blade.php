@@ -7,7 +7,7 @@
             <!-- Logo -->
             <div>
                 <span class="smini-visible fw-bold tracking-wide fs-lg">
-                    AWT
+                    Hulas  Remittance
                 </span>
 
                 <a class="link-fx fw-bold tracking-wide mx-auto" href="/">

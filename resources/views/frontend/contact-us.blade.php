@@ -1,6 +1,6 @@
 @extends('frontend.backend.layouts.app')
 @section('title', 'Home')
-@section('meta', 'Welcome to Goodwill Finance Pvt. Ltd.')
+@section('meta', 'Welcome to Hulas Remittance')
 @section('content')
 
     <section>

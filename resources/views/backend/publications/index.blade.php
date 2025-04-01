@@ -35,12 +35,12 @@
                             @foreach ($publications as $publication)
                                 <tr id="publication-row-{{ $publication->id }}">
                                     <td class="text-center">{{ $publication->id }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($publication->image)
                                             <img src="{{ asset('storage/' . $publication->image) }}"
                                                 alt="{{ $publication->title }}" class="img-fluid" style="max-height: 50px;">
                                         @else
-                                            <span class="text-muted">No image</span>
+                                            <span class="text-muted ">No image</span>
                                         @endif
                                     </td>
                                     <td>
@@ -117,7 +117,7 @@
         function deletePublication(publicationId) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "This will delete both the publication entry and its image. You won't be able to revert this!",
+                text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

@@ -27,6 +27,7 @@
                                 <th>Address</th>
                                 <th>Phone</th>
                                 <th>Email</th>
+                                <th>Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -34,11 +35,12 @@
                         <tbody>
                             @foreach ($branches as $branch)
                                 <tr id="branch-row-{{ $branch->id }}">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $branch->name }}</td>
                                     <td>{{ $branch->address }}</td>
                                     <td>{{ $branch->phone }}</td>
                                     <td>{{ $branch->email }}</td>
+                                    <td class="text-center">{{ $branch->display_order }}</td>
                                     <td>
                                         @if ($branch->is_published)
                                             <span class="badge bg-success">Published</span>

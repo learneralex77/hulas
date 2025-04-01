@@ -14,7 +14,7 @@ class AgentDetailController extends Controller
      */
     public function index()
     {
-        $agentDetails = AgentDetail::with('district')->get();
+        $agentDetails = AgentDetail::orderBy('display_order')->get();
         return view('backend.agent-details.index', compact('agentDetails'));
     }
 

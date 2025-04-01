@@ -22,7 +22,7 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
-                                <th>S.N.</th>
+                                <th class="text-left">S.N.</th>
                                 <th>Name</th>
                                 <th class="text-left">Display Order</th>
                                 <th>File</th>
@@ -33,7 +33,7 @@
                         <tbody>
                             @foreach ($services as $service)
                                 <tr id="service-row-{{ $service->id }}">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>
                                         @if ($service->translations->isNotEmpty())
                                             @php

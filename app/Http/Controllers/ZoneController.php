@@ -31,17 +31,7 @@ class ZoneController extends Controller
     public function store(ZoneRequest $request)
     {
         try {
-            $request->validate([
-                'name' => 'required|string|max:255',
-                'display_order' => 'nullable|integer',
-                'is_published' => 'nullable|boolean',
-            ]);
-
-            $data = $request->all();
-
-            // Set boolean values
-            $data['is_published'] = $request->has('is_published');
-
+            $data = $request->validated();
             $zone = Zone::create($data);
 
             return redirect()->route('zones.index')
@@ -72,17 +62,7 @@ class ZoneController extends Controller
      */
     public function update(ZoneRequest $request, Zone $zone)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
-
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
-
+        $data = $request->validated();
         $zone->update($data);
 
         return redirect()->route('zones.index')

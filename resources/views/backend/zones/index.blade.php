@@ -22,9 +22,9 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th class="text-left">ID</th>
                                 <th>Name</th>
-                                <th>Display Order</th>
+                                <th class="text-left">Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -32,9 +32,9 @@
                         <tbody>
                             @foreach ($zones as $zone)
                                 <tr id="zone-row-{{ $zone->id }}">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $zone->name }}</td>
-                                    <td>{{ $zone->display_order }}</td>
+                                    <td class="text-center">{{ $zone->display_order }}</td>
                                     <td>
                                         @if ($zone->is_published)
                                             <span class="badge bg-success">Published</span>

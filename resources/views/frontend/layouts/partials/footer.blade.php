@@ -1,0 +1,119 @@
+<footer>
+    <div class="bg-black text-[#ffffffcc] p-12">
+        <div class="flex flex-col space-y-10">
+            <!-- logo and desc -->
+            <div
+                class="w-full flex flex-col space-y-5 lg:space-y-0 lg:flex-row justify-center lg:justify-between lg:items-center">
+                <div class="flex justify-center lg:justify-left">
+                    <a class="text-3xl text-white font-bold" href="index.html">
+                        <img src="./images/logo/hulas-remittance-logo.jpg" class="w-56" alt="Logo" />
+                    </a>
+                </div>
+                <!-- social media icons -->
+                <div class="flex justify-center lg:justify-left space-x-3 items-center">
+                    <div
+                        class="social group flex justify-center items-center w-10 h-10 lg:w-16 lg:h-16 rounded-full hover:cursor-pointer">
+                        <img id="fb-white" src="./images/social-media-icons/facebook-svgrepo-com.png" class="w-8"
+                            alt="Facebook Icon" />
+                    </div>
+                    <div
+                        class="social group flex justify-center items-center w-10 h-10 lg:w-16 lg:h-16 rounded-full hover:cursor-pointer">
+                        <img id="fb-white" src="./images/social-media-icons/linkedin-svgrepo-com.png" class="w-6 h-6"
+                            alt="LinkedIN Icon" />
+                    </div>
+                    <div
+                        class="social group flex justify-center items-center w-10 h-10 lg:w-16 lg:h-16 rounded-full hover:cursor-pointer">
+                        <img id="fb-white" src="./images/social-media-icons/x-icon.jpg" class="w-8"
+                            alt="X Icon" />
+                    </div>
+                </div>
+            </div>
+            <!-- description -->
+            <div class="flex flex-col md:flex-row justify-around gap-6">
+                <div class="flex flex-1 flex-col lg:flex-row items-center justify-around gap-6">
+                    <div class="max-w-xs pr-0 lg:pr-8 flex flex-col text-center items-center space-y-5">
+                        <p class="text-left">A Principal Agent of Western Union in Nepal.</p>
+                        <p class="text-justify">
+                            Hulas Remittance, a member company of Golchha Organization, was
+                            established in August 2005 with the vision to bring in quality and
+                            reliable money transfer services in to Nepal. Hulas Remittance,
+                            being one of the principal agents, playing a leading role in
+                            offering money transfer services of The Western Union Company in
+                            Nepal since January 2006.
+                        </p>
+                    </div>
+                    <div class="text-[#ffffffcc] flex flex-col space-y-5 items-left lg:items-center ">
+                        <div class="flex flex-row gap-6 space-x-5 items-center">
+                            <img src="./images/footer/location.png" class="w-12" alt="" />
+                            <div class="flex flex-col space-y-1">
+                                <p>
+                                    Bagdurbar, Sundhara <br />
+                                    (Near to China Town Gate)
+                                </p>
+
+                                <p>Kathmandu, Nepal</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-row gap-6 space-x-5 items-center">
+                            <img src="./images/footer/phone-call.png" class="w-10" alt="" />
+                            <div class="flex flex-col space-y-2">
+                                <p>+977 1 5361313, 5358225, <br />5352008</p>
+                                <p>
+                                    Toll Free Number: <br />
+                                    16600 111222 <br />(For NTC Users Only)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex flex-row gap-6 space-x-5 items-center">
+                            <img src="./images/footer/mail.png" class="w-10" alt="" />
+                            <div class="flex flex-col space-y-2">
+                                <p>Email:</p>
+                                <p>
+                                    info@hulasremittance.com,<br />
+                                    csc@hulasremittance.com
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-1 flex-col lg:flex-row justify-center items-center lg:justify-between gap-6">
+                    <div class="text-[#ffffffcc] pr-8 flex flex-col space-y-5">
+                        <h4 class=" text-accent font-bold md:text-left">Important Links</h4>
+                        <a href="index.html" class="hover:text-accent">Home</a>
+                        <a href="about.html" class="hover:text-accent">About us</a>
+                        <a href="agentsList.html" class="hover:text-accent">Agents List</a>
+                        <a href="compliance.html" class="hover:text-accent">Compliance</a>
+                        <a href="#" class="hover:text-accent">Gallery</a>
+                    </div>
+                    <div class=" text-[#ffffffcc] flex flex-col space-y-5">
+                        <h4 class=" text-accent font-bold md:text-left">Navigate</h4>
+
+                        <a href="fxRate.html" class="hover:text-accent">Fx Rate</a>
+                        <a href="faq.html" class="hover:text-accent">FAQ</a>
+                        <a href="contact.html" class="hover:text-accent">Contact us</a>
+                        <a href="terms-and-conditions.html" class="hover:text-accent">Terms & Conditions</a>
+                        <a href="privacy-policy.html" class="hover:text-accent">Privacy Policy</a>
+                    </div>
+                    <div class=" text-[#ffffffcc] flex flex-col space-y-5">
+                        <h4 class=" text-accent font-bold md:text-left">Quick Links</h4>
+                        <a href="https://www.nrb.org.np/" class="hover:text-accent">Nepal Rastra Bank</a>
+                        <a href="https://www.nrb.org.np/forex/" class="hover:text-accent">Foreign Exchange Rates</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- bottom footer -->
+            <div class="flex flex-col md:flex-row md:justify-between items-center gap-6">
+                <p>&copy; 2025 Hulas Remittance Pvt.Ltd.&nbsp;All rights reserved.</p>
+                <p>
+                    Designed and crafted by
+                    <a href="https://dev.awt.cloud/" class="text-[#0000cc] font-bold">AWT</a>
+                </p>
+                <a href="https://www.westernunion.com/np/en/home.html">
+                    <img src="./images/logo/WesternUnion_HorizontalLockup_YellowWhite.png" class="w-44 h-5"
+                        alt="Western Union Icon" />
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>

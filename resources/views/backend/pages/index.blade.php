@@ -38,20 +38,16 @@
                                     <td class="d-none d-sm-table-cell">
                                         @if ($page->image)
                                             <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->title }}"
-                                                style="max-height: 40px;" class="img-fluid">
+                                                style="max-height: 20px;" class="img-fluid">
                                         @else
                                             <span class="text-muted"><i class="fa fa-image"></i></span>
                                         @endif
                                     </td>
                                     <td>
                                         {{ $page->title }}
-                                        @if ($page->short_description)
-                                            <div class="text-muted fs-sm">{{ Str::limit($page->short_description, 30) }}
-                                            </div>
-                                        @endif
                                     </td>
                                     <td class="d-none d-md-table-cell">{{ $page->slug }}</td>
-                                    <td class="d-none d-lg-table-cell">
+                                    <td class="d-none d-md-table-cell">
                                         @if ($page->menu)
                                             <a href="{{ route('menus.show', $page->menu) }}">{{ $page->menu->bname }}</a>
                                         @else

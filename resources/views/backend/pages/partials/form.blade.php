@@ -3,7 +3,7 @@
 <div class="row ">
     <div class="col-12">
         <div class="row">
-            <div class="col-md-8 col-sm-12">
+            <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
                     <label class="form-label" for="title">Title <span class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
@@ -13,7 +13,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
                     <label class="form-label" for="menu_id">Menu <span class="text-danger">*</span></label>
                     <select class="form-select @error('menu_id') is-invalid @enderror" id="menu_id" name="menu_id">
@@ -32,6 +32,29 @@
             </div>
         </div>
 
+        <div class="row mb-4">
+        <div class="col-md-6">
+                <div class="mb-4">
+                    <label class="form-label" for="display_order">Display Order</label>
+                    <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order"
+                        name="display_order" value="{{ old('display_order', $page->display_order ?? 0) }}">
+                    @error('display_order')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-4">
+                    <label class="form-label">Status</label>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="is_published" name="is_published" 
+                            {{ old('is_published', $page->is_published ?? true) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="is_published">Published</label>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
         <div class="mb-4">
             <label class="form-label" for="short_description">Short Description</label>
             <textarea class="form-control @error('short_description') is-invalid @enderror" id="short_description"
@@ -83,15 +106,6 @@
                     <div class="mt-2">
                         <small class="text-muted">Recommended image size: 1200x800 pixels</small>
                     </div>
-                </div>
-                
-                <div class="mb-4">
-                    <label class="form-label" for="display_order">Display Order</label>
-                    <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order"
-                        name="display_order" value="{{ old('display_order', $page->display_order ?? 0) }}">
-                    @error('display_order')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
                 </div>
             </div>
         </div>

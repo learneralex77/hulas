@@ -17,7 +17,12 @@ class Page extends Model
         'content',
         'image',
         'short_description',
-        'display_order'
+        'display_order',
+        'is_published'
+    ];
+
+    protected $casts = [
+        'is_published' => 'boolean',
     ];
 
     /**

@@ -32,6 +32,7 @@ class PageRequest extends FormRequest
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'delete_image' => ['nullable', 'boolean'],
             'display_order' => ['nullable', 'integer', 'min:0'],
+            'is_published' => ['nullable', 'boolean'],
         ];
 
         // For update operations, add unique slug check
@@ -72,6 +73,7 @@ class PageRequest extends FormRequest
             'image' => 'page image',
             'delete_image' => 'delete image option',
             'display_order' => 'display order',
+            'is_published' => 'publication status',
         ];
     }
 
@@ -105,6 +107,7 @@ class PageRequest extends FormRequest
             
             'display_order.integer' => 'The display order must be an integer value.',
             'display_order.min' => 'The display order must be a positive number.',
+            'is_published.boolean' => 'The publication status must be a boolean value.',
         ];
     }
 

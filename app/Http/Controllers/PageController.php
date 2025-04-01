@@ -45,6 +45,9 @@ class PageController extends Controller
                 $data['image'] = $request->file('image')->store('pages', 'public');
             }
 
+            // Set is_published based on the checkbox
+            $data['is_published'] = $request->has('is_published');
+
             // Create the page
             $page = Page::create($data);
 
@@ -84,6 +87,9 @@ class PageController extends Controller
         if ($request->title != $page->title) {
             $data['slug'] = Str::slug($request->title);
         }
+
+        // Set is_published based on the checkbox
+        $data['is_published'] = $request->has('is_published');
 
         // Handle image deletion if checkbox is checked
         if ($request->has('delete_image') && $request->delete_image == 1) {

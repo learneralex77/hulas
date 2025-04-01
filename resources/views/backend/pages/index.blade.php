@@ -28,6 +28,7 @@
                                 <th class="d-none d-md-table-cell">Slug</th>
                                 <th class="d-none d-lg-table-cell">Menu</th>
                                 <th class="d-none d-md-table-cell text-left" style="width: 150px;">Display Order</th>
+                                <th class="d-none d-md-table-cell text-left" style="width: 150px;">Status</th>
                                 <th style="width: 13%;">Actions</th>
                             </tr>
                         </thead>
@@ -57,6 +58,13 @@
                                     <td class="d-none d-xl-table-cell text-center">
                                         {{ $page->display_order }}
                                     </td>
+                                    <td class="d-none d-md-table-cell text-center">
+                                        @if ($page->is_published)
+                                            <span class="badge bg-success">Published</span>
+                                        @else
+                                            <span class="badge bg-warning">Draft</span>
+                                            @endif                                  
+                                          </td>
                                     <td class="text-center">
                                         <div class="gap-2">
                                             <a href="{{ route('pages.show', $page) }}" class="btn btn-sm btn-info"

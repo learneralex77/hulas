@@ -1,9 +1,9 @@
 {{-- Gallery form partial that can be used in both create and edit views --}}
 
-<div class="row push">
+<div class="row">
     <div class="col-12">
         <div class="row">
-            <div class="col-md-8 col-sm-12">
+            <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
                     <label class="form-label" for="title">Title <span class="text-danger">*</span></label>
                     <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
@@ -13,7 +13,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
                     <label class="form-label" for="links">External Link</label>
                     <input type="text" class="form-control @error('links') is-invalid @enderror" id="links"

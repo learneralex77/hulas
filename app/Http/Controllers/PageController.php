@@ -16,7 +16,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        $pages = Page::with('menu')->get();
+        $pages = Page::orderBy('display_order')->get();
         return view('backend.pages.index', compact('pages'));
     }
 

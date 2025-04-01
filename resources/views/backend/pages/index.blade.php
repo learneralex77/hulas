@@ -27,7 +27,7 @@
                                 <th>Title</th>
                                 <th class="d-none d-md-table-cell">Slug</th>
                                 <th class="d-none d-lg-table-cell">Menu</th>
-                                <th class="d-none d-xl-table-cell" style="width: 150px;">Display Order</th>
+                                <th class="d-none d-md-table-cell text-left" style="width: 150px;">Display Order</th>
                                 <th style="width: 13%;">Actions</th>
                             </tr>
                         </thead>
@@ -40,7 +40,7 @@
                                             <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->title }}"
                                                 style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;" class="img-fluid">
                                         @else
-                                            <span class="text-muted"><i class="fa fa-image"></i></span>
+                                            <span class="text-muted" ><i class="fa fa-image" ></i></span>
                                         @endif
                                     </td>
                                     <td>
@@ -54,7 +54,7 @@
                                             <span class="text-muted">No Menu</span>
                                         @endif
                                     </td>
-                                    <td class="d-none d-xl-table-cell">
+                                    <td class="d-none d-xl-table-cell text-center">
                                         {{ $page->display_order }}
                                     </td>
                                     <td class="text-center">

@@ -25,10 +25,10 @@
                                 <th class="text-center" style="width: 50px;">S.N.</th>
                                 <th class="d-none d-sm-table-cell" style="width: 80px;">Image</th>
                                 <th>Title</th>
-                                <th class="d-none d-lg-table-cell text-center" style="width: 70px;">Order</th>
-                                <th class="text-center">Status</th>
-                                <th class="d-none d-md-table-cell text-center">Featured</th>
-                                <th class="text-center" style="width: 13%;">Actions</th>
+                                <th class="d-none d-lg-table-cell text-left" style="width: 70px;">Order</th>
+                                <th class="text-left">Status</th>
+                                <th class="d-none d-md-table-cell text-left">Featured</th>
+                                <th class="text-left" style="width: 13%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

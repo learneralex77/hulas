@@ -36,7 +36,7 @@
                                     <td>
                                         @if (is_array($agent->images) && count($agent->images) > 0)
                                             <img src="{{ asset('storage/' . $agent->images[0]) }}" alt="Preview"
-                                                class="img-fluid" style="max-height: 100px;">
+                                                class="img-fluid" style="max-height: 50px;">
                                             @if (count($agent->images) > 1)
                                                 <span class="badge bg-info">+{{ count($agent->images) - 1 }} more</span>
                                             @endif

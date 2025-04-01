@@ -27,58 +27,89 @@
                 @endif
 
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th class="text-center" style="width: 200px;">ID</th>
-                                        <td>{{ $team->id }}</td>
-                                        <th class="text-center" style="width: 200px;">Type</th>
-                                        <td>{{ $team->type }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-center">Name</th>
-                                        <td>{{ $team->name }}</td>
-                                        <th class="text-center">Display Order</th>
-                                        <td>{{ $team->display_order }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-center">Status</th>
-                                        <td class="text-center">
-                                            @if ($team->is_published)
-                                                <span class="badge bg-success">Published</span>
-                                            @else
-                                                <span class="badge bg-warning">Draft</span>
-                                            @endif
-                                        </td>
-                                        <th class="text-center">Image</th>
-                                        <td class="text-center">
-                                            @if ($team->image)
-                                                <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}"
-                                                    class="img-fluid rounded" style="max-height: 100px;">
-                                            @else
-                                                <span class="text-muted">No image available</span>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-center">Created</th>
-                                        <td>{{ $team->created_at->format('M d, Y H:i') }}</td>
-                                        <th class="text-center">Last Updated</th>
-                                        <td>{{ $team->updated_at->format('M d, Y H:i') }}</td>
-                                    </tr>
-                                    @if ($team->description)
-                                        <tr>
-                                            <th class="text-center">Description</th>
-                                            <td colspan="3">{{ $team->description }}</td>
-                                        </tr>
-                                    @endif
-                                </tbody>
-                            </table>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Basic Information</h3>
+                            </div>
+                            <div class="block-content">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">ID:</div>
+                                    <div class="col-md-8">{{ $team->id }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Type:</div>
+                                    <div class="col-md-8">{{ $team->type }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Name:</div>
+                                    <div class="col-md-8">{{ $team->name }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Display Order:</div>
+                                    <div class="col-md-8">{{ $team->display_order }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Additional Details</h3>
+                            </div>
+                            <div class="block-content">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Status:</div>
+                                    <div class="col-md-8">
+                                        @if ($team->is_published)
+                                            <span class="badge bg-success">Published</span>
+                                        @else
+                                            <span class="badge bg-warning">Draft</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Image:</div>
+                                    <div class="col-md-8">
+                                        @if ($team->image)
+                                            <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}"
+                                                class="img-fluid rounded" style="max-height: 100px;">
+                                        @else
+                                            <span class="text-muted">No image available</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Created At:</div>
+                                    <div class="col-md-8">{{ $team->created_at->format('M d, Y H:i') }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Updated At:</div>
+                                    <div class="col-md-8">{{ $team->updated_at->format('M d, Y H:i') }}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                @if ($team->description)
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="block block-rounded">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">Description</h3>
+                                </div>
+                                <div class="block-content">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            {{ $team->description }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

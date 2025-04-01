@@ -26,6 +26,7 @@
                                 <th>Preview</th>
                                 <th>Image Count</th>
                                 <th>Display Order</th>
+                                <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
                         </thead>
@@ -52,6 +53,13 @@
                                         @endif
                                     </td>
                                     <td>{{ $agent->display_order }}</td>
+                                    <td>
+                                        @if ($agent->is_published)
+                                            <span class="badge bg-success">Published</span>
+                                        @else
+                                            <span class="badge bg-warning">Draft</span>
+                                        @endif
+                                    </td>
                                     <td class="text-center">
                                         <div class="gap-2">
                                             <a href="{{ route('become-an-agent.show', $agent) }}"

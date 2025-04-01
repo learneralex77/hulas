@@ -50,9 +50,13 @@ class BecomeAnAgentController extends Controller
                 ->withErrors(['images' => 'At least one valid image is required.']);
         }
 
+        // Convert boolean value from checkbox
+        $isPublished = $request->has('is_published') ? (bool)$request->input('is_published') : false;
+
         BecomeAnAgent::create([
             'images' => $imagesPaths,
             'display_order' => $data['display_order'] ?? 0,
+            'is_published' => $isPublished,
         ]);
 
         return redirect()->route('become-an-agent.index')
@@ -135,10 +139,14 @@ class BecomeAnAgentController extends Controller
         // Reindex the array to ensure sequential keys
         $imagesPaths = array_values($imagesPaths);
 
+        // Convert boolean value from checkbox
+        $isPublished = $request->has('is_published') ? (bool)$request->input('is_published') : false;
+
         // Update the record
         $becomeAnAgent->update([
             'images' => $imagesPaths,
             'display_order' => $data['display_order'] ?? 0,
+            'is_published' => $isPublished,
         ]);
 
         return redirect()->route('become-an-agent.index')

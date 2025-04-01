@@ -24,6 +24,7 @@ class BecomeAnAgent extends Model
     protected $fillable = [
         'images',
         'display_order',
+        'is_published',
     ];
 
     /**
@@ -33,5 +34,6 @@ class BecomeAnAgent extends Model
      */
     protected $casts = [
         'images' => 'array',
+        'is_published' => 'boolean',
     ];
 }

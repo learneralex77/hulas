@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->json('images')->nullable()->comment('Multiple images stored as JSON array');
             $table->integer('display_order')->default(0);
-
+            $table->boolean('is_published')->default(true);
             $table->timestamps();
         });
     }

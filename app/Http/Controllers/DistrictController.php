@@ -29,17 +29,7 @@ class DistrictController extends Controller
      */
     public function store(DistrictRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
-
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
-
+        $data = $request->validated();
         District::create($data);
 
         return redirect()->route('districts.index')
@@ -67,17 +57,7 @@ class DistrictController extends Controller
      */
     public function update(DistrictRequest $request, District $district)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'display_order' => 'nullable|integer',
-            'is_published' => 'nullable|boolean',
-        ]);
-
-        $data = $request->all();
-
-        // Set boolean values
-        $data['is_published'] = $request->has('is_published');
-
+        $data = $request->validated();
         $district->update($data);
 
         return redirect()->route('districts.index')

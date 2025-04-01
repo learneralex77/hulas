@@ -24,7 +24,7 @@
                             <tr>
                                 <th>S.N.</th>
                                 <th>Name</th>
-                                <th>Display Order</th>
+                                <th class="text-left">Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -32,9 +32,9 @@
                         <tbody>
                             @foreach ($districts as $district)
                                 <tr id="district-row-{{ $district->id }}">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $district->name }}</td>
-                                    <td>{{ $district->display_order }}</td>
+                                    <td class="text-center">{{ $district->display_order }}</td>
                                     <td>
                                         @if ($district->is_published)
                                             <span class="badge bg-success">Published</span>

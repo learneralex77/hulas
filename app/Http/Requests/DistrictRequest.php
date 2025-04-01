@@ -78,7 +78,7 @@ class DistrictRequest extends FormRequest
     {
         // Set boolean values correctly
         $this->merge([
-            'is_published' => $this->has('is_published'),
+            'is_published' => $this->boolean('is_published'),
         ]);
         
         // Set default display order if not provided

@@ -60,11 +60,11 @@
             class="z-50 fixed bottom-4 right-4 bg-[#EF5824] text-white p-2 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-110 hover:bg-black-600 hidden">
             <img src="{{ asset('assets/img/top-arrow.png') }}" alt="go-to-top-button" class="w-10 h-10"> </button>
 
-        @include('backend.frontend.backend.layouts.partials.header')
+        @include('frontend..layouts.partials.header')
 
         @yield('content')
 
-        @include('backend.frontend.backend.layouts.partials.footer')
+        @include('frontend..layouts.partials.footer')
 
         <script src="{{ asset('assets/js/main.js') }}"></script>
         {{-- jquery --}}

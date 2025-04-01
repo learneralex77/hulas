@@ -1,4 +1,4 @@
-@extends('frontend.backend.layouts.app')
+@extends('frontend.layouts.app')
 @section('title', 'Home')
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')

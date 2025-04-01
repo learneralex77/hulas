@@ -38,7 +38,7 @@
                                     <td class="d-none d-sm-table-cell">
                                         @if ($page->image)
                                             <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->title }}"
-                                                style="max-height: 20px;" class="img-fluid">
+                                                style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;" class="img-fluid">
                                         @else
                                             <span class="text-muted"><i class="fa fa-image"></i></span>
                                         @endif

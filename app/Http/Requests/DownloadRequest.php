@@ -30,9 +30,19 @@ class DownloadRequest extends FormRequest
         
         // For create operation, file is required. For update, it's optional
         if ($this->isMethod('POST')) {
-            $rules['file'] = ['required', 'file', 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,csv,zip', 'max:10240'];
+            $rules['file'] = [
+                'required',
+                'file',
+                'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,csv,zip,jpg,jpeg,png,gif,webp',
+                'max:10240'
+            ];
         } else {
-            $rules['file'] = ['nullable', 'file', 'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,csv,zip', 'max:10240'];
+            $rules['file'] = [
+                'nullable',
+                'file',
+                'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,csv,zip,jpg,jpeg,png,gif,webp',
+                'max:10240'
+            ];
         }
 
         // Add unique check with proper ignoring for updates
@@ -76,7 +86,7 @@ class DownloadRequest extends FormRequest
             
             'file.required' => 'Please select a file to upload.',
             'file.file' => 'The uploaded file is invalid.',
-            'file.mimes' => 'The file must be one of the following types: PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, CSV, ZIP.',
+            'file.mimes' => 'Only PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, CSV, ZIP, JPG, JPEG, PNG, GIF, WEBP files are allowed.',
             'file.max' => 'The file may not be greater than 10MB.',
             
             'display_order.integer' => 'The display order must be a number.',

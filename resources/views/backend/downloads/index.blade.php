@@ -25,7 +25,7 @@
                                 <th style="width: 50px;">S.N.</th>
                                 <th>Name</th>
                                 <th>File</th>
-                                <th>Display Order</th>
+                                <th class="text-left">Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -45,7 +45,7 @@
                                             <span class="text-muted">No file</span>
                                         @endif
                                     </td>
-                                    <td>{{ $download->display_order }}</td>
+                                    <td class="text-center">{{ $download->display_order }}</td>
                                     <td>
                                         @if ($download->is_published)
                                             <span class="badge bg-success">Published</span>
@@ -112,7 +112,7 @@
         function deleteDownload(downloadId) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "This will delete both the download entry and the file. You won't be able to revert this!",
+                text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

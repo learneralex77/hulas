@@ -31,18 +31,27 @@ class DownloadController extends Controller
      */
     public function store(DownloadRequest $request)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        // Handle file upload
-        if ($request->hasFile('file')) {
-            $filePath = $request->file('file')->store('downloads', 'public');
-            $data['file'] = $filePath;
+            // Handle file upload
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                if ($file->isValid()) {
+                    $data['file'] = $file->store('downloads', 'public');
+                } else {
+                    throw new \Exception('Invalid file upload.');
+                }
+            }
+
+            Download::create($data);
+
+            return redirect()->route('downloads.index')
+                ->with('success', 'Download created successfully.');
+        } catch (\Exception $e) {
+            return back()->withInput()
+                ->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
-
-        Download::create($data);
-
-        return redirect()->route('downloads.index')
-            ->with('success', 'Download created successfully.');
     }
 
     /**
@@ -66,26 +75,35 @@ class DownloadController extends Controller
      */
     public function update(DownloadRequest $request, Download $download)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        // Handle file upload
-        if ($request->hasFile('file')) {
-            // Delete old file if exists
-            if ($download->file && Storage::disk('public')->exists($download->file)) {
-                Storage::disk('public')->delete($download->file);
+            // Handle file upload
+            if ($request->hasFile('file')) {
+                // Delete old file if exists
+                if ($download->file && Storage::disk('public')->exists($download->file)) {
+                    Storage::disk('public')->delete($download->file);
+                }
+
+                $file = $request->file('file');
+                if ($file->isValid()) {
+                    $data['file'] = $file->store('downloads', 'public');
+                } else {
+                    throw new \Exception('Invalid file upload.');
+                }
+            } else {
+                // Keep existing file
+                unset($data['file']);
             }
 
-            $filePath = $request->file('file')->store('downloads', 'public');
-            $data['file'] = $filePath;
-        } else {
-            // Keep existing file
-            unset($data['file']);
+            $download->update($data);
+
+            return redirect()->route('downloads.index')
+                ->with('success', 'Download updated successfully.');
+        } catch (\Exception $e) {
+            return back()->withInput()
+                ->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
-
-        $download->update($data);
-
-        return redirect()->route('downloads.index')
-            ->with('success', 'Download updated successfully.');
     }
 
     /**

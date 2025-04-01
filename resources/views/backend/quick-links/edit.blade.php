@@ -23,7 +23,7 @@
                 <form action="{{ route('quick-links.update', $quickLink) }}" method="POST" id="quick-link-form"
                     class="needs-validation" novalidate>
                     @method('PUT')
-                    @include('quick-links.partials.form')
+                    @include('backend.quick-links.partials.form')
                 </form>
             </div>
         </div>

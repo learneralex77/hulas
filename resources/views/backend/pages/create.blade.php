@@ -20,7 +20,7 @@
 
                 <form action="{{ route('pages.store') }}" method="POST" enctype="multipart/form-data" id="page-form">
                     @csrf
-                    @include('pages.partials.form')
+                    @include('backend.pages.partials.form')
                 </form>
             </div>
         </div>

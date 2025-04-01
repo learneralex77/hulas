@@ -22,7 +22,7 @@
                     id="gallery-form">
                     @csrf
                     @method('PUT')
-                    @include('galleries.partials.form')
+                    @include('backend.galleries.partials.form')
                 </form>
             </div>
         </div>

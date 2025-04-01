@@ -21,7 +21,7 @@
                 <form action="{{ route('about-us.store') }}" method="POST" enctype="multipart/form-data"
                     class="needs-validation" novalidate>
                     @csrf
-                    @include('about-us.partials.form')
+                    @include('backend.about-us.partials.form')
                 </form>
             </div>
         </div>

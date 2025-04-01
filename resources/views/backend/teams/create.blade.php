@@ -20,7 +20,7 @@
 
                 <form action="{{ route('teams.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @include('teams.partials.form')
+                    @include('backend.teams.partials.form')
                 </form>
             </div>
         </div>

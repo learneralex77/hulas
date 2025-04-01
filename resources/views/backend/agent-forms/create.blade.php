@@ -23,7 +23,7 @@
                 <form action="{{ route('agent-forms.store') }}" method="POST" enctype="multipart/form-data"
                     class="needs-validation" novalidate>
                     @csrf
-                    @include('agent-forms.partials.form')
+                    @include('backend.agent-forms.partials.form')
                 </form>
             </div>
         </div>

@@ -22,7 +22,7 @@
                     novalidate>
                     @csrf
                     @method('PUT')
-                    @include('agent-details.partials.form')
+                    @include('backend.agent-details.partials.form')
                 </form>
             </div>
         </div>

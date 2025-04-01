@@ -21,7 +21,7 @@
                 <form action="{{ route('designations.update', $designation) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    @include('designations.partials.form')
+                    @include('backend.designations.partials.form')
                 </form>
             </div>
         </div>

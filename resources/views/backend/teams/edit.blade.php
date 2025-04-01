@@ -21,7 +21,7 @@
                 <form action="{{ route('teams.update', $team) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    @include('teams.partials.form')
+                    @include('backend.teams.partials.form')
                 </form>
             </div>
         </div>

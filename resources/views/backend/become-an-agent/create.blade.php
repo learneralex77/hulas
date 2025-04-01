@@ -21,7 +21,7 @@
                 <form action="{{ route('become-an-agent.store') }}" method="POST" enctype="multipart/form-data"
                     id="agent-form" class="needs-validation" novalidate>
                     @csrf
-                    @include('become-an-agent.partials.form')
+                    @include('backend.become-an-agent.partials.form')
                 </form>
             </div>
         </div>

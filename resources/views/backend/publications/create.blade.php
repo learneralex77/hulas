@@ -23,7 +23,7 @@
                 <form action="{{ route('publications.store') }}" method="POST" enctype="multipart/form-data"
                     class="needs-validation" novalidate>
                     @csrf
-                    @include('publications.partials.form')
+                    @include('backend.publications.partials.form')
                 </form>
             </div>
         </div>

@@ -13,7 +13,7 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-        $contacts = ContactUs::latest()->get();
+        $contacts = ContactUs::orderBy('display_order')->get();
         return view('backend.contact-us.index', compact('contacts'));
     }
 

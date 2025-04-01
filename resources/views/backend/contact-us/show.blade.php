@@ -8,74 +8,83 @@
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Contact Inquiry Details</h3>
+                <h3 class="block-title">Contact Inquiry Details: {{ $contactUs->full_name }}</h3>
                 <div class="block-options">
                     <a href="{{ route('contact-us.edit', $contactUs) }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
-                    <a href="{{ route('contact-us.index') }}" class="btn btn-sm btn-alt-primary">
+                    <a href="{{ route('contact-us.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
-
                 </div>
             </div>
             <div class="block-content">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <!-- Basic info in two columns -->
-                        <div class="row">
-                            <div class="col-md-6">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th style="width: 40%;">ID</th>
-                                        <td>{{ $contactUs->id }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Full Name</th>
-                                        <td>{{ $contactUs->full_name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Email</th>
-                                        <td>
-                                            <a href="mailto:{{ $contactUs->email }}">{{ $contactUs->email }}</a>
-                                        </td>
-                                    </tr>
-                                </table>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Basic Information</h3>
                             </div>
-                            <div class="col-md-6">
-                                <table class="table table-bordered">
-                                    <tr>
-                                        <th style="width: 40%;">Phone Number</th>
-                                        <td>{{ $contactUs->phone_number }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Status</th>
-                                        <td>
-                                            @if ($contactUs->is_contacted)
-                                                <span class="badge bg-success">Contacted</span>
-                                            @else
-                                                <span class="badge bg-warning">Pending</span>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Created At</th>
-                                        <td>{{ $contactUs->created_at->format('M d, Y H:i A') }}</td>
-                                    </tr>
-                                </table>
+                            <div class="block-content">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">ID:</div>
+                                    <div class="col-md-8">{{ $contactUs->id }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Full Name:</div>
+                                    <div class="col-md-8">{{ $contactUs->full_name }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Email:</div>
+                                    <div class="col-md-8">
+                                        {{ $contactUs->email }}
+                                    
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Phone Number:</div>
+                                    <div class="col-md-8">{{ $contactUs->phone_number }}</div>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Additional Details</h3>
+                            </div>
+                            <div class="block-content">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Status:</div>
+                                    <div class="col-md-8">
+                                        @if ($contactUs->is_contacted)
+                                            <span class="badge bg-success">Contacted</span>
+                                        @else
+                                            <span class="badge bg-warning">Pending</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Created At:</div>
+                                    <div class="col-md-8">{{ $contactUs->created_at->format('M d, Y H:i') }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Updated At:</div>
+                                    <div class="col-md-8">{{ $contactUs->updated_at->format('M d, Y H:i') }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                        <!-- Remarks and updated at in separate section -->
-                        <div class="row mt-4">
-                            <div class="col-lg-12">
-                                <h4>Contact Remarks</h4>
-                                <div class="p-3 bg-body-light rounded mb-4">
-                                    {{ $contactUs->contact_remarks ?? 'No remarks provided.' }}
-                                </div>
-                                <div class="small text-muted">
-                                    Last Updated: {{ $contactUs->updated_at->format('F j, Y g:i A') }}
-                                </div>
+                <div class="block block-rounded mt-4">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Contact Remarks</h3>
+                    </div>
+                    <div class="block-content">
+                        <div class="row">
+                            <div class="col-12">
+                                {{ $contactUs->contact_remarks ?? 'No remarks provided.' }}
                             </div>
                         </div>
                     </div>

@@ -14,7 +14,7 @@ class BecomeAnAgentController extends Controller
      */
     public function index()
     {
-        $agents = BecomeAnAgent::latest()->get();
+        $agents = BecomeAnAgent::orderBy('display_order')->get();
         return view('become-an-agent.index', compact('agents'));
     }
 
@@ -52,6 +52,7 @@ class BecomeAnAgentController extends Controller
 
         BecomeAnAgent::create([
             'images' => $imagesPaths,
+            'display_order' => $data['display_order'] ?? 0,
         ]);
 
         return redirect()->route('become-an-agent.index')
@@ -79,6 +80,8 @@ class BecomeAnAgentController extends Controller
      */
     public function update(BecomeAnAgentRequest $request, BecomeAnAgent $becomeAnAgent)
     {
+        $data = $request->validated();
+        
         // Get the existing images
         $imagesPaths = $becomeAnAgent->images ?? [];
         
@@ -135,6 +138,7 @@ class BecomeAnAgentController extends Controller
         // Update the record
         $becomeAnAgent->update([
             'images' => $imagesPaths,
+            'display_order' => $data['display_order'] ?? 0,
         ]);
 
         return redirect()->route('become-an-agent.index')

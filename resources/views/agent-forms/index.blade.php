@@ -26,6 +26,7 @@
                                 <th>Name</th>
                                 <th>Number</th>
                                 <th>District</th>
+                                <th>Display Order</th>
                                 <th>Address</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -37,6 +38,7 @@
                                     <td>{{ $agentForm->name }}</td>
                                     <td>{{ $agentForm->number }}</td>
                                     <td>{{ $agentForm->district->name }}</td>
+                                    <td>{{ $agentForm->display_order }}</td>
                                     <td>{{ Str::limit($agentForm->address, 30) }}</td>
                                     <td class="text-center">
                                         <div class="gap-2">

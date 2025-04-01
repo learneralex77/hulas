@@ -34,11 +34,7 @@ class AgentFormController extends Controller
     {
         $data = $request->validated();
         
-        // Map 'phone' to 'number' for database
-        if (isset($data['phone'])) {
-            $data['number'] = $data['phone'];
-            unset($data['phone']);
-        }
+        // No need to map 'phone' to 'number' anymore as we're using 'number' directly
         
         AgentForm::create($data);
 
@@ -70,11 +66,7 @@ class AgentFormController extends Controller
     {
         $data = $request->validated();
         
-        // Map 'phone' to 'number' for database
-        if (isset($data['phone'])) {
-            $data['number'] = $data['phone'];
-            unset($data['phone']);
-        }
+        // No need to map 'phone' to 'number' anymore as we're using 'number' directly
         
         $agentForm->update($data);
 

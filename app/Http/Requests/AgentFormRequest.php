@@ -23,12 +23,13 @@ class AgentFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:20', 'regex:/^[0-9+\-\s()]*$/'],
+            'number' => ['required', 'string', 'max:20', 'regex:/^[0-9+\-\s()]*$/'],
             'email' => ['required', 'email', 'max:255'],
             'district_id' => ['required', 'exists:districts,id'],
             'address' => ['required', 'string', 'max:255'],
             'message' => ['nullable', 'string'],
             'is_processed' => ['nullable', 'boolean'],
+            'display_order' => ['nullable', 'integer', 'min:0'],
         ];
     }
 
@@ -41,12 +42,13 @@ class AgentFormRequest extends FormRequest
     {
         return [
             'name' => 'full name',
-            'phone' => 'phone number',
+            'number' => 'phone number',
             'email' => 'email address',
             'district_id' => 'district',
             'address' => 'address',
             'message' => 'message',
             'is_processed' => 'processed status',
+            'display_order' => 'display order',
         ];
     }
 
@@ -62,10 +64,10 @@ class AgentFormRequest extends FormRequest
             'name.string' => 'The full name must be a string.',
             'name.max' => 'The full name may not be greater than 255 characters.',
             
-            'phone.required' => 'The phone number is required.',
-            'phone.string' => 'The phone number must be a string.',
-            'phone.max' => 'The phone number may not be greater than 20 characters.',
-            'phone.regex' => 'The phone number format is invalid. Please use only numbers, spaces, and these characters: + - ( )',
+            'number.required' => 'The phone number is required.',
+            'number.string' => 'The phone number must be a string.',
+            'number.max' => 'The phone number may not be greater than 20 characters.',
+            'number.regex' => 'The phone number format is invalid. Please use only numbers, spaces, and these characters: + - ( )',
             
             'email.required' => 'The email address is required.',
             'email.email' => 'Please enter a valid email address.',
@@ -79,6 +81,8 @@ class AgentFormRequest extends FormRequest
             'address.max' => 'The address may not be greater than 255 characters.',
             
             'message.string' => 'The message must be a string.',
+            'display_order.integer' => 'The display order must be an integer.',
+            'display_order.min' => 'The display order must be at least 0.',
         ];
     }
 

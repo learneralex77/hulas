@@ -26,7 +26,8 @@ class ContactUs extends Model
         'email',
         'phone_number',
         'is_contacted',
-        'contact_remarks'
+        'contact_remarks',
+        'display_order'
     ];
     
     /**

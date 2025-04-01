@@ -25,12 +25,14 @@ class BecomeAnAgentRequest extends FormRequest
             return [
                 'images' => ['required', 'array'],
                 'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+                'display_order' => ['nullable', 'integer', 'min:0'],
             ];
         } else if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             return [
                 'images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
                 'delete_images' => ['nullable', 'array'],
                 'delete_images.*' => ['numeric'],
+                'display_order' => ['nullable', 'integer', 'min:0'],
             ];
         }
         
@@ -49,6 +51,7 @@ class BecomeAnAgentRequest extends FormRequest
             'images.*' => 'image',
             'delete_images' => 'images to delete',
             'delete_images.*' => 'image to delete',
+            'display_order' => 'display order',
         ];
     }
 
@@ -69,6 +72,9 @@ class BecomeAnAgentRequest extends FormRequest
             
             'delete_images.array' => 'Delete images must be an array.',
             'delete_images.*.numeric' => 'Image index must be a number.',
+            
+            'display_order.integer' => 'The display order must be an integer.',
+            'display_order.min' => 'The display order must be at least 0.',
         ];
     }
 }

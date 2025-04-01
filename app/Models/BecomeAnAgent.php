@@ -23,6 +23,7 @@ class BecomeAnAgent extends Model
      */
     protected $fillable = [
         'images',
+        'display_order',
     ];
 
     /**

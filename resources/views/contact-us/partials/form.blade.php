@@ -45,13 +45,22 @@
             </div>
         </div>
 
-        <!-- Remarks field (full width) -->
-        <div class="mb-4">
-            <label class="form-label" for="contact_remarks">Contact Remarks</label>
-            <textarea class="form-control @error('contact_remarks') is-invalid @enderror" id="contact_remarks" name="contact_remarks" rows="4">{{ old('contact_remarks', $contactUs->contact_remarks ?? '') }}</textarea>
-            @error('contact_remarks')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+        <!-- Remarks field and Display Order in the same row -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label class="form-label" for="contact_remarks">Contact Remarks</label>
+                <textarea class="form-control @error('contact_remarks') is-invalid @enderror" id="contact_remarks" name="contact_remarks" rows="4">{{ old('contact_remarks', $contactUs->contact_remarks ?? '') }}</textarea>
+                @error('contact_remarks')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-3">
+                <label class="form-label" for="display_order">Display Order</label>
+                <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order" value="{{ old('display_order', $contactUs->display_order ?? 0) }}">
+                @error('display_order')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
 
         <div class="mb-3">

@@ -25,7 +25,7 @@
                                 <th>S.N.</th>
                                 <th>Preview</th>
                                 <th>Image Count</th>
-                                <th>Created At</th>
+                                <th>Display Order</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
                         </thead>
@@ -51,7 +51,7 @@
                                             0
                                         @endif
                                     </td>
-                                    <td>{{ $agent->created_at->format('M d, Y H:i') }}</td>
+                                    <td>{{ $agent->display_order }}</td>
                                     <td class="text-center">
                                         <div class="gap-2">
                                             <a href="{{ route('become-an-agent.show', $agent) }}"

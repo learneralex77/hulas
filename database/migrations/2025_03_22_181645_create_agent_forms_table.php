@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('agent_forms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('number');
+            $table->string('number')->default('0');
             $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
             $table->integer('display_order')->default(0);
-
+            $table->string('email');
             $table->text('message')->nullable();
-            $table->text('address')->nullable();
+            $table->text('address')->default('');
+            $table->boolean('is_processed')->default(false);
             $table->timestamps();
         });
     }

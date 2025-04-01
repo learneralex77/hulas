@@ -13,9 +13,12 @@ class AgentForm extends Model
     protected $fillable = [
         'name',
         'number',
+        'email',
         'district_id',
         'message',
-        'address'
+        'address',
+        'is_processed',
+        'display_order'
     ];
 
     /**

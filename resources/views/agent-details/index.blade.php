@@ -26,8 +26,9 @@
                             <tr>
                                 <th>S.N.</th>
                                 <th>District</th>
-                                <th>State Agent Names</th>
+                                <th>Agent Names</th>
                                 <th>Contact Numbers</th>
+                                <th>Display Order</th>
                                 <th>Contact Persons</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -61,6 +62,7 @@
                                             {{ $contactNumbers[0] ?? '' }}
                                         @endif
                                     </td>
+                                    <td>{{ $agentDetail->display_order }}</td>
                                     <td>
                                         @php
                                             $contactPersons = json_decode($agentDetail->contact_person);

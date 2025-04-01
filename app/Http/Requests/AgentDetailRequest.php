@@ -27,6 +27,7 @@ class AgentDetailRequest extends FormRequest
             'addresses.*' => ['nullable', 'string'],
             'contact_nos.*' => ['nullable', 'string', 'max:20'],
             'contact_persons.*' => ['nullable', 'string', 'max:255'],
+            'display_order' => ['nullable', 'integer', 'min:0'],
         ];
     }
 
@@ -43,6 +44,7 @@ class AgentDetailRequest extends FormRequest
             'addresses.*' => 'address',
             'contact_nos.*' => 'contact number',
             'contact_persons.*' => 'contact person',
+            'display_order' => 'display order',
         ];
     }
 
@@ -68,6 +70,8 @@ class AgentDetailRequest extends FormRequest
             
             'contact_persons.*.string' => 'Contact persons must be text.',
             'contact_persons.*.max' => 'Contact persons may not be greater than 255 characters.',
+            'display_order.integer' => 'The display order must be an integer.',
+            'display_order.min' => 'The display order must be at least 0.',
         ];
     }
 
@@ -84,6 +88,7 @@ class AgentDetailRequest extends FormRequest
             'addresses' => $this->input('addresses', []),
             'contact_nos' => $this->input('contact_nos', []),
             'contact_persons' => $this->input('contact_persons', []),
+            'display_order' => $this->input('display_order', 0),
         ]);
     }
 }

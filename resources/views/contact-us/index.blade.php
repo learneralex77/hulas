@@ -26,6 +26,7 @@
                                 <th>Full Name</th>
                                 <th>Email</th>
                                 <th>Phone Number</th>
+                                <th>Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -37,6 +38,7 @@
                                     <td>{{ $contact->full_name }}</td>
                                     <td>{{ $contact->email }}</td>
                                     <td>{{ $contact->phone_number }}</td>
+                                    <td>{{ $contact->display_order }}</td>
                                     <td>
                                         @if ($contact->is_contacted)
                                             <span class="badge bg-success">Contacted</span>

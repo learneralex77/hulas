@@ -12,9 +12,9 @@
             </div>
             <div class="col-md-6">
                 <label class="form-label" for="phone">Phone Number <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
-                    name="phone" value="{{ old('phone', $agentForm->number ?? '') }}" required>
-                @error('phone')
+                <input type="text" class="form-control @error('number') is-invalid @enderror" id="phone"
+                    name="number" value="{{ old('number', $agentForm->number ?? '') }}" required>
+                @error('number')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -48,14 +48,24 @@
             </div>
         </div>
 
-        <!-- Address field (full width) -->
-        <div class="mb-4">
-            <label class="form-label" for="address">Address <span class="text-danger">*</span></label>
-            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
-                name="address" value="{{ old('address', $agentForm->address ?? '') }}" required>
-            @error('address')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+        <!-- Address and Display Order fields in one row -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label class="form-label" for="address">Address <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
+                    name="address" value="{{ old('address', $agentForm->address ?? '') }}" required>
+                @error('address')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="display_order">Display Order</label>
+                <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order"
+                    name="display_order" value="{{ old('display_order', $agentForm->display_order ?? 0) }}">
+                @error('display_order')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
 
         <!-- Message and Status fields in one row -->

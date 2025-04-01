@@ -27,6 +27,7 @@ class ContactUsRequest extends FormRequest
             'phone_number' => ['required', 'string', 'max:20'],
             'contact_remarks' => ['nullable', 'string'],
             'is_contacted' => ['nullable', 'boolean'],
+            'display_order' => ['nullable', 'integer', 'min:0'],
         ];
     }
 
@@ -43,6 +44,7 @@ class ContactUsRequest extends FormRequest
             'phone_number' => 'phone number',
             'contact_remarks' => 'contact remarks',
             'is_contacted' => 'contacted status',
+            'display_order' => 'display order',
         ];
     }
 
@@ -67,6 +69,8 @@ class ContactUsRequest extends FormRequest
             'phone_number.max' => 'The phone number may not be greater than 20 characters.',
             
             'contact_remarks.string' => 'The contact remarks must be a string.',
+            'display_order.integer' => 'The display order must be an integer.',
+            'display_order.min' => 'The display order must be at least 0.',
         ];
     }
 

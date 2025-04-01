@@ -1,7 +1,5 @@
 <div class="row px-0">
     <div class="col-12">
-       
-        
         <div class="d-flex mb-2 ps-0 mt-2">
             <h4 class="mb-0">Images</h4>
             <button type="button" class="btn btn-sm btn-alt-success ms-2" id="add-image-btn">
@@ -29,15 +27,26 @@
                                 </button>
                                 @endif
                             </div>
-                            <div class="mb-2 ps-0">
-                                <label class="form-label ps-0" for="images-{{ $index }}">Image <span class="text-danger">*</span></label>
-                                <input class="form-control @error('images.'.$index) is-invalid @enderror" type="file" id="images-{{ $index }}" name="images[]" accept="image/*" required>
-                                <div class="form-text">
-                                    Allowed types: JPG, PNG, GIF. Max size: 2MB.
+                            <div class="row mb-2 ps-0">
+                                <div class="col-md-8">
+                                    <label class="form-label ps-0" for="images-{{ $index }}">Image <span class="text-danger">*</span></label>
+                                    <input class="form-control @error('images.'.$index) is-invalid @enderror" type="file" id="images-{{ $index }}" name="images[]" accept="image/*" required>
+                                    <div class="form-text">
+                                        Allowed types: JPG, PNG, GIF. Max size: 2MB.
+                                    </div>
+                                    @error('images.'.$index)
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
-                                @error('images.'.$index)
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                @if($index == 0)
+                                <div class="col-md-4">
+                                    <label class="form-label" for="display_order">Display Order</label>
+                                    <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order" value="{{ old('display_order', $becomeAnAgent->display_order ?? 0) }}">
+                                    @error('display_order')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                @endif
                             </div>
                             <div class="preview-container mb-1">
                                 <div class="mt-2">
@@ -51,18 +60,27 @@
             @else
                 <div class="mb-2 image-entry">
                     <div class="p-0 border-0">
-                        <div class="mb-2 ps-0">
-                            <label class="form-label ps-0" for="images-0">Image <span class="text-danger">*</span></label>
-                            <input class="form-control @error('images') is-invalid @enderror @error('images.0') is-invalid @enderror" type="file" id="images-0" name="images[]" accept="image/*" required>
-                            <div class="form-text">
-                                Allowed types: JPG, PNG, GIF. Max size: 2MB.
+                        <div class="row mb-2 ps-0">
+                            <div class="col-md-8">
+                                <label class="form-label ps-0" for="images-0">Image <span class="text-danger">*</span></label>
+                                <input class="form-control @error('images') is-invalid @enderror @error('images.0') is-invalid @enderror" type="file" id="images-0" name="images[]" accept="image/*" required>
+                                <div class="form-text">
+                                    Allowed types: JPG, PNG, GIF. Max size: 2MB.
+                                </div>
+                                @error('images')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                @error('images.0')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-                            @error('images')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            @error('images.0')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <div class="col-md-4">
+                                <label class="form-label" for="display_order">Display Order</label>
+                                <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order" value="{{ old('display_order', $becomeAnAgent->display_order ?? 0) }}">
+                                @error('display_order')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                         <div class="preview-container mb-1"></div>
                     </div>

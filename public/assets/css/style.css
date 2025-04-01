@@ -1,11 +1,11 @@
 @import "tailwindcss";
-@import "flowbite/src/themes/default";
-@plugin "flowbite/plugin";
+@import "flowbite";
 
-@theme {
-  --color-primary: #1e2939;
-  --color-accent: #ffdd00 ;
-  --color-bgPrimary: #ffffff ;
+/* Define CSS Variables Correctly */
+:root {
+  --color-primary: #ffdd00;
+  --color-accent: #ffdd00;
+  --color-bgPrimary: #ffffff;
 }
 
 * {
@@ -17,6 +17,7 @@
   visibility: visible;
 }
 
+/* Use CSS Variables for Colors */
 .text-accent {
   color: var(--color-accent);
 }
@@ -29,6 +30,7 @@
   color: var(--color-bgPrimary);
 }
 
+/* Swiper Styles */
 .swiper {
   width: 100%;
   height: 100%;

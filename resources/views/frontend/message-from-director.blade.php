@@ -1,6 +1,6 @@
 @extends('frontend.backend.layouts.app')
 @section('title', 'Home')
-@section('meta', 'Welcome to Goodwill Finance Pvt. Ltd.')
+@section('meta', 'Welcome to Hulas Remittance')
 @section('content')
     <!-- Main Container -->
     <div class="container mx-auto px-6 md:px-16 lg:px-24 py-12">

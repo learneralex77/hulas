@@ -20,36 +20,52 @@
             </div>
             <div class="block-content">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th class="text-center" style="width: 200px;">ID</th>
-                                        <td>{{ $designation->id }}</td>
-                                        <th class="text-center" style="width: 200px;">Name</th>
-                                        <td>{{ $designation->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-center">Display Order</th>
-                                        <td>{{ $designation->display_order }}</td>
-                                        <th class="text-center">Status</th>
-                                        <td class="text-center">
-                                            @if ($designation->is_published)
-                                                <span class="badge bg-success">Published</span>
-                                            @else
-                                                <span class="badge bg-warning">Draft</span>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-center">Created</th>
-                                        <td>{{ $designation->created_at->format('M d, Y H:i') }}</td>
-                                        <th class="text-center">Last Updated</th>
-                                        <td>{{ $designation->updated_at->format('M d, Y H:i') }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Basic Information</h3>
+                            </div>
+                            <div class="block-content">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">ID:</div>
+                                    <div class="col-md-8">{{ $designation->id }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Name:</div>
+                                    <div class="col-md-8">{{ $designation->name }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Display Order:</div>
+                                    <div class="col-md-8">{{ $designation->display_order }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Additional Details</h3>
+                            </div>
+                            <div class="block-content">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Status:</div>
+                                    <div class="col-md-8">
+                                        @if ($designation->is_published)
+                                            <span class="badge bg-success">Published</span>
+                                        @else
+                                            <span class="badge bg-warning">Draft</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Created At:</div>
+                                    <div class="col-md-8">{{ $designation->created_at->format('M d, Y H:i') }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Updated At:</div>
+                                    <div class="col-md-8">{{ $designation->updated_at->format('M d, Y H:i') }}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

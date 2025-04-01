@@ -28,8 +28,8 @@
                                 <th class="d-none d-sm-table-cell">Slug</th>
                                 <th class="text-center" style="width: 7%;">Order</th>
                                 <th class="d-none d-lg-table-cell" style="width: 15%;">Parent</th>
-                                <th class="text-center" style="width: 10%;">Status</th>
-                                <th class="text-center" style="width: 13%;">Actions</th>
+                                <th class="" style="width: 10%;">Status</th>
+                                <th class="" style="width: 13%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,6 +76,18 @@
 
 @section('scripts')
     <script>
+          @if (session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
         function deleteMenu(menuId) {
             Swal.fire({
                 title: 'Are you sure?',

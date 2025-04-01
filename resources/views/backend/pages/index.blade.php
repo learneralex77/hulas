@@ -28,7 +28,7 @@
                                 <th class="d-none d-md-table-cell">Slug</th>
                                 <th class="d-none d-lg-table-cell">Menu</th>
                                 <th class="d-none d-xl-table-cell" style="width: 150px;">Display Order</th>
-                                <th class="text-center" style="width: 13%;">Actions</th>
+                                <th style="width: 13%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

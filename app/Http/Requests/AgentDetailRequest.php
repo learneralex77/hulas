@@ -28,6 +28,7 @@ class AgentDetailRequest extends FormRequest
             'contact_nos.*' => ['nullable', 'string', 'max:20'],
             'contact_persons.*' => ['nullable', 'string', 'max:255'],
             'display_order' => ['nullable', 'integer', 'min:0'],
+            'is_published' => ['nullable', 'boolean'],
         ];
     }
 
@@ -45,6 +46,7 @@ class AgentDetailRequest extends FormRequest
             'contact_nos.*' => 'contact number',
             'contact_persons.*' => 'contact person',
             'display_order' => 'display order',
+            'is_published' => 'status',
         ];
     }
 
@@ -89,6 +91,7 @@ class AgentDetailRequest extends FormRequest
             'contact_nos' => $this->input('contact_nos', []),
             'contact_persons' => $this->input('contact_persons', []),
             'display_order' => $this->input('display_order', 0),
+            'is_published' => $this->has('is_published'),
         ]);
     }
 }

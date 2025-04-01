@@ -42,6 +42,7 @@ class AgentDetailController extends Controller
             'contact_no' => json_encode($data['contact_nos'] ?? []),
             'contact_person' => json_encode($data['contact_persons'] ?? []),
             'display_order' => $data['display_order'] ?? 0,
+            'is_published' => (bool) $request->input('is_published', true),
         ]);
 
         return redirect()->route('agent-details.index')
@@ -93,6 +94,7 @@ class AgentDetailController extends Controller
             'contact_no' => json_encode($data['contact_nos'] ?? []),
             'contact_person' => json_encode($data['contact_persons'] ?? []),
             'display_order' => $data['display_order'] ?? 0,
+            'is_published' => (bool) $request->input('is_published', true),
         ]);
 
         return redirect()->route('agent-details.index')

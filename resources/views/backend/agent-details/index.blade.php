@@ -30,6 +30,7 @@
                                 <th>Contact Numbers</th>
                                 <th>Display Order</th>
                                 <th>Contact Persons</th>
+                                <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
                         </thead>
@@ -47,19 +48,18 @@
                                             {{ $stateAgentNames[0] }}
                                             <span class="badge bg-info">+{{ count($stateAgentNames) - 1 }}</span>
                                         @else
-                                            {{ $stateAgentNames[0] ?? '' }}
+                                            {{ $stateAgentNames[0] ?? 'N/A' }}
                                         @endif
                                     </td>
                                     <td>
                                         @php
-                                            $contactNumbers = json_decode($agentDetail->contact_no);
+                                            $contactNos = json_decode($agentDetail->contact_no);
                                         @endphp
-
-                                        @if (count($contactNumbers) > 1)
-                                            {{ $contactNumbers[0] }}
-                                            <span class="badge bg-info">+{{ count($contactNumbers) - 1 }}</span>
+                                        @if (count($contactNos) > 1)
+                                            {{ $contactNos[0] }}
+                                            <span class="badge bg-info">+{{ count($contactNos) - 1 }}</span>
                                         @else
-                                            {{ $contactNumbers[0] ?? '' }}
+                                            {{ $contactNos[0] ?? 'N/A' }}
                                         @endif
                                     </td>
                                     <td>{{ $agentDetail->display_order }}</td>
@@ -67,12 +67,18 @@
                                         @php
                                             $contactPersons = json_decode($agentDetail->contact_person);
                                         @endphp
-
                                         @if (count($contactPersons) > 1)
                                             {{ $contactPersons[0] }}
                                             <span class="badge bg-info">+{{ count($contactPersons) - 1 }}</span>
                                         @else
-                                            {{ $contactPersons[0] ?? '' }}
+                                            {{ $contactPersons[0] ?? 'N/A' }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($agentDetail->is_published)
+                                            <span class="badge bg-success">Published</span>
+                                        @else
+                                            <span class="badge bg-warning">Draft</span>
                                         @endif
                                     </td>
                                     <td class="text-center">

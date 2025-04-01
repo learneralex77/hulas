@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('contact_no')->nullable(); // JSON array of contact numbers
             $table->text('contact_person')->nullable(); // JSON array of contact persons
             $table->integer('display_order')->default(0);
+            $table->boolean('is_published')->default(true);
             $table->timestamps();
         });
     }

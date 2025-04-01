@@ -15,7 +15,8 @@ class AgentDetail extends Model
         'address',
         'contact_no',
         'contact_person',
-        'display_order'
+        'display_order',
+        'is_published'
     ];
 
     /**

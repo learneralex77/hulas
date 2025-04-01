@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\FrontendController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontendController;
 
 
 Route::get('/', function () {
@@ -26,9 +26,9 @@ Route::get('sitemap', [FrontendController::class, 'sitemap'])->name('sitemap');
 Route::get('terms-and-conditions', [FrontendController::class, 'termsAndConditions'])->name('termsAndConditions');
 
 
-Route::fallback(function () {
-    return view('frontend.layouts.errors.404');
-});
+// Route::fallback(function () {
+//     return view('frontend.layouts.errors.404');
+// });
 
 
 require __DIR__ . '/auth.php';

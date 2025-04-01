@@ -14,7 +14,7 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::orderBy('display_order')->get();
-        return view('departments.index', compact('departments'));
+        return view('backend.departments.index', compact('departments'));
     }
 
     /**
@@ -22,7 +22,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view('departments.create');
+        return view('backend.departments.create');
     }
 
     /**
@@ -31,7 +31,7 @@ class DepartmentController extends Controller
     public function store(DepartmentRequest $request)
     {
         $data = $request->validated();
-        
+
         Department::create($data);
 
         return redirect()->route('departments.index')
@@ -43,7 +43,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        return view('departments.show', compact('department'));
+        return view('backend.departments.show', compact('department'));
     }
 
     /**
@@ -51,7 +51,7 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        return view('departments.edit', compact('department'));
+        return view('backend.departments.edit', compact('department'));
     }
 
     /**
@@ -60,7 +60,7 @@ class DepartmentController extends Controller
     public function update(DepartmentRequest $request, Department $department)
     {
         $data = $request->validated();
-        
+
         $department->update($data);
 
         return redirect()->route('departments.index')
@@ -74,7 +74,7 @@ class DepartmentController extends Controller
     {
         try {
             $department->delete();
-            
+
             if (request()->ajax()) {
                 return response()->json([
                     'success' => true,

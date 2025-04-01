@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Become an Agent Management
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -62,27 +62,25 @@
                                                 class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <button type="button" class="btn btn-sm btn-danger" 
+                                            <button type="button" class="btn btn-sm btn-danger"
                                                 onclick="deleteAgent({{ $agent->id }})" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
-                                @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
 
-               
+
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-  
-
     <script>
         // Success message
         @if (session('success'))

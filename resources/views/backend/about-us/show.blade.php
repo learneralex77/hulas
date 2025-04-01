@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     View About Us
@@ -10,24 +10,24 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">About Us Information</h3>
                 <div class="block-options">
-                <a href="{{ route('about-us.edit', $aboutUs) }}" class="btn btn-sm btn-alt-success me-1">
+                    <a href="{{ route('about-us.edit', $aboutUs) }}" class="btn btn-sm btn-alt-success me-1">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
                     <a href="{{ route('about-us.index') }}" class="btn btn-sm btn-alt-primary me-1">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
-                   
+
                     <!-- <form action="{{ route('about-us.destroy', $aboutUs) }}" method="POST" style="display: inline-block; margin: 0;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-alt-danger" onclick="return confirm('Are you sure you want to delete this item?')">
-                            <i class="fa fa-trash"></i> Delete
-                        </button>
-                    </form> -->
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-alt-danger" onclick="return confirm('Are you sure you want to delete this item?')">
+                                <i class="fa fa-trash"></i> Delete
+                            </button>
+                        </form> -->
                     <!-- <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="tooltip"
-                                                title="Delete" onclick="deleteDepartment({{ $department->id }})"> <i
-                                                    class="fa fa-times">Delete</i>
-                                 </button> -->
+                                                    title="Delete" onclick="deleteDepartment({{ $department->id }})"> <i
+                                                        class="fa fa-times">Delete</i>
+                                     </button> -->
                 </div>
             </div>
             <div class="block-content">
@@ -52,8 +52,9 @@
                                             <tr>
                                                 <th>Video Link</th>
                                                 <td>
-                                                    @if($aboutUs->video_link)
-                                                        <a href="{{ $aboutUs->video_link }}" target="_blank">{{ $aboutUs->video_link }}</a>
+                                                    @if ($aboutUs->video_link)
+                                                        <a href="{{ $aboutUs->video_link }}"
+                                                            target="_blank">{{ $aboutUs->video_link }}</a>
                                                     @else
                                                         N/A
                                                     @endif
@@ -83,8 +84,9 @@
                                 <h3 class="block-title">Image</h3>
                             </div>
                             <div class="block-content">
-                                @if($aboutUs->image)
-                                    <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image" class="img-fluid rounded">
+                                @if ($aboutUs->image)
+                                    <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image"
+                                        class="img-fluid rounded">
                                 @else
                                     <div class="alert alert-info">
                                         No image uploaded.
@@ -109,9 +111,9 @@
                         <h3 class="block-title">Mission & Vision</h3>
                     </div>
                     <div class="block-content">
-                        @if(is_array($aboutUs->mission_vision) && count($aboutUs->mission_vision) > 0)
+                        @if (is_array($aboutUs->mission_vision) && count($aboutUs->mission_vision) > 0)
                             <div class="row">
-                                @foreach($aboutUs->mission_vision as $item)
+                                @foreach ($aboutUs->mission_vision as $item)
                                     <div class="col-md-4 mb-4">
                                         <div class="block block-rounded h-100">
                                             <div class="block-header block-header-default">
@@ -137,4 +139,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

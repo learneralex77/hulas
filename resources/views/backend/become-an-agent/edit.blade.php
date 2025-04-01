@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Become an Agent Images
@@ -18,7 +18,8 @@
                 </div>
             </div>
             <div class="block-content">
-                <form action="{{ route('become-an-agent.update', $becomeAnAgent) }}" method="POST" enctype="multipart/form-data" id="agent-form" class="needs-validation" novalidate>
+                <form action="{{ route('become-an-agent.update', $becomeAnAgent) }}" method="POST"
+                    enctype="multipart/form-data" id="agent-form" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('become-an-agent.partials.form')
@@ -26,4 +27,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

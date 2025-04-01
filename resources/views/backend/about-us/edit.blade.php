@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit About Us
@@ -18,7 +18,8 @@
                 </div>
             </div>
             <div class="block-content">
-                <form action="{{ route('about-us.update', $aboutUs->id) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <form action="{{ route('about-us.update', $aboutUs->id) }}" method="POST" enctype="multipart/form-data"
+                    class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('about-us.partials.form')
@@ -30,4 +31,4 @@
 
 @section('scripts')
     <script src="{{ asset('js/about-us.js') }}"></script>
-@endsection 
+@endsection

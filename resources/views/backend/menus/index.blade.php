@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Menu Management
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -58,7 +58,7 @@
                                                 title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <button type="button" class="btn btn-sm btn-danger" 
+                                            <button type="button" class="btn btn-sm btn-danger"
                                                 onclick="deleteMenu({{ $menu->id }})" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
@@ -75,14 +75,11 @@
 @endsection
 
 @section('scripts')
-   
-
     <script>
-       
         function deleteMenu(menuId) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",  
+                text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

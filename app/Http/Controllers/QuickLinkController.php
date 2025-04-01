@@ -14,7 +14,7 @@ class QuickLinkController extends Controller
     public function index()
     {
         $quickLinks = QuickLink::orderBy('display_order')->get();
-        return view('quick-links.index', compact('quickLinks'));
+        return view('backend.quick-links.index', compact('quickLinks'));
     }
 
     /**
@@ -22,7 +22,7 @@ class QuickLinkController extends Controller
      */
     public function create()
     {
-        return view('quick-links.create');
+        return view('backend.quick-links.create');
     }
 
     /**
@@ -42,7 +42,7 @@ class QuickLinkController extends Controller
      */
     public function show(QuickLink $quickLink)
     {
-        return view('quick-links.show', compact('quickLink'));
+        return view('backend.quick-links.show', compact('quickLink'));
     }
 
     /**
@@ -50,7 +50,7 @@ class QuickLinkController extends Controller
      */
     public function edit(QuickLink $quickLink)
     {
-        return view('quick-links.edit', compact('quickLink'));
+        return view('backend.quick-links.edit', compact('quickLink'));
     }
 
     /**

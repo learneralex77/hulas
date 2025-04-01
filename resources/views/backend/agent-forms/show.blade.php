@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     View Agent Form
@@ -10,13 +10,13 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Agent Form Details</h3>
                 <div class="block-options">
-                <a href="{{ route('agent-forms.edit', $agentForm) }}" class="btn btn-sm btn-alt-primary">
+                    <a href="{{ route('agent-forms.edit', $agentForm) }}" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
                     <a href="{{ route('agent-forms.index') }}" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
-                  
+
                 </div>
             </div>
             <div class="block-content">
@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row mt-4">
                             <div class="col-md-12">
                                 <h4>Address</h4>
@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row mt-4">
                             <div class="col-md-12">
                                 <h4>Message</h4>
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="table-responsive">
@@ -114,4 +114,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

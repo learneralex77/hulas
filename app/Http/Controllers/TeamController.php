@@ -15,7 +15,7 @@ class TeamController extends Controller
     public function index()
     {
         $teams = Team::orderBy('type')->orderBy('display_order')->get();
-        return view('teams.index', compact('teams'));
+        return view('backend.teams.index', compact('teams'));
     }
 
     /**
@@ -24,7 +24,7 @@ class TeamController extends Controller
     public function create()
     {
         $teamTypes = Team::getTypes();
-        return view('teams.create', compact('teamTypes'));
+        return view('backend.teams.create', compact('teamTypes'));
     }
 
     /**
@@ -33,13 +33,13 @@ class TeamController extends Controller
     public function store(TeamRequest $request)
     {
         $data = $request->validated();
-        
+
         // Handle image upload
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('teams', 'public');
             $data['image'] = $imagePath;
         }
-        
+
         Team::create($data);
 
         return redirect()->route('teams.index')
@@ -51,7 +51,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        return view('teams.show', compact('team'));
+        return view('backend.teams.show', compact('team'));
     }
 
     /**
@@ -60,7 +60,7 @@ class TeamController extends Controller
     public function edit(Team $team)
     {
         $teamTypes = Team::getTypes();
-        return view('teams.edit', compact('team', 'teamTypes'));
+        return view('backend.teams.edit', compact('team', 'teamTypes'));
     }
 
     /**
@@ -69,18 +69,18 @@ class TeamController extends Controller
     public function update(TeamRequest $request, Team $team)
     {
         $data = $request->validated();
-        
+
         // Handle image upload
         if ($request->hasFile('image')) {
             // Delete old image if exists
             if ($team->image && Storage::disk('public')->exists($team->image)) {
                 Storage::disk('public')->delete($team->image);
             }
-            
+
             $imagePath = $request->file('image')->store('teams', 'public');
             $data['image'] = $imagePath;
         }
-        
+
         $team->update($data);
 
         return redirect()->route('teams.index')
@@ -97,9 +97,9 @@ class TeamController extends Controller
             if ($team->image && Storage::disk('public')->exists($team->image)) {
                 Storage::disk('public')->delete($team->image);
             }
-            
+
             $team->delete();
-            
+
             if (request()->ajax()) {
                 return response()->json([
                     'success' => true,

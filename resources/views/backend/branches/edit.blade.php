@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Branch
@@ -17,9 +17,10 @@
                 </div>
             </div>
             <div class="block-content">
-               
 
-                <form action="{{ route('branches.update', $branch) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                <form action="{{ route('branches.update', $branch) }}" method="POST" enctype="multipart/form-data"
+                    class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('branches.partials.form')
@@ -27,4 +28,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

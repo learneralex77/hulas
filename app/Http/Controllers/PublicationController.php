@@ -19,8 +19,8 @@ class PublicationController extends Controller
         $publications = Publication::with('category')
             ->orderBy('display_order', 'desc')
             ->get();
-        
-        return view('publications.index', compact('publications'));
+
+        return view('backend.publications.index', compact('publications'));
     }
 
     /**
@@ -31,8 +31,8 @@ class PublicationController extends Controller
         $categories = NewsEventCategory::where('is_published', true)
             ->orderBy('display_order', 'desc')
             ->get();
-            
-        return view('publications.create', compact('categories'));
+
+        return view('backend.publications.create', compact('categories'));
     }
 
     /**
@@ -41,7 +41,7 @@ class PublicationController extends Controller
     public function store(PublicationRequest $request)
     {
         $data = $request->validated();
-        
+
         // Handle image upload
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -49,9 +49,9 @@ class PublicationController extends Controller
             $image->storeAs('public/publications', $imageName);
             $data['image'] = 'publications/' . $imageName;
         }
-        
+
         Publication::create($data);
-        
+
         return redirect()->route('publications.index')
             ->with('success', 'Publication created successfully.');
     }
@@ -62,7 +62,7 @@ class PublicationController extends Controller
     public function show(Publication $publication)
     {
         $publication->load('category');
-        return view('publications.show', compact('publication'));
+        return view('backend.publications.show', compact('publication'));
     }
 
     /**
@@ -73,8 +73,8 @@ class PublicationController extends Controller
         $categories = NewsEventCategory::where('is_published', true)
             ->orderBy('display_order', 'desc')
             ->get();
-            
-        return view('publications.edit', compact('publication', 'categories'));
+
+        return view('backend.publications.edit', compact('publication', 'categories'));
     }
 
     /**
@@ -83,22 +83,22 @@ class PublicationController extends Controller
     public function update(PublicationRequest $request, Publication $publication)
     {
         $data = $request->validated();
-        
+
         // Handle image upload
         if ($request->hasFile('image')) {
             // Delete old image if exists
             if ($publication->image && Storage::exists('public/' . $publication->image)) {
                 Storage::delete('public/' . $publication->image);
             }
-            
+
             $image = $request->file('image');
             $imageName = time() . '_' . Str::slug($request->title) . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/publications', $imageName);
             $data['image'] = 'publications/' . $imageName;
         }
-        
+
         $publication->update($data);
-        
+
         return redirect()->route('publications.index')
             ->with('success', 'Publication updated successfully.');
     }
@@ -113,9 +113,9 @@ class PublicationController extends Controller
             if ($publication->image && Storage::exists('public/' . $publication->image)) {
                 Storage::delete('public/' . $publication->image);
             }
-            
+
             $publication->delete();
-            
+
             // Check if request is AJAX
             if (request()->ajax()) {
                 return response()->json([
@@ -123,7 +123,7 @@ class PublicationController extends Controller
                     'message' => 'Publication deleted successfully.'
                 ]);
             }
-            
+
             return redirect()->route('publications.index')
                 ->with('success', 'Publication deleted successfully.');
         } catch (\Exception $e) {

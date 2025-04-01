@@ -15,7 +15,7 @@ class GalleryController extends Controller
     public function index()
     {
         $galleries = Gallery::orderBy('display_order')->get();
-        return view('galleries.index', compact('galleries'));
+        return view('backend.galleries.index', compact('galleries'));
     }
 
     /**
@@ -23,7 +23,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view('galleries.create');
+        return view('backend.galleries.create');
     }
 
     /**
@@ -32,13 +32,13 @@ class GalleryController extends Controller
     public function store(GalleryRequest $request)
     {
         $data = $request->validated();
-        
+
         // Handle featured image upload
         if ($request->hasFile('featured_image')) {
             $imagePath = $request->file('featured_image')->store('galleries/featured', 'public');
             $data['featured_image'] = $imagePath;
         }
-        
+
         // Handle multiple gallery images upload
         $images = [];
         if ($request->hasFile('gallery_images')) {
@@ -48,7 +48,7 @@ class GalleryController extends Controller
             }
             $data['images'] = $images;
         }
-        
+
         Gallery::create($data);
 
         return redirect()->route('galleries.index')
@@ -60,7 +60,7 @@ class GalleryController extends Controller
      */
     public function show(Gallery $gallery)
     {
-        return view('galleries.show', compact('gallery'));
+        return view('backend.galleries.show', compact('gallery'));
     }
 
     /**
@@ -68,7 +68,7 @@ class GalleryController extends Controller
      */
     public function edit(Gallery $gallery)
     {
-        return view('galleries.edit', compact('gallery'));
+        return view('backend.galleries.edit', compact('gallery'));
     }
 
     /**
@@ -77,7 +77,7 @@ class GalleryController extends Controller
     public function update(GalleryRequest $request, Gallery $gallery)
     {
         $data = $request->validated();
-        
+
         // Handle featured image deletion
         if ($request->has('delete_featured_image') && $request->delete_featured_image == 1 && !$request->hasFile('featured_image')) {
             if ($gallery->featured_image && Storage::disk('public')->exists($gallery->featured_image)) {
@@ -85,35 +85,35 @@ class GalleryController extends Controller
             }
             $data['featured_image'] = null;
         }
-        
+
         // Handle featured image upload
         if ($request->hasFile('featured_image')) {
             // Delete old image if exists
             if ($gallery->featured_image && Storage::disk('public')->exists($gallery->featured_image)) {
                 Storage::disk('public')->delete($gallery->featured_image);
             }
-            
+
             $imagePath = $request->file('featured_image')->store('galleries/featured', 'public');
             $data['featured_image'] = $imagePath;
         }
-        
+
         // Handle multiple gallery images upload
         if ($request->hasFile('gallery_images')) {
             $existingImages = $gallery->images ?? [];
-            
+
             foreach ($request->file('gallery_images') as $image) {
                 $path = $image->store('galleries/images', 'public');
                 $existingImages[] = $path;
             }
-            
+
             $data['images'] = $existingImages;
         }
-        
+
         // Handle image deletions if any
         if ($request->has('delete_images')) {
             $imagesToKeep = [];
             $currentImages = $gallery->images ?? [];
-            
+
             foreach ($currentImages as $image) {
                 if (!in_array($image, $request->delete_images)) {
                     $imagesToKeep[] = $image;
@@ -124,10 +124,10 @@ class GalleryController extends Controller
                     }
                 }
             }
-            
+
             $data['images'] = $imagesToKeep;
         }
-        
+
         $gallery->update($data);
 
         return redirect()->route('galleries.index')
@@ -144,7 +144,7 @@ class GalleryController extends Controller
             if ($gallery->featured_image && Storage::disk('public')->exists($gallery->featured_image)) {
                 Storage::disk('public')->delete($gallery->featured_image);
             }
-            
+
             // Delete all gallery images if they exist
             if (!empty($gallery->images)) {
                 foreach ($gallery->images as $image) {
@@ -153,9 +153,9 @@ class GalleryController extends Controller
                     }
                 }
             }
-            
+
             $gallery->delete();
-            
+
             if (request()->ajax()) {
                 return response()->json([
                     'success' => true,

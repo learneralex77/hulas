@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Agent Forms
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -50,14 +50,13 @@
                                                 class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <button type="button" class="btn btn-sm btn-danger" 
+                                            <button type="button" class="btn btn-sm btn-danger"
                                                 onclick="deleteAgentForm({{ $agentForm->id }})" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
-                          
                             @endforeach
                         </tbody>
                     </table>
@@ -69,10 +68,7 @@
 @endsection
 
 @section('scripts')
-  
-
     <script>
-    
         // Success message
         @if (session('success'))
             Swal.fire({

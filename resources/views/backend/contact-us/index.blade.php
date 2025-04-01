@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Contact Us Inquiries
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -63,24 +63,19 @@
                                         </div>
                                     </td>
                                 </tr>
-                           
                             @endforeach
                         </tbody>
                     </table>
                 </div>
 
-               
+
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-  
-
     <script>
-       
-
         // Success message
         @if (session('success'))
             Swal.fire({

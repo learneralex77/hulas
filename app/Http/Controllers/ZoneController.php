@@ -14,7 +14,7 @@ class ZoneController extends Controller
     public function index()
     {
         $zones = Zone::orderBy('display_order')->get();
-        return view('zones.index', compact('zones'));
+        return view('backend.zones.index', compact('zones'));
     }
 
     /**
@@ -22,7 +22,7 @@ class ZoneController extends Controller
      */
     public function create()
     {
-        return view('zones.create');
+        return view('backend.zones.create');
     }
 
     /**
@@ -36,14 +36,14 @@ class ZoneController extends Controller
                 'display_order' => 'nullable|integer',
                 'is_published' => 'nullable|boolean',
             ]);
-            
+
             $data = $request->all();
-            
+
             // Set boolean values
             $data['is_published'] = $request->has('is_published');
-            
+
             $zone = Zone::create($data);
-            
+
             return redirect()->route('zones.index')
                 ->with('success', 'Zone created successfully.');
         } catch (\Exception $e) {
@@ -56,7 +56,7 @@ class ZoneController extends Controller
      */
     public function show(Zone $zone)
     {
-        return view('zones.show', compact('zone'));
+        return view('backend.zones.show', compact('zone'));
     }
 
     /**
@@ -64,7 +64,7 @@ class ZoneController extends Controller
      */
     public function edit(Zone $zone)
     {
-        return view('zones.edit', compact('zone'));
+        return view('backend.zones.edit', compact('zone'));
     }
 
     /**
@@ -79,10 +79,10 @@ class ZoneController extends Controller
         ]);
 
         $data = $request->all();
-        
+
         // Set boolean values
         $data['is_published'] = $request->has('is_published');
-        
+
         $zone->update($data);
 
         return redirect()->route('zones.index')
@@ -96,7 +96,7 @@ class ZoneController extends Controller
     {
         try {
             $zone->delete();
-            
+
             // Check if request is AJAX
             if (request()->ajax()) {
                 return response()->json([
@@ -104,7 +104,7 @@ class ZoneController extends Controller
                     'message' => 'Zone deleted successfully.'
                 ]);
             }
-            
+
             return redirect()->route('zones.index')
                 ->with('success', 'Zone deleted successfully.');
         } catch (\Exception $e) {

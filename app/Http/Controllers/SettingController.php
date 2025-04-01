@@ -15,7 +15,7 @@ class SettingController extends Controller
     public function index()
     {
         $settings = Setting::all();
-        return view('settings.index', compact('settings'));
+        return view('backend.settings.index', compact('settings'));
     }
 
     /**
@@ -23,7 +23,7 @@ class SettingController extends Controller
      */
     public function create()
     {
-        return view('settings.create');
+        return view('backend.settings.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class SettingController extends Controller
      */
     public function show(Setting $setting)
     {
-        return view('settings.show', compact('setting'));
+        return view('backend.settings.show', compact('setting'));
     }
 
     /**
@@ -65,7 +65,7 @@ class SettingController extends Controller
      */
     public function edit(Setting $setting)
     {
-        return view('settings.edit', compact('setting'));
+        return view('backend.settings.edit', compact('setting'));
     }
 
     /**

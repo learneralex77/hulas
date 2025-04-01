@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Publication
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -18,9 +18,10 @@
                 </div>
             </div>
             <div class="block-content p-0">
-                
 
-                <form action="{{ route('publications.update', $publication) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                <form action="{{ route('publications.update', $publication) }}" method="POST" enctype="multipart/form-data"
+                    class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('publications.partials.form')
@@ -29,4 +30,3 @@
         </div>
     </div>
 @endsection
-

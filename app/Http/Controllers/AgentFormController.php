@@ -15,7 +15,7 @@ class AgentFormController extends Controller
     public function index()
     {
         $agentForms = AgentForm::with('district')->latest()->get();
-        return view('agent-forms.index', compact('agentForms'));
+        return view('backend.agent-forms.index', compact('agentForms'));
     }
 
     /**
@@ -24,7 +24,7 @@ class AgentFormController extends Controller
     public function create()
     {
         $districts = District::where('is_published', true)->orderBy('name')->get();
-        return view('agent-forms.create', compact('districts'));
+        return view('backend.agent-forms.create', compact('districts'));
     }
 
     /**
@@ -33,9 +33,9 @@ class AgentFormController extends Controller
     public function store(AgentFormRequest $request)
     {
         $data = $request->validated();
-        
+
         // No need to map 'phone' to 'number' anymore as we're using 'number' directly
-        
+
         AgentForm::create($data);
 
         return redirect()->route('agent-forms.index')
@@ -47,7 +47,7 @@ class AgentFormController extends Controller
      */
     public function show(AgentForm $agentForm)
     {
-        return view('agent-forms.show', compact('agentForm'));
+        return view('backend.agent-forms.show', compact('agentForm'));
     }
 
     /**
@@ -56,7 +56,7 @@ class AgentFormController extends Controller
     public function edit(AgentForm $agentForm)
     {
         $districts = District::where('is_published', true)->orderBy('name')->get();
-        return view('agent-forms.edit', compact('agentForm', 'districts'));
+        return view('backend.agent-forms.edit', compact('agentForm', 'districts'));
     }
 
     /**
@@ -65,9 +65,9 @@ class AgentFormController extends Controller
     public function update(AgentFormRequest $request, AgentForm $agentForm)
     {
         $data = $request->validated();
-        
+
         // No need to map 'phone' to 'number' anymore as we're using 'number' directly
-        
+
         $agentForm->update($data);
 
         return redirect()->route('agent-forms.index')
@@ -81,7 +81,7 @@ class AgentFormController extends Controller
     {
         try {
             $agentForm->delete();
-            
+
             // Check if request is AJAX
             if (request()->ajax()) {
                 return response()->json([
@@ -89,7 +89,7 @@ class AgentFormController extends Controller
                     'message' => 'Agent form deleted successfully.'
                 ]);
             }
-            
+
             return redirect()->route('agent-forms.index')
                 ->with('success', 'Agent form deleted successfully.');
         } catch (\Exception $e) {

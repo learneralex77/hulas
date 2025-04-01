@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Pages
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -59,7 +59,7 @@
                                         @endif
                                     </td>
                                     <td class="d-none d-xl-table-cell">
-                                        {{ $page->display_order}}
+                                        {{ $page->display_order }}
                                     </td>
                                     <td class="text-center">
                                         <div class="gap-2">
@@ -89,9 +89,7 @@
 @endsection
 
 @section('scripts')
-
     <script>
-     
         // Success message
         @if (session('success'))
             Swal.fire({
@@ -155,4 +153,3 @@
         }
     </script>
 @endsection
-

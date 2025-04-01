@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Download Management
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -59,8 +59,8 @@
                                                 title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('downloads.edit', $download) }}" class="btn btn-sm btn-success"
-                                                title="Edit">
+                                            <a href="{{ route('downloads.edit', $download) }}"
+                                                class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
                                             <button type="button" class="btn btn-sm btn-danger"
@@ -75,17 +75,14 @@
                     </table>
                 </div>
 
-              
+
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-  
-
-<script>
-
+    <script>
         // Success message
         @if (session('success'))
             Swal.fire({

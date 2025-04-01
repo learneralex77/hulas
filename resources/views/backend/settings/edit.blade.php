@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Settings
@@ -20,7 +20,8 @@
             <div class="block-content">
                 <div class="row justify-content-center">
                     <div class="col-md-12">
-                        <form action="{{ route('settings.update', $setting) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        <form action="{{ route('settings.update', $setting) }}" method="POST" enctype="multipart/form-data"
+                            class="needs-validation" novalidate>
                             @csrf
                             @method('PUT')
                             @include('settings.partials.form')
@@ -34,4 +35,4 @@
 
 @section('scripts')
     <script src="{{ asset('js/settings.js') }}"></script>
-@endsection 
+@endsection

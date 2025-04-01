@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create New Gallery
@@ -16,10 +16,9 @@
                 </div>
             </div>
             <div class="block-content">
-               
 
-                <form action="{{ route('galleries.store') }}" method="POST" enctype="multipart/form-data"
-                    id="gallery-form">
+
+                <form action="{{ route('galleries.store') }}" method="POST" enctype="multipart/form-data" id="gallery-form">
                     @csrf
                     @include('galleries.partials.form')
                 </form>

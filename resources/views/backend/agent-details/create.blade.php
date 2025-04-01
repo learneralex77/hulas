@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create New Agent Details
@@ -25,4 +25,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

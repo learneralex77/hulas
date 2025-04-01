@@ -15,7 +15,7 @@ class AboutUsController extends Controller
     public function index()
     {
         $aboutUs = AboutUs::first();
-        return view('about-us.index', compact('aboutUs'));
+        return view('backend.about-us.index', compact('aboutUs'));
     }
 
     /**
@@ -29,8 +29,8 @@ class AboutUsController extends Controller
             return redirect()->route('about-us.index')
                 ->with('error', 'About Us information already exists. You can only edit the existing record.');
         }
-        
-        return view('about-us.create');
+
+        return view('backend.about-us.create');
     }
 
     /**
@@ -78,7 +78,7 @@ class AboutUsController extends Controller
      */
     public function show(AboutUs $aboutUs)
     {
-        return view('about-us.show', compact('aboutUs'));
+        return view('backend.about-us.show', compact('aboutUs'));
     }
 
     /**
@@ -86,7 +86,7 @@ class AboutUsController extends Controller
      */
     public function edit(AboutUs $aboutUs)
     {
-        return view('about-us.edit', compact('aboutUs'));
+        return view('backend.about-us.edit', compact('aboutUs'));
     }
 
     /**
@@ -102,7 +102,7 @@ class AboutUsController extends Controller
             if ($aboutUs->image) {
                 Storage::disk('public')->delete($aboutUs->image);
             }
-            
+
             $data['image'] = $request->file('image')->store('about-us', 'public');
         }
 
@@ -136,9 +136,9 @@ class AboutUsController extends Controller
         if ($aboutUs->image) {
             Storage::disk('public')->delete($aboutUs->image);
         }
-        
+
         $aboutUs->delete();
-        
+
         return redirect()->route('about-us.index')
             ->with('success', 'About Us information deleted successfully.');
     }

@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Menu
@@ -18,7 +18,8 @@
                 </div>
             </div>
             <div class="block-content no-bottom-space">
-                <form action="{{ route('menus.update', $menu) }}" method="POST" id="menuForm" class="needs-validation" novalidate>
+                <form action="{{ route('menus.update', $menu) }}" method="POST" id="menuForm" class="needs-validation"
+                    novalidate>
                     @csrf
                     @method('PUT')
                     @include('menus.partials.form', ['button' => 'Update'])

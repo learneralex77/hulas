@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create New Designation
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="block-content">
-               
+
 
                 <form action="{{ route('designations.store') }}" method="POST">
                     @csrf

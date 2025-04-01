@@ -17,7 +17,7 @@ class MenuController extends Controller
     {
         $menus = Menu::orderBy('display_order')->get();
 
-        return view('menus.index', compact('menus'));
+        return view('backend.menus.index', compact('menus'));
     }
 
     /**
@@ -26,7 +26,7 @@ class MenuController extends Controller
     public function create()
     {
         $parentMenus = Menu::orderBy('bname')->get();
-        return view('menus.create', compact('parentMenus'));
+        return view('backend.menus.create', compact('parentMenus'));
     }
 
     /**
@@ -47,7 +47,7 @@ class MenuController extends Controller
      */
     public function show(Menu $menu)
     {
-        return view('menus.show', compact('menu'));
+        return view('backend.menus.show', compact('menu'));
     }
 
     /**
@@ -59,7 +59,7 @@ class MenuController extends Controller
             ->orderBy('bname')
             ->get();
 
-        return view('menus.edit', compact('menu', 'parentMenus'));
+        return view('backend.menus.edit', compact('menu', 'parentMenus'));
     }
 
     /**

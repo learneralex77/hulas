@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Publications
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -45,7 +45,7 @@
                                     </td>
                                     <td>
                                         {{ $publication->title }}
-                                        
+
                                     </td>
                                     <td>{{ $publication->category->name ?? 'None' }}</td>
                                     <td>{{ $publication->publication_type }}</td>
@@ -58,15 +58,15 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="gap-2">
-                                            <a href="{{ route('publications.show', $publication) }}" class="btn btn-sm btn-info"
-                                                title="View">
+                                            <a href="{{ route('publications.show', $publication) }}"
+                                                class="btn btn-sm btn-info" title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                             <a href="{{ route('publications.edit', $publication) }}"
                                                 class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <button type="button" class="btn btn-sm btn-danger" 
+                                            <button type="button" class="btn btn-sm btn-danger"
                                                 onclick="deletePublication({{ $publication->id }})" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
@@ -78,17 +78,15 @@
                     </table>
                 </div>
 
-              
+
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-  
-
     <script>
-    ;
+        ;
 
         // Success message
         @if (session('success'))

@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create Publication
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -18,9 +18,10 @@
                 </div>
             </div>
             <div class="block-content p-0">
-                
 
-                <form action="{{ route('publications.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                <form action="{{ route('publications.store') }}" method="POST" enctype="multipart/form-data"
+                    class="needs-validation" novalidate>
                     @csrf
                     @include('publications.partials.form')
                 </form>
@@ -28,4 +29,3 @@
         </div>
     </div>
 @endsection
-

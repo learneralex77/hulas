@@ -17,7 +17,7 @@ class ServiceController extends Controller
     public function index()
     {
         $services = Service::with('translations')->orderBy('display_order')->get();
-        return view('services.index', compact('services'));
+        return view('backend.services.index', compact('services'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('services.create');
+        return view('backend.services.create');
     }
 
     /**
@@ -34,18 +34,18 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
         $validated = $request->validated();
-        
+
         // Create a slug from the first name
         $baseSlug = Str::slug($request->input('names.0'));
         $slug = $baseSlug;
-        
+
         // Check if slug exists and append a number if it does
         $count = 1;
         while (Service::where('slug', $slug)->exists()) {
             $slug = $baseSlug . '-' . $count;
             $count++;
         }
-        
+
         // Handle file upload
         $filePath = null;
         if ($request->hasFile('file')) {
@@ -79,15 +79,15 @@ class ServiceController extends Controller
     public function show(Service $service)
     {
         $service->load('translations');
-        
+
         // Decode JSON data for the view
         foreach ($service->translations as $translation) {
             $translation->names = json_decode($translation->name ?: '[]') ?: [];
             $translation->icons = json_decode($translation->icon ?: '[]') ?: [];
             $translation->descriptions = json_decode($translation->description ?: '[]') ?: [];
         }
-        
-        return view('services.show', compact('service'));
+
+        return view('backend.services.show', compact('service'));
     }
 
     /**
@@ -96,15 +96,15 @@ class ServiceController extends Controller
     public function edit(Service $service)
     {
         $service->load('translations');
-        
+
         // Decode JSON data for the view
         foreach ($service->translations as $translation) {
             $translation->names = json_decode($translation->name ?: '[]') ?: [];
             $translation->icons = json_decode($translation->icon ?: '[]') ?: [];
             $translation->descriptions = json_decode($translation->description ?: '[]') ?: [];
         }
-        
-        return view('services.edit', compact('service'));
+
+        return view('backend.services.edit', compact('service'));
     }
 
     /**
@@ -113,11 +113,11 @@ class ServiceController extends Controller
     public function update(ServiceRequest $request, Service $service)
     {
         $validated = $request->validated();
-        
+
         // Update slug from the first name
         $baseSlug = Str::slug($request->input('names.0'));
         $slug = $baseSlug;
-        
+
         // Check if slug exists (excluding current service) and append a number if it does
         $count = 1;
         while (Service::where('slug', $slug)->where('id', '!=', $service->id)->exists()) {
@@ -177,7 +177,7 @@ class ServiceController extends Controller
                     'message' => 'Service deleted successfully.'
                 ]);
             }
-            
+
             return redirect()->route('services.index')
                 ->with('success', 'Service deleted successfully.');
         } catch (\Exception $e) {

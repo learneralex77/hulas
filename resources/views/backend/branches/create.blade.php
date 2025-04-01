@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create Branch
@@ -18,12 +18,13 @@
                 </div>
             </div>
             <div class="block-content">
-              
-                <form action="{{ route('branches.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                <form action="{{ route('branches.store') }}" method="POST" enctype="multipart/form-data"
+                    class="needs-validation" novalidate>
                     @csrf
                     @include('branches.partials.form')
                 </form>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

@@ -14,7 +14,7 @@ class DesignationController extends Controller
     public function index()
     {
         $designations = Designation::orderBy('display_order')->get();
-        return view('designations.index', compact('designations'));
+        return view('backend.designations.index', compact('designations'));
     }
 
     /**
@@ -22,7 +22,7 @@ class DesignationController extends Controller
      */
     public function create()
     {
-        return view('designations.create');
+        return view('backend.designations.create');
     }
 
     /**
@@ -31,7 +31,7 @@ class DesignationController extends Controller
     public function store(DesignationRequest $request)
     {
         $data = $request->validated();
-        
+
         Designation::create($data);
 
         return redirect()->route('designations.index')
@@ -43,7 +43,7 @@ class DesignationController extends Controller
      */
     public function show(Designation $designation)
     {
-        return view('designations.show', compact('designation'));
+        return view('backend.designations.show', compact('designation'));
     }
 
     /**
@@ -51,7 +51,7 @@ class DesignationController extends Controller
      */
     public function edit(Designation $designation)
     {
-        return view('designations.edit', compact('designation'));
+        return view('backend.designations.edit', compact('designation'));
     }
 
     /**
@@ -60,7 +60,7 @@ class DesignationController extends Controller
     public function update(DesignationRequest $request, Designation $designation)
     {
         $data = $request->validated();
-        
+
         $designation->update($data);
 
         return redirect()->route('designations.index')
@@ -74,7 +74,7 @@ class DesignationController extends Controller
     {
         try {
             $designation->delete();
-            
+
             if (request()->ajax()) {
                 return response()->json([
                     'success' => true,

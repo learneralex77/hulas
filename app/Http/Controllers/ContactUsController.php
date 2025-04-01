@@ -14,7 +14,7 @@ class ContactUsController extends Controller
     public function index()
     {
         $contacts = ContactUs::latest()->get();
-        return view('contact-us.index', compact('contacts'));
+        return view('backend.contact-us.index', compact('contacts'));
     }
 
     /**
@@ -22,7 +22,7 @@ class ContactUsController extends Controller
      */
     public function create()
     {
-        return view('contact-us.create');
+        return view('backend.contact-us.create');
     }
 
     /**
@@ -36,14 +36,14 @@ class ContactUsController extends Controller
             'phone_number' => 'required|string|max:20',
             'contact_remarks' => 'nullable|string',
         ]);
-        
+
         $data = $request->all();
-        
+
         // Handle boolean values
         $data['is_contacted'] = $request->has('is_contacted');
-        
+
         ContactUs::create($data);
-        
+
         return redirect()->route('contact-us.index')
             ->with('success', 'Contact inquiry created successfully.');
     }
@@ -53,7 +53,7 @@ class ContactUsController extends Controller
      */
     public function show(ContactUs $contactUs)
     {
-        return view('contact-us.show', compact('contactUs'));
+        return view('backend.contact-us.show', compact('contactUs'));
     }
 
     /**
@@ -61,7 +61,7 @@ class ContactUsController extends Controller
      */
     public function edit(ContactUs $contactUs)
     {
-        return view('contact-us.edit', compact('contactUs'));
+        return view('backend.contact-us.edit', compact('contactUs'));
     }
 
     /**
@@ -75,14 +75,14 @@ class ContactUsController extends Controller
             'phone_number' => 'required|string|max:20',
             'contact_remarks' => 'nullable|string',
         ]);
-        
+
         $data = $request->all();
-        
+
         // Handle boolean values
         $data['is_contacted'] = $request->has('is_contacted');
-        
+
         $contactUs->update($data);
-        
+
         return redirect()->route('contact-us.index')
             ->with('success', 'Contact inquiry updated successfully.');
     }
@@ -94,7 +94,7 @@ class ContactUsController extends Controller
     {
         try {
             $contactUs->delete();
-            
+
             // Check if request is AJAX
             if (request()->ajax()) {
                 return response()->json([
@@ -102,7 +102,7 @@ class ContactUsController extends Controller
                     'message' => 'Contact inquiry deleted successfully.'
                 ]);
             }
-            
+
             return redirect()->route('contact-us.index')
                 ->with('success', 'Contact inquiry deleted successfully.');
         } catch (\Exception $e) {

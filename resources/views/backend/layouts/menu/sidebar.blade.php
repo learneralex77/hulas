@@ -78,7 +78,7 @@
             <!-- Side Navigation -->
             <div class="content-side content-side-full">
                 <ul class="nav-main">
-                    @include('layouts.menu.content-sidebar')
+                    @include('backend.layouts.menu.content-sidebar')
                 </ul>
             </div>
             <!-- END Side Navigation -->

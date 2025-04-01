@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Download
@@ -17,9 +17,10 @@
                 </div>
             </div>
             <div class="block-content">
-                
 
-                <form action="{{ route('downloads.update', $download) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                <form action="{{ route('downloads.update', $download) }}" method="POST" enctype="multipart/form-data"
+                    class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('downloads.partials.form')

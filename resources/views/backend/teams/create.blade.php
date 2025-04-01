@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create New Team Member
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="block-content p-0">
-               
+
 
                 <form action="{{ route('teams.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf

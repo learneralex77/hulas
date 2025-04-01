@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create New Service
@@ -8,7 +8,8 @@
 
 @section('content')
     <div class="content">
-        <form action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <form action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation"
+            novalidate>
             @csrf
             <div class="block block-rounded">
                 <div class="block-header block-header-default">
@@ -29,10 +30,10 @@
                             </ul>
                         </div>
                     @endif
-                    
+
                     @include('services.partials.form')
                 </div>
             </div>
         </form>
     </div>
-@endsection 
+@endsection

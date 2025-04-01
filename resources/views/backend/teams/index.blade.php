@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Team Management
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -75,18 +75,14 @@
                     </table>
                 </div>
 
-              
+
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-    
-
     <script>
-  
-
         // Success message
         @if (session('success'))
             Swal.fire({

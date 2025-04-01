@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Page
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="block-content">
-                
+
 
                 <form action="{{ route('pages.update', $page->id) }}" method="POST" enctype="multipart/form-data"
                     id="page-form">

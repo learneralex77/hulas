@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Settings
@@ -14,25 +14,26 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Settings Information</h3>
                 <div class="block-options">
-                    @if(!$settings->count())
+                    @if (!$settings->count())
                         <a href="{{ route('settings.create') }}" class="btn btn-sm btn-alt-primary border">
-                        <i class="fa fa-plus"></i> Add New Settings
+                            <i class="fa fa-plus"></i> Add New Settings
                         </a>
                     @else
                         <a href="{{ route('settings.edit', $settings->first()) }}" class="btn btn-sm btn-success">
                             <i class="fa fa-pencil-alt"></i> Edit
                         </a>
 
-                        <button type="button" class="btn btn-sm btn-danger" onclick="deleteSettings({{ $settings->first()->id }})">
+                        <button type="button" class="btn btn-sm btn-danger"
+                            onclick="deleteSettings({{ $settings->first()->id }})">
                             <i class="fa fa-trash"></i> Delete
                         </button>
                     @endif
                 </div>
             </div>
             <div class="block-content">
-               
 
-                @if(!$settings->count())
+
+                @if (!$settings->count())
                     <div class="alert alert-info">
                         No Settings information has been added yet. Please click the "Add Settings" button to create one.
                     </div>
@@ -74,8 +75,9 @@
                                             <tr>
                                                 <th>Location Map</th>
                                                 <td>
-                                                    @if($setting->map_location)
-                                                        <a href="{{ $setting->map_location }}" target="_blank" class="btn btn-sm btn-alt-info">
+                                                    @if ($setting->map_location)
+                                                        <a href="{{ $setting->map_location }}" target="_blank"
+                                                            class="btn btn-sm btn-alt-info">
                                                             <i class="fa fa-map-marker-alt me-1"></i> View Map
                                                         </a>
                                                     @else
@@ -122,8 +124,9 @@
                                     <h3 class="block-title">Logo</h3>
                                 </div>
                                 <div class="block-content">
-                                    @if($setting->logo)
-                                        <img src="{{ asset('storage/' . $setting->logo) }}" alt="Logo" class="img-fluid rounded">
+                                    @if ($setting->logo)
+                                        <img src="{{ asset('storage/' . $setting->logo) }}" alt="Logo"
+                                            class="img-fluid rounded">
                                     @else
                                         <div class="alert alert-info">
                                             No logo uploaded.
@@ -140,7 +143,7 @@
                         </div>
                         <div class="block-content">
                             <div class="row">
-                                @if($setting->facebook)
+                                @if ($setting->facebook)
                                     <div class="col-md-4 mb-4">
                                         <div class="block block-rounded h-100">
                                             <div class="block-header block-header-default">
@@ -150,14 +153,15 @@
                                                 </h3>
                                             </div>
                                             <div class="block-content">
-                                                <a href="{{ $setting->facebook }}" target="_blank" class="btn btn-sm btn-alt-primary">
+                                                <a href="{{ $setting->facebook }}" target="_blank"
+                                                    class="btn btn-sm btn-alt-primary">
                                                     Visit Page
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 @endif
-                                @if($setting->twitter)
+                                @if ($setting->twitter)
                                     <div class="col-md-4 mb-4">
                                         <div class="block block-rounded h-100">
                                             <div class="block-header block-header-default">
@@ -167,14 +171,15 @@
                                                 </h3>
                                             </div>
                                             <div class="block-content">
-                                                <a href="{{ $setting->twitter }}" target="_blank" class="btn btn-sm btn-alt-info">
+                                                <a href="{{ $setting->twitter }}" target="_blank"
+                                                    class="btn btn-sm btn-alt-info">
                                                     Visit Page
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 @endif
-                                @if($setting->linkedin)
+                                @if ($setting->linkedin)
                                     <div class="col-md-4 mb-4">
                                         <div class="block block-rounded h-100">
                                             <div class="block-header block-header-default">
@@ -184,14 +189,15 @@
                                                 </h3>
                                             </div>
                                             <div class="block-content">
-                                                <a href="{{ $setting->linkedin }}" target="_blank" class="btn btn-sm btn-alt-primary">
+                                                <a href="{{ $setting->linkedin }}" target="_blank"
+                                                    class="btn btn-sm btn-alt-primary">
                                                     Visit Page
                                                 </a>
                                             </div>
                                         </div>
                                     </div>
                                 @endif
-                                @if(!$setting->facebook && !$setting->twitter && !$setting->linkedin)
+                                @if (!$setting->facebook && !$setting->twitter && !$setting->linkedin)
                                     <div class="col-12">
                                         <div class="alert alert-info">
                                             No social media links have been added.
@@ -201,8 +207,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 @endif
             </div>
         </div>
@@ -211,7 +215,7 @@
 
 @section('scripts')
     <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-    
+
     <script>
         // Success message
         @if (session('success'))
@@ -255,21 +259,21 @@
                     form.method = 'POST';
                     form.action = "{{ route('settings.destroy', ':id') }}".replace(':id', id);
                     form.style.display = 'none';
-                    
+
                     const csrfToken = document.createElement('input');
                     csrfToken.type = 'hidden';
                     csrfToken.name = '_token';
                     csrfToken.value = '{{ csrf_token() }}';
-                    
+
                     const method = document.createElement('input');
                     method.type = 'hidden';
                     method.name = '_method';
                     method.value = 'DELETE';
-                    
+
                     form.appendChild(csrfToken);
                     form.appendChild(method);
                     document.body.appendChild(form);
-                    
+
                     form.submit();
                 }
             });

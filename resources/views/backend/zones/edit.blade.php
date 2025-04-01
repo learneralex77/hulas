@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Zone
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="block-content">
-              
+
 
                 <form action="{{ route('zones.update', $zone) }}" method="POST" class="needs-validation" novalidate>
                     @csrf
@@ -28,4 +28,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

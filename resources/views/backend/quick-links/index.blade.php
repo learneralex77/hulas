@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Quick Links Management
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -36,7 +36,8 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $quickLink->name }}</td>
                                     <td>
-                                        <a href="{{ $quickLink->external_link }}" target="_blank" class="btn btn-sm btn-alt-primary">
+                                        <a href="{{ $quickLink->external_link }}" target="_blank"
+                                            class="btn btn-sm btn-alt-primary">
                                             <i class="fa fa-external-link-alt"></i> Visit Link
                                         </a>
                                     </td>
@@ -50,15 +51,15 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="gap-2">
-                                            <a href="{{ route('quick-links.show', $quickLink) }}" class="btn btn-sm btn-info"
-                                                title="View">
+                                            <a href="{{ route('quick-links.show', $quickLink) }}"
+                                                class="btn btn-sm btn-info" title="View">
                                                 <i class="fa fa-eye"></i>
                                             </a>
                                             <a href="{{ route('quick-links.edit', $quickLink) }}"
                                                 class="btn btn-sm btn-success" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <button type="button" class="btn btn-sm btn-danger" 
+                                            <button type="button" class="btn btn-sm btn-danger"
                                                 onclick="deleteQuickLink({{ $quickLink->id }})" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
@@ -70,18 +71,14 @@
                     </table>
                 </div>
 
-               
+
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-  
-
     <script>
-   
-
         // Success message
         @if (session('success'))
             Swal.fire({

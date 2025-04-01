@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create Agent Form
@@ -18,13 +18,14 @@
                 </div>
             </div>
             <div class="block-content">
-                
 
-                <form action="{{ route('agent-forms.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                <form action="{{ route('agent-forms.store') }}" method="POST" enctype="multipart/form-data"
+                    class="needs-validation" novalidate>
                     @csrf
                     @include('agent-forms.partials.form')
                 </form>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

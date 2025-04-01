@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Gallery
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="block-content">
-             
+
 
                 <form action="{{ route('galleries.update', $gallery->id) }}" method="POST" enctype="multipart/form-data"
                     id="gallery-form">

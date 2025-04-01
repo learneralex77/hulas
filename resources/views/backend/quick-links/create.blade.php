@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create Quick Link
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -18,8 +18,9 @@
                 </div>
             </div>
             <div class="block-content p-0">
-              
-                <form action="{{ route('quick-links.store') }}" method="POST" id="quick-link-form" class="needs-validation" novalidate>
+
+                <form action="{{ route('quick-links.store') }}" method="POST" id="quick-link-form" class="needs-validation"
+                    novalidate>
                     @include('quick-links.partials.form')
                 </form>
             </div>

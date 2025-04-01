@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Quick Link
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -18,9 +18,10 @@
                 </div>
             </div>
             <div class="block-content p-0">
-             
 
-                <form action="{{ route('quick-links.update', $quickLink) }}" method="POST" id="quick-link-form" class="needs-validation" novalidate>
+
+                <form action="{{ route('quick-links.update', $quickLink) }}" method="POST" id="quick-link-form"
+                    class="needs-validation" novalidate>
                     @method('PUT')
                     @include('quick-links.partials.form')
                 </form>

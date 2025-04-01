@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Contact Inquiry
@@ -18,9 +18,10 @@
                 </div>
             </div>
             <div class="block-content">
-                
 
-                <form action="{{ route('contact-us.update', $contactUs) }}" method="POST" class="needs-validation" novalidate>
+
+                <form action="{{ route('contact-us.update', $contactUs) }}" method="POST" class="needs-validation"
+                    novalidate>
                     @csrf
                     @method('PUT')
                     @include('contact-us.partials.form')
@@ -28,4 +29,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

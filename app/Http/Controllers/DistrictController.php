@@ -13,7 +13,7 @@ class DistrictController extends Controller
     public function index()
     {
         $districts = District::orderBy('display_order')->get();
-        return view('districts.index', compact('districts'));
+        return view('backend.districts.index', compact('districts'));
     }
 
     /**
@@ -21,7 +21,7 @@ class DistrictController extends Controller
      */
     public function create()
     {
-        return view('districts.create');
+        return view('backend.districts.create');
     }
 
     /**
@@ -36,10 +36,10 @@ class DistrictController extends Controller
         ]);
 
         $data = $request->all();
-        
+
         // Set boolean values
         $data['is_published'] = $request->has('is_published');
-        
+
         District::create($data);
 
         return redirect()->route('districts.index')
@@ -51,7 +51,7 @@ class DistrictController extends Controller
      */
     public function show(District $district)
     {
-        return view('districts.show', compact('district'));
+        return view('backend.districts.show', compact('district'));
     }
 
     /**
@@ -59,7 +59,7 @@ class DistrictController extends Controller
      */
     public function edit(District $district)
     {
-        return view('districts.edit', compact('district'));
+        return view('backend.districts.edit', compact('district'));
     }
 
     /**
@@ -74,10 +74,10 @@ class DistrictController extends Controller
         ]);
 
         $data = $request->all();
-        
+
         // Set boolean values
         $data['is_published'] = $request->has('is_published');
-        
+
         $district->update($data);
 
         return redirect()->route('districts.index')
@@ -91,7 +91,7 @@ class DistrictController extends Controller
     {
         try {
             $district->delete();
-            
+
             // Check if request is AJAX
             if (request()->ajax()) {
                 return response()->json([
@@ -99,7 +99,7 @@ class DistrictController extends Controller
                     'message' => 'District deleted successfully.'
                 ]);
             }
-            
+
             return redirect()->route('districts.index')
                 ->with('success', 'District deleted successfully.');
         } catch (\Exception $e) {

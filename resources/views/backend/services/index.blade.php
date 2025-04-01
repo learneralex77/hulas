@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Services Management
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -40,7 +40,7 @@
                                                 $translation = $service->translations->first();
                                                 $names = json_decode($translation->name, true);
                                             @endphp
-                                            
+
                                             @if (!empty($names) && isset($names[0]))
                                                 {{ $names[0] }}
                                             @else
@@ -53,7 +53,8 @@
                                     <td>{{ $service->display_order }}</td>
                                     <td>
                                         @if ($service->file)
-                                            <a href="{{ asset('storage/' . $service->file) }}" target="_blank" class="btn btn-sm btn-alt-info">
+                                            <a href="{{ asset('storage/' . $service->file) }}" target="_blank"
+                                                class="btn btn-sm btn-alt-info">
                                                 <i class="fa fa-file"></i> View
                                             </a>
                                         @else
@@ -75,7 +76,7 @@
                                             <a href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-success">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <button type="button" class="btn btn-sm btn-danger" 
+                                            <button type="button" class="btn btn-sm btn-danger"
                                                 onclick="deleteService({{ $service->id }})" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
@@ -87,18 +88,14 @@
                     </table>
                 </div>
 
-              
+
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-  
-
     <script>
-       
-
         // Success message
         @if (session('success'))
             Swal.fire({

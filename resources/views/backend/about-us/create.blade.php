@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create New About Us
@@ -18,7 +18,8 @@
                 </div>
             </div>
             <div class="block-content">
-                <form action="{{ route('about-us.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <form action="{{ route('about-us.store') }}" method="POST" enctype="multipart/form-data"
+                    class="needs-validation" novalidate>
                     @csrf
                     @include('about-us.partials.form')
                 </form>
@@ -29,4 +30,4 @@
 
 @section('scripts')
     <script src="{{ asset('js/about-us.js') }}"></script>
-@endsection 
+@endsection

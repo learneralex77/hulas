@@ -32,7 +32,7 @@
     {{-- flowbite --}}
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
 
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css" />
@@ -60,11 +60,11 @@
             class="z-50 fixed bottom-4 right-4 bg-[#EF5824] text-white p-2 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-110 hover:bg-black-600 hidden">
             <img src="{{ asset('assets/img/top-arrow.png') }}" alt="go-to-top-button" class="w-10 h-10"> </button>
 
-        @include('frontend.layouts.partials.header')
+        @include('frontend.backend.layouts.partials.header')
 
         @yield('content')
 
-        @include('frontend.layouts.partials.footer')
+        @include('frontend.backend.layouts.partials.footer')
 
         <script src="{{ asset('assets/js/main.js') }}"></script>
         {{-- jquery --}}

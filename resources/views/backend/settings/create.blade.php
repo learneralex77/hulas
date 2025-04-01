@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create New Settings
@@ -20,7 +20,8 @@
             <div class="block-content">
                 <div class="row justify-content-center">
                     <div class="col-md-12">
-                        <form action="{{ route('settings.store') }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        <form action="{{ route('settings.store') }}" method="POST" enctype="multipart/form-data"
+                            class="needs-validation" novalidate>
                             @csrf
                             @include('settings.partials.form')
                         </form>

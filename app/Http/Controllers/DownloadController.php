@@ -15,7 +15,7 @@ class DownloadController extends Controller
     public function index()
     {
         $downloads = Download::orderBy('display_order')->get();
-        return view('downloads.index', compact('downloads'));
+        return view('backend.downloads.index', compact('downloads'));
     }
 
     /**
@@ -23,7 +23,7 @@ class DownloadController extends Controller
      */
     public function create()
     {
-        return view('downloads.create');
+        return view('backend.downloads.create');
     }
 
     /**
@@ -32,13 +32,13 @@ class DownloadController extends Controller
     public function store(DownloadRequest $request)
     {
         $data = $request->validated();
-        
+
         // Handle file upload
         if ($request->hasFile('file')) {
             $filePath = $request->file('file')->store('downloads', 'public');
             $data['file'] = $filePath;
         }
-        
+
         Download::create($data);
 
         return redirect()->route('downloads.index')
@@ -50,7 +50,7 @@ class DownloadController extends Controller
      */
     public function show(Download $download)
     {
-        return view('downloads.show', compact('download'));
+        return view('backend.downloads.show', compact('download'));
     }
 
     /**
@@ -58,7 +58,7 @@ class DownloadController extends Controller
      */
     public function edit(Download $download)
     {
-        return view('downloads.edit', compact('download'));
+        return view('backend.downloads.edit', compact('download'));
     }
 
     /**
@@ -67,21 +67,21 @@ class DownloadController extends Controller
     public function update(DownloadRequest $request, Download $download)
     {
         $data = $request->validated();
-        
+
         // Handle file upload
         if ($request->hasFile('file')) {
             // Delete old file if exists
             if ($download->file && Storage::disk('public')->exists($download->file)) {
                 Storage::disk('public')->delete($download->file);
             }
-            
+
             $filePath = $request->file('file')->store('downloads', 'public');
             $data['file'] = $filePath;
         } else {
             // Keep existing file
             unset($data['file']);
         }
-        
+
         $download->update($data);
 
         return redirect()->route('downloads.index')
@@ -98,7 +98,7 @@ class DownloadController extends Controller
             if ($download->file && Storage::disk('public')->exists($download->file)) {
                 Storage::disk('public')->delete($download->file);
             }
-            
+
             $download->delete();
 
             // Check if request is AJAX
@@ -125,7 +125,7 @@ class DownloadController extends Controller
                 ->with('error', 'Error deleting download: ' . $e->getMessage());
         }
     }
-    
+
     /**
      * Download the file.
      */
@@ -134,10 +134,10 @@ class DownloadController extends Controller
         if (!$download->file || !Storage::disk('public')->exists($download->file)) {
             return redirect()->back()->with('error', 'File not found.');
         }
-        
+
         $path = Storage::disk('public')->path($download->file);
         $fileName = basename($download->file);
-        
+
         return response()->download($path, $fileName);
     }
 }

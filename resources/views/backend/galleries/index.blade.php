@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Gallery Management
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -82,75 +82,73 @@
                     </table>
                 </div>
 
-              
+
+            </div>
         </div>
-    </div>
-@endsection
+    @endsection
 
-@section('scripts')
-    <script>
-      
+    @section('scripts')
+        <script>
+            // Success message
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Success!',
+                    text: '{{ session('success') }}',
+                    icon: 'success',
+                    timer: 3000,
+                    showConfirmButton: false,
+                    position: 'top-end',
+                    toast: true
+                });
+            @endif
 
-        // Success message
-        @if (session('success'))
-            Swal.fire({
-                title: 'Success!',
-                text: '{{ session('success') }}',
-                icon: 'success',
-                timer: 3000,
-                showConfirmButton: false,
-                position: 'top-end',
-                toast: true
-            });
-        @endif
+            function deleteGallery(galleryId) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let url = "{{ route('galleries.destroy', ':id') }}".replace(':id', galleryId);
 
-        function deleteGallery(galleryId) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    let url = "{{ route('galleries.destroy', ':id') }}".replace(':id', galleryId);
+                        $.ajax({
+                            url: url,
+                            type: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            success: function(response) {
+                                // Remove the gallery row from the table
+                                $('#gallery-row-' + galleryId).remove();
 
-                    $.ajax({
-                        url: url,
-                        type: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        success: function(response) {
-                            // Remove the gallery row from the table
-                            $('#gallery-row-' + galleryId).remove();
-
-                            Swal.fire({
-                                title: 'Deleted!',
-                                text: 'Gallery has been deleted.',
-                                icon: 'success',
-                                timer: 3000,
-                                showConfirmButton: false,
-                                position: 'top-end',
-                                toast: true
-                            });
-                        },
-                        error: function(xhr, status, error) {
-                            Swal.fire({
-                                title: 'Error!',
-                                text: 'There was an error deleting the gallery.',
-                                icon: 'error',
-                                timer: 3000,
-                                showConfirmButton: false,
-                                position: 'top-end',
-                                toast: true
-                            });
-                        }
-                    });
-                }
-            });
-        }
-    </script>
-@endsection
+                                Swal.fire({
+                                    title: 'Deleted!',
+                                    text: 'Gallery has been deleted.',
+                                    icon: 'success',
+                                    timer: 3000,
+                                    showConfirmButton: false,
+                                    position: 'top-end',
+                                    toast: true
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: 'There was an error deleting the gallery.',
+                                    icon: 'error',
+                                    timer: 3000,
+                                    showConfirmButton: false,
+                                    position: 'top-end',
+                                    toast: true
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        </script>
+    @endsection

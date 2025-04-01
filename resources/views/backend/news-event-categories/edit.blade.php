@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit News & Event Category
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -18,10 +18,11 @@
                 </div>
             </div>
             <div class="block-content">
-               
 
-                <form class="form-horizontal needs-validation" action="{{ route('news-event-categories.update', $newsEventCategory) }}"
-                    method="POST" id="category-form" novalidate>
+
+                <form class="form-horizontal needs-validation"
+                    action="{{ route('news-event-categories.update', $newsEventCategory) }}" method="POST"
+                    id="category-form" novalidate>
                     @csrf
                     @method('PUT')
                     @include('news-event-categories.partials.form')

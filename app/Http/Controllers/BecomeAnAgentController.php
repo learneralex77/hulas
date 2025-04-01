@@ -15,7 +15,7 @@ class BecomeAnAgentController extends Controller
     public function index()
     {
         $agents = BecomeAnAgent::orderBy('display_order')->get();
-        return view('become-an-agent.index', compact('agents'));
+        return view('backend.become-an-agent.index', compact('agents'));
     }
 
     /**
@@ -23,7 +23,7 @@ class BecomeAnAgentController extends Controller
      */
     public function create()
     {
-        return view('become-an-agent.create');
+        return view('backend.become-an-agent.create');
     }
 
     /**
@@ -32,7 +32,7 @@ class BecomeAnAgentController extends Controller
     public function store(BecomeAnAgentRequest $request)
     {
         $data = $request->validated();
-        
+
         $imagesPaths = [];
 
         if ($request->hasFile('images')) {
@@ -64,7 +64,7 @@ class BecomeAnAgentController extends Controller
      */
     public function show(BecomeAnAgent $becomeAnAgent)
     {
-        return view('become-an-agent.show', compact('becomeAnAgent'));
+        return view('backend.become-an-agent.show', compact('becomeAnAgent'));
     }
 
     /**
@@ -72,7 +72,7 @@ class BecomeAnAgentController extends Controller
      */
     public function edit(BecomeAnAgent $becomeAnAgent)
     {
-        return view('become-an-agent.edit', compact('becomeAnAgent'));
+        return view('backend.become-an-agent.edit', compact('becomeAnAgent'));
     }
 
     /**
@@ -81,10 +81,10 @@ class BecomeAnAgentController extends Controller
     public function update(BecomeAnAgentRequest $request, BecomeAnAgent $becomeAnAgent)
     {
         $data = $request->validated();
-        
+
         // Get the existing images
         $imagesPaths = $becomeAnAgent->images ?? [];
-        
+
         // Handle image deletions
         if ($request->has('delete_images') && is_array($request->delete_images)) {
             foreach ($request->delete_images as $index) {
@@ -98,20 +98,20 @@ class BecomeAnAgentController extends Controller
             // Reindex the array
             $imagesPaths = array_values($imagesPaths);
         }
-        
+
         // Handle uploaded images
         if ($request->hasFile('images')) {
             $files = $request->file('images');
-            
+
             foreach ($files as $key => $file) {
                 // Skip invalid files
                 if (!$file->isValid()) {
                     continue;
                 }
-                
+
                 // Store the new image
                 $path = $file->store('become-an-agent', 'public');
-                
+
                 // Check if we're replacing an existing image at this index
                 if (isset($imagesPaths[$key])) {
                     // Delete the old image
@@ -134,7 +134,7 @@ class BecomeAnAgentController extends Controller
 
         // Reindex the array to ensure sequential keys
         $imagesPaths = array_values($imagesPaths);
-        
+
         // Update the record
         $becomeAnAgent->update([
             'images' => $imagesPaths,
@@ -167,7 +167,7 @@ class BecomeAnAgentController extends Controller
                     'message' => 'Agent information deleted successfully.'
                 ]);
             }
-            
+
             return redirect()->route('become-an-agent.index')
                 ->with('success', 'Agent information deleted successfully.');
         } catch (\Exception $e) {
@@ -195,19 +195,19 @@ class BecomeAnAgentController extends Controller
         if (isset($images[$index])) {
             // Delete the file from storage
             Storage::disk('public')->delete($images[$index]);
-            
+
             // Remove from the array
             unset($images[$index]);
-            
+
             // Reindex the array
             $images = array_values($images);
-            
+
             // Update the record
             $becomeAnAgent->update(['images' => $images]);
-            
+
             return redirect()->back()->with('success', 'Image deleted successfully.');
         }
-        
+
         return redirect()->back()->with('error', 'Image not found.');
     }
 }

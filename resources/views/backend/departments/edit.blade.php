@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Department
@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="block-content">
-               
+
 
                 <form action="{{ route('departments.update', $department) }}" method="POST">
                     @csrf

@@ -1,12 +1,12 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Agent Details Management
 @endsection
 
-  
 
-  
+
+
 
 @section('content')
     <div class="content">
@@ -43,7 +43,7 @@
                                             $stateAgentNames = json_decode($agentDetail->state_agent_name);
                                         @endphp
 
-                                        @if(count($stateAgentNames) > 1)
+                                        @if (count($stateAgentNames) > 1)
                                             {{ $stateAgentNames[0] }}
                                             <span class="badge bg-info">+{{ count($stateAgentNames) - 1 }}</span>
                                         @else
@@ -55,7 +55,7 @@
                                             $contactNumbers = json_decode($agentDetail->contact_no);
                                         @endphp
 
-                                        @if(count($contactNumbers) > 1)
+                                        @if (count($contactNumbers) > 1)
                                             {{ $contactNumbers[0] }}
                                             <span class="badge bg-info">+{{ count($contactNumbers) - 1 }}</span>
                                         @else
@@ -68,7 +68,7 @@
                                             $contactPersons = json_decode($agentDetail->contact_person);
                                         @endphp
 
-                                        @if(count($contactPersons) > 1)
+                                        @if (count($contactPersons) > 1)
                                             {{ $contactPersons[0] }}
                                             <span class="badge bg-info">+{{ count($contactPersons) - 1 }}</span>
                                         @else
@@ -77,13 +77,15 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="gap-2">
-                                            <a href="{{ route('agent-details.show', $agentDetail) }}" class="btn btn-sm btn-info">
+                                            <a href="{{ route('agent-details.show', $agentDetail) }}"
+                                                class="btn btn-sm btn-info">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('agent-details.edit', $agentDetail) }}" class="btn btn-sm btn-success">
+                                            <a href="{{ route('agent-details.edit', $agentDetail) }}"
+                                                class="btn btn-sm btn-success">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <button type="button" class="btn btn-sm btn-danger" 
+                                            <button type="button" class="btn btn-sm btn-danger"
                                                 onclick="deleteAgentDetail({{ $agentDetail->id }})" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
@@ -95,17 +97,14 @@
                     </table>
                 </div>
 
-               
+
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-  
-
     <script>
-      
         // Success message
         @if (session('success'))
             Swal.fire({

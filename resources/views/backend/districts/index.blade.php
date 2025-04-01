@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Districts Management
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -47,10 +47,11 @@
                                             <a href="{{ route('districts.show', $district) }}" class="btn btn-sm btn-info">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a href="{{ route('districts.edit', $district) }}" class="btn btn-sm btn-success">
+                                            <a href="{{ route('districts.edit', $district) }}"
+                                                class="btn btn-sm btn-success">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <button type="button" class="btn btn-sm btn-danger" 
+                                            <button type="button" class="btn btn-sm btn-danger"
                                                 onclick="deleteDistrict({{ $district->id }})" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
@@ -62,17 +63,14 @@
                     </table>
                 </div>
 
-              
+
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-  
-
     <script>
-
         // Success message
         @if (session('success'))
             Swal.fire({

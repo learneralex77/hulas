@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     View Agent Details
@@ -10,13 +10,13 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Agent Details Information</h3>
                 <div class="block-options">
-                <a class="btn btn-sm btn-alt-primary" href="{{ route('agent-details.edit', $agentDetail) }}">
+                    <a class="btn btn-sm btn-alt-primary" href="{{ route('agent-details.edit', $agentDetail) }}">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
                     <a class="btn btn-sm btn-alt-primary" href="{{ route('agent-details.index') }}">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
-                   
+
                 </div>
             </div>
             <div class="block-content">
@@ -56,9 +56,9 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <h4 class="mt-4">Agent Information</h4>
-                        
+
                         @php
                             $stateAgentNames = $agentDetail->state_agent_names;
                             $addresses = $agentDetail->addresses;
@@ -68,15 +68,16 @@
                                 is_array($stateAgentNames) ? count($stateAgentNames) : 0,
                                 is_array($addresses) ? count($addresses) : 0,
                                 is_array($contactNos) ? count($contactNos) : 0,
-                                is_array($contactPersons) ? count($contactPersons) : 0
+                                is_array($contactPersons) ? count($contactPersons) : 0,
                             );
                         @endphp
-                        
-                        @if($totalEntries > 0)
-                            @for($i = 0; $i < $totalEntries; $i++)
+
+                        @if ($totalEntries > 0)
+                            @for ($i = 0; $i < $totalEntries; $i++)
                                 <div class="block block-rounded border border-1 mb-3">
                                     <div class="block-header block-header-default">
-                                        <h3 class="block-title">{{ $i == 0 ? 'Primary Entry' : 'Additional Entry #' . $i }}</h3>
+                                        <h3 class="block-title">{{ $i == 0 ? 'Primary Entry' : 'Additional Entry #' . $i }}
+                                        </h3>
                                     </div>
                                     <div class="block-content">
                                         <div class="row">
@@ -126,4 +127,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

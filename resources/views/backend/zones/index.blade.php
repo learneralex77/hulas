@@ -1,10 +1,10 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Zones Management
 @endsection
 
-  
+
 
 @section('content')
     <div class="content">
@@ -50,31 +50,26 @@
                                             <a href="{{ route('zones.edit', $zone) }}" class="btn btn-sm btn-success">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            <button type="button" class="btn btn-sm btn-danger" 
+                                            <button type="button" class="btn btn-sm btn-danger"
                                                 onclick="deleteZone({{ $zone->id }})" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </div>
                                     </td>
                                 </tr>
-                          
                             @endforeach
                         </tbody>
                     </table>
                 </div>
 
-               
+
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-  
-
     <script>
-     
-
         // Success message
         @if (session('success'))
             Swal.fire({

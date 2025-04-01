@@ -15,7 +15,7 @@ class BranchController extends Controller
     public function index()
     {
         $branches = Branch::with('district')->orderBy('display_order')->get();
-        return view('branches.index', compact('branches'));
+        return view('backend.branches.index', compact('branches'));
     }
 
     /**
@@ -24,7 +24,7 @@ class BranchController extends Controller
     public function create()
     {
         $districts = District::where('is_published', true)->orderBy('name')->get();
-        return view('branches.create', compact('districts'));
+        return view('backend.branches.create', compact('districts'));
     }
 
     /**
@@ -34,14 +34,14 @@ class BranchController extends Controller
     {
         try {
             $data = $request->validated();
-            
+
             // Ensure phone_number is set if phone is provided
             if (isset($data['phone']) && !isset($data['phone_number'])) {
                 $data['phone_number'] = $data['phone'];
             }
-            
+
             $branch = Branch::create($data);
-            
+
             return redirect()->route('branches.index')
                 ->with('success', 'Branch created successfully.');
         } catch (\Exception $e) {
@@ -54,7 +54,7 @@ class BranchController extends Controller
      */
     public function show(Branch $branch)
     {
-        return view('branches.show', compact('branch'));
+        return view('backend.branches.show', compact('branch'));
     }
 
     /**
@@ -63,7 +63,7 @@ class BranchController extends Controller
     public function edit(Branch $branch)
     {
         $districts = District::where('is_published', true)->orderBy('name')->get();
-        return view('branches.edit', compact('branch', 'districts'));
+        return view('backend.branches.edit', compact('branch', 'districts'));
     }
 
     /**
@@ -73,12 +73,12 @@ class BranchController extends Controller
     {
         try {
             $data = $request->validated();
-            
+
             // Ensure phone_number is set if phone is provided
             if (isset($data['phone']) && !isset($data['phone_number'])) {
                 $data['phone_number'] = $data['phone'];
             }
-            
+
             $branch->update($data);
 
             return redirect()->route('branches.index')
@@ -95,7 +95,7 @@ class BranchController extends Controller
     {
         try {
             $branch->delete();
-            
+
             // Check if request is AJAX
             if (request()->ajax()) {
                 return response()->json([
@@ -103,7 +103,7 @@ class BranchController extends Controller
                     'message' => 'Branch deleted successfully.'
                 ]);
             }
-            
+
             return redirect()->route('branches.index')
                 ->with('success', 'Branch deleted successfully.');
         } catch (\Exception $e) {

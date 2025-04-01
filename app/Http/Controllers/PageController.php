@@ -17,7 +17,7 @@ class PageController extends Controller
     public function index()
     {
         $pages = Page::with('menu')->get();
-        return view('pages.index', compact('pages'));
+        return view('backend.pages.index', compact('pages'));
     }
 
     /**
@@ -26,7 +26,7 @@ class PageController extends Controller
     public function create()
     {
         $menus = Menu::where('is_published', true)->get();
-        return view('pages.create', compact('menus'));
+        return view('backend.pages.create', compact('menus'));
     }
 
     /**
@@ -36,10 +36,10 @@ class PageController extends Controller
     {
         try {
             $data = $request->validated();
-            
+
             // Generate slug from title
             $data['slug'] = Str::slug($request->title);
-            
+
             // Handle image upload
             if ($request->hasFile('image')) {
                 $data['image'] = $request->file('image')->store('pages', 'public');
@@ -61,7 +61,7 @@ class PageController extends Controller
      */
     public function show(Page $page)
     {
-        return view('pages.show', compact('page'));
+        return view('backend.pages.show', compact('page'));
     }
 
     /**
@@ -70,7 +70,7 @@ class PageController extends Controller
     public function edit(Page $page)
     {
         $menus = Menu::where('is_published', true)->get();
-        return view('pages.edit', compact('page', 'menus'));
+        return view('backend.pages.edit', compact('page', 'menus'));
     }
 
     /**
@@ -79,12 +79,12 @@ class PageController extends Controller
     public function update(PageRequest $request, Page $page)
     {
         $data = $request->validated();
-        
+
         // Generate slug from title if title is changed
         if ($request->title != $page->title) {
             $data['slug'] = Str::slug($request->title);
         }
-        
+
         // Handle image deletion if checkbox is checked
         if ($request->has('delete_image') && $request->delete_image == 1) {
             if ($page->image && Storage::disk('public')->exists($page->image)) {
@@ -98,7 +98,7 @@ class PageController extends Controller
             if ($page->image && Storage::disk('public')->exists($page->image)) {
                 Storage::disk('public')->delete($page->image);
             }
-            
+
             $data['image'] = $request->file('image')->store('pages', 'public');
         }
 
@@ -118,7 +118,7 @@ class PageController extends Controller
             if ($page->image && Storage::disk('public')->exists($page->image)) {
                 Storage::disk('public')->delete($page->image);
             }
-            
+
             $page->delete();
 
             if (request()->ajax()) {
@@ -141,4 +141,4 @@ class PageController extends Controller
             return back()->with('error', 'Error deleting page: ' . $e->getMessage());
         }
     }
-} 
+}

@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create New Become an Agent
@@ -18,11 +18,12 @@
                 </div>
             </div>
             <div class="block-content">
-                <form action="{{ route('become-an-agent.store') }}" method="POST" enctype="multipart/form-data" id="agent-form" class="needs-validation" novalidate>
+                <form action="{{ route('become-an-agent.store') }}" method="POST" enctype="multipart/form-data"
+                    id="agent-form" class="needs-validation" novalidate>
                     @csrf
                     @include('become-an-agent.partials.form')
                 </form>
             </div>
         </div>
     </div>
-@endsection 
+@endsection

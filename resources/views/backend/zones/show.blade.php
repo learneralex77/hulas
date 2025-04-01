@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     View Zone
@@ -10,16 +10,16 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Zone Details</h3>
                 <div class="block-options">
-                <a href="{{ route('zones.edit', $zone) }}" class="btn btn-sm btn-alt-primary me-1">
-                            <i class="fa fa-pencil-alt"></i> Edit
-                        </a>
-                   
-                        <a href="{{ route('zones.index') }}" class="btn btn-sm btn-alt-primary border me-1">
-                            <i class="fa fa-arrow-left"></i> Back
-                        </a>
-                      
-                       
-                    
+                    <a href="{{ route('zones.edit', $zone) }}" class="btn btn-sm btn-alt-primary me-1">
+                        <i class="fa fa-pencil-alt"></i> Edit
+                    </a>
+
+                    <a href="{{ route('zones.index') }}" class="btn btn-sm btn-alt-primary border me-1">
+                        <i class="fa fa-arrow-left"></i> Back
+                    </a>
+
+
+
                 </div>
             </div>
             <div class="block-content">
@@ -106,7 +106,7 @@
                     </table>
                 </div>
 
-                
+
             </div>
         </div>
     </div>

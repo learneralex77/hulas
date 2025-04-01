@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Create Contact Inquiry
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="block-content">
-                
+
 
                 <form action="{{ route('contact-us.store') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
@@ -27,4 +27,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

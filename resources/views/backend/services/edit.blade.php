@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Service
@@ -8,7 +8,8 @@
 
 @section('content')
     <div class="content">
-        <form action="{{ route('services.update', $service) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <form action="{{ route('services.update', $service) }}" method="POST" enctype="multipart/form-data"
+            class="needs-validation" novalidate>
             @csrf
             @method('PUT')
             <div class="block block-rounded">
@@ -30,10 +31,10 @@
                             </ul>
                         </div>
                     @endif
-                    
+
                     @include('services.partials.form')
                 </div>
             </div>
         </form>
     </div>
-@endsection 
+@endsection

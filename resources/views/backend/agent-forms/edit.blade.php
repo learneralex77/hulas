@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Edit Agent Form
@@ -18,9 +18,10 @@
                 </div>
             </div>
             <div class="block-content">
-                
 
-                <form action="{{ route('agent-forms.update', $agentForm) }}" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+
+                <form action="{{ route('agent-forms.update', $agentForm) }}" method="POST" enctype="multipart/form-data"
+                    class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('agent-forms.partials.form')
@@ -28,4 +29,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     About Us
@@ -16,7 +16,7 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">About Us Information</h3>
                 <div class="block-options">
-                    @if(!$aboutUs)
+                    @if (!$aboutUs)
                         <a href="{{ route('about-us.create') }}" class="btn btn-sm btn-alt-primary border">
                             <i class="fa fa-plus"></i> Add About Us
                         </a>
@@ -24,7 +24,7 @@
                         <a href="{{ route('about-us.edit', $aboutUs) }}" class="btn btn-sm btn-success">
                             <i class="fa fa-pencil-alt"></i> Edit
                         </a>
-                        
+
                         <button type="button" class="btn btn-sm btn-danger" onclick="deleteAboutUs({{ $aboutUs->id }})">
                             <i class="fa fa-trash"></i> Delete
                         </button>
@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="block-content">
-                @if(!$aboutUs)
+                @if (!$aboutUs)
                     <div class="alert alert-info">
                         No About Us information has been added yet. Please click the "Add About Us" button to create one.
                     </div>
@@ -58,8 +58,9 @@
                                                 <tr>
                                                     <th>Video Link</th>
                                                     <td>
-                                                        @if($aboutUs->video_link)
-                                                            <a href="{{ $aboutUs->video_link }}" target="_blank">{{ $aboutUs->video_link }}</a>
+                                                        @if ($aboutUs->video_link)
+                                                            <a href="{{ $aboutUs->video_link }}"
+                                                                target="_blank">{{ $aboutUs->video_link }}</a>
                                                         @else
                                                             N/A
                                                         @endif
@@ -81,8 +82,9 @@
                                     <h3 class="block-title">Image</h3>
                                 </div>
                                 <div class="block-content">
-                                    @if($aboutUs->image)
-                                        <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image" class="img-fluid rounded">
+                                    @if ($aboutUs->image)
+                                        <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image"
+                                            class="img-fluid rounded">
                                     @else
                                         <div class="alert alert-info">
                                             No image uploaded.
@@ -107,9 +109,9 @@
                             <h3 class="block-title">Mission & Vision</h3>
                         </div>
                         <div class="block-content">
-                            @if(is_array($aboutUs->mission_vision) && count($aboutUs->mission_vision) > 0)
+                            @if (is_array($aboutUs->mission_vision) && count($aboutUs->mission_vision) > 0)
                                 <div class="row">
-                                    @foreach($aboutUs->mission_vision as $item)
+                                    @foreach ($aboutUs->mission_vision as $item)
                                         <div class="col-md-4 mb-4">
                                             <div class="block block-rounded h-100">
                                                 <div class="block-header block-header-default">
@@ -141,7 +143,7 @@
 
 @section('scripts')
     <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-    
+
     <script>
         // Success message
         @if (session('success'))
@@ -185,24 +187,24 @@
                     form.method = 'POST';
                     form.action = "{{ route('about-us.destroy', ':id') }}".replace(':id', id);
                     form.style.display = 'none';
-                    
+
                     const csrfToken = document.createElement('input');
                     csrfToken.type = 'hidden';
                     csrfToken.name = '_token';
                     csrfToken.value = '{{ csrf_token() }}';
-                    
+
                     const method = document.createElement('input');
                     method.type = 'hidden';
                     method.name = '_method';
                     method.value = 'DELETE';
-                    
+
                     form.appendChild(csrfToken);
                     form.appendChild(method);
                     document.body.appendChild(form);
-                    
+
                     form.submit();
                 }
             });
         }
     </script>
-@endsection 
+@endsection

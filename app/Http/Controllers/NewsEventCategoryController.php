@@ -15,7 +15,7 @@ class NewsEventCategoryController extends Controller
     public function index()
     {
         $categories = NewsEventCategory::orderBy('display_order')->get();
-        return view('news-event-categories.index', compact('categories'));
+        return view('backend.news-event-categories.index', compact('categories'));
     }
 
     /**
@@ -23,7 +23,7 @@ class NewsEventCategoryController extends Controller
      */
     public function create()
     {
-        return view('news-event-categories.create');
+        return view('backend.news-event-categories.create');
     }
 
     /**
@@ -32,12 +32,12 @@ class NewsEventCategoryController extends Controller
     public function store(NewsEventCategoryRequest $request)
     {
         $data = $request->validated();
-        
+
         // Generate slug if empty
         if (empty($data['slug']) && !empty($data['name'])) {
             $data['slug'] = Str::slug($data['name']);
         }
-        
+
         NewsEventCategory::create($data);
 
         return redirect()->route('news-event-categories.index')
@@ -49,7 +49,7 @@ class NewsEventCategoryController extends Controller
      */
     public function show(NewsEventCategory $newsEventCategory)
     {
-        return view('news-event-categories.show', compact('newsEventCategory'));
+        return view('backend.news-event-categories.show', compact('newsEventCategory'));
     }
 
     /**
@@ -57,7 +57,7 @@ class NewsEventCategoryController extends Controller
      */
     public function edit(NewsEventCategory $newsEventCategory)
     {
-        return view('news-event-categories.edit', compact('newsEventCategory'));
+        return view('backend.news-event-categories.edit', compact('newsEventCategory'));
     }
 
     /**
@@ -66,12 +66,12 @@ class NewsEventCategoryController extends Controller
     public function update(NewsEventCategoryRequest $request, NewsEventCategory $newsEventCategory)
     {
         $data = $request->validated();
-        
+
         // Generate slug if empty
         if (empty($data['slug']) && !empty($data['name'])) {
             $data['slug'] = Str::slug($data['name']);
         }
-        
+
         $newsEventCategory->update($data);
 
         return redirect()->route('news-event-categories.index')

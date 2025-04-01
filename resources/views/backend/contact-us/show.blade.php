@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     View Contact Inquiry
@@ -10,13 +10,13 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">Contact Inquiry Details</h3>
                 <div class="block-options">
-                <a href="{{ route('contact-us.edit', $contactUs) }}" class="btn btn-sm btn-alt-primary border">
+                    <a href="{{ route('contact-us.edit', $contactUs) }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
                     <a href="{{ route('contact-us.index') }}" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
-                   
+
                 </div>
             </div>
             <div class="block-content">
@@ -65,7 +65,7 @@
                                 </table>
                             </div>
                         </div>
-                        
+
                         <!-- Remarks and updated at in separate section -->
                         <div class="row mt-4">
                             <div class="col-lg-12">
@@ -83,4 +83,4 @@
             </div>
         </div>
     </div>
-@endsection 
+@endsection

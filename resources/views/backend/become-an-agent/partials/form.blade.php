@@ -28,34 +28,48 @@
                                 @endif
                             </div>
                             <div class="row mb-2 ps-0">
-                                <div class="col-md-4">
-                                    <label class="form-label ps-0" for="images-{{ $index }}">Image <span class="text-danger">*</span></label>
-                                    <input class="form-control @error('images.'.$index) is-invalid @enderror" type="file" id="images-{{ $index }}" name="images[]" accept="image/*" required>
-                                    <div class="form-text">
-                                        Allowed types: JPG, PNG, GIF. Max size: 2MB.
+                                @if($index === 0)
+                                    <div class="col-md-4">
+                                        <label class="form-label ps-0" for="images-{{ $index }}">Image <span class="text-danger">*</span></label>
+                                        <input class="form-control @error('images.'.$index) is-invalid @enderror" type="file" id="images-{{ $index }}" name="images[]" accept="image/*" required>
+                                        <div class="form-text">
+                                            Allowed types: JPG, PNG, GIF. Max size: 2MB.
+                                        </div>
+                                        @error('images.'.$index)
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    @error('images.'.$index)
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label" for="display_order">Display Order</label>
-                                    <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order" value="{{ old('display_order', $becomeAnAgent->display_order ?? 0) }}">
-                                    @error('display_order')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Status</label>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="is_published" name="is_published" value="1"
-                                            {{ old('is_published', $becomeAnAgent->is_published ?? true) ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="is_published">Published</label>
+                                    <div class="col-md-4">
+                                        <label class="form-label" for="display_order">Display Order</label>
+                                        <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order" value="{{ old('display_order', $becomeAnAgent->display_order ?? 0) }}">
+                                        @error('display_order')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    @error('is_published')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">Status</label>
+                                        <div class="form-check form-switch">
+                                            <input type="hidden" name="is_published" value="0">
+                                            <input class="form-check-input" type="checkbox" id="is_published" name="is_published" value="1"
+                                                {{ old('is_published', $becomeAnAgent->is_published ?? true) ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="is_published">Published</label>
+                                        </div>
+                                        @error('is_published')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                @else
+                                    <div class="col-md-12">
+                                        <label class="form-label ps-0" for="images-{{ $index }}">Image <span class="text-danger">*</span></label>
+                                        <input class="form-control @error('images.'.$index) is-invalid @enderror" type="file" id="images-{{ $index }}" name="images[]" accept="image/*" required>
+                                        <div class="form-text">
+                                            Allowed types: JPG, PNG, GIF. Max size: 2MB.
+                                        </div>
+                                        @error('images.'.$index)
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                @endif
                             </div>
                             <div class="preview-container mb-1">
                                 <div class="mt-2">

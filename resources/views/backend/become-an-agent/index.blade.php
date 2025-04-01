@@ -24,8 +24,8 @@
                             <tr>
                                 <th>S.N.</th>
                                 <th>Preview</th>
-                                <th>Image Count</th>
-                                <th>Display Order</th>
+                                <th class="text-left">Image Count</th>
+                                <th class="text-left">Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -33,7 +33,7 @@
                         <tbody>
                             @foreach ($agents as $agent)
                                 <tr id="agent-row-{{ $agent->id }}">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>
                                         @if (is_array($agent->images) && count($agent->images) > 0)
                                             <img src="{{ asset('storage/' . $agent->images[0]) }}" alt="Preview"
@@ -45,14 +45,14 @@
                                             <span class="text-muted">No images</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         @if (is_array($agent->images))
                                             {{ count($agent->images) }}
                                         @else
                                             0
                                         @endif
                                     </td>
-                                    <td>{{ $agent->display_order }}</td>
+                                    <td class="text-center">{{ $agent->display_order }}</td>
                                     <td>
                                         @if ($agent->is_published)
                                             <span class="badge bg-success">Published</span>
@@ -119,7 +119,7 @@
         function deleteAgent(agentId) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "This will delete all associated images. You won't be able to revert this!",
+                text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

@@ -24,8 +24,8 @@
                             <tr>
                                 <th class="text-center" style="width: 5%;">S.N.</th>
                                 <th>Name</th>
-                                <th class="d-none d-md-table-cell" style="width: 15%;">Description</th>
-                                <th class="d-none d-sm-table-cell" style="width: 15%;">Slug</th>
+                                <!-- <th class="d-none d-md-table-cell" style="width: 15%;">Description</th> -->
+                                <th class="d-none d-sm-table-cell">Slug</th>
                                 <th class="text-center" style="width: 7%;">Order</th>
                                 <th class="d-none d-lg-table-cell" style="width: 15%;">Parent</th>
                                 <th class="text-center" style="width: 10%;">Status</th>
@@ -37,7 +37,7 @@
                                 <tr id="menu-row-{{ $menu->id }}">
                                     <td class="text-center">{{ $loop->iteration }} </td>
                                     <td>{{ $menu->bname }}</td>
-                                    <td class="d-none d-md-table-cell">{{ Str::limit($menu->description, 50) }}</td>
+                                    <!-- <td class="d-none d-md-table-cell">{{ Str::limit($menu->description, 50) }}</td> -->
                                     <td class="d-none d-sm-table-cell">{{ $menu->slug }}</td>
                                     <td class="text-center">{{ $menu->display_order }}</td>
                                     <td class="d-none d-lg-table-cell">{{ $menu->parent ? $menu->parent->bname : '-' }}</td>

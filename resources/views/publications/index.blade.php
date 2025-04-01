@@ -44,9 +44,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <strong>{{ $publication->title }}</strong>
-                                        <div class="text-muted small">{{ Str::limit($publication->short_description, 50) }}
-                                        </div>
+                                        {{ $publication->title }}
+                                        
                                     </td>
                                     <td>{{ $publication->category->name ?? 'None' }}</td>
                                     <td>{{ $publication->publication_type }}</td>

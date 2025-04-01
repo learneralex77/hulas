@@ -16,7 +16,8 @@ class Page extends Model
         'title',
         'content',
         'image',
-        'short_description'
+        'short_description',
+        'display_order'
     ];
 
     /**

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('email')->nullable();
+            $table->text('map_iframe')->nullable();
             $table->boolean('is_published')->default(true);
             $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
             $table->integer('display_order')->default(0);

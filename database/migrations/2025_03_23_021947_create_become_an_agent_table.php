@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('become_an_agent', function (Blueprint $table) {
             $table->id();
             $table->json('images')->nullable()->comment('Multiple images stored as JSON array');
+            $table->integer('display_order')->default(0);
+
             $table->timestamps();
         });
     }

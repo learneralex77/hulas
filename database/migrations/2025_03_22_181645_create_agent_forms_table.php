@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('number');
             $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
+            $table->integer('display_order')->default(0);
+
             $table->text('message')->nullable();
             $table->text('address')->nullable();
             $table->timestamps();

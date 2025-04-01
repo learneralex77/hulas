@@ -84,6 +84,15 @@
                         <small class="text-muted">Recommended image size: 1200x800 pixels</small>
                     </div>
                 </div>
+                
+                <div class="mb-4">
+                    <label class="form-label" for="display_order">Display Order</label>
+                    <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order"
+                        name="display_order" value="{{ old('display_order', $page->display_order ?? 0) }}">
+                    @error('display_order')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
         </div>
 

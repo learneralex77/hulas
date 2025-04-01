@@ -31,6 +31,7 @@ class PageRequest extends FormRequest
             'short_description' => ['nullable', 'string', 'max:500'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'delete_image' => ['nullable', 'boolean'],
+            'display_order' => ['nullable', 'integer', 'min:0'],
         ];
 
         // For update operations, add unique slug check
@@ -70,6 +71,7 @@ class PageRequest extends FormRequest
             'short_description' => 'short description',
             'image' => 'page image',
             'delete_image' => 'delete image option',
+            'display_order' => 'display order',
         ];
     }
 
@@ -100,6 +102,9 @@ class PageRequest extends FormRequest
             'image.max' => 'The image may not be greater than 2MB.',
             
             'delete_image.boolean' => 'The delete image option must be a boolean value.',
+            
+            'display_order.integer' => 'The display order must be an integer value.',
+            'display_order.min' => 'The display order must be a positive number.',
         ];
     }
 

@@ -27,7 +27,7 @@
                                 <th>Title</th>
                                 <th class="d-none d-md-table-cell">Slug</th>
                                 <th class="d-none d-lg-table-cell">Menu</th>
-                                <th class="d-none d-xl-table-cell" style="width: 150px;">Created At</th>
+                                <th class="d-none d-xl-table-cell" style="width: 150px;">Display Order</th>
                                 <th class="text-center" style="width: 13%;">Actions</th>
                             </tr>
                         </thead>
@@ -59,7 +59,7 @@
                                         @endif
                                     </td>
                                     <td class="d-none d-xl-table-cell">
-                                        {{ $page->created_at->format('M d, Y') }}
+                                        {{ $page->display_order}}
                                     </td>
                                     <td class="text-center">
                                         <div class="gap-2">

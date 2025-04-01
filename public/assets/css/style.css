@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@import "flowbite";
+
+/* Define CSS Variables Correctly */
+:root {
+  --color-primary: #ffdd00;
+  --color-accent: #ffdd00;
+  --color-bgPrimary: #ffffff;
+}
+
+* {
+  font-family: 'Jost', sans-serif;
+}
+
+#footer {
+  display: block;
+  visibility: visible;
+}
+
+/* Use CSS Variables for Colors */
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-bgPrimary {
+  color: var(--color-bgPrimary);
+}
+
+/* Swiper Styles */
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

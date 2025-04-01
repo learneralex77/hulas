@@ -8,66 +8,75 @@
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Quick Link Details</h3>
+                <h3 class="block-title">Quick Link Details: {{ $quickLink->name }}</h3>
                 <div class="block-options">
-
-                    <a href="{{ route('quick-links.edit', $quickLink) }}" class="btn btn-sm btn-alt-primary me-1">
+                    <a href="{{ route('quick-links.edit', $quickLink) }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-pencil-alt"></i> Edit
                     </a>
-                    <a href="{{ route('quick-links.index') }}" class="btn btn-sm btn-alt-primary border me-1">
+                    <a href="{{ route('quick-links.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
-
-
-                    </form>
                 </div>
             </div>
             <div class="block-content">
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
                 <div class="row">
-                    <div class="col-md-12">
-                        <h4>General Information</h4>
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th style="width: 15%;">Name</th>
-                                        <td style="width: 35%;">{{ $quickLink->name }}</td>
-                                        <th style="width: 15%;">External Link</th>
-                                        <td style="width: 35%;">
-                                            <a href="{{ $quickLink->external_link }}"
-                                                target="_blank">{{ $quickLink->external_link }}</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Display Order</th>
-                                        <td>{{ $quickLink->display_order }}</td>
-                                        <th>Status</th>
-                                        <td>
-                                            @if ($quickLink->is_published)
-                                                <span class="badge bg-success">Published</span>
-                                            @else
-                                                <span class="badge bg-warning">Draft</span>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Created At</th>
-                                        <td>{{ $quickLink->created_at->format('F j, Y, g:i a') }}</td>
-                                        <th>Last Updated</th>
-                                        <td>{{ $quickLink->updated_at->format('F j, Y, g:i a') }}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Basic Information</h3>
+                            </div>
+                            <div class="block-content">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">ID:</div>
+                                    <div class="col-md-8">{{ $quickLink->id }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Name:</div>
+                                    <div class="col-md-8">{{ $quickLink->name }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Display Order:</div>
+                                    <div class="col-md-8">{{ $quickLink->display_order }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Additional Details</h3>
+                            </div>
+                            <div class="block-content">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">External Link:</div>
+                                    <div class="col-md-8">
+                                        <a href="{{ $quickLink->external_link }}" target="_blank" class="btn btn-alt-primary">
+                                            <i class="fa fa-external-link-alt"></i> Visit Link
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Status:</div>
+                                    <div class="col-md-8">
+                                        @if ($quickLink->is_published)
+                                            <span class="badge bg-success">Published</span>
+                                        @else
+                                            <span class="badge bg-warning">Draft</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Created At:</div>
+                                    <div class="col-md-8">{{ $quickLink->created_at->format('M d, Y H:i') }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Updated At:</div>
+                                    <div class="col-md-8">{{ $quickLink->updated_at->format('M d, Y H:i') }}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

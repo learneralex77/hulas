@@ -1,8 +1,8 @@
 @csrf
 <div class="row push px-3">
-    <div class="col-12">
+    <div class="col-12 mt-4">
         <!-- Row 1: Name and External Link -->
-        <div class="row mb-3">
+        <div class="row mb-3 ">
             <div class="col-md-6">
                 <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"

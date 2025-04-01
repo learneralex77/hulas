@@ -25,7 +25,7 @@
                                 <th style="width: 50px;">S.N.</th>
                                 <th>Name</th>
                                 <th>External Link</th>
-                                <th>Display Order</th>
+                                <th class="text-left">Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -41,7 +41,7 @@
                                             <i class="fa fa-external-link-alt"></i> Visit Link
                                         </a>
                                     </td>
-                                    <td>{{ $quickLink->display_order }}</td>
+                                    <td class="text-center">{{ $quickLink->display_order }}</td>
                                     <td>
                                         @if ($quickLink->is_published)
                                             <span class="badge bg-success">Published</span>

@@ -22,7 +22,7 @@
                     id="page-form">
                     @csrf
                     @method('PUT')
-                    @include('pages.partials.form')
+                    @include('backend.pages.partials.form')
                 </form>
             </div>
         </div>

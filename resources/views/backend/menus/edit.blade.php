@@ -22,7 +22,7 @@
                     novalidate>
                     @csrf
                     @method('PUT')
-                    @include('menus.partials.form', ['button' => 'Update'])
+                    @include('backend.menus.partials.form', ['button' => 'Update'])
                 </form>
             </div>
         </div>

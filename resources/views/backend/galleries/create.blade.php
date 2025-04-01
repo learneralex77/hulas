@@ -20,7 +20,7 @@
 
                 <form action="{{ route('galleries.store') }}" method="POST" enctype="multipart/form-data" id="gallery-form">
                     @csrf
-                    @include('galleries.partials.form')
+                    @include('backend.galleries.partials.form')
                 </form>
             </div>
         </div>

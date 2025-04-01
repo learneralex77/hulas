@@ -22,7 +22,7 @@
                 <form action="{{ route('branches.store') }}" method="POST" enctype="multipart/form-data"
                     class="needs-validation" novalidate>
                     @csrf
-                    @include('branches.partials.form')
+                    @include('backend.branches.partials.form')
                 </form>
             </div>
         </div>

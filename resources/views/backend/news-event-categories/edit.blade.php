@@ -25,7 +25,7 @@
                     id="category-form" novalidate>
                     @csrf
                     @method('PUT')
-                    @include('news-event-categories.partials.form')
+                    @include('backend.news-event-categories.partials.form')
                 </form>
             </div>
         </div>

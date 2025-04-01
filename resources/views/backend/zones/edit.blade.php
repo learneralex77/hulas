@@ -23,7 +23,7 @@
                 <form action="{{ route('zones.update', $zone) }}" method="POST" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
-                    @include('zones.partials.form')
+                    @include('backend.zones.partials.form')
                 </form>
             </div>
         </div>

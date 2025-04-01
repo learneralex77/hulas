@@ -22,7 +22,7 @@
                     enctype="multipart/form-data" id="agent-form" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
-                    @include('become-an-agent.partials.form')
+                    @include('backend.become-an-agent.partials.form')
                 </form>
             </div>
         </div>

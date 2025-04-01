@@ -24,7 +24,7 @@
                     novalidate>
                     @csrf
                     @method('PUT')
-                    @include('contact-us.partials.form')
+                    @include('backend.contact-us.partials.form')
                 </form>
             </div>
         </div>

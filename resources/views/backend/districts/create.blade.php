@@ -22,7 +22,7 @@
 
                 <form action="{{ route('districts.store') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
-                    @include('districts.partials.form')
+                    @include('backend.districts.partials.form')
                 </form>
             </div>
         </div>

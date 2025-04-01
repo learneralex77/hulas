@@ -22,7 +22,7 @@
 
                 <form action="{{ route('contact-us.store') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
-                    @include('contact-us.partials.form')
+                    @include('backend.contact-us.partials.form')
                 </form>
             </div>
         </div>

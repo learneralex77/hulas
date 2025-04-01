@@ -24,7 +24,7 @@
                     class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
-                    @include('agent-forms.partials.form')
+                    @include('backend.agent-forms.partials.form')
                 </form>
             </div>
         </div>

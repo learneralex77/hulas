@@ -20,7 +20,7 @@
             <div class="block-content no-bottom-space">
                 <form action="{{ route('menus.store') }}" method="POST" id="menuForm" class="needs-validation" novalidate>
                     @csrf
-                    @include('menus.partials.form', ['button' => 'Create'])
+                    @include('backend.menus.partials.form', ['button' => 'Create'])
                 </form>
             </div>
         </div>

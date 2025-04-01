@@ -20,7 +20,7 @@
             <div class="block-content">
                 <form action="{{ route('agent-details.store') }}" method="POST" class="needs-validation" novalidate>
                     @csrf
-                    @include('agent-details.partials.form')
+                    @include('backend.agent-details.partials.form')
                 </form>
             </div>
         </div>

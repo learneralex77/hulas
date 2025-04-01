@@ -22,7 +22,7 @@
                 <form action="{{ route('downloads.store') }}" method="POST" enctype="multipart/form-data"
                     class="needs-validation" novalidate>
                     @csrf
-                    @include('downloads.partials.form')
+                    @include('backend.downloads.partials.form')
                 </form>
             </div>
         </div>

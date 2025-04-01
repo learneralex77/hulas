@@ -20,7 +20,7 @@
 
                 <form action="{{ route('designations.store') }}" method="POST">
                     @csrf
-                    @include('designations.partials.form')
+                    @include('backend.designations.partials.form')
                 </form>
             </div>
         </div>

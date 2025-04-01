@@ -21,7 +21,7 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <label class="form-label" for="slug">Slug</label>
                 <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
                     name="slug" value="{{ old('slug', $newsEventCategory->slug ?? '') }}">
@@ -29,6 +29,15 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
                 <small class="text-muted">Leave empty to auto-generate from name</small>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="display_order">Display Order</label>
+                <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order"
+                    name="display_order" value="{{ old('display_order', $newsEventCategory->display_order ?? 0) }}">
+                @error('display_order')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                <small class="text-muted">Order in which this category appears</small>
             </div>
         </div>
 

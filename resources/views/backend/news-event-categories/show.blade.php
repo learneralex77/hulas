@@ -10,53 +10,79 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">News & Event Category Details: {{ $newsEventCategory->name }}</h3>
                 <div class="block-options">
-                    <a href="{{ route('news-event-categories.edit', $newsEventCategory) }}"
-                        class="btn btn-sm btn-alt-primary border me-2">
-                        <i class="fa fa-edit"></i> Edit
+                    <a href="{{ route('news-event-categories.edit', $newsEventCategory) }}" class="btn btn-sm btn-alt-primary border">
+                        <i class="fa fa-pencil-alt"></i> Edit
                     </a>
-                    <a href="{{ route('news-event-categories.index') }}" class="btn btn-sm btn-alt-primary border me-2">
+                    <a href="{{ route('news-event-categories.index') }}" class="btn btn-sm btn-alt-primary border">
                         <i class="fa fa-arrow-left"></i> Back
                     </a>
-
                 </div>
             </div>
             <div class="block-content">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h4>Category Information</h4>
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <th style="width: 15%;">Name</th>
-                                        <td style="width: 35%;">{{ $newsEventCategory->name }}</td>
-                                        <th style="width: 15%;">Status</th>
-                                        <td style="width: 35%;">
-                                            @if ($newsEventCategory->is_published)
-                                                <span class="badge bg-success">Published</span>
-                                            @else
-                                                <span class="badge bg-danger">Unpublished</span>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Slug</th>
-                                        <td>{{ $newsEventCategory->slug }}</td>
-                                        <th>Display Order</th>
-                                        <td>{{ $newsEventCategory->display_order }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Created At</th>
-                                        <td>{{ $newsEventCategory->created_at->format('F j, Y g:i A') }}</td>
-                                        <th>Updated At</th>
-                                        <td>{{ $newsEventCategory->updated_at->format('F j, Y g:i A') }}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Description</th>
-                                        <td colspan="3">{!! nl2br(e($newsEventCategory->description)) !!}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Basic Information</h3>
+                            </div>
+                            <div class="block-content">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">ID:</div>
+                                    <div class="col-md-8">{{ $newsEventCategory->id }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Name:</div>
+                                    <div class="col-md-8">{{ $newsEventCategory->name }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Slug:</div>
+                                    <div class="col-md-8">{{ $newsEventCategory->slug }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Display Order:</div>
+                                    <div class="col-md-8">{{ $newsEventCategory->display_order }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Additional Details</h3>
+                            </div>
+                            <div class="block-content">
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Status:</div>
+                                    <div class="col-md-8">
+                                        @if ($newsEventCategory->is_published)
+                                            <span class="badge bg-success">Published</span>
+                                        @else
+                                            <span class="badge bg-warning">Draft</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Created At:</div>
+                                    <div class="col-md-8">{{ $newsEventCategory->created_at->format('M d, Y H:i') }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Updated At:</div>
+                                    <div class="col-md-8">{{ $newsEventCategory->updated_at->format('M d, Y H:i') }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="block block-rounded mt-4">
+                    <div class="block-header block-header-default">
+                        <h3 class="block-title">Description</h3>
+                    </div>
+                    <div class="block-content">
+                        <div class="row">
+                            <div class="col-12">
+                                {!! nl2br(e($newsEventCategory->description)) !!}
+                            </div>
                         </div>
                     </div>
                 </div>

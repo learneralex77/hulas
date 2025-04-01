@@ -20,11 +20,11 @@
             <div class="block-content">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
-                        <thead>
+                        <thead> 
                             <tr>
-                                <th style="width: 50px;">S.N.</th>
+                                <th class="text-left"">S.N.</th>
                                 <th>Name</th>
-                                <th>Display Order</th>
+                                <th class="text-left">Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -34,7 +34,7 @@
                                 <tr id="category-row-{{ $category->id }}">
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $category->name }}</td>
-                                    <td>{{ $category->display_order }}</td>
+                                    <td class="text-center">{{ $category->display_order }}</td>
                                     <td>
                                         @if ($category->is_published)
                                             <span class="badge bg-success">Published</span>
@@ -104,7 +104,7 @@
         function deleteCategory(categoryId) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this! This may affect news & events using this category.",
+                text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

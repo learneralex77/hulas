@@ -22,7 +22,7 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
-                                <th class="text-left">ID</th>
+                                <th style="text-align: left;">S.N.</th>
                                 <th>Name</th>
                                 <th class="text-left">Display Order</th>
                                 <th>Status</th>
@@ -35,7 +35,7 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $zone->name }}</td>
                                     <td class="text-center">{{ $zone->display_order }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($zone->is_published)
                                             <span class="badge bg-success">Published</span>
                                         @else
@@ -99,7 +99,7 @@
         function deleteZone(zoneId) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this! This may affect related districts.",
+                text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

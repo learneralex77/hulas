@@ -29,11 +29,15 @@ class PageRequest extends FormRequest
             'content' => ['required', 'string'],
             'menu_id' => ['required', 'exists:menus,id'],
             'short_description' => ['nullable', 'string', 'max:500'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'delete_image' => ['nullable', 'boolean'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
+            'delete_image' => ['nullable', 'boolean'],
         ];
+        
+        // Add image validation only if the file is being uploaded
+        if ($this->hasFile('image')) {
+            $rules['image'] = ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'];
+        }
 
         // For update operations, add unique slug check
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
@@ -117,5 +121,42 @@ class PageRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         // No automatic data preparation needed for this request
+    }
+
+    /**
+     * Handle the validation after it passes.
+     */
+    public function validated($key = null, $default = null)
+    {
+        // For Laravel 9+, handle $key parameter
+        if ($key !== null) {
+            return parent::validated($key, $default);
+        }
+        
+        // Get validated data but filter out the file
+        $validated = parent::validated();
+        
+        // Remove image if it's a file object
+        if (isset($validated['image']) && $validated['image'] instanceof \Illuminate\Http\UploadedFile) {
+            unset($validated['image']);
+        }
+        
+        return $validated;
+    }
+
+    /**
+     * Custom validation method that safely excludes file uploads
+     */
+    public function safeValidated()
+    {
+        $data = $this->validated();
+        
+        // Handle the image separately if needed
+        if ($this->hasFile('image')) {
+            // We'll handle the image in the controller
+            unset($data['image']);
+        }
+        
+        return $data;
     }
 }

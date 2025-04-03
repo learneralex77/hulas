@@ -69,17 +69,6 @@
                                     </div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-md-4 fw-semibold text-muted">Image:</div>
-                                    <div class="col-md-8">
-                                        @if ($team->image)
-                                            <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}"
-                                                class="img-fluid rounded" style="max-height: 100px;">
-                                        @else
-                                            <span class="text-muted">No image available</span>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">Created At:</div>
                                     <div class="col-md-8">{{ $team->created_at->format('M d, Y H:i') }}</div>
                                 </div>
@@ -105,6 +94,22 @@
                                             {{ $team->description }}
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                @if ($team->image)
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="block block-rounded">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">Team Member Image</h3>
+                                </div>
+                                <div class="block-content text-center">
+                                    <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}"
+                                        class="img-fluid rounded shadow" style="max-width: 500px;">
                                 </div>
                             </div>
                         </div>

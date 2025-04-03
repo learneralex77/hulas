@@ -14,7 +14,7 @@ class AgentFormController extends Controller
      */
     public function index()
     {
-        $agentForms = AgentForm::with('district')->latest()->get();
+        $agentForms = AgentForm::orderBy('display_order')->get();
         return view('backend.agent-forms.index', compact('agentForms'));
     }
 

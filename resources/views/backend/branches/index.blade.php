@@ -29,7 +29,7 @@
                                 <th>Email</th>
                                 <th>Display Order</th>
                                 <th>Status</th>
-                                <th style="width: 20%;">Actions</th>
+                                <th style="width: 13%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

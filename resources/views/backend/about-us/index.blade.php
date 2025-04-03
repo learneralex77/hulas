@@ -44,34 +44,30 @@
                                     <h3 class="block-title">General Information</h3>
                                 </div>
                                 <div class="block-content">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                            <tbody>
-                                                <tr>
-                                                    <th style="width: 30%;">Tagline</th>
-                                                    <td>{{ $aboutUs->tagline }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Years of Experience</th>
-                                                    <td>{{ $aboutUs->years_of_experience ?? 'N/A' }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Video Link</th>
-                                                    <td>
-                                                        @if ($aboutUs->video_link)
-                                                            <a href="{{ $aboutUs->video_link }}"
-                                                                target="_blank">{{ $aboutUs->video_link }}</a>
-                                                        @else
-                                                            N/A
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Short Description</th>
-                                                    <td>{{ $aboutUs->short_description ?? 'N/A' }}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="mb-4">
+                                        <h5 class="fw-semibold mb-2">Tagline</h5>
+                                        <p>{{ $aboutUs->tagline }}</p>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <h5 class="fw-semibold mb-2">Years of Experience</h5>
+                                        <p>{{ $aboutUs->years_of_experience ?? 'N/A' }}</p>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <h5 class="fw-semibold mb-2">Video Link</h5>
+                                        <p>
+                                            @if ($aboutUs->video_link)
+                                                <a href="{{ $aboutUs->video_link }}" target="_blank">{{ $aboutUs->video_link }}</a>
+                                            @else
+                                                N/A
+                                            @endif
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <h5 class="fw-semibold mb-2">Short Description</h5>
+                                        <p>{{ $aboutUs->short_description ?? 'N/A' }}</p>
                                     </div>
                                 </div>
                             </div>

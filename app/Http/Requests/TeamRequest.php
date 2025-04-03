@@ -30,6 +30,7 @@ class TeamRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
+            'delete_image' => ['nullable', 'boolean'],
         ];
     }
 
@@ -47,6 +48,7 @@ class TeamRequest extends FormRequest
             'description' => 'description',
             'display_order' => 'display order',
             'is_published' => 'published status',
+            'delete_image' => 'delete image option',
         ];
     }
 

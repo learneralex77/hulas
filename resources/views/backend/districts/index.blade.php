@@ -22,7 +22,7 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
-                                <th>S.N.</th>
+                                <th style="text-align: left;">S.N.</th>
                                 <th>Name</th>
                                 <th class="text-left">Display Order</th>
                                 <th>Status</th>
@@ -35,7 +35,7 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $district->name }}</td>
                                     <td class="text-center">{{ $district->display_order }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($district->is_published)
                                             <span class="badge bg-success">Published</span>
                                         @else

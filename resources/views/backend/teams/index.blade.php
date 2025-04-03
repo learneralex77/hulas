@@ -22,7 +22,7 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 50px;">S.N.</th>
+                                <th class="text-left" style="width: 50px;">S.N.</th>
                                 <th class="d-none d-sm-table-cell" style="width: 100px;">Image</th>
                                 <th>Name</th>
                                 <th class="d-none d-md-table-cell">Type</th>
@@ -35,14 +35,18 @@
                             @foreach ($teams as $team)
                                 <tr id="team-row-{{ $team->id }}">
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td class="d-none d-sm-table-cell text-center">
+                                    <td class="d-none d-sm-table-cell text-center" style="width: 60px;">
                                         @if ($team->image)
                                             <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}"
-                                                class="img-thumbnail" style="max-height: 50px;">
+                                                class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
                                         @else
-                                            <span class="text-muted"><i class="fa fa-image"></i></span>
+                                            <span class="text-muted" style="display: inline-block; width: 50px; height: 50px;">
+                                                <i class="fa fa-image" style="font-size: 24px; line-height: 50px;"></i>
+                                            </span>
                                         @endif
                                     </td>
+
+                                    
                                     <td>{{ $team->name }}</td>
                                     <td class="d-none d-md-table-cell">{{ $team->type }}</td>
                                     <td class="d-none d-lg-table-cell text-center">{{ $team->display_order }}</td>

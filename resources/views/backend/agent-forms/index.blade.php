@@ -29,7 +29,7 @@
                                 <th class="text-left">Display Order</th>
                                 <th>Address</th>
                                 <th>Status</th>
-                                <th style="width: 20%;">Actions</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,7 +41,7 @@
                                     <td>{{ $agentForm->district->name }}</td>
                                     <td class="text-center">{{ $agentForm->display_order }}</td>
                                     <td>{{ Str::limit($agentForm->address, 30) }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($agentForm->is_processed)
                                             <span class="badge bg-success">Published</span>
                                         @else

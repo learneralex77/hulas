@@ -79,9 +79,9 @@ class ContactUsRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        // Set boolean values correctly
+        // Set boolean values correctly based on input value
         $this->merge([
-            'is_contacted' => $this->has('is_contacted'),
+            'is_contacted' => $this->input('is_contacted') == 1,
         ]);
     }
 }

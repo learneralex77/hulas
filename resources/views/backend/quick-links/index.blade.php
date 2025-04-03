@@ -22,7 +22,7 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
-                                <th style="width: 50px;">S.N.</th>
+                                <th style="width: 50px; text-align: left;">S.N.</th>
                                 <th>Name</th>
                                 <th>External Link</th>
                                 <th class="text-left">Display Order</th>
@@ -35,14 +35,14 @@
                                 <tr id="quick-link-row-{{ $quickLink->id }}">
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $quickLink->name }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         <a href="{{ $quickLink->external_link }}" target="_blank"
                                             class="btn btn-sm btn-alt-primary">
                                             <i class="fa fa-external-link-alt"></i> Visit Link
                                         </a>
                                     </td>
                                     <td class="text-center">{{ $quickLink->display_order }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($quickLink->is_published)
                                             <span class="badge bg-success">Published</span>
                                         @else

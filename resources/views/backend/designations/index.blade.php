@@ -22,11 +22,11 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 50px;">S.N.</th>
+                                <th class="text-left" style="width: 50px;">S.N.</th>
                                 <th>Name</th>
-                                <th class="d-none d-md-table-cell text-center">Display Order</th>
-                                <th class="text-center">Status</th>
-                                <th class="text-center" style="width: 13%;">Actions</th>
+                                <th class="d-none d-md-table-cell text-left">Display Order</th>
+                                <th class="text-left">Status</th>
+                                <th class="text-left" style="width: 13%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

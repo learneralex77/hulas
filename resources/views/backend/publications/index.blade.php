@@ -22,11 +22,12 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
-                                <th style="width: 70px;">S.N.</th>
+                                <th style="width: 70px; text-align: left;">S.N.</th>
                                 <th style="width: 100px;">Image</th>
                                 <th>Title</th>
                                 <th>Category</th>
                                 <th>Type</th>
+                                <th>Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -34,22 +35,27 @@
                         <tbody>
                             @foreach ($publications as $publication)
                                 <tr id="publication-row-{{ $publication->id }}">
-                                    <td class="text-center">{{ $publication->id }}</td>
-                                    <td class="text-center">
+                                    <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td class="text-center" style="width: 60px;">
                                         @if ($publication->image)
-                                            <img src="{{ asset('storage/' . $publication->image) }}"
-                                                alt="{{ $publication->title }}" class="img-fluid" style="max-height: 50px;">
+                                            <img src="{{ asset('storage/' . $publication->image) }}" 
+                                                alt="{{ $publication->title }}" class="img-fluid" 
+                                                style="width: 50px; height: 50px; object-fit: cover;">
                                         @else
-                                            <span class="text-muted ">No image</span>
+                                            <span class="text-muted" style="display: inline-block; width: 50px; height: 50px;">
+                                                <i class="fa fa-image" style="font-size: 24px; line-height: 50px;"></i>
+                                            </span>
                                         @endif
                                     </td>
+
                                     <td>
                                         {{ $publication->title }}
 
                                     </td>
                                     <td>{{ $publication->category->name ?? 'None' }}</td>
-                                    <td>{{ $publication->publication_type }}</td>
-                                    <td>
+                                    <td class="text-center">{{ $publication->publication_type }}</td>
+                                    <td class="text-center">{{ $publication->display_order }}</td>
+                                    <td class="text-center">
                                         @if ($publication->is_published)
                                             <span class="badge bg-success">Published</span>
                                         @else

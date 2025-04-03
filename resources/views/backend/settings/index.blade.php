@@ -46,47 +46,48 @@
                                     <h3 class="block-title">General Information</h3>
                                 </div>
                                 <div class="block-content">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            <tr>
-                                                <th style="width: 30%;">Title</th>
-                                                <td>{{ $setting->title }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Email</th>
-                                                <td>{{ $setting->email }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Phone</th>
-                                                <td>{{ $setting->phone ?? 'N/A' }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Address</th>
-                                                <td>{{ $setting->address ?? 'N/A' }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>PO Box</th>
-                                                <td>{{ $setting->PO_Box ?? 'N/A' }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Working Hours</th>
-                                                <td>{{ $setting->working_hours ?? 'N/A' }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Location Map</th>
-                                                <td>
-                                                    @if ($setting->map_location)
-                                                        <a href="{{ $setting->map_location }}" target="_blank"
-                                                            class="btn btn-sm btn-alt-info">
-                                                            <i class="fa fa-map-marker-alt me-1"></i> View Map
-                                                        </a>
-                                                    @else
-                                                        N/A
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="mb-4">
+                                        <h5 class="fw-semibold mb-2">Title</h5>
+                                        <p>{{ $setting->title }}</p>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <h5 class="fw-semibold mb-2">Email</h5>
+                                        <p>{{ $setting->email }}</p>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <h5 class="fw-semibold mb-2">Phone</h5>
+                                        <p>{{ $setting->phone ?? 'N/A' }}</p>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <h5 class="fw-semibold mb-2">Address</h5>
+                                        <p>{{ $setting->address ?? 'N/A' }}</p>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <h5 class="fw-semibold mb-2">PO Box</h5>
+                                        <p>{{ $setting->PO_Box ?? 'N/A' }}</p>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <h5 class="fw-semibold mb-2">Working Hours</h5>
+                                        <p>{{ $setting->working_hours ?? 'N/A' }}</p>
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <h5 class="fw-semibold mb-2">Location Map</h5>
+                                        <p>
+                                            @if ($setting->map_location)
+                                                <a href="{{ $setting->map_location }}" target="_blank" class="btn btn-sm btn-alt-info">
+                                                    <i class="fa fa-map-marker-alt me-1"></i> View Map
+                                                </a>
+                                            @else
+                                                N/A
+                                            @endif
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -95,26 +96,25 @@
                                     <h3 class="block-title">Additional Information</h3>
                                 </div>
                                 <div class="block-content">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            <tr>
-                                                <th style="width: 30%;">Meta Title</th>
-                                                <td>{{ $setting->meta_title ?? 'N/A' }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Meta Description</th>
-                                                <td>{{ $setting->meta_description ?? 'N/A' }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Meta Keywords</th>
-                                                <td>{{ $setting->meta_keywords ?? 'N/A' }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Footer Text</th>
-                                                <td>{{ $setting->footer_text ?? 'N/A' }}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="mb-4">
+                                        <h5 class="fw-semibold mb-2">Meta Title</h5>
+                                        <p>{{ $setting->meta_title ?? 'N/A' }}</p>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <h5 class="fw-semibold mb-2">Meta Description</h5>
+                                        <p>{{ $setting->meta_description ?? 'N/A' }}</p>
+                                    </div>
+                                    
+                                    <div class="mb-4">
+                                        <h5 class="fw-semibold mb-2">Meta Keywords</h5>
+                                        <p>{{ $setting->meta_keywords ?? 'N/A' }}</p>
+                                    </div>
+                                    
+                                    <div class="mb-2">
+                                        <h5 class="fw-semibold mb-2">Footer Text</h5>
+                                        <p>{{ $setting->footer_text ?? 'N/A' }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

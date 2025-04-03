@@ -34,17 +34,21 @@
                             @foreach ($agents as $agent)
                                 <tr id="agent-row-{{ $agent->id }}">
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td>
+                                        
+                                    <td style="width: 80px; text-align: center;">
                                         @if (is_array($agent->images) && count($agent->images) > 0)
                                             <img src="{{ asset('storage/' . $agent->images[0]) }}" alt="Preview"
-                                                class="img-fluid" style="max-height: 50px;">
-                                            @if (count($agent->images) > 1)
-                                                <span class="badge bg-info">+{{ count($agent->images) - 1 }} more</span>
-                                            @endif
+                                                class="img-fluid" style="width: 50px; height: 50px; object-fit: cover;">
+                                            
+                                           
                                         @else
-                                            <span class="text-muted">No images</span>
+                                            <span class="text-muted" style="display: inline-block; width: 50px; height: 50px; line-height: 50px;">
+                                                No images
+                                            </span>
                                         @endif
-                                    </td>
+                                             </td>
+
+
                                     <td class="text-center">
                                         @if (is_array($agent->images))
                                             {{ count($agent->images) }}

@@ -96,8 +96,16 @@ class AboutUsController extends Controller
     {
         $data = $request->validated();
 
+        // Handle image deletion if checkbox is checked
+        if ($request->has('delete_image') && $request->delete_image == 1) {
+            // Delete the old image if it exists
+            if ($aboutUs->image) {
+                Storage::disk('public')->delete($aboutUs->image);
+            }
+            $data['image'] = null;
+        }
         // Handle image upload
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        elseif ($request->hasFile('image') && $request->file('image')->isValid()) {
             // Delete the old image if it exists
             if ($aboutUs->image) {
                 Storage::disk('public')->delete($aboutUs->image);

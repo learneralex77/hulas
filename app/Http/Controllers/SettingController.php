@@ -75,22 +75,45 @@ class SettingController extends Controller
     {
         $data = $request->validated();
 
-        // Handle logo uploads
-        if ($request->hasFile('logo')) {
+        // Handle logo deletion/upload
+        if ($request->has('delete_logo') && $request->delete_logo == 1) {
+            // Delete the old logo if it exists
+            if ($setting->logo) {
+                Storage::disk('public')->delete($setting->logo);
+            }
+            $data['logo'] = null;
+        } elseif ($request->hasFile('logo')) {
+            // Delete the old logo if it exists
             if ($setting->logo) {
                 Storage::disk('public')->delete($setting->logo);
             }
             $data['logo'] = $request->file('logo')->store('settings', 'public');
         }
 
-        if ($request->hasFile('primary_logo')) {
+        // Handle primary logo deletion/upload
+        if ($request->has('delete_primary_logo') && $request->delete_primary_logo == 1) {
+            // Delete the old primary logo if it exists
+            if ($setting->primary_logo) {
+                Storage::disk('public')->delete($setting->primary_logo);
+            }
+            $data['primary_logo'] = null;
+        } elseif ($request->hasFile('primary_logo')) {
+            // Delete the old primary logo if it exists
             if ($setting->primary_logo) {
                 Storage::disk('public')->delete($setting->primary_logo);
             }
             $data['primary_logo'] = $request->file('primary_logo')->store('settings', 'public');
         }
 
-        if ($request->hasFile('secondary_logo')) {
+        // Handle secondary logo deletion/upload
+        if ($request->has('delete_secondary_logo') && $request->delete_secondary_logo == 1) {
+            // Delete the old secondary logo if it exists
+            if ($setting->secondary_logo) {
+                Storage::disk('public')->delete($setting->secondary_logo);
+            }
+            $data['secondary_logo'] = null;
+        } elseif ($request->hasFile('secondary_logo')) {
+            // Delete the old secondary logo if it exists
             if ($setting->secondary_logo) {
                 Storage::disk('public')->delete($setting->secondary_logo);
             }

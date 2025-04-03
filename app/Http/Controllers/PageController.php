@@ -35,8 +35,9 @@ class PageController extends Controller
     public function store(PageRequest $request)
     {
         try {
-            $data = $request->validated();
-
+            // Get all validated data except the image
+            $data = $request->safeValidated();
+            
             // Generate slug from title
             $data['slug'] = Str::slug($request->title);
 
@@ -45,8 +46,8 @@ class PageController extends Controller
                 $data['image'] = $request->file('image')->store('pages', 'public');
             }
 
-            // Set is_published based on the checkbox
-            $data['is_published'] = $request->has('is_published');
+            // Set is_published based on the checkbox value
+            $data['is_published'] = $request->input('is_published') == 1;
 
             // Create the page
             $page = Page::create($data);
@@ -55,7 +56,10 @@ class PageController extends Controller
             return redirect()->route('pages.index')
                 ->with('success', 'Page created successfully.');
         } catch (\Exception $e) {
-            return back()->withInput()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            // Make sure to exclude the file from flashed input
+            return redirect()->back()
+                ->withInput($request->except('image'))
+                ->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
 
@@ -81,37 +85,45 @@ class PageController extends Controller
      */
     public function update(PageRequest $request, Page $page)
     {
-        $data = $request->validated();
+        try {
+            // Get all validated data except the image
+            $data = $request->safeValidated();
 
-        // Generate slug from title if title is changed
-        if ($request->title != $page->title) {
-            $data['slug'] = Str::slug($request->title);
-        }
-
-        // Set is_published based on the checkbox
-        $data['is_published'] = $request->has('is_published');
-
-        // Handle image deletion if checkbox is checked
-        if ($request->has('delete_image') && $request->delete_image == 1) {
-            if ($page->image && Storage::disk('public')->exists($page->image)) {
-                Storage::disk('public')->delete($page->image);
-            }
-            $data['image'] = null;
-        }
-        // Handle image upload
-        elseif ($request->hasFile('image')) {
-            // Delete old image if exists
-            if ($page->image && Storage::disk('public')->exists($page->image)) {
-                Storage::disk('public')->delete($page->image);
+            // Generate slug from title if title is changed
+            if ($request->title != $page->title) {
+                $data['slug'] = Str::slug($request->title);
             }
 
-            $data['image'] = $request->file('image')->store('pages', 'public');
+            // Set is_published based on the checkbox value
+            $data['is_published'] = $request->input('is_published') == 1;
+
+            // Handle image deletion if checkbox is checked
+            if ($request->has('delete_image') && $request->delete_image == 1) {
+                if ($page->image && Storage::disk('public')->exists($page->image)) {
+                    Storage::disk('public')->delete($page->image);
+                }
+                $data['image'] = null;
+            }
+            // Handle image upload
+            elseif ($request->hasFile('image')) {
+                // Delete old image if exists
+                if ($page->image && Storage::disk('public')->exists($page->image)) {
+                    Storage::disk('public')->delete($page->image);
+                }
+
+                $data['image'] = $request->file('image')->store('pages', 'public');
+            }
+
+            $page->update($data);
+
+            return redirect()->route('pages.index')
+                ->with('success', 'Page updated successfully.');
+        } catch (\Exception $e) {
+            // Make sure to exclude the file from flashed input
+            return redirect()->back()
+                ->withInput($request->except('image'))
+                ->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
-
-        $page->update($data);
-
-        return redirect()->route('pages.index')
-            ->with('success', 'Page updated successfully.');
     }
 
     /**

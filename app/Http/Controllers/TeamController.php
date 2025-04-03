@@ -14,7 +14,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::orderBy('type')->orderBy('display_order')->get();
+        $teams = Team::orderBy('display_order')->get();
         return view('backend.teams.index', compact('teams'));
     }
 
@@ -70,8 +70,16 @@ class TeamController extends Controller
     {
         $data = $request->validated();
 
+        // Handle image deletion if checkbox is checked
+        if ($request->has('delete_image') && $request->delete_image == 1) {
+            // Delete old image if exists
+            if ($team->image && Storage::disk('public')->exists($team->image)) {
+                Storage::disk('public')->delete($team->image);
+            }
+            $data['image'] = null;
+        }
         // Handle image upload
-        if ($request->hasFile('image')) {
+        elseif ($request->hasFile('image')) {
             // Delete old image if exists
             if ($team->image && Storage::disk('public')->exists($team->image)) {
                 Storage::disk('public')->delete($team->image);

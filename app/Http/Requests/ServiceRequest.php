@@ -24,6 +24,8 @@ class ServiceRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
+            'names' => ['required', 'array', 'min:1'],
+            'names.0' => ['required', 'string', 'max:255', 'filled'],
             'names.*' => ['required', 'string', 'max:255'],
             'icons.*' => ['nullable', 'string', 'max:255'],
             'descriptions.*' => ['nullable', 'string'],
@@ -33,7 +35,7 @@ class ServiceRequest extends FormRequest
         ];
 
         // Check that the slug generated from the first name would be unique
-        if ($this->has('names.0')) {
+        if ($this->has('names.0') && !empty(trim($this->input('names.0')))) {
             $slug = Str::slug($this->input('names.0'));
             
             if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
@@ -80,6 +82,10 @@ class ServiceRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'names.required' => 'At least one service name is required.',
+            'names.min' => 'At least one service name is required.',
+            'names.0.required' => 'The first service name is required.',
+            'names.0.filled' => 'The first service name cannot be empty.',
             'names.*.required' => 'The service name is required.',
             'names.*.string' => 'The service name must be a string.',
             'names.*.max' => 'The service name may not be greater than 255 characters.',
@@ -107,7 +113,25 @@ class ServiceRequest extends FormRequest
     {
         // Boolean values need to be explicitly set since checkboxes don't send values when unchecked
         $this->merge([
-            'is_published' => $this->has('is_published'),
+            'is_published' => $this->input('is_published') == 1,
         ]);
+    }
+
+    /**
+     * Configure the validator instance.
+     *
+     * @param \Illuminate\Validation\Validator $validator
+     * @return void
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            // Check if the first name is empty or just whitespace
+            if (empty($this->input('names')) || 
+                !isset($this->input('names')[0]) || 
+                trim($this->input('names')[0]) === '') {
+                $validator->errors()->add('names.0', 'The first service name is required and cannot be empty.');
+            }
+        });
     }
 }

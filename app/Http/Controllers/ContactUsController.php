@@ -40,7 +40,7 @@ class ContactUsController extends Controller
         $data = $request->all();
 
         // Handle boolean values
-        $data['is_contacted'] = $request->has('is_contacted');
+        $data['is_contacted'] = $request->input('is_contacted') == 1;
 
         ContactUs::create($data);
 
@@ -79,7 +79,7 @@ class ContactUsController extends Controller
         $data = $request->all();
 
         // Handle boolean values
-        $data['is_contacted'] = $request->has('is_contacted');
+        $data['is_contacted'] = $request->input('is_contacted') == 1;
 
         $contactUs->update($data);
 

@@ -47,7 +47,8 @@
                 <div class="mb-4">
                     <label class="form-label">Status</label>
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="is_published" name="is_published" 
+                        <input type="hidden" name="is_published" value="0">
+                        <input class="form-check-input" type="checkbox" id="is_published" name="is_published" value="1"
                             {{ old('is_published', $page->is_published ?? true) ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_published">Published</label>
                     </div>

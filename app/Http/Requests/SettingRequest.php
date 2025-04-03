@@ -38,6 +38,9 @@ class SettingRequest extends FormRequest
             'logo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'primary_logo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'secondary_logo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'delete_logo' => ['nullable', 'boolean'],
+            'delete_primary_logo' => ['nullable', 'boolean'],
+            'delete_secondary_logo' => ['nullable', 'boolean'],
         ];
     }
 
@@ -65,6 +68,9 @@ class SettingRequest extends FormRequest
             'logo' => 'logo',
             'primary_logo' => 'primary logo',
             'secondary_logo' => 'secondary logo',
+            'delete_logo' => 'delete logo option',
+            'delete_primary_logo' => 'delete primary logo option',
+            'delete_secondary_logo' => 'delete secondary logo option',
         ];
     }
 

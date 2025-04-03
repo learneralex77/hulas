@@ -28,7 +28,7 @@
                                 <th>District</th>
                                 <th>Agent Names</th>
                                 <th>Contact Numbers</th>
-                                <th>Display Order</th>
+                                <th class="text-left">Display Order</th>
                                 <th>Contact Persons</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
@@ -62,7 +62,7 @@
                                             {{ $contactNos[0] ?? 'N/A' }}
                                         @endif
                                     </td>
-                                    <td>{{ $agentDetail->display_order }}</td>
+                                    <td class="text-center">{{ $agentDetail->display_order }}</td>
                                     <td>
                                         @php
                                             $contactPersons = json_decode($agentDetail->contact_person);
@@ -74,7 +74,7 @@
                                             {{ $contactPersons[0] ?? 'N/A' }}
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($agentDetail->is_published)
                                             <span class="badge bg-success">Published</span>
                                         @else

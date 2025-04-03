@@ -66,6 +66,12 @@
                     <p class="mb-1">Current Logo:</p>
                     <img src="{{ asset('storage/' . $setting->logo) }}" alt="Current Logo" class="img-fluid rounded" style="max-height: 150px;">
                 </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="delete_logo" id="delete_logo" value="1">
+                    <label class="form-check-label" for="delete_logo">
+                        Delete current logo
+                    </label>
+                </div>
             @endif
         </div>
     </div>
@@ -87,6 +93,12 @@
                     <p class="mb-1">Current Logo:</p>
                     <img src="{{ asset('storage/' . $setting->primary_logo) }}" alt="Current Primary Logo" class="img-fluid rounded" style="max-height: 150px;">
                 </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="delete_primary_logo" id="delete_primary_logo" value="1">
+                    <label class="form-check-label" for="delete_primary_logo">
+                        Delete current primary logo
+                    </label>
+                </div>
             @endif
         </div>
     </div>
@@ -107,6 +119,12 @@
                 <div class="mb-2">
                     <p class="mb-1">Current Logo:</p>
                     <img src="{{ asset('storage/' . $setting->secondary_logo) }}" alt="Current Secondary Logo" class="img-fluid rounded" style="max-height: 150px;">
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="delete_secondary_logo" id="delete_secondary_logo" value="1">
+                    <label class="form-check-label" for="delete_secondary_logo">
+                        Delete current secondary logo
+                    </label>
                 </div>
             @endif
         </div>

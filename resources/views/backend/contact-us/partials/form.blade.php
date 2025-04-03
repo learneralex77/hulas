@@ -34,6 +34,7 @@
                 <label class="form-label">Contact Status</label>
                 <div class="mt-2">
                     <div class="form-check form-switch">
+                        <input type="hidden" name="is_contacted" value="0">
                         <input class="form-check-input @error('is_contacted') is-invalid @enderror" type="checkbox" id="is_contacted" name="is_contacted"
                             value="1" {{ old('is_contacted', $contactUs->is_contacted ?? '') ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_contacted">Contacted</label>

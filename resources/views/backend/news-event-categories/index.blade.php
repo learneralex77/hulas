@@ -35,7 +35,7 @@
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $category->name }}</td>
                                     <td class="text-center">{{ $category->display_order }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($category->is_published)
                                             <span class="badge bg-success">Published</span>
                                         @else

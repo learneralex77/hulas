@@ -39,7 +39,7 @@
                                     <td>{{ $contact->email }}</td>
                                     <td>{{ $contact->phone_number }}</td>
                                     <td class="text-center">{{ $contact->display_order }}</td>
-                                    <td>
+                                    <td class="text-center">
                                         @if ($contact->is_contacted)
                                             <span class="badge bg-success">Contacted</span>
                                         @else

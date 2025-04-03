@@ -111,7 +111,7 @@
                                 <div class="col-md-4 fw-semibold text-muted">File:</div>
                                 <div class="col-md-8">
                                     <a href="{{ asset('storage/' . $service->file) }}" target="_blank" class="btn btn-sm btn-success">
-                                        <i class="fa fa-download"></i> Download File
+                                        <i class="fa fa-download"></i> View File
                                     </a>
                                 </div>
                             </div>

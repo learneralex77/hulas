@@ -49,6 +49,12 @@
                     <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="Current Image" class="img-fluid rounded"
                         style="max-height: 200px;">
                 </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="delete_image" id="delete_image" value="1">
+                    <label class="form-check-label" for="delete_image">
+                        Delete current image
+                    </label>
+                </div>
             @endif
         </div>
     </div>

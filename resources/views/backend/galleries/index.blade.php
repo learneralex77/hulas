@@ -22,7 +22,7 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full" id="table">
                         <thead>
                             <tr>
-                                <th class="text-center" style="width: 50px;">S.N.</th>
+                                <th class="text-left" style="width: 50px;">S.N.</th>
                                 <th class="d-none d-sm-table-cell" style="width: 80px;">Image</th>
                                 <th>Title</th>
                                 <th class="d-none d-lg-table-cell text-left" style="width: 70px;">Order</th>
@@ -35,14 +35,18 @@
                             @foreach ($galleries as $gallery)
                                 <tr id="gallery-row-{{ $gallery->id }}">
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td class="d-none d-sm-table-cell text-center">
+                                    <td class="d-none d-sm-table-cell text-center" style="width: 60px;">
                                         @if ($gallery->featured_image)
                                             <img src="{{ asset('storage/' . $gallery->featured_image) }}"
-                                                alt="{{ $gallery->title }}" class="img-thumbnail" style="max-height: 50px;">
+                                                alt="{{ $gallery->title }}" class="img-thumbnail"
+                                                style="width: 50px; height: 50px; object-fit: cover;">
                                         @else
-                                            <span class="text-muted"><i class="fa fa-image"></i></span>
+                                            <span class="text-muted" style="display: inline-block; width: 50px; height: 50px;">
+                                                <i class="fa fa-image" style="font-size: 24px; line-height: 50px;"></i>
+                                            </span>
                                         @endif
                                     </td>
+
                                     <td>{{ $gallery->title }}</td>
                                     <td class="d-none d-lg-table-cell text-center">{{ $gallery->display_order }}</td>
 

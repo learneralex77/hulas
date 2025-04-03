@@ -32,6 +32,7 @@
         <div class="mb-2 ps-0">
             <label class="form-label ps-0" for="is_published">Status</label>
             <div class="form-check form-switch">
+                <input type="hidden" name="is_published" value="0">
                 <input class="form-check-input @error('is_published') is-invalid @enderror" type="checkbox" id="is_published" name="is_published" value="1"
                     {{ old('is_published', $service->is_published ?? 0) ? 'checked' : '' }}>
                 <label class="form-check-label" for="is_published">Published</label>
@@ -55,11 +56,18 @@
 
         <div id="service-details-container">
             @if (isset($service) && $service->translations->isNotEmpty())
-                @foreach ($service->translations as $translation)
+                @php
+                    // Get all names, icons, and descriptions from the first translation
+                    $names = $service->translations->first()->names ?? [];
+                    $icons = $service->translations->first()->icons ?? [];
+                    $descriptions = $service->translations->first()->descriptions ?? [];
+                @endphp
+                
+                @foreach ($names as $index => $name)
                     <div class="service-detail-item border rounded p-2 mb-2">
-                        @if ($loop->index > 0)
+                        @if ($index > 0)
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <h5 class="mb-0 ps-0">Additional Entry #{{ $loop->index }}</h5>
+                                <h5 class="mb-0 ps-0">Additional Entry #{{ $index }}</h5>
                                 <button type="button" class="btn btn-sm btn-alt-danger remove-detail"
                                     title="Remove this entry">
                                     <i class="fa fa-times"></i>
@@ -68,37 +76,37 @@
                         @endif
                         <div class="row mb-2">
                             <div class="col-md-6">
-                                <label class="form-label ps-0" for="names_{{ $loop->index }}">Name <span
+                                <label class="form-label ps-0" for="names_{{ $index }}">Name <span
                                         class="text-danger">*</span></label>
                                 <input type="text"
-                                    class="form-control @error('names.' . $loop->index) is-invalid @enderror"
-                                    id="names_{{ $loop->index }}" name="names[]"
-                                    value="{{ old('names.' . $loop->index, $translation->names[$loop->index] ?? '') }}"
+                                    class="form-control @error('names.' . $index) is-invalid @enderror"
+                                    id="names_{{ $index }}" name="names[]"
+                                    value="{{ old('names.' . $index, $name) }}"
                                     required>
-                                @error('names.' . $loop->index)
+                                @error('names.' . $index)
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label ps-0" for="icons_{{ $loop->index }}">Icon (FontAwesome
+                                <label class="form-label ps-0" for="icons_{{ $index }}">Icon (FontAwesome
                                     Class)</label>
                                 <input type="text"
-                                    class="form-control @error('icons.' . $loop->index) is-invalid @enderror"
-                                    id="icons_{{ $loop->index }}" name="icons[]"
-                                    value="{{ old('icons.' . $loop->index, $translation->icons[$loop->index] ?? '') }}"
+                                    class="form-control @error('icons.' . $index) is-invalid @enderror"
+                                    id="icons_{{ $index }}" name="icons[]"
+                                    value="{{ old('icons.' . $index, $icons[$index] ?? '') }}"
                                     placeholder="fa fa-example">
-                                @error('icons.' . $loop->index)
+                                @error('icons.' . $index)
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
 
                         <div class="mb-2">
-                            <label class="form-label ps-0" for="descriptions_{{ $loop->index }}">Description</label>
-                            <textarea class="form-control @error('descriptions.' . $loop->index) is-invalid @enderror"
-                                id="descriptions_{{ $loop->index }}" name="descriptions[]" rows="3">{{ old('descriptions.' . $loop->index, $translation->descriptions[$loop->index] ?? '') }}</textarea>
-                            @error('descriptions.' . $loop->index)
+                            <label class="form-label ps-0" for="descriptions_{{ $index }}">Description</label>
+                            <textarea class="form-control @error('descriptions.' . $index) is-invalid @enderror"
+                                id="descriptions_{{ $index }}" name="descriptions[]" rows="3">{{ old('descriptions.' . $index, $descriptions[$index] ?? '') }}</textarea>
+                            @error('descriptions.' . $index)
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -110,7 +118,7 @@
                         <div class="col-md-6">
                             <label class="form-label ps-0" for="names_0">Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('names.0') is-invalid @enderror"
-                                id="names_0" name="names[]" value="{{ old('names.0') }}" required>
+                                id="names_0" name="names[]" value="{{ old('names.0') }}" required aria-required="true">
                             @error('names.0')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -153,7 +161,41 @@
 
 @push('scripts')
     <script>
-        const serviceTranslationsCount = {{ isset($service) && $service->translations->isNotEmpty() ? count($service->translations) : 1 }};
+        @if(isset($service) && $service->translations->isNotEmpty())
+            const serviceTranslationsCount = {{ count($service->translations->first()->names ?? []) }};
+        @else
+            const serviceTranslationsCount = 1;
+        @endif
+        
+        // Form validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            
+            form.addEventListener('submit', function(e) {
+                // Check if the first name field is empty
+                const nameField = document.querySelector('input[name="names[]"]');
+                if (!nameField || !nameField.value || nameField.value.trim() === '') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    nameField.classList.add('is-invalid');
+                    nameField.value = ''; // Clear any whitespace
+                    
+                    // Create error message if it doesn't exist
+                    let errorDiv = nameField.nextElementSibling;
+                    if (!errorDiv || !errorDiv.classList.contains('invalid-feedback')) {
+                        errorDiv = document.createElement('div');
+                        errorDiv.classList.add('invalid-feedback');
+                        nameField.parentNode.appendChild(errorDiv);
+                    }
+                    
+                    errorDiv.textContent = 'The service name is required.';
+                    // Make sure it's visible
+                    errorDiv.style.display = 'block';
+                    nameField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return false;
+                }
+            });
+        });
     </script>
     <script src="{{ asset('js/services.js') }}"></script>
 @endpush

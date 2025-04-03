@@ -24,8 +24,8 @@
                             <tr>
                                 <th class="text-left">S.N.</th>
                                 <th>Name</th>
-                                <th class="text-left">Display Order</th>
                                 <th>File</th>
+                                <th class="text-left">Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -50,7 +50,6 @@
                                             <span class="text-muted">No name defined</span>
                                         @endif
                                     </td>
-                                    <td class="text-center">{{ $service->display_order }}</td>
                                     <td>
                                         @if ($service->file)
                                             <a href="{{ asset('storage/' . $service->file) }}" target="_blank"
@@ -61,7 +60,9 @@
                                             <span class="text-muted">No file</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-center">{{ $service->display_order }}</td>
+
+                                    <td class="text-center">
                                         @if ($service->is_published)
                                             <span class="badge bg-success">Published</span>
                                         @else
@@ -125,7 +126,7 @@
         function deleteService(serviceId) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "This will delete both the service and its file. You won't be able to revert this!",
+                text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

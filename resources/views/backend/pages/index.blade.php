@@ -36,13 +36,17 @@
                             @foreach ($pages as $page)
                                 <tr id="page-row-{{ $page->id }}">
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td class="d-none d-sm-table-cell">
+                                    <td class="d-none d-sm-table-cell" style="width: 60px; text-align: center;">
                                         @if ($page->image)
                                             <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->title }}"
                                                 style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;" class="img-fluid">
                                         @else
-                                            <span class="text-muted" ><i class="fa fa-image" ></i></span>
+                                            <span class="text-muted" style="display: inline-block; width: 50px; height: 50px;">
+                                                <i class="fa fa-image" style="font-size: 24px; line-height: 50px;"></i>
+                                            </span>
                                         @endif
+                                    
+
                                     </td>
                                     <td>
                                         {{ $page->title }}

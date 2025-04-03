@@ -33,6 +33,15 @@ class ServiceController extends Controller
      */
     public function store(ServiceRequest $request)
     {
+        // Check if names array is empty or first name is empty
+        if (empty($request->input('names')) || 
+            !isset($request->input('names')[0]) || 
+            trim($request->input('names')[0]) === '') {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['names.0' => 'The service name is required.']);
+        }
+
         $validated = $request->validated();
 
         // Create a slug from the first name
@@ -56,7 +65,7 @@ class ServiceController extends Controller
         $service = Service::create([
             'slug' => $slug,
             'display_order' => $request->input('display_order'),
-            'is_published' => $request->has('is_published'),
+            'is_published' => $request->input('is_published') == 1,
             'file' => $filePath,
         ]);
 
@@ -112,6 +121,15 @@ class ServiceController extends Controller
      */
     public function update(ServiceRequest $request, Service $service)
     {
+        // Check if names array is empty or first name is empty
+        if (empty($request->input('names')) || 
+            !isset($request->input('names')[0]) || 
+            trim($request->input('names')[0]) === '') {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['names.0' => 'The service name is required.']);
+        }
+
         $validated = $request->validated();
 
         // Update slug from the first name
@@ -140,7 +158,7 @@ class ServiceController extends Controller
         $service->update([
             'slug' => $slug,
             'display_order' => $request->input('display_order'),
-            'is_published' => $request->input('is_published'),
+            'is_published' => $request->input('is_published') == 1,
             'file' => $filePath,
         ]);
 

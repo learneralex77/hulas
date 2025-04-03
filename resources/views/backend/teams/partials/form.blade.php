@@ -32,6 +32,13 @@
                 <div class="mb-1">
                     <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}" class="img-fluid" style="max-height: 150px;">
                 </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="delete_image" id="delete_image" value="1">
+                    <label class="form-check-label" for="delete_image">
+                        Delete current image
+                    </label>
+                </div>
+                <small class="text-muted fs-xs d-block mb-2">Leave empty to keep the current image</small>
             @endif
             <input type="file" class="form-control form-control-sm @error('image') is-invalid @enderror" id="image" name="image">
             <small class="text-muted fs-xs">Recommended size: 300x300px, Max: 2MB</small>

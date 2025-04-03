@@ -22,7 +22,7 @@
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
-                                <th style="width: 50px;">S.N.</th>
+                                <th style="width: 50px; text-align: left;">S.N.</th>
                                 <th>Name</th>
                                 <th>File</th>
                                 <th class="text-left">Display Order</th>

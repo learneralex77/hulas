@@ -19,17 +19,7 @@
                 </div>
             </div>
             <div class="block-content">
-                @if ($publication->image)
-                    <div class="block block-rounded mb-4">
-                        <div class="block-header block-header-default">
-                            <h3 class="block-title">Featured Image</h3>
-                        </div>
-                        <div class="block-content">
-                            <img src="{{ asset('storage/' . $publication->image) }}" alt="{{ $publication->title }}"
-                                class="img-fluid rounded" style="max-height: 300px;">
-                        </div>
-                    </div>
-                @endif
+              
 
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
@@ -128,8 +118,20 @@
                             <div class="col-12">
                                 {!! nl2br(e($publication->content)) ?: 'No content provided.' !!}
                             </div>
+                            
                         </div>
                     </div>
+                    @if ($publication->image)
+                    <div class="block block-rounded mb-4">
+                        <div class="block-header block-header-default">
+                            <h3 class="block-title">Featured Image</h3>
+                        </div>
+                        <div class="block-content">
+                            <img src="{{ asset('storage/' . $publication->image) }}" alt="{{ $publication->title }}"
+                                class="img-fluid rounded" style="max-height: 300px;">
+                        </div>
+                    </div>
+                @endif
                 </div>
             </div>
         </div>

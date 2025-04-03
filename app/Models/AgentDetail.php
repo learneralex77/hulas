@@ -58,4 +58,14 @@ class AgentDetail extends Model
     {
         return json_decode($this->contact_person ?: '[]') ?: [];
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_published', 1);
+    }
+
+    public function scopeOrderByDisplayOrder($query)
+    {
+        return $query->orderBy('display_order', 'asc');
+    }
 }

@@ -26,6 +26,27 @@
     </a>
 </li>
 
+<li class="{{ request()->is('sliders*') ? 'open' : '' }}">
+    <a class="nav-main-link {{ request()->is('sliders*') ? 'active' : '' }}" href="{{ route('sliders.index') }}">
+        <i class="nav-main-link-icon fa fa-sliders-h"></i>
+        <span class="nav-main-link-name">Sliders</span>
+    </a>
+</li>
+
+<li class="{{ request()->is('popups*') ? 'open' : '' }}">
+    <a class="nav-main-link {{ request()->is('popups*') ? 'active' : '' }}" href="{{ route('popups.index') }}">
+        <i class="nav-main-link-icon fa fa-window-restore"></i>
+        <span class="nav-main-link-name">Popups</span>
+    </a>
+</li>
+
+<li class="{{ request()->is('partners*') ? 'open' : '' }}">
+    <a class="nav-main-link {{ request()->is('partners*') ? 'active' : '' }}" href="{{ route('partners.index') }}">
+        <i class="nav-main-link-icon fa fa-handshake"></i>
+        <span class="nav-main-link-name">Partners</span>
+    </a>
+</li>
+
 <li class="{{ request()->is('departments*') ? 'open' : '' }}">
     <a class="nav-main-link {{ request()->is('departments*') ? 'active' : '' }}" href="{{ route('departments.index') }}">
         <i class="nav-main-link-icon fa fa-building"></i>

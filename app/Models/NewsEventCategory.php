@@ -29,4 +29,13 @@ class NewsEventCategory extends Model
     {
         return $this->hasMany(Publication::class, 'news_event_category_id');
     }
+    public function scopeActive($query)
+    {
+        return $query->where('is_published', 1);
+    }
+
+    public function scopeOrderByDisplayOrder($query)
+    {
+        return $query->orderBy('display_order', 'asc');
+    }
 }

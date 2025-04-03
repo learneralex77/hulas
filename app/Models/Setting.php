@@ -36,4 +36,6 @@ class Setting extends Model
     protected $casts = [
         'schema_markup' => 'string',
     ];
+
+  
 }

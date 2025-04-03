@@ -3,15 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Designation;
+use App\Models\Team;
+use App\Models\AboutUs;
 
 class FrontendController extends Controller
 {
     public function homepage()
     {
+        // $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
+
         return view('frontend.homepage');
     }
+
     public function aboutUs()
     {
+
         return view('frontend.about-us-page');
     }
     public function becomeAnAgent()

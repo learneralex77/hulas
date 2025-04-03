@@ -24,4 +24,13 @@ class Gallery extends Model
         'is_featured' => 'boolean',
         'is_published' => 'boolean',
     ];
+    public function scopeActive($query)
+    {
+        return $query->where('is_published', 1);
+    }
+
+    public function scopeOrderByDisplayOrder($query)
+    {
+        return $query->orderBy('display_order', 'asc');
+    }
 }

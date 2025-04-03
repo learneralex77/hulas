@@ -64,4 +64,14 @@ class Service extends Model
         $translation = $this->primaryTranslation;
         return json_decode($translation->description ?: '[]') ?: [];
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_published', 1);
+    }
+
+    public function scopeOrderByDisplayOrder($query)
+    {
+        return $query->orderBy('display_order', 'asc');
+    }
 }

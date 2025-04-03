@@ -4,43 +4,48 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Publication extends Model
+class Slider extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
-        'news_event_category_id',
-        'publication_type',
-        'title',
+        'name',
         'short_description',
-        'image',
-        'content',
-        'published_by',
+        'link',
         'is_published',
         'display_order',
-        'external_link'
-    ];
-
-    protected $casts = [
-        'is_published' => 'boolean',
+        'image',
     ];
 
     /**
-     * Get the category that owns the publication.
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
      */
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(NewsEventCategory::class, 'news_event_category_id');
-    }
+    protected $casts = [
+        'is_published' => 'boolean',
+        'display_order' => 'integer',
+    ];
+
+    /**
+     * Scope a query to only include published sliders.
+     */
     public function scopeActive($query)
     {
         return $query->where('is_published', 1);
     }
 
+    /**
+     * Scope a query to order by display order.
+     */
     public function scopeOrderByDisplayOrder($query)
     {
         return $query->orderBy('display_order', 'asc');
     }
-}
+} 

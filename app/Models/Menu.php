@@ -48,4 +48,14 @@ class Menu extends Model
     {
         return $this->hasMany(Page::class);
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('is_published', 1);
+    }
+
+    public function scopeOrderByDisplayOrder($query)
+    {
+        return $query->orderBy('display_order', 'asc');
+    }
 }

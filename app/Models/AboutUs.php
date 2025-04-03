@@ -40,4 +40,5 @@ class AboutUs extends Model
         'mission_vision' => 'array',
         'years_of_experience' => 'integer',
     ];
+   
 }

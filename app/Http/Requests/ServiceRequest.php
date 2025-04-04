@@ -24,6 +24,12 @@ class ServiceRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
+            // Direct service fields
+            'name' => ['required', 'string', 'max:255'],
+            'icon' => ['nullable', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            
+            // Original array fields for service details
             'names' => ['required', 'array', 'min:1'],
             'names.0' => ['required', 'string', 'max:255', 'filled'],
             'names.*' => ['required', 'string', 'max:255'],
@@ -35,7 +41,24 @@ class ServiceRequest extends FormRequest
         ];
 
         // Check that the slug generated from the first name would be unique
-        if ($this->has('names.0') && !empty(trim($this->input('names.0')))) {
+        if ($this->has('name') && !empty(trim($this->input('name')))) {
+            $slug = Str::slug($this->input('name'));
+            
+            if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
+                $serviceId = $this->route('service')->id;
+                
+                $rules['name'][] = Rule::unique('services', 'slug')
+                    ->where(function ($query) use ($slug) {
+                        return $query->where('slug', $slug);
+                    })
+                    ->ignore($serviceId);
+            } else {
+                $rules['name'][] = Rule::unique('services', 'slug')
+                    ->where(function ($query) use ($slug) {
+                        return $query->where('slug', $slug);
+                    });
+            }
+        } else if ($this->has('names.0') && !empty(trim($this->input('names.0')))) {
             $slug = Str::slug($this->input('names.0'));
             
             if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
@@ -65,9 +88,12 @@ class ServiceRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'names.*' => 'service name',
-            'icons.*' => 'icon',
-            'descriptions.*' => 'description',
+            'name' => 'service name',
+            'icon' => 'service icon',
+            'description' => 'service description',
+            'names.*' => 'service detail name',
+            'icons.*' => 'service detail icon',
+            'descriptions.*' => 'service detail description',
             'display_order' => 'display order',
             'is_published' => 'published status',
             'file' => 'file',
@@ -82,6 +108,16 @@ class ServiceRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'name.required' => 'The service name is required.',
+            'name.string' => 'The service name must be a string.',
+            'name.max' => 'The service name may not be greater than 255 characters.',
+            'name.unique' => 'A service with this name already exists.',
+            
+            'icon.string' => 'The icon must be a string.',
+            'icon.max' => 'The icon may not be greater than 255 characters.',
+            
+            'description.string' => 'The description must be a string.',
+            
             'names.required' => 'At least one service name is required.',
             'names.min' => 'At least one service name is required.',
             'names.0.required' => 'The first service name is required.',

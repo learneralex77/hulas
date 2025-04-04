@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Designation;
-use App\Models\Team;
+use App\Models\Slider;
+use App\Models\Popup;
 use App\Models\AboutUs;
+use App\Models\Service;
+use App\Models\ServiceTranslation;
 
 class FrontendController extends Controller
 {
     public function homepage()
     {
-        // $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
-
-        return view('frontend.homepage');
+        $slider = Slider::active()->orderBy('display_order', 'ASC')->get();
+        $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
+        $aboutUs = AboutUs::first();
+        $services = Service::active()->orderBy('display_order', 'ASC')->get();
+        $serviceTranslations = ServiceTranslation::whereIn('service_id', $services->pluck('id'))->get();
+        return view('frontend.homepage', compact('slider', 'popup', 'aboutUs', 'services', 'serviceTranslations'));
     }
 
     public function aboutUs()

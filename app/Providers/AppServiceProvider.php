@@ -24,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         if ($this->app->environment('local')) {
-            // $this->app->register(TelescopeServiceProvider::class);
-            // $this->app->register(TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
+            $this->app->register(TelescopeServiceProvider::class);
         }
     }
 
@@ -34,57 +34,38 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // View::composer('frontend.*', function ($view) {
-        //     $settings = Cache::remember('settings', 60, function () {
-        //         return Setting::first();
-        //     });
+        View::composer('frontend.*', function ($view) {
+            $settings = Cache::remember('settings', 60, function () {
+                return Setting::first();
+            });
+            $menus = Cache::remember('menus', 60, function () {
+                return [
+                    'parents' => Menu::with('children')
+                        ->whereNull('parent_id')
+                        ->where('is_published', 1)
+                        ->orderBy('display_order', 'asc')
+                        ->get(),
 
-        //     $menus = Cache::remember('menus', 60, function () {
-        //         return Menu::with('childMenu')
-        //             ->whereParentId(null)
-        //             ->where('is_top_header', 0)
-        //             ->where('is_active', 1)
-        //             ->orderBy('display_order', 'asc')
-        //             ->get();
-        //     });
+                    'children' => Menu::whereNotNull('parent_id')
+                        ->where('is_published', 1)
+                        ->orderBy('display_order', 'asc')
+                        ->get(),
+                ];
+            });
 
-        //     $topmenus = Cache::remember('topmenus', 60, function () {
-        //         return Menu::whereNull('parent_id')
-        //             ->where('is_active', 1)
-        //             ->where('is_top_header', 1)
-        //             ->orderBy('display_order', 'asc')
-        //             ->get();
-        //     });
+            $quickLinks = Cache::remember('quick_links', 60, function () {
+                return QuickLink::where('is_published', 1)->get();
+            });
 
 
-        //     $quickLinks = Cache::remember('quick_links', 60, function () {
-        //         return QuickLink::where('is_active', 1)->get();
-        //     });
+            $view->with([
+                'settings' => $settings,
+                'menus' => $menus,
+                'quickLinks' => $quickLinks,
+            ]);
+        });
+        Schema::defaultStringLength(191);
 
-        //     $featureds = Cache::remember('featureds', 60, function () {
-        //         return Featured::with('product')->active()->get();
-        //     });
 
-        //     $accountTypes = Cache::remember('account_types', 60, function () {
-        //         return AccountType::active()->displayOrder()->get();
-        //     });
-
-        //     $view->with([
-        //         'settings' => $settings,
-        //         'menus' => $menus,
-        //         'topmenus' => $topmenus,
-        //         'quickLinks' => $quickLinks,
-        //         'featureds' => $featureds,
-        //         'accountTypes' => $accountTypes,
-        //     ]);
-        // });
-        // Schema::defaultStringLength(191);
-
-        // HasMany::macro('createUpdateOrDelete', function (iterable $records) {
-        //     /** @var HasMany */
-        //     $hasMany = $this;
-
-        //     return (new CreateUpdateOrDelete($hasMany, $records))();
-        // });
     }
 }

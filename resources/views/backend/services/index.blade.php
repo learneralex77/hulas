@@ -35,7 +35,9 @@
                                 <tr id="service-row-{{ $service->id }}">
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>
-                                        @if ($service->translations->isNotEmpty())
+                                        @if($service->name)
+                                            {{ $service->name }}
+                                        @elseif($service->translations->isNotEmpty())
                                             @php
                                                 $translation = $service->translations->first();
                                                 $names = json_decode($translation->name, true);

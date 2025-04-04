@@ -42,6 +42,35 @@
             </div>
         </div>
 
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <label class="form-label ps-0" for="name">Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" 
+                    name="name" value="{{ old('name', $service->name ?? '') }}" required>
+                @error('name')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label ps-0" for="icon">Icon (FontAwesome Class)</label>
+                <input type="text" class="form-control @error('icon') is-invalid @enderror" id="icon"
+                    name="icon" value="{{ old('icon', $service->icon ?? '') }}" placeholder="fa fa-example">
+                @error('icon')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label class="form-label ps-0" for="description">Description</label>
+            <textarea class="form-control @error('description') is-invalid @enderror" id="description"
+                name="description" rows="3">{{ old('description', $service->description ?? '') }}</textarea>
+            @error('description')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
         <hr class="my-2">
 
         <!-- Dynamic section for names, icons, and descriptions -->
@@ -172,8 +201,8 @@
             const form = document.querySelector('form');
             
             form.addEventListener('submit', function(e) {
-                // Check if the first name field is empty
-                const nameField = document.querySelector('input[name="names[]"]');
+                // Check if the service name is empty
+                const nameField = document.querySelector('input[name="name"]');
                 if (!nameField || !nameField.value || nameField.value.trim() === '') {
                     e.preventDefault();
                     e.stopPropagation();

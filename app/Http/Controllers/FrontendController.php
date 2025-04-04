@@ -17,7 +17,15 @@ class FrontendController extends Controller
         $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
         $aboutUs = AboutUs::first();
         $services = Service::active()->orderBy('display_order', 'ASC')->get();
+        
+        // Get service translations and decode JSON
         $serviceTranslations = ServiceTranslation::whereIn('service_id', $services->pluck('id'))->get();
+        foreach ($serviceTranslations as $translation) {
+            $translation->name = json_decode($translation->name, true)[0] ?? '';
+            $translation->description = json_decode($translation->description, true)[0] ?? '';
+            $translation->icon = json_decode($translation->icon, true)[0] ?? '';
+        }
+        
         return view('frontend.homepage', compact('slider', 'popup', 'aboutUs', 'services', 'serviceTranslations'));
     }
 

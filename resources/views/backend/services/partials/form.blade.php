@@ -4,13 +4,27 @@
     <div class="col-12">
         <div class="row mb-2">
             <div class="col-md-6">
-                <label class="form-label ps-0" for="display_order">Display Order</label>
-                <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order"
-                    name="display_order" value="{{ old('display_order', $service->display_order ?? 0) }}">
-                @error('display_order')
+                <label class="form-label ps-0" for="name">Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" 
+                    name="name" value="{{ old('name', $service->name ?? '') }}" required>
+                @error('name')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+            
+            <div class="col-md-6">
+                <label class="form-label ps-0" for="icon">Icon (FontAwesome Class)</label>
+                <input type="text" class="form-control @error('icon') is-invalid @enderror" id="icon"
+                    name="icon" value="{{ old('icon', $service->icon ?? '') }}" placeholder="fa fa-example">
+                @error('icon')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+        
+        
+
+        <div class="row mb-2">
             <div class="col-md-6">
                 <label class="form-label ps-0" for="file">File (Image or PDF)</label>
                 <input type="file" class="form-control @error('file') is-invalid @enderror" id="file"
@@ -27,41 +41,29 @@
                     </div>
                 @endif
             </div>
-        </div>
-
-        <div class="mb-2 ps-0">
-            <label class="form-label ps-0" for="is_published">Status</label>
-            <div class="form-check form-switch">
-                <input type="hidden" name="is_published" value="0">
-                <input class="form-check-input @error('is_published') is-invalid @enderror" type="checkbox" id="is_published" name="is_published" value="1"
-                    {{ old('is_published', $service->is_published ?? 0) ? 'checked' : '' }}>
-                <label class="form-check-label" for="is_published">Published</label>
-                @error('is_published')
+            
+            <div class="col-md-3">
+                <label class="form-label ps-0" for="display_order">Display Order</label>
+                <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order"
+                    name="display_order" value="{{ old('display_order', $service->display_order ?? 0) }}">
+                @error('display_order')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-        </div>
-
-        <div class="row mb-2">
-            <div class="col-md-6">
-                <label class="form-label ps-0" for="name">Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" 
-                    name="name" value="{{ old('name', $service->name ?? '') }}" required>
-                @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label ps-0" for="icon">Icon (FontAwesome Class)</label>
-                <input type="text" class="form-control @error('icon') is-invalid @enderror" id="icon"
-                    name="icon" value="{{ old('icon', $service->icon ?? '') }}" placeholder="fa fa-example">
-                @error('icon')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+            
+            <div class="col-md-3">
+                <label class="form-label ps-0" for="is_published">Status</label>
+                <div class="form-check form-switch mt-2">
+                    <input type="hidden" name="is_published" value="0">
+                    <input class="form-check-input @error('is_published') is-invalid @enderror" type="checkbox" id="is_published" name="is_published" value="1"
+                        {{ old('is_published', $service->is_published ?? 0) ? 'checked' : '' }}>
+                    <label class="form-check-label" for="is_published">Published</label>
+                    @error('is_published')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
             </div>
         </div>
-
         <div class="mb-2">
             <label class="form-label ps-0" for="description">Description</label>
             <textarea class="form-control @error('description') is-invalid @enderror" id="description"

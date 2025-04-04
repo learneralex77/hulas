@@ -15,7 +15,6 @@ return new class extends Migration
             $table->string('name')->after('id')->nullable();
             $table->string('icon')->after('name')->nullable();
             $table->text('description')->after('icon')->nullable();
-            // Note: slug field already exists in services table
         });
     }
 

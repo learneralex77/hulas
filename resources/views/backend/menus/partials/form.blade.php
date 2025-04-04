@@ -12,17 +12,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="mb-4">
-                    <label class="form-label" for="display_order">Display Order</label>
-                    <input type="number" class="form-control @error('display_order') is-invalid @enderror"
-                        id="display_order" name="display_order"
-                        value="{{ old('display_order', $menu->display_order ?? 0) }}">
-                    @error('display_order')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
+           
             <div class="col-md-3 col-sm-6">
                 <div class="mb-4">
                     <label class="form-label" for="parent_id">Parent Menu</label>
@@ -37,6 +27,17 @@
                         @endforeach
                     </select>
                     @error('parent_id')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="mb-4">
+                    <label class="form-label" for="display_order">Display Order</label>
+                    <input type="number" class="form-control @error('display_order') is-invalid @enderror"
+                        id="display_order" name="display_order"
+                        value="{{ old('display_order', $menu->display_order ?? 0) }}">
+                    @error('display_order')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>

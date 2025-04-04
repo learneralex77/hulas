@@ -44,6 +44,9 @@
                         <small class="text-muted">Leave empty to keep the current image</small>
                     @endif
                     <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
+                    <div id="image-preview-container" class="mt-2" style="display: none; max-width: 100%;">
+                        <img id="image-preview" src="#" alt="Image Preview" class="img-thumbnail" style="max-width: 100%; max-height: 150px; object-fit: contain;">
+                    </div>
                     <small class="text-muted">Accepted formats: jpeg, png, jpg, gif, webp. Max size: 2MB</small>
                     @error('image')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -91,3 +94,56 @@
         </div>
     </div>
 </div> 
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const imageInput = document.getElementById('image');
+        const previewContainer = document.getElementById('image-preview-container');
+        const imagePreview = document.getElementById('image-preview');
+        
+        imageInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const file = this.files[0];
+                
+                // Check if the file is an image
+                if (!file.type.match('image.*')) {
+                    previewContainer.style.display = 'none';
+                    return;
+                }
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    previewContainer.style.display = 'block';
+                }
+                
+                reader.readAsDataURL(file);
+            } else {
+                previewContainer.style.display = 'none';
+            }
+        });
+        
+        // Handle delete image checkbox
+        const deleteImageCheckbox = document.getElementById('delete_image');
+        if (deleteImageCheckbox) {
+            deleteImageCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // If delete is checked, hide the current image preview
+                    const currentImage = this.closest('.mb-4').querySelector('.img-thumbnail');
+                    if (currentImage) {
+                        currentImage.style.display = 'none';
+                    }
+                } else {
+                    // If unchecked, show the image again
+                    const currentImage = this.closest('.mb-4').querySelector('.img-thumbnail');
+                    if (currentImage) {
+                        currentImage.style.display = 'block';
+                    }
+                }
+            });
+        }
+    });
+</script>
+@endpush 

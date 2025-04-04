@@ -141,16 +141,13 @@
             @endforeach
             
             <!-- Service Details Cards -->
-            @foreach($serviceTranslations as $serviceTranslation)
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
                 <div class="p-5">
                     <a href="#">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight">
-                            {{ $serviceTranslation->name }}
                         </h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-700">
-                        {{ $serviceTranslation->description }}
                     </p>
                     <a href="#"
                         class="inline-flex items-center px-3 py-2 text-base font-medium text-center rounded-lg hover:text-accent focus:ring-4 focus:outline-none">
@@ -163,7 +160,6 @@
                     </a>
                 </div>
             </div>
-            @endforeach
         </div>
         </div>
 

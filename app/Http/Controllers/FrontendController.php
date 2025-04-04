@@ -8,26 +8,43 @@ use App\Models\Popup;
 use App\Models\AboutUs;
 use App\Models\Service;
 use App\Models\ServiceTranslation;
+use App\Models\Page;
+use App\Models\Publication;
+use App\Models\Gallery;
+
+
+
 
 class FrontendController extends Controller
 {
-    public function homepage()
+   
+        public function homepage()
     {
-        $slider = Slider::active()->orderBy('display_order', 'ASC')->get();
-        $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
         $aboutUs = AboutUs::first();
+        $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
+        $popupPaths = $popup->pluck('photo')->map(fn($path) => asset('storage' . $path));
+        $howToBecameAnAgent = Page::where('slug', 'how-become-an-agent')->first();
+        $sliders = Slider::active()->orderBy('display_order', 'ASC')->get();
         $services = Service::active()->orderBy('display_order', 'ASC')->get();
+        $notices = Publication::active()->where('publication_type', 'notice')->orderBy('display_order', 'ASC')->get();
+        $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
+        return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries',));
+    }
+        // $slider = Slider::active()->orderBy('display_order', 'ASC')->get();
+        // $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
+        // $aboutUs = AboutUs::first();
+        // $services = Service::active()->orderBy('display_order', 'ASC')->get();
         
         // Get service translations and decode JSON
-        $serviceTranslations = ServiceTranslation::whereIn('service_id', $services->pluck('id'))->get();
-        foreach ($serviceTranslations as $translation) {
-            $translation->name = json_decode($translation->name, true)[0] ?? '';
-            $translation->description = json_decode($translation->description, true)[0] ?? '';
-            $translation->icon = json_decode($translation->icon, true)[0] ?? '';
-        }
+        // $serviceTranslations = ServiceTranslation::whereIn('service_id', $services->pluck('id'))->get();
+        // foreach ($serviceTranslations as $translation) {
+        //     $translation->name = json_decode($translation->name, true)[0] ?? '';
+        //     $translation->description = json_decode($translation->description, true)[0] ?? '';
+        //     $translation->icon = json_decode($translation->icon, true)[0] ?? '';
+        // }
         
-        return view('frontend.homepage', compact('slider', 'popup', 'aboutUs', 'services', 'serviceTranslations'));
-    }
+        // return view('frontend.homepage', compact('slider', 'popup', 'aboutUs', 'services', 'serviceTranslations'));
+    
 
     public function aboutUs()
     {

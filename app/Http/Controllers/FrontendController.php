@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Designation;
-use App\Models\Team;
+use App\Models\Slider;
+use App\Models\Popup;
 use App\Models\AboutUs;
+<<<<<<< HEAD
 use App\Models\Gallery;
 use App\Models\Page;
 use App\Models\Publication;
 use App\Models\Service;
+=======
+use App\Models\Service;
+use App\Models\ServiceTranslation;
+>>>>>>> 423b91f6e44a1b6b64d98bd178de5fd479f931d5
 
 class FrontendController extends Controller
 {

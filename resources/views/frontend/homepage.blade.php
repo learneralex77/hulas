@@ -73,14 +73,16 @@
                 About Hulas Remittance
             </h3>
             <h1 class="text-4xl font-bold">
-                Delivering Happiness through fast and reliable services
+                {{ $aboutUs->tagline }}
+                <!-- Delivering Happiness through fast and reliable services -->
             </h1>
             <p class="text-gray-600 text-lg">
-                Hulas Remittance, a member company of Golchha Organization, was
+                {{ $aboutUs->description }}
+                <!-- Hulas Remittance, a member company of Golchha Organization, was
                 established in August 2005 with the vision to bring in quality and
                 reliable money transfer services in to Nepal. A leading business house
                 with a dedicated business history of more than 85 years, Golchha
-                Organization has established “HULAS” as one of the most trusted
+                Organization has established "HULAS" as one of the most trusted
                 household consumer brands in the country. Hulas Remittance, being one
                 of the principal agents, playing a leading role in offering money
                 transfer services of The Western Union Company in Nepal since January
@@ -95,7 +97,7 @@
                 commercial banks, Development Banks, Finance Companies and cooperative
                 organizations) locations have established brand promise of Western
                 Union as a fast, reliable and convenient way of remittance service
-                across the country.
+                across the country. -->
             </p>
             <button class="m-3 text-left text-accent text-xl uppercase cursor-pointer">
                 read more
@@ -109,20 +111,21 @@
             <h1 class="text-5xl font-bold">Services</h1>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 space-y-6 gap-3 ">
+            <!-- Main Service Card -->
+            @foreach($services as $service)
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
                 <a href="#">
-                    <img class="rounded-t-lg w-full" href="{{ asset('assets/images/about-us/about-img-1.webp') }}"
-                        alt="" />
+                    <img class="rounded-t-lg w-full" href="{{ asset('storage/' . $service->file) }}"
+                        alt="{{ $service->name ?? 'Service Image' }}" />
                 </a>
                 <div class="p-5">
                     <a href="#">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight">
-                            Noteworthy technology acquisitions 2021
+                            {{ $service->name }}
                         </h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-700">
-                        Here are the biggest enterprise technology acquisitions of 2021 so
-                        far, in reverse chronological order.
+                        {{ $service->description }}
                     </p>
                     <a href="#"
                         class="inline-flex items-center px-3 py-2 text-base font-medium text-center rounded-lg hover:text-accent focus:ring-4 focus:outline-none">
@@ -135,86 +138,32 @@
                     </a>
                 </div>
             </div>
+            @endforeach
+            
+            <!-- Service Details Cards -->
+            @foreach($serviceTranslations as $serviceTranslation)
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-                <a href="#">
-                    <img class="rounded-t-lg w-full" href="{{ asset('assets/images/about-us/about-img-1.webp') }}"
-                        alt="" />
-                </a>
                 <div class="p-5">
                     <a href="#">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight">
-                            Noteworthy technology acquisitions 2021
+                            {{ $serviceTranslation->name }}
                         </h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-700">
-                        Here are the biggest enterprise technology acquisitions of 2021 so
-                        far, in reverse chronological order.
+                        {{ $serviceTranslation->description }}
                     </p>
                     <a href="#"
                         class="inline-flex items-center px-3 py-2 text-base font-medium text-center rounded-lg hover:text-accent focus:ring-4 focus:outline-none">
                         Read more
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M1 5h12m0 0L9 1m4 4L9 9" />
                         </svg>
                     </a>
                 </div>
             </div>
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-                <a href="#">
-                    <img class="rounded-t-lg w-full" href="{{ asset('assets/images/about-us/about-img-1.webp') }}"
-                        alt="" />
-                </a>
-                <div class="p-5">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight">
-                            Noteworthy technology acquisitions 2021
-                        </h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700">
-                        Here are the biggest enterprise technology acquisitions of 2021 so
-                        far, in reverse chronological order.
-                    </p>
-                    <a href="#"
-                        class="inline-flex items-center px-3 py-2 text-base font-medium text-center rounded-lg hover:text-accent focus:ring-4 focus:outline-none">
-                        Read more
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-                <a href="#">
-                    <img class="rounded-t-lg w-full" href="{{ asset('assets/images/about-us/about-img-1.webp') }}"
-                        alt="" />
-                </a>
-                <div class="p-5">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight">
-                            Noteworthy technology acquisitions 2021
-                        </h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700">
-                        Here are the biggest enterprise technology acquisitions of 2021 so
-                        far, in reverse chronological order.
-                    </p>
-                    <a href="#"
-                        class="inline-flex items-center px-3 py-2 text-base font-medium text-center rounded-lg hover:text-accent focus:ring-4 focus:outline-none">
-                        Read more
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-
+            @endforeach
         </div>
         </div>
 

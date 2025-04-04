@@ -1,14 +1,14 @@
 @extends('backend.layouts.main')
 
 @section('title')
-    View Service: {{ $service->translations->first()?->names[0] ?? 'Untitled' }}
+    View Service: {{ $service->name ?? $service->translations->first()?->names[0] ?? 'Untitled' }}
 @endsection
 
 @section('content')
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Service Details: {{ $service->translations->first()?->names[0] ?? 'Untitled' }}</h3>
+                <h3 class="block-title">Service Details: {{ $service->name ?? $service->translations->first()?->names[0] ?? 'Untitled' }}</h3>
                 <div class="block-options">
                     <a href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-pencil-alt"></i> Edit
@@ -31,8 +31,26 @@
                                     <div class="col-md-8">{{ $service->id }}</div>
                                 </div>
                                 <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Name:</div>
+                                    <div class="col-md-8">{{ $service->name ?? 'N/A' }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Icon:</div>
+                                    <div class="col-md-8">
+                                        @if($service->icon)
+                                            <i class="{{ $service->icon }}"></i> {{ $service->icon }}
+                                        @else
+                                            N/A
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">Display Order:</div>
                                     <div class="col-md-8">{{ $service->display_order }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Description:</div>
+                                    <div class="col-md-8">{!! nl2br(e($service->description ?? 'N/A')) !!}</div>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +86,7 @@
 
                 <div class="block block-rounded mt-4">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Service Content</h3>
+                        <h3 class="block-title">Service Details</h3>
                     </div>
                     <div class="block-content">
                         @foreach ($service->translations as $translation)

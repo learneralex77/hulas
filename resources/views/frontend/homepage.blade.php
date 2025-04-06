@@ -174,6 +174,7 @@
                 <!-- Carousel wrapper -->
                 <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                     <!-- Item 1 -->
+                    @isset($partners)
                     @foreach($partners as $partner)
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('storage/' . $partner->image) }}"
@@ -181,6 +182,7 @@
                             alt="Partners Icon">
                     </div>
                     @endforeach
+                    @endisset
                     <!-- Item 2 -->
                     <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"

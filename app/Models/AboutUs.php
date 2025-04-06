@@ -56,4 +56,9 @@ class AboutUs extends Model
     {
         return $query->where('is_published', 1);
     }
+
+    public function scopeOrderByDisplayOrder(Builder $query): Builder
+    {
+        return $query->orderBy('display_order', 'ASC');
+    }
 }

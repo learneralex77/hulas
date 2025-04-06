@@ -134,23 +134,14 @@ class AgentDetailController extends Controller
 
     public function import(Request $request)
     {
-        // Validate the file input
         $request->validate([
             'file' => 'required|mimes:xlsx,csv,xls',
         ]);
 
-        try {
-            // Get the uploaded file directly from the request
-            $file = $request->file('file');
-            
-            // Import the data using the uploaded file
-            Excel::import(new AgentDetailsImport, $file);
+        $file = $request->file('file');
 
-            return redirect()->route('agent-details.index')
-                ->with('success', 'Agent details imported successfully.');
-        } catch (\Exception $e) {
-            return redirect()->route('agent-details.index')
-                ->with('error', 'Error importing agent details: ' . $e->getMessage());
-        }
+        Excel::import(new AgentDetailsImport, $file);
+        return redirect()->route('agent-details.index')
+            ->with('success', 'Agent details imported successfully.');
     }
 }

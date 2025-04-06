@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 
-
 Route::get('/', function () {
     return redirect(route('homepage'));
 });
+
+
 
 Route::get('homepage', [FrontendController::class, 'homepage'])->name('homepage');
 Route::get('about-us', [FrontendController::class, 'aboutUs'])->name('aboutUs');

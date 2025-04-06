@@ -24,13 +24,13 @@ class BecomeAnAgentRequest extends FormRequest
         if ($this->isMethod('POST')) {
             return [
                 'images' => ['required', 'array'],
-                'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+                'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
                 'display_order' => ['nullable', 'integer', 'min:0'],
                 'is_published' => ['boolean'],
             ];
         } else if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
             return [
-                'images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+                'images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
                 'delete_images' => ['nullable', 'array'],
                 'delete_images.*' => ['numeric'],
                 'display_order' => ['nullable', 'integer', 'min:0'],
@@ -70,7 +70,7 @@ class BecomeAnAgentRequest extends FormRequest
             'images.array' => 'Images must be uploaded as an array.',
             'images.*.required' => 'Each uploaded file must be a valid image.',
             'images.*.image' => 'File must be an image.',
-            'images.*.mimes' => 'Image must be a jpeg, png, jpg, or gif file.',
+            'images.*.mimes' => 'Image must be a jpeg, png, jpg, gif, or webp file.',
             'images.*.max' => 'Image may not be larger than 2MB.',
             
             'delete_images.array' => 'Delete images must be an array.',

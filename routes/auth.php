@@ -28,7 +28,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\PopupController;
 use App\Http\Controllers\PartnersController;
 
-Route::middleware('auth')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 

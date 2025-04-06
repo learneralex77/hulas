@@ -12,10 +12,10 @@ class AgentDetailsImport implements ToModel, WithHeadingRow
     {
         return new AgentDetail([
             'district_id' => $row['district_id'],
-            'state_agent_name' => json_encode(explode(',', $row['state_agent_name'])), // Example: convert CSV string to JSON
-            'address' => json_encode(explode(',', $row['address'])),
-            'contact_no' => json_encode(explode(',', $row['contact_no'])),
-            'contact_person' => json_encode(explode(',', $row['contact_person'])),
+            'state_agent_name' => $row['state_agent_name'],
+            'address' => $row['address'],
+            'contact_no' => $row['contact_no'],
+            'contact_person' => $row['contact_person'],
             'display_order' => $row['display_order'],
             'is_published' => $row['is_published'] == '1', // Assuming '1' is true
         ]);

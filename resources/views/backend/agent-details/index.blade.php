@@ -46,42 +46,17 @@
                         <tbody>
                             @foreach ($agentDetails as $agentDetail)
                                 <tr id="agent-detail-row-{{ $agentDetail->id }}">
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $agentDetail->district->name ?? 'N/A' }}</td>
                                     <td>
-                                        @php
-                                            $stateAgentNames = json_decode($agentDetail->state_agent_name);
-                                        @endphp
-
-                                        @if (count($stateAgentNames) > 1)
-                                            {{ $stateAgentNames[0] }}
-                                            <span class="badge bg-info">+{{ count($stateAgentNames) - 1 }}</span>
-                                        @else
-                                            {{ $stateAgentNames[0] ?? 'N/A' }}
-                                        @endif
+                                        {{ $agentDetail->state_agent_name ?? 'N/A' }}
                                     </td>
                                     <td>
-                                        @php
-                                            $contactNos = json_decode($agentDetail->contact_no);
-                                        @endphp
-                                        @if (count($contactNos) > 1)
-                                            {{ $contactNos[0] }}
-                                            <span class="badge bg-info">+{{ count($contactNos) - 1 }}</span>
-                                        @else
-                                            {{ $contactNos[0] ?? 'N/A' }}
-                                        @endif
+                                        {{ $agentDetail->contact_no ?? 'N/A' }}
                                     </td>
                                     <td class="text-center">{{ $agentDetail->display_order }}</td>
                                     <td>
-                                        @php
-                                            $contactPersons = json_decode($agentDetail->contact_person);
-                                        @endphp
-                                        @if (count($contactPersons) > 1)
-                                            {{ $contactPersons[0] }}
-                                            <span class="badge bg-info">+{{ count($contactPersons) - 1 }}</span>
-                                        @else
-                                            {{ $contactPersons[0] ?? 'N/A' }}
-                                        @endif
+                                        {{ $agentDetail->contact_person ?? 'N/A' }}
                                     </td>
                                     <td class="text-center">
                                         @if ($agentDetail->is_published)

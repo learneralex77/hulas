@@ -23,10 +23,10 @@ class AgentDetailRequest extends FormRequest
     {
         return [
             'district_id' => ['required', 'exists:districts,id'],
-            'state_agent_names.*' => ['required', 'string', 'max:255'],
-            'addresses.*' => ['nullable', 'string'],
-            'contact_nos.*' => ['nullable', 'string', 'max:20'],
-            'contact_persons.*' => ['nullable', 'string', 'max:255'],
+            'state_agent_name' => ['required', 'string', 'max:255'],
+            'address' => ['nullable', 'string', 'max:255'],
+            'contact_no' => ['nullable', 'string', 'max:20'],
+            'contact_person' => ['nullable', 'string', 'max:255'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
         ];
@@ -41,10 +41,10 @@ class AgentDetailRequest extends FormRequest
     {
         return [
             'district_id' => 'district',
-            'state_agent_names.*' => 'state agent name',
-            'addresses.*' => 'address',
-            'contact_nos.*' => 'contact number',
-            'contact_persons.*' => 'contact person',
+            'state_agent_name' => 'state agent name',
+            'address' => 'address',
+            'contact_no' => 'contact number',
+            'contact_person' => 'contact person',
             'display_order' => 'display order',
             'is_published' => 'status',
         ];
@@ -61,17 +61,19 @@ class AgentDetailRequest extends FormRequest
             'district_id.required' => 'Please select a district.',
             'district_id.exists' => 'The selected district does not exist.',
             
-            'state_agent_names.*.required' => 'Each state agent name is required.',
-            'state_agent_names.*.string' => 'State agent names must be a string.',
-            'state_agent_names.*.max' => 'State agent names may not be greater than 255 characters.',
+            'state_agent_name.required' => 'State agent name is required.',
+            'state_agent_name.string' => 'State agent name must be a string.',
+            'state_agent_name.max' => 'State agent name may not be greater than 255 characters.',
             
-            'addresses.*.string' => 'Addresses must be text.',
+            'address.string' => 'Address must be text.',
+            'address.max' => 'Address may not be greater than 255 characters.',
             
-            'contact_nos.*.string' => 'Contact numbers must be text.',
-            'contact_nos.*.max' => 'Contact numbers may not be greater than 20 characters.',
+            'contact_no.string' => 'Contact number must be text.',
+            'contact_no.max' => 'Contact number may not be greater than 20 characters.',
             
-            'contact_persons.*.string' => 'Contact persons must be text.',
-            'contact_persons.*.max' => 'Contact persons may not be greater than 255 characters.',
+            'contact_person.string' => 'Contact person must be text.',
+            'contact_person.max' => 'Contact person may not be greater than 255 characters.',
+            
             'display_order.integer' => 'The display order must be an integer.',
             'display_order.min' => 'The display order must be at least 0.',
         ];
@@ -84,12 +86,8 @@ class AgentDetailRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        // Ensure we have arrays for all fields, even if they're empty
+        // Set default values
         $this->merge([
-            'state_agent_names' => $this->input('state_agent_names', []),
-            'addresses' => $this->input('addresses', []),
-            'contact_nos' => $this->input('contact_nos', []),
-            'contact_persons' => $this->input('contact_persons', []),
             'display_order' => $this->input('display_order', 0),
             'is_published' => $this->has('is_published'),
         ]);

@@ -11,8 +11,8 @@
         "autoprefixer": "^10.4.2",
         "axios": "^1.6.4",
         "laravel-vite-plugin": "^1.0",
-        "sass": "1.86.2",
-        "vite": "6.2.5"
+        "sass": "^1.86.2",
+        "vite": "^6.2.5"
     },
     "dependencies": {
         "@alpinejs/intersect": "^3.14.1",

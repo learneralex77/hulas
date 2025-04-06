@@ -6,6 +6,10 @@ use App\Models\AgentDetail;
 use App\Models\District;
 use App\Http\Requests\AgentDetailRequest;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\AgentDetailsImport;
+use App\Exports\AgentDetailsExport;
+
 
 class AgentDetailController extends Controller
 {
@@ -132,5 +136,26 @@ class AgentDetailController extends Controller
             return redirect()->route('agent-details.index')
                 ->with('error', 'Error deleting agent detail: ' . $e->getMessage());
         }
+    }
+
+    public function export()
+    {
+        return Excel::download(new AgentDetailsExport, 'agent_details.xlsx');
+    }
+
+
+
+    public function import(Request $request)
+    {
+        // Validate the file input
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv,xls',
+        ]);
+
+        // Use only the uploaded file, not the full request
+        Excel::import(new AgentDetailsImport, $request->file('file'));
+
+        return redirect()->route('agent-details.index')
+            ->with('success', 'Agent details imported successfully.');
     }
 }

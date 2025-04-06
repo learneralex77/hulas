@@ -67,56 +67,32 @@
                         <h3 class="block-title">Agent Information</h3>
                     </div>
                     <div class="block-content">
-                        @php
-                            $stateAgentNames = $agentDetail->state_agent_names;
-                            $addresses = $agentDetail->addresses;
-                            $contactNos = $agentDetail->contact_nos;
-                            $contactPersons = $agentDetail->contact_persons;
-                            $totalEntries = max(
-                                is_array($stateAgentNames) ? count($stateAgentNames) : 0,
-                                is_array($addresses) ? count($addresses) : 0,
-                                is_array($contactNos) ? count($contactNos) : 0,
-                                is_array($contactPersons) ? count($contactPersons) : 0,
-                            );
-                        @endphp
-
-                        @if ($totalEntries > 0)
-                            @for ($i = 0; $i < $totalEntries; $i++)
-                                <div class="block block-rounded border border-1 mb-3">
-                                    <div class="block-header block-header-default">
-                                        <h3 class="block-title">{{ $i == 0 ? 'Primary Entry' : 'Additional Entry #' . $i }}</h3>
+                        <div class="block block-rounded border border-1 mb-3">
+                            <div class="block-content">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row mb-2">
+                                            <div class="col-md-4 fw-semibold text-muted">State Agent Name:</div>
+                                            <div class="col-md-8">{{ $agentDetail->state_agent_name ?? 'N/A' }}</div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <div class="col-md-4 fw-semibold text-muted">Contact Number:</div>
+                                            <div class="col-md-8">{{ $agentDetail->contact_no ?? 'N/A' }}</div>
+                                        </div>
                                     </div>
-                                    <div class="block-content">
+                                    <div class="col-md-6">
+                                        <div class="row mb-2">
+                                            <div class="col-md-4 fw-semibold text-muted">Contact Person:</div>
+                                            <div class="col-md-8">{{ $agentDetail->contact_person ?? 'N/A' }}</div>
+                                        </div>
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="row mb-2">
-                                                    <div class="col-md-4 fw-semibold text-muted">State Agent Name:</div>
-                                                    <div class="col-md-8">{{ $stateAgentNames[$i] ?? 'N/A' }}</div>
-                                                </div>
-                                                <div class="row mb-2">
-                                                    <div class="col-md-4 fw-semibold text-muted">Contact Number:</div>
-                                                    <div class="col-md-8">{{ $contactNos[$i] ?? 'N/A' }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="row mb-2">
-                                                    <div class="col-md-4 fw-semibold text-muted">Contact Person:</div>
-                                                    <div class="col-md-8">{{ $contactPersons[$i] ?? 'N/A' }}</div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-4 fw-semibold text-muted">Address:</div>
-                                                    <div class="col-md-8">{{ $addresses[$i] ?? 'N/A' }}</div>
-                                                </div>
-                                            </div>
+                                            <div class="col-md-4 fw-semibold text-muted">Address:</div>
+                                            <div class="col-md-8">{{ $agentDetail->address ?? 'N/A' }}</div>
                                         </div>
                                     </div>
                                 </div>
-                            @endfor
-                        @else
-                            <div class="alert alert-info">
-                                No detailed agent information available.
                             </div>
-                        @endif
+                        </div>
                     </div>
                 </div>
             </div>

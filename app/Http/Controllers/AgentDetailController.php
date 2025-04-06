@@ -38,13 +38,13 @@ class AgentDetailController extends Controller
     {
         $data = $request->validated();
 
-        // Create the agent detail with JSON encoded arrays
+        // Create the agent detail
         AgentDetail::create([
             'district_id' => $data['district_id'],
-            'state_agent_name' => json_encode($data['state_agent_names'] ?? []),
-            'address' => json_encode($data['addresses'] ?? []),
-            'contact_no' => json_encode($data['contact_nos'] ?? []),
-            'contact_person' => json_encode($data['contact_persons'] ?? []),
+            'state_agent_name' => $data['state_agent_name'],
+            'address' => $data['address'] ?? null,
+            'contact_no' => $data['contact_no'] ?? null,
+            'contact_person' => $data['contact_person'] ?? null,
             'display_order' => $data['display_order'] ?? 0,
             'is_published' => (bool) $request->input('is_published', true),
         ]);
@@ -58,12 +58,6 @@ class AgentDetailController extends Controller
      */
     public function show(AgentDetail $agentDetail)
     {
-        // Decode JSON data for the view and ensure they're arrays
-        $agentDetail->state_agent_names = json_decode($agentDetail->state_agent_name ?? '[]', true) ?: [];
-        $agentDetail->addresses = json_decode($agentDetail->address ?? '[]', true) ?: [];
-        $agentDetail->contact_nos = json_decode($agentDetail->contact_no ?? '[]', true) ?: [];
-        $agentDetail->contact_persons = json_decode($agentDetail->contact_person ?? '[]', true) ?: [];
-
         return view('backend.agent-details.show', compact('agentDetail'));
     }
 
@@ -73,13 +67,6 @@ class AgentDetailController extends Controller
     public function edit(AgentDetail $agentDetail)
     {
         $districts = District::orderBy('name')->get();
-
-        // Decode JSON data for the view and ensure they're arrays
-        $agentDetail->state_agent_names = json_decode($agentDetail->state_agent_name ?? '[]', true) ?: [];
-        $agentDetail->addresses = json_decode($agentDetail->address ?? '[]', true) ?: [];
-        $agentDetail->contact_nos = json_decode($agentDetail->contact_no ?? '[]', true) ?: [];
-        $agentDetail->contact_persons = json_decode($agentDetail->contact_person ?? '[]', true) ?: [];
-
         return view('backend.agent-details.edit', compact('agentDetail', 'districts'));
     }
 
@@ -90,13 +77,13 @@ class AgentDetailController extends Controller
     {
         $data = $request->validated();
 
-        // Update the agent detail with JSON encoded arrays
+        // Update the agent detail
         $agentDetail->update([
             'district_id' => $data['district_id'],
-            'state_agent_name' => json_encode($data['state_agent_names'] ?? []),
-            'address' => json_encode($data['addresses'] ?? []),
-            'contact_no' => json_encode($data['contact_nos'] ?? []),
-            'contact_person' => json_encode($data['contact_persons'] ?? []),
+            'state_agent_name' => $data['state_agent_name'],
+            'address' => $data['address'] ?? null,
+            'contact_no' => $data['contact_no'] ?? null,
+            'contact_person' => $data['contact_person'] ?? null,
             'display_order' => $data['display_order'] ?? 0,
             'is_published' => (bool) $request->input('is_published', true),
         ]);

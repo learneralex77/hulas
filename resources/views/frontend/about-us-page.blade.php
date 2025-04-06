@@ -92,18 +92,19 @@
             <!-- Text Container -->
             <div class="flex flex-2 flex-col space-y-3">
                 <h2 class="text-xl font-bold text-black md:text-4xl">
-                    About Hulas Remittance
+                    @isset($aboutUs1)
+                    {{ $aboutUs1->title }}
+                    @endisset
                 </h2>
                 <div class="text-lg text-primary">
-                    <p> We help aspiring people and businesses around the world save, spend, and transfer money— empowering
-                        more prosperous financial futures for their family, friends, and communities across borders.</p>
+                    <p> {{ $aboutUs1->description }}</p>
                 </div>
                 <!-- Years of experience -->
                 <div class="flex flex-col items-center space-y-3 lg:space-y-0 lg:flex-row lg:space-x-4">
                     <div class="w-60 bg-black rounded-xl flex justify-center items-center flex-col space-y-4 p-3">
                         <p class="text-accent font-bold text-2xl">49+</p>
                         <p class="text-accent text-center text-lg">
-                            Years Experience
+                            {{ $aboutUs1->years_of_experience }}
                         </p>
                     </div>
                 </div>
@@ -116,7 +117,7 @@
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
                             <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                <img src="./public/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
+                                <img src="{{ asset('images/social-media-icons/facebook-black.svg') }}" alt="Facebook Icon"
                                     class="w-6 h-6">
                             </a>
                         </div>
@@ -125,7 +126,7 @@
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
                             <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                <img src="./public/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
+                                <img src="{{ asset('images/social-media-icons/facebook-black.svg') }}" alt="Facebook Icon"
                                     class="w-6 h-6">
                             </a>
                         </div>
@@ -135,7 +136,7 @@
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
                             <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                <img src="./public/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
+                                <img src="{{ asset('images/social-media-icons/facebook-black.svg') }}" alt="Facebook Icon"
                                     class="w-6 h-6">
                             </a>
                         </div>
@@ -145,7 +146,7 @@
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
                             <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                <img src="./public/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
+                                <img src="{{ asset('images/social-media-icons/facebook-black.svg') }}" alt="Facebook Icon"
                                     class="w-6 h-6">
                             </a>
                         </div>
@@ -155,7 +156,7 @@
             </div>
             <!-- image -->
             <div class="flex-1 flex justify-center m-6">
-                <img src="/images/about-us/about-img-1.webp" class="rounded-2xl object-cover w-full" alt="" />
+                <img src="{{ asset('images/about-us/about-img-1.webp') }}" class="rounded-2xl object-cover w-full" alt="" />
             </div>
         </div>
     </section>

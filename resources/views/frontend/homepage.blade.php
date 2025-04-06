@@ -73,11 +73,11 @@
                 About Hulas Remittance
             </h3>
             <h1 class="text-4xl font-bold">
-                {{ $aboutUs->tagline }}
+                {{-- {{ $aboutUs->tagline }} --}}
                 <!-- Delivering Happiness through fast and reliable services -->
             </h1>
             <p class="text-gray-600 text-lg">
-                {{ $aboutUs->description }}
+                {{-- {{ $aboutUs->description }} --}}
                 <!-- Hulas Remittance, a member company of Golchha Organization, was
                 established in August 2005 with the vision to bring in quality and
                 reliable money transfer services in to Nepal. A leading business house
@@ -112,7 +112,8 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 space-y-6 gap-3 ">
             <!-- Main Service Card -->
-            @foreach($services as $service)
+
+            {{-- @foreach($services as $service)
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
                 <a href="#">
                     <img class="rounded-t-lg w-full" href="{{ asset('storage/' . $service->file) }}"
@@ -138,8 +139,8 @@
                     </a>
                 </div>
             </div>
-            @endforeach
-            
+            @endforeach --}}
+
             <!-- Service Details Cards -->
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
                 <div class="p-5">

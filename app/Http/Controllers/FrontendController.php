@@ -18,6 +18,8 @@ class FrontendController extends Controller
         public function homepage()
     {
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
+        $aboutUs1 = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
+
         $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
         $popupPaths = $popup->pluck('photo')->map(fn($path) => asset('storage' . $path));
         $howToBecameAnAgent = Page::where('slug', 'how-become-an-agent')->first();
@@ -32,9 +34,11 @@ class FrontendController extends Controller
 
     public function aboutUs()
     {
-        $aboutUs = AboutUs::active()->orderBy('display_order')->paginate(10);
-        return view('frontend.about-us-page', compact('aboutUs'));
+        $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
+        $aboutUs1 = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
+        return view('frontend.about-us-page', compact('aboutUs', 'aboutUs1'));
     }
+
     public function becomeAnAgent()
     {
         return view('frontend.become-an-agent');
@@ -61,7 +65,9 @@ class FrontendController extends Controller
     }
     public function missionAndVision()
     {
-        return view('frontend.mission-and-vision');
+        $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
+        $missions = json_decode($aboutUs->mission_vision, true); 
+        return view('frontend.mission-and-vision', compact('missions'));
     }
     public function newsAndEvents()
     {

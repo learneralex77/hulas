@@ -14,13 +14,12 @@
             <!-- Text Container -->
             <div class="flex flex-2 flex-col space-y-3">
                 <h2 class="text-xl font-bold text-black md:text-4xl">
-                    About Hulas Remittance
+                    @isset($aboutUs)
+                    {{ $aboutUs->title }}
                 </h2>
                 <div class="text-lg text-primary">
-                    <p> Hulas Remittance, a member company of Golchha Organization, was established in August 2005 with the
-                        vision to bring in quality and reliable money transfer services in to Nepal. A leading business
-                        house with a dedicated business history of more than 85 years, Golchha Organization has established
-                        “HULAS” as one of the most trusted household consumer brands in the country.</p>
+                    
+                    <p> {{ $aboutUs->description }}</p>
                     <p>Hulas Remittance, being one of the principal agents, playing a leading role in offering money
                         transfer services of The Western Union Company in Nepal since January 2006. We have been serving
                         customers from more than 3,200 (comprising of major commercial banks, Development Banks, Finance
@@ -32,7 +31,7 @@
                     <div class="w-60 bg-black rounded-xl flex justify-center items-center flex-col space-y-4 p-3">
                         <p class="text-accent font-bold text-2xl">49+</p>
                         <p class="text-accent text-center text-lg">
-                            Years Experience
+                            {{ $aboutUs->years_of_experience }}
                         </p>
                     </div>
                 </div>
@@ -45,7 +44,7 @@
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
                             <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                <img src="./public/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
+                                <img src="{{ asset('images/social-media-icons/facebook-black.svg') }}" alt="Facebook Icon"
                                     class="w-6 h-6">
                             </a>
                         </div>
@@ -54,7 +53,7 @@
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
                             <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                <img src="./public/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
+                                <img src="{{ asset('images/social-media-icons/facebook-black.svg') }}" alt="Facebook Icon"
                                     class="w-6 h-6">
                             </a>
                         </div>
@@ -64,7 +63,7 @@
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
                             <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                <img src="./public/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
+                                <img src="{{ asset('images/social-media-icons/facebook-black.svg') }}" alt="Facebook Icon"
                                     class="w-6 h-6">
                             </a>
                         </div>
@@ -74,10 +73,11 @@
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
                             <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                <img src="./public/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
+                                <img src="{{ asset('images/social-media-icons/facebook-black.svg') }}" alt="Facebook Icon"
                                     class="w-6 h-6">
                             </a>
                         </div>
+                        @endisset
 
                     </div>
                 </div>

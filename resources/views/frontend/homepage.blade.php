@@ -73,11 +73,15 @@
                 About Hulas Remittance
             </h3>
             <h1 class="text-4xl font-bold">
+                @isset($aboutUs)
                 {{ $aboutUs->tagline }}
+                @endisset
                 <!-- Delivering Happiness through fast and reliable services -->
             </h1>
             <p class="text-gray-600 text-lg">
+                @isset($aboutUs)
                 {{ $aboutUs->description }}
+                @endisset
                 <!-- Hulas Remittance, a member company of Golchha Organization, was
                 established in August 2005 with the vision to bring in quality and
                 reliable money transfer services in to Nepal. A leading business house

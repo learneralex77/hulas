@@ -5,10 +5,12 @@
 @endsection
 
 @section('styles')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') }}">
 @endsection
-
-
 
 @section('content')
     <div class="content">
@@ -16,121 +18,77 @@
             <div class="block-header block-header-default">
                 <h3 class="block-title">About Us Information</h3>
                 <div class="block-options">
-                    @if (!$aboutUs)
-                        <a href="{{ route('about-us.create') }}" class="btn btn-sm btn-alt-primary border">
-                            <i class="fa fa-plus"></i> Add About Us
-                        </a>
-                    @else
-                        <a href="{{ route('about-us.edit', $aboutUs) }}" class="btn btn-sm btn-success">
-                            <i class="fa fa-pencil-alt"></i> Edit
-                        </a>
-
-                        <button type="button" class="btn btn-sm btn-danger" onclick="deleteAboutUs({{ $aboutUs->id }})">
-                            <i class="fa fa-trash"></i> Delete
-                        </button>
-                    @endif
+                    <a href="{{ route('about-us.create') }}" class="btn btn-sm btn-alt-primary border">
+                        <i class="fa fa-plus"></i> Add About Us
+                    </a>
                 </div>
             </div>
             <div class="block-content">
-                @if (!$aboutUs)
+                @if ($aboutUs->isEmpty())
                     <div class="alert alert-info">
                         No About Us information has been added yet. Please click the "Add About Us" button to create one.
                     </div>
                 @else
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="block block-rounded">
-                                <div class="block-header block-header-default">
-                                    <h3 class="block-title">General Information</h3>
-                                </div>
-                                <div class="block-content">
-                                    <div class="mb-4">
-                                        <h5 class="fw-semibold mb-2">Tagline</h5>
-                                        <p>{{ $aboutUs->tagline }}</p>
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <h5 class="fw-semibold mb-2">Years of Experience</h5>
-                                        <p>{{ $aboutUs->years_of_experience ?? 'N/A' }}</p>
-                                    </div>
-                                    
-                                    <div class="mb-4">
-                                        <h5 class="fw-semibold mb-2">Video Link</h5>
-                                        <p>
-                                            @if ($aboutUs->video_link)
-                                                <a href="{{ $aboutUs->video_link }}" target="_blank">{{ $aboutUs->video_link }}</a>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-vcenter js-dataTable-full" id="table">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 80px;">S.N.</th>
+                                    <th class="d-none d-sm-table-cell">Image</th>
+                                    <th>Tagline</th>
+                                    <th class="d-none d-sm-table-cell text-left">Years of Experience</th>
+                                    <th class="d-none d-sm-table-cell text-left">Display Order</th>
+                                    <th class="d-none d-sm-table-cell text-left">Status</th>
+                                    <th style="width: 15%;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($aboutUs as $index => $item)
+                                    <tr id="about-us-row-{{ $item->id }}">
+                                        <td class="text-center">{{ $loop->iteration }}</td>
+                                        <td class="d-none d-sm-table-cell text-center" style="width: 60px;">
+                                        @if ($item->image)
+                                            <img src="{{ asset('storage/' . $item->image) }}"
+                                                alt="Image" class="img-thumbnail"
+                                                style="width: 50px; height: 50px; object-fit: cover;">
+                                        @else
+                                            <span class="text-muted" style="display: inline-block; width: 50px; height: 50px;">
+                                                <i class="fa fa-image" style="font-size: 24px; line-height: 50px;"></i>
+                                            </span>
+                                        @endif
+                                    </td>
+                                        <td>{{ Str::limit($item->tagline, 50) }}</td>
+                                        <td class="d-none d-sm-table-cell text-center">{{ $item->years_of_experience ?? 'N/A' }}</td>
+                                        <td class="d-none d-sm-table-cell text-center">{{ $item->display_order }}</td>
+                                        <td class="d-none d-sm-table-cell text-center">
+                                            @if($item->is_published)
+                                                <span class="badge bg-success">Published</span>
                                             @else
-                                                N/A
+                                                <span class="badge bg-warning">Draft</span>
                                             @endif
-                                        </p>
-                                    </div>
-                                    
-                                    <div class="mb-2">
-                                        <h5 class="fw-semibold mb-2">Short Description</h5>
-                                        <p>{{ $aboutUs->short_description ?? 'N/A' }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="block block-rounded">
-                                <div class="block-header block-header-default">
-                                    <h3 class="block-title">Image</h3>
-                                </div>
-                                <div class="block-content">
-                                    @if ($aboutUs->image)
-                                        <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image"
-                                            class="img-fluid rounded">
-                                    @else
-                                        <div class="alert alert-info">
-                                            No image uploaded.
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="block block-rounded">
-                        <div class="block-header block-header-default">
-                            <h3 class="block-title">Description</h3>
-                        </div>
-                        <div class="block-content">
-                            {!! nl2br(e($aboutUs->description)) !!}
-                        </div>
-                    </div>
-
-                    <div class="block block-rounded">
-                        <div class="block-header block-header-default">
-                            <h3 class="block-title">Mission & Vision</h3>
-                        </div>
-                        <div class="block-content">
-                            @if (is_array($aboutUs->mission_vision) && count($aboutUs->mission_vision) > 0)
-                                <div class="row">
-                                    @foreach ($aboutUs->mission_vision as $item)
-                                        <div class="col-md-4 mb-4">
-                                            <div class="block block-rounded h-100">
-                                                <div class="block-header block-header-default">
-                                                    <h3 class="block-title">
-                                                        <i class="fa fa-{{ $item['icon'] ?? 'check' }} me-1"></i>
-                                                        {{ $item['title'] ?? 'Untitled' }}
-                                                    </h3>
-                                                </div>
-                                                <div class="block-content">
-                                                    <p>{!! nl2br(e($item['description'] ?? '')) !!}</p>
-                                                </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="gap-2">
+                                                <a href="{{ route('about-us.show', $item) }}" class="btn btn-sm btn-info"
+                                                    data-bs-toggle="tooltip" title="View">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="{{ route('about-us.edit', $item) }}" class="btn btn-sm btn-success"
+                                                    data-bs-toggle="tooltip" title="Edit">
+                                                    <i class="fa fa-pencil-alt"></i>
+                                                </a>
+                                                <button type="button" class="btn btn-sm btn-danger"
+                                                    onclick="deleteAboutUs({{ $item->id }})" data-bs-toggle="tooltip"
+                                                    title="Delete">
+                                                    <i class="fa fa-trash"></i>
+                                                </button>
                                             </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @else
-                                <div class="alert alert-info">
-                                    No mission & vision information has been added.
-                                </div>
-                            @endif
-                        </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-
                 @endif
             </div>
         </div>
@@ -138,9 +96,9 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-
+  
     <script>
+
         // Success message
         @if (session('success'))
             Swal.fire({
@@ -178,27 +136,40 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Create a form and submit it
-                    const form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = "{{ route('about-us.destroy', ':id') }}".replace(':id', id);
-                    form.style.display = 'none';
+                    let url = "{{ route('about-us.destroy', ':id') }}".replace(':id', id);
 
-                    const csrfToken = document.createElement('input');
-                    csrfToken.type = 'hidden';
-                    csrfToken.name = '_token';
-                    csrfToken.value = '{{ csrf_token() }}';
+                    $.ajax({
+                        url: url,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            // Remove the row from the table
+                            $('#about-us-row-' + id).remove();
 
-                    const method = document.createElement('input');
-                    method.type = 'hidden';
-                    method.name = '_method';
-                    method.value = 'DELETE';
-
-                    form.appendChild(csrfToken);
-                    form.appendChild(method);
-                    document.body.appendChild(form);
-
-                    form.submit();
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'About Us entry has been deleted.',
+                                icon: 'success',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'There was an error deleting the About Us entry.',
+                                icon: 'error',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        }
+                    });
                 }
             });
         }

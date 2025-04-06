@@ -19,7 +19,32 @@
     </div>
 </div>
 
-<!-- Row 2: Video Link and Image -->
+<!-- Row 2: Display Order and Published Status -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <label class="form-label" for="display_order">Display Order</label>
+        <input type="number" class="form-control @error('display_order') is-invalid @enderror"
+            id="display_order" name="display_order"
+            value="{{ old('display_order', $aboutUs->display_order ?? 0) }}" min="0">
+        <div class="form-text">Lower numbers will be displayed first.</div>
+        @error('display_order')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="col-md-6">
+        <div class="form-check form-switch mt-4">
+            <input type="hidden" name="is_published" value="0">
+            <input class="form-check-input" type="checkbox" id="is_published" name="is_published" value="1" 
+                {{ old('is_published', $aboutUs->is_published ?? 1) ? 'checked' : '' }}>
+            <label class="form-check-label" for="is_published">Published</label>
+        </div>
+        @error('is_published')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
+<!-- Row 3: Video Link and Image -->
 <div class="row mb-4">
     <div class="col-md-6">
         <label class="form-label" for="video_link">Video Link</label>

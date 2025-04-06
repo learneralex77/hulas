@@ -49,7 +49,7 @@ class ContactUs extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('is_published', 1);
+        return $query->where('is_contacted', 1);
     }
 
     public function scopeOrderByDisplayOrder($query)

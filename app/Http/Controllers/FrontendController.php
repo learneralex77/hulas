@@ -10,28 +10,30 @@ use App\Models\Gallery;
 use App\Models\Page;
 use App\Models\Publication;
 use App\Models\Service;
+use App\Models\Partner;
 
 class FrontendController extends Controller
 {
    
         public function homepage()
     {
-        // $aboutUs = AboutUs::first();
-        // $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
-        // $popupPaths = $popup->pluck('photo')->map(fn($path) => asset('storage' . $path));
-        // $howToBecameAnAgent = Page::where('slug', 'how-become-an-agent')->first();
-        // $sliders = Slider::active()->orderBy('display_order', 'ASC')->get();
-        // $services = Service::active()->orderBy('display_order', 'ASC')->get();
-        // $notices = Publication::active()->where('publication_type', 'notice')->orderBy('display_order', 'ASC')->get();
-        // $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
-        // return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries',));
+        $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
+        $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
+        $popupPaths = $popup->pluck('photo')->map(fn($path) => asset('storage' . $path));
+        $howToBecameAnAgent = Page::where('slug', 'how-become-an-agent')->first();
+        $sliders = Slider::active()->orderBy('display_order', 'ASC')->get();
+        $services = Service::active()->orderBy('display_order', 'ASC')->get();
+        $notices = Publication::active()->where('publication_type', 'notice')->orderBy('display_order', 'ASC')->get();
+        $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
+        $partners = Partner::active()->orderBy('display_order', 'ASC')->get();
+        return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners'));
 
-        return view('frontend.homepage');
     }
 
     public function aboutUs()
     {
-        return view('frontend.about-us-page');
+        $aboutUs = AboutUs::active()->orderBy('display_order')->paginate(10);
+        return view('frontend.about-us-page', compact('aboutUs'));
     }
     public function becomeAnAgent()
     {

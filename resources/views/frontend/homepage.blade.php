@@ -182,30 +182,30 @@
                     </div>
                     @endforeach
                     <!-- Item 2 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
                             class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             alt="Partners Icon">
 
-                    </div>
+                    </div> -->
                     <!-- Item 3 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
                             class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             alt="Partners Icon">
-                    </div>
+                    </div> -->
                     <!-- Item 4 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
                             class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             alt="Partners Icon">
-                    </div>
+                    </div> -->
                     <!-- Item 5 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                    <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
                             class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             alt="Partners Icon">
-                    </div>
+                    </div> -->
                 </div>
                 <!-- Slider controls -->
                 <!-- <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>

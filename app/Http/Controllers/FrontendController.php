@@ -17,7 +17,7 @@ class FrontendController extends Controller
    
         public function homepage()
     {
-        $aboutUs = AboutUs::active()->latest()->first();
+        $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
         $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
         $popupPaths = $popup->pluck('photo')->map(fn($path) => asset('storage' . $path));
         $howToBecameAnAgent = Page::where('slug', 'how-become-an-agent')->first();

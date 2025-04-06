@@ -4,7 +4,13 @@
     About Us
 @endsection
 
-
+@section('styles')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css') }}">
+@endsection
 
 @section('content')
     <div class="content">
@@ -24,7 +30,7 @@
                     </div>
                 @else
                     <div class="table-responsive">
-                        <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+                        <table class="table table-bordered table-striped table-vcenter js-dataTable-full" id="table">
                             <thead>
                                 <tr>
                                     <th class="text-center" style="width: 80px;">S.N.</th>
@@ -33,19 +39,17 @@
                                     <th class="d-none d-sm-table-cell">Years of Experience</th>
                                     <th class="d-none d-sm-table-cell text-center">Display Order</th>
                                     <th class="d-none d-sm-table-cell text-center">Status</th>
-
                                     <th style="width: 15%;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($aboutUs as $index => $item)
-                                    <tr>
+                                    <tr id="about-us-row-{{ $item->id }}">
                                         <td class="text-center">{{ $loop->iteration }}</td>
-                                       
                                         <td class="d-none d-sm-table-cell text-center" style="width: 60px;">
                                         @if ($item->image)
                                             <img src="{{ asset('storage/' . $item->image) }}"
-                                                alt="{{ $item->title }}" class="img-thumbnail"
+                                                alt="Image" class="img-thumbnail"
                                                 style="width: 50px; height: 50px; object-fit: cover;">
                                         @else
                                             <span class="text-muted" style="display: inline-block; width: 50px; height: 50px;">
@@ -55,9 +59,6 @@
                                     </td>
                                         <td>{{ Str::limit($item->tagline, 50) }}</td>
                                         <td class="d-none d-sm-table-cell">{{ $item->years_of_experience ?? 'N/A' }}</td>
-                                       
-                                      
-                                       
                                         <td class="d-none d-sm-table-cell text-center">{{ $item->display_order }}</td>
                                         <td class="d-none d-sm-table-cell text-center">
                                             @if($item->is_published)
@@ -97,6 +98,7 @@
 @section('scripts')
   
     <script>
+
         // Success message
         @if (session('success'))
             Swal.fire({
@@ -144,7 +146,7 @@
                         },
                         success: function(response) {
                             // Remove the row from the table
-                            $('tr:has(button[onclick="deleteAboutUs(' + id + ')"])').remove();
+                            $('#about-us-row-' + id).remove();
 
                             Swal.fire({
                                 title: 'Deleted!',

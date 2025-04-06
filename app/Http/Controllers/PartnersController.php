@@ -35,7 +35,7 @@ class PartnersController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->hasFile('image')) {
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $data['image'] = $request->file('image')->store('partners', 'public');
         }
 
@@ -74,12 +74,17 @@ class PartnersController extends Controller
         if ($request->has('delete_image') && $partner->image) {
             Storage::disk('public')->delete($partner->image);
             $data['image'] = null;
-        } elseif ($request->hasFile('image')) {
+        } elseif ($request->hasFile('image') && $request->file('image')->isValid()) {
             // Delete old image if exists and a new one is uploaded
             if ($partner->image) {
                 Storage::disk('public')->delete($partner->image);
             }
             $data['image'] = $request->file('image')->store('partners', 'public');
+        }
+
+        // Remove image from data if it's still an UploadedFile object (not valid or stored)
+        if (isset($data['image']) && is_object($data['image'])) {
+            unset($data['image']);
         }
 
         $data['is_published'] = $request->has('is_published');
@@ -93,16 +98,38 @@ class PartnersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Partner $partner): RedirectResponse
+    public function destroy(Partner $partner): mixed
     {
-        // Delete image if exists
-        if ($partner->image) {
-            Storage::disk('public')->delete($partner->image);
+        try {
+            // Delete image if exists
+            if ($partner->image) {
+                Storage::disk('public')->delete($partner->image);
+            }
+
+            $partner->delete();
+
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Partner deleted successfully.'
+                ]);
+            }
+
+            return redirect()->route('partners.index')
+                ->with('success', 'Partner deleted successfully');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting partner: ' . $e->getMessage()
+                ], 500);
+            }
+
+            // For form submit
+            return redirect()->route('partners.index')
+                ->with('error', 'Error deleting partner: ' . $e->getMessage());
         }
-
-        $partner->delete();
-
-        return redirect()->route('partners.index')
-            ->with('success', 'Partner deleted successfully');
     }
 } 

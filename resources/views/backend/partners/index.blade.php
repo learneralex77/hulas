@@ -4,6 +4,10 @@
     Partner Management
 @endsection
 
+@section('styles')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('content')
     <div class="content">
         <div class="block block-rounded">

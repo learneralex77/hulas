@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class AboutUs extends Model
 {
@@ -29,6 +30,8 @@ class AboutUs extends Model
         'video_link',
         'image',
         'mission_vision',
+        'is_published',
+        'display_order',
     ];
 
     /**
@@ -39,6 +42,18 @@ class AboutUs extends Model
     protected $casts = [
         'mission_vision' => 'array',
         'years_of_experience' => 'integer',
+        'is_published' => 'boolean',
+        'display_order' => 'integer',
     ];
    
+    /**
+     * Scope a query to only include active items.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('is_published', 1);
+    }
 }

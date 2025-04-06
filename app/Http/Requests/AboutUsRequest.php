@@ -32,6 +32,8 @@ class AboutUsRequest extends FormRequest
             'mission_vision_titles.*' => ['required', 'string', 'max:255'],
             'mission_vision_icons.*' => ['required', 'string', 'max:255'],
             'mission_vision_descriptions.*' => ['required', 'string'],
+            'is_published' => ['boolean'],
+            'display_order' => ['integer', 'min:0'],
         ];
     }
 
@@ -53,6 +55,8 @@ class AboutUsRequest extends FormRequest
             'mission_vision_titles.*' => 'mission/vision title',
             'mission_vision_icons.*' => 'mission/vision icon',
             'mission_vision_descriptions.*' => 'mission/vision description',
+            'is_published' => 'publish status',
+            'display_order' => 'display order',
         ];
     }
 

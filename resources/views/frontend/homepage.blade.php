@@ -8,18 +8,18 @@
             <div class="relative h-80 overflow-hidden rounded-lg md:h-[600px]">
                 <!-- Item 1 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img href="{{ asset('assets/images/slider/slider-three.jpg') }}"
+                    <img src="{{ asset('assets/images/slider/slider-three.jpg') }}"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2')}}" alt="..." />
                 </div>
                 <!-- Item 2 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img href="{{ asset('assets/images/slider/slider-two.jpg') }}"
+                    <img src="{{ asset('assets/images/slider/slider-two.jpg') }}"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2')}}"
                         alt="..." />
                 </div>
                 <!-- Item 3 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img href="{{ asset('assets/images/slider/slider-three.jpg') }}"
+                    <img src="{{ asset('assets/images/slider/slider-three.jpg') }}"
                         class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2')}}"
                         alt="..." />
                 </div>
@@ -65,7 +65,7 @@
 
     <section class="about flex flex-col xl:flex-row m-10 md:m-20 lg:mx-40 gap-10">
         <div class="flex justify-center flex-1 text-center">
-            <img href="{{ asset('assets/images/about-us/about-img-1.webp') }}" alt="About Us Image"
+            <img src="{{ asset('assets/images/about-us/about-img-1.webp') }}" alt="About Us Image"
                 class="w-full rounded-md object-contain xl:object-fit" />
         </div>
         <div class="flex flex-1 flex-col space-y-6">
@@ -112,14 +112,15 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 space-y-6 gap-3 ">
             <!-- Main Service Card -->
+        @isset($services)
             @foreach($services as $service)
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-                <a href="#">
-                    <img class="rounded-t-lg w-full" href="{{ asset('storage/' . $service->file) }}"
+                <a src="#">
+                    <img class="rounded-t-lg w-full" src="{{ asset('storage/' . $service->file) }}"
                         alt="{{ $service->name ?? 'Service Image' }}" />
                 </a>
                 <div class="p-5">
-                    <a href="#">
+                    <a src="#">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight">
                             {{ $service->name }}
                         </h5>
@@ -127,7 +128,7 @@
                     <p class="mb-3 font-normal text-gray-700">
                         {{ $service->description }}
                     </p>
-                    <a href="#"
+                    <a src="#"
                         class="inline-flex items-center px-3 py-2 text-base font-medium text-center rounded-lg hover:text-accent focus:ring-4 focus:outline-none">
                         Read more
                         <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -139,17 +140,17 @@
                 </div>
             </div>
             @endforeach
-            
+            @endisset
             <!-- Service Details Cards -->
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
                 <div class="p-5">
-                    <a href="#">
+                    <a src="#">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight">
                         </h5>
                     </a>
                     <p class="mb-3 font-normal text-gray-700">
                     </p>
-                    <a href="#"
+                    <a src="#"
                         class="inline-flex items-center px-3 py-2 text-base font-medium text-center rounded-lg hover:text-accent focus:ring-4 focus:outline-none">
                         Read more
                         <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -173,33 +174,35 @@
                 <!-- Carousel wrapper -->
                 <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                     <!-- Item 1 -->
+                    @foreach($partners as $partner)
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img href="{{ asset('assets/images/partners/WesternUnion.webp') }}"
+                        <img src="{{ asset('storage/' . $partner->image) }}"
                             class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             alt="Partners Icon">
                     </div>
+                    @endforeach
                     <!-- Item 2 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img href="{{ asset('assets/images/partners/WesternUnion.webp') }}"
+                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
                             class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             alt="Partners Icon">
 
                     </div>
                     <!-- Item 3 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img href="{{ asset('assets/images/partners/WesternUnion.webp') }}"
+                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
                             class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             alt="Partners Icon">
                     </div>
                     <!-- Item 4 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img href="{{ asset('assets/images/partners/WesternUnion.webp') }}"
+                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
                             class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             alt="Partners Icon">
                     </div>
                     <!-- Item 5 -->
                     <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img href="{{ asset('assets/images/partners/WesternUnion.webp') }}"
+                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
                             class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
                             alt="Partners Icon">
                     </div>
@@ -236,7 +239,7 @@
                     <li class="mb-10 ms-6 flex flex-row gap-4">
                         <span
                             class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white dark:bg-accent">
-                            <img href="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
+                            <img src="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
                                 class="w-6 h-6" />
                         </span>
                         <div clss="flex flex-col gap-2">
@@ -249,7 +252,7 @@
                     <li class="mb-10 ms-6 flex flex-row gap-4">
                         <span
                             class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white dark:bg-accent">
-                            <img href="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
+                            <img src="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
                                 class="w-6 h-6" />
                         </span>
                         <div clss="flex flex-col gap-2">
@@ -262,7 +265,7 @@
                     <li class="mb-10 ms-6 flex flex-row gap-4">
                         <span
                             class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white dark:bg-accent">
-                            <img href="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
+                            <img src="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
                                 class="w-6 h-6" />
                         </span>
                         <div clss="flex flex-col gap-2">
@@ -273,7 +276,7 @@
                     <li class="mb-10 ms-6 flex flex-row gap-4">
                         <span
                             class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white dark:bg-accent">
-                            <img href="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
+                            <img src="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
                                 class="w-6 h-6" />
                         </span>
                         <div clss="flex flex-col gap-2">
@@ -286,7 +289,7 @@
                     <li class="mb-10 ms-6 flex flex-row gap-4">
                         <span
                             class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white dark:bg-accent">
-                            <img href="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
+                            <img src="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
                                 class="w-6 h-6" />
                         </span>
                         <div clss="flex flex-col gap-2">
@@ -301,9 +304,10 @@
                 </ol>
             </div>
 
-            <div class="flex flex-1 justify-center text-center">
-                <img href="{{ asset('assets/images/agent/agent.jpg') }}" alt="About Us Image"
-                    class="w-[600px] rounded-md object-contain xl:object-fit" />
+            <div class="flex flex-1 flex-col justify-center items-center text-center">
+                <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="About Us Image"
+                    class="w-[600px] rounded-md object-contain xl:object-fit mb-6" />
+                <a href="#" class="px-6 py-3 bg-accent text-white rounded-md hover:bg-primary transition-colors font-medium text-lg">Apply to Become an Agent</a>
             </div>
         </div>
     </section>

@@ -14,7 +14,7 @@ class AboutUsController extends Controller
      */
     public function index()
     {
-        $aboutUs = AboutUs::first();
+        $aboutUs = AboutUs::orderBy('display_order')->get();
         return view('backend.about-us.index', compact('aboutUs'));
     }
 
@@ -23,13 +23,6 @@ class AboutUsController extends Controller
      */
     public function create()
     {
-        // Check if any record already exists
-        $exists = AboutUs::exists();
-        if ($exists) {
-            return redirect()->route('about-us.index')
-                ->with('error', 'About Us information already exists. You can only edit the existing record.');
-        }
-
         return view('backend.about-us.create');
     }
 
@@ -38,13 +31,6 @@ class AboutUsController extends Controller
      */
     public function store(AboutUsRequest $request)
     {
-        // Check if any record already exists
-        $exists = AboutUs::exists();
-        if ($exists) {
-            return redirect()->route('about-us.index')
-                ->with('error', 'About Us information already exists. You can only edit the existing record.');
-        }
-
         $data = $request->validated();
 
         // Handle image upload
@@ -140,14 +126,36 @@ class AboutUsController extends Controller
      */
     public function destroy(AboutUs $aboutUs)
     {
-        // Delete the image if it exists
-        if ($aboutUs->image) {
-            Storage::disk('public')->delete($aboutUs->image);
+        try {
+            // Delete the image if it exists
+            if ($aboutUs->image) {
+                Storage::disk('public')->delete($aboutUs->image);
+            }
+
+            $aboutUs->delete();
+
+            // Check if request is AJAX
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'About Us information deleted successfully.'
+                ]);
+            }
+
+            return redirect()->route('about-us.index')
+                ->with('success', 'About Us information deleted successfully.');
+        } catch (\Exception $e) {
+            // For AJAX request
+            if (request()->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error deleting About Us information: ' . $e->getMessage()
+                ], 500);
+            }
+
+            // For form submit
+            return redirect()->route('about-us.index')
+                ->with('error', 'Error deleting About Us information: ' . $e->getMessage());
         }
-
-        $aboutUs->delete();
-
-        return redirect()->route('about-us.index')
-            ->with('success', 'About Us information deleted successfully.');
     }
 }

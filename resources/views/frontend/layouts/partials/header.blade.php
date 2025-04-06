@@ -70,14 +70,14 @@
         <li class="mb-1">
           <a
             class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
-            href="about-us-page.html"
+            href="#"
             >About Us</a
           >
         </li>
         <li class="mb-1">
           <a
             class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
-            href="become-an-agent.html"
+            href="#"
             >Become an Agent</a
           >
         </li>
@@ -166,7 +166,7 @@
             <a
               rel="noopener noreferrer"
               class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded"
-              href="#about_us"
+              href="/about-us"
               >About Us</a
             >
           </li>

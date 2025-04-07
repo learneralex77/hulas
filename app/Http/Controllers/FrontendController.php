@@ -35,7 +35,8 @@ class FrontendController extends Controller
     {
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
         $aboutUs1 = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
-        return view('frontend.about-us-page', compact('aboutUs', 'aboutUs1'));
+        $services=Service::active()->orderBy('display_order', 'ASC')->get();
+        return view('frontend.about-us-page', compact('aboutUs', 'aboutUs1','services'));
     }
 
     public function becomeAnAgent()

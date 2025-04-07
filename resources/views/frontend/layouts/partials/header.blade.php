@@ -70,35 +70,35 @@
         <li class="mb-1">
           <a
             class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
-            href="#"
+            href="{{ route('aboutUs') }}"
             >About Us</a
           >
         </li>
         <li class="mb-1">
           <a
             class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
-            href="#"
+            href="{{ route('becomeAnAgent') }}"
             >Become an Agent</a
           >
         </li>
         <li class="mb-1">
           <a
             class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
-            href="agent-list.html"
+            href="{{ route('findAnAgent') }}"
             >Find an Agent</a
           >
         </li>
         <li class="mb-1">
           <a
             class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
-            href="#gallery"
+            href="{{ route('gallery') }}"
             >Gallery</a
           >
         </li>
         <li class="mb-1">
           <a
             class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
-            href="contact-us.html"
+            href="{{ route('contactUs') }}"
             >Contact</a
           >
         </li>

@@ -20,11 +20,11 @@
                 <div class="text-lg text-primary">
                     
                     <p> {{ $aboutUs->description }}</p>
-                    <p>Hulas Remittance, being one of the principal agents, playing a leading role in offering money
+                    <!-- <p>Hulas Remittance, being one of the principal agents, playing a leading role in offering money
                         transfer services of The Western Union Company in Nepal since January 2006. We have been serving
                         customers from more than 3,200 (comprising of major commercial banks, Development Banks, Finance
                         Companies and cooperative organizations) locations have established brand promise of Western Union
-                        as a fast, reliable and convenient way of remittance service across the country.</p>
+                        as a fast, reliable and convenient way of remittance service across the country.</p> -->
                 </div>
                 <!-- Years of experience -->
                 <div class="flex flex-col items-center space-y-3 lg:space-y-0 lg:flex-row lg:space-x-4">
@@ -172,6 +172,8 @@
                 onclick="prevSlide()">
                 ❮
             </button>
+            @isset($services)
+            @foreach($services as $service)
             <div class="overflow-hidden rounded-lg h-[300px] md:h-[400px] lg:h-[450px] w-full">
                 <div class="flex transition-transform duration-500 ease-in-out" id="slider-content">
                     <div
@@ -180,16 +182,23 @@
                             <img src="https://media.istockphoto.com/id/1333428875/photo/fire-insurance-concept-burning-small-wooden-house.jpg?s=612x612&w=0&k=20&c=eri3sWqqRhMaJfh81nrVmaS4hVrW4-9K7eTexu3eY9s="
                                 alt="Property Insurance" class="h-[120px] md:h-[140px] lg:h-[160px] mx-auto" />
                             <h3 class="text-sm md:text-lg font-medium mt-4 text-center">
-                                Property Insurance
+                           
+                                   {{ $service->name }}
+
+                                <!-- Property Insurance -->
                             </h3>
                         </div>
                         <p class="text-xs md:text-sm text-black mt-4 text-center">
-                            Safeguards property owners against losses and damages providing
-                            compensation for the repair or replacement of the insured assets
+                            {{ $service->description }}
+
+                            <!-- Safeguards property owners against losses and damages providing
+                            compensation for the repair or replacement of the insured assets -->
                         </p>
                         <a href="#" class="text-[#008391] mt-4 tracking-widest text-center">Read More</a>
                     </div>
-                    <div
+                    @endforeach
+                    @endisset
+                    <!-- <div
                         class="flex-none w-[280px] md:w-[300px] lg:w-[380px] h-[360px] md:h-[400px] lg:h-[457px] bg-gray-50 rounded-lg shadow-lg mx-2 p-4 flex flex-col justify-between review-card">
                         <div class="flex flex-col items-center">
                             <img src="https://ebeema.com:1001/api/documentManagement/file?key=MjAyM1wwMVwwOFwtbW90b3ItaW5zdXJhbmNlX2JlNDAucG5n"
@@ -252,8 +261,8 @@
                     </div>
 
                     <!-- Add more review-card divs as needed -->
-                </div>
-            </div>
+                <!-- </div>
+            </div>  -->
             <button
                 class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
                 onclick="nextSlide()">

@@ -10,19 +10,30 @@ class AgentDetailsExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return AgentDetail::all();
+        // Eager load the district relation
+        return AgentDetail::with('district')->get()->map(function ($agent) {
+            return [
+                'District' => $agent->district->name ?? 'N/A',
+                'State Agent Name' => $agent->state_agent_name,
+                'Address' => $agent->address,
+                'Contact Number' => $agent->contact_no,
+                'Contact Person' => $agent->contact_person,
+                'Display Order' => $agent->display_order,
+                'Published' => $agent->is_published ? 'Yes' : 'No',
+            ];
+        });
     }
 
     public function headings(): array
     {
         return [
-            'district_id',
-            'state_agent_name',
-            'address',
-            'contact_no',
-            'contact_person',
-            'display_order',
-            'is_published',
+            'District',
+            'State Agent Name',
+            'Address',
+            'Contact Number',
+            'Contact Person',
+            'Display Order',
+            'Published',
         ];
     }
 }

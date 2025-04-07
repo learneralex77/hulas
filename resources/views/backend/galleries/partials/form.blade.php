@@ -47,7 +47,8 @@
                         <small class="text-muted">This image will be used as the cover image</small>
                     @endif
                     <input type="file" class="form-control @error('featured_image') is-invalid @enderror"
-                        id="featured_image" name="featured_image">
+                        id="featured_image" name="featured_image" accept="image/jpeg,image/png,image/jpg,image/gif,image/webp">
+                    <small class="text-muted d-block mt-1">Allowed formats: JPG, PNG, GIF, WebP (max: 2MB)</small>
                     @error('featured_image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -59,9 +60,10 @@
                         {{ isset($gallery) ? 'Add Gallery Images' : 'Gallery Images' }}
                     </label>
                     <input type="file" class="form-control @error('gallery_images') is-invalid @enderror"
-                        id="gallery_images" name="gallery_images[]" multiple>
-                    <small class="text-muted">You can select multiple images
+                        id="gallery_images" name="gallery_images[]" multiple accept="image/jpeg,image/png,image/jpg,image/gif,image/webp">
+                    <small class="text-muted d-block">You can select multiple images
                         {{ isset($gallery) ? 'to add to the gallery' : 'for the gallery' }}</small>
+                    <small class="text-muted d-block mt-1">Allowed formats: JPG, PNG, GIF, WebP (max: 2MB)</small>
                     @error('gallery_images')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

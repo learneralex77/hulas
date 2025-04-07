@@ -36,7 +36,7 @@ class PageRequest extends FormRequest
         
         // Add image validation only if the file is being uploaded
         if ($this->hasFile('image')) {
-            $rules['image'] = ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'];
+            $rules['image'] = ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'];
         }
 
         // For update operations, add unique slug check
@@ -104,7 +104,7 @@ class PageRequest extends FormRequest
             'short_description.max' => 'The short description may not be greater than 500 characters.',
 
             'image.image' => 'The file must be an image.',
-            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif.',
+            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif, webp.',
             'image.max' => 'The image may not be greater than 2MB.',
             
             'delete_image.boolean' => 'The delete image option must be a boolean value.',

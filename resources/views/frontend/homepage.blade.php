@@ -1,6 +1,10 @@
 @extends('frontend.layouts.app')
 @section('title', 'Home')
 @section('meta', 'Welcome to Hulas Remittance')
+@push('styles')
+
+
+@endpush
 @section('content')
     <section id="home-slider">
         <div id="default-carousel" class="relative w-full" data-carousel="slide">
@@ -322,4 +326,5 @@
 
 
 @push('scripts')
+
 @endpush

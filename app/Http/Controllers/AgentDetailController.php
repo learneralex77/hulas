@@ -38,17 +38,8 @@ class AgentDetailController extends Controller
     {
         $data = $request->validated();
 
-        // Create the agent detail
-        AgentDetail::create([
-            'district_id' => $data['district_id'],
-            'state_agent_name' => $data['state_agent_name'],
-            'address' => $data['address'] ?? null,
-            'contact_no' => $data['contact_no'] ?? null,
-            'contact_person' => $data['contact_person'] ?? null,
-            'display_order' => $data['display_order'] ?? 0,
-            'is_published' => (bool) $request->input('is_published', true),
-        ]);
-
+        // Create the agent detail with JSON encoded arrays
+        AgentDetail::create($data);
         return redirect()->route('agent-details.index')
             ->with('success', 'Agent details created successfully.');
     }
@@ -66,7 +57,6 @@ class AgentDetailController extends Controller
      */
     public function edit(AgentDetail $agentDetail)
     {
-        $districts = District::orderBy('name')->get();
         return view('backend.agent-details.edit', compact('agentDetail', 'districts'));
     }
 
@@ -77,16 +67,8 @@ class AgentDetailController extends Controller
     {
         $data = $request->validated();
 
-        // Update the agent detail
-        $agentDetail->update([
-            'district_id' => $data['district_id'],
-            'state_agent_name' => $data['state_agent_name'],
-            'address' => $data['address'] ?? null,
-            'contact_no' => $data['contact_no'] ?? null,
-            'contact_person' => $data['contact_person'] ?? null,
-            'display_order' => $data['display_order'] ?? 0,
-            'is_published' => (bool) $request->input('is_published', true),
-        ]);
+        // Update the agent detail with JSON encoded arrays
+        $agentDetail->update($data);
 
         return redirect()->route('agent-details.index')
             ->with('success', 'Agent details updated successfully.');
@@ -129,8 +111,6 @@ class AgentDetailController extends Controller
     {
         return Excel::download(new AgentDetailsExport, 'agent_details.xlsx');
     }
-
-
 
     public function import(Request $request)
     {

@@ -20,14 +20,15 @@
                     </a>
                 </div>
             </div>
-            <div class="block-header block-header-default">
-                <a href="{{ route('agent-details.export') }}" class="btn btn-success">Export to Excel</a>
+             <div class="block-header block-header-default">
+                <a href="{{ route('agent-details.export') }}" class="btn btn-sm btn-success border">Export to Excel</a>
                 <form action="{{ route('agent-details.import') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="file" accept=".xlsx,.csv" required>
-                    <button type="submit" class="btn btn-primary">Import from Excel</button>
+                    <button type="submit" class="btn btn-sm btn-primary border">Import from Excel</button>
                 </form>
             </div>
+
             <div class="block-content">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">

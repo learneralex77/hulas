@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('agent_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('district_id')->constrained()->onDelete('cascade');
-            $table->text('state_agent_name');  // JSON array of names
-            $table->text('address')->nullable(); // JSON array of addresses
-            $table->text('contact_no')->nullable(); // JSON array of contact numbers
-            $table->text('contact_person')->nullable(); // JSON array of contact persons
+            $table->text('state_agent_name');  
+            $table->text('address')->nullable(); 
+            $table->text('contact_no')->nullable(); 
+            $table->text('contact_person')->nullable(); 
             $table->integer('display_order')->default(0);
             $table->boolean('is_published')->default(true);
             $table->timestamps();

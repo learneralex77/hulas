@@ -36,9 +36,9 @@
                                     <th class="text-center" style="width: 80px;">S.N.</th>
                                     <th class="d-none d-sm-table-cell">Image</th>
                                     <th>Tagline</th>
-                                    <th class="d-none d-sm-table-cell">Years of Experience</th>
-                                    <th class="d-none d-sm-table-cell text-center">Display Order</th>
-                                    <th class="d-none d-sm-table-cell text-center">Status</th>
+                                    <th class="d-none d-sm-table-cell text-left">Years of Experience</th>
+                                    <th class="d-none d-sm-table-cell text-left">Display Order</th>
+                                    <th class="d-none d-sm-table-cell text-left">Status</th>
                                     <th style="width: 15%;">Actions</th>
                                 </tr>
                             </thead>
@@ -58,7 +58,7 @@
                                         @endif
                                     </td>
                                         <td>{{ Str::limit($item->tagline, 50) }}</td>
-                                        <td class="d-none d-sm-table-cell">{{ $item->years_of_experience ?? 'N/A' }}</td>
+                                        <td class="d-none d-sm-table-cell text-center">{{ $item->years_of_experience ?? 'N/A' }}</td>
                                         <td class="d-none d-sm-table-cell text-center">{{ $item->display_order }}</td>
                                         <td class="d-none d-sm-table-cell text-center">
                                             @if($item->is_published)

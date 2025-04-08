@@ -6,6 +6,10 @@ use App\Models\AgentDetail;
 use App\Models\District;
 use App\Http\Requests\AgentDetailRequest;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\AgentDetailsImport;
+use App\Exports\AgentDetailsExport;
+
 
 class AgentDetailController extends Controller
 {
@@ -35,16 +39,7 @@ class AgentDetailController extends Controller
         $data = $request->validated();
 
         // Create the agent detail with JSON encoded arrays
-        AgentDetail::create([
-            'district_id' => $data['district_id'],
-            'state_agent_name' => json_encode($data['state_agent_names'] ?? []),
-            'address' => json_encode($data['addresses'] ?? []),
-            'contact_no' => json_encode($data['contact_nos'] ?? []),
-            'contact_person' => json_encode($data['contact_persons'] ?? []),
-            'display_order' => $data['display_order'] ?? 0,
-            'is_published' => (bool) $request->input('is_published', true),
-        ]);
-
+        AgentDetail::create($data);
         return redirect()->route('agent-details.index')
             ->with('success', 'Agent details created successfully.');
     }
@@ -54,12 +49,6 @@ class AgentDetailController extends Controller
      */
     public function show(AgentDetail $agentDetail)
     {
-        // Decode JSON data for the view and ensure they're arrays
-        $agentDetail->state_agent_names = json_decode($agentDetail->state_agent_name ?? '[]', true) ?: [];
-        $agentDetail->addresses = json_decode($agentDetail->address ?? '[]', true) ?: [];
-        $agentDetail->contact_nos = json_decode($agentDetail->contact_no ?? '[]', true) ?: [];
-        $agentDetail->contact_persons = json_decode($agentDetail->contact_person ?? '[]', true) ?: [];
-
         return view('backend.agent-details.show', compact('agentDetail'));
     }
 
@@ -69,13 +58,6 @@ class AgentDetailController extends Controller
     public function edit(AgentDetail $agentDetail)
     {
         $districts = District::orderBy('name')->get();
-
-        // Decode JSON data for the view and ensure they're arrays
-        $agentDetail->state_agent_names = json_decode($agentDetail->state_agent_name ?? '[]', true) ?: [];
-        $agentDetail->addresses = json_decode($agentDetail->address ?? '[]', true) ?: [];
-        $agentDetail->contact_nos = json_decode($agentDetail->contact_no ?? '[]', true) ?: [];
-        $agentDetail->contact_persons = json_decode($agentDetail->contact_person ?? '[]', true) ?: [];
-
         return view('backend.agent-details.edit', compact('agentDetail', 'districts'));
     }
 
@@ -87,15 +69,7 @@ class AgentDetailController extends Controller
         $data = $request->validated();
 
         // Update the agent detail with JSON encoded arrays
-        $agentDetail->update([
-            'district_id' => $data['district_id'],
-            'state_agent_name' => json_encode($data['state_agent_names'] ?? []),
-            'address' => json_encode($data['addresses'] ?? []),
-            'contact_no' => json_encode($data['contact_nos'] ?? []),
-            'contact_person' => json_encode($data['contact_persons'] ?? []),
-            'display_order' => $data['display_order'] ?? 0,
-            'is_published' => (bool) $request->input('is_published', true),
-        ]);
+        $agentDetail->update($data);
 
         return redirect()->route('agent-details.index')
             ->with('success', 'Agent details updated successfully.');
@@ -132,5 +106,23 @@ class AgentDetailController extends Controller
             return redirect()->route('agent-details.index')
                 ->with('error', 'Error deleting agent detail: ' . $e->getMessage());
         }
+    }
+
+    public function export()
+    {
+        return Excel::download(new AgentDetailsExport, 'agent_details.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv,xls',
+        ]);
+
+        $file = $request->file('file');
+
+        Excel::import(new AgentDetailsImport, $file);
+        return redirect()->route('agent-details.index')
+            ->with('success', 'Agent details imported successfully.');
     }
 }

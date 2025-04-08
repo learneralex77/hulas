@@ -24,8 +24,8 @@ class GalleryRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'featured_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'gallery_images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'featured_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'gallery_images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'links' => ['nullable', 'string'],
             'is_featured' => ['nullable', 'boolean'],
             'display_order' => ['nullable', 'integer'],
@@ -67,11 +67,11 @@ class GalleryRequest extends FormRequest
             'title.max' => 'The gallery title may not be greater than 255 characters.',
 
             'featured_image.image' => 'The featured image must be an image file.',
-            'featured_image.mimes' => 'The featured image must be a file of type: jpeg, png, jpg, gif.',
+            'featured_image.mimes' => 'The featured image must be a file of type: jpeg, png, jpg, gif, webp.',
             'featured_image.max' => 'The featured image may not be greater than 2MB.',
 
             'gallery_images.*.image' => 'Each gallery image must be an image file.',
-            'gallery_images.*.mimes' => 'Each gallery image must be a file of type: jpeg, png, jpg, gif.',
+            'gallery_images.*.mimes' => 'Each gallery image must be a file of type: jpeg, png, jpg, gif, webp.',
             'gallery_images.*.max' => 'Each gallery image may not be greater than 2MB.',
 
             'links.string' => 'The links must be a string.',

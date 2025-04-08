@@ -28,7 +28,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\PopupController;
 use App\Http\Controllers\PartnersController;
 
-Route::middleware('auth')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
@@ -76,6 +76,9 @@ Route::middleware('auth')->group(function () {
 
     // Agent Form Management Routes
     Route::resource('agent-forms', AgentFormController::class);
+    Route::get('agent-details/export', [AgentDetailController::class, 'export'])->name('agent-details.export');
+    Route::post('agent-details/import', [AgentDetailController::class, 'import'])->name('agent-details.import');
+
 
     // Branch Management Routes
     Route::resource('branches', BranchController::class);

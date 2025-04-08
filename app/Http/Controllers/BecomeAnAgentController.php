@@ -31,36 +31,47 @@ class BecomeAnAgentController extends Controller
      */
     public function store(BecomeAnAgentRequest $request)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        $imagesPaths = [];
+            $imagesPaths = [];
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                if ($image->isValid()) {
-                    $path = $image->store('become-an-agent', 'public');
-                    $imagesPaths[] = $path;
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    if ($image->isValid()) {
+                        $path = $image->store('become-an-agent', 'public');
+                        $imagesPaths[] = $path;
+                    }
                 }
             }
-        }
 
-        if (empty($imagesPaths)) {
+            if (empty($imagesPaths)) {
+                return redirect()->back()
+                    ->withErrors(['images' => 'At least one valid image is required.']);
+            }
+
+            // Convert boolean value from checkbox
+            $isPublished = $request->has('is_published') ? (bool)$request->input('is_published') : false;
+
+            BecomeAnAgent::create([
+                'images' => $imagesPaths,
+                'display_order' => $data['display_order'] ?? 0,
+                'is_published' => $isPublished,
+            ]);
+
+            return redirect()->route('become-an-agent.index')
+                ->with('success', 'Agent information created successfully.');
+        } catch (\Exception $e) {
+            // Check for serialization exception
+            if (strpos($e->getMessage(), 'Serialization of') !== false) {
+                return redirect()->back()
+                    ->withErrors(['images' => 'Error processing uploaded images. Please try again with a different image format.']);
+            }
+            
+            // Handle any other exceptions
             return redirect()->back()
-                ->withInput()
-                ->withErrors(['images' => 'At least one valid image is required.']);
+                ->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
-
-        // Convert boolean value from checkbox
-        $isPublished = $request->has('is_published') ? (bool)$request->input('is_published') : false;
-
-        BecomeAnAgent::create([
-            'images' => $imagesPaths,
-            'display_order' => $data['display_order'] ?? 0,
-            'is_published' => $isPublished,
-        ]);
-
-        return redirect()->route('become-an-agent.index')
-            ->with('success', 'Agent information created successfully.');
     }
 
     /**
@@ -84,73 +95,84 @@ class BecomeAnAgentController extends Controller
      */
     public function update(BecomeAnAgentRequest $request, BecomeAnAgent $becomeAnAgent)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        // Get the existing images
-        $imagesPaths = $becomeAnAgent->images ?? [];
+            // Get the existing images
+            $imagesPaths = $becomeAnAgent->images ?? [];
 
-        // Handle image deletions
-        if ($request->has('delete_images') && is_array($request->delete_images)) {
-            foreach ($request->delete_images as $index) {
-                if (isset($imagesPaths[$index])) {
-                    // Delete the image from storage
-                    Storage::disk('public')->delete($imagesPaths[$index]);
-                    // Remove from the array
-                    unset($imagesPaths[$index]);
+            // Handle image deletions
+            if ($request->has('delete_images') && is_array($request->delete_images)) {
+                foreach ($request->delete_images as $index) {
+                    if (isset($imagesPaths[$index])) {
+                        // Delete the image from storage
+                        Storage::disk('public')->delete($imagesPaths[$index]);
+                        // Remove from the array
+                        unset($imagesPaths[$index]);
+                    }
+                }
+                // Reindex the array
+                $imagesPaths = array_values($imagesPaths);
+            }
+
+            // Handle uploaded images
+            if ($request->hasFile('images')) {
+                $files = $request->file('images');
+
+                foreach ($files as $key => $file) {
+                    // Skip invalid files
+                    if (!$file->isValid()) {
+                        continue;
+                    }
+
+                    // Store the new image
+                    $path = $file->store('become-an-agent', 'public');
+
+                    // Check if we're replacing an existing image at this index
+                    if (isset($imagesPaths[$key])) {
+                        // Delete the old image
+                        Storage::disk('public')->delete($imagesPaths[$key]);
+                        // Replace with new image
+                        $imagesPaths[$key] = $path;
+                    } else {
+                        // Add as a new image
+                        $imagesPaths[] = $path;
+                    }
                 }
             }
-            // Reindex the array
+
+            // Ensure we have at least one image
+            if (empty($imagesPaths)) {
+                return redirect()->back()
+                    ->withErrors(['images' => 'At least one image is required. Please add a new image.']);
+            }
+
+            // Reindex the array to ensure sequential keys
             $imagesPaths = array_values($imagesPaths);
-        }
 
-        // Handle uploaded images
-        if ($request->hasFile('images')) {
-            $files = $request->file('images');
+            // Convert boolean value from checkbox
+            $isPublished = $request->has('is_published') ? (bool)$request->input('is_published') : false;
 
-            foreach ($files as $key => $file) {
-                // Skip invalid files
-                if (!$file->isValid()) {
-                    continue;
-                }
+            // Update the record
+            $becomeAnAgent->update([
+                'images' => $imagesPaths,
+                'display_order' => $data['display_order'] ?? 0,
+                'is_published' => $isPublished,
+            ]);
 
-                // Store the new image
-                $path = $file->store('become-an-agent', 'public');
-
-                // Check if we're replacing an existing image at this index
-                if (isset($imagesPaths[$key])) {
-                    // Delete the old image
-                    Storage::disk('public')->delete($imagesPaths[$key]);
-                    // Replace with new image
-                    $imagesPaths[$key] = $path;
-                } else {
-                    // Add as a new image
-                    $imagesPaths[] = $path;
-                }
+            return redirect()->route('become-an-agent.index')
+                ->with('success', 'Agent information updated successfully.');
+        } catch (\Exception $e) {
+            // Check for serialization exception
+            if (strpos($e->getMessage(), 'Serialization of') !== false) {
+                return redirect()->back()
+                    ->withErrors(['images' => 'Error processing uploaded images. Please try again with a different image format.']);
             }
-        }
-
-        // Ensure we have at least one image
-        if (empty($imagesPaths)) {
+            
+            // Handle any other exceptions
             return redirect()->back()
-                ->withInput()
-                ->withErrors(['images' => 'At least one image is required. Please add a new image.']);
+                ->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
-
-        // Reindex the array to ensure sequential keys
-        $imagesPaths = array_values($imagesPaths);
-
-        // Convert boolean value from checkbox
-        $isPublished = $request->has('is_published') ? (bool)$request->input('is_published') : false;
-
-        // Update the record
-        $becomeAnAgent->update([
-            'images' => $imagesPaths,
-            'display_order' => $data['display_order'] ?? 0,
-            'is_published' => $isPublished,
-        ]);
-
-        return redirect()->route('become-an-agent.index')
-            ->with('success', 'Agent information updated successfully.');
     }
 
     /**

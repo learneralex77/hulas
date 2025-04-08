@@ -56,6 +56,12 @@ class PageController extends Controller
             return redirect()->route('pages.index')
                 ->with('success', 'Page created successfully.');
         } catch (\Exception $e) {
+            // Check for serialization exception
+            if (strpos($e->getMessage(), 'Serialization of') !== false) {
+                return redirect()->back()
+                    ->withErrors(['image' => 'Error processing uploaded image. Please try again with a different image format.']);
+            }
+            
             // Make sure to exclude the file from flashed input
             return redirect()->back()
                 ->withInput($request->except('image'))
@@ -119,6 +125,12 @@ class PageController extends Controller
             return redirect()->route('pages.index')
                 ->with('success', 'Page updated successfully.');
         } catch (\Exception $e) {
+            // Check for serialization exception
+            if (strpos($e->getMessage(), 'Serialization of') !== false) {
+                return redirect()->back()
+                    ->withErrors(['image' => 'Error processing uploaded image. Please try again with a different image format.']);
+            }
+            
             // Make sure to exclude the file from flashed input
             return redirect()->back()
                 ->withInput($request->except('image'))

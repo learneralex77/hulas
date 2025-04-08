@@ -1,6 +1,10 @@
 @extends('frontend.layouts.app')
 @section('title', 'Home')
 @section('meta', 'Welcome to Hulas Remittance')
+@push('styles')
+
+
+@endpush
 @section('content')
 
     @push('styles')
@@ -491,6 +495,7 @@
 
 
 @push('scripts')
+<<<<<<< HEAD
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
@@ -590,3 +595,7 @@
 
 
 @endpush
+=======
+
+@endpush
+>>>>>>> 60825eb58cb2fc2872e3df804a5a7ce6ed2046a5

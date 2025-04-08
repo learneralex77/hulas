@@ -69,37 +69,37 @@
         </li>
         <li class="mb-1">
           <a
-            class="block p-4 text-sm font-semibold text-black hover:text-accent"
-            href="about-us-page.html"
-            >About us</a
+            class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
+            href="{{ route('aboutUs') }}"
+            >About Us</a
           >
         </li>
         <li class="mb-1">
           <a
-            class="block p-4 text-sm font-semibold text-black hover:text-accent"
-            href="become-an-agent.html"
-            >Become an agent</a
+            class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
+            href="{{ route('becomeAnAgent') }}"
+            >Become an Agent</a
           >
         </li>
         <li class="mb-1">
           <a
-            class="block p-4 text-sm font-semibold text-black hover:text-accent"
-            href="agent-list.html"
-            >Find an agent</a
+            class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
+            href="{{ route('findAnAgent') }}"
+            >Find an Agent</a
           >
         </li>
         <li class="mb-1">
           <a
-            class="block p-4 text-sm font-semibold text-black hover:text-accent"
-            href="gallery.html"
+            class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
+            href="{{ route('gallery') }}"
             >Gallery</a
           >
         </li>
         <li class="mb-1">
           <a
-            class="block p-4 text-sm font-semibold text-black hover:text-accent"
-            href="contact-us.html"
-            >Contact us</a
+            class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
+            href="{{ route('contactUs') }}"
+            >Contact</a
           >
         </li>
       </ul>

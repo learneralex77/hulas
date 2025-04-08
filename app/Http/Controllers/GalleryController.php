@@ -31,28 +31,40 @@ class GalleryController extends Controller
      */
     public function store(GalleryRequest $request)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        // Handle featured image upload
-        if ($request->hasFile('featured_image')) {
-            $imagePath = $request->file('featured_image')->store('galleries/featured', 'public');
-            $data['featured_image'] = $imagePath;
-        }
-
-        // Handle multiple gallery images upload
-        $images = [];
-        if ($request->hasFile('gallery_images')) {
-            foreach ($request->file('gallery_images') as $image) {
-                $path = $image->store('galleries/images', 'public');
-                $images[] = $path;
+            // Handle featured image upload
+            if ($request->hasFile('featured_image')) {
+                $imagePath = $request->file('featured_image')->store('galleries/featured', 'public');
+                $data['featured_image'] = $imagePath;
             }
-            $data['images'] = $images;
+
+            // Handle multiple gallery images upload
+            $images = [];
+            if ($request->hasFile('gallery_images')) {
+                foreach ($request->file('gallery_images') as $image) {
+                    $path = $image->store('galleries/images', 'public');
+                    $images[] = $path;
+                }
+                $data['images'] = $images;
+            }
+
+            Gallery::create($data);
+
+            return redirect()->route('galleries.index')
+                ->with('success', 'Gallery created successfully.');
+        } catch (\Exception $e) {
+            // Check for serialization exception
+            if (strpos($e->getMessage(), 'Serialization of') !== false) {
+                return redirect()->back()
+                    ->withErrors(['error' => 'Error processing uploaded images. Please try again with a different image format.']);
+            }
+            
+            // Handle any other exceptions
+            return redirect()->back()
+                ->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
-
-        Gallery::create($data);
-
-        return redirect()->route('galleries.index')
-            ->with('success', 'Gallery created successfully.');
     }
 
     /**
@@ -76,62 +88,74 @@ class GalleryController extends Controller
      */
     public function update(GalleryRequest $request, Gallery $gallery)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        // Handle featured image deletion
-        if ($request->has('delete_featured_image') && $request->delete_featured_image == 1 && !$request->hasFile('featured_image')) {
-            if ($gallery->featured_image && Storage::disk('public')->exists($gallery->featured_image)) {
-                Storage::disk('public')->delete($gallery->featured_image);
-            }
-            $data['featured_image'] = null;
-        }
-
-        // Handle featured image upload
-        if ($request->hasFile('featured_image')) {
-            // Delete old image if exists
-            if ($gallery->featured_image && Storage::disk('public')->exists($gallery->featured_image)) {
-                Storage::disk('public')->delete($gallery->featured_image);
+            // Handle featured image deletion
+            if ($request->has('delete_featured_image') && $request->delete_featured_image == 1 && !$request->hasFile('featured_image')) {
+                if ($gallery->featured_image && Storage::disk('public')->exists($gallery->featured_image)) {
+                    Storage::disk('public')->delete($gallery->featured_image);
+                }
+                $data['featured_image'] = null;
             }
 
-            $imagePath = $request->file('featured_image')->store('galleries/featured', 'public');
-            $data['featured_image'] = $imagePath;
-        }
+            // Handle featured image upload
+            if ($request->hasFile('featured_image')) {
+                // Delete old image if exists
+                if ($gallery->featured_image && Storage::disk('public')->exists($gallery->featured_image)) {
+                    Storage::disk('public')->delete($gallery->featured_image);
+                }
 
-        // Handle multiple gallery images upload
-        if ($request->hasFile('gallery_images')) {
-            $existingImages = $gallery->images ?? [];
-
-            foreach ($request->file('gallery_images') as $image) {
-                $path = $image->store('galleries/images', 'public');
-                $existingImages[] = $path;
+                $imagePath = $request->file('featured_image')->store('galleries/featured', 'public');
+                $data['featured_image'] = $imagePath;
             }
 
-            $data['images'] = $existingImages;
-        }
+            // Handle multiple gallery images upload
+            if ($request->hasFile('gallery_images')) {
+                $existingImages = $gallery->images ?? [];
 
-        // Handle image deletions if any
-        if ($request->has('delete_images')) {
-            $imagesToKeep = [];
-            $currentImages = $gallery->images ?? [];
+                foreach ($request->file('gallery_images') as $image) {
+                    $path = $image->store('galleries/images', 'public');
+                    $existingImages[] = $path;
+                }
 
-            foreach ($currentImages as $image) {
-                if (!in_array($image, $request->delete_images)) {
-                    $imagesToKeep[] = $image;
-                } else {
-                    // Delete the image file
-                    if (Storage::disk('public')->exists($image)) {
-                        Storage::disk('public')->delete($image);
+                $data['images'] = $existingImages;
+            }
+
+            // Handle image deletions if any
+            if ($request->has('delete_images')) {
+                $imagesToKeep = [];
+                $currentImages = $gallery->images ?? [];
+
+                foreach ($currentImages as $image) {
+                    if (!in_array($image, $request->delete_images)) {
+                        $imagesToKeep[] = $image;
+                    } else {
+                        // Delete the image file
+                        if (Storage::disk('public')->exists($image)) {
+                            Storage::disk('public')->delete($image);
+                        }
                     }
                 }
+
+                $data['images'] = $imagesToKeep;
             }
 
-            $data['images'] = $imagesToKeep;
+            $gallery->update($data);
+
+            return redirect()->route('galleries.index')
+                ->with('success', 'Gallery updated successfully.');
+        } catch (\Exception $e) {
+            // Check for serialization exception
+            if (strpos($e->getMessage(), 'Serialization of') !== false) {
+                return redirect()->back()
+                    ->withErrors(['error' => 'Error processing uploaded images. Please try again with a different image format.']);
+            }
+            
+            // Handle any other exceptions
+            return redirect()->back()
+                ->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
-
-        $gallery->update($data);
-
-        return redirect()->route('galleries.index')
-            ->with('success', 'Gallery updated successfully.');
     }
 
     /**

@@ -17,10 +17,15 @@
                     Our Corporate Mission
                 </h2>
                 <p class="text-gray-700 mt-2">
-                    To provide accessible, affordable, and innovative general insurance
+                    @isset($missions)
+                        @foreach ($missions as $mission)
+                            {{ $mission['description'] }}
+                        @endforeach
+                    @endisset
+                    <!-- To provide accessible, affordable, and innovative general insurance
                     solutions that safeguard the interests of individuals, businesses,
                     and society, while upholding trust, transparency, and efficiency as
-                    a responsible enterprise.
+                    a responsible enterprise. -->
                 </p>
 
                 <h2 class="text-2xl font-bold text-gray-800 mt-6">

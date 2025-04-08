@@ -9,6 +9,7 @@ Route::get('/', function () {
 
 
 
+
 Route::get('homepage', [FrontendController::class, 'homepage'])->name('homepage');
 Route::get('about-us', [FrontendController::class, 'aboutUs'])->name('aboutUs');
 Route::get('become-an-agent', [FrontendController::class, 'becomeAnAgent'])->name('becomeAnAgent');

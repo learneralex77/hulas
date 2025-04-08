@@ -179,7 +179,8 @@
                     <div
                         class="flex-none w-[280px] md:w-[300px] lg:w-[380px] h-[360px] md:h-[400px] lg:h-[457px]  bg-gray-50 rounded-lg shadow-lg mx-2 p-4 flex flex-col justify-between review-card">
                         <div class="flex flex-col items-center">
-                            <img src="https://media.istockphoto.com/id/1333428875/photo/fire-insurance-concept-burning-small-wooden-house.jpg?s=612x612&w=0&k=20&c=eri3sWqqRhMaJfh81nrVmaS4hVrW4-9K7eTexu3eY9s="
+                        <!-- https://media.istockphoto.com/id/1333428875/photo/fire-insurance-concept-burning-small-wooden-house.jpg?s=612x612&w=0&k=20&c=eri3sWqqRhMaJfh81nrVmaS4hVrW4-9K7eTexu3eY9s= -->
+                            <img src="{{ asset('storage/' . $service->file) }}"
                                 alt="Property Insurance" class="h-[120px] md:h-[140px] lg:h-[160px] mx-auto" />
                             <h3 class="text-sm md:text-lg font-medium mt-4 text-center">
                            

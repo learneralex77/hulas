@@ -2,6 +2,15 @@
 @section('title', 'Home')
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')
+
+    @push('styles')
+
+        <!-- Swiper CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    @endpush
+
+
+    <!-- Slider Section -->
     <section id="home-slider">
         <div id="default-carousel" class="relative w-full" data-carousel="slide">
             <!-- Carousel wrapper -->
@@ -14,14 +23,12 @@
                 <!-- Item 2 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
                     <img src="{{ asset('assets/images/slider/slider-two.jpg') }}"
-                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2')}}"
-                        alt="..." />
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2')}}" alt="..." />
                 </div>
                 <!-- Item 3 -->
                 <div class="hidden duration-700 ease-in-out" data-carousel-item>
                     <img src="{{ asset('assets/images/slider/slider-three.jpg') }}"
-                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2')}}"
-                        alt="..." />
+                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2')}}" alt="..." />
                 </div>
             </div>
             <!-- Slider indicators -->
@@ -62,49 +69,175 @@
             </button>
         </div>
     </section>
+    <!-- Slider Section -->
 
-    <section class="about flex flex-col xl:flex-row m-10 md:m-20 lg:mx-40 gap-10">
-        <div class="flex justify-center flex-1 text-center">
-            <img src="{{ asset('assets/images/about-us/about-img-1.webp') }}" alt="About Us Image"
-                class="w-full rounded-md object-contain xl:object-fit" />
+    <!-- --------About Us Section-------- -->
+    <section class="flex flex-col md:flex-row md:justify-center md:items-center lg:flex-row m-10 md:m-10 2xl:mx-40 gap-10">
+        <div class="flex justify-center flex-1 flex-grow text-center">
+            <div class="flex-1 flex justify-center w-full">
+                <img src="{{ asset('assets/images/about-us/about-img-1.webp') }}" alt="About Us Image"
+                    class="w-full rounded-md object-contain xl:object-fit" />
+            </div>
         </div>
-        <div class="flex flex-1 flex-col space-y-6">
-            <h3 class="text-2xl font-semibold text-accent">
+        <div class="flex flex-1 lg:flex-2 flex-col space-y-6">
+            <h3 class="text-xl lg:text-2xl font-bold text-black tracking-wide">
                 About Hulas Remittance
             </h3>
-            <h1 class="text-4xl font-bold">
+            <h1 class="text-3xl lg:text-4xl font-bold">
                 @isset($aboutUs)
-                {{ $aboutUs->tagline }}
+                    {{ $aboutUs->tagline }}
                 @endisset
                 <!-- Delivering Happiness through fast and reliable services -->
             </h1>
-            <p class="text-gray-600 text-lg">
+            <p class="text-gray-600 text-base lg:text-lg text-justify">
                 @isset($aboutUs)
-                {{ $aboutUs->description }}
+                    {{ $aboutUs->description }}
                 @endisset
                 <!-- Hulas Remittance, a member company of Golchha Organization, was
-                established in August 2005 with the vision to bring in quality and
-                reliable money transfer services in to Nepal. A leading business house
-                with a dedicated business history of more than 85 years, Golchha
-                Organization has established "HULAS" as one of the most trusted
-                household consumer brands in the country. Hulas Remittance, being one
-                of the principal agents, playing a leading role in offering money
-                transfer services of The Western Union Company in Nepal since January
-                2006. We have been serving customers from more than 3,200 (comprising
-                of major commercial banks, Development Banks, Finance Companies and
-                cooperative organizations) locations have established brand promise of
-                Western Union as a fast, reliable and convenient way of remittance
-                service across the country. Hulas Remittance, being one of the
-                principal agents, playing a leading role in offering money transfer
-                services of The Western Union Company in Nepal since January 2006. We
-                have been serving customers from more than 3,200 (comprising of major
-                commercial banks, Development Banks, Finance Companies and cooperative
-                organizations) locations have established brand promise of Western
-                Union as a fast, reliable and convenient way of remittance service
-                across the country. -->
+                                                                established in August 2005 with the vision to bring in quality and
+                                                                reliable money transfer services in to Nepal. A leading business house
+                                                                with a dedicated business history of more than 85 years, Golchha
+                                                                Organization has established "HULAS" as one of the most trusted
+                                                                household consumer brands in the country. Hulas Remittance, being one
+                                                                of the principal agents, playing a leading role in offering money
+                                                                transfer services of The Western Union Company in Nepal since January
+                                                                2006. We have been serving customers from more than 3,200 (comprising
+                                                                of major commercial banks, Development Banks, Finance Companies and
+                                                                cooperative organizations) locations have established brand promise of
+                                                                Western Union as a fast, reliable and convenient way of remittance
+                                                                service across the country. Hulas Remittance, being one of the
+                                                                principal agents, playing a leading role in offering money transfer
+                                                                services of The Western Union Company in Nepal since January 2006. We
+                                                                have been serving customers from more than 3,200 (comprising of major
+                                                                commercial banks, Development Banks, Finance Companies and cooperative
+                                                                organizations) locations have established brand promise of Western
+                                                                Union as a fast, reliable and convenient way of remittance service
+                                                                across the country. -->
             </p>
-            <button class="m-3 text-left text-accent text-xl uppercase cursor-pointer">
+            <button
+                class="text-center text-white hover:text-accent text-lg drop-shadow-sm cursor-pointer bg-black px-6 py-3 w-40 rounded-lg">
                 read more
+            </button>
+        </div>
+    </section>
+    <!-- --------About Us Section-------- -->
+
+    <!----------Services Section---------->
+    <section class="m-10 space-y-10 items-center text-center">
+        <div class="space-y-3">
+            <h3 class="text-2xl font-semibold text-accent capitalize">What we do</h3>
+            <h1 class="text-5xl font-bold">Services</h1>
+        </div>
+        <div class="relative flex items-center justify-center">
+            <button
+                class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"
+                onclick="prevSlide()">
+                ❮
+            </button>
+            <div class="overflow-hidden rounded-lg w-full">
+                <div class="flex flex-row gap-8 transition-transform duration-500 ease-in-out" id="slider-content">
+                    <div
+                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
+                        <div class="flex flex-col items-center">
+                            <img src="https://media.istockphoto.com/id/1333428875/photo/fire-insurance-concept-burning-small-wooden-house.jpg?s=612x612&w=0&k=20&c=eri3sWqqRhMaJfh81nrVmaS4hVrW4-9K7eTexu3eY9s="
+                                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
+                        </div>
+                        <h3 class="text-lg font-bold text-center">
+                            Property Insurance
+                        </h3>
+                        <p class="text-base md:text-lg text-black text-center">
+                            Safeguards property owners against losses and damages providing
+                            compensation for the repair or replacement of the insured assets
+                        </p>
+                        <div class="flex justify-center ">
+                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read
+                                more</a>
+
+                        </div>
+                    </div>
+                    <div
+                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
+                        <div class="flex flex-col items-center">
+                            <img src="https://ebeema.com:1001/api/documentManagement/file?key=MjAyM1wwMVwwOFwtbW90b3ItaW5zdXJhbmNlX2JlNDAucG5n"
+                                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
+                        </div>
+                        <h3 class="text-lg font-bold text-center">
+                            Property Insurance
+                        </h3>
+                        <p class="text-base md:text-lg text-black text-center">
+                            Safeguards property owners against losses and damages providing
+                            compensation for the repair or replacement of the insured assets
+                        </p>
+                        <div class="flex justify-center ">
+                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read
+                                more</a>
+
+                        </div>
+                    </div>
+                    <div
+                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
+                        <div class="flex flex-col items-center">
+                            <img src="https://nicnepal.com.np/national-insurance/public/./img/marine.jpg"
+                                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
+                        </div>
+                        <h3 class="text-lg font-bold text-center">
+                            Marine Insurance
+                        </h3>
+                        <p class="text-base md:text-lg text-black text-center">
+                            Safeguards property owners against losses and damages providing
+                            compensation for the repair or replacement of the insured assets
+                        </p>
+                        <div class="flex justify-center ">
+                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read
+                                more</a>
+
+                        </div>
+                    </div>
+                    <div
+                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
+                        <div class="flex flex-col items-center">
+                            <img src="https://nicnepal.com.np/national-insurance/public/img/miscellaneous.jpg"
+                                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
+                        </div>
+                        <h3 class="text-lg font-bold text-center">
+                            Miscellaneous Insurance
+                        </h3>
+                        <p class="text-base md:text-lg text-black text-center">
+                            Safeguards property owners against losses and damages providing
+                            compensation for the repair or replacement of the insured assets
+                        </p>
+                        <div class="flex justify-center ">
+                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read
+                                more</a>
+
+                        </div>
+                    </div>
+                    <div
+                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
+                        <div class="flex flex-col items-center">
+                            <img src="https://media.licdn.com/dms/image/C4D12AQF3vYqQRpFaOw/article-cover_image-shrink_600_2000/0/1651676674940?e=2147483647&v=beta&t=BGSpmlC6Q9rQ_vYOqaHnUxgZf5krVGvmXpKR4OomyCU"
+                                alt="Engineering Insurance" class="w-full h-[200px] rounded-lg" />
+                        </div>
+                        <h3 class="text-lg font-bold text-center">
+                            Engineering Insurance
+                        </h3>
+                        <p class="text-base md:text-lg text-black text-center">
+                            Safeguards property owners against losses and damages providing
+                            compensation for the repair or replacement of the insured assets
+                        </p>
+                        <div class="flex justify-center ">
+                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read
+                                more</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <button
+                class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
+                onclick="nextSlide()">
+                ❯
             </button>
         </div>
     </section>
@@ -116,34 +249,34 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 space-y-6 gap-3 ">
             <!-- Main Service Card -->
-        @isset($services)
-            @foreach($services as $service)
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-                <a src="#">
-                    <img class="rounded-t-lg w-full" src="{{ asset('storage/' . $service->file) }}"
-                        alt="{{ $service->name ?? 'Service Image' }}" />
-                </a>
-                <div class="p-5">
-                    <a src="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight">
-                            {{ $service->name }}
-                        </h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700">
-                        {{ $service->description }}
-                    </p>
-                    <a src="#"
-                        class="inline-flex items-center px-3 py-2 text-base font-medium text-center rounded-lg hover:text-accent focus:ring-4 focus:outline-none">
-                        Read more
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-            @endforeach
+            @isset($services)
+                @foreach($services as $service)
+                    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
+                        <a src="#">
+                            <img class="rounded-t-lg w-full" src="{{ asset('storage/' . $service->file) }}"
+                                alt="{{ $service->name ?? 'Service Image' }}" />
+                        </a>
+                        <div class="p-5">
+                            <a src="#">
+                                <h5 class="mb-2 text-2xl font-bold tracking-tight">
+                                    {{ $service->name }}
+                                </h5>
+                            </a>
+                            <p class="mb-3 font-normal text-gray-700">
+                                {{ $service->description }}
+                            </p>
+                            <a src="#"
+                                class="inline-flex items-center px-3 py-2 text-base font-medium text-center rounded-lg hover:text-accent focus:ring-4 focus:outline-none">
+                                Read more
+                                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
             @endisset
             <!-- Service Details Cards -->
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
@@ -169,6 +302,9 @@
         </div>
 
     </section>
+    <!----------Services Section---------->
+
+    <!----------Our Partners Section---------->
     <section class="about flex flex-col xl:flex-row items-center m-10 md:m-20 lg:mx-40 gap-10">
         <div class="flex flex-1 flex-col space-y-6">
             <h3 class="text-4xl text-center font-semibold capitalize text-primary">
@@ -179,59 +315,90 @@
                 <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
                     <!-- Item 1 -->
                     @isset($partners)
-                    @foreach($partners as $partner)
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('storage/' . $partner->image) }}"
-                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                            alt="Partners Icon">
-                    </div>
-                    @endforeach
+                        @foreach($partners as $partner)
+                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                <img src="{{ asset('storage/' . $partner->image) }}"
+                                    class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                    alt="Partners Icon">
+                            </div>
+                        @endforeach
                     @endisset
                     <!-- Item 2 -->
                     <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
-                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                            alt="Partners Icon">
+                                                                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
+                                                                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                                                            alt="Partners Icon">
 
-                    </div> -->
+                                                                    </div> -->
                     <!-- Item 3 -->
                     <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
-                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                            alt="Partners Icon">
-                    </div> -->
+                                                                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
+                                                                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                                                            alt="Partners Icon">
+                                                                    </div> -->
                     <!-- Item 4 -->
                     <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
-                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                            alt="Partners Icon">
-                    </div> -->
+                                                                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
+                                                                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                                                            alt="Partners Icon">
+                                                                    </div> -->
                     <!-- Item 5 -->
                     <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
-                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                            alt="Partners Icon">
-                    </div> -->
+                                                                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
+                                                                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                                                            alt="Partners Icon">
+                                                                    </div> -->
                 </div>
                 <!-- Slider controls -->
                 <!-- <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                                                                                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                                                                      <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                                                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-                                                                                      </svg>
-                                                                                      <span class="sr-only">Previous</span>
-                                                                                  </span>
-                                                                              </button>
-                                                                              <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                                                                                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                                                                      <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                                                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                                                                                      </svg>
-                                                                                      <span class="sr-only">Next</span>
-                                                                                  </span>
-                                                                              </button> -->
+                                                                                                                                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                                                                                                                      <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                                                                                                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                                                                                                                                      </svg>
+                                                                                                                                      <span class="sr-only">Previous</span>
+                                                                                                                                  </span>
+                                                                                                                              </button>
+                                                                                                                              <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                                                                                                                                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                                                                                                                                      <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                                                                                                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                                                                                                                      </svg>
+                                                                                                                                      <span class="sr-only">Next</span>
+                                                                                                                                  </span>
+                                                                                                                              </button> -->
             </div>
     </section>
+
+    <!-- Swiper Container -->
+    <div class="swiper ourpartnersSwiper w-full mx-40">
+        <div class="swiper-wrapper overflow-hidden">
+            <!-- Slides -->
+            <div class="swiper-slide flex justify-center items-center h-4 w-4">
+                <img src="\assets\images\partners\WesternUnion.webp" class="h-8 w-8 object-contain" alt="Partner 1" />
+            </div>
+            <div class="swiper-slide flex justify-center items-center h-4 w-4">
+                <img src="/assets/images/partners/WesternUnion.webp" class="h-8 w-8 object-contain" alt="Partner 2" />
+            </div>
+            <div class="swiper-slide flex justify-center items-center h-4 w-4">
+                <img src="/assets/images/partners/doctor-m-svgrepo-com.png" class="h-8 w-8 object-contain" alt="Partner 3" />
+            </div>
+            <div class="swiper-slide flex justify-center items-center h-4 w-4">
+                <img src="/assets/images/partners/contact-classic-telephone-svgrepo-com (1).png" class="h-8 w-8 object-fill"
+                    alt="Partner 4" />
+            </div>
+            <!-- Add more slides as needed -->
+        </div>
+
+        <!-- Optional: Pagination -->
+        <!-- <div class="swiper-pagination"></div> -->
+
+        <!-- Optional: Navigation -->
+        <!-- <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div> -->
+    </div>
+    <!----------Our Partners Section---------->
+
+    <!----------Become an agent Section---------->
     <section class="lg:mx-40 left-10 flex flex-col space-y-10 m-10">
         <div class="space-y-3 flex flex-col justify-center text-center">
             <h3 class="text-2xl font-semibold text-accent capitalize">
@@ -239,7 +406,7 @@
             </h3>
             <h1 class="text-5xl font-bold">Become an Agent</h1>
         </div>
-        <div class="flex flex-col lg:flex-row justify-around">
+        <div class="flex flex-col lg:flex-row justify-between">
             <div class="flex flex-1 justify-center">
                 <ol class="flex flex-col">
                     <li class="mb-10 ms-6 flex flex-row gap-4">
@@ -313,13 +480,113 @@
             <div class="flex flex-1 flex-col justify-center items-center text-center">
                 <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="About Us Image"
                     class="w-[600px] rounded-md object-contain xl:object-fit mb-6" />
-                <a href="#" class="px-6 py-3 bg-accent text-white rounded-md hover:bg-primary transition-colors font-medium text-lg">Apply to Become an Agent</a>
+                <a href="#"
+                    class="px-6 py-3 bg-accent text-white rounded-md hover:bg-primary transition-colors font-medium text-lg">Apply
+                    to Become an Agent</a>
             </div>
         </div>
     </section>
-
+    <!----------Become an agent Section---------->
 @endsection
 
 
 @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(() => {
+                const burger = document.querySelector('.navbar-burger');
+                const menu = document.querySelector('.navbar-menu');
+
+                if (!burger || !menu) {
+                    console.error("Navbar elements not found! Ensure your script runs after the DOM loads.");
+                    return;
+                }
+
+                console.log("Burger:", burger);
+                console.log("Menu:", menu);
+
+                // Open menu
+                burger.addEventListener('click', function () {
+                    menu.classList.toggle('hidden');
+                    burger.classList.add('hidden');  // Hide hamburger
+                });
+
+                // Close menu
+                const closeButton = document.querySelector('.navbar-close');
+                if (closeButton) {
+                    closeButton.addEventListener('click', function () {
+                        menu.classList.add('hidden');
+                        burger.classList.remove('hidden');  // Show hamburger
+                    });
+                }
+
+                // Close on backdrop click
+                const backdrop = document.querySelector('.navbar-backdrop');
+                if (backdrop) {
+                    backdrop.addEventListener('click', function () {
+                        menu.classList.add('hidden');
+                    });
+                }
+            }, 500); // Delay to allow DOM elements to render
+        });
+    </script>
+
+    <!-- card slider -->
+    <script>
+        let currentIndex = 0;
+
+        function nextSlide() {
+            const sliderContent = document.getElementById("slider-content");
+            const slides = document.querySelectorAll(".review-card");
+            const totalSlides = slides.length;
+
+            // Increment the index and move the slide, loop back to the first slide after the last one
+            currentIndex = (currentIndex + 1) % totalSlides;
+            const offset = -currentIndex * (slides[0].offsetWidth + 16); // 16px is the margin between cards
+
+            sliderContent.style.transform = `translateX(${offset}px)`;
+        }
+
+        function prevSlide() {
+            const sliderContent = document.getElementById("slider-content");
+            const slides = document.querySelectorAll(".review-card");
+            const totalSlides = slides.length;
+
+            // Decrement the index and move the slide, loop back to the last slide after the first one
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            const offset = -currentIndex * (slides[0].offsetWidth + 16); // 16px is the margin between cards
+
+            sliderContent.style.transform = `translateX(${offset}px)`;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        const ourpartnersSwiper = new Swiper(".ourpartnersSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 60,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 40
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 60
+                }
+            },
+        });
+    </script>
+
+
+
+
+
+
 @endpush

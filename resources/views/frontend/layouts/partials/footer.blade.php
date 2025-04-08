@@ -19,7 +19,7 @@
                     <div
                         class="social group flex justify-center items-center w-10 h-10 lg:w-16 lg:h-16 rounded-full hover:cursor-pointer">
                         <img id="fb-white" src="./images/social-media-icons/linkedin-svgrepo-com.png" class="w-6 h-6"
-                            alt="LinkedIN Icon" />
+                            alt="LinkedIn Icon" />
                     </div>
                     <div
                         class="social group flex justify-center items-center w-10 h-10 lg:w-16 lg:h-16 rounded-full hover:cursor-pointer">

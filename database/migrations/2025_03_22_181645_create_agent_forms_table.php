@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('display_order')->default(0);
             $table->string('email');
             $table->text('message')->nullable();
-            $table->text('address')->default('');
+            $table->text('address')->nullable();
             $table->boolean('is_processed')->default(false);
             $table->timestamps();
         });

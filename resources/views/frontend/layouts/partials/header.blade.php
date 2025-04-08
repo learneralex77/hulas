@@ -1,6 +1,6 @@
 <header class="sticky -top-0 lg:-top-16 z-50">
   <!---------- top-nav ---------->
-  <nav class="hidden w-full py-2 bg-bgprimary border-b-2 px-10 lg:block">
+  <nav class="hidden w-full py-2 bg-white text-black border-b-2 px-10 lg:block">
     <div class="w-full p-2 flex justify-between items-center">
       <!-- address, toll free -->
       <div class="flex space-x-8 items-center">
@@ -48,11 +48,11 @@
 
   <!---------- bottom-nav ---------->
   <nav
-    class="relative px-4 pr-8 py-4 flex justify-between items-center bg-white shadow-lg"
+    class="relative px-4 pr-8 py-4 flex justify-between items-center bg-white text-black shadow-lg"
   >
-    <a class="text-xl lg:pl-10 font-bold leading-none" href="index.html">
+    <a class="lg:pl-10 leading-none" href="index.html">
       <img
-        src="./images/logo/hulas-remittance-logo.jpg"
+        src="\assets\images\logo\hulas-remittance-logo.jpg"
         class="w-56"
         alt="Hulas Remittance Logo"
       />
@@ -62,49 +62,49 @@
       <ul class="flex">
         <li class="mb-1">
           <a
-            class="block p-4 text-sm font-semibold text-black hover:text-accent rounded"
+            class="block p-4 text-sm font-semibold text-black hover:text-accent "
             href="#"
             >Home</a
           >
         </li>
         <li class="mb-1">
           <a
-            class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
-            href="#"
-            >About Us</a
+            class="block p-4 text-sm font-semibold text-black hover:text-accent"
+            href="about-us-page.html"
+            >About us</a
           >
         </li>
         <li class="mb-1">
           <a
-            class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
-            href="#"
-            >Become an Agent</a
+            class="block p-4 text-sm font-semibold text-black hover:text-accent"
+            href="become-an-agent.html"
+            >Become an agent</a
           >
         </li>
         <li class="mb-1">
           <a
-            class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
+            class="block p-4 text-sm font-semibold text-black hover:text-accent"
             href="agent-list.html"
-            >Find an Agent</a
+            >Find an agent</a
           >
         </li>
         <li class="mb-1">
           <a
-            class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
-            href="#gallery"
+            class="block p-4 text-sm font-semibold text-black hover:text-accent"
+            href="gallery.html"
             >Gallery</a
           >
         </li>
         <li class="mb-1">
           <a
-            class="block p-4 text-sm font-semibold text-black hover:text-accent  rounded"
+            class="block p-4 text-sm font-semibold text-black hover:text-accent"
             href="contact-us.html"
-            >Contact</a
+            >Contact us</a
           >
         </li>
       </ul>
     </div>
-    <div class="lg:hidden block">
+    <div class="lg:hidden">
       <button class="navbar-burger flex items-center text-[#ffdd00] p-3">
         <svg
           class="block h-6 w-6 fill-current"
@@ -157,7 +157,7 @@
           <li class="mb-1">
             <a
               rel="noopener noreferrer"
-              class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded"
+              class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent "
               href="index.html"
               >Home</a
             >
@@ -165,8 +165,8 @@
           <li class="mb-1">
             <a
               rel="noopener noreferrer"
-              class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded"
-              href="/about-us"
+              class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent "
+              href="about-us-page.html"
               >About Us</a
             >
           </li>
@@ -174,15 +174,15 @@
           <li class="mb-1">
             <a
               rel="noopener noreferrer"
-              class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded"
-              href="#become_agent"
+              class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent "
+              href="home-become-an-agent.html"
               >Become an Agent</a
             >
           </li>
           <li class="mb-1">
             <a
               rel="noopener noreferrer"
-              class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded"
+              class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent "
               href="#gallery"
               >Gallery</a
             >
@@ -191,7 +191,7 @@
             <a
               rel="noopener noreferrer"
               class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded"
-              href="#contact_p"
+              href="contact-us.html"
               >Contact</a
             >
           </li>
@@ -200,7 +200,7 @@
               rel="noopener noreferrer"
               href="https://www.westernunion.com/us/en/send-money/app/price-estimator"
               target="_blank"
-              class="block p-4 text-sm font-semibold text-accent rounded"
+              class="block p-4 text-sm font-semibold  text-gray-400 hover:text-accent rounded"
             >
               Our Fees
             </a>
@@ -210,7 +210,7 @@
               rel="noopener noreferrer"
               href="https://www.westernunion.com/us/en/send-money-to-nepal.html"
               target="_blank"
-              class="block p-4 text-sm font-semibold text-accent rounded"
+              class="block p-4 text-sm font-semibold  text-gray-400 hover:text-accent rounded"
               >Forex Rates
             </a>
           </li>

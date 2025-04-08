@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\AgentDetailsImport;
 use App\Exports\AgentDetailsExport;
-
+use Illuminate\Support\Facades\Storage;
 
 class AgentDetailController extends Controller
 {
@@ -37,8 +37,6 @@ class AgentDetailController extends Controller
     public function store(AgentDetailRequest $request)
     {
         $data = $request->validated();
-
-        // Create the agent detail with JSON encoded arrays
         AgentDetail::create($data);
         return redirect()->route('agent-details.index')
             ->with('success', 'Agent details created successfully.');
@@ -67,7 +65,7 @@ class AgentDetailController extends Controller
     {
         $data = $request->validated();
 
-        // Update the agent detail with JSON encoded arrays
+
         $agentDetail->update($data);
 
         return redirect()->route('agent-details.index')
@@ -82,7 +80,7 @@ class AgentDetailController extends Controller
         try {
             $agentDetail->delete();
 
-            // Check if request is AJAX
+
             if (request()->ajax()) {
                 return response()->json([
                     'success' => true,
@@ -93,7 +91,7 @@ class AgentDetailController extends Controller
             return redirect()->route('agent-details.index')
                 ->with('success', 'Agent detail deleted successfully.');
         } catch (\Exception $e) {
-            // For AJAX request
+
             if (request()->ajax()) {
                 return response()->json([
                     'success' => false,
@@ -101,7 +99,7 @@ class AgentDetailController extends Controller
                 ], 500);
             }
 
-            // For form submit
+
             return redirect()->route('agent-details.index')
                 ->with('error', 'Error deleting agent detail: ' . $e->getMessage());
         }
@@ -112,16 +110,49 @@ class AgentDetailController extends Controller
         return Excel::download(new AgentDetailsExport, 'agent_details.xlsx');
     }
 
+    // public function import(Request $request)
+    // {
+    //     $request->validate([
+    //         'file' => 'required|mimes:xlsx,csv,xls',
+    //     ]);
+
+    //     // Store file
+    //     $filePath = $request->file('file')->storeAs('imports', time() . '-' . $request->file('file')->getClientOriginalName());
+    //     // Temporarily add this to your import method
+    //     $file = $request->file('file');
+
+    //     // Get storage path
+    //     $fullPath = storage_path('app/' . $filePath);
+
+    //     // 🚨 Critical fix: Use IMPORT not LOAD
+    //     Excel::import(new AgentDetailsImport, $fullPath);
+
+    //     // Cleanup
+    //     Storage::delete($filePath);
+
+    //     return redirect()->route('agent-details.index')
+    //         ->with('success', 'Agent details imported successfully.');
+    // }
     public function import(Request $request)
     {
-        $request->validate([
-            'file' => 'required|mimes:xlsx,csv,xls',
-        ]);
+        $request->validate(['file' => 'required|mimes:xlsx,csv,xls']);
 
-        $file = $request->file('file');
+        // Store file
+        $filePath = $request->file('file')->store('imports'); // Relative path
 
-        Excel::import(new AgentDetailsImport, $file);
-        return redirect()->route('agent-details.index')
-            ->with('success', 'Agent details imported successfully.');
+        try {
+            // Import data using relative path
+            Excel::import(new AgentDetailsImport, $filePath);
+
+            // Delete file after import
+            Storage::delete($filePath);
+
+            return redirect()->route('agent-details.index')
+                ->with('success', 'Agent details imported successfully.');
+        } catch (\Exception $e) {
+            dd($e);
+            return redirect()->route('agent-details.index')
+                ->with('error', 'Error during import: ' . $e->getMessage());
+        }
     }
 }

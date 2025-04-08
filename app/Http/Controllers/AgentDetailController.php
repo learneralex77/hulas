@@ -57,6 +57,7 @@ class AgentDetailController extends Controller
      */
     public function edit(AgentDetail $agentDetail)
     {
+        $districts = District::orderBy('name')->get();
         return view('backend.agent-details.edit', compact('agentDetail', 'districts'));
     }
 

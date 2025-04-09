@@ -7,14 +7,10 @@
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11.0",
-<<<<<<< HEAD
         "laravel/telescope": "^5.7",
-        "laravel/tinker": "^2.9"
-=======
         "laravel/tinker": "^2.9",
         "maatwebsite/excel": "^3.1",
         "phpoffice/phpspreadsheet": "^1.29"
->>>>>>> 60825eb58cb2fc2872e3df804a5a7ce6ed2046a5
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

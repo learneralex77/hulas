@@ -21,37 +21,7 @@
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-md-8">
-                <label class="form-label" for="slug">Slug</label>
-                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
-                    name="slug" value="{{ old('slug', $newsEventCategory->slug ?? '') }}">
-                @error('slug')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-                <small class="text-muted">Leave empty to auto-generate from English name</small>
-            </div>
-            <div class="col-md-4">
-                <label class="form-label d-block">Status</label>
-                <div class="form-check form-switch">
-                    <input type="checkbox" class="form-check-input" id="is_published" name="is_published" value="1"
-                        {{ old('is_published', $newsEventCategory->is_published ?? 1) ? 'checked' : '' }}>
-                    <label class="form-check-label" for="is_published">Published</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-md-12">
-                <label class="form-label" for="display_order">Display Order</label>
-                <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order"
-                    name="display_order" value="{{ old('display_order', $newsEventCategory->display_order ?? 0) }}">
-                @error('display_order')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-                <small class="text-muted">Order in which this category appears</small>
-            </div>
-        </div>
+   
 
         <!-- English and Nepali Descriptions -->
         <div class="row mb-3">
@@ -72,6 +42,42 @@
                 @enderror
             </div>
         </div>
+
+        <div class="row mb-3">
+    <!-- Slug -->
+    <div class="col-md-5 col-sm-12">
+        <label class="form-label" for="slug">Slug</label>
+        <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
+            name="slug" value="{{ old('slug', $newsEventCategory->slug ?? '') }}">
+        @error('slug')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <small class="text-muted">Leave empty to auto-generate from English name</small>
+    </div>
+
+    <!-- Display Order -->
+    <div class="col-md-4 col-sm-6">
+        <label class="form-label" for="display_order">Display Order</label>
+        <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order"
+            name="display_order" value="{{ old('display_order', $newsEventCategory->display_order ?? 0) }}">
+        @error('display_order')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <small class="text-muted">Order in which this category appears</small>
+    </div>
+
+    <!-- Status -->
+    <div class="col-md-3 col-sm-6">
+        <label class="form-label d-block">Status</label>
+        <div class="form-check form-switch">
+            <input type="checkbox" class="form-check-input" id="is_published" name="is_published" value="1"
+                {{ old('is_published', $newsEventCategory->is_published ?? 1) ? 'checked' : '' }}>
+            <label class="form-check-label" for="is_published">Published</label>
+        </div>
+        <small class="text-muted">Toggle visibility</small>
+    </div>
+</div>
+
 
         <div class="row mb-0">
             <div class="col-md-12 mb-3">

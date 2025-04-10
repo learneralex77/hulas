@@ -24,7 +24,33 @@
                 </div>
             </div>
            
-            <div class="col-md-3 col-sm-6">
+          
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="mb-4">
+                    <label class="form-label" for="description_en">Description (in English)</label>
+                    <textarea class="form-control @error('description_en') is-invalid @enderror" id="description_en" name="description_en"
+                        rows="4">{{ old('description_en', $menu->description_en ?? '') }}</textarea>
+                    @error('description_en')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="mb-4">
+                    <label class="form-label" for="description_np">Description (in Nepali)</label>
+                    <textarea class="form-control @error('description_np') is-invalid @enderror" id="description_np" name="description_np"
+                        rows="4">{{ old('description_np', $menu->description_np ?? '') }}</textarea>
+                    @error('description_np')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+        <div class="col-md-3 col-sm-6">
                 <div class="mb-4">
                     <label class="form-label" for="parent_id">Parent Menu</label>
                     <select class="form-select @error('parent_id') is-invalid @enderror" id="parent_id"
@@ -53,42 +79,19 @@
                     @enderror
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <div class="mb-4">
-                    <label class="form-label" for="description_en">Description (in English)</label>
-                    <textarea class="form-control @error('description_en') is-invalid @enderror" id="description_en" name="description_en"
-                        rows="4">{{ old('description_en', $menu->description_en ?? '') }}</textarea>
-                    @error('description_en')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="mb-4">
-                    <label class="form-label" for="description_np">Description (in Nepali)</label>
-                    <textarea class="form-control @error('description_np') is-invalid @enderror" id="description_np" name="description_np"
-                        rows="4">{{ old('description_np', $menu->description_np ?? '') }}</textarea>
-                    @error('description_np')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-        </div>
+                 <div class="col-md-3 col-sm-6">
 
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <div class="mb-4">
                     <label class="form-label d-block">Status</label>
-                    <div class="form-check form-switch">
+                    <div class="form-check form-switch col-md-3 col-sm-6">
                         <input type="hidden" name="is_published" value="0">
                         <input type="checkbox" class="form-check-input" id="is_published" name="is_published" value="1" {{ old('is_published', $menu->is_published ?? 1) ? 'checked' : '' }}>
                         <label class="form-check-label" for="is_published">Published</label>
                     </div>
                     <small class="text-muted">Toggle to set the visibility status</small>
                 </div>
+        </div>
+                
             </div>
         </div>
 

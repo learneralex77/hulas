@@ -25,20 +25,36 @@
             </div>
         </div>
 
-        <!-- Link -->
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="mb-4">
-                    <label class="form-label" for="link">External Link</label>
-                    <input type="url" class="form-control @error('link') is-invalid @enderror" id="link"
-                        name="link" value="{{ old('link', $slider->link ?? '') }}">
-                    <small class="text-muted">Enter the full URL including http:// or https://</small>
-                    @error('link')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
+      <!-- Link and Display Order on the same row -->
+<div class="row">
+    <!-- External Link -->
+    <div class="col-md-6 col-sm-12">
+        <div class="mb-4">
+            <label class="form-label" for="link">External Link</label>
+            <input type="url" class="form-control @error('link') is-invalid @enderror" id="link"
+                name="link" value="{{ old('link', $slider->link ?? '') }}">
+            <small class="text-muted">Enter the full URL including http:// or https://</small>
+            @error('link')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
+    </div>
+
+    <!-- Display Order -->
+    <div class="col-md-6 col-sm-12">
+        <div class="mb-4">
+            <label class="form-label" for="display_order">Display Order</label>
+            <input type="number" class="form-control @error('display_order') is-invalid @enderror"
+                id="display_order" name="display_order"
+                value="{{ old('display_order', $slider->display_order ?? 0) }}">
+            <small class="text-muted">Higher values appear first</small>
+            @error('display_order')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+    </div>
+</div>
+
 
         <div class="row">
             <!-- Image -->
@@ -68,16 +84,7 @@
 
             <!-- Display Order and Status -->
             <div class="col-md-6 col-sm-12">
-                <div class="mb-4">
-                    <label class="form-label" for="display_order">Display Order</label>
-                    <input type="number" class="form-control @error('display_order') is-invalid @enderror"
-                        id="display_order" name="display_order"
-                        value="{{ old('display_order', $slider->display_order ?? 0) }}">
-                    <small class="text-muted">Higher values appear first</small>
-                    @error('display_order')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
+               
                 
                 <div class="mb-4">
                     <label class="form-label d-block">Status</label>

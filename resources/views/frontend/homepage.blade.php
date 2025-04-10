@@ -13,9 +13,6 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     @endpush
 
-
-
-
     <!-- Slider Section -->
     <section id="home-slider">
   <div id="default-carousel" class="relative w-full" data-carousel="slide">
@@ -127,10 +124,9 @@
     </button>
   </div>
     </section>
-
     <!-- Slider Section -->
 
-    <!-- --------About Us Section-------- -->
+    <!-- --------About-us-section-------- -->
     <section class="overflow-x-hidden">
    <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
     <div class="flex flex-col items-center space-y-6">
@@ -153,7 +149,7 @@
       </p>
     </div>
   </div>
-</section>
+    </section>
     <section class="flex flex-col md:flex-row md:justify-center md:items-center lg:flex-row m-10 md:m-10 2xl:mx-40 gap-10">
         <div class="flex justify-center flex-1 flex-grow text-center">
             <div class="flex-1 flex justify-center w-full">
@@ -193,7 +189,7 @@ Read more
    </button>
         </div>
     </section>
-    <!-- --------About Us Section-------- -->
+    <!-- --------About-us-section-------- -->
 
     <!----------Services Section---------->
     <section class="m-10 items-center">

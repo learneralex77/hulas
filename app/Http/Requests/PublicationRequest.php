@@ -31,7 +31,9 @@ class PublicationRequest extends FormRequest
             'short_description_np' => ['nullable', 'string'],
             'content_en' => ['nullable', 'string'],
             'content_np' => ['nullable', 'string'],
-            'published_by' => ['nullable', 'string', 'max:255'],
+            'published_by_en' => ['nullable', 'string', 'max:255'],
+            'published_by_np' => ['nullable', 'string', 'max:255'],
+
             'display_order' => ['nullable', 'integer', 'min:0'],
             'external_link' => ['nullable', 'url', 'max:255'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],

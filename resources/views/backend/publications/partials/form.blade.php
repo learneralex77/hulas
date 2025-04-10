@@ -123,50 +123,60 @@
         <!-- Published By and Display Order in one row -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label" for="published_by">Published By</label>
-                <input type="text" class="form-control @error('published_by') is-invalid @enderror" id="published_by" name="published_by"
-                    value="{{ old('published_by', $publication->published_by ?? '') }}">
+                <label class="form-label" for="published_by_en">Published By(English)</label>
+                <input type="text" class="form-control @error('published_by_en') is-invalid @enderror" id="published_by_en" name="published_by_en"
+                    value="{{ old('published_by_en', $publication->published_by_en ?? '') }}">
                 @error('published_by')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="col-md-6">
-                <label class="form-label" for="display_order">Display Order</label>
-                <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order"
-                    value="{{ old('display_order', $publication->display_order ?? 0) }}">
-                <small class="text-muted">Higher values appear first</small>
-                @error('display_order')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
 
-        <!-- External Link and Published Status in one row -->
-        <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label" for="external_link">External Link</label>
-                <input type="url" class="form-control @error('external_link') is-invalid @enderror" id="external_link" name="external_link"
-                    value="{{ old('external_link', $publication->external_link ?? '') }}">
-                <small class="text-muted">Optional link to external content</small>
-                @error('external_link')
+                <label class="form-label" for="published_by_np">Published By(Nepali)</label>
+                <input type="text" class="form-control @error('published_by_np') is-invalid @enderror" id="published_by_np" name="published_by_np"
+                    value="{{ old('published_by_np', $publication->published_by_np ?? '') }}">
+                @error('published_by')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="col-md-6">
-                <label class="form-label">Publication Status</label>
-                <div class="mt-1">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input @error('is_published') is-invalid @enderror" type="checkbox" id="is_published" name="is_published"
-                            value="1"
-                            {{ old('is_published', $publication->is_published ?? '1') ? 'checked' : '' }}>
-                        <label class="form-check-label" for="is_published">Published</label>
-                    </div>
-                </div>
-                @error('is_published')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
+
+            <div class="row mb-3">
+    <!-- Display Order -->
+    <div class="col-md-4">
+        <label class="form-label" for="display_order">Display Order</label>
+        <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order" name="display_order"
+            value="{{ old('display_order', $publication->display_order ?? 0) }}">
+        <small class="text-muted">Higher values appear first</small>
+        @error('display_order')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <!-- External Link -->
+    <div class="col-md-5">
+        <label class="form-label" for="external_link">External Link</label>
+        <input type="url" class="form-control @error('external_link') is-invalid @enderror" id="external_link" name="external_link"
+            value="{{ old('external_link', $publication->external_link ?? '') }}">
+        <small class="text-muted">Optional link to external content</small>
+        @error('external_link')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <!-- Publication Status -->
+    <div class="col-md-3">
+        <label class="form-label d-block">Publication Status</label>
+        <div class="form-check form-switch mt-1">
+            <input class="form-check-input @error('is_published') is-invalid @enderror" type="checkbox" id="is_published" name="is_published"
+                value="1" {{ old('is_published', $publication->is_published ?? '1') ? 'checked' : '' }}>
+            <label class="form-check-label" for="is_published">Published</label>
         </div>
+        @error('is_published')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
 
         <div class="mb-0">
             <button type="submit" class="btn btn-sm btn-success mb-0">

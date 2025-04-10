@@ -14,68 +14,146 @@
     @endpush
 
 
+
+
     <!-- Slider Section -->
     <section id="home-slider">
-        <div id="default-carousel" class="relative w-full" data-carousel="slide">
-            <!-- Carousel wrapper -->
-            <div class="relative h-80 overflow-hidden rounded-lg md:h-[600px]">
-                <!-- Item 1 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/images/slider/slider-three.jpg') }}"
-                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2')}}" alt="..." />
-                </div>
-                <!-- Item 2 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/images/slider/slider-two.jpg') }}"
-                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2')}}" alt="..." />
-                </div>
-                <!-- Item 3 -->
-                <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/images/slider/slider-three.jpg') }}"
-                        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2')}}" alt="..." />
-                </div>
-            </div>
-            <!-- Slider indicators -->
-            <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
-                    data-carousel-slide-to="0"></button>
-                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
-                    data-carousel-slide-to="1"></button>
-                <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
-                    data-carousel-slide-to="2"></button>
-            </div>
-            <!-- Slider controls -->
-            <button type="button"
-                class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                data-carousel-prev>
-                <span
-                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 1 1 5l4 4" />
-                    </svg>
-                    <span class="sr-only">Previous</span>
-                </span>
-            </button>
-            <button type="button"
-                class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                data-carousel-next>
-                <span
-                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                    <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m1 9 4-4-4-4" />
-                    </svg>
-                    <span class="sr-only">Next</span>
-                </span>
-            </button>
-        </div>
+  <div id="default-carousel" class="relative w-full" data-carousel="slide">
+    <!-- Carousel wrapper -->
+    <div class="relative h-80 overflow-hidden rounded-lg md:h-[600px] ">
+      <!-- Item 1 -->
+      <div class="hidden duration-700 ease-in-out" F data-carousel-item>
+      <img src="{{ asset('assets/images/slider/slider-three.jpg') }}"
+
+          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+          alt="..."
+        />
+      </div>
+      <!-- Item 2 -->
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <img src="{{ asset(path: 'assets/images/slider/slider-two.jpg') }}"
+
+          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+          alt="..."
+        />
+      </div>
+      <!-- Item 3 -->
+      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <img src="{{ asset('assets/images/slider/slider-three.jpg') }}"
+
+          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+          alt="..."
+        />
+      </div>
+    </div>
+    <!-- Slider indicators -->
+    <div
+      class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse"
+    >
+      <button
+        type="button"
+        class="w-3 h-3 rounded-full"
+        aria-current="true"
+        aria-label="Slide 1"
+        data-carousel-slide-to="0"
+      ></button>
+      <button
+        type="button"
+        class="w-3 h-3 rounded-full"
+        aria-current="false"
+        aria-label="Slide 2"
+        data-carousel-slide-to="1"
+      ></button>
+      <button
+        type="button"
+        class="w-3 h-3 rounded-full"
+        aria-current="false"
+        aria-label="Slide 3"
+        data-carousel-slide-to="2"
+      ></button>
+    </div>
+    <!-- Slider controls -->
+    <button
+      type="button"
+      class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+      data-carousel-prev
+    >
+      <span
+        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none"
+      >
+        <svg
+          class="w-4 h-4 text-white rtl:rotate-180"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 6 10"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 1 1 5l4 4"
+          />
+        </svg>
+        <span class="sr-only">Previous</span>
+      </span>
+    </button>
+    <button
+      type="button"
+      class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+      data-carousel-next
+    >
+      <span
+        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none"
+      >
+        <svg
+          class="w-4 h-4 text-white rtl:rotate-180"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 6 10"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m1 9 4-4-4-4"
+          />
+        </svg>
+        <span class="sr-only">Next</span>
+      </span>
+    </button>
+  </div>
     </section>
+
     <!-- Slider Section -->
 
     <!-- --------About Us Section-------- -->
+    <section class="overflow-x-hidden">
+   <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+    <div class="flex flex-col items-center space-y-6">
+      <h1
+        class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider"
+        style="
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+        "
+      >
+        Our Introduction
+      </h1>
+
+      <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+      Welcome To Hulas Remittance
+      </p>
+      <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+        A leading business house with a dedicated business history of more than
+        85 years, Golchha Organization has established “HULAS”
+      </p>
+    </div>
+  </div>
+</section>
     <section class="flex flex-col md:flex-row md:justify-center md:items-center lg:flex-row m-10 md:m-10 2xl:mx-40 gap-10">
         <div class="flex justify-center flex-1 flex-grow text-center">
             <div class="flex-1 flex justify-center w-full">
@@ -84,15 +162,6 @@
             </div>
         </div>
         <div class="flex flex-1 lg:flex-2 flex-col space-y-6">
-            <h3 class="text-xl lg:text-2xl font-bold text-black tracking-wide">
-                About Hulas Remittance
-            </h3>
-            <h1 class="text-3xl lg:text-4xl font-bold">
-                @isset($aboutUs)
-                    {{ $aboutUs->tagline }}
-                @endisset
-                <!-- Delivering Happiness through fast and reliable services -->
-            </h1>
             <p class="text-gray-600 text-base lg:text-lg text-justify">
                 @isset($aboutUs)
                     {{ $aboutUs->description }}
@@ -120,307 +189,244 @@
             </p>
             <button
                 class="text-center text-white hover:text-accent text-lg drop-shadow-sm cursor-pointer bg-black px-6 py-3 w-40 rounded-lg">
-                read more
-            </button>
+Read more         
+   </button>
         </div>
     </section>
     <!-- --------About Us Section-------- -->
 
     <!----------Services Section---------->
-    <section class="m-10 space-y-10 items-center text-center">
-        <div class="space-y-3">
-            <h3 class="text-2xl font-semibold text-accent capitalize">What we do</h3>
-            <h1 class="text-5xl font-bold">Services</h1>
-        </div>
-        <div class="relative flex items-center justify-center">
-            <button
-                class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"
-                onclick="prevSlide()">
-                ❮
-            </button>
-            <div class="overflow-hidden rounded-lg w-full">
-                <div class="flex flex-row gap-8 transition-transform duration-500 ease-in-out" id="slider-content">
-                    <div
-                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-                        <div class="flex flex-col items-center">
-                            <img src="https://media.istockphoto.com/id/1333428875/photo/fire-insurance-concept-burning-small-wooden-house.jpg?s=612x612&w=0&k=20&c=eri3sWqqRhMaJfh81nrVmaS4hVrW4-9K7eTexu3eY9s="
-                                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
-                        </div>
-                        <h3 class="text-lg font-bold text-center">
-                            Property Insurance
-                        </h3>
-                        <p class="text-base md:text-lg text-black text-center">
-                            Safeguards property owners against losses and damages providing
-                            compensation for the repair or replacement of the insured assets
-                        </p>
-                        <div class="flex justify-center ">
-                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read
-                                more</a>
-
-                        </div>
-                    </div>
-                    <div
-                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-                        <div class="flex flex-col items-center">
-                            <img src="https://ebeema.com:1001/api/documentManagement/file?key=MjAyM1wwMVwwOFwtbW90b3ItaW5zdXJhbmNlX2JlNDAucG5n"
-                                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
-                        </div>
-                        <h3 class="text-lg font-bold text-center">
-                            Property Insurance
-                        </h3>
-                        <p class="text-base md:text-lg text-black text-center">
-                            Safeguards property owners against losses and damages providing
-                            compensation for the repair or replacement of the insured assets
-                        </p>
-                        <div class="flex justify-center ">
-                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read
-                                more</a>
-
-                        </div>
-                    </div>
-                    <div
-                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-                        <div class="flex flex-col items-center">
-                            <img src="https://nicnepal.com.np/national-insurance/public/./img/marine.jpg"
-                                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
-                        </div>
-                        <h3 class="text-lg font-bold text-center">
-                            Marine Insurance
-                        </h3>
-                        <p class="text-base md:text-lg text-black text-center">
-                            Safeguards property owners against losses and damages providing
-                            compensation for the repair or replacement of the insured assets
-                        </p>
-                        <div class="flex justify-center ">
-                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read
-                                more</a>
-
-                        </div>
-                    </div>
-                    <div
-                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-                        <div class="flex flex-col items-center">
-                            <img src="https://nicnepal.com.np/national-insurance/public/img/miscellaneous.jpg"
-                                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
-                        </div>
-                        <h3 class="text-lg font-bold text-center">
-                            Miscellaneous Insurance
-                        </h3>
-                        <p class="text-base md:text-lg text-black text-center">
-                            Safeguards property owners against losses and damages providing
-                            compensation for the repair or replacement of the insured assets
-                        </p>
-                        <div class="flex justify-center ">
-                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read
-                                more</a>
-
-                        </div>
-                    </div>
-                    <div
-                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-                        <div class="flex flex-col items-center">
-                            <img src="https://media.licdn.com/dms/image/C4D12AQF3vYqQRpFaOw/article-cover_image-shrink_600_2000/0/1651676674940?e=2147483647&v=beta&t=BGSpmlC6Q9rQ_vYOqaHnUxgZf5krVGvmXpKR4OomyCU"
-                                alt="Engineering Insurance" class="w-full h-[200px] rounded-lg" />
-                        </div>
-                        <h3 class="text-lg font-bold text-center">
-                            Engineering Insurance
-                        </h3>
-                        <p class="text-base md:text-lg text-black text-center">
-                            Safeguards property owners against losses and damages providing
-                            compensation for the repair or replacement of the insured assets
-                        </p>
-                        <div class="flex justify-center ">
-                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read
-                                more</a>
-
-                        </div>
-                    </div>
-
-                </div>
+    <section class="m-10 items-center">
+    <h3 class="ml-10 text-black text-4xl font-bold mb-4 flex justify-center">
+      Services we provide
+    </h3>
+    <div class="relative flex items-center justify-center">
+      <button
+        class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"
+        onclick="prevServicesSlider()">
+        ❮
+      </button>
+      <div class="overflow-hidden rounded-lg w-full">
+        <div class="flex flex-row gap-8 transition-transform duration-500 ease-in-out" id="services-slider-content">
+          <div
+            class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
+            <div class="flex flex-col items-center">
+              <img
+                src="https://media.istockphoto.com/id/1333428875/photo/fire-insurance-concept-burning-small-wooden-house.jpg?s=612x612&w=0&k=20&c=eri3sWqqRhMaJfh81nrVmaS4hVrW4-9K7eTexu3eY9s="
+                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
             </div>
-            <button
-                class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
-                onclick="nextSlide()">
-                ❯
-            </button>
-        </div>
-    </section>
-
-    <section class="m-10 xl:m-40 gap-10 flex flex-col items-center text-center">
-        <div class="space-y-3">
-            <h3 class="text-2xl font-semibold text-accent capitalize">What we do</h3>
-            <h1 class="text-5xl font-bold">Services</h1>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 space-y-6 gap-3 ">
-            <!-- Main Service Card -->
-            @isset($services)
-                @foreach($services as $service)
-                    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-                        <a src="#">
-                            <img class="rounded-t-lg w-full" src="{{ $service->file ? asset('storage/' . $service->file) : 'https://via.placeholder.com/400x300' }}"
-                                alt="{{ $service->name ?? 'Service Image' }}" />
-                        </a>
-                        <div class="p-5">
-                            <a src="#">
-                                <h5 class="mb-2 text-2xl font-bold tracking-tight">
-                                    {{ $service->name }}
-                                </h5>
-                            </a>
-                            <p class="mb-3 font-normal text-gray-700">
-                                {{ $service->description }}
-                            </p>
-                            <a src="#"
-                                class="inline-flex items-center px-3 py-2 text-base font-medium text-center rounded-lg hover:text-accent focus:ring-4 focus:outline-none">
-                                Read more
-                                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            @endisset
-            <!-- Service Details Cards -->
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
-                <div class="p-5">
-                    <a src="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight">
-                        </h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700">
-                    </p>
-                    <a src="#"
-                        class="inline-flex items-center px-3 py-2 text-base font-medium text-center rounded-lg hover:text-accent focus:ring-4 focus:outline-none">
-                        Read more
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
-                </div>
+            <h3 class="text-lg font-bold text-center">Property Insurance</h3>
+            <p class="text-base md:text-lg text-black text-center">
+              Safeguards property owners against losses and damages providing
+              compensation for the repair or replacement of the insured assets
+            </p>
+            <div class="flex justify-center">
+              <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
             </div>
+          </div>
+          <div
+            class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
+            <div class="flex flex-col items-center">
+              <img
+                src="https://ebeema.com:1001/api/documentManagement/file?key=MjAyM1wwMVwwOFwtbW90b3ItaW5zdXJhbmNlX2JlNDAucG5n"
+                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
+            </div>
+            <h3 class="text-lg font-bold text-center">Property Insurance</h3>
+            <p class="text-base md:text-lg text-black text-center">
+              Safeguards property owners against losses and damages providing
+              compensation for the repair or replacement of the insured assets
+            </p>
+            <div class="flex justify-center">
+              <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+            </div>
+          </div>
+          <div
+            class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
+            <div class="flex flex-col items-center">
+              <img src="https://nicnepal.com.np/national-insurance/public/./img/marine.jpg" alt="Property Insurance"
+                class="w-full h-[200px] rounded-lg" />
+            </div>
+            <h3 class="text-lg font-bold text-center">Marine Insurance</h3>
+            <p class="text-base md:text-lg text-black text-center">
+              Safeguards property owners against losses and damages providing
+              compensation for the repair or replacement of the insured assets
+            </p>
+            <div class="flex justify-center">
+              <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+            </div>
+          </div>
+          <div
+            class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
+            <div class="flex flex-col items-center">
+              <img src="https://nicnepal.com.np/national-insurance/public/img/miscellaneous.jpg"
+                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
+            </div>
+            <h3 class="text-lg font-bold text-center">
+              Miscellaneous Insurance
+            </h3>
+            <p class="text-base md:text-lg text-black text-center">
+              Safeguards property owners against losses and damages providing
+              compensation for the repair or replacement of the insured assets
+            </p>
+            <div class="flex justify-center">
+              <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+            </div>
+          </div>
+          <div
+            class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
+            <div class="flex flex-col items-center">
+              <img
+                src="https://media.licdn.com/dms/image/C4D12AQF3vYqQRpFaOw/article-cover_image-shrink_600_2000/0/1651676674940?e=2147483647&v=beta&t=BGSpmlC6Q9rQ_vYOqaHnUxgZf5krVGvmXpKR4OomyCU"
+                alt="Engineering Insurance" class="w-full h-[200px] rounded-lg" />
+            </div>
+            <h3 class="text-lg font-bold text-center">
+              Engineering Insurance
+            </h3>
+            <p class="text-base md:text-lg text-black text-center">
+              Safeguards property owners against losses and damages providing
+              compensation for the repair or replacement of the insured assets
+            </p>
+            <div class="flex justify-center">
+              <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+            </div>
+          </div>
         </div>
-        </div>
-
-    </section>
+      </div>
+      <button
+        class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
+        onclick="nextServicesSlider()">
+        ❯
+      </button>
+    </div>
+  </section>
     <!----------Services Section---------->
 
     <!----------Our Partners Section---------->
-    <section class="about flex flex-col xl:flex-row items-center m-10 md:m-20 lg:mx-40 gap-10">
-        <div class="flex flex-1 flex-col space-y-6">
-            <h3 class="text-4xl text-center font-semibold capitalize text-primary">
-                Our partners & Supporters
-            </h3>
-            <div id="default-carousel" class="relative w-full" data-carousel="slide">
-                <!-- Carousel wrapper -->
-                <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-                    <!-- Item 1 -->
-                    @isset($partners)
-                        @foreach($partners as $partner)
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <img src="{{ asset('storage/' . $partner->image) }}"
-                                    class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                    alt="Partners Icon">
-                            </div>
-                        @endforeach
-                    @endisset
-                    <!-- Item 2 -->
-                    <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                                                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
-                                                                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                                                            alt="Partners Icon">
+    <section class="my-10">
+    <div class="overflow-x-hidden">
+      <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+        <div class="flex flex-col items-center space-y-6">
+          <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+              ">
+            Our partners & Supporters
+          </h1>
 
-                                                                    </div> -->
-                    <!-- Item 3 -->
-                    <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                                                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
-                                                                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                                                            alt="Partners Icon">
-                                                                    </div> -->
-                    <!-- Item 4 -->
-                    <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                                                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
-                                                                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                                                            alt="Partners Icon">
-                                                                    </div> -->
-                    <!-- Item 5 -->
-                    <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                                                        <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}"
-                                                                            class="h-40 w-40 absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                                                                            alt="Partners Icon">
-                                                                    </div> -->
-                </div>
-                <!-- Slider controls -->
-                <!-- <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                                                                                                                                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                                                                                                                      <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                                                                                                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-                                                                                                                                      </svg>
-                                                                                                                                      <span class="sr-only">Previous</span>
-                                                                                                                                  </span>
-                                                                                                                              </button>
-                                                                                                                              <button type="button" class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                                                                                                                                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                                                                                                                      <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                                                                                                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                                                                                                                                      </svg>
-                                                                                                                                      <span class="sr-only">Next</span>
-                                                                                                                                  </span>
-                                                                                                                              </button> -->
-            </div>
-    </section>
+          <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+          In Collaboration with Our Esteemed Partners and Supporters
+          </p>
+          <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+          We are proud to collaborate with trusted partners and supporters
+            who share our vision and strengthen our mission.
+          </p>
+        </div>
+      </div>
+    </div>
 
-    <!-- Swiper Container -->
-    <div class="swiper ourpartnersSwiper w-full mx-40">
-        <div class="swiper-wrapper overflow-hidden">
-            <!-- Slides -->
-            <div class="swiper-slide flex justify-center items-center h-4 w-4">
-                <img src="\assets\images\partners\WesternUnion.webp" class="h-8 w-8 object-contain" alt="Partner 1" />
-            </div>
-            <div class="swiper-slide flex justify-center items-center h-4 w-4">
-                <img src="/assets/images/partners/WesternUnion.webp" class="h-8 w-8 object-contain" alt="Partner 2" />
-            </div>
-            <div class="swiper-slide flex justify-center items-center h-4 w-4">
-                <img src="/assets/images/partners/doctor-m-svgrepo-com.png" class="h-8 w-8 object-contain" alt="Partner 3" />
-            </div>
-            <div class="swiper-slide flex justify-center items-center h-4 w-4">
-                <img src="/assets/images/partners/contact-classic-telephone-svgrepo-com (1).png" class="h-8 w-8 object-fill"
-                    alt="Partner 4" />
-            </div>
-            <!-- Add more slides as needed -->
+    <div class="w-full overflow-hidden relative">
+      <div class="w-full h-full absolute">
+        <div class="w-1/4 h-full absolute z-50 left-0" style="
+              background: linear-gradient(
+                to right,
+                #fff8cc 0%,
+                rgba(255, 255, 255, 0) 100%
+              );
+            "></div>
+        <div class="w-1/4 h-full absolute z-50 right-0" style="
+              background: linear-gradient(
+                to left,
+                #fff8cc 0%,
+                rgba(255, 255, 255, 0) 100%
+              );
+            "></div>
+      </div>
+
+      <div class="carousel-items flex items-center justify-center w-full" style="
+            width: fit-content;
+            animation: carouselAnim 10s infinite alternate linear;
+          ">
+       <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
+          style="width: 270px">
+          <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl" alt="Partners Icon" />
+          <h4 class="tracking-wide text-lg m-3">Western Union</h4>
         </div>
 
-        <!-- Optional: Pagination -->
-        <!-- <div class="swiper-pagination"></div> -->
+       <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
+          style="width: 270px">
+          <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl" alt="Partners Icon" />
+          <h4 class="tracking-wide text-lg m-3">Western Union</h4>
+        </div>
 
-        <!-- Optional: Navigation -->
-        <!-- <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div> -->
+       <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
+          style="width: 270px">
+          <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl" alt="Partners Icon" />
+          <h4 class="tracking-wide text-lg m-3">Western Union</h4>
+        </div>
+       <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
+          style="width: 270px">
+          <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl" alt="Partners Icon" />
+          <h4 class="tracking-wide text-lg m-3">Western Union</h4>
+        </div>
+       <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
+          style="width: 270px">
+          <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl" alt="Partners Icon" />
+          <h4 class="tracking-wide text-lg m-3">Western Union</h4>
+        </div>
+
+       <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
+          style="width: 270px">
+          <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl" alt="Partners Icon" />
+          <h4 class="tracking-wide text-lg m-3">Western Union</h4>
+        </div>
+
+        <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
+          style="width: 270px">
+          <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl" alt="Partners Icon" />
+          <h4 class="tracking-wide text-lg m-3">Western Union</h4>
+        </div>
+      </div>
     </div>
+  </section>
     <!----------Our Partners Section---------->
 
     <!----------Become an agent Section---------->
     <section class="lg:mx-40 left-10 flex flex-col space-y-10 m-10">
-        <div class="space-y-3 flex flex-col justify-center text-center">
-            <h3 class="text-2xl font-semibold text-accent capitalize">
-                <!-- Become an Agent -->
-            </h3>
-            <h1 class="text-5xl font-bold">Become an Agent</h1>
-        </div>
+    <div class="overflow-x-hidden">
+    <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+      <div class="flex flex-col items-center space-y-6">
+        <h1
+          class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider"
+          style="
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+            -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+          "
+        >
+          Become an Agent
+        </h1>
+
+        <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+        Join Our Network of Trusted Agents
+        </p>
+        <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+          Take the next step in your career by becoming an agent. Help us expand
+          our reach while enjoying flexible opportunities and competitive
+          rewards.
+        </p>
+      </div>
+    </div>
+  </div>
         <div class="flex flex-col lg:flex-row justify-between">
             <div class="flex flex-1 justify-center">
                 <ol class="flex flex-col">
                     <li class="mb-10 ms-6 flex flex-row gap-4">
                         <span
-                            class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white dark:bg-accent">
+                            class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white">
                             <img src="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
                                 class="w-6 h-6" />
                         </span>
                         <div clss="flex flex-col gap-2">
-                            <h3 class="font-medium leading-tight text-primary">
+                            <h3 class="font-semibold leading-tight text-primary">
                                 Select sender country
                             </h3>
                             <p class="text-sm">from where you are receiving the remittance.</p>
@@ -428,12 +434,12 @@
                     </li>
                     <li class="mb-10 ms-6 flex flex-row gap-4">
                         <span
-                            class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white dark:bg-accent">
+                            class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white">
                             <img src="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
                                 class="w-6 h-6" />
                         </span>
                         <div clss="flex flex-col gap-2">
-                            <h3 class="font-medium leading-tight text-primary">
+                            <h3 class="font-semibold leading-tight text-primary">
                                 Enter control number
                             </h3>
                             <p class="text-sm">of 12 – 16 digits received from the sender.</p>
@@ -441,23 +447,23 @@
                     </li>
                     <li class="mb-10 ms-6 flex flex-row gap-4">
                         <span
-                            class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white dark:bg-accent">
+                            class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white">
                             <img src="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
                                 class="w-6 h-6" />
                         </span>
                         <div clss="flex flex-col gap-2">
-                            <h3 class="font-medium leading-tight text-primary">Enter amount</h3>
+                            <h3 class="font-semibold leading-tight text-primary">Enter amount</h3>
                             <p class="text-sm">you are expecting from the sender.</p>
                         </div>
                     </li>
                     <li class="mb-10 ms-6 flex flex-row gap-4">
                         <span
-                            class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white dark:bg-accent">
+                            class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white">
                             <img src="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
                                 class="w-6 h-6" />
                         </span>
                         <div clss="flex flex-col gap-2">
-                            <h3 class="font-medium leading-tight text-primary">
+                            <h3 class="font-semibold leading-tight text-primary">
                                 Track your money
                             </h3>
                             <p class="text-sm">check the progress.</p>
@@ -465,12 +471,12 @@
                     </li>
                     <li class="mb-10 ms-6 flex flex-row gap-4">
                         <span
-                            class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white dark:bg-accent">
+                            class="flex items-center justify-center w-8 h-8 bg-accent rounded-full left-0 ring-4 ring-white">
                             <img src="{{ asset('assets/images/stepper/tick-svgrepo-com.png') }}" alt="Tick Icon"
                                 class="w-6 h-6" />
                         </span>
                         <div clss="flex flex-col gap-2">
-                            <h3 class="font-medium leading-tight text-primary">
+                            <h3 class="font-semibold leading-tight text-primary">
                                 Receive money and bonus
                             </h3>
                             <p class="text-sm">
@@ -485,111 +491,351 @@
                 <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="About Us Image"
                     class="w-[600px] rounded-md object-contain xl:object-fit mb-6" />
                 <a href="#"
-                    class="px-6 py-3 bg-accent text-white rounded-md hover:bg-primary transition-colors font-medium text-lg">Apply
+                    class="px-6 py-3 bg-accent text-black rounded-md hover:bg-primary transition-colors font-medium text-lg">Apply
                     to Become an Agent</a>
             </div>
         </div>
     </section>
     <!----------Become an agent Section---------->
+
+
+     <!-- --------Gallery and News Section-------- -->
+     <div class="flex flex-col md:flex-row mx-auto container px-4 gap-10 my-10">
+     <div class="flex-1 overflow-hidden">
+      <div class="flex flex-row justify-between m-3">
+      <h1
+        class="font-bold text-accent uppercase text-xl tracking-wider"
+        style="
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+        "
+      >
+      Image Gallery    
+       </h1>
+        <button onclick="redirectToPage()"
+          class="bg-black items-center text-white px-6 py-3 rounded cursor-pointer hover:text-accent"
+          id="Btn">
+          Explore Gallery
+        </button>
+      </div>
+      <div style="
+            --swiper-navigation-color: #fff;
+            --swiper-pagination-color: #fff;
+          " class="swiper mySwiper2 w-full h-1/2 aspect-[16/9]">
+        <div class="swiper-wrapper h-[600px]">
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-1.jpg" class="w-full h-full object-contain" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-2.jpg" class="w-full h-full object-contain" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-3.jpg" class="w-full h-full object-contain" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-4.jpg" class="w-full h-full object-contain" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-5.jpg" class="w-full h-full object-contain" />
+          </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+      <div thumbsSlider="" class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-1.jpg" alt="Slider Image" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-2.jpg" alt="Slider Image" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-3.jpg" alt="Slider Image" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-4.jpg" alt="Slider Image" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://swiperjs.com/demos/images/nature-5.jpg" alt="Slider Image" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1 w-full h-full">
+      <div class="flex justify-end">
+        <a href="news-and-events.html" class="bg-black items-center text-white px-4 py-3 rounded cursor-pointer hover:text-accent">
+          Explore News Articles
+        </a>
+      </div>
+      <div class="drop-shadow-xl shadow-gray-100 bg-white rounded-lg m-3">
+        <!-- Heading for scroll -->
+        <div class="flex flex-row gap-4 bg-white rounded m-3 p-3">
+          <!-- Explore part -->
+          <div class="mx-3">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+              <!-- Hamburger Lines -->
+              <path d="M3 6h14M3 12h14M3 18h14" stroke="black" stroke-width="2" stroke-linecap="round" />
+              <!-- Three Dots -->
+              <circle cx="20" cy="6" r="1.5" fill="black" />
+              <circle cx="20" cy="12" r="1.5" fill="black" />
+              <circle cx="20" cy="18" r="1.5" fill="black" />
+            </svg>
+          </div>
+          <h1 class="font-bold text-lg">All News and Articles</h1>
+        </div>
+
+        <!-- Content inside the heading -->
+        <div class="overflow-y-scroll h-[500px] m-3 sticky bg-white">
+          <!-- Content Repeated -->
+
+          <div
+          class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25"
+        >
+          <div class="h-auto w-30">
+            <img
+              src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
+              alt="Mobile Remittance"
+              class="h-full w-full rounded-lg object-cover"
+            />
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <p class="line-clamp-2">
+              Send Money On the Go with Our Mobile App
+            </p>
+            <div class="flex space-x-2">
+            <img
+              src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"                alt="date"
+                class="h-auto w-4"
+              />
+              <p class="text-xs text-gray-500">29th March 2020</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25"
+        >
+          <div class="h-auto w-30">
+            <img
+              src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
+              alt="Low Fees Promotion"
+              class="h-full w-full rounded-lg object-cover"
+            />
+          </div>
+          <div class="flex flex-col gap-3">
+            <p class="line-clamp-2">
+              Send Money On the Go with Our Mobile App
+            </p>
+            <div class="flex space-x-2">
+            <img
+              src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"                alt="date"
+                class="h-auto w-4"
+              />
+              <p class="text-xs text-gray-500">29th March 2020</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25"
+        >
+          <div class="h-auto w-30">
+            <img
+              src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
+              alt="Remittance Agents"
+              class="h-full w-full rounded-lg object-cover"
+            />
+          </div>
+          <div class="flex flex-col gap-3">
+            <p class="line-clamp-2">
+              Find Your Nearest Remittance Partner Location
+            </p>
+            <div class="flex space-x-2">
+              <img
+              src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"                alt="date"
+                class="h-auto w-4"
+              />
+
+              <p class="text-xs text-gray-500">29th March 2020</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25"
+        >
+          <div class="h-auto w-30">
+            <img
+              src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
+              alt="Send Money to Nepal"
+              class="h-full w-full rounded-lg object-cover"
+            />
+          </div>
+          <div class="flex flex-col gap-3">
+            <p class="line-clamp-2">
+              Send Money to Nepal Instantly with Great Rates
+            </p>
+            <div class="flex space-x-2">
+              <img
+                src="public/images/news-and-events/calender-svgrepo-com.png"
+                alt="date"
+                class="h-auto w-4"
+              />
+              <p class="text-xs text-gray-500">29th March 2020</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25"
+        >
+          <div class="h-auto w-30">
+            <img
+              src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
+              alt="Track Money Transfer"
+              class="h-full w-full rounded-lg object-cover"
+            />
+          </div>
+          <div class="flex flex-col gap-3">
+            <p class="line-clamp-2">
+              Track your transfer in real-time from start to finish
+            </p>
+            <div class="flex space-x-2">
+            <img
+              src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"                alt="date"
+                class="h-auto w-4"
+              />
+              <p class="text-xs text-gray-500">29th March 2020</p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- --------Gallery and News Section-------- -->
+
+
+   <!-- Modal Section-->
+   <div id="popupModal" tabindex="-1"
+    class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative w-full max-w-4xl max-h-full inset-shadow-sm inset-shadow-indigo-500/50">
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg">
+        <!-- Modal header -->
+        <div class="flex items-center justify-between p-2">
+          <h3 class="text-xl font-medium text-gray-900"></h3>
+          <button type="button"
+            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+            data-modal-hide="popupModal">
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+            <span class="sr-only">Close modal</span>
+          </button>
+        </div>
+        <!-- Modal body -->
+        <div class="p-4 md:p-5 space-y-4">
+          <img src="./images/logo/hulas-remittance-logo.jpg" alt="" srcset="" class="mx-auto" />
+        </div>
+      </div>
+    </div>
+  </div>
+   <!-- Modal Section-->
+
 @endsection
 
 
 @push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(() => {
-                const burger = document.querySelector('.navbar-burger');
-                const menu = document.querySelector('.navbar-menu');
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-                if (!burger || !menu) {
-                    console.error("Navbar elements not found! Ensure your script runs after the DOM loads.");
-                    return;
-                }
+  <!-- Initialize Swiper -->
+  <script>
+    function redirectToPage() {
+      window.location.href = "gallery.html";
+    }
+    var swiper = new Swiper(".mySwiper", {
+      loop: true,
+      spaceBetween: 10,
+      slidesPerView: 4,
+      freeMode: true,
+      watchSlidesProgress: true,
+    });
+    var swiper2 = new Swiper(".mySwiper2", {
+      loop: true,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
+      thumbs: {
+        swiper: swiper,
+      },
+    });
+  </script>
 
-                console.log("Burger:", burger);
-                console.log("Menu:", menu);
+  <script type="module" src="/src/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
-                // Open menu
-                burger.addEventListener('click', function () {
-                    menu.classList.toggle('hidden');
-                    burger.classList.add('hidden');  // Hide hamburger
-                });
+  <script>
+    let servicesSliderIndex = 0;
 
-                // Close menu
-                const closeButton = document.querySelector('.navbar-close');
-                if (closeButton) {
-                    closeButton.addEventListener('click', function () {
-                        menu.classList.add('hidden');
-                        burger.classList.remove('hidden');  // Show hamburger
-                    });
-                }
+    function nextServicesSlider() {
+      const servicesSliderContent = document.getElementById(
+        "services-slider-content"
+      );
+      const servicesSlides = document.querySelectorAll(
+        ".services-review-card"
+      );
+      const totalSlides = servicesSlides.length;
 
-                // Close on backdrop click
-                const backdrop = document.querySelector('.navbar-backdrop');
-                if (backdrop) {
-                    backdrop.addEventListener('click', function () {
-                        menu.classList.add('hidden');
-                    });
-                }
-            }, 500); // Delay to allow DOM elements to render
-        });
-    </script>
+      servicesSliderIndex = (servicesSliderIndex + 1) % totalSlides;
+      const offset =
+        -servicesSliderIndex * (servicesSlides[0].offsetWidth + 16);
 
-    <!-- card slider -->
-    <script>
-        let currentIndex = 0;
+      servicesSliderContent.style.transform = `translateX(${offset}px)`;
+    }
 
-        function nextSlide() {
-            const sliderContent = document.getElementById("slider-content");
-            const slides = document.querySelectorAll(".review-card");
-            const totalSlides = slides.length;
+    function prevServicesSlider() {
+      const servicesSliderContent = document.getElementById(
+        "services-slider-content"
+      );
+      const servicesSlides = document.querySelectorAll(
+        ".services-review-card"
+      );
+      const totalSlides = servicesSlides.length;
 
-            // Increment the index and move the slide, loop back to the first slide after the last one
-            currentIndex = (currentIndex + 1) % totalSlides;
-            const offset = -currentIndex * (slides[0].offsetWidth + 16); // 16px is the margin between cards
+      servicesSliderIndex =
+        (servicesSliderIndex - 1 + totalSlides) % totalSlides;
+      const offset =
+        -servicesSliderIndex * (servicesSlides[0].offsetWidth + 16);
 
-            sliderContent.style.transform = `translateX(${offset}px)`;
+      servicesSliderContent.style.transform = `translateX(${offset}px)`;
+    }
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      const buttons = document.querySelectorAll(".modal-button");
+
+      buttons.forEach((button) => {
+        const modalId = button.getAttribute("data-modal-target");
+        const modalElement = document.getElementById(modalId);
+
+        if (modalElement) {
+          const modal = new Modal(modalElement);
+          modal.show();
         }
-
-        function prevSlide() {
-            const sliderContent = document.getElementById("slider-content");
-            const slides = document.querySelectorAll(".review-card");
-            const totalSlides = slides.length;
-
-            // Decrement the index and move the slide, loop back to the last slide after the first one
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            const offset = -currentIndex * (slides[0].offsetWidth + 16); // 16px is the margin between cards
-
-            sliderContent.style.transform = `translateX(${offset}px)`;
-        }
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <script>
-        const ourpartnersSwiper = new Swiper(".ourpartnersSwiper", {
-            slidesPerView: 1,
-            spaceBetween: 60,
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 2,
-                    spaceBetween: 40
-                },
-                768: {
-                    slidesPerView: 3,
-                    spaceBetween: 60
-                }
-            },
-        });
-    </script>
-
-
-
+      });
+    });
+  </script>
 
 
 

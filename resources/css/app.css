@@ -1,2 +1,57 @@
 @import "tailwindcss";
 @source "../views";
+
+
+
+@theme {
+  --color-primary: #1e2939;
+  --color-accent: #ffdd00;
+  --color-bgPrimary: #ffffff;
+}
+
+* {
+  font-family: "Jost", sans-serif;
+}
+
+body {
+  /* background-color:rgb(247, 247, 239); */
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-bgPrimary {
+  color: var(--color-bgPrimary);
+}
+/* our partners  */
+@keyframes carouselAnim {
+  0% {
+    transform: translateX(0%); /* Start at the first slide */
+  }
+  100% {
+    transform: translateX(-100%); /* Move the third slide out of view and start over */
+  }
+}
+
+.carousel {
+  display: flex;
+  width: 100%;  /* Adjust according to your container's size */
+  overflow: hidden;  /* Hide the content that is off-screen */
+}
+
+.carousel-item {
+  flex: 0 0 100%;  /* Each item takes up 100% of the width */
+  animation: carouselAnim 200s linear infinite;  /* 60 seconds for a full loop, slow pace */
+  transition: transform 0.5s ease;
+}
+
+
+.carousel-focus:hover {
+  transition: all 0.8s;
+  transform: scale(1.1);
+}

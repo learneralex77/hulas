@@ -3,28 +3,34 @@
         <div class="flex flex-col space-y-10">
             <!-- logo and desc -->
             <div
-                class="w-full flex flex-col space-y-5 lg:space-y-0 lg:flex-row justify-center lg:justify-between lg:items-center">
+                class="w-full flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:justify-between ">
                 <div class="flex justify-center lg:justify-left">
                     <a class="text-3xl text-white font-bold" href="index.html">
-                        <img src="./images/logo/hulas-remittance-logo.jpg" class="w-56" alt="Logo" />
+                        <img src="{{ asset('assets/images/logo/hulas.png') }}" class="w-56" alt="Logo" />
                     </a>
                 </div>
                 <!-- social media icons -->
                 <div class="flex justify-center lg:justify-left space-x-3 items-center">
                     <div
                         class="social group flex justify-center items-center w-10 h-10 lg:w-16 lg:h-16 rounded-full hover:cursor-pointer">
-                        <img id="fb-white" src="./images/social-media-icons/facebook-svgrepo-com.png" class="w-8"
+                        <img id="fb-white"
+                        src="{{ asset('assets/images/social-media-icons/facebook-svgrepo-com.png') }}"
+                         class="w-8"
                             alt="Facebook Icon" />
                     </div>
                     <div
                         class="social group flex justify-center items-center w-10 h-10 lg:w-16 lg:h-16 rounded-full hover:cursor-pointer">
-                        <img id="fb-white" src="./images/social-media-icons/linkedin-svgrepo-com.png" class="w-6 h-6"
+                        <img id="fb-white" 
+                        src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.png') }}"
+
+                        class="w-6 h-6"
                             alt="LinkedIn Icon" />
                     </div>
                     <div
                         class="social group flex justify-center items-center w-10 h-10 lg:w-16 lg:h-16 rounded-full hover:cursor-pointer">
-                        <img id="fb-white" src="./images/social-media-icons/x-icon.jpg" class="w-8"
-                            alt="X Icon" />
+                        <img id="fb-white" 
+                        src="{{ asset('assets/images/social-media-icons/x-icon.jpg') }}"
+                        class="w-8" alt="X Icon" />
                     </div>
                 </div>
             </div>
@@ -44,7 +50,8 @@
                     </div>
                     <div class="text-[#ffffffcc] flex flex-col space-y-5 items-left lg:items-center ">
                         <div class="flex flex-row gap-6 space-x-5 items-center">
-                            <img src="./images/footer/location.png" class="w-12" alt="" />
+                        <img src="{{ asset('assets/images/footer/location.png') }}"
+                        class="w-12" alt="" />
                             <div class="flex flex-col space-y-1">
                                 <p>
                                     Bagdurbar, Sundhara <br />
@@ -55,7 +62,8 @@
                             </div>
                         </div>
                         <div class="flex flex-row gap-6 space-x-5 items-center">
-                            <img src="./images/footer/phone-call.png" class="w-10" alt="" />
+                        <img src="{{ asset('assets/images/footer/phone-call.png') }}"
+                             class="w-10" alt="" />
                             <div class="flex flex-col space-y-2">
                                 <p>+977 1 5361313, 5358225, <br />5352008</p>
                                 <p>
@@ -65,7 +73,8 @@
                             </div>
                         </div>
                         <div class="flex flex-row gap-6 space-x-5 items-center">
-                            <img src="./images/footer/mail.png" class="w-10" alt="" />
+                        <img src="{{ asset('assets/images/footer/mail.png') }}"
+                             class="w-10" alt="" />
                             <div class="flex flex-col space-y-2">
                                 <p>Email:</p>
                                 <p>
@@ -110,8 +119,8 @@
                     <a href="https://dev.awt.cloud/" class="text-[#0000cc] font-bold">AWT</a>
                 </p>
                 <a href="https://www.westernunion.com/np/en/home.html">
-                    <img src="./images/logo/WesternUnion_HorizontalLockup_YellowWhite.png" class="w-44 h-5"
-                        alt="Western Union Icon" />
+                    <img src="{{ asset('assets/images/logo/WesternUnion_HorizontalLockup_YellowWhite.png') }}"
+                        class="w-44 h-5" alt="Western Union Icon" />
                 </a>
             </div>
         </div>

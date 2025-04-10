@@ -11,18 +11,6 @@
                 @enderror
             </div>
             <div class="col-md-6">
-                <label class="form-label" for="phone_number_en">Phone Number (English) <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('phone_number_en') is-invalid @enderror" id="phone_number_en"
-                    name="phone_number_en" value="{{ old('phone_number_en', $branch->phone_number_en ?? '') }}" required>
-                @error('phone_number_en')
-                    <div class="invalid-feedback d-block">{{ $message }}</div>
-                @enderror
-            </div>
-        </div>
-
-        <!-- Name and Phone fields in Nepali -->
-        <div class="row mb-4">
-            <div class="col-md-6">
                 <label class="form-label" for="name_np">Branch Name (Nepali)</label>
                 <input type="text" class="form-control @error('name_np') is-invalid @enderror" id="name_np"
                     name="name_np" value="{{ old('name_np', $branch->name_np ?? '') }}">
@@ -30,6 +18,20 @@
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror
             </div>
+           
+        </div>
+
+        <!-- Name and Phone fields in Nepali -->
+        <div class="row mb-4">
+        <div class="col-md-6">
+                <label class="form-label" for="phone_number_en">Phone Number (English) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('phone_number_en') is-invalid @enderror" id="phone_number_en"
+                    name="phone_number_en" value="{{ old('phone_number_en', $branch->phone_number_en ?? '') }}" required>
+                @error('phone_number_en')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                @enderror
+            </div>
+           
             <div class="col-md-6">
                 <label class="form-label" for="phone_number_np">Phone Number (Nepali)</label>
                 <input type="text" class="form-control @error('phone_number_np') is-invalid @enderror" id="phone_number_np"

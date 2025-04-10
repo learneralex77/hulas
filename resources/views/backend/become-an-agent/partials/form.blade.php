@@ -1,10 +1,10 @@
 <div class="row px-0">
     <div class="col-12">
-        <!-- English Content Section -->
+        <!--Content Section -->
         <div class="mb-4">
-            <h4 class="mb-3">English Content</h4>
+            <h4 class="mb-3">Content</h4>
             <div class="row">
-                <div class="col-md-12 mb-3">
+                <div class="col-md-6 mb-3">
                     <label class="form-label" for="title_en">Title (English)</label>
                     <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en"
                         name="title_en" value="{{ old('title_en', $becomeAnAgent->title_en ?? $becomeAnAgent->title ?? '') }}">
@@ -12,22 +12,8 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="col-md-12 mb-3">
-                    <label class="form-label" for="description_en">Description (English)</label>
-                    <textarea class="form-control @error('description_en') is-invalid @enderror" id="description_en" 
-                        name="description_en" rows="4">{{ old('description_en', $becomeAnAgent->description_en ?? $becomeAnAgent->description ?? '') }}</textarea>
-                    @error('description_en')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-        </div>
 
-        <!-- Nepali Content Section -->
-        <div class="mb-4">
-            <h4 class="mb-3">Nepali Content</h4>
-            <div class="row">
-                <div class="col-md-12 mb-3">
+                <div class="col-md-6 mb-3">
                     <label class="form-label" for="title_np">Title (Nepali)</label>
                     <input type="text" class="form-control @error('title_np') is-invalid @enderror" id="title_np"
                         name="title_np" value="{{ old('title_np', $becomeAnAgent->title_np ?? '') }}">
@@ -35,7 +21,16 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="col-md-12 mb-3">
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label" for="description_en">Description (English)</label>
+                    <textarea class="form-control @error('description_en') is-invalid @enderror" id="description_en" 
+                        name="description_en" rows="4">{{ old('description_en', $becomeAnAgent->description_en ?? $becomeAnAgent->description ?? '') }}</textarea>
+                    @error('description_en')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-6 mb-3">
                     <label class="form-label" for="description_np">Description (Nepali)</label>
                     <textarea class="form-control @error('description_np') is-invalid @enderror" id="description_np" 
                         name="description_np" rows="4">{{ old('description_np', $becomeAnAgent->description_np ?? '') }}</textarea>
@@ -45,6 +40,8 @@
                 </div>
             </div>
         </div>
+
+      
 
         <div class="d-flex mb-2 ps-0 mt-2">
             <h4 class="mb-0">Images</h4>

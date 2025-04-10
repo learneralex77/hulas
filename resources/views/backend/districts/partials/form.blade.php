@@ -19,8 +19,7 @@
                 @enderror
             </div>
             <div class="col-md-2">
-                <label class="form-label" for="display_order">Display Order <small class="text-muted">(Higher orders
-                        appear first)</small></label>
+                <label class="form-label" for="display_order">Display Order</label>
                 <input type="number" class="form-control @error('display_order') is-invalid @enderror"
                     id="display_order" name="display_order"
                     value="{{ old('display_order', $district->display_order ?? 0) }}">

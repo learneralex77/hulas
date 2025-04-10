@@ -35,7 +35,7 @@
         <hr>
         
         <!-- Agent Information - English -->
-        <h5 class="mb-3">English Information</h5>
+        <h5 class="mb-3">Information</h5>
         <div class="row mb-3">
             <!-- State Agent Name - English -->
             <div class="col-md-6 mb-3">
@@ -45,6 +45,17 @@
                     value="{{ old('state_agent_name_en', $agentDetail->state_agent_name_en ?? $agentDetail->state_agent_name ?? '') }}" required
                     placeholder="Enter state agent name in English">
                 @error('state_agent_name_en')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label" for="state_agent_name_np">State Agent Name (Nepali)</label>
+                <input type="text" class="form-control @error('state_agent_name_np') is-invalid @enderror" 
+                    id="state_agent_name_np" name="state_agent_name_np" 
+                    value="{{ old('state_agent_name_np', $agentDetail->state_agent_name_np ?? '') }}"
+                    placeholder="Enter state agent name in Nepali">
+                @error('state_agent_name_np')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -60,18 +71,20 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            
-            <!-- Contact Number - English -->
+
             <div class="col-md-6 mb-3">
-                <label class="form-label" for="contact_no_en">Contact Number (English)</label>
-                <input type="text" class="form-control @error('contact_no_en') is-invalid @enderror" 
-                    id="contact_no_en" name="contact_no_en" 
-                    value="{{ old('contact_no_en', $agentDetail->contact_no_en ?? $agentDetail->contact_no ?? '') }}"
-                    placeholder="Enter contact number in English">
-                @error('contact_no_en')
+                <label class="form-label" for="address_np">Address (Nepali)</label>
+                <input type="text" class="form-control @error('address_np') is-invalid @enderror" 
+                    id="address_np" name="address_np" 
+                    value="{{ old('address_np', $agentDetail->address_np ?? '') }}"
+                    placeholder="Enter address in Nepali">
+                @error('address_np')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+            
+            <!-- Contact Number - English -->
+           
             
             <!-- Contact Person - English -->
             <div class="col-md-6 mb-3">
@@ -84,48 +97,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-        </div>
 
-        <!-- Agent Information - Nepali -->
-        <h5 class="mb-3">Nepali Information</h5>
-        <div class="row mb-3">
-            <!-- State Agent Name - Nepali -->
-            <div class="col-md-6 mb-3">
-                <label class="form-label" for="state_agent_name_np">State Agent Name (Nepali)</label>
-                <input type="text" class="form-control @error('state_agent_name_np') is-invalid @enderror" 
-                    id="state_agent_name_np" name="state_agent_name_np" 
-                    value="{{ old('state_agent_name_np', $agentDetail->state_agent_name_np ?? '') }}"
-                    placeholder="Enter state agent name in Nepali">
-                @error('state_agent_name_np')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <!-- Address - Nepali -->
-            <div class="col-md-6 mb-3">
-                <label class="form-label" for="address_np">Address (Nepali)</label>
-                <input type="text" class="form-control @error('address_np') is-invalid @enderror" 
-                    id="address_np" name="address_np" 
-                    value="{{ old('address_np', $agentDetail->address_np ?? '') }}"
-                    placeholder="Enter address in Nepali">
-                @error('address_np')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <!-- Contact Number - Nepali -->
-            <div class="col-md-6 mb-3">
-                <label class="form-label" for="contact_no_np">Contact Number (Nepali)</label>
-                <input type="text" class="form-control @error('contact_no_np') is-invalid @enderror" 
-                    id="contact_no_np" name="contact_no_np" 
-                    value="{{ old('contact_no_np', $agentDetail->contact_no_np ?? '') }}"
-                    placeholder="Enter contact number in Nepali">
-                @error('contact_no_np')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            
-            <!-- Contact Person - Nepali -->
             <div class="col-md-6 mb-3">
                 <label class="form-label" for="contact_person_np">Contact Person (Nepali)</label>
                 <input type="text" class="form-control @error('contact_person_np') is-invalid @enderror" 
@@ -136,9 +108,29 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label" for="contact_no_en">Contact Number (English)</label>
+                <input type="text" class="form-control @error('contact_no_en') is-invalid @enderror" 
+                    id="contact_no_en" name="contact_no_en" 
+                    value="{{ old('contact_no_en', $agentDetail->contact_no_en ?? $agentDetail->contact_no ?? '') }}"
+                    placeholder="Enter contact number in English">
+                @error('contact_no_en')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label class="form-label" for="contact_no_np">Contact Number (Nepali)</label>
+                <input type="text" class="form-control @error('contact_no_np') is-invalid @enderror" 
+                    id="contact_no_np" name="contact_no_np" 
+                    value="{{ old('contact_no_np', $agentDetail->contact_no_np ?? '') }}"
+                    placeholder="Enter contact number in Nepali">
+                @error('contact_no_np')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
-        
-        <hr>
         
         <!-- Submit Button -->
         <div class="mb-3">

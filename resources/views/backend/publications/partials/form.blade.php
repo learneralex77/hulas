@@ -189,7 +189,3 @@
     </div>
 </div>
 
-<!-- Hidden fields for backward compatibility -->
-<input type="hidden" name="title" value="{{ $publication->title_en ?? '' }}">
-<input type="hidden" name="short_description" value="{{ $publication->short_description_en ?? '' }}">
-<input type="hidden" name="content" value="{{ $publication->content_en ?? '' }}">

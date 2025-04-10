@@ -25,9 +25,11 @@ class TeamRequest extends FormRequest
     {
         return [
             'type' => ['required', Rule::in(array_keys(Team::getTypes()))],
-            'name' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255'],
+            'name_np' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
-            'description' => ['nullable', 'string'],
+            'description_en' => ['nullable', 'string'],
+            'description_np' => ['nullable', 'string'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
             'delete_image' => ['nullable', 'boolean'],
@@ -43,9 +45,11 @@ class TeamRequest extends FormRequest
     {
         return [
             'type' => 'team type',
-            'name' => 'team member name',
+            'name_en' => 'English name',
+            'name_np' => 'Nepali name',
             'image' => 'team member image',
-            'description' => 'description',
+            'description_en' => 'English description',
+            'description_np' => 'Nepali description',
             'display_order' => 'display order',
             'is_published' => 'published status',
             'delete_image' => 'delete image option',
@@ -65,15 +69,19 @@ class TeamRequest extends FormRequest
             'type.required' => 'The team type is required.',
             'type.in' => 'The selected team type is invalid. Valid types are: ' . $teamTypes,
             
-            'name.required' => 'The team member name is required.',
-            'name.string' => 'The team member name must be a string.',
-            'name.max' => 'The team member name may not be greater than 255 characters.',
+            'name_en.required' => 'The English name is required.',
+            'name_en.string' => 'The English name must be a string.',
+            'name_en.max' => 'The English name may not be greater than 255 characters.',
+            
+            'name_np.string' => 'The Nepali name must be a string.',
+            'name_np.max' => 'The Nepali name may not be greater than 255 characters.',
             
             'image.image' => 'The file must be an image.',
             'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif.',
             'image.max' => 'The image may not be greater than 2MB.',
             
-            'description.string' => 'The description must be a string.',
+            'description_en.string' => 'The English description must be a string.',
+            'description_np.string' => 'The Nepali description must be a string.',
             
             'display_order.integer' => 'The display order must be a number.',
             'display_order.min' => 'The display order must be at least 0.',

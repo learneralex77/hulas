@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->enum('type', ['Management Team', 'BOD']);
             $table->string('name_en');
-            $table->string('name_np');            
+            $table->string('name_np')->nullable();          
             $table->string('image')->nullable();
             $table->text('description_en')->nullable();
             $table->text('description_np')->nullable();

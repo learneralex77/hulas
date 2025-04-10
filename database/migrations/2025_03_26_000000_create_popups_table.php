@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('popups', function (Blueprint $table) {
             $table->id();
             $table->string('name_en');
-            $table->string('name_np');
+            $table->string('name_np')->nullable();
             $table->string('link')->nullable();
             $table->string('image')->nullable();
             $table->boolean('is_published')->default(false);

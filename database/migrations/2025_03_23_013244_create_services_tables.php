@@ -14,9 +14,13 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             // Basic service information
-            $table->string('name');
+            $table->string('name_en');
+            $table->string('name_np')->nullable();
+
             $table->string('icon')->nullable();
-            $table->text('description')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('description_np')->nullable();
+
             $table->string('slug')->unique();
             $table->integer('display_order')->default(0);
             $table->boolean('is_published')->default(false);

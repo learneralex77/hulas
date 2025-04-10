@@ -1,14 +1,35 @@
 @csrf
 <div class="row">
     <div class="col-12 px-2">
+        <!-- English and Nepali Name -->
         <div class="row mb-3">
-            <div class="col-md-8">
-                <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                    name="name" value="{{ old('name', $newsEventCategory->name ?? '') }}" required>
-                @error('name')
+            <div class="col-md-6">
+                <label class="form-label" for="name_en">English Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en"
+                    name="name_en" value="{{ old('name_en', $newsEventCategory->name_en ?? '') }}" required>
+                @error('name_en')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="name_np">Nepali Name</label>
+                <input type="text" class="form-control @error('name_np') is-invalid @enderror" id="name_np"
+                    name="name_np" value="{{ old('name_np', $newsEventCategory->name_np ?? '') }}">
+                @error('name_np')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <label class="form-label" for="slug">Slug</label>
+                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
+                    name="slug" value="{{ old('slug', $newsEventCategory->slug ?? '') }}">
+                @error('slug')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+                <small class="text-muted">Leave empty to auto-generate from English name</small>
             </div>
             <div class="col-md-4">
                 <label class="form-label d-block">Status</label>
@@ -21,16 +42,7 @@
         </div>
 
         <div class="row mb-3">
-            <div class="col-md-8">
-                <label class="form-label" for="slug">Slug</label>
-                <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
-                    name="slug" value="{{ old('slug', $newsEventCategory->slug ?? '') }}">
-                @error('slug')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-                <small class="text-muted">Leave empty to auto-generate from name</small>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <label class="form-label" for="display_order">Display Order</label>
                 <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order"
                     name="display_order" value="{{ old('display_order', $newsEventCategory->display_order ?? 0) }}">
@@ -41,12 +53,21 @@
             </div>
         </div>
 
+        <!-- English and Nepali Descriptions -->
         <div class="row mb-3">
-            <div class="col-md-12">
-                <label class="form-label" for="description">Description</label>
-                <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
-                    rows="3">{{ old('description', $newsEventCategory->description ?? '') }}</textarea>
-                @error('description')
+            <div class="col-md-6">
+                <label class="form-label" for="description_en">English Description</label>
+                <textarea class="form-control @error('description_en') is-invalid @enderror" id="description_en" 
+                    name="description_en" rows="3">{{ old('description_en', $newsEventCategory->description_en ?? '') }}</textarea>
+                @error('description_en')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="description_np">Nepali Description</label>
+                <textarea class="form-control @error('description_np') is-invalid @enderror" id="description_np" 
+                    name="description_np" rows="3">{{ old('description_np', $newsEventCategory->description_np ?? '') }}</textarea>
+                @error('description_np')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -64,4 +85,8 @@
         </div>
     </div>
 </div>
+
+<!-- Backward compatibility for existing fields -->
+<input type="hidden" name="name" value="{{ $newsEventCategory->name_en ?? '' }}">
+<input type="hidden" name="description" value="{{ $newsEventCategory->description_en ?? '' }}">
  

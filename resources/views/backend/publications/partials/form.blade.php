@@ -9,7 +9,7 @@
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}"
                             {{ old('news_event_category_id', $publication->news_event_category_id ?? '') == $category->id ? 'selected' : '' }}>
-                            {{ $category->name }}
+                            {{ $category->name_en ?? $category->name }}
                         </option>
                     @endforeach
                 </select>
@@ -38,23 +38,44 @@
             </div>
         </div>
 
-        <!-- Title -->
-        <div class="mb-3">
-            <label class="form-label" for="title">Title <span class="text-danger">*</span></label>
-            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
-                value="{{ old('title', $publication->title ?? '') }}" required>
-            @error('title')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+        <!-- Title in English and Nepali -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="title_en">Title (English) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" name="title_en"
+                    value="{{ old('title_en', $publication->title_en ?? $publication->title ?? '') }}" required>
+                @error('title_en')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="title_np">Title (Nepali)</label>
+                <input type="text" class="form-control @error('title_np') is-invalid @enderror" id="title_np" name="title_np"
+                    value="{{ old('title_np', $publication->title_np ?? '') }}">
+                @error('title_np')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
 
-        <!-- Short Description -->
-        <div class="mb-3">
-            <label class="form-label" for="short_description">Short Description</label>
-            <textarea class="form-control @error('short_description') is-invalid @enderror" id="short_description" name="short_description" rows="3">{{ old('short_description', $publication->short_description ?? '') }}</textarea>
-            @error('short_description')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+        <!-- Short Description in English and Nepali -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="short_description_en">Short Description (English)</label>
+                <textarea class="form-control @error('short_description_en') is-invalid @enderror" id="short_description_en" 
+                    name="short_description_en" rows="3">{{ old('short_description_en', $publication->short_description_en ?? $publication->short_description ?? '') }}</textarea>
+                @error('short_description_en')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="short_description_np">Short Description (Nepali)</label>
+                <textarea class="form-control @error('short_description_np') is-invalid @enderror" id="short_description_np" 
+                    name="short_description_np" rows="3">{{ old('short_description_np', $publication->short_description_np ?? '') }}</textarea>
+                @error('short_description_np')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
 
         <!-- Image -->
@@ -62,7 +83,7 @@
             <label class="form-label" for="image">Image</label>
             @if (isset($publication) && $publication->image)
                 <div class="mb-2">
-                    <img src="{{ asset('storage/' . $publication->image) }}" alt="{{ $publication->title }}"
+                    <img src="{{ asset('storage/' . $publication->image) }}" alt="{{ $publication->title_en ?? $publication->title }}"
                         class="img-fluid mb-1" style="max-height: 200px;">
                     <div class="small text-muted">Current image</div>
                 </div>
@@ -79,13 +100,24 @@
             @enderror
         </div>
 
-        <!-- Content -->
-        <div class="mb-3">
-            <label class="form-label" for="content">Content</label>
-            <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="6">{{ old('content', $publication->content ?? '') }}</textarea>
-            @error('content')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+        <!-- Content in English and Nepali -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="content_en">Content (English)</label>
+                <textarea class="form-control @error('content_en') is-invalid @enderror" id="content_en" 
+                    name="content_en" rows="6">{{ old('content_en', $publication->content_en ?? $publication->content ?? '') }}</textarea>
+                @error('content_en')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="content_np">Content (Nepali)</label>
+                <textarea class="form-control @error('content_np') is-invalid @enderror" id="content_np" 
+                    name="content_np" rows="6">{{ old('content_np', $publication->content_np ?? '') }}</textarea>
+                @error('content_np')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
 
         <!-- Published By and Display Order in one row -->
@@ -146,3 +178,8 @@
         </div>
     </div>
 </div>
+
+<!-- Hidden fields for backward compatibility -->
+<input type="hidden" name="title" value="{{ $publication->title_en ?? '' }}">
+<input type="hidden" name="short_description" value="{{ $publication->short_description_en ?? '' }}">
+<input type="hidden" name="content" value="{{ $publication->content_en ?? '' }}">

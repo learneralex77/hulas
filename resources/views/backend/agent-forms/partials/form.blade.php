@@ -1,20 +1,40 @@
 <div class="row">
     <div class="col-lg-12">
-        <!-- Name and Phone fields in one row -->
+        <!-- Name in English and Nepali in one row -->
         <div class="row mb-4">
             <div class="col-md-6">
-                <label class="form-label" for="name">Full Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                    name="name" value="{{ old('name', $agentForm->name ?? '') }}" required>
-                @error('name')
+                <label class="form-label" for="name_en">Full Name (English) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en"
+                    name="name_en" value="{{ old('name_en', $agentForm->name_en ?? $agentForm->name ?? '') }}" required>
+                @error('name_en')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
             <div class="col-md-6">
-                <label class="form-label" for="phone">Phone Number <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('number') is-invalid @enderror" id="phone"
-                    name="number" value="{{ old('number', $agentForm->number ?? '') }}" required>
-                @error('number')
+                <label class="form-label" for="name_np">Full Name (Nepali)</label>
+                <input type="text" class="form-control @error('name_np') is-invalid @enderror" id="name_np"
+                    name="name_np" value="{{ old('name_np', $agentForm->name_np ?? '') }}">
+                @error('name_np')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        <!-- Phone numbers in English and Nepali in one row -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label class="form-label" for="number_en">Phone Number (English) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('number_en') is-invalid @enderror" id="number_en"
+                    name="number_en" value="{{ old('number_en', $agentForm->number_en ?? $agentForm->number ?? '') }}" required>
+                @error('number_en')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="number_np">Phone Number (Nepali)</label>
+                <input type="text" class="form-control @error('number_np') is-invalid @enderror" id="number_np"
+                    name="number_np" value="{{ old('number_np', $agentForm->number_np ?? '') }}">
+                @error('number_np')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -38,7 +58,7 @@
                     @foreach ($districts as $district)
                         <option value="{{ $district->id }}"
                             {{ old('district_id', $agentForm->district_id ?? '') == $district->id ? 'selected' : '' }}>
-                            {{ $district->name }}
+                            {{ $district->name_en }}
                         </option>
                     @endforeach
                 </select>
@@ -48,16 +68,28 @@
             </div>
         </div>
 
-        <!-- Address and Display Order fields in one row -->
+        <!-- Address in English and Nepali in one row -->
         <div class="row mb-4">
             <div class="col-md-6">
-                <label class="form-label" for="address">Address <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
-                    name="address" value="{{ old('address', $agentForm->address ?? '') }}" required>
-                @error('address')
+                <label class="form-label" for="address_en">Address (English) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('address_en') is-invalid @enderror" id="address_en"
+                    name="address_en" value="{{ old('address_en', $agentForm->address_en ?? $agentForm->address ?? '') }}" required>
+                @error('address_en')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+            <div class="col-md-6">
+                <label class="form-label" for="address_np">Address (Nepali)</label>
+                <input type="text" class="form-control @error('address_np') is-invalid @enderror" id="address_np"
+                    name="address_np" value="{{ old('address_np', $agentForm->address_np ?? '') }}">
+                @error('address_np')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        <!-- Display Order and Status fields in one row -->
+        <div class="row mb-4">
             <div class="col-md-6">
                 <label class="form-label" for="display_order">Display Order</label>
                 <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order"
@@ -66,18 +98,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-        </div>
-
-        <!-- Message and Status fields in one row -->
-        <div class="row mb-4">
             <div class="col-md-6">
-                <label class="form-label" for="message">Message</label>
-                <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" rows="3">{{ old('message', $agentForm->message ?? '') }}</textarea>
-                @error('message')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="col-md-4">
                 <label class="form-label">Status</label>
                 <div class="mt-2">
                     <div class="form-check form-switch">
@@ -92,6 +113,24 @@
             </div>
         </div>
 
+        <!-- Message in English and Nepali in one row -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label class="form-label" for="message_en">Message (English)</label>
+                <textarea class="form-control @error('message_en') is-invalid @enderror" id="message_en" name="message_en" rows="3">{{ old('message_en', $agentForm->message_en ?? $agentForm->message ?? '') }}</textarea>
+                @error('message_en')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="message_np">Message (Nepali)</label>
+                <textarea class="form-control @error('message_np') is-invalid @enderror" id="message_np" name="message_np" rows="3">{{ old('message_np', $agentForm->message_np ?? '') }}</textarea>
+                @error('message_np')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
         <div class="mb-3">
             <button type="submit" class="btn btn-sm btn-success">
                 <i class="fa fa-save me-1"></i> {{ isset($agentForm) ? 'Update' : 'Create' }} Agent Form
@@ -102,3 +141,9 @@
         </div>
     </div>
 </div>
+
+<!-- Hidden fields for backward compatibility -->
+<input type="hidden" name="name" value="{{ $agentForm->name_en ?? '' }}">
+<input type="hidden" name="number" value="{{ $agentForm->number_en ?? '' }}">
+<input type="hidden" name="address" value="{{ $agentForm->address_en ?? '' }}">
+<input type="hidden" name="message" value="{{ $agentForm->message_en ?? '' }}">

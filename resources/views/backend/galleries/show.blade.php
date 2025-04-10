@@ -8,7 +8,7 @@
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Gallery Details: {{ $gallery->title }}</h3>
+                <h3 class="block-title">Gallery Details: {{ $gallery->title_en }}</h3>
                 <div class="block-options">
                     <a href="{{ route('galleries.edit', $gallery->id) }}" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-pencil-alt"></i> Edit
@@ -27,8 +27,12 @@
                             </div>
                             <div class="block-content">
                                 <div class="row mb-2">
-                                    <div class="col-md-4 fw-semibold text-muted">Title:</div>
-                                    <div class="col-md-8">{{ $gallery->title }}</div>
+                                    <div class="col-md-4 fw-semibold text-muted">Title (English):</div>
+                                    <div class="col-md-8">{{ $gallery->title_en }}</div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Title (Nepali):</div>
+                                    <div class="col-md-8">{{ $gallery->title_np ?? 'Not provided' }}</div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">External Link:</div>
@@ -92,7 +96,7 @@
                             <div class="block-content">
                                 @if ($gallery->featured_image)
                                     <img src="{{ asset('storage/' . $gallery->featured_image) }}"
-                                        alt="{{ $gallery->title }}" class="img-fluid rounded">
+                                        alt="{{ $gallery->title_en }}" class="img-fluid rounded">
                                 @else
                                     <div class="alert alert-info">
                                         <i class="fa fa-info-circle me-1"></i> No featured image available

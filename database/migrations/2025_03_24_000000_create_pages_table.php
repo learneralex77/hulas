@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->foreignId('menu_id')->nullable()->constrained()->onDelete('set null');
             $table->string('title_en');
-            $table->string('title_np');
+            $table->string('title_np')->nullable();
             $table->integer('display_order')->default(0);
             $table->longText('content_en')->nullable();
             $table->longText('content_np')->nullable();

@@ -10,9 +10,12 @@ class Service extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'name_en',
+        "name_np",
         'icon',
-        'description',
+        'description_en',
+        'description_np',
+
         'slug',
         'display_order',
         'is_published',
@@ -23,27 +26,9 @@ class Service extends Model
         'language_code',
     ];
 
-    /**
-     * Get all translations for the service.
-     * @deprecated No longer used with single table approach
-    public function translations()
-    {
-        return $this->hasMany(ServiceTranslation::class);
-    }
+ 
 
-    /**
-     * Get the primary translation (usually English or default).
-     * @deprecated No longer used with single table approach
-    public function primaryTranslation()
-    {
-        return $this->hasOne(ServiceTranslation::class)
-            ->where('language_code', 'en')
-            ->withDefault([
-                'name' => '[]',
-                'icon' => '[]',
-                'description' => '[]',
-            ]);
-    }
+ 
 
     /**
      * Get all the names for this service.

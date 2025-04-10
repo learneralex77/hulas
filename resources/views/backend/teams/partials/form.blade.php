@@ -2,9 +2,9 @@
 
 <div class="row px-4">
     <div class="col-12">
-        <!-- Row 1: Type and Name -->
+        <!-- Row 1: Type -->
         <div class="row g-2 mb-3 mt-3">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label class="form-label" for="type">Type <span class="text-danger">*</span></label>
                 <select class="form-select form-select-sm @error('type') is-invalid @enderror" id="type" name="type">
                     <option value="">-- Select Type --</option>
@@ -16,21 +16,32 @@
                     <div class="invalid-feedback small">{{ $message }}</div>
                 @enderror
             </div>
+        </div>
+
+        <!-- Row 2: Name fields -->
+        <div class="row g-2 mb-3">
             <div class="col-md-6">
-                <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control form-control-sm @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $team->name ?? '') }}">
-                @error('name')
+                <label class="form-label" for="name_en">Name(English) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control form-control-sm @error('name_en') is-invalid @enderror" id="name_en" name="name_en" value="{{ old('name_en', $team->name_en ?? '') }}">
+                @error('name_en')
+                    <div class="invalid-feedback small">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="name_np">Name(Nepali)</label>
+                <input type="text" class="form-control form-control-sm @error('name_np') is-invalid @enderror" id="name_np" name="name_np" value="{{ old('name_np', $team->name_np ?? '') }}">
+                @error('name_np')
                     <div class="invalid-feedback small">{{ $message }}</div>
                 @enderror
             </div>
         </div>
 
-        <!-- Row 2: Image field -->
+        <!-- Row 3: Image field -->
         <div class="mb-3">
             <label class="form-label" for="image">Image</label>
             @if(isset($team) && $team->image)
                 <div class="mb-1">
-                    <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name }}" class="img-fluid" style="max-height: 150px;">
+                    <img src="{{ asset('storage/' . $team->image) }}" alt="{{ $team->name_en ?? $team->name }}" class="img-fluid" style="max-height: 150px;">
                 </div>
                 <div class="form-check mb-2">
                     <input class="form-check-input" type="checkbox" name="delete_image" id="delete_image" value="1">
@@ -47,16 +58,25 @@
             @enderror
         </div>
 
-        <!-- Row 3: Description field (full width) -->
-        <div class="mb-3">
-            <label class="form-label" for="description">Description</label>
-            <textarea class="form-control form-control-sm @error('description') is-invalid @enderror" id="description" name="description" rows="3">{{ old('description', $team->description ?? '') }}</textarea>
-            @error('description')
-                <div class="invalid-feedback small">{{ $message }}</div>
-            @enderror
+        <!-- Row 4: Description fields -->
+        <div class="row g-2 mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="description_en">Description(English)</label>
+                <textarea class="form-control form-control-sm @error('description_en') is-invalid @enderror" id="description_en" name="description_en" rows="3">{{ old('description_en', $team->description_en ?? '') }}</textarea>
+                @error('description_en')
+                    <div class="invalid-feedback small">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="description_np">Description(Nepali)</label>
+                <textarea class="form-control form-control-sm @error('description_np') is-invalid @enderror" id="description_np" name="description_np" rows="3">{{ old('description_np', $team->description_np ?? '') }}</textarea>
+                @error('description_np')
+                    <div class="invalid-feedback small">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
 
-        <!-- Row 4: Display Order and Status -->
+        <!-- Row 5: Display Order and Status -->
         <div class="row g-2 mb-3">
             <div class="col-md-6">
                 <label class="form-label" for="display_order">Display Order</label>
@@ -86,3 +106,7 @@
         </div>
     </div>
 </div>
+
+<!-- Backward compatibility for existing fields -->
+<input type="hidden" name="name" value="{{ $team->name_en ?? '' }}">
+<input type="hidden" name="description" value="{{ $team->description_en ?? '' }}">

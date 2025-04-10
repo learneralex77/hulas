@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('primary_logo', 191)->nullable();
             $table->string('secondary_logo', 191)->nullable();
             $table->string('title_en', 191);
-            $table->string('title_np', 191);
+            $table->string('title_np', 191)->nullable();
             $table->string('feedback_notify_email', 191);
             $table->string('google_maplink', 191)->nullable();
             $table->string('agent_notify_email', 191);

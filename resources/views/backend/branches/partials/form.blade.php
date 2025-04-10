@@ -3,21 +3,38 @@
         <!-- Name and Phone fields in one row -->
         <div class="row mb-4">
             <div class="col-md-6">
-                <label class="form-label" for="name">Branch Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                    name="name" value="{{ old('name', $branch->name ?? '') }}" required>
-                @error('name')
+                <label class="form-label" for="name_en">Branch Name (English) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en"
+                    name="name_en" value="{{ old('name_en', $branch->name_en ?? '') }}" required>
+                @error('name_en')
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror
             </div>
             <div class="col-md-6">
-                <label class="form-label" for="phone">Phone Number <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('phone') is-invalid @enderror @error('phone_number') is-invalid @enderror" id="phone"
-                    name="phone" value="{{ old('phone', $branch->phone ?? '') }}" required>
-                @error('phone')
+                <label class="form-label" for="phone_number_en">Phone Number (English) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('phone_number_en') is-invalid @enderror" id="phone_number_en"
+                    name="phone_number_en" value="{{ old('phone_number_en', $branch->phone_number_en ?? '') }}" required>
+                @error('phone_number_en')
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror
-                @error('phone_number')
+            </div>
+        </div>
+
+        <!-- Name and Phone fields in Nepali -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label class="form-label" for="name_np">Branch Name (Nepali)</label>
+                <input type="text" class="form-control @error('name_np') is-invalid @enderror" id="name_np"
+                    name="name_np" value="{{ old('name_np', $branch->name_np ?? '') }}">
+                @error('name_np')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="phone_number_np">Phone Number (Nepali)</label>
+                <input type="text" class="form-control @error('phone_number_np') is-invalid @enderror" id="phone_number_np"
+                    name="phone_number_np" value="{{ old('phone_number_np', $branch->phone_number_np ?? '') }}">
+                @error('phone_number_np')
                     <div class="invalid-feedback d-block">{{ $message }}</div>
                 @enderror
             </div>
@@ -41,7 +58,7 @@
                     @foreach ($districts as $district)
                         <option value="{{ $district->id }}"
                             {{ old('district_id', $branch->district_id ?? '') == $district->id ? 'selected' : '' }}>
-                            {{ $district->name }}
+                            {{ $district->name_en }}
                         </option>
                     @endforeach
                 </select>
@@ -51,14 +68,24 @@
             </div>
         </div>
 
-        <!-- Address field (full width) -->
-        <div class="mb-4">
-            <label class="form-label" for="address">Address <span class="text-danger">*</span></label>
-            <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
-                name="address" value="{{ old('address', $branch->address ?? '') }}" required>
-            @error('address')
-                <div class="invalid-feedback d-block">{{ $message }}</div>
-            @enderror
+        <!-- Address fields -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label class="form-label" for="address_en">Address (English) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('address_en') is-invalid @enderror" id="address_en"
+                    name="address_en" value="{{ old('address_en', $branch->address_en ?? '') }}" required>
+                @error('address_en')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="address_np">Address (Nepali)</label>
+                <input type="text" class="form-control @error('address_np') is-invalid @enderror" id="address_np"
+                    name="address_np" value="{{ old('address_np', $branch->address_np ?? '') }}">
+                @error('address_np')
+                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
 
         <!-- Map iframe field (full width) -->

@@ -1,24 +1,91 @@
-<!-- Row 1: Tagline and Years of Experience -->
+<!-- English Content -->
+<h4 class="mb-3">English Content</h4>
+<!-- Row 1: Tagline and Years of Experience (English) -->
 <div class="row mb-4">
     <div class="col-md-6">
-        <label class="form-label" for="tagline">Tagline <span class="text-danger">*</span></label>
-        <input type="text" class="form-control @error('tagline') is-invalid @enderror" id="tagline" name="tagline"
-            value="{{ old('tagline', $aboutUs->tagline ?? '') }}" required>
-        @error('tagline')
+        <label class="form-label" for="tagline_en">Tagline (English) <span class="text-danger">*</span></label>
+        <input type="text" class="form-control @error('tagline_en') is-invalid @enderror" id="tagline_en" name="tagline_en"
+            value="{{ old('tagline_en', $aboutUs->tagline_en ?? $aboutUs->tagline ?? '') }}" required>
+        @error('tagline_en')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
     <div class="col-md-6">
-        <label class="form-label" for="years_of_experience">Years of Experience</label>
-        <input type="number" class="form-control @error('years_of_experience') is-invalid @enderror"
-            id="years_of_experience" name="years_of_experience"
-            value="{{ old('years_of_experience', $aboutUs->years_of_experience ?? '') }}" min="0">
-        @error('years_of_experience')
+        <label class="form-label" for="years_of_experience_en">Years of Experience (English)</label>
+        <input type="number" class="form-control @error('years_of_experience_en') is-invalid @enderror"
+            id="years_of_experience_en" name="years_of_experience_en"
+            value="{{ old('years_of_experience_en', $aboutUs->years_of_experience_en ?? $aboutUs->years_of_experience ?? '') }}" min="0">
+        @error('years_of_experience_en')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
 </div>
 
+<!-- Short Description (English) -->
+<div class="mb-4">
+    <label class="form-label" for="short_description_en">Short Description (English)</label>
+    <textarea class="form-control @error('short_description_en') is-invalid @enderror" id="short_description_en"
+        name="short_description_en" rows="3">{{ old('short_description_en', $aboutUs->short_description_en ?? $aboutUs->short_description ?? '') }}</textarea>
+    @error('short_description_en')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
+<!-- Main Description (English) -->
+<div class="mb-4">
+    <label class="form-label" for="description_en">Description (English) <span class="text-danger">*</span></label>
+    <textarea class="form-control @error('description_en') is-invalid @enderror" id="description_en" name="description_en"
+        rows="5" required>{{ old('description_en', $aboutUs->description_en ?? $aboutUs->description ?? '') }}</textarea>
+    @error('description_en')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
+<!-- Nepali Content -->
+<h4 class="mb-3 mt-5">Nepali Content</h4>
+<!-- Row 1: Tagline and Years of Experience (Nepali) -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <label class="form-label" for="tagline_np">Tagline (Nepali)</label>
+        <input type="text" class="form-control @error('tagline_np') is-invalid @enderror" id="tagline_np" name="tagline_np"
+            value="{{ old('tagline_np', $aboutUs->tagline_np ?? '') }}">
+        @error('tagline_np')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="col-md-6">
+        <label class="form-label" for="years_of_experience_np">Years of Experience (Nepali)</label>
+        <input type="number" class="form-control @error('years_of_experience_np') is-invalid @enderror"
+            id="years_of_experience_np" name="years_of_experience_np"
+            value="{{ old('years_of_experience_np', $aboutUs->years_of_experience_np ?? '') }}" min="0">
+        @error('years_of_experience_np')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
+<!-- Short Description (Nepali) -->
+<div class="mb-4">
+    <label class="form-label" for="short_description_np">Short Description (Nepali)</label>
+    <textarea class="form-control @error('short_description_np') is-invalid @enderror" id="short_description_np"
+        name="short_description_np" rows="3">{{ old('short_description_np', $aboutUs->short_description_np ?? '') }}</textarea>
+    @error('short_description_np')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
+<!-- Main Description (Nepali) -->
+<div class="mb-4">
+    <label class="form-label" for="description_np">Description (Nepali)</label>
+    <textarea class="form-control @error('description_np') is-invalid @enderror" id="description_np" name="description_np"
+        rows="5">{{ old('description_np', $aboutUs->description_np ?? '') }}</textarea>
+    @error('description_np')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+</div>
+
+<!-- Common Fields Section -->
+<h4 class="mb-3 mt-5">Common Fields</h4>
 <!-- Row 2: Display Order and Published Status -->
 <div class="row mb-4">
     <div class="col-md-6">
@@ -83,26 +150,6 @@
             @endif
         </div>
     </div>
-</div>
-
-<!-- Short Description -->
-<div class="mb-4">
-    <label class="form-label" for="short_description">Short Description</label>
-    <textarea class="form-control @error('short_description') is-invalid @enderror" id="short_description"
-        name="short_description" rows="3">{{ old('short_description', $aboutUs->short_description ?? '') }}</textarea>
-    @error('short_description')
-        <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
-</div>
-
-<!-- Main Description -->
-<div class="mb-4">
-    <label class="form-label" for="description">Description <span class="text-danger">*</span></label>
-    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
-        rows="5" required>{{ old('description', $aboutUs->description ?? '') }}</textarea>
-    @error('description')
-        <div class="invalid-feedback">{{ $message }}</div>
-    @enderror
 </div>
 
 <hr>
@@ -208,7 +255,8 @@
                     <label class="form-label" for="mission_vision_descriptions_0">Description <span
                             class="text-danger">*</span></label>
                     <textarea class="form-control @error('mission_vision_descriptions.0') is-invalid @enderror"
-                        id="mission_vision_descriptions_0" name="mission_vision_descriptions[]" rows="3" required>{{ old('mission_vision_descriptions.0') }}</textarea>
+                        id="mission_vision_descriptions_0" name="mission_vision_descriptions[]" rows="3"
+                        required>{{ old('mission_vision_descriptions.0') }}</textarea>
                     @error('mission_vision_descriptions.0')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -218,6 +266,11 @@
     </div>
 </div>
 
+<!-- Hidden fields for backward compatibility -->
+<input type="hidden" name="tagline" value="{{ $aboutUs->tagline_en ?? '' }}">
+<input type="hidden" name="description" value="{{ $aboutUs->description_en ?? '' }}">
+<input type="hidden" name="years_of_experience" value="{{ $aboutUs->years_of_experience_en ?? '' }}">
+<input type="hidden" name="short_description" value="{{ $aboutUs->short_description_en ?? '' }}">
 
 <!-- Save Button at Bottom -->
 <div class="row mb-0">

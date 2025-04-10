@@ -23,17 +23,21 @@ class DesignationRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255'],
+            'name_np' => ['nullable', 'string', 'max:255'],
             'display_order' => ['nullable', 'integer'],
             'is_published' => ['nullable', 'boolean'],
         ];
 
         // Add unique check with proper ignoring for updates
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
-            $rules['name'][] = Rule::unique('designations', 'name')
+            $rules['name_en'][] = Rule::unique('designations', 'name_en')
+                ->ignore($this->route('designation'));
+            $rules['name_np'][] = Rule::unique('designations', 'name_np')
                 ->ignore($this->route('designation'));
         } else {
-            $rules['name'][] = Rule::unique('designations', 'name');
+            $rules['name_en'][] = Rule::unique('designations', 'name_en');
+            $rules['name_np'][] = Rule::unique('designations', 'name_np');
         }
 
         return $rules;
@@ -47,7 +51,8 @@ class DesignationRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name' => 'designation name',
+            'name_en' => 'English designation name',
+            'name_np' => 'Nepali designation name',
             'display_order' => 'display order',
             'is_published' => 'published status',
         ];
@@ -61,10 +66,14 @@ class DesignationRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The designation name is required.',
-            'name.string' => 'The designation name must be a string.',
-            'name.max' => 'The designation name may not be greater than 255 characters.',
-            'name.unique' => 'A designation with this name already exists.',
+            'name_en.required' => 'The English designation name is required.',
+            'name_en.string' => 'The English designation name must be a string.',
+            'name_en.max' => 'The English designation name may not be greater than 255 characters.',
+            'name_en.unique' => 'A designation with this English name already exists.',
+
+            'name_np.string' => 'The Nepali designation name must be a string.',
+            'name_np.max' => 'The Nepali designation name may not be greater than 255 characters.',
+            'name_np.unique' => 'A designation with this Nepali name already exists.',
 
             'display_order.integer' => 'The display order must be a valid number.',
         ];

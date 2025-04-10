@@ -2,23 +2,37 @@
 
 <div class="row">
     <div class="col-12">
+        <!-- English Name and Nepali Name -->
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
-                    <label class="form-label" for="name">Partner Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                        name="name" value="{{ old('name', $partner->name ?? '') }}">
-                    @error('name')
+                    <label class="form-label" for="name_en">Partner Name(English) <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en"
+                        name="name_en" value="{{ old('name_en', $partner->name_en ?? '') }}">
+                    @error('name_en')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
+                    <label class="form-label" for="name_np">Partner Name(Nepali)</label>
+                    <input type="text" class="form-control @error('name_np') is-invalid @enderror" id="name_np"
+                        name="name_np" value="{{ old('name_np', $partner->name_np ?? '') }}">
+                    @error('name_np')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="mb-4">
                     <label class="form-label" for="image">Partner Image</label>
                     @if (isset($partner) && $partner->image)
                         <div class="mb-2">
-                            <img src="{{ asset('storage/' . $partner->image) }}" alt="{{ $partner->name }}"
+                            <img src="{{ asset('storage/' . $partner->image) }}" alt="{{ $partner->name_en ?? $partner->name }}"
                                 style="max-width: 200px;" class="img-thumbnail">
                         </div>
                         <div class="form-check mb-2">
@@ -36,30 +50,31 @@
                     @enderror
                 </div>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-md-6 col-sm-12">
-                <div class="mb-4">
-                    <label class="form-label" for="display_order">Display Order</label>
-                    <input type="number" class="form-control @error('display_order') is-invalid @enderror"
-                        id="display_order" name="display_order"
-                        value="{{ old('display_order', $partner->display_order ?? 0) }}">
-                    <small class="text-muted">Higher values appear first</small>
-                    @error('display_order')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <div class="mb-4">
-                    <label class="form-label d-block">Status</label>
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="is_published" name="is_published"
-                            value="1" {{ old('is_published', $partner->is_published ?? 1) ? 'checked' : '' }}>
-                        <label class="form-check-label" for="is_published">Published</label>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mb-4">
+                            <label class="form-label" for="display_order">Display Order</label>
+                            <input type="number" class="form-control @error('display_order') is-invalid @enderror"
+                                id="display_order" name="display_order"
+                                value="{{ old('display_order', $partner->display_order ?? 0) }}">
+                            <small class="text-muted">Higher values appear first</small>
+                            @error('display_order')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
-                    <small class="text-muted">Toggle to set the visibility status</small>
+                    <div class="col-md-12">
+                        <div class="mb-4">
+                            <label class="form-label d-block">Status</label>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="is_published" name="is_published"
+                                    value="1" {{ old('is_published', $partner->is_published ?? 1) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="is_published">Published</label>
+                            </div>
+                            <small class="text-muted">Toggle to set the visibility status</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,4 +88,9 @@
                     <i class="fa fa-times"></i> Cancel
                 </a>
             </div>
-        </div> 
+        </div>
+    </div>
+</div>
+
+<!-- Backward compatibility for existing fields -->
+<input type="hidden" name="name" value="{{ $partner->name_en ?? '' }}"> 

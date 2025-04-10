@@ -11,9 +11,12 @@ class Branch extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'address',
-        'phone_number',
+        'name_en',
+        'name_np',
+        'address_en',
+        'address_np',
+        'phone_number_en',
+        'phone_number_np',
         'email',
         'is_published',
         'district_id',
@@ -23,7 +26,40 @@ class Branch extends Model
 
     protected $casts = [
         'is_published' => 'boolean',
+        'display_order' => 'integer',
     ];
+
+    /**
+     * Get the name attribute (for backward compatibility)
+     */
+    public function getNameAttribute()
+    {
+        return $this->name_en ?? '';
+    }
+    
+    /**
+     * Get the address attribute (for backward compatibility)
+     */
+    public function getAddressAttribute()
+    {
+        return $this->address_en ?? '';
+    }
+    
+    /**
+     * Get the phone_number attribute (for backward compatibility)
+     */
+    public function getPhoneNumberAttribute()
+    {
+        return $this->phone_number_en ?? '';
+    }
+    
+    /**
+     * Get the phone attribute (for backward compatibility)
+     */
+    public function getPhoneAttribute()
+    {
+        return $this->phone_number_en ?? '';
+    }
 
     /**
      * Get the district that the branch belongs to.
@@ -31,14 +67,6 @@ class Branch extends Model
     public function district(): BelongsTo
     {
         return $this->belongsTo(District::class);
-    }
-
-    /**
-     * Map the phone field to phone_number for backwards compatibility.
-     */
-    public function getPhoneAttribute()
-    {
-        return $this->attributes['phone_number'] ?? null;
     }
 
     /**

@@ -34,8 +34,8 @@ class NewsEventCategoryController extends Controller
         $data = $request->validated();
 
         // Generate slug if empty
-        if (empty($data['slug']) && !empty($data['name'])) {
-            $data['slug'] = Str::slug($data['name']);
+        if (empty($data['slug']) && !empty($data['name_en'])) {
+            $data['slug'] = Str::slug($data['name_en']);
         }
 
         NewsEventCategory::create($data);
@@ -68,8 +68,8 @@ class NewsEventCategoryController extends Controller
         $data = $request->validated();
 
         // Generate slug if empty
-        if (empty($data['slug']) && !empty($data['name'])) {
-            $data['slug'] = Str::slug($data['name']);
+        if (empty($data['slug']) && !empty($data['name_en'])) {
+            $data['slug'] = Str::slug($data['name_en']);
         }
 
         $newsEventCategory->update($data);

@@ -3,11 +3,19 @@
 <div class="row px-2">
     <div class="col-12">
         <div class="row mb-2">
+        <div class="col-md-6">
+                <label class="form-label" for="name_en">Name(English) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en"
+                    name="name_en" value="{{ old('name_en', $service->name_en ?? '') }}" required>
+                @error('name_en')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
             <div class="col-md-6">
-                <label class="form-label ps-0" for="name">Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" 
-                    name="name" value="{{ old('name', $service->name ?? '') }}" required>
-                @error('name')
+                <label class="form-label" for="name_np">Name(Nepali)</label>
+                <input type="text" class="form-control @error('name_np') is-invalid @enderror" id="name_np"
+                    name="name_np" value="{{ old('name_np', $service->name_np ?? '') }}">
+                @error('name_np')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -64,13 +72,21 @@
                 </div>
             </div>
         </div>
-        <div class="mb-2">
-            <label class="form-label ps-0" for="description">Description</label>
-            <textarea class="form-control @error('description') is-invalid @enderror" id="description"
-                name="description" rows="3">{{ old('description', $service->description ?? '') }}</textarea>
-            @error('description')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+        <div class="row g-2 mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="description_en">Description(English)</label>
+                <textarea class="form-control form-control-sm @error('description_en') is-invalid @enderror" id="description_en" name="description_en" rows="3">{{ old('description_en', $service->description_en ?? '') }}</textarea>
+                @error('description_en')
+                    <div class="invalid-feedback small">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="description_np">Description(Nepali)</label>
+                <textarea class="form-control form-control-sm @error('description_np') is-invalid @enderror" id="description_np" name="description_np" rows="3">{{ old('description_np', $services->description_np ?? '') }}</textarea>
+                @error('description_np')
+                    <div class="invalid-feedback small">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
 
         <hr class="my-2">

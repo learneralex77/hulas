@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('news_event_category_id')->constrained('news_event_categories')->onDelete('cascade');
             $table->enum('publication_type', ['News', 'Article', 'Event'])->default('News');
             $table->string('title_en');
-            $table->string('title_np');
+            $table->string('title_np')->nullable();
             $table->text('short_description_en')->nullable();
             $table->text('short_description_np')->nullable();
             $table->string('image')->nullable();

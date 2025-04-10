@@ -22,20 +22,47 @@ class NewsEventCategoryRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Check if update request
+        $isUpdateRequest = in_array($this->method(), ['PUT', 'PATCH']);
+        $key = $isUpdateRequest ? $this->route('news_event_category')->id : null;
+
         $rules = [
-            'name' => ['required', 'string', 'max:255'],
-            'slug' => ['nullable', 'string', 'max:255'],
-            'description' => ['nullable', 'string'],
+            'name_en' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('news_event_categories', 'name_en')->ignore($key),
+            ],
+            'name_np' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::unique('news_event_categories', 'name_np')->ignore($key),
+            ],
+            'slug' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::unique('news_event_categories')->ignore($key),
+            ],
+            'description_en' => ['nullable', 'string'],
+            'description_np' => ['nullable', 'string'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
         ];
 
-        // Add unique check with proper ignoring for updates
-        if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
-            $rules['name'][] = Rule::unique('news_event_categories', 'name')
-                ->ignore($this->route('news_event_category'));
-        } else {
-            $rules['name'][] = Rule::unique('news_event_categories', 'name');
+        // For backward compatibility
+        if ($this->has('name') && !$this->has('name_en')) {
+            $rules['name'] = [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('news_event_categories')->ignore($key),
+            ];
+        }
+
+        if ($this->has('description') && !$this->has('description_en')) {
+            $rules['description'] = ['nullable', 'string'];
         }
 
         return $rules;
@@ -49,11 +76,13 @@ class NewsEventCategoryRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name' => 'category name',
-            'slug' => 'slug',
-            'description' => 'description',
-            'display_order' => 'display order',
-            'is_published' => 'published status',
+            'name_en' => 'English Name',
+            'name_np' => 'Nepali Name',
+            'slug' => 'Slug',
+            'description_en' => 'English Description',
+            'description_np' => 'Nepali Description',
+            'display_order' => 'Display Order',
+            'is_published' => 'Published Status',
         ];
     }
 
@@ -65,15 +94,18 @@ class NewsEventCategoryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The category name is required.',
-            'name.string' => 'The category name must be a string.',
-            'name.max' => 'The category name may not be greater than 255 characters.',
-            'name.unique' => 'A category with this name already exists.',
+            'name_en.required' => 'The English name field is required.',
+            'name_en.string' => 'The English name must be a string.',
+            'name_en.max' => 'The English name may not be greater than 255 characters.',
+            'name_en.unique' => 'A category with this English name already exists.',
+            
+            'name_np.string' => 'The Nepali name must be a string.',
+            'name_np.max' => 'The Nepali name may not be greater than 255 characters.',
+            'name_np.unique' => 'A category with this Nepali name already exists.',
             
             'slug.string' => 'The slug must be a string.',
             'slug.max' => 'The slug may not be greater than 255 characters.',
-            
-            'description.string' => 'The description must be a string.',
+            'slug.unique' => 'This slug has already been taken.',
             
             'display_order.integer' => 'The display order must be a number.',
             'display_order.min' => 'The display order must be at least 0.',
@@ -85,14 +117,39 @@ class NewsEventCategoryRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        // Boolean values need to be explicitly set since checkboxes don't send values when unchecked
-        $this->merge([
-            'is_published' => $this->has('is_published'),
-        ]);
-        
-        // Set default display order if not provided
-        if (!$this->has('display_order') || $this->display_order === null) {
-            $this->merge(['display_order' => 0]);
+        // Convert boolean string to actual boolean
+        if ($this->has('is_published')) {
+            $this->merge([
+                'is_published' => filter_var($this->is_published, FILTER_VALIDATE_BOOLEAN),
+            ]);
+        }
+
+        // Set display order to 0 if it's empty
+        if ($this->has('display_order') && $this->display_order === '') {
+            $this->merge([
+                'display_order' => 0,
+            ]);
+        }
+
+        // Auto-generate slug from name_en if slug is empty
+        if (empty($this->slug) && $this->has('name_en')) {
+            $this->merge([
+                'slug' => \Str::slug($this->name_en),
+            ]);
+        }
+
+        // For backward compatibility - map 'name' to 'name_en' if name_en is not provided
+        if ($this->has('name') && !$this->has('name_en')) {
+            $this->merge([
+                'name_en' => $this->name,
+            ]);
+        }
+
+        // For backward compatibility - map 'description' to 'description_en' if description_en is not provided
+        if ($this->has('description') && !$this->has('description_en')) {
+            $this->merge([
+                'description_en' => $this->description,
+            ]);
         }
     }
 }

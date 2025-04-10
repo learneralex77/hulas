@@ -1,17 +1,29 @@
 @csrf
 <div class="row push px-3">
     <div class="col-12 mt-4">
-        <!-- Row 1: Name and External Link -->
-        <div class="row mb-3 ">
+        <!-- Row 1: Name (English and Nepali) -->
+        <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                    name="name" value="{{ old('name', $quickLink->name ?? '') }}" required>
-                @error('name')
+                <label class="form-label" for="name_en">Name(English) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en"
+                    name="name_en" value="{{ old('name_en', $quickLink->name_en ?? '') }}" required>
+                @error('name_en')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
             <div class="col-md-6">
+                <label class="form-label" for="name_np">Name(Nepali)</label>
+                <input type="text" class="form-control @error('name_np') is-invalid @enderror" id="name_np"
+                    name="name_np" value="{{ old('name_np', $quickLink->name_np ?? '') }}">
+                @error('name_np')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        <!-- Row 2: External Link -->
+        <div class="row mb-3">
+            <div class="col-12">
                 <label class="form-label" for="external_link">External Link <span class="text-danger">*</span></label>
                 <input type="url" class="form-control @error('external_link') is-invalid @enderror"
                     id="external_link" name="external_link"
@@ -23,7 +35,7 @@
             </div>
         </div>
 
-        <!-- Row 2: Display Order and Status -->
+        <!-- Row 3: Display Order and Status -->
         <div class="row mb-3">
             <div class="col-md-6">
                 <label class="form-label" for="display_order">Display Order</label>
@@ -56,4 +68,7 @@
         </div>
     </div>
 </div>
+
+<!-- Backward compatibility for existing fields -->
+<input type="hidden" name="name" value="{{ old('name_en', $quickLink->name_en ?? '') }}">
  

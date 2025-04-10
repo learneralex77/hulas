@@ -5,14 +5,27 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
-                    <label class="form-label" for="title">Title <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                        name="title" value="{{ old('title', $gallery->title ?? '') }}">
-                    @error('title')
+                    <label class="form-label" for="title_en">Title (English) <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en"
+                        name="title_en" value="{{ old('title_en', $gallery->title_en ?? '') }}" required>
+                    @error('title_en')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="mb-4">
+                    <label class="form-label" for="title_np">Title (Nepali)</label>
+                    <input type="text" class="form-control @error('title_np') is-invalid @enderror" id="title_np"
+                        name="title_np" value="{{ old('title_np', $gallery->title_np ?? '') }}">
+                    @error('title_np')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
                     <label class="form-label" for="links">External Link</label>
@@ -32,7 +45,7 @@
                     <label class="form-label" for="featured_image">Featured Image</label>
                     @if (isset($gallery) && $gallery->featured_image)
                         <div class="mb-2">
-                            <img src="{{ asset('storage/' . $gallery->featured_image) }}" alt="{{ $gallery->title }}"
+                            <img src="{{ asset('storage/' . $gallery->featured_image) }}" alt="{{ $gallery->title_en }}"
                                 style="max-width: 200px;" class="img-thumbnail">
                         </div>
                         <div class="form-check mb-2">

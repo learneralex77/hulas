@@ -23,17 +23,24 @@ class DistrictRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255'],
+            'name_np' => ['nullable', 'string', 'max:255'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
+            // For backward compatibility
+            'name' => ['nullable', 'string', 'max:255'],
         ];
 
         // Add unique check with proper ignoring for updates
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
-            $rules['name'][] = Rule::unique('districts', 'name')
+            $rules['name_en'][] = Rule::unique('districts', 'name_en')
+                ->ignore($this->route('district'));
+            $rules['name_np'][] = Rule::unique('districts', 'name_np')
                 ->ignore($this->route('district'));
         } else {
-            $rules['name'][] = Rule::unique('districts', 'name');
+            $rules['name_en'][] = Rule::unique('districts', 'name_en');
+            $rules['name_np'][] = Rule::unique('districts', 'name_np')
+                ->whereNotNull('name_np');
         }
 
         return $rules;
@@ -47,7 +54,8 @@ class DistrictRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name' => 'district name',
+            'name_en' => 'English district name',
+            'name_np' => 'Nepali district name',
             'display_order' => 'display order',
             'is_published' => 'published status',
         ];
@@ -61,10 +69,14 @@ class DistrictRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The district name is required.',
-            'name.string' => 'The district name must be a string.',
-            'name.max' => 'The district name may not be greater than 255 characters.',
-            'name.unique' => 'A district with this name already exists.',
+            'name_en.required' => 'The English district name is required.',
+            'name_en.string' => 'The English district name must be a string.',
+            'name_en.max' => 'The English district name may not be greater than 255 characters.',
+            'name_en.unique' => 'A district with this English name already exists.',
+            
+            'name_np.string' => 'The Nepali district name must be a string.',
+            'name_np.max' => 'The Nepali district name may not be greater than 255 characters.',
+            'name_np.unique' => 'A district with this Nepali name already exists.',
             
             'display_order.integer' => 'The display order must be a number.',
             'display_order.min' => 'The display order must be at least 0.',
@@ -84,6 +96,13 @@ class DistrictRequest extends FormRequest
         // Set default display order if not provided
         if (!$this->has('display_order') || $this->display_order === null) {
             $this->merge(['display_order' => 0]);
+        }
+        
+        // For backward compatibility - map 'name' to 'name_en' if name_en is not provided
+        if ($this->has('name') && !$this->has('name_en')) {
+            $this->merge([
+                'name_en' => $this->name,
+            ]);
         }
     }
 }

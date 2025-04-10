@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('agent_forms', function (Blueprint $table) {
             $table->id();
             $table->string('name_en');
-            $table->string('name_np');
+            $table->string('name_np')->nullable();
             $table->string('number_en')->default('0');
             $table->string('number_np')->default('0');
 

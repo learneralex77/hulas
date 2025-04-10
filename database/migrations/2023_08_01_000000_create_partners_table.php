@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
             $table->string('name_en');
-            $table->string('name_np');
+            $table->string('name_np')->nullable();
             $table->string('image')->nullable();
             $table->boolean('is_published')->default(true);
             $table->integer('display_order')->default(0);

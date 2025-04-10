@@ -5,14 +5,27 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="mb-4">
-                    <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                        name="name" value="{{ old('name', $download->name ?? '') }}" required>
-                    @error('name')
+                    <label class="form-label" for="name_en">Name(English) <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en"
+                        name="name_en" value="{{ old('name_en', $download->name_en ?? '') }}" required>
+                    @error('name_en')
                         <div class="invalid-feedback small">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="mb-4">
+                    <label class="form-label" for="name_np">Name(Nepali)</label>
+                    <input type="text" class="form-control @error('name_np') is-invalid @enderror" id="name_np"
+                        name="name_np" value="{{ old('name_np', $download->name_np ?? '') }}">
+                    @error('name_np')
+                        <div class="invalid-feedback small">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-6">
                 <div class="mb-4">
                     <label class="form-label" for="display_order">Display Order</label>
@@ -24,10 +37,21 @@
                     @enderror
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="mb-4">
+                    <label class="form-label d-block">Status</label>
+                    <div class="form-check form-switch">
+                        <input type="checkbox" class="form-check-input" id="is_published" name="is_published"
+                            value="1" {{ old('is_published', $download->is_published ?? 1) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="is_published">Published</label>
+                    </div>
+                    <small class="text-muted">Toggle to set the visibility status</small>
+                </div>
+            </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="mb-4">
                     <label class="form-label" for="file">File @if (!isset($download))
                             <span class="text-danger">*</span>
@@ -52,17 +76,6 @@
                     @error('file')
                         <div class="invalid-feedback small">{{ $message }}</div>
                     @enderror
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="mb-4">
-                    <label class="form-label d-block">Status</label>
-                    <div class="form-check form-switch">
-                        <input type="checkbox" class="form-check-input" id="is_published" name="is_published"
-                            value="1" {{ old('is_published', $download->is_published ?? 1) ? 'checked' : '' }}>
-                        <label class="form-check-label" for="is_published">Published</label>
-                    </div>
-                    <small class="text-muted">Toggle to set the visibility status</small>
                 </div>
             </div>
         </div>

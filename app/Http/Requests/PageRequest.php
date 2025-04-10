@@ -25,10 +25,13 @@ class PageRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'title' => ['required', 'string', 'max:255'],
-            'content' => ['required', 'string'],
+            'title_en' => ['required', 'string', 'max:255'],
+            'title_np' => ['nullable', 'string', 'max:255'],
+            'content_en' => ['required', 'string'],
+            'content_np' => ['nullable', 'string'],
             'menu_id' => ['required', 'exists:menus,id'],
-            'short_description' => ['nullable', 'string', 'max:500'],
+            'short_description_en' => ['nullable', 'string', 'max:500'],
+            'short_description_np' => ['nullable', 'string', 'max:500'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
             'delete_image' => ['nullable', 'boolean'],
@@ -44,18 +47,18 @@ class PageRequest extends FormRequest
             $pageId = $this->route('page')->id;
             
             // If the title has changed, check for slug uniqueness
-            if ($this->has('title') && $this->title !== $this->route('page')->title) {
-                $rules['title'][] = Rule::unique('pages', 'slug')
+            if ($this->has('title_en') && $this->title_en !== $this->route('page')->title_en) {
+                $rules['title_en'][] = Rule::unique('pages', 'slug')
                     ->where(function ($query) {
-                        return $query->where('slug', Str::slug($this->title));
+                        return $query->where('slug', Str::slug($this->title_en));
                     })
                     ->ignore($pageId);
             }
         } else {
             // For new pages, check that the slug would be unique
-            $rules['title'][] = Rule::unique('pages', 'slug')
+            $rules['title_en'][] = Rule::unique('pages', 'slug')
                 ->where(function ($query) {
-                    return $query->where('slug', Str::slug($this->title));
+                    return $query->where('slug', Str::slug($this->title_en));
                 });
         }
 
@@ -70,10 +73,13 @@ class PageRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'title' => 'page title',
-            'content' => 'page content',
+            'title_en' => 'page title (English)',
+            'title_np' => 'page title (Nepali)',
+            'content_en' => 'page content (English)',
+            'content_np' => 'page content (Nepali)',
             'menu_id' => 'menu',
-            'short_description' => 'short description',
+            'short_description_en' => 'short description (English)',
+            'short_description_np' => 'short description (Nepali)',
             'image' => 'page image',
             'delete_image' => 'delete image option',
             'display_order' => 'display order',
@@ -89,19 +95,27 @@ class PageRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.required' => 'The page title is required.',
-            'title.string' => 'The page title must be a string.',
-            'title.max' => 'The page title may not be greater than 255 characters.',
-            'title.unique' => 'This page title would create a duplicate slug. Please use a different title.',
+            'title_en.required' => 'The page title (English) is required.',
+            'title_en.string' => 'The page title (English) must be a string.',
+            'title_en.max' => 'The page title (English) may not be greater than 255 characters.',
+            'title_en.unique' => 'This page title (English) would create a duplicate slug. Please use a different title.',
 
-            'content.required' => 'The page content is required.',
-            'content.string' => 'The page content must be a string.',
+            'title_np.string' => 'The page title (Nepali) must be a string.',
+            'title_np.max' => 'The page title (Nepali) may not be greater than 255 characters.',
+
+            'content_en.required' => 'The page content (English) is required.',
+            'content_en.string' => 'The page content (English) must be a string.',
+
+            'content_np.string' => 'The page content (Nepali) must be a string.',
 
             'menu_id.required' => 'Please select a menu for this page.',
             'menu_id.exists' => 'The selected menu does not exist.',
 
-            'short_description.string' => 'The short description must be a string.',
-            'short_description.max' => 'The short description may not be greater than 500 characters.',
+            'short_description_en.string' => 'The short description (English) must be a string.',
+            'short_description_en.max' => 'The short description (English) may not be greater than 500 characters.',
+
+            'short_description_np.string' => 'The short description (Nepali) must be a string.',
+            'short_description_np.max' => 'The short description (Nepali) may not be greater than 500 characters.',
 
             'image.image' => 'The file must be an image.',
             'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif, webp.',
@@ -133,30 +147,20 @@ class PageRequest extends FormRequest
             return parent::validated($key, $default);
         }
         
-        // Get validated data but filter out the file
+        // Get all validated data
         $validated = parent::validated();
         
-        // Remove image if it's a file object
-        if (isset($validated['image']) && $validated['image'] instanceof \Illuminate\Http\UploadedFile) {
-            unset($validated['image']);
-        }
+        // Keep the image in the validated data - it will be processed in the controller
         
         return $validated;
     }
 
     /**
-     * Custom validation method that safely excludes file uploads
+     * Custom validation method that safely excludes file uploads - no longer needed
+     * as we're handling file uploads properly in the controller
      */
     public function safeValidated()
     {
-        $data = $this->validated();
-        
-        // Handle the image separately if needed
-        if ($this->hasFile('image')) {
-            // We'll handle the image in the controller
-            unset($data['image']);
-        }
-        
-        return $data;
+        return $this->validated();
     }
 }

@@ -10,6 +10,9 @@ use App\Models\Gallery;
 use App\Models\Page;
 use App\Models\Publication;
 use App\Models\Service;
+use App\Models\ServiceTranslation;
+
+
 use App\Models\Partner;
 
 class FrontendController extends Controller

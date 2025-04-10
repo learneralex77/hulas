@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('slug')->unique();
             $table->foreignId('menu_id')->nullable()->constrained()->onDelete('set null');
-            $table->string('title');
+            $table->string('title_en');
+            $table->string('title_np');
             $table->integer('display_order')->default(0);
-            $table->longText('content')->nullable();
+            $table->longText('content_en')->nullable();
+            $table->longText('content_np')->nullable();
             $table->string('image')->nullable();
-            $table->text('short_description')->nullable();
+            $table->text('short_description_en')->nullable();
+            $table->text('short_description_np')->nullable();
             $table->boolean('is_published')->default(true);
             $table->timestamps();
         });

@@ -12,8 +12,10 @@ class Menu extends Model
     use HasFactory;
 
     protected $fillable = [
-        'bname',
-        'description',
+        'name_en',
+        'name_np',
+        'description_en',
+        'description_np',
         'display_order',
         'slug',
         'is_published',

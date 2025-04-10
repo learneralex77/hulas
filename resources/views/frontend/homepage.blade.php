@@ -257,7 +257,7 @@
                 @foreach($services as $service)
                     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm">
                         <a src="#">
-                            <img class="rounded-t-lg w-full" src="{{ asset('storage/' . $service->file) }}"
+                            <img class="rounded-t-lg w-full" src="{{ $service->file ? asset('storage/' . $service->file) : 'https://via.placeholder.com/400x300' }}"
                                 alt="{{ $service->name ?? 'Service Image' }}" />
                         </a>
                         <div class="p-5">
@@ -495,7 +495,6 @@
 
 
 @push('scripts')
-<<<<<<< HEAD
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {

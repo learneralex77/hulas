@@ -13,13 +13,20 @@ return new class extends Migration
     {
         Schema::create('agent_forms', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('number')->default('0');
+            $table->string('name_en');
+            $table->string('name_np');
+            $table->string('number_en')->default('0');
+            $table->string('number_np')->default('0');
+
             $table->foreignId('district_id')->constrained('districts')->onDelete('cascade');
             $table->integer('display_order')->default(0);
             $table->string('email');
-            $table->text('message')->nullable();
-            $table->text('address')->nullable();
+            $table->text('message_en')->nullable();
+            $table->text('message_np')->nullable();
+
+            $table->text('address_en')->nullable();
+            $table->text('address_np')->nullable();
+
             $table->boolean('is_processed')->default(false);
             $table->timestamps();
         });

@@ -19,7 +19,7 @@
 
 
                 <form action="{{ route('pages.update', $page->id) }}" method="POST" enctype="multipart/form-data"
-                    id="page-form">
+                    id="page-form" class="needs-validation" novalidate>
                     @csrf
                     @method('PUT')
                     @include('backend.pages.partials.form')

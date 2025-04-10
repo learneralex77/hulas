@@ -17,11 +17,15 @@ class Service extends Model
         'display_order',
         'is_published',
         'file',
+        'translation_names',
+        'translation_icons',
+        'translation_descriptions',
+        'language_code',
     ];
 
     /**
      * Get all translations for the service.
-     */
+     * @deprecated No longer used with single table approach
     public function translations()
     {
         return $this->hasMany(ServiceTranslation::class);
@@ -29,7 +33,7 @@ class Service extends Model
 
     /**
      * Get the primary translation (usually English or default).
-     */
+     * @deprecated No longer used with single table approach
     public function primaryTranslation()
     {
         return $this->hasOne(ServiceTranslation::class)
@@ -46,8 +50,7 @@ class Service extends Model
      */
     public function getNames()
     {
-        $translation = $this->primaryTranslation;
-        return json_decode($translation->name ?: '[]') ?: [];
+        return json_decode($this->translation_names ?: '[]') ?: [];
     }
 
     /**
@@ -55,8 +58,7 @@ class Service extends Model
      */
     public function getIcons()
     {
-        $translation = $this->primaryTranslation;
-        return json_decode($translation->icon ?: '[]') ?: [];
+        return json_decode($this->translation_icons ?: '[]') ?: [];
     }
 
     /**
@@ -64,8 +66,7 @@ class Service extends Model
      */
     public function getDescriptions()
     {
-        $translation = $this->primaryTranslation;
-        return json_decode($translation->description ?: '[]') ?: [];
+        return json_decode($this->translation_descriptions ?: '[]') ?: [];
     }
 
     public function scopeActive($query)

@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('downloads', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name_en');
+            $table->string('name_np');            
             $table->string('file');
             $table->integer('display_order')->default(0);
             $table->boolean('is_published')->default(true);

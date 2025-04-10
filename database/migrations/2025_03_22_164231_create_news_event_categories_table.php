@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('news_event_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name_en');
+            $table->string('name_np');            
             $table->integer('display_order')->default(0);
             $table->string('slug')->nullable();
-            $table->text('description')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('description_np')->nullable();
             $table->boolean('is_published')->default(true);
             $table->timestamps();
         });

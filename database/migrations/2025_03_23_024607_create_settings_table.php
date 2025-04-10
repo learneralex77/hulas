@@ -16,11 +16,13 @@ return new class extends Migration
             $table->string('logo', 191)->nullable();
             $table->string('primary_logo', 191)->nullable();
             $table->string('secondary_logo', 191)->nullable();
-            $table->string('title', 191);
+            $table->string('title_en', 191);
+            $table->string('title_np', 191);
             $table->string('feedback_notify_email', 191);
             $table->string('google_maplink', 191)->nullable();
             $table->string('agent_notify_email', 191);
-            $table->text('description');
+            $table->text('description_en');
+            $table->text('description_np');
             $table->string('email', 191);
             $table->string('PO_Box', 100);
             $table->string('canonical_url', 191);

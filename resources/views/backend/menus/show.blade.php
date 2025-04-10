@@ -29,7 +29,7 @@
                             <div class="block-content">
                                 <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">Name:</div>
-                                    <div class="col-md-8">{{ $menu->bname }}</div>
+                                    <div class="col-md-8">{{ $menu->name_en }}</div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">Description:</div>

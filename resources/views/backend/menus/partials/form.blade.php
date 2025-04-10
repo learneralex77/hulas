@@ -3,11 +3,22 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
-                    <label class="form-label" for="bname">Name <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('bname') is-invalid @enderror" id="bname"
-                        name="bname" value="{{ old('bname', $menu->bname ?? '') }}" required>
+                    <label class="form-label" for="name_en">Name (in English) <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en"
+                        name="name_en" value="{{ old('name_en', $menu->name_en ?? '') }}" required>
 
-                    @error('bname')
+                    @error('name_en')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="mb-4">
+                    <label class="form-label" for="name_np">Name (in Nepali)</label>
+                    <input type="text" class="form-control @error('name_np') is-invalid @enderror" id="name_np"
+                        name="name_np" value="{{ old('name_np', $menu->name_np ?? '') }}">
+
+                    @error('name_np')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -22,7 +33,7 @@
                         @foreach ($parentMenus as $parentMenu)
                             <option value="{{ $parentMenu->id }}"
                                 {{ old('parent_id', $menu->parent_id ?? '') == $parentMenu->id ? 'selected' : '' }}>
-                                {{ $parentMenu->bname }}
+                                {{ $parentMenu->name_en }}
                             </option>
                         @endforeach
                     </select>
@@ -45,17 +56,30 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-9 col-md-8 col-sm-12">
+            <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
-                    <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
-                        rows="4">{{ old('description', $menu->description ?? '') }}</textarea>
-                    @error('description')
+                    <label class="form-label" for="description_en">Description (in English)</label>
+                    <textarea class="form-control @error('description_en') is-invalid @enderror" id="description_en" name="description_en"
+                        rows="4">{{ old('description_en', $menu->description_en ?? '') }}</textarea>
+                    @error('description_en')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-12">
+            <div class="col-md-6 col-sm-12">
+                <div class="mb-4">
+                    <label class="form-label" for="description_np">Description (in Nepali)</label>
+                    <textarea class="form-control @error('description_np') is-invalid @enderror" id="description_np" name="description_np"
+                        rows="4">{{ old('description_np', $menu->description_np ?? '') }}</textarea>
+                    @error('description_np')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
                     <label class="form-label d-block">Status</label>
                     <div class="form-check form-switch">
@@ -68,14 +92,17 @@
             </div>
         </div>
 
-       
-                    <div class="mb-3">
-                        <button type="submit" class="btn btn-sm btn-success mb-0">
-                            <i class="fa fa-save"></i> {{ $button }} Menu
-                        </button>
-                        <a href="{{ route('menus.index') }}" class="btn btn-sm btn-danger ms-2 mb-0">
-                            <i class="fa fa-times"></i> Cancel
-                        </a>
-                    </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-sm btn-success mb-0">
+                        <i class="fa fa-save"></i> {{ $button }} Menu
+                    </button>
+                    <a href="{{ route('menus.index') }}" class="btn btn-sm btn-danger ms-2 mb-0">
+                        <i class="fa fa-times"></i> Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

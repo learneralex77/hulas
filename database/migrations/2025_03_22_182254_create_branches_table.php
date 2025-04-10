@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('address')->nullable();
-            $table->string('phone_number')->nullable();
+            $table->string('name_en');
+            $table->string('name_np');
+            $table->text('address_en')->nullable();
+            $table->text('address_np')->nullable();
+            $table->string('phone_number_en')->nullable();
+            $table->string('phone_number_np')->nullable();
             $table->string('email')->nullable();
             $table->text('map_iframe')->nullable();
             $table->boolean('is_published')->default(true);

@@ -25,22 +25,23 @@
 
     <div
     class="flex-wrap grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8 gap-6 md:gap-4 lg:gap-10 ">
+    @isset($galleries)
+    @foreach ($galleries as $gallery)
     <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
       <a href="#">
       <img class="rounded-t-lg w-full h-48 object-contain"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe9NZZk7nUE_anJir2Scf7tsqMHRdEpCbJg&s" alt="" />
+        src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg')  }}" alt="" />
       </a>
       <div class="p-3">
       <div class="flex items-center mb-2">
         <div class="mr-2"><i class="fa-regular fa-calendar-days fa-xl" style="color: #FFD43B;"></i> </div>
-        <span class="text-gray-600 text-sm">April 2, 2025</span>
+        <span class="text-gray-600 text-sm">{{ $gallery->created_at->format('F d, Y') }}</span>
       </div>
       <h5 class="mb-2 text-lg font-bold text-gray-900">
-        Noteworthy technology acquisitions 2021
+        {{ $gallery->title_en }}
       </h5>
       <p class="text-gray-700 line-clamp-4 leading-tight text-sm">
-        Here are the biggest enterprise technology acquisitions of 2021 so
-        far, in reverse chronological order.
+        {{ $gallery->short_description }}
       </p>
       <div class="flex justify-center">
         <button onclick="redirectToPage()"
@@ -50,131 +51,8 @@
       </div>
       </div>
     </div>
-    <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
-      <a href="#">
-      <img class="rounded-t-lg w-full h-48 object-contain"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe9NZZk7nUE_anJir2Scf7tsqMHRdEpCbJg&s" alt="" />
-      </a>
-      <div class="p-3">
-      <div class="flex items-center mb-2">
-        <div class="mr-2"><i class="fa-regular fa-calendar-days fa-xl" style="color: #FFD43B;"></i> </div>
-        <span class="text-gray-600 text-sm">April 2, 2025</span>
-      </div>
-      <h5 class="mb-2 text-lg font-bold text-gray-900">
-        Noteworthy technology acquisitions 2021
-      </h5>
-      <p class="text-gray-700 line-clamp-4 leading-tight text-sm">
-        Here are the biggest enterprise technology acquisitions of 2021 so
-        far, in reverse chronological order.
-      </p>
-      <div class="flex justify-center">
-        <button onclick="redirectToPage()"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
-        <i class="fa-regular fa-eye"></i> View
-        </button>
-      </div>
-      </div>
-    </div>
-    <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
-      <a href="#">
-      <img class="rounded-t-lg w-full h-48 object-contain"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe9NZZk7nUE_anJir2Scf7tsqMHRdEpCbJg&s" alt="" />
-      </a>
-      <div class="p-3">
-      <div class="flex items-center mb-2">
-        <div class="mr-2"><i class="fa-regular fa-calendar-days fa-xl" style="color: #FFD43B;"></i> </div>
-        <span class="text-gray-600 text-sm">April 2, 2025</span>
-      </div>
-      <h5 class="mb-2 text-lg font-bold text-gray-900">
-        Noteworthy technology acquisitions 2021
-      </h5>
-      <p class="text-gray-700 line-clamp-4 leading-tight text-sm">
-        Here are the biggest enterprise technology acquisitions of 2021 so
-        far, in reverse chronological order.
-      </p>
-      <div class="flex justify-center">
-        <button onclick="redirectToPage()"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
-        <i class="fa-regular fa-eye"></i> View
-        </button>
-      </div>
-      </div>
-    </div>
-    <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
-      <a href="#">
-      <img class="rounded-t-lg w-full h-48 object-contain"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe9NZZk7nUE_anJir2Scf7tsqMHRdEpCbJg&s" alt="" />
-      </a>
-      <div class="p-3">
-      <div class="flex items-center mb-2">
-        <div class="mr-2"><i class="fa-regular fa-calendar-days fa-xl" style="color: #FFD43B;"></i> </div>
-        <span class="text-gray-600 text-sm">April 2, 2025</span>
-      </div>
-      <h5 class="mb-2 text-lg font-bold text-gray-900">
-        Noteworthy technology acquisitions 2021
-      </h5>
-      <p class="text-gray-700 line-clamp-4 leading-tight text-sm">
-        Here are the biggest enterprise technology acquisitions of 2021 so
-        far, in reverse chronological order.
-      </p>
-      <div class="flex justify-center">
-        <button onclick="redirectToPage()"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
-        <i class="fa-regular fa-eye"></i> View
-        </button>
-      </div>
-      </div>
-    </div>
-    <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
-      <a href="#">
-      <img class="rounded-t-lg w-full h-48 object-contain"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe9NZZk7nUE_anJir2Scf7tsqMHRdEpCbJg&s" alt="" />
-      </a>
-      <div class="p-3">
-      <div class="flex items-center mb-2">
-        <div class="mr-2"><i class="fa-regular fa-calendar-days fa-xl" style="color: #FFD43B;"></i> </div>
-        <span class="text-gray-600 text-sm">April 2, 2025</span>
-      </div>
-      <h5 class="mb-2 text-lg font-bold text-gray-900">
-        Noteworthy technology acquisitions 2021
-      </h5>
-      <p class="text-gray-700 line-clamp-4 leading-tight text-sm">
-        Here are the biggest enterprise technology acquisitions of 2021 so
-        far, in reverse chronological order.
-      </p>
-      <div class="flex justify-center">
-        <button onclick="redirectToPage()"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
-        <i class="fa-regular fa-eye"></i> View
-        </button>
-      </div>
-      </div>
-    </div>
-    <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
-      <a href="#">
-      <img class="rounded-t-lg w-full h-48 object-contain"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe9NZZk7nUE_anJir2Scf7tsqMHRdEpCbJg&s" alt="" />
-      </a>
-      <div class="p-3">
-      <div class="flex items-center mb-2">
-        <div class="mr-2"><i class="fa-regular fa-calendar-days fa-xl" style="color: #FFD43B;"></i> </div>
-        <span class="text-gray-600 text-sm">April 2, 2025</span>
-      </div>
-      <h5 class="mb-2 text-lg font-bold text-gray-900">
-        Noteworthy technology acquisitions 2021
-      </h5>
-      <p class="text-gray-700 line-clamp-4 leading-tight text-sm">
-        Here are the biggest enterprise technology acquisitions of 2021 so
-        far, in reverse chronological order.
-      </p>
-      <div class="flex justify-center">
-        <button onclick="redirectToPage()"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
-        <i class="fa-regular fa-eye"></i> View
-        </button>
-      </div>
-      </div>
-    </div>
+     @endforeach
+    @endisset
 
     </div>
   </div>

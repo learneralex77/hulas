@@ -193,9 +193,25 @@ Read more
 
     <!----------Services Section---------->
     <section class="m-10 items-center">
-    <h3 class="ml-10 text-black text-4xl font-bold mb-4 flex justify-center">
+  
+    <div class="flex flex-col items-center space-y-6">
+      <h1
+        class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider"
+        style="
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+        "
+      >
       Services we provide
-    </h3>
+      </h1>
+
+      <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+Services      </p>
+      <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+        <!-- A leading business house with a dedicated business history of more than
+        85 years, Golchha Organization has established “HULAS” -->
+      </p>
+    </div>
     <div class="relative flex items-center justify-center">
       <button
         class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"

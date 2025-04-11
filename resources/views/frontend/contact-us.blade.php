@@ -79,7 +79,11 @@
                   @isset($setting->email)
                   {{ $setting->email }}
                   @endisset
+
+                  <br>
+                  
                   @isset($setting->agent_notify_email)
+                  
                   {{ $setting->agent_notify_email }}
                   @endisset
                 </p>

@@ -3,6 +3,28 @@
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')
 
+
+ <!-- banner-section -->
+ <section class="relative">
+  <div class="mb-10">
+  <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
+
+      alt="Banner Image"
+      class="h-60 w-full object-cover"
+    />
+  </div>
+  <div class="absolute w-full top-20">
+    <div class="flex flex-col space-y-8 ml-10">
+      <h3 class="text-4xl font-extrabold text-white">News and Events Details</h3>
+      <div class="flex space-x-5 items-center">
+        <a href="index.html" class="text-[#666] font-bold">Home</a>
+        <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
+        <a href="news-and-events-detail-page.html" class="text-accent font-bold"> News and Events Detail</a>
+      </div>
+  </div>
+</section>
+<!-- banner-section -->
+ 
     <!-- new start -->
     <div class="flex flex-col max-h-1/4 lg:flex-row m-7">
         <!-- 1st part -->

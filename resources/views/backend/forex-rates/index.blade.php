@@ -1,71 +1,61 @@
 @extends('backend.layouts.main')
 
 @section('title')
-    Forex-rates Management
+    Forex Rates Management
 @endsection
-
-
 
 @section('content')
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Forex-rates List</h3>
+                <h3 class="block-title">Forex Rates List</h3>
                 <div class="block-options">
-                    <a href="{{ route('forex-rates.create') }}" class="btn btn-sm btn-alt-primary border">
-                        <i class="fa fa-plus"></i> Add New Forex-rate
+                    <a href="{{ route('forex-rate.create') }}" class="btn btn-sm btn-alt-primary border">
+                        <i class="fa fa-pencil-alt"></i> Edit Forex Rates
                     </a>
                 </div>
             </div>
             <div class="block-content">
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
                                 <th class="text-left">S.N.</th>
-                                <th>Name</th>
-                                <th>File</th>
-                                <th class="text-left">Display Order</th>
+                                <th>Date</th>
+                                {{-- <th>Time Slot</th> --}}
+                                <th>Flag</th>
+                                <th>Currency</th>
+                                {{-- <th>Unit</th> --}}
+                                <th>Buying Rate</th>
+                                <th>Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($forex-rates as $forex-rate)
-                                <tr id="forex-rate-row-{{ $forex-rate->id }}">
+                            @php
+                                $combinedRates = $morningRates->concat($afternoonRates)->sortBy('time_slot');
+                            @endphp
+
+                            @foreach ($combinedRates as $rate)
+                                <tr id="forex-rate-row-{{ $rate->id }}">
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td>
-                                        @if($forex-rate->name)
-                                            {{ $forex-rate->name }}
-                                        @elseif($forex-rate->translations->isNotEmpty())
-                                            @php
-                                                $translation = $forex-rate->translations->first();
-                                                $names = json_decode($translation->name, true);
-                                            @endphp
-
-                                            @if (!empty($names) && isset($names[0]))
-                                                {{ $names[0] }}
-                                            @else
-                                                <span class="text-muted">Name not found</span>
-                                            @endif
-                                        @else
-                                            <span class="text-muted">No name defined</span>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($forex-rate->file)
-                                            <a href="{{ asset('storage/' . $forex-rate->file) }}" target="_blank"
-                                                class="btn btn-sm btn-alt-info">
-                                                <i class="fa fa-file"></i> View
-                                            </a>
-                                        @else
-                                            <span class="text-muted">No file</span>
-                                        @endif
-                                    </td>
-                                    <td class="text-center">{{ $forex-rate->display_order }}</td>
-
+                                    <td>{{ $rate->date }}</td>
+                                    {{-- <td>{{ ucfirst($rate->time_slot) }}</td> --}}
+                                    <td>{{ $rate->flag }}</td>
+                                    <td>{{ $rate->currency }}</td>
+                                    {{-- <td>{{ $rate->unit }}</td> --}}
+                                    <td>{{ $rate->buying_rate }}</td>
+                                    <td class="text-center">{{ $rate->display_order }}</td>
                                     <td class="text-center">
-                                        @if ($forex-rate->is_published)
+                                        @if ($rate->is_published)
                                             <span class="badge bg-success">Published</span>
                                         @else
                                             <span class="badge bg-warning">Draft</span>
@@ -73,14 +63,8 @@
                                     </td>
                                     <td class="text-center">
                                         <div class="gap-2">
-                                            <a href="{{ route('forex-rates.show', $forex-rate) }}" class="btn btn-sm btn-info">
-                                                <i class="fa fa-eye"></i>
-                                            </a>
-                                            <a href="{{ route('forex-rates.edit', $forex-rate) }}" class="btn btn-sm btn-success">
-                                                <i class="fa fa-pencil-alt"></i>
-                                            </a>
                                             <button type="button" class="btn btn-sm btn-danger"
-                                                onclick="deleteForex-rate({{ $forex-rate->id }})" title="Delete">
+                                                onclick="deleteForexRate({{ $rate->id }})" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </div>
@@ -90,42 +74,14 @@
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
         </div>
     </div>
 @endsection
 
 @section('scripts')
-    <script>
-        // Success message
-        @if (session('success'))
-            Swal.fire({
-                title: 'Success!',
-                text: '{{ session('success') }}',
-                icon: 'success',
-                timer: 3000,
-                showConfirmButton: false,
-                position: 'top-end',
-                toast: true
-            });
-        @endif
-
-        // Error message
-        @if (session('error'))
-            Swal.fire({
-                title: 'Error!',
-                text: '{{ session('error') }}',
-                icon: 'error',
-                timer: 3000,
-                showConfirmButton: false,
-                position: 'top-end',
-                toast: true
-            });
-        @endif
-
-        function deleteForex-rate(forex-rateId) {
+    {{-- <script>
+        function deleteForexRate(rateId) {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -136,7 +92,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    let url = "{{ route('forex-rates.destroy', ':id') }}".replace(':id', forex-rateId);
+                    let url = "{{ route('forex-rate.destroy', ':id') }}".replace(':id', rateId);
 
                     $.ajax({
                         url: url,
@@ -145,12 +101,11 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function(response) {
-                            // Remove the forex-rate row from the table
-                            $('#forex-rate-row-' + forex-rateId).remove();
+                            $('#forex-rate-row-' + rateId).remove();
 
                             Swal.fire({
                                 title: 'Deleted!',
-                                text: 'Forex-rate has been deleted.',
+                                text: 'Forex rate has been deleted.',
                                 icon: 'success',
                                 timer: 3000,
                                 showConfirmButton: false,
@@ -161,7 +116,7 @@
                         error: function(xhr, status, error) {
                             Swal.fire({
                                 title: 'Error!',
-                                text: 'There was an error deleting the forex-rate.',
+                                text: 'There was an error deleting the forex rate.',
                                 icon: 'error',
                                 timer: 3000,
                                 showConfirmButton: false,
@@ -173,5 +128,5 @@
                 }
             });
         }
-    </script>
+    </script> --}}
 @endsection

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        Schema::create('exchange_rates', function (Blueprint $table) {
+        Schema::create('forex_rates', function (Blueprint $table) {
             $table->id();
             $table->date('date')->nullable();
             $table->enum('time_slot', ['morning', 'afternoon']);

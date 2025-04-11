@@ -14,9 +14,17 @@ class ForexRateController extends Controller
      */
     public function index()
     {
-        return view('forex-rates.index', [
+        return view('backend.forex-rates.index', [
             'morningRates' => ForexRate::where('time_slot', 'morning')->get(),
             'afternoonRates' => ForexRate::where('time_slot', 'afternoon')->get(),
+        ]);
+    }
+
+    public function create()
+    {
+        return view('backend.forex-rates.create', [
+            'morningRates' => collect([]), // Empty collection for create
+            'afternoonRates' => collect([]),
         ]);
     }
 

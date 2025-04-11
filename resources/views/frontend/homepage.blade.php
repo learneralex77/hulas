@@ -416,9 +416,9 @@
             </div>
 
             <div class="flex flex-col gap-3">
-              <p class="line-clamp-2">
+              <a href="{{ route('newsAndEventsDetailPage', $news->id) }}" class="line-clamp-2 hover:text-accent transition-colors duration-200">
                 {{ $news->name_en ?? 'News Title' }}
-              </p>
+              </a>
               <div class="flex space-x-2">
                 <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
                 class="h-auto w-4" />

@@ -104,11 +104,17 @@ class FrontendController extends Controller
     }
     public function newsAndEvents()
     {
-        return view('frontend.news-and-events');
+        $newsAndEvents=NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
+        return view('frontend.news-and-events', compact('newsAndEvents'));
     }
-    public function newsAndEventsDetailPage()
+    public function newsAndEventsDetailPage($id = null)
     {
-        return view('frontend.news-and-events-detail-page');
+        if ($id) {
+            $newsEvent = NewsEventCategory::findOrFail($id);
+            $otherNewsEvents = NewsEventCategory::active()->where('id', '!=', $id)->take(10)->get();
+            return view('frontend.news-and-events-detail-page', compact('newsEvent', 'otherNewsEvents'));
+        }
+        return redirect()->route('newsAndEvents');
     }
     public function organizationalStructure()
     {

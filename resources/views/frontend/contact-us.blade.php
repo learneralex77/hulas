@@ -154,33 +154,14 @@
             Fill up the form and our team will get back to you within 24 hours.
           </p>
           
-          @if (session('success'))
-          <div class="w-full p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">
-            {{ session('success') }}
-          </div>
-          @endif
+          <!-- Old alerts removed -->
           
-          @if (session('error'))
-          <div class="w-full p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
-            {{ session('error') }}
-          </div>
-          @endif
-          
-          @if ($errors->any())
-          <div class="w-full p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
-            <ul class="list-disc pl-5">
-              @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-              @endforeach
-            </ul>
-          </div>
-          @endif
         </div>
       </div>
       <div class="lg:flex lg:justify-center lg:mt-32 w-full">
         <img src="{{ asset('assets/images/contact/contact-form-bg.png') }}" class="h-full" alt="" />
         <div class="lg:w-[70%] bg-white shadow-xl rounded-md p-6">
-          <form class="sm:mx-20" action="{{ route('contact-us.store') }}" method="POST">
+          <form class="sm:mx-20" action="{{ url('/contact-us') }}" method="POST" id="contact-us-form">
             @csrf
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div class="flex flex-col space-y-5">
@@ -196,6 +177,9 @@
                   value="{{ old('full_name') }}"
                   required
                 />
+                @error('full_name')
+                  <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
               </div>
               <div class="flex flex-col space-y-5">
                 <label for="email" class="font-bold text-xl text-[#3d5169]"
@@ -210,6 +194,9 @@
                   value="{{ old('email') }}"
                   required
                 />
+                @error('email')
+                  <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
               </div>
               <div class="flex flex-col space-y-5">
                 <label for="phone_number" class="font-bold text-xl text-[#3d5169]"
@@ -224,6 +211,9 @@
                   value="{{ old('phone_number') }}"
                   required
                 />
+                @error('phone_number')
+                  <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
               </div>
               <div class="flex flex-col space-y-5">
                 <label for="service_interested_in" class="font-bold text-xl text-[#3d5169]"
@@ -237,6 +227,9 @@
                   class="w-full rounded-md bg-[#f5faff] @error('service_interested_in') border-red-500 @enderror"
                   value="{{ old('service_interested_in') }}"
                 />
+                @error('service_interested_in')
+                  <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
               </div>
             </div>
             <div class="mt-5 flex flex-col space-y-4">
@@ -251,6 +244,9 @@
                 class="bg-[#f5faff] rounded-md @error('message') border-red-500 @enderror"
                 placeholder="Please enter your message..."
               >{{ old('message') }}</textarea>
+              @error('message')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+              @enderror
             </div>
             <div class="w-full flex justify-center">
               <button
@@ -271,4 +267,84 @@
 @push('scripts')
     <script type="module" src="/src/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    
+    <script>
+        // Execute as soon as the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submission handler
+            const form = document.getElementById('contact-us-form');
+            
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(form);
+                    
+                    // Submit form via fetch API
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Show success message
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: "Thank you for contacting us. We will get back to you soon!",
+                            showConfirmButton: true,
+                            confirmButtonText: 'OK',
+                            confirmButtonColor: '#10B981',
+                            timer: 5000,
+                            timerProgressBar: true
+                        });
+                        
+                        // Reset form
+                        form.reset();
+                    })
+                    .catch(error => {
+                        // Show error message
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: "There was a problem submitting your inquiry. Please try again later.",
+                            showConfirmButton: true,
+                            confirmButtonText: 'Try Again',
+                            confirmButtonColor: '#EF4444'
+                        });
+                    });
+                });
+            }
+            
+            // Check for success message in session
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: "{{ session('success') }}",
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#10B981',
+                    timer: 5000,
+                    timerProgressBar: true
+                });
+            @endif
+            
+            // Check for error message in session
+            @if(session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "{{ session('error') }}",
+                    showConfirmButton: true,
+                    confirmButtonText: 'Try Again',
+                    confirmButtonColor: '#EF4444'
+                });
+            @endif
+        });
+    </script>
 @endpush

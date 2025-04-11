@@ -1,7 +1,7 @@
 @extends('backend.layouts.main')
 
 @section('title')
-    Create New Become an Agent
+    Create New Agent Request
 @endsection
 
 
@@ -10,7 +10,7 @@
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Create New Become an Agent</h3>
+                <h3 class="block-title">Create New Agent Request</h3>
                 <div class="block-options">
                     <a href="{{ route('become-an-agent.index') }}" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-arrow-left"></i> Back

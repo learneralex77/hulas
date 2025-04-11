@@ -28,7 +28,7 @@ class FrontendController extends Controller
         $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
         $popupPaths = $popup->pluck('photo')->map(fn($path) => asset('storage' . $path));
         $howToBecameAnAgent = Page::where('slug', 'how-become-an-agent')->first();
-        $sliders = Slider::active()->orderBy('display_order', 'ASC')->get();
+        $sliders = Slider::active()->orderBy('display_order', 'ASC')->take(3)->get();
         $services = Service::active()->orderBy('display_order', 'ASC')->get();
         $notices = Publication::active()->where('publication_type', 'notice')->orderBy('display_order', 'ASC')->get();
         $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();

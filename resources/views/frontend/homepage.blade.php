@@ -19,21 +19,25 @@
     <!-- Carousel wrapper -->
     <div class="relative h-80 overflow-hidden rounded-lg md:h-[600px] ">
       <!-- Item 1 -->
+      @isset($sliders)
+      @foreach ($sliders as $slider)
       <div class="hidden duration-700 ease-in-out" F data-carousel-item>
-      <img src="{{ asset('assets/images/slider/slider-three.jpg') }}"
+      <img src="{{ asset('storage/' . $slider->image) }}"
 
           class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
           alt="..."
         />
       </div>
+      @endforeach
+      @endisset
       <!-- Item 2 -->
-      <div class="hidden duration-700 ease-in-out" data-carousel-item>
+      <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
       <img src="{{ asset(path: 'assets/images/slider/slider-two.jpg') }}"
 
           class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
           alt="..."
         />
-      </div>
+      </div> -->
       <!-- Item 3 -->
       <div class="hidden duration-700 ease-in-out" data-carousel-item>
       <img src="{{ asset('assets/images/slider/slider-three.jpg') }}"

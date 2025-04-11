@@ -8,18 +8,20 @@
         <div class="m-10 flex flex-col gap-6 md:flex-row  md:justify-center md:items-center">
             <!-- image -->
             <div class="flex-1 flex justify-center w-full">
-                <img src="/images/about-us/about-img-1.webp" class="rounded-2xl object-cover w-full" alt="About Us Image" />
+                <img src="@isset($aboutUs->image) {{ asset('storage/' . $aboutUs->image) }} @endisset" class="rounded-2xl object-cover w-full" alt="About Us Image" />
             </div>
 
             <!-- Text Container -->
             <div class="flex flex-2 flex-col space-y-3">
                 <h2 class="text-xl lg:text-2xl font-bold text-black ">
+                    
                     @isset($aboutUs)
                     {{ $aboutUs->title }}
+                    @endisset
                 </h2>
                 <div class="text-lg text-primary">
 
-                    <p> {{ $aboutUs->description }}</p>
+                    <p>@isset($aboutUs->description) {{ $aboutUs->description }} @endisset</p>
                     <!-- <p>Hulas Remittance, being one of the principal agents, playing a leading role in offering money
                         transfer services of The Western Union Company in Nepal since January 2006. We have been serving
                         customers from more than 3,200 (comprising of major commercial banks, Development Banks, Finance
@@ -31,7 +33,9 @@
                     <div class="w-60 bg-black rounded-xl flex justify-center items-center flex-col space-y-4 p-3">
                         <p class="text-accent font-bold text-2xl">49+</p>
                         <p class="text-accent text-center text-lg">
+                            @isset($aboutUs->years_of_experience)
                             {{ $aboutUs->years_of_experience }}
+                            @endisset
                         </p>
                     </div>
                 </div>
@@ -54,7 +58,9 @@
                                 class="w-60 md:w-40 lg:w-60 bg-black rounded-xl flex justify-start lg:justify-center items-center flex-col space-y-2 lg:space-y-4 p-3">
                                 <p class="text-accent font-bold text-2xl">49+</p>
                                 <p class="text-accent text-center text-lg">
+                                    @isset($aboutUs->years_of_experience)
                                     {{ $aboutUs->years_of_experience }}
+                                    @endisset
                                 </p>
                             </div>
                         </div>
@@ -102,7 +108,6 @@
                                 </div>
 
                             </div>
-                    @endisset
 
                 </div>
             </div>
@@ -282,8 +287,8 @@
     <section>
         <div class="flex justify-center w-full">
             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.6111886008625!2d85.31059677522961!3d27.698409576187725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18534e533eaf%3A0x4fec1318777796b7!2sHulas%20Remittance%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1698921349849!5m2!1sen!2snp"
-                class="w-full lg:h-[500px]" style="border: 0" allowfullscreen="" loading="lazy"
+             src="@isset($setting->google_maplink) {{ $setting->google_maplink }} @endisset"
+            class="w-full lg:h-[500px]" style="border: 0" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>

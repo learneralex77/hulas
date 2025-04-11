@@ -39,9 +39,10 @@ class FrontendController extends Controller
 
     public function aboutHulasRemittance()
     {
+        $setting = Setting::first();
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
         $services=Service::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.about-hulas-page', compact('aboutUs','services'));
+        return view('frontend.about-hulas-page', compact('aboutUs','services','setting'));
     }
 
     public function aboutWesternUnion()

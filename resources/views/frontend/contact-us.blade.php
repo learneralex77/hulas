@@ -46,7 +46,7 @@
               </div>
 
               <div class="flex flex-col items-center sm:items-start space-y-3">
-                <p class="text-2xl font-bold">Our Location</p>
+                <p class="text-2xl font-semibold">Our Location</p>
                 <p class="text-[#666]">
                   @isset($setting->address_en)  
                   {{ $setting->address_en }}
@@ -255,7 +255,7 @@
             <div class="w-full flex justify-center">
               <button
                 type="submit"
-                class="w-44 text-center bg-black text-white hover:text-accent py-3 px-5 rounded-xl cursor-pointer tracking-wide m-3"
+                class="w-44 text-center bg-black text-white hover:text-accent py-3 px-5 rounded-full cursor-pointer tracking-wide my-6"
               >
                 Send Message
               </button>

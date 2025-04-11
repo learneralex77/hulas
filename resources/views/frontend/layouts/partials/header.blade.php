@@ -86,7 +86,7 @@
           <li class="mb-1">
             <a
               class="block p-4 text-sm font-semibold text-black hover:text-accent"
-              href="index.html"
+              href="homepage"
               >Home</a
             >
           </li>
@@ -100,8 +100,8 @@
           <li class="mb-1">
             <a
               class="block p-4 text-sm font-semibold text-black hover:text-accent"
-              href="become-an-agent.html"
-              >Become an agent</
+              href="become-an-agent"
+              >Become an agent</a
             >
           </li>
           <li class="mb-1">

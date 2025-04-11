@@ -17,7 +17,7 @@
       <h3 class="text-4xl font-extrabold text-white">Contact us</h3>
       <div class="flex space-x-5 items-center">
         <a href="index.html" class="text-[#666] font-bold">Home</a>
-        <p class="text-white text-lg fony-bold hover:cursor-pointer">></p>
+        <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
         <a href="contact-us.html" class="text-accent font-bold"> Contact us</a>
       </div>
   </div>

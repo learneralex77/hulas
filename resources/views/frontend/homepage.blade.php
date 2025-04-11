@@ -690,9 +690,8 @@ Services      </p>
               Send Money to Nepal Instantly with Great Rates
             </p>
             <div class="flex space-x-2">
-              <img
-                src="public/images/news-and-events/calender-svgrepo-com.png"
-                alt="date"
+            <img
+              src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"                alt="date"
                 class="h-auto w-4"
               />
               <p class="text-xs text-gray-500">29th March 2020</p>

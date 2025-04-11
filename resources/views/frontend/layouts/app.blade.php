@@ -6,9 +6,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="AWT" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {{-- <meta name="description" content="{{ $settings->meta_description }}" />
     <meta name="keywords" content="{{ $settings->keywords }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- {!! $settings->schema_markup !!} -->
 
     <link rel="canonical" href="{{ $settings->canonical_url }}"> --}}

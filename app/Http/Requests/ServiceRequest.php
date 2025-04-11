@@ -26,55 +26,35 @@ class ServiceRequest extends FormRequest
         $rules = [
             // Direct service fields
             'name_en' => ['required', 'string', 'max:255'],
-            'name_np' => ['required', 'string', 'max:255'],
-
+            'name_np' => ['nullable', 'string', 'max:255'],
             'icon' => ['nullable', 'string', 'max:255'],
             'description_en' => ['nullable', 'string'],
             'description_np' => ['nullable', 'string'],
-
+            'display_order' => ['required', 'integer', 'min:0'],
+            'is_published' => ['boolean'],
+            'file' => ['nullable', 'file', 'mimes:jpeg,png,jpg,gif,svg,pdf,webp', 'max:2048'],
             
-            // Original array fields for service details
+            // Translation arrays
             'names' => ['required', 'array', 'min:1'],
-            'names.0' => ['required', 'string', 'max:255', 'filled'],
             'names.*' => ['required', 'string', 'max:255'],
             'icons.*' => ['nullable', 'string', 'max:255'],
             'descriptions.*' => ['nullable', 'string'],
-            'display_order' => ['required', 'integer', 'min:0'],
-            'is_published' => ['boolean'],
-            'file' => ['nullable', 'file', 'mimes:jpeg,png,jpg,gif,svg,pdf', 'max:2048'],
         ];
 
         // Check that the slug generated from the first name would be unique
-        if ($this->has('name') && !empty(trim($this->input('name')))) {
-            $slug = Str::slug($this->input('name'));
+        if ($this->has('name_en') && !empty(trim($this->input('name_en')))) {
+            $slug = Str::slug($this->input('name_en'));
             
             if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
                 $serviceId = $this->route('service')->id;
                 
-                $rules['name'][] = Rule::unique('services', 'slug')
+                $rules['name_en'][] = Rule::unique('services', 'slug')
                     ->where(function ($query) use ($slug) {
                         return $query->where('slug', $slug);
                     })
                     ->ignore($serviceId);
             } else {
-                $rules['name'][] = Rule::unique('services', 'slug')
-                    ->where(function ($query) use ($slug) {
-                        return $query->where('slug', $slug);
-                    });
-            }
-        } else if ($this->has('names.0') && !empty(trim($this->input('names.0')))) {
-            $slug = Str::slug($this->input('names.0'));
-            
-            if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
-                $serviceId = $this->route('service')->id;
-                
-                $rules['names.0'][] = Rule::unique('services', 'slug')
-                    ->where(function ($query) use ($slug) {
-                        return $query->where('slug', $slug);
-                    })
-                    ->ignore($serviceId);
-            } else {
-                $rules['names.0'][] = Rule::unique('services', 'slug')
+                $rules['name_en'][] = Rule::unique('services', 'slug')
                     ->where(function ($query) use ($slug) {
                         return $query->where('slug', $slug);
                     });
@@ -92,9 +72,11 @@ class ServiceRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name' => 'service name',
+            'name_en' => 'English name',
+            'name_np' => 'Nepali name',
             'icon' => 'service icon',
-            'description' => 'service description',
+            'description_en' => 'English description',
+            'description_np' => 'Nepali description',
             'names.*' => 'service detail name',
             'icons.*' => 'service detail icon',
             'descriptions.*' => 'service detail description',
@@ -112,24 +94,25 @@ class ServiceRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The service name is required.',
-            'name.string' => 'The service name must be a string.',
-            'name.max' => 'The service name may not be greater than 255 characters.',
-            'name.unique' => 'A service with this name already exists.',
+            'name_en.required' => 'The English name is required.',
+            'name_en.string' => 'The English name must be a string.',
+            'name_en.max' => 'The English name may not be greater than 255 characters.',
+            'name_en.unique' => 'A service with this name already exists.',
+            
+            'name_np.string' => 'The Nepali name must be a string.',
+            'name_np.max' => 'The Nepali name may not be greater than 255 characters.',
             
             'icon.string' => 'The icon must be a string.',
             'icon.max' => 'The icon may not be greater than 255 characters.',
             
-            'description.string' => 'The description must be a string.',
+            'description_en.string' => 'The English description must be a string.',
+            'description_np.string' => 'The Nepali description must be a string.',
             
-            'names.required' => 'At least one service name is required.',
-            'names.min' => 'At least one service name is required.',
-            'names.0.required' => 'The first service name is required.',
-            'names.0.filled' => 'The first service name cannot be empty.',
-            'names.*.required' => 'The service name is required.',
-            'names.*.string' => 'The service name must be a string.',
-            'names.*.max' => 'The service name may not be greater than 255 characters.',
-            'names.0.unique' => 'A service with this name already exists.',
+            'names.required' => 'At least one service detail name is required.',
+            'names.min' => 'At least one service detail name is required.',
+            'names.*.required' => 'The service detail name is required.',
+            'names.*.string' => 'The service detail name must be a string.',
+            'names.*.max' => 'The service detail name may not be greater than 255 characters.',
             
             'icons.*.string' => 'The icon must be a string.',
             'icons.*.max' => 'The icon may not be greater than 255 characters.',
@@ -141,7 +124,7 @@ class ServiceRequest extends FormRequest
             'display_order.min' => 'The display order must be at least 0.',
             
             'file.file' => 'The uploaded file is invalid.',
-            'file.mimes' => 'The file must be one of the following types: JPEG, PNG, JPG, GIF, SVG, PDF.',
+            'file.mimes' => 'The file must be one of the following types: JPEG, PNG, JPG, GIF, SVG, PDF, WebP.',
             'file.max' => 'The file may not be greater than 2MB.',
         ];
     }
@@ -155,6 +138,8 @@ class ServiceRequest extends FormRequest
         $this->merge([
             'is_published' => $this->input('is_published') == 1,
         ]);
+
+        // Note: Don't store the file here, as it should be stored after validation
     }
 
     /**

@@ -26,16 +26,16 @@ class Service extends Model
         'language_code',
     ];
 
- 
-
- 
+    protected $casts = [
+        'is_published' => 'boolean',
+    ];
 
     /**
      * Get all the names for this service.
      */
     public function getNames()
     {
-        return json_decode($this->translation_names ?: '[]') ?: [];
+        return json_decode($this->translation_names, true) ?? [];
     }
 
     /**
@@ -43,7 +43,7 @@ class Service extends Model
      */
     public function getIcons()
     {
-        return json_decode($this->translation_icons ?: '[]') ?: [];
+        return json_decode($this->translation_icons, true) ?? [];
     }
 
     /**
@@ -51,7 +51,31 @@ class Service extends Model
      */
     public function getDescriptions()
     {
-        return json_decode($this->translation_descriptions ?: '[]') ?: [];
+        return json_decode($this->translation_descriptions, true) ?? [];
+    }
+
+    /**
+     * Get the translation_names attribute with JSON decoding
+     */
+    public function getTranslationNamesAttribute($value)
+    {
+        return json_decode($value, true) ?? [];
+    }
+
+    /**
+     * Get the translation_icons attribute with JSON decoding
+     */
+    public function getTranslationIconsAttribute($value)
+    {
+        return json_decode($value, true) ?? [];
+    }
+
+    /**
+     * Get the translation_descriptions attribute with JSON decoding
+     */
+    public function getTranslationDescriptionsAttribute($value)
+    {
+        return json_decode($value, true) ?? [];
     }
 
     public function scopeActive($query)

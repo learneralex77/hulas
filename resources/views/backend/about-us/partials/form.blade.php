@@ -24,9 +24,10 @@
         <!-- Years of Experience -->
         <div class="col-md-6 mb-3">
             <label class="form-label" for="years_of_experience_en">Years of Experience (English)</label>
-            <input type="number" class="form-control @error('years_of_experience_en') is-invalid @enderror"
+            <input type="text" class="form-control @error('years_of_experience_en') is-invalid @enderror"
                 id="years_of_experience_en" name="years_of_experience_en"
-                value="{{ old('years_of_experience_en', $aboutUs->years_of_experience_en ?? $aboutUs->years_of_experience ?? '') }}" min="0">
+                value="{{ old('years_of_experience_en', $aboutUs->years_of_experience_en ?? $aboutUs->years_of_experience ?? '') }}">
+            <div class="form-text">Example: 100+, 25, etc.</div>
             @error('years_of_experience_en')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -34,9 +35,10 @@
 
         <div class="col-md-6 mb-3">
             <label class="form-label" for="years_of_experience_np">Years of Experience (Nepali)</label>
-            <input type="number" class="form-control @error('years_of_experience_np') is-invalid @enderror"
+            <input type="text" class="form-control @error('years_of_experience_np') is-invalid @enderror"
                 id="years_of_experience_np" name="years_of_experience_np"
-                value="{{ old('years_of_experience_np', $aboutUs->years_of_experience_np ?? '') }}" min="0">
+                value="{{ old('years_of_experience_np', $aboutUs->years_of_experience_np ?? '') }}">
+            <div class="form-text">Example: १००+, २५, etc.</div>
             @error('years_of_experience_np')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror

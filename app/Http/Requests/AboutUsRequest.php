@@ -26,12 +26,12 @@ class AboutUsRequest extends FormRequest
             'tagline_np' => ['nullable', 'string', 'max:255'],
             'description_en' => ['required', 'string'],
             'description_np' => ['nullable', 'string'],
-            'years_of_experience_en' => ['nullable', 'integer', 'min:0'],
-            'years_of_experience_np' => ['nullable', 'integer', 'min:0'],
+            'years_of_experience_en' => ['nullable', 'string', 'max:255'],
+            'years_of_experience_np' => ['nullable', 'string', 'max:255'],
             'short_description_en' => ['nullable', 'string'],
             'short_description_np' => ['nullable', 'string'],
             'video_link' => ['nullable', 'string', 'max:255'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'delete_image' => ['nullable', 'boolean'],
             'mission_vision_titles.*' => ['required', 'string', 'max:255'],
             'mission_vision_icons.*' => ['required', 'string', 'max:255'],
@@ -94,11 +94,11 @@ class AboutUsRequest extends FormRequest
             
             'description_np.string' => 'The Nepali description must be a string.',
             
-            'years_of_experience_en.integer' => 'The English years of experience must be a number.',
-            'years_of_experience_en.min' => 'The English years of experience must be at least 0.',
+            'years_of_experience_en.string' => 'The English years of experience must be a string.',
+            'years_of_experience_en.max' => 'The English years of experience may not be greater than 255 characters.',
             
-            'years_of_experience_np.integer' => 'The Nepali years of experience must be a number.',
-            'years_of_experience_np.min' => 'The Nepali years of experience must be at least 0.',
+            'years_of_experience_np.string' => 'The Nepali years of experience must be a string.',
+            'years_of_experience_np.max' => 'The Nepali years of experience may not be greater than 255 characters.',
             
             'short_description_en.string' => 'The English short description must be a string.',
             
@@ -108,7 +108,7 @@ class AboutUsRequest extends FormRequest
             'video_link.max' => 'The video link may not be greater than 255 characters.',
             
             'image.image' => 'The file must be an image.',
-            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif.',
+            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif, webp.',
             'image.max' => 'The image may not be greater than 2MB.',
             
             'mission_vision_titles.*.required' => 'Each mission/vision title is required.',

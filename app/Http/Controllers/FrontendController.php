@@ -54,7 +54,8 @@ class FrontendController extends Controller
     }
     public function contactUs()
     {
-        return view('frontend.contact-us');
+        $contactUs = Page::where('slug', 'contact-us')->first();
+        return view('frontend.contact-us', compact('contactUs'));
     }
     public function findAnAgent()
     {

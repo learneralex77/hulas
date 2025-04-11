@@ -49,12 +49,13 @@
 
                                     </td>
                                     <td>
-                                        {{ $page->title }}
+                                        {{ $page->title_en }}<br>
+                                        {{ $page->title_np }}
                                     </td>
                                     <td class="d-none d-md-table-cell">{{ $page->slug }}</td>
                                     <td class="d-none d-md-table-cell">
                                         @if ($page->menu)
-                                            <a href="{{ route('menus.show', $page->menu) }}">{{ $page->menu->bname }}</a>
+                                            <a href="{{ route('menus.show', $page->menu) }}">{{ $page->menu->name_en }}</a>
                                         @else
                                             <span class="text-muted">No Menu</span>
                                         @endif

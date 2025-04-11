@@ -17,6 +17,7 @@ Route::get('about-western-union', [FrontendController::class, 'aboutWesternUnion
 
 Route::get('become-an-agent', [FrontendController::class, 'becomeAnAgent'])->name('becomeAnAgent');
 Route::get('contact-us', [FrontendController::class, 'contactUs'])->name('contactUs');
+Route::post('contact-us', [FrontendController::class, 'storeContactInquiry'])->name('contact-us.store');
 Route::get('find-an-agent', [FrontendController::class, 'findAnAgent'])->name('findAnAgent');
 Route::get('gallery', [FrontendController::class, 'gallery'])->name('gallery');
 Route::get('grievances', [FrontendController::class, 'grievances'])->name('grievances');

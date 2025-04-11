@@ -11,6 +11,9 @@ use App\Models\Page;
 use App\Models\Publication;
 use App\Models\Service;
 use App\Models\ServiceTranslation;
+use App\Models\Setting;
+use App\Models\ContactUs;
+use App\Http\Requests\ContactUsRequest;
 
 
 use App\Models\Partner;
@@ -54,7 +57,8 @@ class FrontendController extends Controller
     }
     public function contactUs()
     {
-        return view('frontend.contact-us');
+        $setting = Setting::first();
+        return view('frontend.contact-us', compact('setting'));
     }
     public function findAnAgent()
     {
@@ -105,5 +109,35 @@ class FrontendController extends Controller
     public function termsAndConditions()
     {
         return view('frontend.terms-and-conditions');
+    }
+
+    /**
+     * Store a contact inquiry from the frontend form.
+     */
+    public function storeContactInquiry(ContactUsRequest $request)
+    {
+        try {
+            // Validate and get data
+            $data = $request->validated();
+            
+            // Set default values for backend fields
+            $data['is_contacted'] = false;
+            $data['display_order'] = 0;
+            
+            // Create contact inquiry
+            ContactUs::create($data);
+            
+            // Redirect to the contact page with success message
+            return redirect('/contact-us')
+                ->with('success', 'Thank you for contacting us. We will get back to you soon!');
+                
+        } catch (\Exception $e) {
+            // Log error and return with error message
+            \Log::error('Contact form submission error: ' . $e->getMessage());
+            
+            return redirect('/contact-us')
+                ->with('error', 'There was a problem submitting your inquiry. Please try again later.')
+                ->withInput();
+        }
     }
 }

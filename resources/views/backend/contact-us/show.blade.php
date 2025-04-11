@@ -45,6 +45,10 @@
                                     <div class="col-md-4 fw-semibold text-muted">Phone Number:</div>
                                     <div class="col-md-8">{{ $contactUs->phone_number }}</div>
                                 </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Service Interested In:</div>
+                                    <div class="col-md-8">{{ $contactUs->service_interested_in ?? 'N/A' }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -79,12 +83,12 @@
 
                 <div class="block block-rounded mt-4">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Contact Remarks</h3>
+                        <h3 class="block-title">Message</h3>
                     </div>
                     <div class="block-content">
                         <div class="row">
                             <div class="col-12">
-                                {{ $contactUs->contact_remarks ?? 'No remarks provided.' }}
+                                {{ $contactUs->message ?? 'No message provided.' }}
                             </div>
                         </div>
                     </div>

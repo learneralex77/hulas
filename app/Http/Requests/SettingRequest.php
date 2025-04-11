@@ -30,9 +30,13 @@ class SettingRequest extends FormRequest
             'description_np' => ['nullable', 'string'],
             'email' => ['required', 'email', 'max:190'],
             'PO_Box' => ['required', 'string', 'max:100'],
+            'address_en' => ['nullable', 'string'],
+            'address_np' => ['nullable', 'string'],
+            'phone_number_en' => ['nullable', 'string'],
+            'phone_number_np' => ['nullable', 'string'],
             'canonical_url' => ['required', 'string', 'max:190'],
             'keyword' => ['required', 'string'],
-            'google_maplink' => ['nullable', 'string', 'max:190'],
+            'google_maplink' => ['nullable', 'string'],
             'schema_markup' => ['nullable', 'string'],
             'facebook' => ['nullable', 'string', 'max:190'],
             'twitter' => ['nullable', 'string', 'max:190'],
@@ -47,6 +51,8 @@ class SettingRequest extends FormRequest
             // For backward compatibility
             'title' => ['nullable', 'string', 'max:190'],
             'description' => ['nullable', 'string'],
+            'address' => ['nullable', 'string'],
+            'phone_number' => ['nullable', 'string'],
         ];
     }
 
@@ -66,6 +72,10 @@ class SettingRequest extends FormRequest
             'description_np' => 'description (Nepali)',
             'email' => 'email',
             'PO_Box' => 'P.O. Box',
+            'address_en' => 'address (English)',
+            'address_np' => 'address (Nepali)',
+            'phone_number_en' => 'phone number (English)',
+            'phone_number_np' => 'phone number (Nepali)',
             'canonical_url' => 'canonical URL',
             'keyword' => 'keywords',
             'google_maplink' => 'Google Map link',
@@ -126,7 +136,6 @@ class SettingRequest extends FormRequest
             'keyword.string' => 'The keywords must be a string.',
             
             'google_maplink.string' => 'The Google Map link must be a string.',
-            'google_maplink.max' => 'The Google Map link may not be greater than 190 characters.',
             
             'schema_markup.string' => 'The schema markup must be a string.',
             
@@ -170,6 +179,18 @@ class SettingRequest extends FormRequest
         if ($this->has('description') && !$this->has('description_en')) {
             $this->merge([
                 'description_en' => $this->description,
+            ]);
+        }
+        
+        if ($this->has('address') && !$this->has('address_en')) {
+            $this->merge([
+                'address_en' => $this->address,
+            ]);
+        }
+        
+        if ($this->has('phone_number') && !$this->has('phone_number_en')) {
+            $this->merge([
+                'phone_number_en' => $this->phone_number,
             ]);
         }
     }

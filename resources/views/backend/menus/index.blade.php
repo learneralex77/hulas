@@ -24,7 +24,6 @@
                             <tr>
                                 <th class="text-center" style="width: 5%;">S.N.</th>
                                 <th>Name</th>
-                                <!-- <th class="d-none d-md-table-cell" style="width: 15%;">Description</th> -->
                                 <th class="d-none d-sm-table-cell">Slug</th>
                                 <th class="text-center" style="width: 7%;">Order</th>
                                 <th class="d-none d-lg-table-cell" style="width: 15%;">Parent</th>
@@ -36,10 +35,14 @@
                             @foreach ($menus as $menu)
                                 <tr id="menu-row-{{ $menu->id }}">
                                     <td class="text-center">{{ $loop->iteration }} </td>
-                                    <td>{{ $menu->name_en }}<br>
-                                        {{ $menu->name_np }}
+                                    <td style="min-height: 60px;">
+                                        @if($menu->name_np)
+                                            <div>{{ $menu->name_en }}</div>
+                                            <div>{{ $menu->name_np }}</div>
+                                        @else
+                                            <div class="d-flex align-items-center justify-content-start" style="min-height: 42px;">{{ $menu->name_en }}</div>
+                                        @endif
                                     </td>
-                                    <!-- <td class="d-none d-md-table-cell">{{ Str::limit($menu->description, 50) }}</td> -->
                                     <td class="d-none d-sm-table-cell">{{ $menu->slug }}</td>
                                     <td class="text-center">{{ $menu->display_order }}</td>
                                     <td class="d-none d-lg-table-cell">{{ $menu->parent ? $menu->parent->bname : '-' }}</td>

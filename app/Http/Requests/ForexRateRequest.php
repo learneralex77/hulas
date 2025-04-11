@@ -7,117 +7,80 @@ use Illuminate\Validation\Rule;
 
 class ForexRateRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
-    public function rules(): array
-    {
-        $currencyRule = Rule::unique('forex_rates', 'currency');
-        $flagRule = Rule::unique('forex_rates', 'flag');
-
-        if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
-            $currencyRule->ignore($this->route('forex_rates'));
-            $flagRule->ignore($this->route('forex_rates'));
-        }
-
-
-        $rules = [
-            'time_slot.*' => 'required|string|max:255',
-            'flag.*' => ['required', 'string', 'max:255', $flagRule],
-            'currency.*' => ['required', 'string', 'max:255', $currencyRule],
-            'unit.*' => 'required|integer',
-            'buying_rate.*' => 'required|numeric',
-            'display_order.*' => 'nullable|integer',
-            'is_published.*' => 'nullable|boolean',
-        ];
-
-
-        if ($this->input('time_slot') === 'morning') {
-            $rules['buying_rate.*'] = 'required|numeric|min:10';
-            $rules['flag.*'] = ['required', 'string', 'max:255', $flagRule];
-            $rules['currency.*'] = ['required', 'string', 'max:255', $currencyRule];
-            $rules['unit.*'] = 'required|integer';
-            
-        } elseif ($this->input('time_slot') === 'afternoon') {
-            $rules['buying_rate.*'] = 'required|numeric|min:15';
-            $rules['flag.*'] = ['required', 'string', 'max:255', $flagRule];
-            $rules['currency.*'] = ['required', 'string', 'max:255', $currencyRule];
-            $rules['unit.*'] = 'required|integer';
-        }
-
-        return $rules;
-    }
-
-    /**
-     * Get custom attributes for validator errors.
-     *
-     * @return array<string, string>
-     */
-    public function attributes(): array
+    public function rules()
     {
         return [
-            'time_slot' => 'Time Slot',
-            'flag' => 'Flag',
-            'currency' => 'Currency',
-            'unit' => 'Unit',
-            'buying_rate' => 'Buying Rate',
-            'display_order' => 'Display Order',
-            'is_published' => 'Is Published',
+            // Morning Rates Validation
+            'morning_flag.*'           => 'required|string',
+            'morning_currency.*'       => 'required|string',
+            'morning_unit.*'           => 'required|numeric|min:1',
+            'morning_buying_rate.*'    => 'required|numeric|between:0,999999.9999',
+            'morning_display_order.*'  => 'nullable|integer|min:0',
+            'morning_is_published.*'   => 'required|boolean',
+
+            // Afternoon Rates Validation
+            'afternoon_flag.*'         => 'required|string',
+            'afternoon_currency.*'     => 'required|string',
+            'afternoon_unit.*'         => 'required|numeric|min:1',
+            'afternoon_buying_rate.*'  => 'required|numeric|between:0,999999.9999',
+            'afternoon_display_order.*'=> 'nullable|integer|min:0',
+            'afternoon_is_published.*' => 'required|boolean',
         ];
     }
 
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array<string, string>
-     */
-    public function messages(): array
+    public function messages()
     {
         return [
-            'time_slot.*.required' => 'The time slot is required.',
-            'time_slot.*.string' => 'The time slot must be a string.',
-            'time_slot.*.max' => 'The time slot may not be greater than 255 characters.',
+            // Morning Messages
+            'morning_flag.*.required'          => 'Flag is required for morning rate',
+            'morning_currency.*.required'      => 'Currency is required for morning rate',
+            'morning_unit.*.required'          => 'Unit is required for morning rate',
+            'morning_buying_rate.*.required'   => 'Buying rate is required for morning rate',
+            'morning_is_published.*.required'  => 'Published status is required for morning rate',
 
-            'flag.*.required' => 'The flag is required.',
-            'flag.*.string' => 'The flag must be a string.',
-            'flag.*.max' => 'The flag may not be greater than 255 characters.',
-            'flag.*.unique' => 'The flag must be unique.',
+            // Afternoon Messages
+            'afternoon_flag.*.required'        => 'Flag is required for afternoon rate',
+            'afternoon_currency.*.required'    => 'Currency is required for afternoon rate',
+            'afternoon_unit.*.required'        => 'Unit is required for afternoon rate',
+            'afternoon_buying_rate.*.required' => 'Buying rate is required for afternoon rate',
+            'afternoon_is_published.*.required'=> 'Published status is required for afternoon rate',
 
-            'currency.*.required' => 'The currency is required.',
-            'currency.*.string' => 'The currency must be a string.',
-            'currency.*.max' => 'The currency may not be greater than 255 characters.',
-            'currency.*.unique' => 'The currency must be unique.',
-
-            'unit.*.required' => 'The unit is required.',
-            'unit.*.integer' => 'The unit must be an integer.',
-
-            'buying_rate.*.required' => 'The buying rate is required.',
-            'buying_rate.*.numeric' => 'The buying rate must be a number.',
-            'buying_rate.*.min' => 'The buying rate must be at least :min.',
-
-            'display_order.*.integer' => 'The display order must be a valid number.',
-            'is_published.*.boolean' => 'The is published field must be true or false.',
+            // Shared Messages
+            '*.required'    => 'This field is required',
+            '*.numeric'     => 'Must be a valid number',
+            '*.integer'     => 'Must be a whole number',
+            '*.min'         => 'Value must be at least :min',
+            '*.max'         => 'Value must not exceed :max',
+            '*.between'     => 'Value must be between :min and :max',
         ];
     }
 
-    /**
-     * Prepare the data for validation.
-     */
-    protected function prepareForValidation(): void
+    protected function prepareForValidation()
     {
-        $this->merge([
-            'is_published' => $this->has('is_published'),
-            'display_order' => $this->display_order ?? 0,
-        ]);
+        // Ensure all arrays have the same length
+        $timeSlots = ['morning', 'afternoon'];
+
+        foreach ($timeSlots as $slot) {
+            $this->merge([
+                "{$slot}_flag"            => $this->normalizeArray($this->input("{$slot}_flag", [])),
+                "{$slot}_currency"        => $this->normalizeArray($this->input("{$slot}_currency", [])),
+                "{$slot}_unit"            => $this->normalizeArray($this->input("{$slot}_unit", [])),
+                "{$slot}_buying_rate"     => $this->normalizeArray($this->input("{$slot}_buying_rate", [])),
+                "{$slot}_display_order"   => $this->normalizeArray($this->input("{$slot}_display_order", [])),
+                "{$slot}_is_published"    => $this->normalizeArray($this->input("{$slot}_is_published", [])),
+            ]);
+        }
+    }
+
+    protected function normalizeArray(array $data): array
+    {
+        return array_values(array_filter($data, function($item) {
+            return !is_null($item);
+        }));
     }
 }

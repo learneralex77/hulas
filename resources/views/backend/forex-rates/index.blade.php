@@ -11,7 +11,7 @@
                 <h3 class="block-title">Forex Rates List</h3>
                 <div class="block-options">
                     <a href="{{ route('forex-rate.create') }}" class="btn btn-sm btn-alt-primary border">
-                        <i class="fa fa-pencil-alt"></i> Edit Forex Rates
+                         <i class="fa fa-plus"></i> Add New Rates
                     </a>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                             <tr>
                                 <th class="text-left">S.N.</th>
                                 <th>Date</th>
-                                {{-- <th>Time Slot</th> --}}
+                                <th>Time Slot</th>
                                 <th>Flag</th>
                                 <th>Currency</th>
                                 {{-- <th>Unit</th> --}}
@@ -48,7 +48,7 @@
                                 <tr id="forex-rate-row-{{ $rate->id }}">
                                     <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{ $rate->date }}</td>
-                                    {{-- <td>{{ ucfirst($rate->time_slot) }}</td> --}}
+                                    <td>{{ ucfirst($rate->time_slot) }}</td>
                                     <td>{{ $rate->flag }}</td>
                                     <td>{{ $rate->currency }}</td>
                                     {{-- <td>{{ $rate->unit }}</td> --}}

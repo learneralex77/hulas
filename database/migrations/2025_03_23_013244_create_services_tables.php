@@ -25,13 +25,13 @@ return new class extends Migration
             $table->integer('display_order')->default(0);
             $table->boolean('is_published')->default(false);
             $table->string('file')->nullable(); // For storing file path
-            
+
             // Fields from service_translations
             $table->text('translation_names')->nullable(); // JSON array of translated names
             $table->text('translation_icons')->nullable(); // JSON array of translated icons
             $table->text('translation_descriptions')->nullable(); // JSON array of translated descriptions
             $table->string('language_code')->default('en'); // Default language code
-            
+
             $table->timestamps();
         });
     }
@@ -43,4 +43,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('services');
     }
-}; 
+};

@@ -22,10 +22,11 @@ class ForexRateController extends Controller
 
     public function create()
     {
-        return view('backend.forex-rates.create', [
-            'morningRates' => collect([]), // Empty collection for create
-            'afternoonRates' => collect([]),
-        ]);
+        // Initialize with empty rate objects for form structure
+        $morningRates = collect([new ForexRate(['time_slot' => 'morning'])]);
+        $afternoonRates = collect([new ForexRate(['time_slot' => 'afternoon'])]);
+
+        return view('backend.forex-rates.create', compact('morningRates', 'afternoonRates'));
     }
 
     /**
@@ -33,6 +34,7 @@ class ForexRateController extends Controller
      */
     public function store(ForexRateRequest $request)
     {
+        // dd($request->all());
         DB::beginTransaction();
 
         try {
@@ -92,29 +94,36 @@ class ForexRateController extends Controller
      */
     public function addRow()
     {
+        $timeSlot = request()->time_slot;
         $index = request()->index;
+
         return response()->json([
-            'html' => view('forex-rates.addRow', compact('index'))->render(),
+            'html' => view('backend.forex-rates.partials.rate-fields', [
+                'timeSlot' => $timeSlot,
+                'index' => $index,
+                'rate' => null
+            ])->render(),
         ]);
     }
+
 
     /**
      * Store or update forex rates for a specific time slot.
      */
-    protected function storeOrUpdateTimeSlot(ForexRateRequest $request, string $timeSlot)
+    // In storeOrUpdateTimeSlot method
+    protected function storeOrUpdateTimeSlot($request, $timeSlot)
     {
-        if ($request->has("{$timeSlot}_currency")) {
-            foreach ($request->input("{$timeSlot}_currency") as $key => $currency) {
-                ForexRate::create([
-                    'time_slot' => $timeSlot,
-                    'flag' => $request->input("{$timeSlot}_flag")[$key],
-                    'currency' => $currency,
-                    'unit' => $request->input("{$timeSlot}_unit")[$key],
-                    'buying_rate' => $request->input("{$timeSlot}_buying_rate")[$key],
-                    'display_order' => $request->input("{$timeSlot}_display_order")[$key] ?? 0,
-                    'is_published' => filter_var($request->input("{$timeSlot}_is_published")[$key] ?? false, FILTER_VALIDATE_BOOLEAN),
-                ]);
-            }
+        foreach ($request->input("{$timeSlot}_currency") as $key => $currency) {
+            ForexRate::create([
+                'time_slot' => $timeSlot,
+                'date' => $request->input("{$timeSlot}_date")[$key],
+                'flag' => $request->input("{$timeSlot}_flag")[$key],
+                'currency' => $currency,
+                'unit' => $request->input("{$timeSlot}_unit")[$key],
+                'buying_rate' => $request->input("{$timeSlot}_buying_rate")[$key],
+                'display_order' => $request->input("{$timeSlot}_display_order")[$key] ?? 0,
+                'is_published' => $request->input("{$timeSlot}_is_published")[$key],
+            ]);
         }
     }
 

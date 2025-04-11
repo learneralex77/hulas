@@ -34,7 +34,7 @@ Route::get('find-an-agent', [FrontendController::class, 'findAnAgent'])->name('f
 Route::get('forex-rate', [FrontendController::class, 'forexRate'])->name('forexRate');
 
 Route::get('gallery', [FrontendController::class, 'gallery'])->name('gallery');
-Route::get('gallery-detail', [FrontendController::class, 'galleryDetail'])->name('galleryDetail');
+Route::get('gallery-detail/{id?}', [FrontendController::class, 'galleryDetail'])->name('galleryDetail');
 Route::get('grievances', [FrontendController::class, 'grievances'])->name('grievances');
 Route::get('message-from-director', [FrontendController::class, 'messageFromDirector'])->name('messageFromDirector');
 Route::get('mission-and-vision', [FrontendController::class, 'missionAndVision'])->name('missionAndVision');

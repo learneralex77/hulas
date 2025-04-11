@@ -13,9 +13,9 @@
     <div class="flex flex-col space-y-8 ml-10">
       <h3 class="text-4xl font-extrabold text-white">Gallery</h3>
       <div class="flex space-x-5 items-center">
-      <a href="index.html" class="text-[#666] font-bold">Home</a>
+      <a href="{{ route('homepage') }}" class="text-[#666] font-bold">Home</a>
       <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-      <a href="gallery" class="text-accent font-bold">Gallery</a>
+      <a href="{{ route('gallery') }}" class="text-accent font-bold">Gallery</a>
       </div>
     </div>
   </section>
@@ -44,10 +44,10 @@
         {{ $gallery->short_description }}
       </p>
       <div class="flex justify-center">
-        <button onclick="redirectToPage()"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
+        <a href="{{ route('galleryDetail', $gallery->id) }}"
+        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer">
         <i class="fa-regular fa-eye"></i> View
-        </button>
+        </a>
       </div>
       </div>
     </div>
@@ -66,10 +66,6 @@
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
   <script>
-    function redirectToPage() {
-    window.location.href = "gallery-detail";
-    }
-
     const swiper = new Swiper(".mySwiper", {
     spaceBetween: 30,
     centeredSlides: true,

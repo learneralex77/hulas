@@ -80,9 +80,13 @@ class FrontendController extends Controller
         $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
         return view('frontend.gallery', compact('galleries'));
     }
-    public function galleryDetail()
+    public function galleryDetail($id = null)
     {
-        return view('frontend.gallery-detail');
+        if ($id) {
+            $gallery = Gallery::findOrFail($id);
+            return view('frontend.gallery-detail', compact('gallery'));
+        }
+        return redirect()->route('gallery');
     }
     public function grievances()
     {

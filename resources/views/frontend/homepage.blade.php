@@ -109,10 +109,10 @@
     @endisset
      
     </p>
-    <button
+    <a href="{{ route('aboutHulasRemittance') }}"
       class="text-center text-white hover:text-accent text-lg drop-shadow-sm cursor-pointer bg-black px-6 py-3 w-40 rounded-lg">
       Read more
-    </button>
+    </a>
     </div>
   </section>
   <!-- --------About-us-section-------- -->
@@ -325,7 +325,7 @@
     <div class="flex flex-1 flex-col justify-center items-center text-center">
       <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="About Us Image"
       class="w-[600px] rounded-md object-contain xl:object-fit mb-6" />
-      <a href="#"
+      <a href="{{route('becomeAnAgent')}}"
       class="px-6 py-2 bg-accent text-black border-1 rounded-full shadow-sm hover:shadow-2xl transition-shadow  font-medium text-base">Apply
       to become an agent</a>
     </div>
@@ -344,17 +344,17 @@
       ">
       Image Gallery
       </h1>
-      <button onclick="redirectToPage()"
-      class="bg-black items-center text-white px-6 py-3 rounded cursor-pointer hover:text-accent" id="Btn">
+      <a href="{{ route('gallery') }}"
+      class="bg-black items-center text-white px-6 py-3 rounded cursor-pointer hover:text-accent">
       Explore Gallery
-      </button>
+      </a>
     </div>
     <div style="
       --swiper-navigation-color: #fff;
       --swiper-pagination-color: #fff;
       " class="swiper mySwiper2 w-full h-1/2 aspect-[16/9]">
       <div class="swiper-wrapper h-[800px] lg:h-[400px]">
-      @foreach($galleries as $index => $gallery)
+      @foreach($galleries as $gallery)
       <div class="swiper-slide">
         <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}" 
              class="w-full h-full object-contain" 
@@ -376,9 +376,11 @@
       </div>
     </div>
     </div>
+
+    
     <div class="flex-1 w-full h-full">
     <div class="flex justify-end">
-      <a href="news-and-events.html"
+      <a href="{{ route('newsAndEvents')}}"
       class="bg-black items-center text-white px-4 py-3 rounded cursor-pointer hover:text-accent">
       Explore News Articles
       </a>
@@ -404,96 +406,47 @@
       <div class="overflow-y-scroll h-[420px] m-3 sticky bg-white">
       <!-- Content Repeated -->
 
-      <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-        <div class="h-auto w-30">
-        <img
-          src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
-          alt="Mobile Remittance" class="h-full w-full rounded-lg object-cover" />
-        </div>
+      @if(isset($newsAndEvents) && count($newsAndEvents) > 0)
+        @foreach($newsAndEvents as $news)
+          <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
+            <div class="h-auto w-30">
+              <img
+                src="{{ isset($news->image) ? asset('storage/' . $news->image) : asset('assets/images/placeholder.jpg') }}"
+                alt="{{ $news->title_en ?? 'News Image' }}" class="h-full w-full rounded-lg object-cover" />
+            </div>
 
-        <div class="flex flex-col gap-3">
-        <p class="line-clamp-2">
-          Send Money On the Go with Our Mobile App
-        </p>
-        <div class="flex space-x-2">
-          <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
-          class="h-auto w-4" />
-          <p class="text-xs text-gray-500">29th March 2020</p>
-        </div>
-        </div>
-      </div>
+            <div class="flex flex-col gap-3">
+              <p class="line-clamp-2">
+                {{ $news->name_en ?? 'News Title' }}
+              </p>
+              <div class="flex space-x-2">
+                <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
+                class="h-auto w-4" />
+                <p class="text-xs text-gray-500">{{ isset($news->created_at) ? $news->created_at->format('jS F Y') : 'Date not available' }}</p>
+              </div>
+            </div>
+          </div>
+        @endforeach
+      @else
+        <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
+          <div class="h-auto w-30">
+            <img
+              src="{{ asset('assets/images/placeholder.jpg') }}"
+              alt="No News Available" class="h-full w-full rounded-lg object-cover" />
+          </div>
 
-      <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-        <div class="h-auto w-30">
-        <img
-          src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
-          alt="Low Fees Promotion" class="h-full w-full rounded-lg object-cover" />
+          <div class="flex flex-col gap-3">
+            <p class="line-clamp-2">
+              No news or events available at the moment
+            </p>
+            <div class="flex space-x-2">
+              <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
+              class="h-auto w-4" />
+              <p class="text-xs text-gray-500">{{ now()->format('jS F Y') }}</p>
+            </div>
+          </div>
         </div>
-        <div class="flex flex-col gap-3">
-        <p class="line-clamp-2">
-          Send Money On the Go with Our Mobile App
-        </p>
-        <div class="flex space-x-2">
-          <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
-          class="h-auto w-4" />
-          <p class="text-xs text-gray-500">29th March 2020</p>
-        </div>
-        </div>
-      </div>
-
-      <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-        <div class="h-auto w-30">
-        <img
-          src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
-          alt="Remittance Agents" class="h-full w-full rounded-lg object-cover" />
-        </div>
-        <div class="flex flex-col gap-3">
-        <p class="line-clamp-2">
-          Find Your Nearest Remittance Partner Location
-        </p>
-        <div class="flex space-x-2">
-          <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
-          class="h-auto w-4" />
-
-          <p class="text-xs text-gray-500">29th March 2020</p>
-        </div>
-        </div>
-      </div>
-
-      <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-        <div class="h-auto w-30">
-        <img
-          src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
-          alt="Send Money to Nepal" class="h-full w-full rounded-lg object-cover" />
-        </div>
-        <div class="flex flex-col gap-3">
-        <p class="line-clamp-2">
-          Send Money to Nepal Instantly with Great Rates
-        </p>
-        <div class="flex space-x-2">
-          <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
-          class="h-auto w-4" />
-          <p class="text-xs text-gray-500">29th March 2020</p>
-        </div>
-        </div>
-      </div>
-      <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-        <div class="h-auto w-30">
-        <img
-          src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
-          alt="Track Money Transfer" class="h-full w-full rounded-lg object-cover" />
-        </div>
-        <div class="flex flex-col gap-3">
-        <p class="line-clamp-2">
-          Track your transfer in real-time from start to finish
-        </p>
-        <div class="flex space-x-2">
-          <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
-          class="h-auto w-4" />
-          <p class="text-xs text-gray-500">29th March 2020</p>
-        </div>
-        </div>
-      </div>
+      @endif
       </div>
     </div>
     </div>
@@ -538,9 +491,6 @@
 
   <!-- Initialize Swiper -->
   <script>
-    function redirectToPage() {
-    window.location.href = "gallery.html";
-    }
     var swiper = new Swiper(".mySwiper", {
     loop: true,
     spaceBetween: 10,

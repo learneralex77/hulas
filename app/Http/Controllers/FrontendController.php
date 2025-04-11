@@ -13,7 +13,10 @@ use App\Models\Service;
 use App\Models\ServiceTranslation;
 use App\Models\Setting;
 use App\Models\ContactUs;
+use App\Models\NewsEventCategory;
+
 use App\Http\Requests\ContactUsRequest;
+
 
 
 use App\Models\Partner;
@@ -32,8 +35,10 @@ class FrontendController extends Controller
         $services = Service::active()->orderBy('display_order', 'ASC')->get();
         $notices = Publication::active()->where('publication_type', 'notice')->orderBy('display_order', 'ASC')->get();
         $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
+        $newsAndEvents=NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
+
         $partners = Partner::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners'));
+        return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners','newsAndEvents'));
 
     }
 

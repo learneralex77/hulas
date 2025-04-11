@@ -76,9 +76,11 @@ class StorePartnerRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         // Set boolean values correctly
-        $this->merge([
-            'is_published' => $this->has('is_published'),
-        ]);
+        if ($this->has('is_published')) {
+            $this->merge([
+                'is_published' => $this->is_published == '1' || $this->is_published === true || $this->is_published === 'true',
+            ]);
+        }
         
         // Set default display order if not provided
         if (!$this->has('display_order') || $this->display_order === null) {

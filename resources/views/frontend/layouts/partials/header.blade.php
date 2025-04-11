@@ -93,7 +93,7 @@
           <li class="mb-1">
             <a
               class="block p-4 text-sm font-semibold text-black hover:text-accent"
-              href="about-us.html"
+              href="{{ route('aboutHulasRemittance') }}"
               >About us</a
             >
           </li>

@@ -78,9 +78,9 @@
   <section class="overflow-x-hidden">
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
     <div class="flex flex-col items-center space-y-6">
-      <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+      <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
       ">
       Our Introduction
       </h1>
@@ -108,25 +108,25 @@
       {{ $aboutUs->description }}
     @endisset
       <!-- Hulas Remittance, a member company of Golchha Organization, was
-                                  established in August 2005 with the vision to bring in quality and
-                                  reliable money transfer services in to Nepal. A leading business house
-                                  with a dedicated business history of more than 85 years, Golchha
-                                  Organization has established "HULAS" as one of the most trusted
-                                  household consumer brands in the country. Hulas Remittance, being one
-                                  of the principal agents, playing a leading role in offering money
-                                  transfer services of The Western Union Company in Nepal since January
-                                  2006. We have been serving customers from more than 3,200 (comprising
-                                  of major commercial banks, Development Banks, Finance Companies and
-                                  cooperative organizations) locations have established brand promise of
-                                  Western Union as a fast, reliable and convenient way of remittance
-                                  service across the country. Hulas Remittance, being one of the
-                                  principal agents, playing a leading role in offering money transfer
-                                  services of The Western Union Company in Nepal since January 2006. We
-                                  have been serving customers from more than 3,200 (comprising of major
-                                  commercial banks, Development Banks, Finance Companies and cooperative
-                                  organizations) locations have established brand promise of Western
-                                  Union as a fast, reliable and convenient way of remittance service
-                                  across the country. -->
+                    established in August 2005 with the vision to bring in quality and
+                    reliable money transfer services in to Nepal. A leading business house
+                    with a dedicated business history of more than 85 years, Golchha
+                    Organization has established "HULAS" as one of the most trusted
+                    household consumer brands in the country. Hulas Remittance, being one
+                    of the principal agents, playing a leading role in offering money
+                    transfer services of The Western Union Company in Nepal since January
+                    2006. We have been serving customers from more than 3,200 (comprising
+                    of major commercial banks, Development Banks, Finance Companies and
+                    cooperative organizations) locations have established brand promise of
+                    Western Union as a fast, reliable and convenient way of remittance
+                    service across the country. Hulas Remittance, being one of the
+                    principal agents, playing a leading role in offering money transfer
+                    services of The Western Union Company in Nepal since January 2006. We
+                    have been serving customers from more than 3,200 (comprising of major
+                    commercial banks, Development Banks, Finance Companies and cooperative
+                    organizations) locations have established brand promise of Western
+                    Union as a fast, reliable and convenient way of remittance service
+                    across the country. -->
     </p>
     <button
       class="text-center text-white hover:text-accent text-lg drop-shadow-sm cursor-pointer bg-black px-6 py-3 w-40 rounded-lg">
@@ -140,9 +140,9 @@
   <section class="m-10 items-center">
 
     <div class="flex flex-col items-center space-y-6">
-    <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+    <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
       ">
       Services we provide
     </h1>
@@ -261,9 +261,9 @@
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
       <div class="flex flex-col items-center space-y-6">
       <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-          ">
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+        ">
         Our partners & Supporters
       </h1>
 
@@ -281,25 +281,25 @@
     <div class="w-full overflow-hidden relative">
     <div class="w-full h-full absolute">
       <div class="w-1/4 h-full absolute z-50 left-0" style="
-          background: linear-gradient(
-          to right,
-          #fff8cc 0%,
-          rgba(255, 255, 255, 0) 100%
-          );
-        "></div>
+        background: linear-gradient(
+        to right,
+        #fff8cc 0%,
+        rgba(255, 255, 255, 0) 100%
+        );
+      "></div>
       <div class="w-1/4 h-full absolute z-50 right-0" style="
-          background: linear-gradient(
-          to left,
-          #fff8cc 0%,
-          rgba(255, 255, 255, 0) 100%
-          );
-        "></div>
+        background: linear-gradient(
+        to left,
+        #fff8cc 0%,
+        rgba(255, 255, 255, 0) 100%
+        );
+      "></div>
     </div>
 
     <div class="carousel-items flex items-center justify-center w-full" style="
-        width: fit-content;
-        animation: carouselAnim 10s infinite alternate linear;
-        ">
+      width: fit-content;
+      animation: carouselAnim 10s infinite alternate linear;
+      ">
       <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
       style="width: 270px">
       <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl"
@@ -356,10 +356,10 @@
     <div class="overflow-x-hidden">
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
       <div class="flex flex-col items-center space-y-6">
-      <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-        ">
+      <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+      ">
         Become an Agent
       </h1>
 
@@ -439,8 +439,8 @@
       <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="About Us Image"
       class="w-[600px] rounded-md object-contain xl:object-fit mb-6" />
       <a href="#"
-      class="px-6 py-3 bg-accent text-black rounded-md hover:bg-primary transition-colors font-medium text-lg">Apply
-      to Become an Agent</a>
+      class="px-6 py-2 bg-accent text-black border-1 rounded-full shadow-sm hover:shadow-2xl transition-shadow  font-medium text-base">Apply
+      to become an agent</a>
     </div>
     </div>
   </section>
@@ -448,12 +448,12 @@
 
 
   <!-- --------Gallery and News Section-------- -->
-  <div class="flex flex-col md:flex-row mx-auto container px-4 gap-10 my-10">
+  <div class="flex flex-col md:flex-row mx-10 lg:mx-40 px-4 gap-10 my-10">
     <div class="flex-1 overflow-hidden">
     <div class="flex flex-row justify-between m-3">
       <h1 class="font-bold text-accent uppercase text-xl tracking-wider" style="
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
       ">
       Image Gallery
       </h1>
@@ -463,10 +463,10 @@
       </button>
     </div>
     <div style="
-        --swiper-navigation-color: #fff;
-        --swiper-pagination-color: #fff;
-        " class="swiper mySwiper2 w-full h-1/2 aspect-[16/9]">
-      <div class="swiper-wrapper h-[600px]">
+      --swiper-navigation-color: #fff;
+      --swiper-pagination-color: #fff;
+      " class="swiper mySwiper2 w-full h-1/2 aspect-[16/9]">
+      <div class="swiper-wrapper h-[800px] lg:h-[400px]">
       <div class="swiper-slide">
         <img src="https://swiperjs.com/demos/images/nature-1.jpg" class="w-full h-full object-contain" />
       </div>
@@ -515,7 +515,7 @@
     </div>
     <div class="drop-shadow-xl shadow-gray-100 bg-white rounded-lg m-3">
       <!-- Heading for scroll -->
-      <div class="flex flex-row gap-4 bg-white rounded m-3 p-3">
+      <div class="flex flex-row bg-white rounded m-3 p-3">
       <!-- Explore part -->
       <div class="mx-3">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -527,11 +527,11 @@
         <circle cx="20" cy="18" r="1.5" fill="black" />
         </svg>
       </div>
-      <h1 class="font-bold text-lg">All News and Articles</h1>
+      <h1 class="font-bold text-lg text-black">All News and Articles</h1>
       </div>
 
       <!-- Content inside the heading -->
-      <div class="overflow-y-scroll h-[500px] m-3 sticky bg-white">
+      <div class="overflow-y-scroll h-[420px] m-3 sticky bg-white">
       <!-- Content Repeated -->
 
       <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">

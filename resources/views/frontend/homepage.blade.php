@@ -20,38 +20,28 @@
     <div class="relative h-80 overflow-hidden rounded-lg md:h-[600px] ">
       <!-- Item 1 -->
       @isset($sliders)
-      @foreach ($sliders as $slider)
-      <div class="hidden duration-700 ease-in-out" F data-carousel-item>
-      <img src="{{ asset('storage/' . $slider->image) }}"
-
+      @foreach ($sliders as $key => $slider)
+      <div class="hidden duration-700 ease-in-out" data-carousel-item="{{ $key === 0 ? 'active' : '' }}">
+        <img src="{{ asset('storage/' . $slider->image) }}"
           class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-          alt="..."
+          alt="{{ $slider->title ?? 'Slider Image' }}"
         />
       </div>
       @endforeach
       @endisset
-      <!-- Item 2 -->
-      <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
-      <img src="{{ asset(path: 'assets/images/slider/slider-two.jpg') }}"
-
-          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-          alt="..."
-        />
-      </div> -->
-      <!-- Item 3 -->
-      <div class="hidden duration-700 ease-in-out" data-carousel-item>
-      <img src="{{ asset('assets/images/slider/slider-three.jpg') }}"
-        class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
-      </div>
     </div>
     <!-- Slider indicators -->
     <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-      <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
-      data-carousel-slide-to="0"></button>
-      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
-      data-carousel-slide-to="1"></button>
-      <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
-      data-carousel-slide-to="2"></button>
+      @isset($sliders)
+        @foreach($sliders as $key => $slider)
+          <button type="button" 
+            class="w-3 h-3 rounded-full" 
+            aria-current="{{ $key === 0 ? 'true' : 'false' }}" 
+            aria-label="Slide {{ $key + 1 }}"
+            data-carousel-slide-to="{{ $key }}">
+          </button>
+        @endforeach
+      @endisset
     </div>
     <!-- Slider controls -->
     <button type="button"
@@ -100,7 +90,7 @@
       </p>
       <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
       A leading business house with a dedicated business history of more than
-      85 years, Golchha Organization has established “HULAS”
+      85 years, Golchha Organization has established "HULAS"
       </p>
     </div>
     </div>
@@ -115,28 +105,9 @@
     <div class="flex flex-1 lg:flex-2 flex-col space-y-6">
     <p class="text-gray-600 text-base lg:text-lg text-justify">
       @isset($aboutUs)
-      {{ $aboutUs->description }}
+      {{ $aboutUs->description_en ?? $aboutUs->description }}
     @endisset
-      <!-- Hulas Remittance, a member company of Golchha Organization, was
-                                  established in August 2005 with the vision to bring in quality and
-                                  reliable money transfer services in to Nepal. A leading business house
-                                  with a dedicated business history of more than 85 years, Golchha
-                                  Organization has established "HULAS" as one of the most trusted
-                                  household consumer brands in the country. Hulas Remittance, being one
-                                  of the principal agents, playing a leading role in offering money
-                                  transfer services of The Western Union Company in Nepal since January
-                                  2006. We have been serving customers from more than 3,200 (comprising
-                                  of major commercial banks, Development Banks, Finance Companies and
-                                  cooperative organizations) locations have established brand promise of
-                                  Western Union as a fast, reliable and convenient way of remittance
-                                  service across the country. Hulas Remittance, being one of the
-                                  principal agents, playing a leading role in offering money transfer
-                                  services of The Western Union Company in Nepal since January 2006. We
-                                  have been serving customers from more than 3,200 (comprising of major
-                                  commercial banks, Development Banks, Finance Companies and cooperative
-                                  organizations) locations have established brand promise of Western
-                                  Union as a fast, reliable and convenient way of remittance service
-                                  across the country. -->
+     
     </p>
     <button
       class="text-center text-white hover:text-accent text-lg drop-shadow-sm cursor-pointer bg-black px-6 py-3 w-40 rounded-lg">
@@ -148,122 +119,63 @@
 
   <!----------Services Section---------->
   <section class="m-10 items-center">
-
-    <div class="flex flex-col items-center space-y-6">
-    <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-      ">
-      Services we provide
-    </h1>
-
-    <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
-      Services </p>
-    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-      <!-- A leading business house with a dedicated business history of more than
-      85 years, Golchha Organization has established “HULAS” -->
-    </p>
-    </div>
-    <div class="relative flex items-center justify-center">
-    <button
-      class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"
-      onclick="prevServicesSlider()">
-      ❮
-    </button>
-    <div class="overflow-hidden rounded-lg w-full">
-      <div class="flex flex-row gap-8 transition-transform duration-500 ease-in-out" id="services-slider-content">
-      <div
-        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
-        <div class="flex flex-col items-center">
-        <img
-          src="https://media.istockphoto.com/id/1333428875/photo/fire-insurance-concept-burning-small-wooden-house.jpg?s=612x612&w=0&k=20&c=eri3sWqqRhMaJfh81nrVmaS4hVrW4-9K7eTexu3eY9s="
-          alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
+        <div class="flex flex-col items-center space-y-6">
+            <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+                            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                            -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                          ">
+                Services we provide
+            </h1>
+            <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+                Services </p>
+            <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+                <!-- A leading business house with a dedicated business history of more than
+                          85 years, Golchha Organization has established "HULAS" -->
+            </p>
         </div>
-        <h3 class="text-lg font-bold text-center">Property Insurance</h3>
-        <p class="text-base md:text-lg text-black text-center">
-        Safeguards property owners against losses and damages providing
-        compensation for the repair or replacement of the insured assets
-        </p>
-        <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+        <div class="relative flex items-center justify-center">
+            <button
+                class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"
+                onclick="prevServicesSlider()">
+                ❮
+            </button>
+            
+            <div class="overflow-hidden rounded-lg w-full">
+                <div class="flex flex-row gap-8 transition-transform duration-500 ease-in-out" id="services-slider-content">
+                    @isset($services)
+                    @foreach ($services as $service)
+                    <div
+                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
+                        <div class="flex flex-col items-center">
+                            @if ($service->file)
+                            <img src="{{ asset('storage/' . $service->file) }}"
+                                alt="{{ $service->name_en }}" class="w-full h-[200px] rounded-lg object-cover" />
+                            @else
+                            <div class="w-full h-[200px] rounded-lg bg-gray-200 flex items-center justify-center">
+                                <i class="{{ $service->icon ?? 'fa fa-briefcase' }} text-5xl text-gray-400"></i>
+                            </div>
+                            @endif
+                        </div>
+                        <h3 class="text-lg font-bold text-center">{{ $service->name_en }}</h3>
+                        <p class="text-base md:text-lg text-black text-center">
+                            {{ $service->description_en }}
+                        </p>
+                        <div class="flex justify-center">
+                            <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}" class="bg-black text-white px-4 py-2 tracking-wide rounded-full text-center">Read more</a>
+                        </div>
+                    </div>
+                    @endforeach
+                    @endisset
+                </div>
+            </div>
+            
+            <button
+                class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
+                onclick="nextServicesSlider()">
+                ❯
+            </button>
         </div>
-      </div>
-      <div
-        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
-        <div class="flex flex-col items-center">
-        <img
-          src="https://ebeema.com:1001/api/documentManagement/file?key=MjAyM1wwMVwwOFwtbW90b3ItaW5zdXJhbmNlX2JlNDAucG5n"
-          alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
-        </div>
-        <h3 class="text-lg font-bold text-center">Property Insurance</h3>
-        <p class="text-base md:text-lg text-black text-center">
-        Safeguards property owners against losses and damages providing
-        compensation for the repair or replacement of the insured assets
-        </p>
-        <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
-        </div>
-      </div>
-      <div
-        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-        <div class="flex flex-col items-center">
-        <img src="https://nicnepal.com.np/national-insurance/public/./img/marine.jpg" alt="Property Insurance"
-          class="w-full h-[200px] rounded-lg" />
-        </div>
-        <h3 class="text-lg font-bold text-center">Marine Insurance</h3>
-        <p class="text-base md:text-lg text-black text-center">
-        Safeguards property owners against losses and damages providing
-        compensation for the repair or replacement of the insured assets
-        </p>
-        <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
-        </div>
-      </div>
-      <div
-        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-        <div class="flex flex-col items-center">
-        <img src="https://nicnepal.com.np/national-insurance/public/img/miscellaneous.jpg" alt="Property Insurance"
-          class="w-full h-[200px] rounded-lg" />
-        </div>
-        <h3 class="text-lg font-bold text-center">
-        Miscellaneous Insurance
-        </h3>
-        <p class="text-base md:text-lg text-black text-center">
-        Safeguards property owners against losses and damages providing
-        compensation for the repair or replacement of the insured assets
-        </p>
-        <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
-        </div>
-      </div>
-      <div
-        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-        <div class="flex flex-col items-center">
-        <img
-          src="https://media.licdn.com/dms/image/C4D12AQF3vYqQRpFaOw/article-cover_image-shrink_600_2000/0/1651676674940?e=2147483647&v=beta&t=BGSpmlC6Q9rQ_vYOqaHnUxgZf5krVGvmXpKR4OomyCU"
-          alt="Engineering Insurance" class="w-full h-[200px] rounded-lg" />
-        </div>
-        <h3 class="text-lg font-bold text-center">
-        Engineering Insurance
-        </h3>
-        <p class="text-base md:text-lg text-black text-center">
-        Safeguards property owners against losses and damages providing
-        compensation for the repair or replacement of the insured assets
-        </p>
-        <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
-        </div>
-      </div>
-      </div>
-    </div>
-    <button
-      class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
-      onclick="nextServicesSlider()">
-      ❯
-    </button>
-    </div>
-  </section>
-  <!----------Services Section---------->
+    </section>
 
   <!----------Our Partners Section---------->
   <section class="my-10">
@@ -310,54 +222,19 @@
         width: fit-content;
         animation: carouselAnim 10s infinite alternate linear;
         ">
+        @isset($partners)
+        @foreach ($partners as $partner)
       <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
       style="width: 270px">
-      <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl"
+      <img src="{{ asset('storage/' . $partner->image) }}" class="h-40 w-40 rounded-xl shadow-2xl"
         alt="Partners Icon" />
-      <h4 class="tracking-wide text-lg m-3">Western Union</h4>
+      <h4 class="tracking-wide text-lg m-3">{{ $partner->name_en ?? $partner->name }}</h4>
       </div>
+      @endforeach
+      @endisset
 
-      <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
-      style="width: 270px">
-      <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl"
-        alt="Partners Icon" />
-      <h4 class="tracking-wide text-lg m-3">Western Union</h4>
-      </div>
-
-      <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
-      style="width: 270px">
-      <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl"
-        alt="Partners Icon" />
-      <h4 class="tracking-wide text-lg m-3">Western Union</h4>
-      </div>
-      <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
-      style="width: 270px">
-      <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl"
-        alt="Partners Icon" />
-      <h4 class="tracking-wide text-lg m-3">Western Union</h4>
-      </div>
-      <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
-      style="width: 270px">
-      <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl"
-        alt="Partners Icon" />
-      <h4 class="tracking-wide text-lg m-3">Western Union</h4>
-      </div>
-
-      <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
-      style="width: 270px">
-      <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl"
-        alt="Partners Icon" />
-      <h4 class="tracking-wide text-lg m-3">Western Union</h4>
-      </div>
-
-      <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
-      style="width: 270px">
-      <img src="{{ asset('assets/images/partners/WesternUnion.webp') }}" class="h-40 w-40 rounded-xl shadow-2xl"
-        alt="Partners Icon" />
-      <h4 class="tracking-wide text-lg m-3">Western Union</h4>
-      </div>
-    </div>
-    </div>
+      
+    
   </section>
   <!----------Our Partners Section---------->
 

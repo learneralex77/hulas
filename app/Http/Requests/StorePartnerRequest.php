@@ -25,7 +25,7 @@ class StorePartnerRequest extends FormRequest
         return [
             'name_en' => ['required', 'string', 'max:255', Rule::unique('partners', 'name_en')],
             'name_np' => ['nullable', 'string', 'max:255', Rule::unique('partners', 'name_np')],
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             'is_published' => 'boolean',
             'display_order' => 'integer',
         ];

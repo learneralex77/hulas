@@ -32,8 +32,7 @@ Route::get('organizational-structure', [FrontendController::class, 'organization
 Route::get('privacy-and-policy', [FrontendController::class, 'privacyAndPolicy'])->name('privacyAndPolicy');
 Route::get('quick-links', [FrontendController::class, 'quickLinks'])->name('quickLinks');
 Route::get('sitemap', [FrontendController::class, 'sitemap'])->name('sitemap');
-Route::get('terms-and-conditions', [FrontendController::class, 'termsAndConditions'])->name('termsAndConditions');
-
+Route::get('header', [FrontendController::class, 'header'])->name('header');
 
 // Route::fallback(function () {
 //     return view('frontend.layouts.errors.404');

@@ -6,6 +6,7 @@ use App\Models\AboutUs;
 use App\Http\Requests\AboutUsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Artisan;
 
 class AboutUsController extends Controller
 {
@@ -31,32 +32,44 @@ class AboutUsController extends Controller
      */
     public function store(AboutUsRequest $request)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        // Handle image upload
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $data['image'] = $request->file('image')->store('about-us', 'public');
-        }
+            // Handle image upload
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
+                $data['image'] = $request->file('image')->store('about-us', 'public');
+            }
 
-        // Process mission and vision data
-        $missionVision = [];
-        if ($request->has('mission_vision_titles') && is_array($request->mission_vision_titles)) {
-            foreach ($request->mission_vision_titles as $index => $title) {
-                if (!empty($title) && isset($request->mission_vision_icons[$index]) && isset($request->mission_vision_descriptions[$index])) {
-                    $missionVision[] = [
-                        'title' => $title,
-                        'icon' => $request->mission_vision_icons[$index],
-                        'description' => $request->mission_vision_descriptions[$index],
-                    ];
+            // Process mission and vision data
+            $missionVision = [];
+            if ($request->has('mission_vision_titles') && is_array($request->mission_vision_titles)) {
+                foreach ($request->mission_vision_titles as $index => $title) {
+                    if (!empty($title) && isset($request->mission_vision_icons[$index]) && isset($request->mission_vision_descriptions[$index])) {
+                        $missionVision[] = [
+                            'title' => $title,
+                            'icon' => $request->mission_vision_icons[$index],
+                            'description' => $request->mission_vision_descriptions[$index],
+                        ];
+                    }
                 }
             }
+            $data['mission_vision'] = $missionVision;
+
+            // Make sure boolean values are properly set
+            $data['is_published'] = $request->boolean('is_published');
+
+            AboutUs::create($data);
+
+            // Clear cache to ensure changes are visible
+            $this->clearCache();
+
+            return redirect()->route('about-us.index')
+                ->with('success', 'About Us information created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Error creating About Us: ' . $e->getMessage());
         }
-        $data['mission_vision'] = $missionVision;
-
-        AboutUs::create($data);
-
-        return redirect()->route('about-us.index')
-            ->with('success', 'About Us information created successfully.');
     }
 
     /**
@@ -80,45 +93,57 @@ class AboutUsController extends Controller
      */
     public function update(AboutUsRequest $request, AboutUs $aboutUs)
     {
-        $data = $request->validated();
+        try {
+            $data = $request->validated();
 
-        // Handle image deletion if checkbox is checked
-        if ($request->has('delete_image') && $request->delete_image == 1) {
-            // Delete the old image if it exists
-            if ($aboutUs->image) {
-                Storage::disk('public')->delete($aboutUs->image);
+            // Handle image deletion if checkbox is checked
+            if ($request->has('delete_image') && $request->boolean('delete_image')) {
+                // Delete the old image if it exists
+                if ($aboutUs->image) {
+                    Storage::disk('public')->delete($aboutUs->image);
+                }
+                $data['image'] = null;
             }
-            $data['image'] = null;
-        }
-        // Handle image upload
-        elseif ($request->hasFile('image') && $request->file('image')->isValid()) {
-            // Delete the old image if it exists
-            if ($aboutUs->image) {
-                Storage::disk('public')->delete($aboutUs->image);
+            // Handle image upload
+            elseif ($request->hasFile('image') && $request->file('image')->isValid()) {
+                // Delete the old image if it exists
+                if ($aboutUs->image) {
+                    Storage::disk('public')->delete($aboutUs->image);
+                }
+
+                $data['image'] = $request->file('image')->store('about-us', 'public');
             }
 
-            $data['image'] = $request->file('image')->store('about-us', 'public');
-        }
-
-        // Process mission and vision data
-        $missionVision = [];
-        if ($request->has('mission_vision_titles') && is_array($request->mission_vision_titles)) {
-            foreach ($request->mission_vision_titles as $index => $title) {
-                if (!empty($title) && isset($request->mission_vision_icons[$index]) && isset($request->mission_vision_descriptions[$index])) {
-                    $missionVision[] = [
-                        'title' => $title,
-                        'icon' => $request->mission_vision_icons[$index],
-                        'description' => $request->mission_vision_descriptions[$index],
-                    ];
+            // Process mission and vision data
+            $missionVision = [];
+            if ($request->has('mission_vision_titles') && is_array($request->mission_vision_titles)) {
+                foreach ($request->mission_vision_titles as $index => $title) {
+                    if (!empty($title) && isset($request->mission_vision_icons[$index]) && isset($request->mission_vision_descriptions[$index])) {
+                        $missionVision[] = [
+                            'title' => $title,
+                            'icon' => $request->mission_vision_icons[$index],
+                            'description' => $request->mission_vision_descriptions[$index],
+                        ];
+                    }
                 }
             }
+            $data['mission_vision'] = $missionVision;
+
+            // Make sure boolean values are properly set
+            $data['is_published'] = $request->boolean('is_published');
+
+            $aboutUs->update($data);
+
+            // Clear cache to ensure changes are visible
+            $this->clearCache();
+
+            return redirect()->route('about-us.index')
+                ->with('success', 'About Us information updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Error updating About Us: ' . $e->getMessage());
         }
-        $data['mission_vision'] = $missionVision;
-
-        $aboutUs->update($data);
-
-        return redirect()->route('about-us.index')
-            ->with('success', 'About Us information updated successfully.');
     }
 
     /**
@@ -133,6 +158,9 @@ class AboutUsController extends Controller
             }
 
             $aboutUs->delete();
+
+            // Clear cache to ensure changes are visible
+            $this->clearCache();
 
             // Check if request is AJAX
             if (request()->ajax()) {
@@ -156,6 +184,20 @@ class AboutUsController extends Controller
             // For form submit
             return redirect()->route('about-us.index')
                 ->with('error', 'Error deleting About Us information: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Clear Laravel caches to ensure updates are visible
+     */
+    private function clearCache()
+    {
+        try {
+            Artisan::call('cache:clear');
+            Artisan::call('view:clear');
+        } catch (\Exception $e) {
+            // Log exception but don't interrupt the flow
+            \Log::error('Error clearing cache: ' . $e->getMessage());
         }
     }
 }

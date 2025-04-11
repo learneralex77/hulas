@@ -12,7 +12,10 @@
               alt="Location Icon"
             />
             <p class="text-xs">
-              Bagdurbar, Sundhara (Near to China Town Gate) Kathmandu, Nepal
+              
+            @isset($setting->address_en)  
+                  {{ $setting->address_en }}
+                  @endisset
             </p>
           </div>
 

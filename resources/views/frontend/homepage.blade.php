@@ -119,122 +119,63 @@
 
   <!----------Services Section---------->
   <section class="m-10 items-center">
-
-    <div class="flex flex-col items-center space-y-6">
-    <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-      ">
-      Services we provide
-    </h1>
-
-    <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
-      Services </p>
-    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-      <!-- A leading business house with a dedicated business history of more than
-      85 years, Golchha Organization has established “HULAS” -->
-    </p>
-    </div>
-    <div class="relative flex items-center justify-center">
-    <button
-      class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"
-      onclick="prevServicesSlider()">
-      ❮
-    </button>
-    <div class="overflow-hidden rounded-lg w-full">
-      <div class="flex flex-row gap-8 transition-transform duration-500 ease-in-out" id="services-slider-content">
-      <div
-        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
-        <div class="flex flex-col items-center">
-        <img
-          src="https://media.istockphoto.com/id/1333428875/photo/fire-insurance-concept-burning-small-wooden-house.jpg?s=612x612&w=0&k=20&c=eri3sWqqRhMaJfh81nrVmaS4hVrW4-9K7eTexu3eY9s="
-          alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
+        <div class="flex flex-col items-center space-y-6">
+            <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+                            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                            -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                          ">
+                Services we provide
+            </h1>
+            <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+                Services </p>
+            <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+                <!-- A leading business house with a dedicated business history of more than
+                          85 years, Golchha Organization has established "HULAS" -->
+            </p>
         </div>
-        <h3 class="text-lg font-bold text-center">Property Insurance</h3>
-        <p class="text-base md:text-lg text-black text-center">
-        Safeguards property owners against losses and damages providing
-        compensation for the repair or replacement of the insured assets
-        </p>
-        <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+        <div class="relative flex items-center justify-center">
+            <button
+                class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"
+                onclick="prevServicesSlider()">
+                ❮
+            </button>
+            
+            <div class="overflow-hidden rounded-lg w-full">
+                <div class="flex flex-row gap-8 transition-transform duration-500 ease-in-out" id="services-slider-content">
+                    @isset($services)
+                    @foreach ($services as $service)
+                    <div
+                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
+                        <div class="flex flex-col items-center">
+                            @if ($service->file)
+                            <img src="{{ asset('storage/' . $service->file) }}"
+                                alt="{{ $service->name_en }}" class="w-full h-[200px] rounded-lg object-cover" />
+                            @else
+                            <div class="w-full h-[200px] rounded-lg bg-gray-200 flex items-center justify-center">
+                                <i class="{{ $service->icon ?? 'fa fa-briefcase' }} text-5xl text-gray-400"></i>
+                            </div>
+                            @endif
+                        </div>
+                        <h3 class="text-lg font-bold text-center">{{ $service->name_en }}</h3>
+                        <p class="text-base md:text-lg text-black text-center">
+                            {{ $service->description_en }}
+                        </p>
+                        <div class="flex justify-center">
+                            <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}" class="bg-black text-white px-4 py-2 tracking-wide rounded-full text-center">Read more</a>
+                        </div>
+                    </div>
+                    @endforeach
+                    @endisset
+                </div>
+            </div>
+            
+            <button
+                class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
+                onclick="nextServicesSlider()">
+                ❯
+            </button>
         </div>
-      </div>
-      <div
-        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
-        <div class="flex flex-col items-center">
-        <img
-          src="https://ebeema.com:1001/api/documentManagement/file?key=MjAyM1wwMVwwOFwtbW90b3ItaW5zdXJhbmNlX2JlNDAucG5n"
-          alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
-        </div>
-        <h3 class="text-lg font-bold text-center">Property Insurance</h3>
-        <p class="text-base md:text-lg text-black text-center">
-        Safeguards property owners against losses and damages providing
-        compensation for the repair or replacement of the insured assets
-        </p>
-        <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
-        </div>
-      </div>
-      <div
-        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-        <div class="flex flex-col items-center">
-        <img src="https://nicnepal.com.np/national-insurance/public/./img/marine.jpg" alt="Property Insurance"
-          class="w-full h-[200px] rounded-lg" />
-        </div>
-        <h3 class="text-lg font-bold text-center">Marine Insurance</h3>
-        <p class="text-base md:text-lg text-black text-center">
-        Safeguards property owners against losses and damages providing
-        compensation for the repair or replacement of the insured assets
-        </p>
-        <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
-        </div>
-      </div>
-      <div
-        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-        <div class="flex flex-col items-center">
-        <img src="https://nicnepal.com.np/national-insurance/public/img/miscellaneous.jpg" alt="Property Insurance"
-          class="w-full h-[200px] rounded-lg" />
-        </div>
-        <h3 class="text-lg font-bold text-center">
-        Miscellaneous Insurance
-        </h3>
-        <p class="text-base md:text-lg text-black text-center">
-        Safeguards property owners against losses and damages providing
-        compensation for the repair or replacement of the insured assets
-        </p>
-        <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
-        </div>
-      </div>
-      <div
-        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-        <div class="flex flex-col items-center">
-        <img
-          src="https://media.licdn.com/dms/image/C4D12AQF3vYqQRpFaOw/article-cover_image-shrink_600_2000/0/1651676674940?e=2147483647&v=beta&t=BGSpmlC6Q9rQ_vYOqaHnUxgZf5krVGvmXpKR4OomyCU"
-          alt="Engineering Insurance" class="w-full h-[200px] rounded-lg" />
-        </div>
-        <h3 class="text-lg font-bold text-center">
-        Engineering Insurance
-        </h3>
-        <p class="text-base md:text-lg text-black text-center">
-        Safeguards property owners against losses and damages providing
-        compensation for the repair or replacement of the insured assets
-        </p>
-        <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
-        </div>
-      </div>
-      </div>
-    </div>
-    <button
-      class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
-      onclick="nextServicesSlider()">
-      ❯
-    </button>
-    </div>
-  </section>
-  <!----------Services Section---------->
+    </section>
 
   <!----------Our Partners Section---------->
   <section class="my-10">
@@ -413,42 +354,25 @@
       --swiper-pagination-color: #fff;
       " class="swiper mySwiper2 w-full h-1/2 aspect-[16/9]">
       <div class="swiper-wrapper h-[800px] lg:h-[400px]">
+      @foreach($galleries as $index => $gallery)
       <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-1.jpg" class="w-full h-full object-contain" />
+        <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}" 
+             class="w-full h-full object-contain" 
+             alt="{{ $gallery->title_en }}" />
       </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-2.jpg" class="w-full h-full object-contain" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-3.jpg" class="w-full h-full object-contain" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-4.jpg" class="w-full h-full object-contain" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-5.jpg" class="w-full h-full object-contain" />
-      </div>
+      @endforeach
       </div>
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
     </div>
     <div thumbsSlider="" class="swiper mySwiper">
       <div class="swiper-wrapper">
+      @foreach($galleries as $index => $gallery)
       <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-1.jpg" alt="Slider Image" />
+        <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}" 
+             alt="{{ $gallery->title_en }}" />
       </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-2.jpg" alt="Slider Image" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-3.jpg" alt="Slider Image" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-4.jpg" alt="Slider Image" />
-      </div>
-      <div class="swiper-slide">
-        <img src="https://swiperjs.com/demos/images/nature-5.jpg" alt="Slider Image" />
-      </div>
+      @endforeach
       </div>
     </div>
     </div>

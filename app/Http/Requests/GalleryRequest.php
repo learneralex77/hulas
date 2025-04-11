@@ -26,8 +26,8 @@ class GalleryRequest extends FormRequest
             'title_en' => ['required', 'string', 'max:255'],
             'title_np' => ['nullable','string', 'max:255'],
 
-            'featured_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
-            'gallery_images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'featured_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
+            'gallery_images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
             'links' => ['nullable', 'string'],
             'is_featured' => ['nullable', 'boolean'],
             'display_order' => ['nullable', 'integer'],
@@ -77,11 +77,11 @@ class GalleryRequest extends FormRequest
 
             'featured_image.image' => 'The featured image must be an image file.',
             'featured_image.mimes' => 'The featured image must be a file of type: jpeg, png, jpg, gif, webp.',
-            'featured_image.max' => 'The featured image may not be greater than 2MB.',
+            'featured_image.max' => 'The featured image may not be greater than 5MB.',
 
             'gallery_images.*.image' => 'Each gallery image must be an image file.',
             'gallery_images.*.mimes' => 'Each gallery image must be a file of type: jpeg, png, jpg, gif, webp.',
-            'gallery_images.*.max' => 'Each gallery image may not be greater than 2MB.',
+            'gallery_images.*.max' => 'Each gallery image may not be greater than 5MB.',
 
             'links.string' => 'The links must be a string.',
 

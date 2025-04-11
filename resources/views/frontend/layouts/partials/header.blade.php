@@ -101,7 +101,7 @@
             <a
               class="block p-4 text-sm font-semibold text-black hover:text-accent"
               href="become-an-agent.html"
-              >Become an agent</a
+              >Become an agent</
             >
           </li>
           <li class="mb-1">

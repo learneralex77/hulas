@@ -3,10 +3,10 @@
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')
 
-   
 
-     <!-- About Western Union -->
-     <section class="m-6 md:m-10 2xl:mx-30">
+
+    <!-- About Western Union -->
+    <section class="m-6 md:m-10 2xl:mx-30">
         <div class=" flex flex-col gap-6 md:flex-row  md:justify-center md:items-center">
             <!-- image -->
             <div class="flex-1 flex justify-center w-full">
@@ -79,16 +79,16 @@
     <section class="m-10 items-center">
         <div class="flex flex-col items-center space-y-6">
             <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-                            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                            -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                          ">
+                                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                              ">
                 Services we provide
             </h1>
             <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
                 Services </p>
             <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
                 <!-- A leading business house with a dedicated business history of more than
-                          85 years, Golchha Organization has established “HULAS” -->
+                              85 years, Golchha Organization has established “HULAS” -->
             </p>
         </div>
         <div class="relative flex items-center justify-center">
@@ -199,7 +199,8 @@
         class="flex flex-col lg:flex-row bg-accent  items-center justify-center gap-10  rounded-sm mx-6 my-10 md:m-10 lg:mx-20 px-10 py-10">
         <div class="flex flex-col gap-6 text-center">
             <h1 class="text-2xl lg:text-3xl font-extrabold tracking-wide">Subscribe to our NewsLetter</h1>
-            <p class="line-clamp-2 text-lg lg:text-xl">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum, eligendi quis
+            <p class="line-clamp-2 text-lg lg:text-xl">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum,
+                eligendi quis
                 sed
                 labore provident</p>
         </div>
@@ -239,4 +240,7 @@
             sliderContent.style.transform = `translateX(${offset}px)`;
         }
     </script>
+
+    <script type="module" src="/src/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 @endpush

@@ -65,9 +65,17 @@ class FrontendController extends Controller
     {
         return view('frontend.find-an-agent');
     }
+    public function forexRate()
+    {
+        return view('frontend.forex-rate');
+    }
     public function gallery()
     {
         return view('frontend.gallery');
+    }
+    public function galleryDetail()
+    {
+        return view('frontend.gallery-detail');
     }
     public function grievances()
     {

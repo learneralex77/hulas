@@ -72,7 +72,7 @@
     <!-- Bottom Nav (Sticky) -->
     <nav class="sticky top-0 z-50 px-4 pr-8 py-2 flex justify-between items-center bg-white text-black shadow-lg">
       <!-- Company Logo -->
-      <a class="text-xl lg:pl-10 font-bold leading-none" href="index.html">
+      <a class="text-xl lg:pl-10 font-bold leading-none" href="homepage">
       <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}"
 
           class="w-56"
@@ -107,14 +107,14 @@
           <li class="mb-1">
             <a
               class="block p-4 text-sm font-semibold text-black hover:text-accent"
-              href="find-an-agent.html"
+              href="find-an-agent"
               >Find an agent</a
             >
           </li>
           <li class="mb-1">
             <a
               class="block p-4 text-sm font-semibold text-black hover:text-accent"
-              href="gallery.html"
+              href="{{ route('gallery') }}"
               >Gallery</a
             >
           </li>

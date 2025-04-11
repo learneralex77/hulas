@@ -10,7 +10,9 @@ class Partner extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'name_en',
+        'name_np',
+        'name', // Keep for backward compatibility
         'image',
         'is_published',
         'display_order',
@@ -20,6 +22,14 @@ class Partner extends Model
         'is_published' => 'boolean',
         'display_order' => 'integer',
     ];
+
+    /**
+     * Accessor for the 'name' attribute to maintain backward compatibility
+     */
+    public function getNameAttribute()
+    {
+        return $this->name_en ?? '';
+    }
 
     public function scopeActive($query)
     {

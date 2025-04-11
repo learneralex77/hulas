@@ -30,17 +30,8 @@ class ContactUsController extends Controller
      */
     public function store(ContactUsRequest $request)
     {
-        $validated = $request->validate([
-            'full_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone_number' => 'required|string|max:20',
-            'contact_remarks' => 'nullable|string',
-        ]);
-
-        $data = $request->all();
-
-        // Handle boolean values
-        $data['is_contacted'] = $request->input('is_contacted') == 1;
+        // Use validated data from the form request
+        $data = $request->validated();
 
         ContactUs::create($data);
 
@@ -69,17 +60,8 @@ class ContactUsController extends Controller
      */
     public function update(ContactUsRequest $request, ContactUs $contactUs)
     {
-        $validated = $request->validate([
-            'full_name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone_number' => 'required|string|max:20',
-            'contact_remarks' => 'nullable|string',
-        ]);
-
-        $data = $request->all();
-
-        // Handle boolean values
-        $data['is_contacted'] = $request->input('is_contacted') == 1;
+        // Use validated data from the form request
+        $data = $request->validated();
 
         $contactUs->update($data);
 

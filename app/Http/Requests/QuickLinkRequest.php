@@ -23,10 +23,27 @@ class QuickLinkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', Rule::unique('quick_links')->ignore($this->route('quick_link'))],
+            'name_en' => ['required', 'string', 'max:255', Rule::unique('quick_links', 'name_en')->ignore($this->route('quick_link'))],
+            'name_np' => ['nullable', 'string', 'max:255', Rule::unique('quick_links', 'name_np')->ignore($this->route('quick_link'))],
             'external_link' => ['required', 'url', 'max:255'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
+        ];
+    }
+
+    /**
+     * Get custom attributes for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function attributes(): array
+    {
+        return [
+            'name_en' => 'English name',
+            'name_np' => 'Nepali name',
+            'external_link' => 'external link',
+            'display_order' => 'display order',
+            'is_published' => 'published status',
         ];
     }
 
@@ -38,10 +55,14 @@ class QuickLinkRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The quick link name is required.',
-            'name.string' => 'The quick link name must be a string.',
-            'name.max' => 'The quick link name may not be greater than 255 characters.',
-            'name.unique' => 'This quick link name is already in use.',
+            'name_en.required' => 'The English name is required.',
+            'name_en.string' => 'The English name must be a string.',
+            'name_en.max' => 'The English name may not be greater than 255 characters.',
+            'name_en.unique' => 'This English name is already in use.',
+
+            'name_np.string' => 'The Nepali name must be a string.',
+            'name_np.max' => 'The Nepali name may not be greater than 255 characters.',
+            'name_np.unique' => 'This Nepali name is already in use.',
 
             'external_link.required' => 'The external link is required.',
             'external_link.url' => 'Please provide a valid URL.',

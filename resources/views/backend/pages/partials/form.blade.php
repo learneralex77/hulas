@@ -5,23 +5,36 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
-                    <label class="form-label" for="title">Title <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                        name="title" value="{{ old('title', $page->title ?? '') }}">
-                    @error('title')
+                    <label class="form-label" for="title_en">Title (English) <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en"
+                        name="title_en" value="{{ old('title_en', $page->title_en ?? '') }}" required>
+                    @error('title_en')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
             <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
+                    <label class="form-label" for="title_np">Title (Nepali)</label>
+                    <input type="text" class="form-control @error('title_np') is-invalid @enderror" id="title_np"
+                        name="title_np" value="{{ old('title_np', $page->title_np ?? '') }}">
+                    @error('title_np')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="mb-4">
                     <label class="form-label" for="menu_id">Menu <span class="text-danger">*</span></label>
-                    <select class="form-select @error('menu_id') is-invalid @enderror" id="menu_id" name="menu_id">
+                    <select class="form-select @error('menu_id') is-invalid @enderror" id="menu_id" name="menu_id" required>
                         <option value="">Select Menu</option>
                         @foreach ($menus as $menu)
                             <option value="{{ $menu->id }}"
                                 {{ old('menu_id', $page->menu_id ?? '') == $menu->id ? 'selected' : '' }}>
-                                {{ $menu->bname }}
+                                {{ $menu->name_en }}
                             </option>
                         @endforeach
                     </select>
@@ -30,10 +43,7 @@
                     @enderror
                 </div>
             </div>
-        </div>
-
-        <div class="row mb-4">
-        <div class="col-md-6">
+            <div class="col-md-3 col-sm-6">
                 <div class="mb-4">
                     <label class="form-label" for="display_order">Display Order</label>
                     <input type="number" class="form-control @error('display_order') is-invalid @enderror" id="display_order"
@@ -43,7 +53,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-3 col-sm-6">
                 <div class="mb-4">
                     <label class="form-label">Status</label>
                     <div class="form-check form-switch">
@@ -54,28 +64,54 @@
                     </div>
                 </div>
             </div>
-           
-        </div>
-        <div class="mb-4">
-            <label class="form-label" for="short_description">Short Description</label>
-            <textarea class="form-control @error('short_description') is-invalid @enderror" id="short_description"
-                name="short_description" rows="3">{{ old('short_description', $page->short_description ?? '') }}</textarea>
-            @error('short_description')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
         </div>
 
         <div class="row">
-            <div class="col-lg-8 col-md-7 col-sm-12">
+            <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
-                    <label class="form-label" for="content">Content <span class="text-danger">*</span></label>
-                    <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="10">{{ old('content', $page->content ?? '') }}</textarea>
-                    @error('content')
+                    <label class="form-label" for="short_description_en">Short Description (English)</label>
+                    <textarea class="form-control @error('short_description_en') is-invalid @enderror" id="short_description_en"
+                        name="short_description_en" rows="3">{{ old('short_description_en', $page->short_description_en ?? '') }}</textarea>
+                    @error('short_description_en')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
-            <div class="col-lg-4 col-md-5 col-sm-12">
+            <div class="col-md-6 col-sm-12">
+                <div class="mb-4">
+                    <label class="form-label" for="short_description_np">Short Description (Nepali)</label>
+                    <textarea class="form-control @error('short_description_np') is-invalid @enderror" id="short_description_np"
+                        name="short_description_np" rows="3">{{ old('short_description_np', $page->short_description_np ?? '') }}</textarea>
+                    @error('short_description_np')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="mb-4">
+                    <label class="form-label" for="content_en">Content (English) <span class="text-danger">*</span></label>
+                    <textarea class="form-control tinymce-editor @error('content_en') is-invalid @enderror" id="content_en" name="content_en" rows="10" required>{{ old('content_en', $page->content_en ?? '') }}</textarea>
+                    @error('content_en')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="mb-4">
+                    <label class="form-label" for="content_np">Content (Nepali)</label>
+                    <textarea class="form-control tinymce-editor @error('content_np') is-invalid @enderror" id="content_np" name="content_np" rows="10">{{ old('content_np', $page->content_np ?? '') }}</textarea>
+                    @error('content_np')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
                 <div class="mb-4">
                     <label class="form-label" for="image">Image</label>
                     <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
@@ -88,7 +124,7 @@
                         <div class="mt-2">
                             <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0">
-                                    <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->title }}"
+                                    <img src="{{ asset('storage/' . $page->image) }}" alt="{{ $page->title_en }}"
                                         class="img-thumbnail" style="max-width: 100px;">
                                 </div>
                                 <div class="flex-grow-1 ms-3">

@@ -36,7 +36,9 @@
                             @foreach ($menus as $menu)
                                 <tr id="menu-row-{{ $menu->id }}">
                                     <td class="text-center">{{ $loop->iteration }} </td>
-                                    <td>{{ $menu->bname }}</td>
+                                    <td>{{ $menu->name_en }}<br>
+                                        {{ $menu->name_np }}
+                                    </td>
                                     <!-- <td class="d-none d-md-table-cell">{{ Str::limit($menu->description, 50) }}</td> -->
                                     <td class="d-none d-sm-table-cell">{{ $menu->slug }}</td>
                                     <td class="text-center">{{ $menu->display_order }}</td>

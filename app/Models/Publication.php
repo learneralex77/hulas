@@ -14,9 +14,15 @@ class Publication extends Model
         'news_event_category_id',
         'publication_type',
         'title',
+        'title_en',
+        'title_np',
         'short_description',
+        'short_description_en',
+        'short_description_np',
         'image',
         'content',
+        'content_en',
+        'content_np',
         'published_by',
         'is_published',
         'display_order',
@@ -25,7 +31,32 @@ class Publication extends Model
 
     protected $casts = [
         'is_published' => 'boolean',
+        'display_order' => 'integer',
     ];
+
+    /**
+     * Get the title attribute (for backward compatibility)
+     */
+    public function getTitleAttribute()
+    {
+        return $this->title_en ?? '';
+    }
+    
+    /**
+     * Get the short_description attribute (for backward compatibility)
+     */
+    public function getShortDescriptionAttribute()
+    {
+        return $this->short_description_en ?? '';
+    }
+    
+    /**
+     * Get the content attribute (for backward compatibility)
+     */
+    public function getContentAttribute()
+    {
+        return $this->content_en ?? '';
+    }
 
     /**
      * Get the category that owns the publication.
@@ -34,6 +65,7 @@ class Publication extends Model
     {
         return $this->belongsTo(NewsEventCategory::class, 'news_event_category_id');
     }
+    
     public function scopeActive($query)
     {
         return $query->where('is_published', 1);

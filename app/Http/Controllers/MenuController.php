@@ -25,7 +25,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        $parentMenus = Menu::orderBy('bname')->get();
+        $parentMenus = Menu::orderBy('name_en')->get();
         return view('backend.menus.create', compact('parentMenus'));
     }
 
@@ -34,9 +34,10 @@ class MenuController extends Controller
      */
     public function store(MenuRequest $request)
     {
-        $request['slug'] = Str::slug($request['bname']);
+        $data = $request->all();
+        $data['slug'] = Str::slug($request['name_en']);
 
-        Menu::create($request->all());
+        Menu::create($data);
 
         return redirect()->route('menus.index')
             ->with('success', 'Menu created successfully.');
@@ -56,7 +57,7 @@ class MenuController extends Controller
     public function edit(Menu $menu)
     {
         $parentMenus = Menu::where('id', '!=', $menu->id)
-            ->orderBy('bname')
+            ->orderBy('name_en')
             ->get();
 
         return view('backend.menus.edit', compact('menu', 'parentMenus'));
@@ -71,7 +72,7 @@ class MenuController extends Controller
         $validated = $request->validated();
 
         // Generate slug from menu name
-        $validated['slug'] = Str::slug($validated['bname']);
+        $validated['slug'] = Str::slug($validated['name_en']);
 
         $menu->update($validated);
 

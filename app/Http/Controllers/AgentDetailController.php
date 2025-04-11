@@ -27,7 +27,7 @@ class AgentDetailController extends Controller
      */
     public function create()
     {
-        $districts = District::orderBy('name')->get();
+        $districts = District::orderBy('name_en')->get();
         return view('backend.agent-details.create', compact('districts'));
     }
 
@@ -55,6 +55,7 @@ class AgentDetailController extends Controller
      */
     public function edit(AgentDetail $agentDetail)
     {
+        $districts = District::orderBy('name_en')->get();
         return view('backend.agent-details.edit', compact('agentDetail', 'districts'));
     }
 

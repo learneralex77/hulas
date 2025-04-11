@@ -38,7 +38,7 @@
                                     <td class="d-none d-sm-table-cell text-center" style="width: 60px;">
                                         @if ($gallery->featured_image)
                                             <img src="{{ asset('storage/' . $gallery->featured_image) }}"
-                                                alt="{{ $gallery->title }}" class="img-thumbnail"
+                                                alt="{{ $gallery->title_en }}" class="img-thumbnail"
                                                 style="width: 50px; height: 50px; object-fit: cover;">
                                         @else
                                             <span class="text-muted" style="display: inline-block; width: 50px; height: 50px;">
@@ -47,7 +47,7 @@
                                         @endif
                                     </td>
 
-                                    <td>{{ $gallery->title }}</td>
+                                    <td>{{ $gallery->title_en }}</td>
                                     <td class="d-none d-lg-table-cell text-center">{{ $gallery->display_order }}</td>
 
                                     <td class="text-center">

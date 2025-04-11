@@ -23,8 +23,10 @@ class SliderRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => ['required', 'string', 'max:255'],
-            'short_description' => ['nullable', 'string'],
+            'name_en' => ['required', 'string', 'max:255'],
+            'name_np' => ['nullable', 'string', 'max:255'],
+            'short_description_en' => ['nullable', 'string'],
+            'short_description_np' => ['nullable', 'string'],
             'link' => ['nullable', 'string', 'max:255'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
@@ -34,10 +36,13 @@ class SliderRequest extends FormRequest
 
         // Add unique check with proper ignoring for updates
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
-            $rules['name'][] = Rule::unique('sliders', 'name')
+            $rules['name_en'][] = Rule::unique('sliders', 'name_en')
+                ->ignore($this->route('slider'));
+            $rules['name_np'][] = Rule::unique('sliders', 'name_np')
                 ->ignore($this->route('slider'));
         } else {
-            $rules['name'][] = Rule::unique('sliders', 'name');
+            $rules['name_en'][] = Rule::unique('sliders', 'name_en');
+            $rules['name_np'][] = Rule::unique('sliders', 'name_np');
         }
 
         return $rules;
@@ -51,8 +56,10 @@ class SliderRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name' => 'slider name',
-            'short_description' => 'short description',
+            'name_en' => 'English slider name',
+            'name_np' => 'Nepali slider name',
+            'short_description_en' => 'English short description',
+            'short_description_np' => 'Nepali short description',
             'link' => 'link',
             'display_order' => 'display order',
             'is_published' => 'published status',
@@ -69,12 +76,18 @@ class SliderRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The slider name is required.',
-            'name.string' => 'The slider name must be a string.',
-            'name.max' => 'The slider name may not be greater than 255 characters.',
-            'name.unique' => 'A slider with this name already exists.',
+            'name_en.required' => 'The English slider name is required.',
+            'name_en.string' => 'The English slider name must be a string.',
+            'name_en.max' => 'The English slider name may not be greater than 255 characters.',
+            'name_en.unique' => 'A slider with this English name already exists.',
             
-            'short_description.string' => 'The short description must be a string.',
+            'name_np.required' => 'The Nepali slider name is required.',
+            'name_np.string' => 'The Nepali slider name must be a string.',
+            'name_np.max' => 'The Nepali slider name may not be greater than 255 characters.',
+            'name_np.unique' => 'A slider with this Nepali name already exists.',
+            
+            'short_description_en.string' => 'The English short description must be a string.',
+            'short_description_np.string' => 'The Nepali short description must be a string.',
             
             'link.string' => 'The link must be a string.',
             'link.max' => 'The link may not be greater than 255 characters.',

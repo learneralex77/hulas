@@ -45,7 +45,7 @@ class PublicationController extends Controller
         // Handle image upload
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imageName = time() . '_' . Str::slug($request->title) . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . '_' . Str::slug($request->title_en) . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/publications', $imageName);
             $data['image'] = 'publications/' . $imageName;
         }
@@ -92,7 +92,7 @@ class PublicationController extends Controller
             }
 
             $image = $request->file('image');
-            $imageName = time() . '_' . Str::slug($request->title) . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . '_' . Str::slug($request->title_en) . '.' . $image->getClientOriginalExtension();
             $image->storeAs('public/publications', $imageName);
             $data['image'] = 'publications/' . $imageName;
         }

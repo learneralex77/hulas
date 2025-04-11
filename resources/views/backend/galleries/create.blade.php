@@ -18,7 +18,7 @@
             <div class="block-content">
 
 
-                <form action="{{ route('galleries.store') }}" method="POST" enctype="multipart/form-data" id="gallery-form">
+                <form action="{{ route('galleries.store') }}" method="POST" enctype="multipart/form-data" id="gallery-form" class="needs-validation" novalidate>
                     @csrf
                     @include('backend.galleries.partials.form')
                 </form>

@@ -23,7 +23,9 @@ class GalleryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'max:255'],
+            'title_en' => ['required', 'string', 'max:255'],
+            'title_np' => ['nullable','string', 'max:255'],
+
             'featured_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'gallery_images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'links' => ['nullable', 'string'],
@@ -44,7 +46,10 @@ class GalleryRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'title' => 'gallery title',
+            'title_en' => 'gallery title(English)',
+            'title_np' => 'gallery title(Nepali)',
+
+
             'featured_image' => 'featured image',
             'gallery_images.*' => 'gallery image',
             'links' => 'links',
@@ -62,9 +67,13 @@ class GalleryRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.required' => 'The gallery title is required.',
-            'title.string' => 'The gallery title must be a string.',
-            'title.max' => 'The gallery title may not be greater than 255 characters.',
+            'title_en.required' => 'The gallery title is required.',
+            'title_en.string' => 'The gallery title must be a string.',
+            'title_en.max' => 'The gallery title may not be greater than 255 characters.',
+
+            'title_np.string' => 'The gallery title must be a string.',
+            'title_np.max' => 'The gallery title may not be greater than 255 characters.',
+
 
             'featured_image.image' => 'The featured image must be an image file.',
             'featured_image.mimes' => 'The featured image must be a file of type: jpeg, png, jpg, gif, webp.',

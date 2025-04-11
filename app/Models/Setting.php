@@ -13,11 +13,13 @@ class Setting extends Model
         'logo',
         'primary_logo',
         'secondary_logo',
-        'title',
+        'title_en',
+        'title_np',
         'feedback_notify_email',
         'google_maplink',
         'agent_notify_email',
-        'description',
+        'description_en',
+        'description_np',
         'email',
         'PO_Box',
         'canonical_url',
@@ -37,5 +39,19 @@ class Setting extends Model
         'schema_markup' => 'string',
     ];
 
-  
+    /**
+     * Get the title attribute (for backward compatibility)
+     */
+    public function getTitleAttribute()
+    {
+        return $this->title_en ?? '';
+    }
+
+    /**
+     * Get the description attribute (for backward compatibility)
+     */
+    public function getDescriptionAttribute()
+    {
+        return $this->description_en ?? '';
+    }
 }

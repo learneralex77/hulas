@@ -9,8 +9,12 @@ Route::get('/', function () {
 
 
 
+
 Route::get('homepage', [FrontendController::class, 'homepage'])->name('homepage');
-Route::get('about-us', [FrontendController::class, 'aboutUs'])->name('aboutUs');
+
+Route::get('about-hulas-remittance', [FrontendController::class, 'aboutHulasRemittance'])->name('aboutHulasRemittance');
+Route::get('about-western-union', [FrontendController::class, 'aboutWesternUnion'])->name('aboutWesternUnion');
+
 Route::get('become-an-agent', [FrontendController::class, 'becomeAnAgent'])->name('becomeAnAgent');
 Route::get('contact-us', [FrontendController::class, 'contactUs'])->name('contactUs');
 Route::get('find-an-agent', [FrontendController::class, 'findAnAgent'])->name('findAnAgent');

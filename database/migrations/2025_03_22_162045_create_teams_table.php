@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->enum('type', ['Management Team', 'BOD']);
-            $table->string('name');
+            $table->string('name_en');
+            $table->string('name_np')->nullable();          
             $table->string('image')->nullable();
-            $table->text('description')->nullable();
+            $table->text('description_en')->nullable();
+            $table->text('description_np')->nullable();
             $table->integer('display_order')->default(0);
             $table->boolean('is_published')->default(true);
             $table->timestamps();

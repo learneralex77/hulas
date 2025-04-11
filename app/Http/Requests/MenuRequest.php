@@ -24,8 +24,10 @@ class MenuRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'bname' => ['required', 'string', 'max:255', Rule::unique('menus')->ignore($this->menu)],
-            'description' => 'nullable|string',
+            'name_en' => ['required', 'string', 'max:255', Rule::unique('menus', 'name_en')->ignore($this->menu)],
+            'name_np' => ['nullable', 'string', 'max:255', Rule::unique('menus', 'name_np')->ignore($this->menu)],
+            'description_en' => 'nullable|string',
+            'description_np' => 'nullable|string',
             'display_order' => 'nullable|integer|min:0',
             'is_published' => 'required|boolean',
         ];
@@ -52,7 +54,10 @@ class MenuRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'bname' => 'menu name',
+            'name_en' => 'menu name (English)',
+            'name_np' => 'menu name (Nepali)',
+            'description_en' => 'description (English)',
+            'description_np' => 'description (Nepali)',
             'display_order' => 'display order',
             'parent_id' => 'parent menu',
         ];
@@ -66,12 +71,17 @@ class MenuRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'bname.required' => 'The menu name is required.',
-            'bname.string' => 'The menu name must be a string.',
-            'bname.max' => 'The menu name may not be greater than 255 characters.',
-            'bname.unique' => 'This menu name is already in use.',
+            'name_en.required' => 'The menu name in English is required.',
+            'name_en.string' => 'The menu name in English must be a string.',
+            'name_en.max' => 'The menu name in English may not be greater than 255 characters.',
+            'name_en.unique' => 'This menu name in English is already in use.',
 
-            'description.string' => 'The description must be a string.',
+            'name_np.string' => 'The menu name in Nepali must be a string.',
+            'name_np.max' => 'The menu name in Nepali may not be greater than 255 characters.',
+            'name_np.unique' => 'This menu name in Nepali is already in use.',
+
+            'description_en.string' => 'The description in English must be a string.',
+            'description_np.string' => 'The description in Nepali must be a string.',
 
             'display_order.integer' => 'The display order must be a valid number.',
             'display_order.min' => 'The display order must be at least 0.',

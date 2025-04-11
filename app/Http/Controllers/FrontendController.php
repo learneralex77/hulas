@@ -10,11 +10,14 @@ use App\Models\Gallery;
 use App\Models\Page;
 use App\Models\Publication;
 use App\Models\Service;
+use App\Models\ServiceTranslation;
+
+
 use App\Models\Partner;
 
 class FrontendController extends Controller
 {
-   
+
         public function homepage()
     {
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
@@ -31,12 +34,18 @@ class FrontendController extends Controller
 
     }
 
-    public function aboutUs()
+    public function aboutHulasRemittance()
     {
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
+        $services=Service::active()->orderBy('display_order', 'ASC')->get();
+        return view('frontend.about-hulas-page', compact('aboutUs','services'));
+    }
+
+    public function aboutWesternUnion()
+    {
         $aboutUs1 = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
         $services=Service::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.about-us-page', compact('aboutUs', 'aboutUs1','services'));
+        return view('frontend.about-western-union-page', compact('aboutUs1','services'));
     }
 
     public function becomeAnAgent()
@@ -66,7 +75,7 @@ class FrontendController extends Controller
     public function missionAndVision()
     {
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
-        $missions = json_decode($aboutUs->mission_vision, true); 
+        $missions = json_decode($aboutUs->mission_vision, true);
         return view('frontend.mission-and-vision', compact('missions'));
     }
     public function newsAndEvents()

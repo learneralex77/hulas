@@ -12,15 +12,36 @@ class NewsEventCategory extends Model
 
     protected $fillable = [
         'name',
+        'name_en',
+        'name_np',
         'slug',
         'description',
+        'description_en',
+        'description_np',
         'display_order',
         'is_published'
     ];
 
     protected $casts = [
         'is_published' => 'boolean',
+        'display_order' => 'integer',
     ];
+    
+    /**
+     * Get the name attribute (for backward compatibility)
+     */
+    public function getNameAttribute()
+    {
+        return $this->name_en ?? '';
+    }
+    
+    /**
+     * Get the description attribute (for backward compatibility)
+     */
+    public function getDescriptionAttribute()
+    {
+        return $this->description_en ?? '';
+    }
     
     /**
      * Get the publications for the category.

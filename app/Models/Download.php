@@ -10,7 +10,9 @@ class Download extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'name_en',
+        'name_np',
+        'name', // Keep for backward compatibility
         'file',
         'display_order',
         'is_published'
@@ -19,6 +21,14 @@ class Download extends Model
     protected $casts = [
         'is_published' => 'boolean',
     ];
+
+    /**
+     * Accessor for the 'name' attribute to maintain backward compatibility
+     */
+    public function getNameAttribute()
+    {
+        return $this->name_en ?? '';
+    }
 
     public function scopeActive($query)
     {

@@ -48,7 +48,10 @@
               <div class="flex flex-col items-center sm:items-start space-y-3">
                 <p class="text-2xl font-bold">Our Location</p>
                 <p class="text-[#666]">
-                  Bagdurbar, Sundhara (Near to China Town Gate) Kathmandu Nepal
+                  @isset($setting->address_en)  
+                  {{ $setting->address_en }}
+                  @endisset
+
                 </p>
               </div>
             </div>
@@ -72,8 +75,13 @@
               <div class="flex flex-col items-center sm:items-start space-y-3">
                 <p class="text-2xl font-bold">Email us</p>
                 <p class="text-[#666]">
-                  info@hulasremittance.com,<br class="block sm:hidden" />
-                  csc@hulasremittance.com
+                <br class="block sm:hidden" />
+                  @isset($setting->email)
+                  {{ $setting->email }}
+                  @endisset
+                  @isset($setting->agent_notify_email)
+                  {{ $setting->agent_notify_email }}
+                  @endisset
                 </p>
               </div>
             </div>
@@ -97,9 +105,14 @@
               <div class="flex flex-col items-center sm:items-start space-y-3">
                 <p class="text-2xl font-bold">Call us</p>
                 <p class="text-[#666]">
-                  +977 1 5361313, 5358225, 5352008
-                  <br class="hidden sm:block" />Toll Free Number 16600 111222
-                  (For NTC Users Only)
+                  @isset($setting->phone_number_en)
+                  {{ $setting->phone_number_en }}
+                  @endisset
+                  <br class="hidden sm:block" />
+                  @isset($setting->toll_free_number)
+                  {{ $setting->toll_free_number }}
+                  @endisset
+              
                 </p>
               </div>
             </div>
@@ -113,7 +126,7 @@
     <section>
       <div class="mt-16 flex justify-center w-full">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.6111886008625!2d85.31059677522961!3d27.698409576187725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18534e533eaf%3A0x4fec1318777796b7!2sHulas%20Remittance%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1698921349849!5m2!1sen!2snp"
+        src="@isset($setting->google_maplink) {{ $setting->google_maplink }} @endisset"
           class="w-full lg:h-[500px]"
           style="border: 0"
           allowfullscreen=""
@@ -136,22 +149,48 @@
           >
             Fill up the form and our team will get back to you within 24 hours.
           </p>
+          
+          @if (session('success'))
+          <div class="w-full p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg">
+            {{ session('success') }}
+          </div>
+          @endif
+          
+          @if (session('error'))
+          <div class="w-full p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+            {{ session('error') }}
+          </div>
+          @endif
+          
+          @if ($errors->any())
+          <div class="w-full p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg">
+            <ul class="list-disc pl-5">
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
         </div>
       </div>
       <div class="lg:flex lg:justify-center lg:mt-32 w-full">
-        <img src="./img/contact-form-bg.png" class="h-full" alt="" />
+        <img src="{{ asset('assets/images/contact/contact-form-bg.png') }}" class="h-full" alt="" />
         <div class="lg:w-[70%] bg-white shadow-xl rounded-md p-6">
-          <form class="sm:mx-20">
+          <form class="sm:mx-20" action="{{ route('contact-us.store') }}" method="POST">
+            @csrf
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div class="flex flex-col space-y-5">
-                <label for="name" class="font-bold text-xl text-[#3d5169]"
+                <label for="full_name" class="font-bold text-xl text-[#3d5169]"
                   >Name</label
                 >
                 <input
-                  id="name"
+                  id="full_name"
+                  name="full_name"
                   type="text"
                   placeholder="What's your name?"
-                  class="w-full rounded-md bg-[#f5faff]"
+                  class="w-full rounded-md bg-[#f5faff] @error('full_name') border-red-500 @enderror"
+                  value="{{ old('full_name') }}"
+                  required
                 />
               </div>
               <div class="flex flex-col space-y-5">
@@ -160,46 +199,54 @@
                 >
                 <input
                   id="email"
+                  name="email"
                   type="email"
                   placeholder="What's your email?"
-                  class="w-full rounded-md bg-[#f5faff]"
+                  class="w-full rounded-md bg-[#f5faff] @error('email') border-red-500 @enderror"
+                  value="{{ old('email') }}"
+                  required
                 />
               </div>
               <div class="flex flex-col space-y-5">
-                <label for="phone" class="font-bold text-xl text-[#3d5169]"
+                <label for="phone_number" class="font-bold text-xl text-[#3d5169]"
                   >Phone</label
                 >
                 <input
-                  id="phone"
+                  id="phone_number"
+                  name="phone_number"
                   type="tel"
                   placeholder="Enter your phone"
-                  class="w-full rounded-md bg-[#f5faff]"
+                  class="w-full rounded-md bg-[#f5faff] @error('phone_number') border-red-500 @enderror"
+                  value="{{ old('phone_number') }}"
+                  required
                 />
               </div>
               <div class="flex flex-col space-y-5">
-                <label for="service" class="font-bold text-xl text-[#3d5169]"
+                <label for="service_interested_in" class="font-bold text-xl text-[#3d5169]"
                   >Service interested in</label
                 >
                 <input
-                  id="service"
+                  id="service_interested_in"
+                  name="service_interested_in"
                   type="text"
                   placeholder="ex. Remittance"
-                  class="w-full rounded-md bg-[#f5faff]"
+                  class="w-full rounded-md bg-[#f5faff] @error('service_interested_in') border-red-500 @enderror"
+                  value="{{ old('service_interested_in') }}"
                 />
               </div>
             </div>
             <div class="mt-5 flex flex-col space-y-4">
-              <label for="query" class="font-bold text-xl text-[#3d5169]"
+              <label for="message" class="font-bold text-xl text-[#3d5169]"
                 >Message</label
               >
               <textarea
-                name="query"
-                id="query"
+                name="message"
+                id="message"
                 cols="20"
                 rows="10"
-                class="bg-[#f5faff] rounded-md"
+                class="bg-[#f5faff] rounded-md @error('message') border-red-500 @enderror"
                 placeholder="Please enter your message..."
-              ></textarea>
+              >{{ old('message') }}</textarea>
             </div>
             <div class="w-full flex justify-center">
               <button

@@ -22,6 +22,10 @@ class Setting extends Model
         'description_np',
         'email',
         'PO_Box',
+        'address_en',
+        'address_np',
+        'phone_number_en',
+        'phone_number_np',
         'canonical_url',
         'schema_markup',
         'keyword',
@@ -53,5 +57,21 @@ class Setting extends Model
     public function getDescriptionAttribute()
     {
         return $this->description_en ?? '';
+    }
+
+    /**
+     * Get the address attribute (for backward compatibility)
+     */
+    public function getAddressAttribute()
+    {
+        return $this->address_en ?? '';
+    }
+
+    /**
+     * Get the phone number attribute (for backward compatibility)
+     */
+    public function getPhoneNumberAttribute()
+    {
+        return $this->phone_number_en ?? '';
     }
 }

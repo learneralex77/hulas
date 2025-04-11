@@ -22,11 +22,14 @@ class ContactUs extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'full_name',
+        'full_name_en',
+        'full_name_np',
         'email',
-        'phone_number',
+        'phone_number_en',
+        'phone_number_np',
         'is_contacted',
-        'contact_remarks',
+        'contact_remarks_en',
+        'contact_remarks_np',
         'display_order'
     ];
     
@@ -37,7 +40,32 @@ class ContactUs extends Model
      */
     protected $casts = [
         'is_contacted' => 'boolean',
+        'display_order' => 'integer',
     ];
+    
+    /**
+     * Get the full_name attribute (for backward compatibility)
+     */
+    public function getFullNameAttribute()
+    {
+        return $this->full_name_en ?? '';
+    }
+    
+    /**
+     * Get the phone_number attribute (for backward compatibility)
+     */
+    public function getPhoneNumberAttribute()
+    {
+        return $this->phone_number_en ?? '';
+    }
+    
+    /**
+     * Get the contact_remarks attribute (for backward compatibility)
+     */
+    public function getContactRemarksAttribute()
+    {
+        return $this->contact_remarks_en ?? '';
+    }
     
     /**
      * Get the route key name for Laravel's route model binding.

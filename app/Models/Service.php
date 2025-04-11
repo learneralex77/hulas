@@ -10,44 +10,32 @@ class Service extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
+        'name_en',
+        "name_np",
         'icon',
-        'description',
+        'description_en',
+        'description_np',
+
         'slug',
         'display_order',
         'is_published',
         'file',
+        'translation_names',
+        'translation_icons',
+        'translation_descriptions',
+        'language_code',
     ];
 
-    /**
-     * Get all translations for the service.
-     */
-    public function translations()
-    {
-        return $this->hasMany(ServiceTranslation::class);
-    }
+ 
 
-    /**
-     * Get the primary translation (usually English or default).
-     */
-    public function primaryTranslation()
-    {
-        return $this->hasOne(ServiceTranslation::class)
-            ->where('language_code', 'en')
-            ->withDefault([
-                'name' => '[]',
-                'icon' => '[]',
-                'description' => '[]',
-            ]);
-    }
+ 
 
     /**
      * Get all the names for this service.
      */
     public function getNames()
     {
-        $translation = $this->primaryTranslation;
-        return json_decode($translation->name ?: '[]') ?: [];
+        return json_decode($this->translation_names ?: '[]') ?: [];
     }
 
     /**
@@ -55,8 +43,7 @@ class Service extends Model
      */
     public function getIcons()
     {
-        $translation = $this->primaryTranslation;
-        return json_decode($translation->icon ?: '[]') ?: [];
+        return json_decode($this->translation_icons ?: '[]') ?: [];
     }
 
     /**
@@ -64,8 +51,7 @@ class Service extends Model
      */
     public function getDescriptions()
     {
-        $translation = $this->primaryTranslation;
-        return json_decode($translation->description ?: '[]') ?: [];
+        return json_decode($this->translation_descriptions ?: '[]') ?: [];
     }
 
     public function scopeActive($query)

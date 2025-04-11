@@ -35,11 +35,11 @@ class PageController extends Controller
     public function store(PageRequest $request)
     {
         try {
-            // Get all validated data except the image
-            $data = $request->safeValidated();
+            // Get validated data including all fields
+            $data = $request->validated();
             
-            // Generate slug from title
-            $data['slug'] = Str::slug($request->title);
+            // Generate slug from title_en
+            $data['slug'] = Str::slug($request->title_en);
 
             // Handle image upload
             if ($request->hasFile('image')) {
@@ -47,7 +47,7 @@ class PageController extends Controller
             }
 
             // Set is_published based on the checkbox value
-            $data['is_published'] = $request->input('is_published') == 1;
+            $data['is_published'] = $request->has('is_published') ? true : false;
 
             // Create the page
             $page = Page::create($data);
@@ -92,16 +92,16 @@ class PageController extends Controller
     public function update(PageRequest $request, Page $page)
     {
         try {
-            // Get all validated data except the image
-            $data = $request->safeValidated();
+            // Get all validated data
+            $data = $request->validated();
 
-            // Generate slug from title if title is changed
-            if ($request->title != $page->title) {
-                $data['slug'] = Str::slug($request->title);
+            // Generate slug from title_en if title_en is changed
+            if ($request->title_en != $page->title_en) {
+                $data['slug'] = Str::slug($request->title_en);
             }
 
             // Set is_published based on the checkbox value
-            $data['is_published'] = $request->input('is_published') == 1;
+            $data['is_published'] = $request->has('is_published') ? true : false;
 
             // Handle image deletion if checkbox is checked
             if ($request->has('delete_image') && $request->delete_image == 1) {

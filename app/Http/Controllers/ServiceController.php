@@ -64,7 +64,7 @@ class ServiceController extends Controller
             $filePath = $request->file('file')->store('services', 'public');
         }
 
-        // Create the service
+        // Create the service with translations directly in the service table
         $service = Service::create([
             'name' => $request->input('name'),
             'icon' => $request->input('icon'),
@@ -73,14 +73,9 @@ class ServiceController extends Controller
             'display_order' => $request->input('display_order'),
             'is_published' => $request->input('is_published') == 1,
             'file' => $filePath,
-        ]);
-
-        // Store service details as JSON in a single record
-        ServiceTranslation::create([
-            'service_id' => $service->id,
-            'name' => json_encode($request->input('names', [])),
-            'icon' => json_encode($request->input('icons', [])),
-            'description' => json_encode($request->input('descriptions', [])),
+            'translation_names' => json_encode($request->input('names', [])),
+            'translation_icons' => json_encode($request->input('icons', [])),
+            'translation_descriptions' => json_encode($request->input('descriptions', [])),
             'language_code' => 'en', // Default to English
         ]);
 
@@ -93,14 +88,10 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        $service->load('translations');
-
         // Decode JSON data for the view
-        foreach ($service->translations as $translation) {
-            $translation->names = json_decode($translation->name ?: '[]') ?: [];
-            $translation->icons = json_decode($translation->icon ?: '[]') ?: [];
-            $translation->descriptions = json_decode($translation->description ?: '[]') ?: [];
-        }
+        $service->names = json_decode($service->translation_names ?: '[]') ?: [];
+        $service->icons = json_decode($service->translation_icons ?: '[]') ?: [];
+        $service->descriptions = json_decode($service->translation_descriptions ?: '[]') ?: [];
 
         return view('backend.services.show', compact('service'));
     }
@@ -110,14 +101,10 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        $service->load('translations');
-
         // Decode JSON data for the view
-        foreach ($service->translations as $translation) {
-            $translation->names = json_decode($translation->name ?: '[]') ?: [];
-            $translation->icons = json_decode($translation->icon ?: '[]') ?: [];
-            $translation->descriptions = json_decode($translation->description ?: '[]') ?: [];
-        }
+        $service->names = json_decode($service->translation_names ?: '[]') ?: [];
+        $service->icons = json_decode($service->translation_icons ?: '[]') ?: [];
+        $service->descriptions = json_decode($service->translation_descriptions ?: '[]') ?: [];
 
         return view('backend.services.edit', compact('service'));
     }
@@ -163,7 +150,7 @@ class ServiceController extends Controller
             $filePath = $service->file;
         }
 
-        // Update service
+        // Update service with translations in the same record
         $service->update([
             'name' => $request->input('name'),
             'icon' => $request->input('icon'),
@@ -172,15 +159,11 @@ class ServiceController extends Controller
             'display_order' => $request->input('display_order'),
             'is_published' => $request->input('is_published') == 1,
             'file' => $filePath,
+            'translation_names' => json_encode($request->input('names', [])),
+            'translation_icons' => json_encode($request->input('icons', [])),
+            'translation_descriptions' => json_encode($request->input('descriptions', [])),
+            'language_code' => 'en', // Default to English
         ]);
-
-        // Update or create translation
-        $translation = ServiceTranslation::firstOrNew(['service_id' => $service->id]);
-        $translation->name = json_encode($request->input('names', []));
-        $translation->icon = json_encode($request->input('icons', []));
-        $translation->description = json_encode($request->input('descriptions', []));
-        $translation->language_code = 'en';
-        $translation->save();
 
         return redirect()->route('services.index')
             ->with('success', 'Service updated successfully.');

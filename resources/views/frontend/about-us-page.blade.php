@@ -3,17 +3,17 @@
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')
 
-    <section class="m-6 sm:m-10 md:m-20 lg:mx-30">
+    <section class="m-6 sm:m-8 2xl:mx-30">
         <!-- About Hulas Remittance -->
-        <div class="m-10 flex flex-col gap-6 lg:flex-row  md:justify-center md:items-center">
+        <div class="m-10 flex flex-col gap-6 md:flex-row  md:justify-center md:items-center">
             <!-- image -->
-            <div class="flex-1 flex justify-center m-6">
-                <img src="/images/about-us/about-img-1.webp" class="rounded-2xl object-cover w-full" alt="" />
+            <div class="flex-1 flex justify-center w-full">
+                <img src="/images/about-us/about-img-1.webp" class="rounded-2xl object-cover w-full" alt="About Us Image" />
             </div>
 
             <!-- Text Container -->
             <div class="flex flex-2 flex-col space-y-3">
-                <h2 class="text-xl font-bold text-black md:text-4xl">
+                <h2 class="text-xl lg:text-2xl font-bold text-black ">
                     @isset($aboutUs)
                     {{ $aboutUs->title }}
                 </h2>
@@ -48,40 +48,65 @@
                                     class="w-6 h-6">
                             </a>
                         </div>
-
-                        <!-- Instagram -->
-                        <div
-                            class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                <img src="{{ asset('images/social-media-icons/facebook-black.svg') }}" alt="Facebook Icon"
-                                    class="w-6 h-6">
-                            </a>
+                        <!-- Years of experience -->
+                        <div class="flex flex-col items-center space-y-3 lg:space-y-0 lg:flex-row lg:space-x-4">
+                            <div
+                                class="w-60 md:w-40 lg:w-60 bg-black rounded-xl flex justify-start lg:justify-center items-center flex-col space-y-2 lg:space-y-4 p-3">
+                                <p class="text-accent font-bold text-2xl">49+</p>
+                                <p class="text-accent text-center text-lg">
+                                    {{ $aboutUs->years_of_experience }}
+                                </p>
+                            </div>
                         </div>
+                        <hr class="mr-5 text-gray-400 font-semibold" />
+
+                        <!-- Social Media links -->
+                        <div>
+                            <div class="flex flex-row gap-4 mx-3">
+                                <!-- Facebook -->
+                                <div
+                                    class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
+                                    <a href="https://www.facebook.com/Nationalinsuranceindia/">
+                                        <img src="/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
+                                            class="w-6 h-6">
+                                    </a>
+                                </div>
+
+                                <!-- Instagram -->
+                                <div
+                                    class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
+                                    <a href="https://www.facebook.com/Nationalinsuranceindia/">
+                                        <img src="/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
+                                            class="w-6 h-6">
+                                    </a>
+                                </div>
 
 
-                        <!-- Twitter -->
-                        <div
-                            class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                <img src="{{ asset('images/social-media-icons/facebook-black.svg') }}" alt="Facebook Icon"
-                                    class="w-6 h-6">
-                            </a>
-                        </div>
+                                <!-- Twitter -->
+                                <div
+                                    class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
+                                    <a href="https://www.facebook.com/Nationalinsuranceindia/">
+                                        <img src="./public/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
+                                            class="w-6 h-6">
+                                    </a>
+                                </div>
 
 
-                        <!-- LinkedIn -->
-                        <div
-                            class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                <img src="{{ asset('images/social-media-icons/facebook-black.svg') }}" alt="Facebook Icon"
-                                    class="w-6 h-6">
-                            </a>
-                        </div>
-                        @endisset
+                                <!-- LinkedIn -->
+                                <div
+                                    class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
+                                    <a href="https://www.facebook.com/Nationalinsuranceindia/">
+                                        <img src="./public/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
+                                            class="w-6 h-6">
+                                    </a>
+                                </div>
 
-                    </div>
+                            </div>
+                    @endisset
+
                 </div>
             </div>
+        </div>
         </div>
         </div>
     </section>
@@ -270,6 +295,58 @@
                 ❯
             </button>
         </div>
+        <h3 class="text-lg font-bold text-center">
+          Miscellaneous Insurance
+        </h3>
+        <p class="text-base md:text-lg text-black text-center">
+          Safeguards property owners against losses and damages providing
+          compensation for the repair or replacement of the insured assets
+        </p>
+        <div class="flex justify-center ">
+          <a
+                          href="#"
+                          class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center"
+                          >Read more</a
+                        >
+            
+                        </div>
+            </div>
+      <div
+      class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card"
+    >
+      <div class="flex flex-col items-center">
+        <img
+        src="https://media.licdn.com/dms/image/C4D12AQF3vYqQRpFaOw/article-cover_image-shrink_600_2000/0/1651676674940?e=2147483647&v=beta&t=BGSpmlC6Q9rQ_vYOqaHnUxgZf5krVGvmXpKR4OomyCU"
+        alt="Engineering Insurance"
+          class="w-full h-[200px] rounded-lg"
+        />
+      </div>
+      <h3 class="text-lg font-bold text-center">
+        Engineering Insurance
+      </h3>
+      <p class="text-base md:text-lg text-black text-center">
+        Safeguards property owners against losses and damages providing
+        compensation for the repair or replacement of the insured assets
+      </p>
+      <div class="flex justify-center ">
+        <a
+                        href="#"
+                        class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center"
+                        >Read more</a
+                      >
+          
+                      </div>
+        </div>
+            
+          </div>
+        </div>
+        <button
+          class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
+          onclick="nextSlide()"
+        >
+          ❯
+        </button>
+      </div>
     </section>
 
 

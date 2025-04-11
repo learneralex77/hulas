@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->string('bname');
-            $table->text('description')->nullable();
+            $table->string('name_en');
+            $table->string('name_np')->nullable();         
+            $table->text('description_en')->nullable();
+            $table->text('description_np')->nullable();
             $table->integer('display_order')->default(0);
             $table->string('slug')->unique();
             $table->boolean('is_published')->default(true);

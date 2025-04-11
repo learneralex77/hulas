@@ -22,10 +22,12 @@ class SettingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'max:190'],
+            'title_en' => ['required', 'string', 'max:190'],
+            'title_np' => ['nullable', 'string', 'max:190'],
             'feedback_notify_email' => ['required', 'email', 'max:190'],
             'agent_notify_email' => ['required', 'email', 'max:190'],
-            'description' => ['required', 'string'],
+            'description_en' => ['required', 'string'],
+            'description_np' => ['nullable', 'string'],
             'email' => ['required', 'email', 'max:190'],
             'PO_Box' => ['required', 'string', 'max:100'],
             'canonical_url' => ['required', 'string', 'max:190'],
@@ -41,6 +43,10 @@ class SettingRequest extends FormRequest
             'delete_logo' => ['nullable', 'boolean'],
             'delete_primary_logo' => ['nullable', 'boolean'],
             'delete_secondary_logo' => ['nullable', 'boolean'],
+            
+            // For backward compatibility
+            'title' => ['nullable', 'string', 'max:190'],
+            'description' => ['nullable', 'string'],
         ];
     }
 
@@ -52,10 +58,12 @@ class SettingRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'title' => 'title',
+            'title_en' => 'title (English)',
+            'title_np' => 'title (Nepali)',
             'feedback_notify_email' => 'feedback notification email',
             'agent_notify_email' => 'agent notification email',
-            'description' => 'description',
+            'description_en' => 'description (English)',
+            'description_np' => 'description (Nepali)',
             'email' => 'email',
             'PO_Box' => 'P.O. Box',
             'canonical_url' => 'canonical URL',
@@ -82,9 +90,12 @@ class SettingRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'title.required' => 'The title is required.',
-            'title.string' => 'The title must be a string.',
-            'title.max' => 'The title may not be greater than 190 characters.',
+            'title_en.required' => 'The English title is required.',
+            'title_en.string' => 'The English title must be a string.',
+            'title_en.max' => 'The English title may not be greater than 190 characters.',
+            
+            'title_np.string' => 'The Nepali title must be a string.',
+            'title_np.max' => 'The Nepali title may not be greater than 190 characters.',
             
             'feedback_notify_email.required' => 'The feedback notification email is required.',
             'feedback_notify_email.email' => 'The feedback notification email must be a valid email address.',
@@ -94,8 +105,10 @@ class SettingRequest extends FormRequest
             'agent_notify_email.email' => 'The agent notification email must be a valid email address.',
             'agent_notify_email.max' => 'The agent notification email may not be greater than 190 characters.',
             
-            'description.required' => 'The description is required.',
-            'description.string' => 'The description must be a string.',
+            'description_en.required' => 'The English description is required.',
+            'description_en.string' => 'The English description must be a string.',
+            
+            'description_np.string' => 'The Nepali description must be a string.',
             
             'email.required' => 'The email is required.',
             'email.email' => 'The email must be a valid email address.',
@@ -138,5 +151,26 @@ class SettingRequest extends FormRequest
             'secondary_logo.mimes' => 'The secondary logo must be a file of type: jpeg, png, jpg, gif.',
             'secondary_logo.max' => 'The secondary logo may not be greater than 2MB.',
         ];
+    }
+    
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation(): void
+    {
+        // For backward compatibility - map legacy fields to new ones
+        if ($this->has('title') && !$this->has('title_en')) {
+            $this->merge([
+                'title_en' => $this->title,
+            ]);
+        }
+        
+        if ($this->has('description') && !$this->has('description_en')) {
+            $this->merge([
+                'description_en' => $this->description,
+            ]);
+        }
     }
 }

@@ -23,7 +23,8 @@ class DownloadRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255'],
+            'name_np' => ['nullable', 'string', 'max:255'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
         ];
@@ -47,10 +48,13 @@ class DownloadRequest extends FormRequest
 
         // Add unique check with proper ignoring for updates
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
-            $rules['name'][] = Rule::unique('downloads', 'name')
+            $rules['name_en'][] = Rule::unique('downloads', 'name_en')
+                ->ignore($this->route('download'));
+            $rules['name_np'][] = Rule::unique('downloads', 'name_np')
                 ->ignore($this->route('download'));
         } else {
-            $rules['name'][] = Rule::unique('downloads', 'name');
+            $rules['name_en'][] = Rule::unique('downloads', 'name_en');
+            $rules['name_np'][] = Rule::unique('downloads', 'name_np');
         }
 
         return $rules;
@@ -64,7 +68,8 @@ class DownloadRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name' => 'download name',
+            'name_en' => 'English download name',
+            'name_np' => 'Nepali download name',
             'file' => 'file',
             'display_order' => 'display order',
             'is_published' => 'published status',
@@ -79,10 +84,14 @@ class DownloadRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The download name is required.',
-            'name.string' => 'The download name must be a string.',
-            'name.max' => 'The download name may not be greater than 255 characters.',
-            'name.unique' => 'A download with this name already exists.',
+            'name_en.required' => 'The English download name is required.',
+            'name_en.string' => 'The English download name must be a string.',
+            'name_en.max' => 'The English download name may not be greater than 255 characters.',
+            'name_en.unique' => 'A download with this English name already exists.',
+            
+            'name_np.string' => 'The Nepali download name must be a string.',
+            'name_np.max' => 'The Nepali download name may not be greater than 255 characters.',
+            'name_np.unique' => 'A download with this Nepali name already exists.',
             
             'file.required' => 'Please select a file to upload.',
             'file.file' => 'The uploaded file is invalid.',

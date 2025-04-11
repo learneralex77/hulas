@@ -23,7 +23,7 @@ class AgentFormController extends Controller
      */
     public function create()
     {
-        $districts = District::where('is_published', true)->orderBy('name')->get();
+        $districts = District::where('is_published', true)->orderBy('name_en')->get();
         return view('backend.agent-forms.create', compact('districts'));
     }
 
@@ -56,7 +56,7 @@ class AgentFormController extends Controller
      */
     public function edit(AgentForm $agentForm)
     {
-        $districts = District::where('is_published', true)->orderBy('name')->get();
+        $districts = District::where('is_published', true)->orderBy('name_en')->get();
         return view('backend.agent-forms.edit', compact('agentForm', 'districts'));
     }
 

@@ -22,10 +22,14 @@ class AboutUsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tagline' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string'],
-            'years_of_experience' => ['nullable', 'integer', 'min:0'],
-            'short_description' => ['nullable', 'string'],
+            'tagline_en' => ['required', 'string', 'max:255'],
+            'tagline_np' => ['nullable', 'string', 'max:255'],
+            'description_en' => ['required', 'string'],
+            'description_np' => ['nullable', 'string'],
+            'years_of_experience_en' => ['nullable', 'integer', 'min:0'],
+            'years_of_experience_np' => ['nullable', 'integer', 'min:0'],
+            'short_description_en' => ['nullable', 'string'],
+            'short_description_np' => ['nullable', 'string'],
             'video_link' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'delete_image' => ['nullable', 'boolean'],
@@ -34,6 +38,12 @@ class AboutUsRequest extends FormRequest
             'mission_vision_descriptions.*' => ['required', 'string'],
             'is_published' => ['boolean'],
             'display_order' => ['integer', 'min:0'],
+            
+            // For backward compatibility
+            'tagline' => ['nullable', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'years_of_experience' => ['nullable', 'integer', 'min:0'],
+            'short_description' => ['nullable', 'string'],
         ];
     }
 
@@ -45,10 +55,14 @@ class AboutUsRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'tagline' => 'tagline',
-            'description' => 'description',
-            'years_of_experience' => 'years of experience',
-            'short_description' => 'short description',
+            'tagline_en' => 'tagline (English)',
+            'tagline_np' => 'tagline (Nepali)',
+            'description_en' => 'description (English)',
+            'description_np' => 'description (Nepali)',
+            'years_of_experience_en' => 'years of experience (English)',
+            'years_of_experience_np' => 'years of experience (Nepali)',
+            'short_description_en' => 'short description (English)',
+            'short_description_np' => 'short description (Nepali)',
             'video_link' => 'video link',
             'image' => 'image',
             'delete_image' => 'delete image option',
@@ -68,17 +82,27 @@ class AboutUsRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'tagline.required' => 'The tagline is required.',
-            'tagline.string' => 'The tagline must be a string.',
-            'tagline.max' => 'The tagline may not be greater than 255 characters.',
+            'tagline_en.required' => 'The English tagline is required.',
+            'tagline_en.string' => 'The English tagline must be a string.',
+            'tagline_en.max' => 'The English tagline may not be greater than 255 characters.',
             
-            'description.required' => 'The description is required.',
-            'description.string' => 'The description must be a string.',
+            'tagline_np.string' => 'The Nepali tagline must be a string.',
+            'tagline_np.max' => 'The Nepali tagline may not be greater than 255 characters.',
             
-            'years_of_experience.integer' => 'The years of experience must be a number.',
-            'years_of_experience.min' => 'The years of experience must be at least 0.',
+            'description_en.required' => 'The English description is required.',
+            'description_en.string' => 'The English description must be a string.',
             
-            'short_description.string' => 'The short description must be a string.',
+            'description_np.string' => 'The Nepali description must be a string.',
+            
+            'years_of_experience_en.integer' => 'The English years of experience must be a number.',
+            'years_of_experience_en.min' => 'The English years of experience must be at least 0.',
+            
+            'years_of_experience_np.integer' => 'The Nepali years of experience must be a number.',
+            'years_of_experience_np.min' => 'The Nepali years of experience must be at least 0.',
+            
+            'short_description_en.string' => 'The English short description must be a string.',
+            
+            'short_description_np.string' => 'The Nepali short description must be a string.',
             
             'video_link.string' => 'The video link must be a string.',
             'video_link.max' => 'The video link may not be greater than 255 characters.',
@@ -98,5 +122,38 @@ class AboutUsRequest extends FormRequest
             'mission_vision_descriptions.*.required' => 'Each mission/vision description is required.',
             'mission_vision_descriptions.*.string' => 'Each mission/vision description must be a string.',
         ];
+    }
+    
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation(): void
+    {
+        // For backward compatibility - map legacy fields to new ones
+        if ($this->has('tagline') && !$this->has('tagline_en')) {
+            $this->merge([
+                'tagline_en' => $this->tagline,
+            ]);
+        }
+        
+        if ($this->has('description') && !$this->has('description_en')) {
+            $this->merge([
+                'description_en' => $this->description,
+            ]);
+        }
+        
+        if ($this->has('years_of_experience') && !$this->has('years_of_experience_en')) {
+            $this->merge([
+                'years_of_experience_en' => $this->years_of_experience,
+            ]);
+        }
+        
+        if ($this->has('short_description') && !$this->has('short_description_en')) {
+            $this->merge([
+                'short_description_en' => $this->short_description,
+            ]);
+        }
     }
 }

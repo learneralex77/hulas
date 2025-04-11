@@ -18,7 +18,7 @@
             <div class="block-content">
 
 
-                <form action="{{ route('pages.store') }}" method="POST" enctype="multipart/form-data" id="page-form">
+                <form action="{{ route('pages.store') }}" method="POST" enctype="multipart/form-data" id="page-form" class="needs-validation" novalidate>
                     @csrf
                     @include('backend.pages.partials.form')
                 </form>

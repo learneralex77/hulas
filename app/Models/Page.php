@@ -13,10 +13,13 @@ class Page extends Model
     protected $fillable = [
         'slug',
         'menu_id',
-        'title',
-        'content',
+        'title_en',
+        'title_np',
+        'content_en',
+        'content_np',
         'image',
-        'short_description',
+        'short_description_en',
+        'short_description_np',
         'display_order',
         'is_published'
     ];

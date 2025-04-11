@@ -22,6 +22,10 @@ class BecomeAnAgent extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'title_en',
+        'title_np',
+        'description_en',
+        'description_np',
         'images',
         'display_order',
         'is_published',
@@ -36,6 +40,22 @@ class BecomeAnAgent extends Model
         'images' => 'array',
         'is_published' => 'boolean',
     ];
+
+    /**
+     * Get the title attribute (for backward compatibility)
+     */
+    public function getTitleAttribute()
+    {
+        return $this->title_en ?? '';
+    }
+
+    /**
+     * Get the description attribute (for backward compatibility)
+     */
+    public function getDescriptionAttribute()
+    {
+        return $this->description_en ?? '';
+    }
 
     public function scopeActive($query)
     {

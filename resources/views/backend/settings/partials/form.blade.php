@@ -1,9 +1,16 @@
 <h4 class="mb-4">General Information</h4>
 <div class="row">
     <div class="col-md-6 mb-4">
-        <label class="form-label" for="title">Website Title <span class="text-danger">*</span></label>
-        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title" value="{{ old('title', $setting->title ?? '') }}" required>
-        @error('title')
+        <label class="form-label" for="title_en">Website Title (English) <span class="text-danger">*</span></label>
+        <input type="text" class="form-control @error('title_en') is-invalid @enderror" id="title_en" name="title_en" value="{{ old('title_en', $setting->title_en ?? $setting->title ?? '') }}" required>
+        @error('title_en')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="col-md-6 mb-4">
+        <label class="form-label" for="title_np">Website Title (Nepali)</label>
+        <input type="text" class="form-control @error('title_np') is-invalid @enderror" id="title_np" name="title_np" value="{{ old('title_np', $setting->title_np ?? '') }}">
+        @error('title_np')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
@@ -135,10 +142,17 @@
 
 <h4 class="mb-4">Content</h4>
 <div class="row">
-    <div class="col-md-12 mb-4">
-        <label class="form-label" for="description">Description <span class="text-danger">*</span></label>
-        <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="4" required>{{ old('description', $setting->description ?? '') }}</textarea>
-        @error('description')
+    <div class="col-md-6 mb-4">
+        <label class="form-label" for="description_en">Description (English) <span class="text-danger">*</span></label>
+        <textarea class="form-control @error('description_en') is-invalid @enderror" id="description_en" name="description_en" rows="4" required>{{ old('description_en', $setting->description_en ?? $setting->description ?? '') }}</textarea>
+        @error('description_en')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="col-md-6 mb-4">
+        <label class="form-label" for="description_np">Description (Nepali)</label>
+        <textarea class="form-control @error('description_np') is-invalid @enderror" id="description_np" name="description_np" rows="4">{{ old('description_np', $setting->description_np ?? '') }}</textarea>
+        @error('description_np')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
     </div>
@@ -214,4 +228,8 @@
             <i class="fa fa-times"></i> Cancel
         </a>
     </div>
-</div> 
+</div>
+
+<!-- Hidden fields for backward compatibility -->
+<input type="hidden" name="title" value="{{ $setting->title_en ?? '' }}">
+<input type="hidden" name="description" value="{{ $setting->description_en ?? '' }}"> 

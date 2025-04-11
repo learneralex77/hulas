@@ -25,9 +25,13 @@ class ServiceRequest extends FormRequest
     {
         $rules = [
             // Direct service fields
-            'name' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255'],
+            'name_np' => ['required', 'string', 'max:255'],
+
             'icon' => ['nullable', 'string', 'max:255'],
-            'description' => ['nullable', 'string'],
+            'description_en' => ['nullable', 'string'],
+            'description_np' => ['nullable', 'string'],
+
             
             // Original array fields for service details
             'names' => ['required', 'array', 'min:1'],

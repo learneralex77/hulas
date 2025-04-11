@@ -23,17 +23,21 @@ class DepartmentRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'name' => ['required', 'string', 'max:255'],
+            'name_en' => ['required', 'string', 'max:255'],
+            'name_np' => ['nullable', 'string', 'max:255'],
             'display_order' => ['nullable', 'integer'],
             'is_published' => ['nullable', 'boolean'],
         ];
 
         // Add unique check with proper ignoring for updates
         if ($this->isMethod('PUT') || $this->isMethod('PATCH')) {
-            $rules['name'][] = Rule::unique('departments', 'name')
+            $rules['name_en'][] = Rule::unique('departments', 'name_en')
+                ->ignore($this->route('department'));
+            $rules['name_np'][] = Rule::unique('departments', 'name_np')
                 ->ignore($this->route('department'));
         } else {
-            $rules['name'][] = Rule::unique('departments', 'name');
+            $rules['name_en'][] = Rule::unique('departments', 'name_en');
+            $rules['name_np'][] = Rule::unique('departments', 'name_np');
         }
 
         return $rules;
@@ -47,7 +51,8 @@ class DepartmentRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name' => 'department name',
+            'name_en' => 'English department name',
+            'name_np' => 'Nepali department name',
             'display_order' => 'display order',
             'is_published' => 'published status',
         ];
@@ -61,10 +66,14 @@ class DepartmentRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The department name is required.',
-            'name.string' => 'The department name must be a string.',
-            'name.max' => 'The department name may not be greater than 255 characters.',
-            'name.unique' => 'A department with this name already exists.',
+            'name_en.required' => 'The English department name is required.',
+            'name_en.string' => 'The English department name must be a string.',
+            'name_en.max' => 'The English department name may not be greater than 255 characters.',
+            'name_en.unique' => 'A department with this English name already exists.',
+
+            'name_np.string' => 'The Nepali department name must be a string.',
+            'name_np.max' => 'The Nepali department name may not be greater than 255 characters.',
+            'name_np.unique' => 'A department with this Nepali name already exists.',
 
             'display_order.integer' => 'The display order must be a valid number.',
         ];

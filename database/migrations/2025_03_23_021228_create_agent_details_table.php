@@ -14,11 +14,16 @@ return new class extends Migration
         Schema::create('agent_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('district_id')->constrained()->onDelete('cascade');
-            $table->text('state_agent_name');  
-            $table->text('address')->nullable(); 
-            $table->text('contact_no')->nullable(); 
-            $table->text('contact_person')->nullable(); 
+            $table->text('state_agent_name_en');  
+            $table->text('state_agent_name_np')->nullable();
+            $table->text('address_en')->nullable(); 
+            $table->text('address_np')->nullable()->nullable();
+            $table->text('contact_no_en')->nullable(); 
+            $table->text('contact_no_np')->nullable(); 
+            $table->text('contact_person_en')->nullable();   
+            $table->text('contact_person_np')->nullable(); 
             $table->integer('display_order')->default(0);
+        
             $table->boolean('is_published')->default(true);
             $table->timestamps();
         });

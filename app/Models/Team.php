@@ -11,9 +11,13 @@ class Team extends Model
 
     protected $fillable = [
         'type',
-        'name',
+        'name_en',
+        'name_np',
+        'name', // Keep for backward compatibility
         'image',
-        'description',
+        'description_en',
+        'description_np',
+        'description', // Keep for backward compatibility
         'display_order',
         'is_published'
     ];
@@ -25,6 +29,22 @@ class Team extends Model
     // Team type constants
     const TYPE_MANAGEMENT = 'Management Team';
     const TYPE_BOD = 'BOD';
+
+    /**
+     * Accessor for the 'name' attribute to maintain backward compatibility
+     */
+    public function getNameAttribute()
+    {
+        return $this->name_en ?? '';
+    }
+
+    /**
+     * Accessor for the 'description' attribute to maintain backward compatibility
+     */
+    public function getDescriptionAttribute()
+    {
+        return $this->description_en ?? '';
+    }
 
     /**
      * Get available team types as array

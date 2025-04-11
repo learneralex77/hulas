@@ -23,10 +23,14 @@ class AboutUs extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'tagline',
-        'description',
-        'years_of_experience',
-        'short_description',
+        'tagline_en',
+        'tagline_np',
+        'description_en',
+        'description_np',
+        'years_of_experience_en',
+        'years_of_experience_np',
+        'short_description_en',
+        'short_description_np',
         'video_link',
         'image',
         'mission_vision',
@@ -41,11 +45,44 @@ class AboutUs extends Model
      */
     protected $casts = [
         'mission_vision' => 'array',
-        'years_of_experience' => 'integer',
+        'years_of_experience_en' => 'integer',
+        'years_of_experience_np' => 'integer',
         'is_published' => 'boolean',
         'display_order' => 'integer',
     ];
    
+    /**
+     * Get the tagline attribute (for backward compatibility)
+     */
+    public function getTaglineAttribute()
+    {
+        return $this->tagline_en ?? '';
+    }
+
+    /**
+     * Get the description attribute (for backward compatibility)
+     */
+    public function getDescriptionAttribute()
+    {
+        return $this->description_en ?? '';
+    }
+
+    /**
+     * Get the years_of_experience attribute (for backward compatibility)
+     */
+    public function getYearsOfExperienceAttribute()
+    {
+        return $this->years_of_experience_en ?? 0;
+    }
+
+    /**
+     * Get the short_description attribute (for backward compatibility)
+     */
+    public function getShortDescriptionAttribute()
+    {
+        return $this->short_description_en ?? '';
+    }
+
     /**
      * Scope a query to only include active items.
      *

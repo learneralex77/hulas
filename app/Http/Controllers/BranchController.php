@@ -23,7 +23,7 @@ class BranchController extends Controller
      */
     public function create()
     {
-        $districts = District::where('is_published', true)->orderBy('name')->get();
+        $districts = District::where('is_published', true)->orderBy('name_en')->get();
         return view('backend.branches.create', compact('districts'));
     }
 
@@ -62,7 +62,7 @@ class BranchController extends Controller
      */
     public function edit(Branch $branch)
     {
-        $districts = District::where('is_published', true)->orderBy('name')->get();
+        $districts = District::where('is_published', true)->orderBy('name_en')->get();
         return view('backend.branches.edit', compact('branch', 'districts'));
     }
 

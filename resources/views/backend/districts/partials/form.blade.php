@@ -1,18 +1,25 @@
 <div class="row">
     <div class="col-lg-12">
-        <!-- Name and Display Order in one row -->
+        <!-- Name in English and Nepali, Display Order and Status -->
         <div class="row mb-4">
-            <div class="col-md-6">
-                <label class="form-label" for="name">Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                    name="name" value="{{ old('name', $district->name ?? '') }}" required>
-                @error('name')
+            <div class="col-md-4">
+                <label class="form-label" for="name_en">Name (English) <span class="text-danger">*</span></label>
+                <input type="text" class="form-control @error('name_en') is-invalid @enderror" id="name_en"
+                    name="name_en" value="{{ old('name_en', $district->name_en ?? $district->name ?? '') }}" required>
+                @error('name_en')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
             <div class="col-md-4">
-                <label class="form-label" for="display_order">Display Order <small class="text-muted">(Higher orders
-                        appear first)</small></label>
+                <label class="form-label" for="name_np">Name (Nepali)</label>
+                <input type="text" class="form-control @error('name_np') is-invalid @enderror" id="name_np"
+                    name="name_np" value="{{ old('name_np', $district->name_np ?? '') }}">
+                @error('name_np')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-2">
+                <label class="form-label" for="display_order">Display Order</label>
                 <input type="number" class="form-control @error('display_order') is-invalid @enderror"
                     id="display_order" name="display_order"
                     value="{{ old('display_order', $district->display_order ?? 0) }}">
@@ -45,3 +52,6 @@
         </div>
     </div>
 </div>
+
+<!-- Hidden fields for backward compatibility -->
+<input type="hidden" name="name" value="{{ $district->name_en ?? '' }}">

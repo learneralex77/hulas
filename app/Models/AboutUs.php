@@ -45,8 +45,6 @@ class AboutUs extends Model
      */
     protected $casts = [
         'mission_vision' => 'array',
-        'years_of_experience_en' => 'integer',
-        'years_of_experience_np' => 'integer',
         'is_published' => 'boolean',
         'display_order' => 'integer',
     ];

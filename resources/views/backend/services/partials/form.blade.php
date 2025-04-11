@@ -36,7 +36,8 @@
             <div class="col-md-6">
                 <label class="form-label ps-0" for="file">File (Image or PDF)</label>
                 <input type="file" class="form-control @error('file') is-invalid @enderror" id="file"
-                    name="file">
+                    name="file" accept="image/jpeg,image/png,image/jpg,image/gif,image/svg+xml,application/pdf,image/webp">
+                <small class="text-muted">Allowed file types: JPEG, PNG, JPG, GIF, SVG, PDF, WebP (max 2MB)</small>
                 @error('file')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -82,7 +83,7 @@
             </div>
             <div class="col-md-6">
                 <label class="form-label" for="description_np">Description(Nepali)</label>
-                <textarea class="form-control form-control-sm @error('description_np') is-invalid @enderror" id="description_np" name="description_np" rows="3">{{ old('description_np', $services->description_np ?? '') }}</textarea>
+                <textarea class="form-control form-control-sm @error('description_np') is-invalid @enderror" id="description_np" name="description_np" rows="3">{{ old('description_np', $service->description_np ?? '') }}</textarea>
                 @error('description_np')
                     <div class="invalid-feedback small">{{ $message }}</div>
                 @enderror
@@ -102,12 +103,11 @@
         </div>
 
         <div id="service-details-container">
-            @if (isset($service) && $service->translations->isNotEmpty())
+            @if (isset($service) && !empty($service->translation_names))
                 @php
-                    // Get all names, icons, and descriptions from the first translation
-                    $names = $service->translations->first()->names ?? [];
-                    $icons = $service->translations->first()->icons ?? [];
-                    $descriptions = $service->translations->first()->descriptions ?? [];
+                    $names = $service->translation_names;
+                    $icons = $service->translation_icons ?? [];
+                    $descriptions = $service->translation_descriptions ?? [];
                 @endphp
                 
                 @foreach ($names as $index => $name)
@@ -208,8 +208,8 @@
 
 @push('scripts')
     <script>
-        @if(isset($service) && $service->translations->isNotEmpty())
-            const serviceTranslationsCount = {{ count($service->translations->first()->names ?? []) }};
+        @if(isset($service) && !empty($service->translation_names))
+            const serviceTranslationsCount = {{ count($service->translation_names) }};
         @else
             const serviceTranslationsCount = 1;
         @endif
@@ -220,7 +220,7 @@
             
             form.addEventListener('submit', function(e) {
                 // Check if the service name is empty
-                const nameField = document.querySelector('input[name="name"]');
+                const nameField = document.querySelector('input[name="name_en"]');
                 if (!nameField || !nameField.value || nameField.value.trim() === '') {
                     e.preventDefault();
                     e.stopPropagation();
@@ -235,7 +235,7 @@
                         nameField.parentNode.appendChild(errorDiv);
                     }
                     
-                    errorDiv.textContent = 'The service name is required.';
+                    errorDiv.textContent = 'The English name is required.';
                     // Make sure it's visible
                     errorDiv.style.display = 'block';
                     nameField.scrollIntoView({ behavior: 'smooth', block: 'center' });

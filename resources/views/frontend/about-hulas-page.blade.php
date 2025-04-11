@@ -26,7 +26,7 @@
         <div class=" flex flex-col gap-6 md:flex-row  md:justify-center md:items-center">
             <!-- image -->
             <div class="flex-1 flex justify-center w-full">
-                <img src="{{ asset('assets/images/about-us/about-img-1.webp') }}" alt="About Us Image"
+                <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image"
                     class="w-full rounded-xl object-contain lg:object-fit" alt="About Us Image" />
             </div>
 
@@ -36,16 +36,17 @@
                     About Hulas Remittance
                 </h2>
                 <div class="text-lg">
-                    <p> Hulas Remittance, a member company of Golchha Organization, was established in August 2005 with the
-                        vision to bring in quality and reliable money transfer services in to Nepal. A leading business
-                        house with a dedicated business history of more than 85 years, Golchha Organization has established
-                        “HULAS” as one of the most trusted household consumer brands in the country.</p>
+                    <p> @isset($aboutUs->description) {{ $aboutUs->description }} @endisset</p>
                 </div>
                 <!-- Years of experience -->
                 <div class="flex flex-col items-center space-y-3 lg:space-y-0 lg:flex-row lg:space-x-4">
                     <div
                         class="w-60 md:w-40 lg:w-60 bg-black rounded-xl flex justify-start lg:justify-center items-center flex-col space-y-2 lg:space-y-4 p-3">
-                        <p class="text-accent font-bold text-2xl">49+</p>
+                        <p class="text-accent font-bold text-2xl">
+                            @isset($aboutUs->years_of_experience_en)
+                            {{ $aboutUs->years_of_experience_en }}
+                            @endisset
+                        </p>
                         <p class="text-accent text-center text-lg">
                             Years Experience
                         </p>
@@ -59,7 +60,7 @@
                         <!-- Facebook -->
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="https://www.facebook.com/Nationalinsuranceindia/">
+                            <a href="{{ isset($setting->facebook) ? $setting->facebook : '#' }}">
                                 <img src="{{ asset('assets/images/social-media-icons/facebook-black.svg') }}"
                                     alt="Facebook Icon" class="w-6 h-6">
                             </a>
@@ -68,7 +69,7 @@
                         <!-- Linkdin -->
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="https://www.facebook.com/Nationalinsuranceindia/">
+                            <a href="{{ isset($setting->linkedin) ? $setting->linkedin : '#' }}">
                                 <img src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.svg') }}"
                                     alt="Linkdin Icon" class="w-4 h-4">
                             </a>
@@ -78,7 +79,7 @@
                         <!-- Twitter -->
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="https://www.facebook.com/Nationalinsuranceindia/">
+                            <a href="{{ isset($setting->twitter) ? $setting->twitter : '#' }}">
                                 <img src="{{ asset('assets/images/social-media-icons/icons8-x-50.png') }}"
                                     alt="Twitter Icon" class="w-5 h-5">
                             </a>
@@ -105,7 +106,7 @@
                 Services </p>
             <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
                 <!-- A leading business house with a dedicated business history of more than
-                          85 years, Golchha Organization has established “HULAS” -->
+                          85 years, Golchha Organization has established "HULAS" -->
             </p>
         </div>
         <div class="relative flex items-center justify-center">
@@ -114,94 +115,36 @@
                 onclick="prevServicesSlider()">
                 ❮
             </button>
+            
             <div class="overflow-hidden rounded-lg w-full">
                 <div class="flex flex-row gap-8 transition-transform duration-500 ease-in-out" id="services-slider-content">
+                    @isset($services)
+                    @foreach ($services as $service)
                     <div
                         class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
                         <div class="flex flex-col items-center">
-                            <img src="https://media.istockphoto.com/id/1333428875/photo/fire-insurance-concept-burning-small-wooden-house.jpg?s=612x612&w=0&k=20&c=eri3sWqqRhMaJfh81nrVmaS4hVrW4-9K7eTexu3eY9s="
-                                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
+                            @if ($service->file)
+                            <img src="{{ asset('storage/' . $service->file) }}"
+                                alt="{{ $service->name_en }}" class="w-full h-[200px] rounded-lg object-cover" />
+                            @else
+                            <div class="w-full h-[200px] rounded-lg bg-gray-200 flex items-center justify-center">
+                                <i class="{{ $service->icon ?? 'fa fa-briefcase' }} text-5xl text-gray-400"></i>
+                            </div>
+                            @endif
                         </div>
-                        <h3 class="text-lg font-bold text-center">Property Insurance</h3>
+                        <h3 class="text-lg font-bold text-center">{{ $service->name_en }}</h3>
                         <p class="text-base md:text-lg text-black text-center">
-                            Safeguards property owners against losses and damages providing
-                            compensation for the repair or replacement of the insured assets
+                            {{ $service->description_en }}
                         </p>
                         <div class="flex justify-center">
-                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-full text-center">Read
-                                more</a>
+                            <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}" class="bg-black text-white px-4 py-2 tracking-wide rounded-full text-center">Read more</a>
                         </div>
                     </div>
-                    <div
-                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
-                        <div class="flex flex-col items-center">
-                            <img src="https://ebeema.com:1001/api/documentManagement/file?key=MjAyM1wwMVwwOFwtbW90b3ItaW5zdXJhbmNlX2JlNDAucG5n"
-                                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
-                        </div>
-                        <h3 class="text-lg font-bold text-center">Property Insurance</h3>
-                        <p class="text-base md:text-lg text-black text-center">
-                            Safeguards property owners against losses and damages providing
-                            compensation for the repair or replacement of the insured assets
-                        </p>
-                        <div class="flex justify-center">
-                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-full text-center">Read
-                                more</a>
-                        </div>
-                    </div>
-                    <div
-                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-                        <div class="flex flex-col items-center">
-                            <img src="https://nicnepal.com.np/national-insurance/public/./img/marine.jpg"
-                                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
-                        </div>
-                        <h3 class="text-lg font-bold text-center">Marine Insurance</h3>
-                        <p class="text-base md:text-lg text-black text-center">
-                            Safeguards property owners against losses and damages providing
-                            compensation for the repair or replacement of the insured assets
-                        </p>
-                        <div class="flex justify-center">
-                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-full text-center">Read
-                                more</a>
-                        </div>
-                    </div>
-                    <div
-                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-                        <div class="flex flex-col items-center">
-                            <img src="https://nicnepal.com.np/national-insurance/public/img/miscellaneous.jpg"
-                                alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
-                        </div>
-                        <h3 class="text-lg font-bold text-center">
-                            Miscellaneous Insurance
-                        </h3>
-                        <p class="text-base md:text-lg text-black text-center">
-                            Safeguards property owners against losses and damages providing
-                            compensation for the repair or replacement of the insured assets
-                        </p>
-                        <div class="flex justify-center">
-                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-full text-center">Read
-                                more</a>
-                        </div>
-                    </div>
-                    <div
-                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
-                        <div class="flex flex-col items-center">
-                            <img src="https://media.licdn.com/dms/image/C4D12AQF3vYqQRpFaOw/article-cover_image-shrink_600_2000/0/1651676674940?e=2147483647&v=beta&t=BGSpmlC6Q9rQ_vYOqaHnUxgZf5krVGvmXpKR4OomyCU"
-                                alt="Engineering Insurance" class="w-full h-[200px] rounded-lg" />
-                        </div>
-                        <h3 class="text-lg font-bold text-center">
-                            Engineering Insurance
-                        </h3>
-                        <p class="text-base md:text-lg text-black text-center">
-                            Safeguards property owners against losses and damages providing
-                            compensation for the repair or replacement of the insured assets
-                        </p>
-                        <div class="flex justify-center">
-                            <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-full text-center">Read
-                                more</a>
-                        </div>
-                    </div>
+                    @endforeach
+                    @endisset
                 </div>
             </div>
+            
             <button
                 class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
                 onclick="nextServicesSlider()">
@@ -230,31 +173,39 @@
 
 @push('scripts')
     <script>
-        let currentIndex = 0;
+        // Services slider functionality
+        let servicesCurrentSlide = 0;
+        const servicesSliderContent = document.getElementById('services-slider-content');
+        const servicesCards = document.querySelectorAll('.services-review-card');
+        const servicesCardWidth = servicesCards.length > 0 ? servicesCards[0].offsetWidth + 32 : 400; // width + gap
+        const servicesMaxSlide = Math.max(0, servicesCards.length - 3); // Show 3 items at once on desktop
 
-        function nextSlide() {
-            const sliderContent = document.getElementById("slider-content");
-            const slides = document.querySelectorAll(".review-card");
-            const totalSlides = slides.length;
-
-            // Increment the index and move the slide, loop back to the first slide after the last one
-            currentIndex = (currentIndex + 1) % totalSlides;
-            const offset = -currentIndex * (slides[0].offsetWidth + 16); // 16px is the margin between cards
-
-            sliderContent.style.transform = `translateX(${offset}px)`;
+        function nextServicesSlider() {
+            if (servicesCurrentSlide < servicesMaxSlide) {
+                servicesCurrentSlide++;
+                updateServicesSliderPosition();
+            }
         }
 
-        function prevSlide() {
-            const sliderContent = document.getElementById("slider-content");
-            const slides = document.querySelectorAll(".review-card");
-            const totalSlides = slides.length;
-
-            // Decrement the index and move the slide, loop back to the last slide after the first one
-            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
-            const offset = -currentIndex * (slides[0].offsetWidth + 16); // 16px is the margin between cards
-
-            sliderContent.style.transform = `translateX(${offset}px)`;
+        function prevServicesSlider() {
+            if (servicesCurrentSlide > 0) {
+                servicesCurrentSlide--;
+                updateServicesSliderPosition();
+            }
         }
+
+        function updateServicesSliderPosition() {
+            const position = -servicesCurrentSlide * servicesCardWidth;
+            servicesSliderContent.style.transform = `translateX(${position}px)`;
+        }
+
+        // Initialize slider positions on page load
+        window.addEventListener('load', function() {
+            // Only initialize if elements exist
+            if (servicesSliderContent && servicesCards.length > 0) {
+                updateServicesSliderPosition();
+            }
+        });
     </script>
 
     <script type="module" src="/src/main.js"></script>

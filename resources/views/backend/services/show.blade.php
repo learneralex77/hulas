@@ -1,14 +1,14 @@
 @extends('backend.layouts.main')
 
 @section('title')
-    View Service: {{ $service->name ?? $service->translations->first()?->names[0] ?? 'Untitled' }}
+    View Service: {{ $service->name_en ?? $service->translation_names[0] ?? 'Untitled' }}
 @endsection
 
 @section('content')
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Service Details: {{ $service->name ?? $service->translations->first()?->names[0] ?? 'Untitled' }}</h3>
+                <h3 class="block-title">Service Details: {{ $service->name_en ?? $service->translation_names[0] ?? 'Untitled' }}</h3>
                 <div class="block-options">
                     <a href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-alt-primary">
                         <i class="fa fa-pencil-alt"></i> Edit
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">Name:</div>
-                                    <div class="col-md-8">{{ $service->name ?? 'N/A' }}</div>
+                                    <div class="col-md-8">{{ $service->name_en ?? 'N/A' }}</div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">Icon:</div>
@@ -89,33 +89,28 @@
                         <h3 class="block-title">Service Details</h3>
                     </div>
                     <div class="block-content">
-                        @foreach ($service->translations as $translation)
-                            <div class="mb-4">
-                                <div class="row mb-2">
-                                    <div class="col-md-4 fw-semibold text-muted">Language:</div>
-                                    <div class="col-md-8">{{ strtoupper($translation->language_code) }}</div>
-                                </div>
-                                <div class="row mb-2">
-                                    <div class="col-md-4 fw-semibold text-muted">Names:</div>
-                                    <div class="col-md-8">
-                                        @foreach ($translation->names as $name)
-                                            <div>{{ $name }}</div>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4 fw-semibold text-muted">Descriptions:</div>
-                                    <div class="col-md-8">
-                                        @foreach ($translation->descriptions as $description)
-                                            <div class="mb-3">{!! nl2br(e($description)) !!}</div>
-                                        @endforeach
-                                    </div>
+                        <div class="mb-4">
+                            <div class="row mb-2">
+                                <div class="col-md-4 fw-semibold text-muted">Language:</div>
+                                <div class="col-md-8">{{ strtoupper($service->language_code) }}</div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-4 fw-semibold text-muted">Names:</div>
+                                <div class="col-md-8">
+                                    @foreach ($service->translation_names ?? [] as $name)
+                                        <div>{{ $name }}</div>
+                                    @endforeach
                                 </div>
                             </div>
-                            @if (!$loop->last)
-                                <hr>
-                            @endif
-                        @endforeach
+                            <div class="row">
+                                <div class="col-md-4 fw-semibold text-muted">Descriptions:</div>
+                                <div class="col-md-8">
+                                    @foreach ($service->translation_descriptions ?? [] as $description)
+                                        <div class="mb-3">{!! nl2br(e($description)) !!}</div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

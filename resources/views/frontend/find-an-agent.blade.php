@@ -3,6 +3,23 @@
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')
 
+
+@push('styles')
+<link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.10/css/jquery.dataTables.min.css"
+    />
+    <style>
+      .dataTables_wrapper {
+        overflow: auto;
+      }
+      table.dataTable {
+        width: 100% !important;
+      }
+    </style>
+@endpush
+
+
   <!-- banner-section -->
   <section class="relative">
     <div class="mb-10">

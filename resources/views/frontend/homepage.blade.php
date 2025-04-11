@@ -78,9 +78,9 @@
   <section class="overflow-x-hidden">
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
     <div class="flex flex-col items-center space-y-6">
-      <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+      <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
       ">
       Our Introduction
       </h1>
@@ -119,63 +119,122 @@
 
   <!----------Services Section---------->
   <section class="m-10 items-center">
-        <div class="flex flex-col items-center space-y-6">
-            <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-                            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                            -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                          ">
-                Services we provide
-            </h1>
-            <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
-                Services </p>
-            <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-                <!-- A leading business house with a dedicated business history of more than
-                          85 years, Golchha Organization has established "HULAS" -->
-            </p>
+
+    <div class="flex flex-col items-center space-y-6">
+    <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+      ">
+      Services we provide
+    </h1>
+
+    <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+      Services </p>
+    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+      <!-- A leading business house with a dedicated business history of more than
+      85 years, Golchha Organization has established “HULAS” -->
+    </p>
+    </div>
+    <div class="relative flex items-center justify-center">
+    <button
+      class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"
+      onclick="prevServicesSlider()">
+      ❮
+    </button>
+    <div class="overflow-hidden rounded-lg w-full">
+      <div class="flex flex-row gap-8 transition-transform duration-500 ease-in-out" id="services-slider-content">
+      <div
+        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
+        <div class="flex flex-col items-center">
+        <img
+          src="https://media.istockphoto.com/id/1333428875/photo/fire-insurance-concept-burning-small-wooden-house.jpg?s=612x612&w=0&k=20&c=eri3sWqqRhMaJfh81nrVmaS4hVrW4-9K7eTexu3eY9s="
+          alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
         </div>
-        <div class="relative flex items-center justify-center">
-            <button
-                class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"
-                onclick="prevServicesSlider()">
-                ❮
-            </button>
-            
-            <div class="overflow-hidden rounded-lg w-full">
-                <div class="flex flex-row gap-8 transition-transform duration-500 ease-in-out" id="services-slider-content">
-                    @isset($services)
-                    @foreach ($services as $service)
-                    <div
-                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
-                        <div class="flex flex-col items-center">
-                            @if ($service->file)
-                            <img src="{{ asset('storage/' . $service->file) }}"
-                                alt="{{ $service->name_en }}" class="w-full h-[200px] rounded-lg object-cover" />
-                            @else
-                            <div class="w-full h-[200px] rounded-lg bg-gray-200 flex items-center justify-center">
-                                <i class="{{ $service->icon ?? 'fa fa-briefcase' }} text-5xl text-gray-400"></i>
-                            </div>
-                            @endif
-                        </div>
-                        <h3 class="text-lg font-bold text-center">{{ $service->name_en }}</h3>
-                        <p class="text-base md:text-lg text-black text-center">
-                            {{ $service->description_en }}
-                        </p>
-                        <div class="flex justify-center">
-                            <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}" class="bg-black text-white px-4 py-2 tracking-wide rounded-full text-center">Read more</a>
-                        </div>
-                    </div>
-                    @endforeach
-                    @endisset
-                </div>
-            </div>
-            
-            <button
-                class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
-                onclick="nextServicesSlider()">
-                ❯
-            </button>
+        <h3 class="text-lg font-bold text-center">Property Insurance</h3>
+        <p class="text-base md:text-lg text-black text-center">
+        Safeguards property owners against losses and damages providing
+        compensation for the repair or replacement of the insured assets
+        </p>
+        <div class="flex justify-center">
+        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
         </div>
-    </section>
+      </div>
+      <div
+        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
+        <div class="flex flex-col items-center">
+        <img
+          src="https://ebeema.com:1001/api/documentManagement/file?key=MjAyM1wwMVwwOFwtbW90b3ItaW5zdXJhbmNlX2JlNDAucG5n"
+          alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
+        </div>
+        <h3 class="text-lg font-bold text-center">Property Insurance</h3>
+        <p class="text-base md:text-lg text-black text-center">
+        Safeguards property owners against losses and damages providing
+        compensation for the repair or replacement of the insured assets
+        </p>
+        <div class="flex justify-center">
+        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+        </div>
+      </div>
+      <div
+        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
+        <div class="flex flex-col items-center">
+        <img src="https://nicnepal.com.np/national-insurance/public/./img/marine.jpg" alt="Property Insurance"
+          class="w-full h-[200px] rounded-lg" />
+        </div>
+        <h3 class="text-lg font-bold text-center">Marine Insurance</h3>
+        <p class="text-base md:text-lg text-black text-center">
+        Safeguards property owners against losses and damages providing
+        compensation for the repair or replacement of the insured assets
+        </p>
+        <div class="flex justify-center">
+        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+        </div>
+      </div>
+      <div
+        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
+        <div class="flex flex-col items-center">
+        <img src="https://nicnepal.com.np/national-insurance/public/img/miscellaneous.jpg" alt="Property Insurance"
+          class="w-full h-[200px] rounded-lg" />
+        </div>
+        <h3 class="text-lg font-bold text-center">
+        Miscellaneous Insurance
+        </h3>
+        <p class="text-base md:text-lg text-black text-center">
+        Safeguards property owners against losses and damages providing
+        compensation for the repair or replacement of the insured assets
+        </p>
+        <div class="flex justify-center">
+        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+        </div>
+      </div>
+      <div
+        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between review-card">
+        <div class="flex flex-col items-center">
+        <img
+          src="https://media.licdn.com/dms/image/C4D12AQF3vYqQRpFaOw/article-cover_image-shrink_600_2000/0/1651676674940?e=2147483647&v=beta&t=BGSpmlC6Q9rQ_vYOqaHnUxgZf5krVGvmXpKR4OomyCU"
+          alt="Engineering Insurance" class="w-full h-[200px] rounded-lg" />
+        </div>
+        <h3 class="text-lg font-bold text-center">
+        Engineering Insurance
+        </h3>
+        <p class="text-base md:text-lg text-black text-center">
+        Safeguards property owners against losses and damages providing
+        compensation for the repair or replacement of the insured assets
+        </p>
+        <div class="flex justify-center">
+        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+        </div>
+      </div>
+      </div>
+    </div>
+    <button
+      class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
+      onclick="nextServicesSlider()">
+      ❯
+    </button>
+    </div>
+  </section>
+  <!----------Services Section---------->
 
   <!----------Our Partners Section---------->
   <section class="my-10">
@@ -183,9 +242,9 @@
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
       <div class="flex flex-col items-center space-y-6">
       <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
-          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-          ">
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+        ">
         Our partners & Supporters
       </h1>
 
@@ -203,19 +262,19 @@
     <div class="w-full overflow-hidden relative">
     <div class="w-full h-full absolute">
       <div class="w-1/4 h-full absolute z-50 left-0" style="
-          background: linear-gradient(
-          to right,
-          #fff8cc 0%,
-          rgba(255, 255, 255, 0) 100%
-          );
-        "></div>
+        background: linear-gradient(
+        to right,
+        #fff8cc 0%,
+        rgba(255, 255, 255, 0) 100%
+        );
+      "></div>
       <div class="w-1/4 h-full absolute z-50 right-0" style="
-          background: linear-gradient(
-          to left,
-          #fff8cc 0%,
-          rgba(255, 255, 255, 0) 100%
-          );
-        "></div>
+        background: linear-gradient(
+        to left,
+        #fff8cc 0%,
+        rgba(255, 255, 255, 0) 100%
+        );
+      "></div>
     </div>
 
     <div class="carousel-items flex items-center justify-center w-full" style="
@@ -243,10 +302,10 @@
     <div class="overflow-x-hidden">
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
       <div class="flex flex-col items-center space-y-6">
-      <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-        ">
+      <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+      ">
         Become an Agent
       </h1>
 
@@ -326,8 +385,8 @@
       <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="About Us Image"
       class="w-[600px] rounded-md object-contain xl:object-fit mb-6" />
       <a href="#"
-      class="px-6 py-3 bg-accent text-black rounded-md hover:bg-primary transition-colors font-medium text-lg">Apply
-      to Become an Agent</a>
+      class="px-6 py-2 bg-accent text-black border-1 rounded-full shadow-sm hover:shadow-2xl transition-shadow  font-medium text-base">Apply
+      to become an agent</a>
     </div>
     </div>
   </section>
@@ -335,12 +394,12 @@
 
 
   <!-- --------Gallery and News Section-------- -->
-  <div class="flex flex-col md:flex-row mx-auto container px-4 gap-10 my-10">
+  <div class="flex flex-col md:flex-row mx-10 lg:mx-40 px-4 gap-10 my-10">
     <div class="flex-1 overflow-hidden">
     <div class="flex flex-row justify-between m-3">
       <h1 class="font-bold text-accent uppercase text-xl tracking-wider" style="
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
       ">
       Image Gallery
       </h1>
@@ -350,10 +409,10 @@
       </button>
     </div>
     <div style="
-        --swiper-navigation-color: #fff;
-        --swiper-pagination-color: #fff;
-        " class="swiper mySwiper2 w-full h-1/2 aspect-[16/9]">
-      <div class="swiper-wrapper h-[600px]">
+      --swiper-navigation-color: #fff;
+      --swiper-pagination-color: #fff;
+      " class="swiper mySwiper2 w-full h-1/2 aspect-[16/9]">
+      <div class="swiper-wrapper h-[800px] lg:h-[400px]">
       <div class="swiper-slide">
         <img src="https://swiperjs.com/demos/images/nature-1.jpg" class="w-full h-full object-contain" />
       </div>
@@ -402,7 +461,7 @@
     </div>
     <div class="drop-shadow-xl shadow-gray-100 bg-white rounded-lg m-3">
       <!-- Heading for scroll -->
-      <div class="flex flex-row gap-4 bg-white rounded m-3 p-3">
+      <div class="flex flex-row bg-white rounded m-3 p-3">
       <!-- Explore part -->
       <div class="mx-3">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -414,11 +473,11 @@
         <circle cx="20" cy="18" r="1.5" fill="black" />
         </svg>
       </div>
-      <h1 class="font-bold text-lg">All News and Articles</h1>
+      <h1 class="font-bold text-lg text-black">All News and Articles</h1>
       </div>
 
       <!-- Content inside the heading -->
-      <div class="overflow-y-scroll h-[500px] m-3 sticky bg-white">
+      <div class="overflow-y-scroll h-[420px] m-3 sticky bg-white">
       <!-- Content Repeated -->
 
       <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">

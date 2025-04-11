@@ -3,113 +3,7 @@
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')
 
-    <section class="m-6 sm:m-8 2xl:mx-30">
-        <!-- About Hulas Remittance -->
-        <div class="m-10 flex flex-col gap-6 md:flex-row  md:justify-center md:items-center">
-            <!-- image -->
-            <div class="flex-1 flex justify-center w-full">
-                <img src="/images/about-us/about-img-1.webp" class="rounded-2xl object-cover w-full" alt="About Us Image" />
-            </div>
-
-            <!-- Text Container -->
-            <div class="flex flex-2 flex-col space-y-3">
-                <h2 class="text-xl lg:text-2xl font-bold text-black ">
-                    @isset($aboutUs)
-                    {{ $aboutUs->title }}
-                </h2>
-                <div class="text-lg text-primary">
-                    
-                    <p> {{ $aboutUs->description }}</p>
-                    <!-- <p>Hulas Remittance, being one of the principal agents, playing a leading role in offering money
-                        transfer services of The Western Union Company in Nepal since January 2006. We have been serving
-                        customers from more than 3,200 (comprising of major commercial banks, Development Banks, Finance
-                        Companies and cooperative organizations) locations have established brand promise of Western Union
-                        as a fast, reliable and convenient way of remittance service across the country.</p> -->
-                </div>
-                <!-- Years of experience -->
-                <div class="flex flex-col items-center space-y-3 lg:space-y-0 lg:flex-row lg:space-x-4">
-                    <div class="w-60 bg-black rounded-xl flex justify-center items-center flex-col space-y-4 p-3">
-                        <p class="text-accent font-bold text-2xl">49+</p>
-                        <p class="text-accent text-center text-lg">
-                            {{ $aboutUs->years_of_experience }}
-                        </p>
-                    </div>
-                </div>
-                <hr class="mr-5 text-gray-400 font-semibold" />
-
-                <!-- Social Media links -->
-                <div>
-                    <div class="flex flex-row gap-4 mx-3">
-                        <!-- Facebook -->
-                        <div
-                            class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                <img src="{{ asset('images/social-media-icons/facebook-black.svg') }}" alt="Facebook Icon"
-                                    class="w-6 h-6">
-                            </a>
-                        </div>
-                        <!-- Years of experience -->
-                        <div class="flex flex-col items-center space-y-3 lg:space-y-0 lg:flex-row lg:space-x-4">
-                            <div
-                                class="w-60 md:w-40 lg:w-60 bg-black rounded-xl flex justify-start lg:justify-center items-center flex-col space-y-2 lg:space-y-4 p-3">
-                                <p class="text-accent font-bold text-2xl">49+</p>
-                                <p class="text-accent text-center text-lg">
-                                    {{ $aboutUs->years_of_experience }}
-                                </p>
-                            </div>
-                        </div>
-                        <hr class="mr-5 text-gray-400 font-semibold" />
-
-                        <!-- Social Media links -->
-                        <div>
-                            <div class="flex flex-row gap-4 mx-3">
-                                <!-- Facebook -->
-                                <div
-                                    class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                                    <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                        <img src="/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
-                                            class="w-6 h-6">
-                                    </a>
-                                </div>
-
-                                <!-- Instagram -->
-                                <div
-                                    class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                                    <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                        <img src="/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
-                                            class="w-6 h-6">
-                                    </a>
-                                </div>
-
-
-                                <!-- Twitter -->
-                                <div
-                                    class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                                    <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                        <img src="./public/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
-                                            class="w-6 h-6">
-                                    </a>
-                                </div>
-
-
-                                <!-- LinkedIn -->
-                                <div
-                                    class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                                    <a href="https://www.facebook.com/Nationalinsuranceindia/">
-                                        <img src="./public/images/social-media-icons/facebook-black.svg" alt="Facebook Icon"
-                                            class="w-6 h-6">
-                                    </a>
-                                </div>
-
-                            </div>
-                    @endisset
-
-                </div>
-            </div>
-        </div>
-        </div>
-        </div>
-    </section>
+   
 
     <section class="m-6 sm:m-10 md:m-20 lg:mx-30">
         <!-- About Western Union -->
@@ -208,7 +102,7 @@
                             <img src="{{ asset('storage/' . $service->file) }}"
                                 alt="Property Insurance" class="h-[120px] md:h-[140px] lg:h-[160px] mx-auto" />
                             <h3 class="text-sm md:text-lg font-medium mt-4 text-center">
-                           
+
                                    {{ $service->name }}
 
                                 <!-- Property Insurance -->
@@ -308,7 +202,7 @@
                           class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center"
                           >Read more</a
                         >
-            
+
                         </div>
             </div>
       <div
@@ -334,10 +228,10 @@
                         class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center"
                         >Read more</a
                       >
-          
+
                       </div>
         </div>
-            
+
           </div>
         </div>
         <button
@@ -348,6 +242,8 @@
         </button>
       </div>
     </section>
+
+
 
     <!-- Location -->
     <section>

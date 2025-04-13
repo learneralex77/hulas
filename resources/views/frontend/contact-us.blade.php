@@ -18,7 +18,7 @@
       <div class="flex space-x-5 items-center">
         <a href="index.html" class="text-[#666] font-bold">Home</a>
         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-        <a href="contact-us.html" class="text-accent font-bold"> Contact us</a>
+        <a href="contact-us" class="text-accent font-bold"> Contact us</a>
       </div>
   </div>
 </section>
@@ -31,7 +31,7 @@
         <div class="flex flex-col lg:flex-row gap-6 lg:items-center">
           <!--  -->
           <div
-            class="bg-[#f3f3f3] xl:h-[130px] lg:h-[170px] shadow-md rounded-md p-3"
+            class="bg-[#f3f3f3] xl:h-[130px] lg:h-[170px] shadow-md rounded-md p-3  flex-1"
           >
             <div class="flex flex-col justify-start sm:flex-row gap-4">
               <div class="flex justify-center">
@@ -46,7 +46,7 @@
               </div>
 
               <div class="flex flex-col items-center sm:items-start space-y-3">
-                <p class="text-2xl font-semibold">Our Location</p>
+                <p class="text-xl text-black font-semibold">Our Location</p>
                 <p class="text-[#666]">
                   @isset($setting->address_en)  
                   {{ $setting->address_en }}
@@ -58,7 +58,7 @@
           </div>
           <!--  -->
           <div
-            class="bg-[#f3f3f3] lg:h-[170px] xl:h-[130px] shadow-md rounded-md p-3"
+            class="bg-[#f3f3f3] lg:h-[170px] xl:h-[130px] shadow-md rounded-md p-3 flex-1"
           >
             <div class="flex flex-col justify-start sm:flex-row gap-4">
               <div class="flex justify-center">
@@ -73,7 +73,7 @@
                 </div>
               </div>
               <div class="flex flex-col items-center sm:items-start space-y-3">
-                <p class="text-2xl font-bold">Email us</p>
+                <p class="text-xl font-bold text-black">Email us</p>
                 <p class="text-[#666]">
                 <br class="block sm:hidden" />
                   @isset($setting->email)
@@ -92,7 +92,7 @@
           </div>
           <!--  -->
           <div
-            class="bg-[#f3f3f3] lg:h-[170px] xl:h-[130px] Fshadow-md rounded-md p-3"
+            class="bg-[#f3f3f3] lg:h-[170px] xl:h-[130px] Fshadow-md rounded-md p-3 flex-1"
           >
             <div class="flex flex-col justify-start sm:flex-row gap-4">
               <div class="flex justify-center">
@@ -101,13 +101,13 @@
                 >
                 <img src="{{ asset('assets/images/contact/phone-svgrepo-com.svg') }}" 
 
-                    class="w-12 h-12"
+                    class="w-10 h-10"
                     alt=""
                   />
                 </div>
               </div>
               <div class="flex flex-col items-center sm:items-start space-y-3">
-                <p class="text-2xl font-bold">Call us</p>
+                <p class="text-xl font-bold text-black">Call us</p>
                 <p class="text-[#666]">
                   @isset($setting->phone_number_en)
                   {{ $setting->phone_number_en }}

@@ -110,7 +110,7 @@
      
     </p>
     <a href="{{ route('aboutHulasRemittance') }}"
-      class="text-center text-white hover:text-accent text-lg drop-shadow-sm cursor-pointer bg-black px-6 py-3 w-40 rounded-lg">
+      class="text-center text-accent hover:opacity-85 text-lg drop-shadow-sm cursor-pointer bg-black px-6 py-3 w-40 rounded-full">
       Read more
     </a>
     </div>
@@ -161,7 +161,7 @@
                             {{ $service->description_en }}
                         </p>
                         <div class="flex justify-center">
-                            <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}" class="bg-black text-white px-4 py-2 tracking-wide rounded-full text-center">Read more</a>
+                            <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}" class="bg-black  px-4 py-2 tracking-wide rounded-full text-accent hover:opacity-85 text-center">Read more</a>
                         </div>
                     </div>
                     @endforeach
@@ -326,7 +326,7 @@
       <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="About Us Image"
       class="w-[600px] rounded-md object-contain xl:object-fit mb-6" />
       <a href="{{route('becomeAnAgent')}}"
-      class="px-6 py-2 bg-accent text-black border-1 rounded-full shadow-sm hover:shadow-2xl transition-shadow  font-medium text-base">Apply
+      class="px-6 py-2 bg-accent text-black border-2 rounded-full hover:opacity-85 font-semibold text-base">Apply
       to become an agent</a>
     </div>
     </div>
@@ -338,14 +338,14 @@
   <div class="flex flex-col md:flex-row mx-10 lg:mx-40 px-4 gap-10 my-10">
     <div class="flex-1 overflow-hidden">
     <div class="flex flex-row justify-between m-3">
-      <h1 class="font-bold text-accent uppercase text-2xl tracking-wider" style="
+      <h1 class="font-bold text-accent uppercase text-lg lg:text-2xl tracking-wider" style="
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
       -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
       ">
       Image Gallery
       </h1>
       <a href="{{ route('gallery') }}"
-      class="bg-black items-center text-white px-6 py-3 rounded cursor-pointer hover:text-accent">
+      class="bg-black items-center text-accent px-6 py-3 rounded-full cursor-pointer hover:opacity-85">
       Explore Gallery
       </a>
     </div>
@@ -381,7 +381,7 @@
     <div class="flex-1 w-full h-full">
     <div class="flex justify-end">
       <a href="{{ route('newsAndEvents')}}"
-      class="bg-black items-center text-white px-4 py-3 rounded cursor-pointer hover:text-accent">
+      class="bg-black items-center text-accent px-4 py-3 rounded-full cursor-pointer hover:opacity-85">
       Explore News Articles
       </a>
     </div>

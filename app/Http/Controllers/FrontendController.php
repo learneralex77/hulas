@@ -116,7 +116,8 @@ class FrontendController extends Controller
         if ($id) {
             $newsEvent = NewsEventCategory::findOrFail($id);
             $otherNewsEvents = NewsEventCategory::active()->where('id', '!=', $id)->take(10)->get();
-            return view('frontend.news-and-events-detail-page', compact('newsEvent', 'otherNewsEvents'));
+            $setting = Setting::first();
+            return view('frontend.news-and-events-detail-page', compact('newsEvent', 'otherNewsEvents', 'setting'   ));
         }
         return redirect()->route('newsAndEvents');
     }

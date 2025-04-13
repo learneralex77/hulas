@@ -151,7 +151,7 @@
           <p
             class="max-w-sm lg:max-w-none text-black text-xl lg:border-b-2 lg:border-accent"
           >
-          Have a question or need assistance? Reach out to us, and our team will get back to you as soon as possible. We’re here to help!
+          Have a question or need assistance? Reach out to us, and our team will get back to you as soon as possible. We're here to help!
           </p>
           
           <!-- Old alerts removed -->
@@ -161,7 +161,7 @@
       <div class="lg:flex lg:justify-center lg:mt-32 w-full">
         <img src="{{ asset('assets/images/contact/contact-form-bg.png') }}" class="h-full" alt="" />
         <div class="lg:w-[70%] bg-white shadow-xl rounded-md p-6">
-          <form class="sm:mx-20" action="{{ url('/contact-us') }}" method="POST" id="contact-us-form">
+          <form class="sm:mx-20" action="{{ url('/contact-us') }}" method="POST">
             @csrf
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div class="flex flex-col space-y-5">
@@ -271,56 +271,7 @@
     <script>
         // Execute as soon as the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Form submission handler
-            const form = document.getElementById('contact-us-form');
-            
-            if (form) {
-                form.addEventListener('submit', function(event) {
-                    event.preventDefault();
-                    
-                    // Get form data
-                    const formData = new FormData(form);
-                    
-                    // Submit form via fetch API
-                    fetch(form.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'X-Requested-With': 'XMLHttpRequest'
-                        }
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        // Show success message
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success!',
-                            text: "Thank you for contacting us. We will get back to you soon!",
-                            showConfirmButton: true,
-                            confirmButtonText: 'OK',
-                            confirmButtonColor: '#10B981',
-                            timer: 5000,
-                            timerProgressBar: true
-                        });
-                        
-                        // Reset form
-                        form.reset();
-                    })
-                    .catch(error => {
-                        // Show error message
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: "There was a problem submitting your inquiry. Please try again later.",
-                            showConfirmButton: true,
-                            confirmButtonText: 'Try Again',
-                            confirmButtonColor: '#EF4444'
-                        });
-                    });
-                });
-            }
-            
-            // Check for success message in session
+            // Success and error message handling
             @if(session('success'))
                 Swal.fire({
                     icon: 'success',

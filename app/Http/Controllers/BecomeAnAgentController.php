@@ -41,7 +41,6 @@ class BecomeAnAgentController extends Controller
             // Create the record
             BecomeAnAgent::create($data);
 
-            // Get the redirect URL from the referer or use a default
             $redirect = url()->previous() ?: route('become-an-agent.index');
             
             return redirect($redirect)

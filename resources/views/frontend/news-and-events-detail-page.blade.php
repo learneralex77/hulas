@@ -30,71 +30,51 @@
         <!-- 1st part -->
         <div class="flex-1 lg:flex-2 m-6 h-full justify-center">
             <!-- Image -->
-            <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
-                alt="" class="w-full object-contain max-w-full xl:max-w-[700px]  rounded-lg" />
+            <img src="{{ $newsEvent->image ? asset('storage/' . $newsEvent->image) : asset('assets/images/placeholder.jpg') }}"
+                alt="{{ $newsEvent->name_en }}" class="w-full object-contain max-w-full xl:max-w-[700px] rounded-lg" />
             <!-- Content -->
-            <p class="mt-5 w-full ">
-                Kathmandu. A stroke awareness program has been completed at Lakeside
-                of Pokhara under the joint project of Grande International Hospital
-                Dhapasi and Nepal Paralysis Association and Leo and Lions Club of
-                Pokhara Lakeside.
-                Kathmandu. A stroke awareness program has been completed at Lakeside
-                of Pokhara under the joint project of Grande International Hospital
-                Dhapasi and Nepal Paralysis Association and Leo and Lions Club of
-                Pokhara Lakeside.
-                Kathmandu. A stroke awareness program has been completed at Lakeside
-                of Pokhara under the joint project of Grande International Hospital
-                Dhapasi and Nepal Paralysis Association and Leo and Lions Club of
-                Pokhara Lakeside.
-                Kathmandu. A stroke awareness program has been completed at Lakeside
-                of Pokhara under the joint project of Grande International Hospital
-                Dhapasi and Nepal Paralysis Association and Leo and Lions Club of
-                Pokhara Lakeside.
-                Kathmandu. A stroke awareness program has been completed at Lakeside
-                of Pokhara under the joint project of Grande International Hospital
-                Dhapasi and Nepal Paralysis Association and Leo and Lions Club of
-                Pokhara Lakeside.
-                Kathmandu. A stroke awareness program has been completed at Lakeside
-                of Pokhara under the joint project of Grande International Hospital
-                Dhapasi and Nepal Paralysis Association and Leo and Lions Club of.
+            <p class="mt-5 w-full">
+                {!! $newsEvent->description_en !!}
             </p>
         </div>
 
         <!-- 2nd part -->
         <!-- Main div for second part -->
-        <div class="flex-1 flex flex-col w-full h-full  gap-4 m-6">
+        <div class="flex-1 flex flex-col w-full h-full gap-4 m-6">
             <div class="flex flex-col gap-2">
                 <h3 class="font-bold text-xl text-black border-l-accent border-l-[4px] px-3">About us</h3>
-                <p class="px-3"> Kathmandu. A stroke awareness program has been completed at Lakeside
-                    of Pokhara under the joint project of Grande International Hospital
-                    Dhapasi and Nepal Paralysis Association and Leo and Lions Club of
-                    Pokhara Lakeside.</p>
+                <p class="px-3">{{ Str::limit($newsEvent->description_en, 150) }}</p>
                 <div class="flex flex-row gap-4 px-3">
                     <!-- Facebook -->
                     <div
                         class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
+                        @isset($setting->facebook)
+                        <a href="{{ $setting->facebook }}">
+                            @endisset
                         <img src="{{ asset('assets/images/social-media-icons/facebook-black.svg') }}" 
-                            <img src="./public/images/social-media-icons/facebook-black."
                              alt="Facebook Icon"
                                 class="w-6 h-6">
                         </a>
                     </div>
-
+                    
                     <!-- Linkdin -->
                     <div
                         class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                        <a href="https://www.facebook.com/Nationalinsuranceindia/">
+                        @isset($setting->linkedin)
+                        <a href="{{ $setting->linkedin }}">
+                            @endisset
                         <img src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.svg') }}" 
                              alt="Linkdin Icon"
                                 class="w-4 h-4">
                         </a>
                     </div>
 
-
                     <!-- Twitter -->
                     <div
                         class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                        <a href="https://www.facebook.com/Nationalinsuranceindia/">
+                        @isset($setting->twitter)
+                        <a href="{{ $setting->twitter }}">
+                            @endisset
                         <img src="{{ asset('assets/images/social-media-icons/icons8-x-50.png') }}" 
                         alt="Twitter Icon"
                                 class="w-5 h-5">
@@ -105,9 +85,9 @@
 
             </div>
             <div class="flex justify-end">
-                <button class="bg-black items-center text-accent px-4 py-2 rounded-full cursor-pointer hover:opacity-85 w-54">
+                <a href="{{ route('newsAndEvents') }}" class="bg-black items-center text-accent px-4 py-2 rounded-full cursor-pointer hover:opacity-85 w-54">
                     Explore News Articles
-                </button>
+                </a>
             </div>
             <div class="drop-shadow-xl shadow-gray-100 bg-white rounded-lg">
                 <!-- Heading for scroll -->
@@ -130,91 +110,31 @@
                 <!-- Content inside the heading -->
                 <div class="overflow-y-scroll h-[430px] m-3 sticky bg-white">
                     <!-- Content Repeated -->
+                     @isset($otherNewsEvents)
+                    @forelse($otherNewsEvents as $otherNewsEvent)
+                        <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
+                            <div class="h-auto w-30">
+                                <img src="{{ $otherNewsEvent->image ? asset('storage/' . $otherNewsEvent->image) : asset('assets/images/placeholder.jpg') }}"
+                                    alt="{{ $otherNewsEvent->name_en }}" class="h-full w-full rounded-lg object-cover" />
+                            </div>
 
-                    <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-                        <div class="h-auto w-30">
-                            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
-                                alt="Mobile Remittance" class="h-full w-full rounded-lg object-cover" />
-                        </div>
-
-                        <div class="flex flex-col gap-3">
-                            <a class="line-clamp-2 text-lg font-semibold cursor-pointer hover:text-accent transition-colors duration-200">
-                                Send Money On the Go with Our Mobile App
-                            </a>
-                            <div class="flex space-x-2">
-                                <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"
-                                    class="w-4 h-4 object-contain" alt="date" <p class="text-xs text-gray-500">29th March
-                                2020</p>
+                            <div class="flex flex-col gap-3">
+                                <a href="{{ route('newsAndEventsDetailPage', $otherNewsEvent->id) }}" class="line-clamp-2 text-lg font-semibold cursor-pointer hover:text-accent transition-colors duration-200">
+                                    {{ $otherNewsEvent->name_en }}
+                                </a>
+                                <div class="flex space-x-2">
+                                    <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"
+                                        class="w-4 h-4 object-contain" alt="date">
+                                    <p class="text-xs text-gray-500">{{ $otherNewsEvent->created_at->format('d F Y') }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-                        <div class="h-auto w-30">
-                            <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
-                                alt="Low Fees Promotion" class="h-full w-full rounded-lg object-cover" />
+                    @empty
+                        <div class="p-4 text-center">
+                            <p>No other news or events available at the moment.</p>
                         </div>
-                        <div class="flex flex-col gap-3">
-                            <a class="line-clamp-2 text-lg font-semibold cursor-pointer hover:text-accent transition-colors duration-200">
-                                Send Money On the Go with Our Mobile App
-                            </a>
-                            <div class="flex space-x-2">
-                                <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"
-                                    class="w-4 h-4 object-contain" alt="date" <p class="text-xs text-gray-500">29th March
-                                2020</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-                        <div class="h-auto w-30">
-                            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
-                                alt="Remittance Agents" class="h-full w-full rounded-lg object-cover" />
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <a class="line-clamp-2 text-lg font-semibold cursor-pointer hover:text-accent transition-colors duration-200">
-                                Find Your Nearest Remittance Partner Location
-                            </a>
-                            <div class="flex space-x-2">
-                                <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"
-                                    class="w-4 h-4 object-contain" alt="date" <p class="text-xs text-gray-500">29th March
-                                2020</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-                        <div class="h-auto w-30">
-                            <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
-                                alt="Send Money to Nepal" class="h-full w-full rounded-lg object-cover" />
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <a class="line-clamp-2 text-lg font-semibold cursor-pointer hover:text-accent transition-colors duration-200">
-                                Send Money to Nepal Instantly with Great Rates
-                            </a>
-                            <div class="flex space-x-2">
-                                <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"
-                                    class="w-4 h-4 object-contain" alt="date" <p class="text-xs text-gray-500">29th March
-                                2020</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-                        <div class="h-auto w-30">
-                            <img src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75"
-                                alt="Track Money Transfer" class="h-full w-full rounded-lg object-cover" />
-                        </div>
-                        <div class="flex flex-col gap-3">
-                            <a class="line-clamp-2 text-lg font-semibold cursor-pointer hover:text-accent transition-colors duration-200">
-                                Track your transfer in real-time from start to finish
-                            </a>
-                            <div class="flex space-x-2">
-                                <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"
-                                    class="w-4 h-4 object-contain" alt="date" <p class="text-xs text-gray-500">29th March
-                                2020</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforelse
+                    @endisset
                 </div>
             </div>
         </div>

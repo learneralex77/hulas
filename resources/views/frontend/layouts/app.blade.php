@@ -194,6 +194,8 @@
                 behavior: 'smooth'
             });
         };
+
+        
     </script>
 </body>
 

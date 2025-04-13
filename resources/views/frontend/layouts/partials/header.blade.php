@@ -1,7 +1,7 @@
 <header>
   <div class="bg-white">
     <!-- Top Nav -->
-    <nav class="hidden w-full py-2 bg-white text-black border-b-2 px-10 lg:block">
+    <nav class="hidden w-full py-2 bg-white text-black border-accent border-b-2 px-10 lg:block">
       <div class="w-full flex justify-between items-center">
         <!-- Contact Information Section -->
         <div class="flex space-x-8 items-center">
@@ -74,7 +74,6 @@
       <!-- Company Logo -->
       <a class="text-xl lg:pl-10 font-bold leading-none" href="homepage">
       <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}"
-
           class="w-56"
           alt="Hulas Remittance Logo"
         />
@@ -85,7 +84,7 @@
         <ul class="flex">
           <li class="mb-1">
             <a
-              class="block p-4 text-sm font-semibold text-black hover:text-accent"
+              class="block p-4 text-sm font-semibold text-black hover:text-accent ease-in-out transition-all"
               href="homepage"
               >Home</a
             >

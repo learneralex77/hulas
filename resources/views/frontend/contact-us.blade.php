@@ -255,7 +255,7 @@
             <div class="w-full flex justify-center">
               <button
                 type="submit"
-                class="w-44 text-center bg-black text-white hover:text-accent py-3 px-5 rounded-full cursor-pointer tracking-wide my-6"
+                class="w-44 text-center bg-black text-accent hover:opacity-85  py-3 px-5 rounded-full cursor-pointer tracking-wide my-6"
               >
                 Send Message
               </button>

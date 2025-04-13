@@ -23,20 +23,17 @@
       @foreach ($sliders as $slider)
       <div class="hidden duration-700 ease-in-out" F data-carousel-item>
       <img src="{{ asset('storage/' . $slider->image) }}"
-
-          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-          alt="..."
-        />
+      class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..." />
       </div>
-      @endforeach
-      @endisset
+    @endforeach
+    @endisset
       <!-- Item 2 -->
       <!-- <div class="hidden duration-700 ease-in-out" data-carousel-item>
       <img src="{{ asset(path: 'assets/images/slider/slider-two.jpg') }}"
 
-          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-          alt="..."
-        />
+      class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+      alt="..."
+      />
       </div> -->
       <!-- Item 3 -->
       <div class="hidden duration-700 ease-in-out" data-carousel-item>
@@ -95,7 +92,7 @@
       Our Introduction
       </h1>
 
-      <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+      <p class="text-2xl text-black font-bold md:text-4xl text-center">
       Welcome To Hulas Remittance
       </p>
       <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
@@ -112,34 +109,34 @@
       class="w-full rounded-md object-contain xl:object-fit" />
     </div>
     </div>
-    <div class="flex flex-1 lg:flex-2 flex-col space-y-6">
+    <div class="flex flex-2 flex-col space-y-6">
     <p class="text-gray-600 text-base lg:text-lg text-justify">
       @isset($aboutUs)
       {{ $aboutUs->description }}
     @endisset
-      <!-- Hulas Remittance, a member company of Golchha Organization, was
-                    established in August 2005 with the vision to bring in quality and
-                    reliable money transfer services in to Nepal. A leading business house
-                    with a dedicated business history of more than 85 years, Golchha
-                    Organization has established "HULAS" as one of the most trusted
-                    household consumer brands in the country. Hulas Remittance, being one
-                    of the principal agents, playing a leading role in offering money
-                    transfer services of The Western Union Company in Nepal since January
-                    2006. We have been serving customers from more than 3,200 (comprising
-                    of major commercial banks, Development Banks, Finance Companies and
-                    cooperative organizations) locations have established brand promise of
-                    Western Union as a fast, reliable and convenient way of remittance
-                    service across the country. Hulas Remittance, being one of the
-                    principal agents, playing a leading role in offering money transfer
-                    services of The Western Union Company in Nepal since January 2006. We
-                    have been serving customers from more than 3,200 (comprising of major
-                    commercial banks, Development Banks, Finance Companies and cooperative
-                    organizations) locations have established brand promise of Western
-                    Union as a fast, reliable and convenient way of remittance service
-                    across the country. -->
+      Hulas Remittance, a member company of Golchha Organization, was
+      established in August 2005 with the vision to bring in quality and
+      reliable money transfer services in to Nepal. A leading business house
+      with a dedicated business history of more than 85 years, Golchha
+      Organization has established "HULAS" as one of the most trusted
+      household consumer brands in the country. Hulas Remittance, being one
+      of the principal agents, playing a leading role in offering money
+      transfer services of The Western Union Company in Nepal since January
+      2006. We have been serving customers from more than 3,200 (comprising
+      of major commercial banks, Development Banks, Finance Companies and
+      cooperative organizations) locations have established brand promise of
+      Western Union as a fast, reliable and convenient way of remittance
+      service across the country. Hulas Remittance, being one of the
+      principal agents, playing a leading role in offering money transfer
+      services of The Western Union Company in Nepal since January 2006. We
+      have been serving customers from more than 3,200 (comprising of major
+      commercial banks, Development Banks, Finance Companies and cooperative
+      organizations) locations have established brand promise of Western
+      Union as a fast, reliable and convenient way of remittance service
+      across the country.
     </p>
     <button
-      class="text-center text-white hover:text-accent text-lg drop-shadow-sm cursor-pointer bg-black px-6 py-3 w-40 rounded-lg">
+      class="text-center text-accent text-lg drop-shadow-sm cursor-pointer bg-black hover:opacity-85 px-8 py-3 w-54 rounded-full">
       Read more
     </button>
     </div>
@@ -157,11 +154,10 @@
       Services we provide
     </h1>
 
-    <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
-      Services </p>
+    <p class="text-2xl text-black font-bold md:text-4xl text-center">
+      Our Services </p>
     <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-      <!-- A leading business house with a dedicated business history of more than
-      85 years, Golchha Organization has established “HULAS” -->
+      Hulas Remittance makes it easy to send and receive money worldwide—quickly, securely, and with care.
     </p>
     </div>
     <div class="relative flex items-center justify-center">
@@ -179,13 +175,15 @@
           src="https://media.istockphoto.com/id/1333428875/photo/fire-insurance-concept-burning-small-wooden-house.jpg?s=612x612&w=0&k=20&c=eri3sWqqRhMaJfh81nrVmaS4hVrW4-9K7eTexu3eY9s="
           alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
         </div>
-        <h3 class="text-lg font-bold text-center">Property Insurance</h3>
-        <p class="text-base md:text-lg text-black text-center">
+        <h3 class="text-lg  text-black font-bold text-center">Property Insurance</h3>
+        <p class="text-base md:text-lg  text-center">
         Safeguards property owners against losses and damages providing
         compensation for the repair or replacement of the insured assets
         </p>
         <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+        <a href="#"
+          class="bg-black hover:opacity-85 text-accent px-4 py-2 tracking-wide rounded-full text-sm text-center">Read
+          more</a>
         </div>
       </div>
       <div
@@ -195,13 +193,15 @@
           src="https://ebeema.com:1001/api/documentManagement/file?key=MjAyM1wwMVwwOFwtbW90b3ItaW5zdXJhbmNlX2JlNDAucG5n"
           alt="Property Insurance" class="w-full h-[200px] rounded-lg" />
         </div>
-        <h3 class="text-lg font-bold text-center">Property Insurance</h3>
-        <p class="text-base md:text-lg text-black text-center">
+        <h3 class="text-lg text-black font-bold text-center">Property Insurance</h3>
+        <p class="text-base md:text-lg text-center">
         Safeguards property owners against losses and damages providing
         compensation for the repair or replacement of the insured assets
         </p>
         <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+        <a href="#"
+          class="bg-black hover:opacity-85 text-accent px-4 py-2 tracking-wide rounded-full text-center">Read
+          more</a>
         </div>
       </div>
       <div
@@ -210,13 +210,16 @@
         <img src="https://nicnepal.com.np/national-insurance/public/./img/marine.jpg" alt="Property Insurance"
           class="w-full h-[200px] rounded-lg" />
         </div>
-        <h3 class="text-lg font-bold text-center">Marine Insurance</h3>
-        <p class="text-base md:text-lg text-black text-center">
+        <h3 class="text-lg text-black font-bold text-center">Marine Insurance</h3>
+        <p class="text-base md:text-lg text-center">
         Safeguards property owners against losses and damages providing
         compensation for the repair or replacement of the insured assets
         </p>
         <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+        <a href="#"
+          class="bg-black hover:opacity-85 text-accent px-4 py-2 tracking-wide rounded-full text-sm text-center">Read
+          more</a>
+
         </div>
       </div>
       <div
@@ -225,15 +228,18 @@
         <img src="https://nicnepal.com.np/national-insurance/public/img/miscellaneous.jpg" alt="Property Insurance"
           class="w-full h-[200px] rounded-lg" />
         </div>
-        <h3 class="text-lg font-bold text-center">
+        <h3 class="text-lg text-black font-bold text-center">
         Miscellaneous Insurance
         </h3>
-        <p class="text-base md:text-lg text-black text-center">
+        <p class="text-base md:text-lg text-center">
         Safeguards property owners against losses and damages providing
         compensation for the repair or replacement of the insured assets
         </p>
         <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+        <a href="#"
+          class="bg-black hover:opacity-85 text-accent px-4 py-2 tracking-wide rounded-full text-sm text-center">Read
+          more</a>
+
         </div>
       </div>
       <div
@@ -243,24 +249,25 @@
           src="https://media.licdn.com/dms/image/C4D12AQF3vYqQRpFaOw/article-cover_image-shrink_600_2000/0/1651676674940?e=2147483647&v=beta&t=BGSpmlC6Q9rQ_vYOqaHnUxgZf5krVGvmXpKR4OomyCU"
           alt="Engineering Insurance" class="w-full h-[200px] rounded-lg" />
         </div>
-        <h3 class="text-lg font-bold text-center">
+        <h3 class="text-lg text-black font-bold text-center">
         Engineering Insurance
         </h3>
-        <p class="text-base md:text-lg text-black text-center">
+        <p class="text-base md:text-lg text-center">
         Safeguards property owners against losses and damages providing
         compensation for the repair or replacement of the insured assets
         </p>
         <div class="flex justify-center">
-        <a href="#" class="bg-black text-white px-4 py-2 tracking-wide rounded-lg text-center">Read more</a>
+        <a href="#"
+          class="bg-black hover:opacity-85 text-accent px-4 py-2 tracking-wide rounded-full text-sm text-center">Read
+          more</a>
         </div>
       </div>
       </div>
-    </div>
-    <button
+      <button
       class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
       onclick="nextServicesSlider()">
       ❯
-    </button>
+      </button>
     </div>
   </section>
   <!----------Services Section---------->
@@ -271,13 +278,13 @@
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
       <div class="flex flex-col items-center space-y-6">
       <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-        ">
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+      ">
         Our partners & Supporters
       </h1>
 
-      <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+      <p class="text-2xl text-black font-bold md:text-4xl text-center">
         In Collaboration with Our Esteemed Partners and Supporters
       </p>
       <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
@@ -291,18 +298,18 @@
     <div class="w-full overflow-hidden relative">
     <div class="w-full h-full absolute">
       <div class="w-1/4 h-full absolute z-50 left-0" style="
-        background: linear-gradient(
-        to right,
-        #fff8cc 0%,
-        rgba(255, 255, 255, 0) 100%
-        );
+      background: linear-gradient(
+      to right,
+      #fff8cc 0%,
+      rgba(255, 255, 255, 0) 100%
+      );
       "></div>
       <div class="w-1/4 h-full absolute z-50 right-0" style="
-        background: linear-gradient(
-        to left,
-        #fff8cc 0%,
-        rgba(255, 255, 255, 0) 100%
-        );
+      background: linear-gradient(
+      to left,
+      #fff8cc 0%,
+      rgba(255, 255, 255, 0) 100%
+      );
       "></div>
     </div>
 
@@ -373,7 +380,7 @@
         Become an Agent
       </h1>
 
-      <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+      <p class="text-2xl text-black font-bold md:text-4xl text-center">
         Join Our Network of Trusted Agents
       </p>
       <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
@@ -449,7 +456,7 @@
       <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="About Us Image"
       class="w-[600px] rounded-md object-contain xl:object-fit mb-6" />
       <a href="#"
-      class="px-6 py-2 bg-accent text-black border-1 rounded-full shadow-sm hover:shadow-2xl transition-shadow  font-medium text-base">Apply
+      class="px-6 py-2 bg-accent text-black hover:opacity-80 border-2 rounded-full font-semibold text-base">Apply
       to become an agent</a>
     </div>
     </div>
@@ -461,14 +468,15 @@
   <div class="flex flex-col md:flex-row mx-10 lg:mx-40 px-4 gap-10 my-10">
     <div class="flex-1 overflow-hidden">
     <div class="flex flex-row justify-between m-3">
-      <h1 class="font-bold text-accent uppercase text-xl tracking-wider" style="
+      <h1 class="font-bold text-accent uppercase text-2xl tracking-wider" style="
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
       -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
       ">
       Image Gallery
       </h1>
       <button onclick="redirectToPage()"
-      class="bg-black items-center text-white px-6 py-3 rounded cursor-pointer hover:text-accent" id="Btn">
+      class="bg-black hover:opacity-85 items-center text-accent px-6 py-3 cursor-pointer hover:text-accent rounded-full"
+      id="Btn">
       Explore Gallery
       </button>
     </div>
@@ -519,7 +527,7 @@
     <div class="flex-1 w-full h-full">
     <div class="flex justify-end">
       <a href="news-and-events.html"
-      class="bg-black items-center text-white px-4 py-3 rounded cursor-pointer hover:text-accent">
+      class="bg-black hover:opacity-85 items-center text-accent px-6 py-3 cursor-pointer hover:text-accent rounded-full">
       Explore News Articles
       </a>
     </div>
@@ -552,7 +560,7 @@
         </div>
 
         <div class="flex flex-col gap-3">
-        <p class="line-clamp-2">
+        <p class="line-clamp-2 text-black">
           Send Money On the Go with Our Mobile App
         </p>
         <div class="flex space-x-2">
@@ -570,7 +578,7 @@
           alt="Low Fees Promotion" class="h-full w-full rounded-lg object-cover" />
         </div>
         <div class="flex flex-col gap-3">
-        <p class="line-clamp-2">
+        <p class="line-clamp-2 text-black">
           Send Money On the Go with Our Mobile App
         </p>
         <div class="flex space-x-2">
@@ -588,7 +596,7 @@
           alt="Remittance Agents" class="h-full w-full rounded-lg object-cover" />
         </div>
         <div class="flex flex-col gap-3">
-        <p class="line-clamp-2">
+        <p class="line-clamp-2 text-black">
           Find Your Nearest Remittance Partner Location
         </p>
         <div class="flex space-x-2">
@@ -607,7 +615,7 @@
           alt="Send Money to Nepal" class="h-full w-full rounded-lg object-cover" />
         </div>
         <div class="flex flex-col gap-3">
-        <p class="line-clamp-2">
+        <p class="line-clamp-2 text-black">
           Send Money to Nepal Instantly with Great Rates
         </p>
         <div class="flex space-x-2">
@@ -624,7 +632,7 @@
           alt="Track Money Transfer" class="h-full w-full rounded-lg object-cover" />
         </div>
         <div class="flex flex-col gap-3">
-        <p class="line-clamp-2">
+        <p class="line-clamp-2 text-black">
           Track your transfer in real-time from start to finish
         </p>
         <div class="flex space-x-2">
@@ -679,7 +687,7 @@
   <!-- Initialize Swiper -->
   <script>
     function redirectToPage() {
-    window.location.href = "gallery.html";
+    window.location.href = "gallery";
     }
     var swiper = new Swiper(".mySwiper", {
     loop: true,
@@ -760,7 +768,4 @@
     });
     });
   </script>
-
-
-
 @endpush

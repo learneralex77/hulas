@@ -28,7 +28,7 @@
     <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
       <a href="#">
       <img class="rounded-t-lg w-full h-48 object-contain"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe9NZZk7nUE_anJir2Scf7tsqMHRdEpCbJg&s" alt="" />
+        src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75" alt="" />
       </a>
       <div class="p-3">
       <div class="flex items-center mb-2">
@@ -44,7 +44,7 @@
       </p>
       <div class="flex justify-center">
         <button onclick="redirectToPage()"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
+        class="bg-black text-sm text-accent hover:opacity-85 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
         <i class="fa-regular fa-eye"></i> View
         </button>
       </div>
@@ -53,7 +53,7 @@
     <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
       <a href="#">
       <img class="rounded-t-lg w-full h-48 object-contain"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe9NZZk7nUE_anJir2Scf7tsqMHRdEpCbJg&s" alt="" />
+        src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75" alt="" />
       </a>
       <div class="p-3">
       <div class="flex items-center mb-2">
@@ -69,7 +69,7 @@
       </p>
       <div class="flex justify-center">
         <button onclick="redirectToPage()"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
+        class="bg-black text-sm text-accent hover:opacity-85 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
         <i class="fa-regular fa-eye"></i> View
         </button>
       </div>
@@ -78,7 +78,7 @@
     <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
       <a href="#">
       <img class="rounded-t-lg w-full h-48 object-contain"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe9NZZk7nUE_anJir2Scf7tsqMHRdEpCbJg&s" alt="" />
+        src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75" alt="" />
       </a>
       <div class="p-3">
       <div class="flex items-center mb-2">
@@ -94,7 +94,7 @@
       </p>
       <div class="flex justify-center">
         <button onclick="redirectToPage()"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
+        class="bg-black text-sm text-accent hover:opacity-85 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
         <i class="fa-regular fa-eye"></i> View
         </button>
       </div>
@@ -103,7 +103,7 @@
     <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
       <a href="#">
       <img class="rounded-t-lg w-full h-48 object-contain"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe9NZZk7nUE_anJir2Scf7tsqMHRdEpCbJg&s" alt="" />
+        src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75" alt="" />
       </a>
       <div class="p-3">
       <div class="flex items-center mb-2">
@@ -119,7 +119,7 @@
       </p>
       <div class="flex justify-center">
         <button onclick="redirectToPage()"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
+        class="bg-black text-sm text-accent hover:opacity-85 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
         <i class="fa-regular fa-eye"></i> View
         </button>
       </div>
@@ -128,7 +128,7 @@
     <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
       <a href="#">
       <img class="rounded-t-lg w-full h-48 object-contain"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe9NZZk7nUE_anJir2Scf7tsqMHRdEpCbJg&s" alt="" />
+        src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75" alt="" />
       </a>
       <div class="p-3">
       <div class="flex items-center mb-2">
@@ -144,7 +144,7 @@
       </p>
       <div class="flex justify-center">
         <button onclick="redirectToPage()"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
+        class="bg-black text-sm text-accent hover:opacity-85 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
         <i class="fa-regular fa-eye"></i> View
         </button>
       </div>
@@ -153,7 +153,7 @@
     <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
       <a href="#">
       <img class="rounded-t-lg w-full h-48 object-contain"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAe9NZZk7nUE_anJir2Scf7tsqMHRdEpCbJg&s" alt="" />
+        src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=256&q=75" alt="" />
       </a>
       <div class="p-3">
       <div class="flex items-center mb-2">
@@ -169,7 +169,7 @@
       </p>
       <div class="flex justify-center">
         <button onclick="redirectToPage()"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
+        class="bg-black text-sm text-accent hover:opacity-85 py-1 px-5 mt-2 rounded-sm cursor-pointer" id="Btn">
         <i class="fa-regular fa-eye"></i> View
         </button>
       </div>

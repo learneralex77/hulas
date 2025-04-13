@@ -31,8 +31,8 @@ Route::resource('admin/become-an-agent', BecomeAnAgentController::class);
 Route::get('contact-us', [FrontendController::class, 'contactUs'])->name('contactUs');
 Route::post('contact-us', [FrontendController::class, 'storeContactInquiry'])->name('storeContactInquiry');
 Route::get('find-an-agent', [FrontendController::class, 'findAnAgent'])->name('findAnAgent');
+Route::get('services', [FrontendController::class, 'services'])->name('services');
 Route::get('forex-rate', [FrontendController::class, 'forexRate'])->name('forexRate');
-
 Route::get('gallery', [FrontendController::class, 'gallery'])->name('gallery');
 Route::get('gallery-detail/{id?}', [FrontendController::class, 'galleryDetail'])->name('galleryDetail');
 Route::get('grievances', [FrontendController::class, 'grievances'])->name('grievances');

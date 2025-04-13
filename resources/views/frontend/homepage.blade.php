@@ -120,9 +120,9 @@
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
       <div class="flex flex-col items-center space-y-6">
       <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-        ">
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+      ">
         Our Services
       </h1>
 
@@ -181,69 +181,8 @@
     </div>
   </section>
 
-  <!----------Our Partners Section---------->
-  <section class="my-10">
-    <div class="overflow-x-hidden">
-    <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-      <div class="flex flex-col items-center space-y-6">
-      <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-      ">
-        Our partners & Supporters
-      </h1>
-
-      <p class="text-2xl text-black font-bold md:text-4xl text-center">
-        In Collaboration with Our Esteemed Partners and Supporters
-      </p>
-      <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-        We are proud to collaborate with trusted partners and supporters
-        who share our vision and strengthen our mission.
-      </p>
-      </div>
-    </div>
-    </div>
-
-    <div class="w-full overflow-hidden relative">
-    <div class="w-full h-full absolute">
-      <div class="w-1/4 h-full absolute z-50 left-0" style="
-      background: linear-gradient(
-      to right,
-      #fff8cc 0%,
-      rgba(255, 255, 255, 0) 100%
-      );
-      "></div>
-      <div class="w-1/4 h-full absolute z-50 right-0" style="
-      background: linear-gradient(
-      to left,
-      #fff8cc 0%,
-      rgba(255, 255, 255, 0) 100%
-      );
-      "></div>
-    </div>
-
-    <div class="carousel-items flex items-center justify-center w-full" style="
-      width: fit-content;
-      animation: carouselAnim 10s infinite alternate linear;
-      ">
-      @isset($partners)
-      @foreach ($partners as $partner)
-      <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
-      style="width: 270px">
-      <img src="{{ asset('storage/' . $partner->image) }}" class="h-40 w-40 rounded-xl shadow-2xl"
-      alt="Partners Icon" />
-      <h4 class="tracking-wide text-lg m-3">{{ $partner->name_en ?? $partner->name }}</h4>
-      </div>
-    @endforeach
-    @endisset
-
-
-
-  </section>
-  <!----------Our Partners Section---------->
-
-  <!----------Become an agent Section---------->
-  <section class="lg:mx-40 left-10 flex flex-col space-y-10 m-10">
+    <!----------Become an agent Section---------->
+    <section class="lg:mx-40 left-10 flex flex-col space-y-10 m-10">
     <div class="overflow-x-hidden">
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
       <div class="flex flex-col items-center space-y-6">
@@ -336,6 +275,68 @@
     </div>
   </section>
   <!----------Become an agent Section---------->
+ 
+  <!----------Our Partners Section---------->
+  <section class="my-10">
+    <div class="overflow-x-hidden">
+    <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+      <div class="flex flex-col items-center space-y-6">
+      <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+      ">
+        Our partners & Supporters
+      </h1>
+
+      <p class="text-2xl text-black font-bold md:text-4xl text-center">
+        In Collaboration with Our Esteemed Partners and Supporters
+      </p>
+      <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+        We are proud to collaborate with trusted partners and supporters
+        who share our vision and strengthen our mission.
+      </p>
+      </div>
+    </div>
+    </div>
+
+    <div class="w-full overflow-hidden relative">
+    <div class="w-full h-full absolute">
+      <div class="w-1/4 h-full absolute z-50 left-0" style="
+      background: linear-gradient(
+      to right,
+      #fff8cc 0%,
+      rgba(255, 255, 255, 0) 100%
+      );
+      "></div>
+      <div class="w-1/4 h-full absolute z-50 right-0" style="
+      background: linear-gradient(
+      to left,
+      #fff8cc 0%,
+      rgba(255, 255, 255, 0) 100%
+      );
+      "></div>
+    </div>
+
+    <div class="carousel-items flex items-center justify-center w-full" style="
+      width: fit-content;
+      animation: carouselAnim 10s infinite alternate linear;
+      ">
+      @isset($partners)
+      @foreach ($partners as $partner)
+      <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
+      style="width: 270px">
+      <img src="{{ asset('storage/' . $partner->image) }}" class="h-40 w-40 rounded-xl shadow-2xl"
+      alt="Partners Icon" />
+      <h4 class="tracking-wide text-lg m-3">{{ $partner->name_en ?? $partner->name }}</h4>
+      </div>
+    @endforeach
+    @endisset
+
+
+
+  </section>
+  <!----------Our Partners Section---------->
+
 
 
   <!-- --------Gallery and News Section-------- -->
@@ -422,14 +423,15 @@
 
       <div class="flex flex-col gap-3">
       <a href="{{ route('newsAndEventsDetailPage', $news->id) }}"
-      class="line-clamp-2 hover:text-accent transition-colors duration-200">
+      class="line-clamp-2 font-semibold hover:text-accent transition-colors duration-200 cursor-pointer">
       {{ $news->name_en ?? 'News Title' }}
       </a>
       <div class="flex space-x-2">
-      <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
+      <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" class="w-4 h-4 object-contain" alt="date"
       class="h-auto w-4" />
       <p class="text-xs text-gray-500">
-      {{ isset($news->created_at) ? $news->created_at->format('jS F Y') : 'Date not available' }}</p>
+      {{ isset($news->created_at) ? $news->created_at->format('jS F Y') : 'Date not available' }}
+      </p>
       </div>
       </div>
       </div>

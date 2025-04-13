@@ -75,6 +75,10 @@ class FrontendController extends Controller
     {
         return view('frontend.forex-rate');
     }
+    public function services()
+    {
+        return view('frontend.services');
+    }
     public function gallery()
     {
         $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();

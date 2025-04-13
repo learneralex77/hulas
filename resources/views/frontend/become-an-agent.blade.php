@@ -109,7 +109,7 @@
                     Contact Information
                 </h2>
                 <div class="flex flex-col space-y-10 items-left lg:items-center lg:justify-center sm:px-10 lg:px-0">
-                    <div class="flex flex-row gap-6 space-x-5 items-center">
+                    <div class="flex flex-row gap-6 justify-between space-x-5 items-center">
                         <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center">
                             <img src="{{ asset(path: 'assets/images/contact/location-pin-svgrepo-com.svg') }}" class="w-8"
                                 alt="Location Icon" />
@@ -127,9 +127,9 @@
                             <p>Kathmandu, Nepal</p>
                         </div>
                     </div>
-                    <div class="flex flex-row gap-6 space-x-5 items-center">
+                    <div class="flex flex-row gap-6 justify-between space-x-5 items-center">
                         <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center">
-                            <img src="{{ asset('assets/images/contact/phone-svgrepo-com.svg') }}" class="w-8" alt="" />
+                            <img src="{{ asset('assets/images/contact/phone-svgrepo-com.svg') }}" class="w-8" alt="Phone Icon" />
                         </div>
                         <div class="flex flex-col space-y-2">
                             <p class="font-semibold">Toll Free Number:</p>
@@ -140,9 +140,9 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex flex-row gap-6 space-x-5 items-center">
+                    <div class="flex flex-row gap-6 justify-between space-x-5 items-center">
                         <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center">
-                            <img src="{{ asset('assets/images/contact/mail-svgrepo-com.png') }}" class="w-8" alt="" />
+                            <img src="{{ asset('assets/images/contact/mail-svgrepo-com.png') }}" class="w-8" alt="Contact Icon" />
                         </div>
                         <div class="flex flex-col space-y-2">
                             <p class="font-semibold">Email:</p>

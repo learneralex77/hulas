@@ -22,13 +22,12 @@ class BecomeAnAgent extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title_en',
-        'title_np',
-        'description_en',
-        'description_np',
-        'images',
-        'display_order',
-        'is_published',
+        'name',
+        'contact_number',
+        'email',
+        'district',
+        'message',
+        'is_contacted',
     ];
 
     /**
@@ -37,33 +36,22 @@ class BecomeAnAgent extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'images' => 'array',
-        'is_published' => 'boolean',
+        'is_contacted' => 'boolean',
     ];
 
     /**
-     * Get the title attribute (for backward compatibility)
+     * Scope a query to only include uncontacted agents.
      */
-    public function getTitleAttribute()
+    public function scopeUncontacted($query)
     {
-        return $this->title_en ?? '';
+        return $query->where('is_contacted', false);
     }
 
     /**
-     * Get the description attribute (for backward compatibility)
+     * Scope a query to only include contacted agents.
      */
-    public function getDescriptionAttribute()
+    public function scopeContacted($query)
     {
-        return $this->description_en ?? '';
-    }
-
-    public function scopeActive($query)
-    {
-        return $query->where('is_published', 1);
-    }
-
-    public function scopeOrderByDisplayOrder($query)
-    {
-        return $query->orderBy('display_order', 'asc');
+        return $query->where('is_contacted', true);
     }
 }

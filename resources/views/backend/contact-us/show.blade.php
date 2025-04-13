@@ -68,6 +68,20 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="row mb-2 mt-3">
+                                    <div class="col-12">
+                                        <form action="{{ route('contact-us.toggle-status', $contactUs) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm {{ $contactUs->is_contacted ? 'btn-alt-warning' : 'btn-alt-success' }}">
+                                                @if ($contactUs->is_contacted)
+                                                    <i class="fa fa-times me-1"></i> Mark as Not Contacted
+                                                @else
+                                                    <i class="fa fa-check me-1"></i> Mark as Contacted
+                                                @endif
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                                 <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">Created At:</div>
                                     <div class="col-md-8">{{ $contactUs->created_at->format('M d, Y H:i') }}</div>
@@ -88,7 +102,9 @@
                     <div class="block-content">
                         <div class="row">
                             <div class="col-12">
-                                {{ $contactUs->message ?? 'No message provided.' }}
+                                <div class="p-3 bg-body-light rounded">
+                                    {{ $contactUs->message ?? 'No message provided.' }}
+                                </div>
                             </div>
                         </div>
                     </div>

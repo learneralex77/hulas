@@ -13,10 +13,13 @@ use App\Models\Service;
 use App\Models\ServiceTranslation;
 use App\Models\Setting;
 use App\Models\ContactUs;
-use App\Http\Requests\ContactUsRequest;
+use App\Models\NewsEventCategory;
 
+use App\Http\Requests\ContactUsRequest;
+use App\Http\Requests\BecomeAnAgentRequest;
 
 use App\Models\Partner;
+use App\Models\BecomeAnAgent;
 
 class FrontendController extends Controller
 {
@@ -28,12 +31,14 @@ class FrontendController extends Controller
         $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
         $popupPaths = $popup->pluck('photo')->map(fn($path) => asset('storage' . $path));
         $howToBecameAnAgent = Page::where('slug', 'how-become-an-agent')->first();
-        $sliders = Slider::active()->orderBy('display_order', 'ASC')->take(3)->get();
+        $sliders = Slider::active()->orderBy('display_order', 'ASC')->get();
         $services = Service::active()->orderBy('display_order', 'ASC')->get();
         $notices = Publication::active()->where('publication_type', 'notice')->orderBy('display_order', 'ASC')->get();
         $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
+        $newsAndEvents=NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
+
         $partners = Partner::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners'));
+        return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners','newsAndEvents'));
 
     }
 
@@ -54,7 +59,8 @@ class FrontendController extends Controller
 
     public function becomeAnAgent()
     {
-        return view('frontend.become-an-agent');
+        $setting = Setting::first();
+        return view('frontend.become-an-agent',compact("setting"));
     }
     public function contactUs()
     {
@@ -71,11 +77,16 @@ class FrontendController extends Controller
     }
     public function gallery()
     {
-        return view('frontend.gallery');
+        $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
+        return view('frontend.gallery', compact('galleries'));
     }
-    public function galleryDetail()
+    public function galleryDetail($id = null)
     {
-        return view('frontend.gallery-detail');
+        if ($id) {
+            $gallery = Gallery::findOrFail($id);
+            return view('frontend.gallery-detail', compact('gallery'));
+        }
+        return redirect()->route('gallery');
     }
     public function grievances()
     {
@@ -93,11 +104,17 @@ class FrontendController extends Controller
     }
     public function newsAndEvents()
     {
-        return view('frontend.news-and-events');
+        $newsAndEvents=NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
+        return view('frontend.news-and-events', compact('newsAndEvents'));
     }
-    public function newsAndEventsDetailPage()
+    public function newsAndEventsDetailPage($id = null)
     {
-        return view('frontend.news-and-events-detail-page');
+        if ($id) {
+            $newsEvent = NewsEventCategory::findOrFail($id);
+            $otherNewsEvents = NewsEventCategory::active()->where('id', '!=', $id)->take(10)->get();
+            return view('frontend.news-and-events-detail-page', compact('newsEvent', 'otherNewsEvents'));
+        }
+        return redirect()->route('newsAndEvents');
     }
     public function organizationalStructure()
     {
@@ -120,6 +137,12 @@ class FrontendController extends Controller
         return view('frontend.terms-and-conditions');
     }
 
+    public function header()
+    { 
+        $setting = Setting::first();
+        return view('frontend.layouts.partials.header', compact('setting'));
+    }
+
     /**
      * Store a contact inquiry from the frontend form.
      */
@@ -136,7 +159,15 @@ class FrontendController extends Controller
             // Create contact inquiry
             ContactUs::create($data);
             
-            // Redirect to the contact page with success message
+            // Check if this is an AJAX request
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Thank you for contacting us. We will get back to you soon!'
+                ]);
+            }
+            
+            // Regular form submission - redirect with success message
             return redirect('/contact-us')
                 ->with('success', 'Thank you for contacting us. We will get back to you soon!');
                 
@@ -144,8 +175,46 @@ class FrontendController extends Controller
             // Log error and return with error message
             \Log::error('Contact form submission error: ' . $e->getMessage());
             
+            // Check if this is an AJAX request
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'There was a problem submitting your inquiry. Please try again later.'
+                ], 422);
+            }
+            
+            // Regular form submission - redirect with error message
             return redirect('/contact-us')
                 ->with('error', 'There was a problem submitting your inquiry. Please try again later.')
+                ->withInput();
+        }
+    }
+
+    /**
+     * Store an agent request from the frontend form.
+     */
+    public function storeAgentRequest(BecomeAnAgentRequest $request)
+    {
+        try {
+            // Validate and get data
+            $data = $request->validated();
+            
+            // Set default values for backend fields
+            $data['is_contacted'] = false;
+            
+            // Create agent request
+            BecomeAnAgent::create($data);
+            
+            // Redirect to the become-an-agent page with success message
+            return redirect('/become-an-agent')
+                ->with('success', 'Thank you for your interest in becoming an agent. We will contact you soon!');
+                
+        } catch (\Exception $e) {
+            // Log error and return with error message
+            \Log::error('Agent request form submission error: ' . $e->getMessage());
+            
+            return redirect('/become-an-agent')
+                ->with('error', 'There was a problem submitting your request. Please try again later.')
                 ->withInput();
         }
     }

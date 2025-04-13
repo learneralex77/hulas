@@ -29,36 +29,52 @@
         <div class="flex flex-col justify-around lg:flex-row gap-10 rounded-lg">
             <!-- <div class="lg:flex lg:justify-center lg:mt-32"> -->
             <div class="flex flex-2 bg-white shadow-xl rounded-md p-6 w-full">
-                <form class="w-full">
+                <form class="w-full" method="POST" action="{{ route('storeAgentRequest') }}" id="agent-request-form">
+                    @csrf
                     <div class="flex flex-col space-y-8">
                         <div class="flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-5">
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="name" class="font-bold text-xl text-[#3d5169]">Name</label>
-                                <input id="name" placeholder="Name" type="text" class="rounded-md bg-[#f5faff]" />
+                                <input id="name" name="name" placeholder="Name" type="text" class="rounded-md bg-[#f5faff]" required />
+                                @error('name')
+                                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
 
                             <div class="flex flex-col space-y-3 w-full">
-                                <label for="contact" class="font-bold text-xl text-[#3d5169]">Contact Number</label>
-                                <input type="tel" placeholder="Contact Number" id="contact"
-                                    class="bg-[#f5faff] rounded-md" />
+                                <label for="contact_number" class="font-bold text-xl text-[#3d5169]">Contact Number</label>
+                                <input type="tel" placeholder="Contact Number" id="contact_number" name="contact_number"
+                                    class="bg-[#f5faff] rounded-md" required />
+                                @error('contact_number')
+                                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-5">
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="email" class="font-bold text-xl text-[#3d5169]">Email</label>
-                                <input type="email" placeholder="Email" id="email" class="bg-[#f5faff] rounded-md" />
+                                <input type="email" placeholder="Email" id="email" name="email" class="bg-[#f5faff] rounded-md" required />
+                                @error('email')
+                                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="flex flex-col space-y-3 w-full">
-                                <label for="name" class="font-bold text-xl text-[#3d5169]">District</label>
-                                <input id="name" placeholder="District" type="text" class="rounded-md bg-[#f5faff]" />
+                                <label for="district" class="font-bold text-xl text-[#3d5169]">District</label>
+                                <input id="district" name="district" placeholder="District" type="text" class="rounded-md bg-[#f5faff]" required />
+                                @error('district')
+                                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
 
                         <div class="flex flex-col space-y-3">
-                            <label for="query" class="font-bold text-xl text-[#3d5169]">Message</label>
-                            <textarea name="query" id="query" cols="20" rows="10" class="bg-[#f5faff] rounded-md"
-                                placeholder="Please enter your message..."></textarea>
+                            <label for="message" class="font-bold text-xl text-[#3d5169]">Message</label>
+                            <textarea name="message" id="message" cols="20" rows="10" class="bg-[#f5faff] rounded-md"
+                                placeholder="Please enter your message..." required></textarea>
+                            @error('message')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <button type="submit"
@@ -81,9 +97,11 @@
                         <div class="flex flex-col space-y-1">
                             <p class="font-semibold">Location:</p>
 
-                            <p class="">
-                                Bagdurbar, Sundhara <br />
-                                (Near to China Town Gate)
+                            <p>
+                                @isset($setting->address_en)
+                                    {{ $setting->address_en }}
+                                @endisset
+                              
                             </p>
 
                             <p>Kathmandu, Nepal</p>
@@ -94,10 +112,11 @@
                             <img src="{{ asset('assets/images/contact/phone-svgrepo-com.svg') }}" class="w-8" alt="" />
                         </div>
                         <div class="flex flex-col space-y-2">
-                            <p>+977 1 5361313, 5358225, <br />5352008</p>
                             <p class="font-semibold">Toll Free Number:</p>
                             <p>
-                                16600 111222 <br />(For NTC Users Only)
+                                @isset($setting->phone_number_en)
+                                    {{ $setting->phone_number_en }}
+                                @endisset
                             </p>
                         </div>
                     </div>
@@ -108,8 +127,11 @@
                         <div class="flex flex-col space-y-2">
                             <p class="font-semibold">Email:</p>
                             <p>
-                                info@hulasremittance.com,<br />
-                                csc@hulasremittance.com
+                                @isset($setting->email)
+                                    {{ $setting->email }}<br>
+                                    {{ $setting->agent_notify_email }}
+
+                                @endisset
                             </p>
                         </div>
                     </div>
@@ -125,4 +147,32 @@
 @push('scripts')
     <script type="module" src="/src/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: "{{ session('success') }}",
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#10B981',
+                    timer: 5000,
+                    timerProgressBar: true
+                });
+            @endif
+            
+            @if(session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "{{ session('error') }}",
+                    showConfirmButton: true,
+                    confirmButtonText: 'Try Again',
+                    confirmButtonColor: '#EF4444'
+                });
+            @endif
+        });
+    </script>
 @endpush

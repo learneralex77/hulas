@@ -39,11 +39,11 @@ class NewsEventCategoryRequest extends FormRequest
                 'max:255',
                 Rule::unique('news_event_categories', 'name_np')->ignore($key),
             ],
-            'slug' => [
+            'image' => [
                 'nullable',
-                'string',
-                'max:255',
-                Rule::unique('news_event_categories')->ignore($key),
+                'image',
+                'mimes:jpeg,png,jpg,gif,webp',
+                'max:2048',
             ],
             'description_en' => ['nullable', 'string'],
             'description_np' => ['nullable', 'string'],
@@ -78,7 +78,7 @@ class NewsEventCategoryRequest extends FormRequest
         return [
             'name_en' => 'English Name',
             'name_np' => 'Nepali Name',
-            'slug' => 'Slug',
+            'image' => 'Image',
             'description_en' => 'English Description',
             'description_np' => 'Nepali Description',
             'display_order' => 'Display Order',
@@ -103,9 +103,9 @@ class NewsEventCategoryRequest extends FormRequest
             'name_np.max' => 'The Nepali name may not be greater than 255 characters.',
             'name_np.unique' => 'A category with this Nepali name already exists.',
             
-            'slug.string' => 'The slug must be a string.',
-            'slug.max' => 'The slug may not be greater than 255 characters.',
-            'slug.unique' => 'This slug has already been taken.',
+            'image.image' => 'The file must be a valid image.',
+            'image.mimes' => 'The image must be a valid format (jpeg, png, jpg, gif, webp).',
+            'image.max' => 'The image may not be greater than 2MB.',
             
             'display_order.integer' => 'The display order must be a number.',
             'display_order.min' => 'The display order must be at least 0.',
@@ -120,7 +120,7 @@ class NewsEventCategoryRequest extends FormRequest
         // Convert boolean string to actual boolean
         if ($this->has('is_published')) {
             $this->merge([
-                'is_published' => filter_var($this->is_published, FILTER_VALIDATE_BOOLEAN),
+                'is_published' => $this->is_published == '1' || $this->is_published === true || $this->is_published === 'true',
             ]);
         }
 
@@ -128,13 +128,6 @@ class NewsEventCategoryRequest extends FormRequest
         if ($this->has('display_order') && $this->display_order === '') {
             $this->merge([
                 'display_order' => 0,
-            ]);
-        }
-
-        // Auto-generate slug from name_en if slug is empty
-        if (empty($this->slug) && $this->has('name_en')) {
-            $this->merge([
-                'slug' => \Str::slug($this->name_en),
             ]);
         }
 

@@ -88,8 +88,13 @@ class UpdatePartnerRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         // Set boolean values correctly
+        if ($this->has('is_published')) {
+            $this->merge([
+                'is_published' => $this->is_published == '1' || $this->is_published === true || $this->is_published === 'true',
+            ]);
+        }
+        
         $this->merge([
-            'is_published' => $this->has('is_published'),
             'delete_image' => $this->has('delete_image'),
         ]);
         

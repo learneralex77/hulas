@@ -23,6 +23,7 @@
                         <thead> 
                             <tr>
                                 <th class="text-left"">S.N.</th>
+                                <th class="d-none d-sm-table-cell" style="width: 80px;">Image</th>
                                 <th>Name</th>
                                 <th class="text-left">Display Order</th>
                                 <th>Status</th>
@@ -33,6 +34,17 @@
                             @foreach ($categories as $category)
                                 <tr id="category-row-{{ $category->id }}">
                                     <td class="text-center">{{ $loop->iteration }}</td>
+                                    <td class="d-none d-sm-table-cell text-center" style="width: 60px;">
+                                        @if ($category->image)
+                                            <img src="{{ asset('storage/' . $category->image) }}"
+                                                alt="{{ $category->name_en }}" class="img-thumbnail"
+                                                style="width: 50px; height: 50px; object-fit: cover;">
+                                        @else
+                                            <span class="text-muted" style="display: inline-block; width: 50px; height: 50px;">
+                                                <i class="fa fa-image" style="font-size: 24px; line-height: 50px;"></i>
+                                            </span>
+                                        @endif
+                                    </td>
                                     <td>{{ $category->name }}</td>
                                     <td class="text-center">{{ $category->display_order }}</td>
                                     <td class="text-center">

@@ -163,8 +163,8 @@
                 sed
                 labore provident</p>
         </div>
-        <button class="px-8 py-4 bg-black text-accent hover:opacity-85 rounded-full cursor-pointer text-center font-bold text-lg w-60 tracking-wider">Find an
-            agent</button>
+        <a href="{{ route('findAnAgent') }}" class="px-8 py-4 bg-black text-white rounded-full cursor-pointer text-center text-lg w-60 inline-block">Find an
+            agent</a>
     </div>
     <!-- Section breaker -->
 

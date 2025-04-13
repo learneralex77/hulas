@@ -131,6 +131,11 @@ class AboutUsRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
+        // Convert boolean values explicitly
+        $this->merge([
+            'is_published' => $this->has('is_published') ? (bool) $this->input('is_published') : false,
+        ]);
+
         // For backward compatibility - map legacy fields to new ones
         if ($this->has('tagline') && !$this->has('tagline_en')) {
             $this->merge([
@@ -155,5 +160,35 @@ class AboutUsRequest extends FormRequest
                 'short_description_en' => $this->short_description,
             ]);
         }
+    }
+
+    /**
+     * Handle the AboutUs after validation.
+     * Configure all data before model persistence
+     */
+    public function transformedValues(): array
+    {
+        // Start with validated data
+        $data = $this->validated();
+        
+        // Add mission vision items as JSON
+        $missionVision = [];
+        if ($this->has('mission_vision_titles') && is_array($this->mission_vision_titles)) {
+            foreach ($this->mission_vision_titles as $index => $title) {
+                if (!empty($title) && isset($this->mission_vision_icons[$index]) && isset($this->mission_vision_descriptions[$index])) {
+                    $missionVision[] = [
+                        'title' => $title,
+                        'icon' => $this->mission_vision_icons[$index],
+                        'description' => $this->mission_vision_descriptions[$index],
+                    ];
+                }
+            }
+        }
+        $data['mission_vision'] = $missionVision;
+        
+        // Ensure boolean values are correctly saved
+        $data['is_published'] = $this->boolean('is_published');
+        
+        return $data;
     }
 }

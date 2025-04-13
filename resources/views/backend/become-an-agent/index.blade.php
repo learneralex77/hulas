@@ -1,7 +1,7 @@
 @extends('backend.layouts.main')
 
 @section('title')
-    Become an Agent Management
+    Agent Requests Management
 @endsection
 
 
@@ -10,10 +10,10 @@
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Become an Agent List</h3>
+                <h3 class="block-title">Agent Requests List</h3>
                 <div class="block-options">
                     <a href="{{ route('become-an-agent.create') }}" class="btn btn-sm btn-alt-primary border">
-                        <i class="fa fa-plus"></i> Add New Agent
+                        <i class="fa fa-plus"></i> Add New Agent Request
                     </a>
                 </div>
             </div>
@@ -23,9 +23,11 @@
                         <thead>
                             <tr>
                                 <th>S.N.</th>
-                                <th>Preview</th>
-                                <th class="text-left">Image Count</th>
-                                <th class="text-left">Display Order</th>
+                                <th>Name</th>
+                                <th>Contact</th>
+                                <th>Email</th>
+                                <th>District</th>
+                                <th>Date</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -34,34 +36,16 @@
                             @foreach ($agents as $agent)
                                 <tr id="agent-row-{{ $agent->id }}">
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                        
-                                    <td style="width: 80px; text-align: center;">
-                                        @if (is_array($agent->images) && count($agent->images) > 0)
-                                            <img src="{{ asset('storage/' . $agent->images[0]) }}" alt="Preview"
-                                                class="img-fluid" style="width: 50px; height: 50px; object-fit: cover;">
-                                            
-                                           
-                                        @else
-                                            <span class="text-muted" style="display: inline-block; width: 50px; height: 50px; line-height: 50px;">
-                                                No images
-                                            </span>
-                                        @endif
-                                             </td>
-
-
-                                    <td class="text-center">
-                                        @if (is_array($agent->images))
-                                            {{ count($agent->images) }}
-                                        @else
-                                            0
-                                        @endif
-                                    </td>
-                                    <td class="text-center">{{ $agent->display_order }}</td>
+                                    <td>{{ $agent->name }}</td>
+                                    <td>{{ $agent->contact_number }}</td>
+                                    <td>{{ $agent->email }}</td>
+                                    <td>{{ $agent->district }}</td>
+                                    <td>{{ $agent->created_at->format('M d, Y') }}</td>
                                     <td>
-                                        @if ($agent->is_published)
-                                            <span class="badge bg-success">Published</span>
+                                        @if ($agent->is_contacted)
+                                            <span class="badge bg-success">Contacted</span>
                                         @else
-                                            <span class="badge bg-warning">Draft</span>
+                                            <span class="badge bg-warning">Pending</span>
                                         @endif
                                     </td>
                                     <td class="text-center">

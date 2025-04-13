@@ -20,7 +20,7 @@
             <div class="block-content">
 
                 <form class="form-horizontal needs-validation" action="{{ route('news-event-categories.store') }}"
-                    method="POST" id="category-form" novalidate>
+                    method="POST" id="category-form" enctype="multipart/form-data" novalidate>
                     @csrf
                     @include('backend.news-event-categories.partials.form')
                 </form>

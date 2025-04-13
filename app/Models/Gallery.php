@@ -12,6 +12,7 @@ class Gallery extends Model
     protected $fillable = [
         'title_en',
         'title_np',
+        'short_description',
         'featured_image',
         'images',
         'links',

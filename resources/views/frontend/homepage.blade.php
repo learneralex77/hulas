@@ -358,6 +358,7 @@
       --swiper-pagination-color: #fff;
       " class="swiper mySwiper2 w-full h-1/2 aspect-[16/9]">
       <div class="swiper-wrapper h-[800px] lg:h-[400px]">
+        @isset($galleries)
       @foreach($galleries as $gallery)
       <div class="swiper-slide">
       <img
@@ -365,6 +366,7 @@
       class="w-full h-full object-contain" alt="{{ $gallery->title_en }}" />
       </div>
     @endforeach
+   
       </div>
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
@@ -378,6 +380,7 @@
       alt="{{ $gallery->title_en }}" />
       </div>
     @endforeach
+    @endisset
       </div>
     </div>
     </div>

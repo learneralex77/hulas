@@ -52,7 +52,8 @@
                         <div class="flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-5">
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="name" class="font-bold text-xl text-[#3d5169]">Name</label>
-                                <input id="name" name="name" placeholder="Name" type="text" class="rounded-md bg-[#f5faff]" required />
+                                <input id="name" name="name" placeholder="Name" type="text" class="rounded-md bg-[#f5faff]"
+                                    required />
                                 @error('name')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
@@ -71,14 +72,16 @@
                         <div class="flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-5">
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="email" class="font-bold text-xl text-[#3d5169]">Email</label>
-                                <input type="email" placeholder="Email" id="email" name="email" class="bg-[#f5faff] rounded-md" required />
+                                <input type="email" placeholder="Email" id="email" name="email"
+                                    class="bg-[#f5faff] rounded-md" required />
                                 @error('email')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="district" class="font-bold text-xl text-[#3d5169]">District</label>
-                                <input id="district" name="district" placeholder="District" type="text" class="rounded-md bg-[#f5faff]" required />
+                                <input id="district" name="district" placeholder="District" type="text"
+                                    class="rounded-md bg-[#f5faff]" required />
                                 @error('district')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
@@ -118,7 +121,7 @@
                                 @isset($setting->address_en)
                                     {{ $setting->address_en }}
                                 @endisset
-                              
+
                             </p>
 
                             <p>Kathmandu, Nepal</p>
@@ -164,9 +167,9 @@
 @push('scripts')
     <script type="module" src="/src/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             @if(session('success'))
                 Swal.fire({
                     icon: 'success',
@@ -179,7 +182,7 @@
                     timerProgressBar: true
                 });
             @endif
-            
+
             @if(session('error'))
                 Swal.fire({
                     icon: 'error',

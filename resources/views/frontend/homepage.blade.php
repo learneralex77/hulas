@@ -85,8 +85,9 @@
       Welcome To Hulas Remittance
       </p>
       <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-      A leading business house with a dedicated business history of more than
-      85 years, Golchha Organization has established "HULAS"
+      @isset($aboutUs->short_description_en)
+      {{ $aboutUs->short_description_en }}
+    @endisset
       </p>
     </div>
     </div>

@@ -12,20 +12,32 @@
                 <div class="flex justify-center lg:justify-left space-x-3 items-center">
                     <div
                         class="social group flex justify-center items-center w-10 h-10 lg:w-16 lg:h-16 rounded-full hover:cursor-pointer">
-                        <img id="fb-white"
-                            src="{{ asset('assets/images/social-media-icons/facebook-svgrepo-com.png') }}" class="w-6"
-                            alt="Facebook Icon" />
+                        @isset($settings->facebook)
+                        <a rel="noopener noreferrer" href="{{ $settings->facebook }}">
+                            <img id="fb-white"
+                                src="{{ asset('assets/images/social-media-icons/facebook-svgrepo-com.png') }}" class="w-6"
+                                alt="Facebook Icon" />
+                        </a>
+                        @endisset
                     </div>
                     <div
                         class="social group flex justify-center items-center w-10 h-10 lg:w-16 lg:h-16 rounded-full hover:cursor-pointer">
-                        <img id="fb-white"
-                            src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.png') }}"
-                            class="w-4 h-4" alt="LinkedIn Icon" />
+                        @isset($settings->linkedin)
+                        <a rel="noopener noreferrer" href="{{ $settings->linkedin }}">
+                            <img id="fb-white"
+                                src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.png') }}"
+                                class="w-4 h-4" alt="LinkedIn Icon" />
+                        </a>
+                        @endisset
                     </div>
                     <div
                         class="social group flex justify-center items-center w-10 h-10 lg:w-16 lg:h-16 rounded-full hover:cursor-pointer">
-                        <img id="fb-white" src="{{ asset('assets/images/social-media-icons/x-icon.jpg') }}" class="w-6"
-                            alt="X Icon" />
+                        @isset($settings->twitter)
+                        <a rel="noopener noreferrer" href="{{ $settings->twitter }}">
+                            <img id="fb-white" src="{{ asset('assets/images/social-media-icons/x-icon.jpg') }}"
+                                class="w-6" alt="X Icon" />
+                        </a>
+                        @endisset
                     </div>
                 </div>
             </div>
@@ -36,12 +48,9 @@
                         <p class="text-center md:text-left">
                             A Principal Agent of Western Union in Nepal.</p>
                         <p class="text-center md:text-left">
-                            Hulas Remittance, a member company of Golchha Organization, was
-                            established in August 2005 with the vision to bring in quality and
-                            reliable money transfer services in to Nepal. Hulas Remittance,
-                            being one of the principal agents, playing a leading role in
-                            offering money transfer services of The Western Union Company in
-                            Nepal since January 2006.
+                            @isset($aboutUs->description_en)
+                            {{ $aboutUs->description_en }}
+                            @endisset
                         </p>
                     </div>
                     <div class="text-[#ffffffcc] flex flex-col space-y-5 items-left lg:items-center ">
@@ -49,8 +58,9 @@
                             <img src="{{ asset('assets/images/footer/location.png') }}" class="w-6" alt="" />
                             <div class="flex flex-col space-y-1">
                                 <p>
-                                    Bagdurbar, Sundhara <br />
-                                    (Near to China Town Gate)
+                                    @isset($settings->address_en)
+                                    {{ $settings->address_en }}
+                                    @endisset
                                 </p>
 
                                 <p>Kathmandu, Nepal</p>
@@ -59,11 +69,15 @@
                         <div class="flex flex-row gap-6 space-x-5 items-center">
                             <img src="{{ asset('assets/images/footer/phone-call.png') }}" class="w-6" alt="" />
                             <div class="flex flex-col space-y-2">
-                                <p>+977 1 5361313, 5358225, <br />5352008</p>
                                 <p>
+                                    @isset($settings->phone_number_en)
+                                    {{ $settings->phone_number_en }}
+                                    @endisset
+                                </p>
+                                <!-- <p>
                                     Toll Free Number: <br />
                                     16600 111222 <br />(For NTC Users Only)
-                                </p>
+                                </p> -->
                             </div>
                         </div>
                         <div class="flex flex-row gap-6 space-x-5 items-center">
@@ -71,8 +85,12 @@
                             <div class="flex flex-col space-y-2">
                                 <p>Email:</p>
                                 <p>
-                                    info@hulasremittance.com,<br />
-                                    csc@hulasremittance.com
+                                    @isset($settings->email)
+                                    {{ $settings->email }}
+                                    @isset($settings->agent_notify_email)
+                                    {{ $settings->agent_notify_email }}
+                                    @endisset
+                                    @endisset
                                 </p>
                             </div>
                         </div>
@@ -92,8 +110,8 @@
                         <a href="forex-rate" class="hover:underline text-center">Forex Rate</a>
                         <a href="faq" class="hover:underline text-center">FAQ</a>
                         <a href="contact-us" class="hover:underline text-center">Contact us</a>
-                        <a href="terms-and-conditions" class="hover:underline text-center">Terms & Conditions</a>
-                        <a href="privacy-policy" class="hover:underline text-center">Privacy Policy</a>
+                        <a href="{{ route('termsAndConditions') }}" class="hover:underline text-center">Terms & Conditions</a>
+                        <a href="{{ route('privacyAndPolicy') }}" class="hover:underline text-center">Privacy Policy</a>
                     </div>
                     <div class=" text-[#ffffffcc] flex flex-col space-y-2">
                         <h4 class=" text-accent font-bold md:text-left text-center">Quick Links</h4>

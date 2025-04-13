@@ -140,7 +140,15 @@ class FrontendController extends Controller
     public function header()
     { 
         $setting = Setting::first();
+      
         return view('frontend.layouts.partials.header', compact('setting'));
+    }
+
+    public function footer()
+    {
+        $setting = Setting::first();
+        $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
+        return view('frontend.layouts.partials.footer', compact('setting', 'aboutUs'));
     }
 
     /**

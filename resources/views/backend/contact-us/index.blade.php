@@ -27,7 +27,6 @@
                                 <th>Email</th>
                                 <th>Phone Number</th>
                                 <th>Service</th>
-                                <th class="text-center">Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
                             </tr>
@@ -40,7 +39,6 @@
                                     <td>{{ $contact->email }}</td>
                                     <td>{{ $contact->phone_number }}</td>
                                     <td>{{ $contact->service_interested_in ?? 'N/A' }}</td>
-                                    <td class="text-center">{{ $contact->display_order }}</td>
                                     <td class="text-center">
                                         @if ($contact->is_contacted)
                                             <span class="badge bg-success">Contacted</span>

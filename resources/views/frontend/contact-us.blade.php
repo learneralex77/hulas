@@ -28,15 +28,15 @@
     <!-- cards section -->
     <section>
       <div class="mt-16 mx-8 flex justify-center">
-        <div class="flex flex-col lg:flex-row gap-6 lg:items-center">
+        <div class="flex flex-col lg:flex-row gap-6 justify-center lg:items-center">
           <!--  -->
           <div
-            class="bg-[#f3f3f3] xl:h-[130px] lg:h-[170px] shadow-md rounded-md p-3  flex-1"
+            class="bg-[#f3f3f3] xl:h-[130px] lg:h-[170px] shadow-md rounded-md p-3 flex flex-1 w-[340px] md:w-[400px] lg:w-[300px] xl:w-[400px]"
           >
-            <div class="flex flex-col justify-start sm:flex-row gap-4">
+            <div class="flex justify-start flex-row gap-4">
               <div class="flex justify-center">
                 <div
-                  class="w-20 h-20 rounded-full bg-accent flex justify-center items-center"
+                  class="w-18 h-18 rounded-full bg-accent flex justify-center items-center"
                 >
                 <img src="{{ asset('assets/images/contact/location-pin-svgrepo-com.svg') }}" 
                     class="w-10 h-10"
@@ -58,12 +58,12 @@
           </div>
           <!--  -->
           <div
-            class="bg-[#f3f3f3] lg:h-[170px] xl:h-[130px] shadow-md rounded-md p-3 flex-1"
+          class="bg-[#f3f3f3] xl:h-[130px] lg:h-[170px] shadow-md rounded-md p-3 flex flex-1 w-[340px] md:w-[400px] lg:w-[300px] xl:w-[400px]"
           >
-            <div class="flex flex-col justify-start sm:flex-row gap-4">
-              <div class="flex justify-center">
+          <div class="flex justify-start flex-row gap-4">
+          <div class="flex justify-center">
                 <div
-                  class="w-20 h-20 rounded-full bg-accent flex justify-center items-center"
+                class="w-18 h-18 rounded-full bg-accent flex justify-center items-center"
                 >
                 <img src="{{ asset('assets/images/contact/mail-svgrepo-com.png') }}" 
 
@@ -92,12 +92,12 @@
           </div>
           <!--  -->
           <div
-            class="bg-[#f3f3f3] lg:h-[170px] xl:h-[130px] Fshadow-md rounded-md p-3 flex-1"
+          class="bg-[#f3f3f3] xl:h-[130px] lg:h-[170px] shadow-md rounded-md p-3 flex flex-1 w-[340px] md:w-[400px] lg:w-[300px] xl:w-[400px]"
           >
-            <div class="flex flex-col justify-start sm:flex-row gap-4">
-              <div class="flex justify-center">
+          <div class="flex justify-start flex-row gap-4">
+          <div class="flex justify-center">
                 <div
-                  class="w-20 h-20 rounded-full bg-accent flex justify-center items-center"
+                class="w-18 h-18 rounded-full bg-accent flex justify-center items-center"
                 >
                 <img src="{{ asset('assets/images/contact/phone-svgrepo-com.svg') }}" 
 
@@ -151,7 +151,7 @@
           <p
             class="max-w-sm lg:max-w-none text-black text-xl lg:border-b-2 lg:border-accent"
           >
-            Fill up the form and our team will get back to you within 24 hours.
+          Have a question or need assistance? Reach out to us, and our team will get back to you as soon as possible. We’re here to help!
           </p>
           
           <!-- Old alerts removed -->
@@ -251,7 +251,7 @@
             <div class="w-full flex justify-center">
               <button
                 type="submit"
-                class="w-44 text-center bg-black text-accent hover:opacity-85  py-3 px-5 rounded-full cursor-pointer tracking-wide my-6"
+                class="w-44 text-center bg-black text-accent hover:opacity-85 py-3 px-5 rounded-full cursor-pointer tracking-wide my-6"
               >
                 Send Message
               </button>

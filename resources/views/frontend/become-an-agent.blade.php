@@ -22,10 +22,27 @@
     <!-- banner-section -->
 
     <!-- form section  -->
-    <section class="flex flex-col m-6 sm:m-10 md:m-20 lg:mx-40">
-        <h2 class="text-xl lg:text-3xl text-black font-extrabold text-center my-10">
-            Fill up the form
-        </h2>
+    <section class="flex flex-col m-6 sm:m-10 md:m-20 xl:mx-40">
+        <section class="overflow-x-hidden">
+            <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+                <div class="flex flex-col items-center space-y-6">
+                    <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+              ">
+                        Partner With us </h1>
+
+                    <p class="text-2xl text-black font-bold md:text-4xl text-center">
+                        Fill up the form </p>
+                    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+                        Join Hulas Remittance as an agent and be a part of a trusted global network. Help your community
+                        send and receive money with ease—while growing your own business.
+
+
+                    </p>
+                </div>
+            </div>
+        </section>
         <div class="flex flex-col justify-around lg:flex-row gap-10 rounded-lg">
             <!-- <div class="lg:flex lg:justify-center lg:mt-32"> -->
             <div class="flex flex-2 bg-white shadow-xl rounded-md p-6 w-full">
@@ -173,6 +190,6 @@
                     confirmButtonColor: '#EF4444'
                 });
             @endif
-        });
+                });
     </script>
 @endpush

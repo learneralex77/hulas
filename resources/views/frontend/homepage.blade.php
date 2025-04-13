@@ -22,26 +22,22 @@
       @isset($sliders)
       @foreach ($sliders as $key => $slider)
       <div class="hidden duration-700 ease-in-out" data-carousel-item="{{ $key === 0 ? 'active' : '' }}">
-        <img src="{{ asset('storage/' . $slider->image) }}"
-          class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-          alt="{{ $slider->title ?? 'Slider Image' }}"
-        />
+      <img src="{{ asset('storage/' . $slider->image) }}"
+      class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+      alt="{{ $slider->title ?? 'Slider Image' }}" />
       </div>
-      @endforeach
-      @endisset
+    @endforeach
+    @endisset
     </div>
     <!-- Slider indicators -->
     <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
       @isset($sliders)
-        @foreach($sliders as $key => $slider)
-          <button type="button" 
-            class="w-3 h-3 rounded-full" 
-            aria-current="{{ $key === 0 ? 'true' : 'false' }}" 
-            aria-label="Slide {{ $key + 1 }}"
-            data-carousel-slide-to="{{ $key }}">
-          </button>
-        @endforeach
-      @endisset
+      @foreach($sliders as $key => $slider)
+      <button type="button" class="w-3 h-3 rounded-full" aria-current="{{ $key === 0 ? 'true' : 'false' }}"
+      aria-label="Slide {{ $key + 1 }}" data-carousel-slide-to="{{ $key }}">
+      </button>
+    @endforeach
+    @endisset
     </div>
     <!-- Slider controls -->
     <button type="button"
@@ -107,7 +103,7 @@
       @isset($aboutUs)
       {{ $aboutUs->description_en ?? $aboutUs->description }}
     @endisset
-     
+
     </p>
     <a href="{{ route('aboutHulasRemittance') }}"
       class="text-center text-accent hover:opacity-85 text-lg drop-shadow-sm cursor-pointer bg-black px-6 py-3 w-40 rounded-full">
@@ -119,63 +115,70 @@
 
   <!----------Services Section---------->
   <section class="m-10 items-center">
-        <div class="flex flex-col items-center space-y-6">
-            <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-                            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                            -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                          ">
-                Services we provide
-            </h1>
-            <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
-                Services </p>
-            <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-                <!-- A leading business house with a dedicated business history of more than
-                          85 years, Golchha Organization has established "HULAS" -->
-            </p>
-        </div>
-        <div class="relative flex items-center justify-center">
-            <button
-                class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"
-                onclick="prevServicesSlider()">
-                ❮
-            </button>
-            
-            <div class="overflow-hidden rounded-lg w-full">
-                <div class="flex flex-row gap-8 transition-transform duration-500 ease-in-out" id="services-slider-content">
-                    @isset($services)
-                    @foreach ($services as $service)
-                    <div
-                        class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
-                        <div class="flex flex-col items-center">
-                            @if ($service->file)
-                            <img src="{{ asset('storage/' . $service->file) }}"
-                                alt="{{ $service->name_en }}" class="w-full h-[200px] rounded-lg object-cover" />
-                            @else
-                            <div class="w-full h-[200px] rounded-lg bg-gray-200 flex items-center justify-center">
-                                <i class="{{ $service->icon ?? 'fa fa-briefcase' }} text-5xl text-gray-400"></i>
-                            </div>
-                            @endif
-                        </div>
-                        <h3 class="text-lg font-bold text-center">{{ $service->name_en }}</h3>
-                        <p class="text-base md:text-lg text-black text-center">
-                            {{ $service->description_en }}
-                        </p>
-                        <div class="flex justify-center">
-                            <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}" class="bg-black  px-4 py-2 tracking-wide rounded-full text-accent hover:opacity-85 text-center">Read more</a>
-                        </div>
-                    </div>
-                    @endforeach
-                    @endisset
-                </div>
-            </div>
-            
-            <button
-                class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
-                onclick="nextServicesSlider()">
-                ❯
-            </button>
-        </div>
+    <section class="overflow-x-hidden">
+    <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+      <div class="flex flex-col items-center space-y-6">
+      <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+        ">
+        Our Services
+      </h1>
+
+      <p class="text-2xl text-black font-bold md:text-4xl text-center">
+        Simple. Secure. Seamless.
+      </p>
+      <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+        Fast, secure money transfers made easy with Hulas Remittance and trusted partners like Western Union.
+      </p>
+      </div>
+    </div>
     </section>
+    <div class="relative flex items-center justify-center">
+    <button
+      class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"
+      onclick="prevServicesSlider()">
+      ❮
+    </button>
+
+    <div class="overflow-hidden rounded-lg w-full">
+      <div class="flex flex-row gap-8 transition-transform duration-500 ease-in-out" id="services-slider-content">
+      @isset($services)
+      @foreach ($services as $service)
+      <div
+      class="flex-none w-[280px] md:w-[300px] lg:w-[380px] max-h-[800px] bg-gray-50 rounded-lg shadow-lg p-4 gap-6 flex flex-col justify-between services-review-card">
+      <div class="flex flex-col items-center">
+      @if ($service->file)
+      <img src="{{ asset('storage/' . $service->file) }}" alt="{{ $service->name_en }}"
+      class="w-full h-[200px] rounded-lg object-cover" />
+    @else
+      <div class="w-full h-[200px] rounded-lg bg-gray-200 flex items-center justify-center">
+      <i class="{{ $service->icon ?? 'fa fa-briefcase' }} text-5xl text-gray-400"></i>
+      </div>
+    @endif
+      </div>
+      <h3 class="text-lg font-bold text-center">{{ $service->name_en }}</h3>
+      <p class="text-base md:text-lg text-black text-center">
+      {{ $service->description_en }}
+      </p>
+      <div class="flex justify-center">
+      <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}"
+      class="bg-black  px-4 py-2 tracking-wide rounded-full text-accent hover:opacity-85 text-center">Read
+      more</a>
+      </div>
+      </div>
+    @endforeach
+    @endisset
+      </div>
+    </div>
+
+    <button
+      class="absolute right-0 top-1/2 transform -translate-y-1/2 text-xl text-black bg-transparent border-none cursor-pointer z-10"
+      onclick="nextServicesSlider()">
+      ❯
+    </button>
+    </div>
+  </section>
 
   <!----------Our Partners Section---------->
   <section class="my-10">
@@ -219,22 +222,22 @@
     </div>
 
     <div class="carousel-items flex items-center justify-center w-full" style="
-        width: fit-content;
-        animation: carouselAnim 10s infinite alternate linear;
-        ">
-        @isset($partners)
-        @foreach ($partners as $partner)
+      width: fit-content;
+      animation: carouselAnim 10s infinite alternate linear;
+      ">
+      @isset($partners)
+      @foreach ($partners as $partner)
       <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
       style="width: 270px">
       <img src="{{ asset('storage/' . $partner->image) }}" class="h-40 w-40 rounded-xl shadow-2xl"
-        alt="Partners Icon" />
+      alt="Partners Icon" />
       <h4 class="tracking-wide text-lg m-3">{{ $partner->name_en ?? $partner->name }}</h4>
       </div>
-      @endforeach
-      @endisset
+    @endforeach
+    @endisset
 
-      
-    
+
+
   </section>
   <!----------Our Partners Section---------->
 
@@ -356,11 +359,11 @@
       <div class="swiper-wrapper h-[800px] lg:h-[400px]">
       @foreach($galleries as $gallery)
       <div class="swiper-slide">
-        <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}" 
-             class="w-full h-full object-contain" 
-             alt="{{ $gallery->title_en }}" />
+      <img
+      src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
+      class="w-full h-full object-contain" alt="{{ $gallery->title_en }}" />
       </div>
-      @endforeach
+    @endforeach
       </div>
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
@@ -369,15 +372,16 @@
       <div class="swiper-wrapper">
       @foreach($galleries as $index => $gallery)
       <div class="swiper-slide">
-        <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}" 
-             alt="{{ $gallery->title_en }}" />
+      <img
+      src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
+      alt="{{ $gallery->title_en }}" />
       </div>
-      @endforeach
+    @endforeach
       </div>
     </div>
     </div>
 
-    
+
     <div class="flex-1 w-full h-full">
     <div class="flex justify-end">
       <a href="{{ route('newsAndEvents')}}"
@@ -407,46 +411,47 @@
       <!-- Content Repeated -->
 
       @if(isset($newsAndEvents) && count($newsAndEvents) > 0)
-        @foreach($newsAndEvents as $news)
-          <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-            <div class="h-auto w-30">
-              <img
-                src="{{ isset($news->image) ? asset('storage/' . $news->image) : asset('assets/images/placeholder.jpg') }}"
-                alt="{{ $news->title_en ?? 'News Image' }}" class="h-full w-full rounded-lg object-cover" />
-            </div>
+      @foreach($newsAndEvents as $news)
+      <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
+      <div class="h-auto w-30">
+      <img
+      src="{{ isset($news->image) ? asset('storage/' . $news->image) : asset('assets/images/placeholder.jpg') }}"
+      alt="{{ $news->title_en ?? 'News Image' }}" class="h-full w-full rounded-lg object-cover" />
+      </div>
 
-            <div class="flex flex-col gap-3">
-              <a href="{{ route('newsAndEventsDetailPage', $news->id) }}" class="line-clamp-2 hover:text-accent transition-colors duration-200">
-                {{ $news->name_en ?? 'News Title' }}
-              </a>
-              <div class="flex space-x-2">
-                <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
-                class="h-auto w-4" />
-                <p class="text-xs text-gray-500">{{ isset($news->created_at) ? $news->created_at->format('jS F Y') : 'Date not available' }}</p>
-              </div>
-            </div>
-          </div>
-        @endforeach
-      @else
-        <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-          <div class="h-auto w-30">
-            <img
-              src="{{ asset('assets/images/placeholder.jpg') }}"
-              alt="No News Available" class="h-full w-full rounded-lg object-cover" />
-          </div>
+      <div class="flex flex-col gap-3">
+      <a href="{{ route('newsAndEventsDetailPage', $news->id) }}"
+      class="line-clamp-2 hover:text-accent transition-colors duration-200">
+      {{ $news->name_en ?? 'News Title' }}
+      </a>
+      <div class="flex space-x-2">
+      <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
+      class="h-auto w-4" />
+      <p class="text-xs text-gray-500">
+      {{ isset($news->created_at) ? $news->created_at->format('jS F Y') : 'Date not available' }}</p>
+      </div>
+      </div>
+      </div>
+    @endforeach
+    @else
+      <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
+      <div class="h-auto w-30">
+      <img src="{{ asset('assets/images/placeholder.jpg') }}" alt="No News Available"
+        class="h-full w-full rounded-lg object-cover" />
+      </div>
 
-          <div class="flex flex-col gap-3">
-            <p class="line-clamp-2">
-              No news or events available at the moment
-            </p>
-            <div class="flex space-x-2">
-              <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
-              class="h-auto w-4" />
-              <p class="text-xs text-gray-500">{{ now()->format('jS F Y') }}</p>
-            </div>
-          </div>
-        </div>
-      @endif
+      <div class="flex flex-col gap-3">
+      <p class="line-clamp-2">
+        No news or events available at the moment
+      </p>
+      <div class="flex space-x-2">
+        <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
+        class="h-auto w-4" />
+        <p class="text-xs text-gray-500">{{ now()->format('jS F Y') }}</p>
+      </div>
+      </div>
+      </div>
+    @endif
       </div>
     </div>
     </div>

@@ -13,8 +13,9 @@
             />
             <p class="text-xs">
               
-            Bagdurbar, Sundhara (Near to China Town Gate) Kathmandu, Nepal
-
+            @isset($settings->address_en)  
+                  {{ $settings->address_en }}
+              @endisset
             </p>
           </div>
 
@@ -26,8 +27,9 @@
               alt="Phone Icon"
             />
             <p class="text-xs">
-              +977 1 5361313, 5358225, 5352008, Toll Free Number: 16600 111222
-              (For NTC Users Only)
+              @isset($settings->phone_number_en)
+                {{ $settings->phone_number_en }}
+              @endisset
             </p>
           </div>
 
@@ -39,34 +41,45 @@
               alt="Email Icon"
             />
             <p class="text-xs">
-              info@hulasremittance.com, csc@hulasremittance.com
+              @isset($settings->email)
+                {{ $settings->email }}
+                {{ $settings->agent_notify_email }}
+
+
+              @endisset
             </p>
           </div>
         </div>
 
         <!-- Social Media Links -->
         <div class="flex space-x-5 items-center">
-          <a rel="noopener noreferrer" href="#">
+          @isset($settings->facebook)
+          <a rel="noopener noreferrer" href="{{ $settings->facebook }}">
           <img
              src="{{ asset('assets/images/navbar/fb-icon.png') }}"
               class="w-6"
               alt="Facebook Icon"
             />
           </a>
-          <a rel="noopener noreferrer" href="#">
+          @endisset
+          @isset($settings->twitter)
+          <a rel="noopener noreferrer" href="{{ $settings->twitter }}">
        <img
              src="{{ asset('assets/images/navbar/x-icon.png') }}"
               class="w-4"
               alt="X (Twitter) Icon"
             />
           </a>
-          <a rel="noopener noreferrer" href="#">
+          @endisset
+          @isset($settings->linkedin)
+          <a rel="noopener noreferrer" href="{{ $settings->linkedin }}">
         <img
              src="{{ asset('assets/images/navbar/linked-in-icon.png') }}"
               class="w-5"
               alt="LinkedIn Icon"
             />
           </a>
+          @endisset
         </div>
       </div>
     </nav>

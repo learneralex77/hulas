@@ -137,7 +137,7 @@
                             {{ $service->description_en }}
                         </p>
                         <div class="flex justify-center">
-                            <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}" class="bg-black text-white px-4 py-2 tracking-wide rounded-full text-center">Read more</a>
+                            <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}" class="bg-black hover:opacity-85 text-accent px-4 py-2 tracking-wide rounded-full text-sm text-center">Read more</a>
                         </div>
                     </div>
                     @endforeach
@@ -156,7 +156,7 @@
 
     <!-- Section breaker -->
     <div
-        class="flex flex-col lg:flex-row bg-accent  items-center justify-center gap-10  rounded-sm mx-6 my-10 md:m-10 lg:mx-20 px-10 py-10">
+        class="flex flex-col lg:flex-row bg-accent  items-center justify-center gap-10 text-black rounded-sm mx-6 my-10 md:m-10 lg:mx-20 px-10 py-10">
         <div class="flex flex-col gap-6 text-center">
             <h1 class="text-2xl lg:text-3xl font-extrabold tracking-wide">Subscribe to our NewsLetter</h1>
             <p class="line-clamp-2 text-lg lg:text-xl">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum, eligendi quis

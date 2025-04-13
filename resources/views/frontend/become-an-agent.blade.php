@@ -23,7 +23,7 @@
 
     <!-- form section  -->
     <section class="flex flex-col m-6 sm:m-10 md:m-20 lg:mx-40">
-        <h2 class="text-xl lg:text-3xl font-extrabold text-center my-10">
+        <h2 class="text-xl lg:text-3xl text-black font-extrabold text-center my-10">
             Fill up the form
         </h2>
         <div class="flex flex-col justify-around lg:flex-row gap-10 rounded-lg">
@@ -78,14 +78,14 @@
                         </div>
 
                         <button type="submit"
-                            class="w-44 flex justify-center items-center bg-[#000] text-bgPrimary hover:text-accent py-3 px-5 rounded-full cursor-pointer">
+                            class="w-44 flex justify-center items-center bg-black text-accent hover:opacity-85 py-3 px-5 rounded-full cursor-pointer">
                             Submit
                         </button>
                     </div>
                 </form>
             </div>
             <div class="flex flex-1 flex-col w-full shadow-xl gap-6 p-6 rounded-lg">
-                <h2 class="text-xl font-extrabold text-center m-6">
+                <h2 class="text-xl text-black font-extrabold text-center m-6">
                     Contact Information
                 </h2>
                 <div class="flex flex-col space-y-10 items-left lg:items-center lg:justify-center sm:px-10 lg:px-0">

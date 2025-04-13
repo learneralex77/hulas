@@ -85,7 +85,7 @@
       Our Introduction
       </h1>
 
-      <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+      <p class="text-2xl text-black font-bold md:text-4xl text-center">
       Welcome To Hulas Remittance
       </p>
       <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
@@ -102,7 +102,7 @@
       class="w-full rounded-md object-contain xl:object-fit" />
     </div>
     </div>
-    <div class="flex flex-1 lg:flex-2 flex-col space-y-6">
+    <div class="flex flex-2 flex-col space-y-6">
     <p class="text-gray-600 text-base lg:text-lg text-justify">
       @isset($aboutUs)
       {{ $aboutUs->description_en ?? $aboutUs->description }}
@@ -183,13 +183,13 @@
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
       <div class="flex flex-col items-center space-y-6">
       <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-        -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-        ">
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+      ">
         Our partners & Supporters
       </h1>
 
-      <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+      <p class="text-2xl text-black font-bold md:text-4xl text-center">
         In Collaboration with Our Esteemed Partners and Supporters
       </p>
       <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
@@ -203,18 +203,18 @@
     <div class="w-full overflow-hidden relative">
     <div class="w-full h-full absolute">
       <div class="w-1/4 h-full absolute z-50 left-0" style="
-        background: linear-gradient(
-        to right,
-        #fff8cc 0%,
-        rgba(255, 255, 255, 0) 100%
-        );
+      background: linear-gradient(
+      to right,
+      #fff8cc 0%,
+      rgba(255, 255, 255, 0) 100%
+      );
       "></div>
       <div class="w-1/4 h-full absolute z-50 right-0" style="
-        background: linear-gradient(
-        to left,
-        #fff8cc 0%,
-        rgba(255, 255, 255, 0) 100%
-        );
+      background: linear-gradient(
+      to left,
+      #fff8cc 0%,
+      rgba(255, 255, 255, 0) 100%
+      );
       "></div>
     </div>
 
@@ -250,7 +250,7 @@
         Become an Agent
       </h1>
 
-      <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
+      <p class="text-2xl text-black font-bold md:text-4xl text-center">
         Join Our Network of Trusted Agents
       </p>
       <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
@@ -338,7 +338,7 @@
   <div class="flex flex-col md:flex-row mx-10 lg:mx-40 px-4 gap-10 my-10">
     <div class="flex-1 overflow-hidden">
     <div class="flex flex-row justify-between m-3">
-      <h1 class="font-bold text-accent uppercase text-xl tracking-wider" style="
+      <h1 class="font-bold text-accent uppercase text-2xl tracking-wider" style="
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
       -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
       ">
@@ -570,7 +570,4 @@
     });
     });
   </script>
-
-
-
 @endpush

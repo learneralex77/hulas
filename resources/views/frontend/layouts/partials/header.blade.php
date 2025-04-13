@@ -33,22 +33,30 @@
     </nav>
     <!---------- top-nav ---------->
 
-    <!---------- bottom-nav ---------->
-    <nav class="relative px-4 pr-8 py-4 flex justify-between items-center bg-white shadow-lg">
-        <a class="text-xl lg:pl-10 font-bold leading-none" href="index.html">
-            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-56" alt="Hulas Remittance Logo" />
-        </a>
+  <!-- Main Navigation -->
+  <nav class="relative px-4 pr-8 py-4 flex justify-between items-center bg-white shadow-lg">
+    <a class="text-xl lg:pl-10 font-bold" href="homepage">
+      <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-56" alt="Hulas Logo" />
+    </a>
 
-        <div class="hidden lg:block">
-            <ul class="flex">
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="{{route('homepage')}}">Home</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="{{route('aboutHulasRemittance')}}">About Us</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="{{route('becomeAnAgent')}}">Become an Agent</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="{{route('findAnAgent')}}">Find an Agent</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="{{route('gallery')}}">Gallery</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="{{route('contactUs')}}">Contact</a></li>
-            </ul>
-        </div>
+    <div class="hidden lg:block">
+      <ul class="flex">
+        @foreach ([
+          ['Home', '#'],
+          ['About Us', 'about-us-page.html'],
+          ['Become an Agent', 'become-an-agent'],
+          ['Find an Agent', 'find-an-agent'],
+          ['Gallery', 'gallery'],
+          ['Contact', 'contact-us']
+        ] as [$label, $link])
+        <li class="mb-1">
+          <a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="{{ $link }}">
+            {{ $label }}
+          </a>
+        </li>
+        @endforeach
+      </ul>
+    </div>
 
         <!-- Mobile burger -->
         <div class="lg:hidden block">

@@ -97,20 +97,25 @@
 
     <!----------Services Section---------->
     <section class="m-10 items-center">
-        <div class="flex flex-col items-center space-y-6">
-            <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-                            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                            -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                          ">
-                Services we provide
-            </h1>
-            <p class="text-2xl font-bold md:text-2xl lg:text-4xl text-center">
-                Services </p>
-            <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-                <!-- A leading business house with a dedicated business history of more than
-                          85 years, Golchha Organization has established "HULAS" -->
-            </p>
-        </div>
+    <section class="overflow-x-hidden">
+    <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+      <div class="flex flex-col items-center space-y-6">
+      <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+      ">
+        Our Services
+      </h1>
+
+      <p class="text-2xl text-black font-bold md:text-4xl text-center">
+        Simple. Secure. Seamless.
+      </p>
+      <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+        Fast, secure money transfers made easy with Hulas Remittance and trusted partners like Western Union.
+      </p>
+      </div>
+    </div>
+    </section>
         <div class="relative flex items-center justify-center">
             <button
                 class="absolute left-0 top-1/2 transform -translate-y-1/2 text-xl text-gray-600 bg-transparent border-none cursor-pointer z-10"
@@ -158,14 +163,13 @@
 
     <!-- Section breaker -->
     <div
-        class="flex flex-col lg:flex-row bg-accent  items-center justify-center gap-10 text-black rounded-sm mx-6 my-10 md:m-10 lg:mx-20 px-10 py-10">
+        class="flex flex-col lg:flex-row bg-accent items-center justify-around gap-10 text-black rounded-sm mx-6 my-10 md:m-10 lg:mx-20 px-10 py-10">
         <div class="flex flex-col gap-6 text-center">
-            <h1 class="text-2xl lg:text-3xl font-extrabold tracking-wide">Subscribe to our NewsLetter</h1>
-            <p class="line-clamp-2 text-lg lg:text-xl">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum, eligendi quis
-                sed
-                labore provident</p>
+            <h1 class="text-2xl lg:text-5xl font-extrabold tracking-wide">Let's Get You Started
+            </h1>
+            <p class="line-clamp-2 text-lg lg:text-xl"> Whether you're sending money, becoming an agent, or just exploring—Hulas Remittance is here to help every step of the way.</p>
         </div>
-        <a href="{{ route('findAnAgent') }}" class="px-8 py-4 bg-black text-white rounded-full cursor-pointer text-center text-lg w-60 inline-block">Find an
+        <a href="{{ route('findAnAgent') }}" class="px-6 py-4 bg-black text-accent rounded-full cursor-pointer text-center text-xl w-60 inline-block font-bold hover:opacity-85">Find an
             agent</a>
     </div>
     <!-- Section breaker -->

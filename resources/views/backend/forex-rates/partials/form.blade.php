@@ -1,139 +1,68 @@
-<div class="row mb-4">
-    <div class="col-md-12">
-        <h4 class="mb-3">Morning Rates</h4>
-        <div class="table-responsive">
-            <table class="table table-bordered" id="morning-rates-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Flag</th>
-                        <th>Currency</th>
-                        <th>Unit</th>
-                        <th>Buying Rate</th>
-                        <th>Display Order</th>
-                        <th>Published</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="morning-rates-container">
-                    @foreach ($morningRates as $index => $rate)
-                        <tr class="rate-row" data-time-slot="morning">
-                            @include('backend.forex-rates.partials.rate-fields', [
-                                'timeSlot' => 'morning',
-                                'index' => $index,
-                                'rate' => $rate,
-                            ])
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-        <button type="button" class="btn btn-sm btn-alt-primary mb-4" onclick="addRateRow('morning')">
-            <i class="fa fa-plus"></i> Add Morning Rate
-        </button>
+{{-- Date Field --}}
+    <div class="mb-4">
+        <label for="date" class="form-label">Date</label>
+        <input type="date" name="date" id="date" class="form-control" value="{{ old('date', isset($forexRate) ? $forexRate->date : '') }}" required>
+        @error('date')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror
     </div>
-</div>
 
-<div class="row mb-4">
-    <div class="col-md-12">
-        <h4 class="mb-3">Afternoon Rates</h4>
-        <div class="table-responsive">
-            <table class="table table-bordered" id="afternoon-rates-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Flag</th>
-                        <th>Currency</th>
-                        <th>Unit</th>
-                        <th>Buying Rate</th>
-                        <th>Display Order</th>
-                        <th>Published</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="afternoon-rates-container">
-                    @foreach ($afternoonRates as $index => $rate)
-                        <tr class="rate-row" data-time-slot="afternoon">
-                            @include('backend.forex-rates.partials.rate-fields', [
-                                'timeSlot' => 'afternoon',
-                                'index' => $index,
-                                'rate' => $rate,
-                            ])
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-        <button type="button" class="btn btn-sm btn-alt-primary mb-4" onclick="addRateRow('afternoon')">
-            <i class="fa fa-plus"></i> Add Afternoon Rate
-        </button>
+    {{-- MORNING SLOT --}}
+    <h5>Morning Rates</h5>
+    <div id="morning-slots">
+        @php
+            $morningData = old('slots.morning', $morningRates ?? []);
+        @endphp
+
+        @foreach ($morningData as $index => $rate)
+            @include('backend.forex-rates.partials.rate-fields', ['timeSlot' => 'morning', 'index' => $index, 'rate' => (object) $rate])
+        @endforeach
     </div>
-</div>
+    <button type="button" class="btn btn-sm btn-outline-primary mt-2" onclick="addRateRow('morning')">+ Add Morning Rate</button>
 
-<div class="row">
-    <div class="col-md-12 text-end">
-        <button type="submit" class="btn btn-primary">
-            <i class="fa fa-save"></i> Save Rates
-        </button>
+    <hr>
+
+    {{-- AFTERNOON SLOT --}}
+    <h5>Afternoon Rates</h5>
+    <div id="afternoon-slots">
+        @php
+            $afternoonData = old('slots.afternoon', $afternoonRates ?? []);
+        @endphp
+
+        @foreach ($afternoonData as $index => $rate)
+            @include('backend.forex-rates.partials.rate-fields', ['timeSlot' => 'afternoon', 'index' => $index, 'rate' => (object) $rate])
+        @endforeach
     </div>
-</div>
+    <button type="button" class="btn btn-sm btn-outline-primary mt-2" onclick="addRateRow('afternoon')">+ Add Afternoon Rate</button>
 
-@push('scripts')
-    <script>
-        function addRateRow(timeSlot) {
-            const container = document.getElementById(`${timeSlot}-rates-container`);
-            const currentIndex = container.querySelectorAll('.rate-row').length;
+    <div class="mt-4">
+        <button type="submit" class="btn btn-success">Save Rates</button>
+    </div>
+</form>
 
-            fetch("{{ route('forex-rate.add-row') }}", {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': "{{ csrf_token() }}",
-                        'X-Requested-With': 'XMLHttpRequest'
-                    },
-                    body: JSON.stringify({
-                        time_slot: timeSlot,
-                        index: currentIndex,
-                        // Add existing data for validation repopulation
-                        existing_data: window.currentFormData
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    const tr = document.createElement('tr');
-                    tr.className = 'rate-row';
-                    tr.setAttribute('data-time-slot', timeSlot);
-                    tr.innerHTML = data.html;
-                    container.appendChild(tr);
+{{-- Dynamic row script --}}
+<script>
+    let rowIndex = {
+        morning: {{ count($morningData) }},
+        afternoon: {{ count($afternoonData) }}
+    };
 
-                    // Add error classes if existing
-                    if (data.errors) {
-                        Object.entries(data.errors).forEach(([field, message]) => {
-                            const input = tr.querySelector(`[name="${field}"]`);
-                            if (input) {
-                                input.classList.add('is-invalid');
-                                const errorDiv = document.createElement('div');
-                                errorDiv.className = 'invalid-feedback';
-                                errorDiv.textContent = message;
-                                input.parentNode.appendChild(errorDiv);
-                            }
-                        });
-                    }
-
-                    tr.querySelector('.remove-rate').addEventListener('click', function(e) {
-                        e.preventDefault();
-                        tr.remove();
-                    });
-                });
-        }
-
-
-        // Initialize existing remove buttons
-        document.querySelectorAll('.remove-rate').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                this.closest('.rate-row').remove();
-            });
+    function addRateRow(slot) {
+        fetch("{{ route('forex-rate.add-row') }}", {
+            method: "POST",
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                time_slot: slot,
+                index: rowIndex[slot]
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById(`${slot}-slots`).insertAdjacentHTML('beforeend', data.html);
+            rowIndex[slot]++;
         });
-    </script>
-@endpush
+    }
+</script>

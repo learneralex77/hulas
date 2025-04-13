@@ -1,73 +1,59 @@
 @extends('backend.layouts.main')
 
-@section('title')
-    Forex Rates Management
-@endsection
+@section('title', 'Forex Rate List')
 
 @section('content')
     <div class="content">
         <div class="block block-rounded">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Forex Rates List</h3>
+                <h3 class="block-title">Forex Rates</h3>
                 <div class="block-options">
-                    <a href="{{ route('forex-rate.create') }}" class="btn btn-sm btn-alt-primary border">
-                         <i class="fa fa-plus"></i> Add New Rates
+                    <a href="{{ route('forex-rate.create') }}" class="btn btn-sm btn-alt-primary">
+                        <i class="fa fa-plus"></i> Add New Rate
                     </a>
                 </div>
             </div>
-            <div class="block-content">
-                @if (session('success'))
-                    <div class="alert alert-success">{{ session('success') }}</div>
-                @endif
-                @if (session('error'))
-                    <div class="alert alert-danger">{{ session('error') }}</div>
-                @endif
 
+            <div class="block-content">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-vcenter js-dataTable-full">
                         <thead>
                             <tr>
-                                <th class="text-left">S.N.</th>
                                 <th>Date</th>
-                                <th>Time Slot</th>
-                                <th>Flag</th>
-                                <th>Currency</th>
-                                {{-- <th>Unit</th> --}}
-                                <th>Buying Rate</th>
-                                <th>Display Order</th>
-                                <th>Status</th>
-                                <th style="width: 20%;">Actions</th>
+                                <th>Morning Rates</th>
+                                <th>Afternoon Rates</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                                $combinedRates = $morningRates->concat($afternoonRates)->sortBy('time_slot');
-                            @endphp
-
-                            @foreach ($combinedRates as $rate)
-                                <tr id="forex-rate-row-{{ $rate->id }}">
-                                    <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td>{{ $rate->date }}</td>
-                                    <td>{{ ucfirst($rate->time_slot) }}</td>
-                                    <td>{{ $rate->flag }}</td>
-                                    <td>{{ $rate->currency }}</td>
-                                    {{-- <td>{{ $rate->unit }}</td> --}}
-                                    <td>{{ $rate->buying_rate }}</td>
-                                    <td class="text-center">{{ $rate->display_order }}</td>
-                                    <td class="text-center">
-                                        @if ($rate->is_published)
-                                            <span class="badge bg-success">Published</span>
-                                        @else
-                                            <span class="badge bg-warning">Draft</span>
-                                        @endif
+                            @foreach ($forexRates as $forexRate)
+                                <tr id="forex-rate-row-{{ $forexRate->id }}">
+                                    <td>{{ $forexRate->date }}</td>
+                                    <td>
+                                        <ul>
+                                            @foreach ($forexRate->slots['morning'] ?? [] as $morning)
+                                                <li>{{ $morning['currency'] }} - {{ $morning['buying_rate'] }}</li>
+                                            @endforeach
+                                        </ul>
                                     </td>
-                                    <td class="text-center">
-                                        <div class="gap-2">
-                                            <button type="button" class="btn btn-sm btn-danger"
-                                                onclick="deleteForexRate({{ $rate->id }})" title="Delete">
-                                                <i class="fa fa-trash"></i>
+                                    <td>
+                                        <ul>
+                                            @foreach ($forexRate->slots['afternoon'] ?? [] as $afternoon)
+                                                <li>{{ $afternoon['currency'] }} - {{ $afternoon['buying_rate'] }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('forex-rate.edit', $forexRate->id) }}" class="btn btn-sm btn-alt-info">
+                                            <i class="fa fa-edit"></i> Edit
+                                        </a>
+                                        <form action="{{ route('forex-rate.destroy', $forexRate->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-alt-danger">
+                                                <i class="fa fa-trash"></i> Delete
                                             </button>
-                                        </div>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -80,11 +66,24 @@
 @endsection
 
 @section('scripts')
-    {{-- <script>
+    <script>
+        // Success message
+        @if (session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
+
         function deleteForexRate(rateId) {
             Swal.fire({
                 title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                text: "This will delete the entire record for both slots.",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
@@ -101,6 +100,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function(response) {
+                            // Remove the forex rate row from the table
                             $('#forex-rate-row-' + rateId).remove();
 
                             Swal.fire({
@@ -128,5 +128,5 @@
                 }
             });
         }
-    </script> --}}
+    </script>
 @endsection

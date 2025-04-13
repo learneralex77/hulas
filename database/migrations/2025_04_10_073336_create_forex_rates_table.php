@@ -10,13 +10,7 @@ return new class extends Migration {
         Schema::create('forex_rates', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->enum('time_slot', ['morning', 'afternoon']);
-            $table->string('flag')->nullable();
-            $table->string('currency');
-            $table->integer('unit')->default(1);
-            $table->decimal('buying_rate', 10, 2);
-            $table->integer('display_order')->default(0);
-            $table->boolean('is_published')->default(false);
+            $table->json('slots');
             $table->timestamps();
         });
     }

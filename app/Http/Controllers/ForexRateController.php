@@ -2,149 +2,168 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Models\ForexRate;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use App\Http\Requests\ForexRateRequest;
 
 class ForexRateController extends Controller
 {
-    /**
-     * Display the list of forex rates.
-     */
     public function index()
     {
-        return view('backend.forex-rates.index', [
-            'morningRates' => ForexRate::where('time_slot', 'morning')->get(),
-            'afternoonRates' => ForexRate::where('time_slot', 'afternoon')->get(),
-        ]);
+        // Fetch all forex rates. Laravel will automatically cast 'slots' to an array.
+        $forexRates = ForexRate::all();
+
+        return view('backend.forex-rates.index', compact('forexRates'));
     }
+
+
 
     public function create()
     {
-        // Initialize with empty rate objects for form structure
-        $morningRates = collect([new ForexRate(['time_slot' => 'morning'])]);
-        $afternoonRates = collect([new ForexRate(['time_slot' => 'afternoon'])]);
+        // Empty collections to avoid undefined variable errors in the Blade
+        $morningRates = collect();
+        $afternoonRates = collect();
 
         return view('backend.forex-rates.create', compact('morningRates', 'afternoonRates'));
     }
 
-    /**
-     * Store new forex rates for morning and afternoon time slots.
-     */
+
     public function store(ForexRateRequest $request)
     {
-        // dd($request->all());
-        DB::beginTransaction();
+        $validated = $request->validated();
 
-        try {
-            // Process morning and afternoon rates separately
-            $this->storeOrUpdateTimeSlot($request, 'morning');
-            $this->storeOrUpdateTimeSlot($request, 'afternoon');
-
-            DB::commit();
-            return redirect()->route('forex-rate.index')
-                ->with('success', 'Forex rates saved successfully.');
-        } catch (Exception $e) {
-            DB::rollBack();
-            return redirect()->back()
-                ->with('error', 'Failed to save forex rates: ' . $e->getMessage());
-        }
-    }
-
-    /**
-     * Show the form for editing forex rates.
-     */
-    public function edit()
-    {
-        return view('forex-rates.edit', [
-            'morningRates' => ForexRate::where('time_slot', 'morning')->get(),
-            'afternoonRates' => ForexRate::where('time_slot', 'afternoon')->get(),
-        ]);
-    }
-
-    /**
-     * Update existing forex rates for morning and afternoon time slots.
-     */
-    public function update(ForexRateRequest $request)
-    {
-        DB::beginTransaction();
-
-        try {
-            // Clear existing records for clean updates
-            ForexRate::where('time_slot', 'morning')->delete();
-            ForexRate::where('time_slot', 'afternoon')->delete();
-
-            // Process morning and afternoon rates separately
-            $this->storeOrUpdateTimeSlot($request, 'morning');
-            $this->storeOrUpdateTimeSlot($request, 'afternoon');
-
-            DB::commit();
-            return redirect()->route('forex-rate.index')
-                ->with('success', 'Forex rates updated successfully.');
-        } catch (Exception $e) {
-            DB::rollBack();
-            return redirect()->back()
-                ->with('error', 'Failed to update forex rates: ' . $e->getMessage());
-        }
-    }
-
-    /**
-     * Dynamically add a new row in the form via AJAX.
-     */
-    public function addRow()
-    {
-        $timeSlot = request()->time_slot;
-        $index = request()->index;
-
-        return response()->json([
-            'html' => view('backend.forex-rates.partials.rate-fields', [
-                'timeSlot' => $timeSlot,
-                'index' => $index,
-                'rate' => null
-            ])->render(),
-        ]);
-    }
-
-
-    /**
-     * Store or update forex rates for a specific time slot.
-     */
-    // In storeOrUpdateTimeSlot method
-    protected function storeOrUpdateTimeSlot($request, $timeSlot)
-    {
-        foreach ($request->input("{$timeSlot}_currency") as $key => $currency) {
-            ForexRate::create([
-                'time_slot' => $timeSlot,
-                'date' => $request->input("{$timeSlot}_date")[$key],
-                'flag' => $request->input("{$timeSlot}_flag")[$key],
-                'currency' => $currency,
-                'unit' => $request->input("{$timeSlot}_unit")[$key],
-                'buying_rate' => $request->input("{$timeSlot}_buying_rate")[$key],
-                'display_order' => $request->input("{$timeSlot}_display_order")[$key] ?? 0,
-                'is_published' => $request->input("{$timeSlot}_is_published")[$key],
-            ]);
-        }
-    }
-
-    public function destroyTimeSlot(string $timeSlot)
-    {
-        DB::beginTransaction();
-
-        try {
-            if (!in_array($timeSlot, ['morning', 'afternoon'])) {
-                throw new \Exception('Invalid time slot specified');
+        // Prepare morning slots data
+        $morningSlots = [];
+        if (!empty($request->input('slots.morning'))) {
+            foreach ($request->input('slots.morning') as $index => $morning) {
+                $morningSlots[] = [
+                    'flag' => $morning['flag'],
+                    'currency' => $morning['currency'],
+                    'unit' => $morning['unit'],
+                    'buying_rate' => $morning['buying_rate'],
+                    'display_order' => $morning['display_order'] ?? 0,
+                    'is_published' => $morning['is_published'] ?? false,
+                ];
             }
-
-            ForexRate::where('time_slot', $timeSlot)->delete();
-            DB::commit();
-
-            return redirect()->route('forex-rate.index')
-                ->with('success', ucfirst($timeSlot) . ' rates deleted successfully');
-        } catch (Exception $e) {
-            DB::rollBack();
-            return redirect()->back()
-                ->with('error', 'Deletion failed: ' . $e->getMessage());
         }
+
+        // Prepare afternoon slots data
+        $afternoonSlots = [];
+        if (!empty($request->input('slots.afternoon'))) {
+            foreach ($request->input('slots.afternoon') as $index => $afternoon) {
+                if ($afternoon['currency']) { // Make sure the currency is provided
+                    $afternoonSlots[] = [
+                        'flag' => $afternoon['flag'],
+                        'currency' => $afternoon['currency'],
+                        'unit' => $afternoon['unit'],
+                        'buying_rate' => $afternoon['buying_rate'],
+                        'display_order' => $afternoon['display_order'] ?? 0,
+                        'is_published' => $afternoon['is_published'] ?? false,
+                    ];
+                }
+            }
+        }
+
+        // Update or create the forex rate entry with the morning and afternoon slots
+        ForexRate::updateOrCreate(
+            ['date' => $request->date],
+            ['slots' => [
+                'morning' => $morningSlots,
+                'afternoon' => $afternoonSlots,
+            ]]
+        );
+
+        return redirect()->route('forex-rate.index')->with('success', 'Forex rates saved successfully.');
+    }
+
+
+    public function edit($id)
+    {
+        $forexRate = ForexRate::findOrFail($id);
+
+        $morningRates = collect($forexRate->slots['morning'] ?? [])->map(fn($rate) => (object) $rate);
+        $afternoonRates = collect($forexRate->slots['afternoon'] ?? [])->map(fn($rate) => (object) $rate);
+
+        return view('backend.forex-rates.edit', compact('forexRate', 'morningRates', 'afternoonRates'));
+    }
+
+    public function update(ForexRateRequest $request, $id)
+    {
+        $validated = $request->validated();
+        $forexRate = ForexRate::findOrFail($id);
+
+        // Prepare morning slots
+        $morningSlots = [];
+        if (!empty($request->input('slots.morning'))) {
+            foreach ($request->input('slots.morning') as $index => $morning) {
+                $morningSlots[] = [
+                    'flag' => $morning['flag'],
+                    'currency' => $morning['currency'],
+                    'unit' => $morning['unit'],
+                    'buying_rate' => $morning['buying_rate'],
+                    'display_order' => $morning['display_order'] ?? 0,
+                    'is_published' => $morning['is_published'] ?? false,
+                ];
+            }
+        }
+
+        // Prepare afternoon slots
+        $afternoonSlots = [];
+        if (!empty($request->input('slots.afternoon'))) {
+            foreach ($request->input('slots.afternoon') as $index => $afternoon) {
+                if ($afternoon['currency']) { // Only if currency is filled
+                    $afternoonSlots[] = [
+                        'flag' => $afternoon['flag'],
+                        'currency' => $afternoon['currency'],
+                        'unit' => $afternoon['unit'],
+                        'buying_rate' => $afternoon['buying_rate'],
+                        'display_order' => $afternoon['display_order'] ?? 0,
+                        'is_published' => $afternoon['is_published'] ?? false,
+                    ];
+                }
+            }
+        }
+
+        // Update the ForexRate model
+        $forexRate->update([
+            'date' => $request->date, // Optional: keep if user can update date too
+            'slots' => [
+                'morning' => $morningSlots,
+                'afternoon' => $afternoonSlots,
+            ]
+        ]);
+
+        return redirect()->route('forex-rate.index')->with('success', 'Rates updated successfully.');
+    }
+
+
+    public function destroy(ForexRate $forexRate)
+    {
+        $forexRate->delete();
+        return redirect()->route('forex-rate.index')->with('success', 'Forex rate deleted successfully.');
+    }
+
+    public function destroyTimeSlot($timeSlot, Request $request)
+    {
+        $date = $request->date;
+        $forexRate = ForexRate::whereDate('date', $date)->firstOrFail();
+
+        $slots = $forexRate->slots;
+        unset($slots[$timeSlot]);
+
+        $forexRate->update(['slots' => $slots]);
+
+        return redirect()->route('forex-rate.index')->with('success', ucfirst($timeSlot) . ' slot deleted successfully.');
+    }
+
+    public function addRateRow(Request $request)
+    {
+        $timeSlot = $request->input('time_slot');
+        $index = $request->input('index');
+        $rate = null;
+
+        $html = view('backend.forex-rates.partials.rate-fields', compact('timeSlot', 'index', 'rate'))->render();
+
+        return response()->json(['html' => $html]);
     }
 }

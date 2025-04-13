@@ -23,9 +23,26 @@
 
     <!-- form section  -->
     <section class="flex flex-col m-6 sm:m-10 md:m-20 lg:mx-40">
-        <h2 class="text-xl lg:text-3xl text-black font-extrabold text-center my-10">
-            Fill up the form
-        </h2>
+        <section class="overflow-x-hidden">
+            <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+                <div class="flex flex-col items-center space-y-6">
+                    <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+          ">
+                        Partner With us </h1>
+
+                    <p class="text-2xl text-black font-bold md:text-4xl text-center">
+                        Fill up the form </p>
+                    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+                        Join Hulas Remittance as an agent and be a part of a trusted global network. Help your community
+                        send and receive money with ease—while growing your own business.
+
+
+                    </p>
+                </div>
+            </div>
+        </section>
         <div class="flex flex-col justify-around lg:flex-row gap-10 rounded-lg">
             <!-- <div class="lg:flex lg:justify-center lg:mt-32"> -->
             <div class="flex flex-2 bg-white shadow-xl rounded-md p-6 w-full">
@@ -35,7 +52,8 @@
                         <div class="flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-5">
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="name" class="font-bold text-xl text-[#3d5169]">Name</label>
-                                <input id="name" name="name" placeholder="Name" type="text" class="rounded-md bg-[#f5faff]" required />
+                                <input id="name" name="name" placeholder="Name" type="text" class="rounded-md bg-[#f5faff]"
+                                    required />
                                 @error('name')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
@@ -54,14 +72,16 @@
                         <div class="flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-5">
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="email" class="font-bold text-xl text-[#3d5169]">Email</label>
-                                <input type="email" placeholder="Email" id="email" name="email" class="bg-[#f5faff] rounded-md" required />
+                                <input type="email" placeholder="Email" id="email" name="email"
+                                    class="bg-[#f5faff] rounded-md" required />
                                 @error('email')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="district" class="font-bold text-xl text-[#3d5169]">District</label>
-                                <input id="district" name="district" placeholder="District" type="text" class="rounded-md bg-[#f5faff]" required />
+                                <input id="district" name="district" placeholder="District" type="text"
+                                    class="rounded-md bg-[#f5faff]" required />
                                 @error('district')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
@@ -101,7 +121,7 @@
                                 @isset($setting->address_en)
                                     {{ $setting->address_en }}
                                 @endisset
-                              
+
                             </p>
 
                             <p>Kathmandu, Nepal</p>
@@ -147,9 +167,9 @@
 @push('scripts')
     <script type="module" src="/src/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             @if(session('success'))
                 Swal.fire({
                     icon: 'success',
@@ -162,7 +182,7 @@
                     timerProgressBar: true
                 });
             @endif
-            
+
             @if(session('error'))
                 Swal.fire({
                     icon: 'error',
@@ -173,6 +193,6 @@
                     confirmButtonColor: '#EF4444'
                 });
             @endif
-        });
+            });
     </script>
 @endpush

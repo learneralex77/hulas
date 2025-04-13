@@ -13,9 +13,9 @@
     <div class="flex flex-col space-y-8 ml-10">
       <h3 class="text-4xl font-extrabold text-white">{{ $gallery->title_en }}</h3>
       <div class="flex space-x-5 items-center">
-      <a href="{{ route('homepage') }}" class="text-[#666] font-bold">Home</a>
+      <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
       <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-      <a href="{{ route('gallery') }}" class="text-[#666] font-bold">Gallery</a>
+      <a href="{{ route('gallery') }}" class="text-white font-bold">Gallery</a>
       <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
       <a href="{{ route('galleryDetail', $gallery->id) }}" class="text-accent font-bold">{{ $gallery->title_en }}</a>
       </div>

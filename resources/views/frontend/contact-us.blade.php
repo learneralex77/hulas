@@ -16,7 +16,7 @@
     <div class="flex flex-col space-y-8 ml-10">
       <h3 class="text-4xl font-extrabold text-white">Contact us</h3>
       <div class="flex space-x-5 items-center">
-        <a href="index.html" class="text-[#666] font-bold">Home</a>
+        <a href="index.html" class="text-white font-bold">Home</a>
         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
         <a href="contact-us" class="text-accent font-bold"> Contact us</a>
       </div>
@@ -38,7 +38,7 @@
                 <div
                   class="w-18 h-18 rounded-full bg-accent flex justify-center items-center"
                 >
-                <img src="{{ asset('assets/images/contact/location-pin-svgrepo-com.svg') }}" 
+                <img src="{{ asset(path: 'assets/images/contact/location-pin-svgrepo-com.svg') }}" 
                     class="w-10 h-10"
                     alt="Location Icon"
                   />
@@ -47,7 +47,7 @@
 
               <div class="flex flex-col items-center sm:items-start space-y-3">
                 <p class="text-xl text-black font-semibold">Our Location</p>
-                <p class="text-[#666]">
+                <p class="">
                   @isset($setting->address_en)  
                   {{ $setting->address_en }}
                   @endisset
@@ -74,7 +74,7 @@
               </div>
               <div class="flex flex-col items-center sm:items-start space-y-3">
                 <p class="text-xl font-bold text-black">Email us</p>
-                <p class="text-[#666]">
+                <p class="">
                 <br class="block sm:hidden" />
                   @isset($setting->email)
                   {{ $setting->email }}
@@ -108,7 +108,7 @@
               </div>
               <div class="flex flex-col items-center sm:items-start space-y-3">
                 <p class="text-xl font-bold text-black">Call us</p>
-                <p class="text-[#666]">
+                <p class="">
                   @isset($setting->phone_number_en)
                   {{ $setting->phone_number_en }}
                   @endisset

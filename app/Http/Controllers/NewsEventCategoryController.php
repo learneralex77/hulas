@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\NewsEventCategory;
 use App\Http\Requests\NewsEventCategoryRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class NewsEventCategoryController extends Controller
 {
@@ -33,10 +33,14 @@ class NewsEventCategoryController extends Controller
     {
         $data = $request->validated();
 
-        // Generate slug if empty
-        if (empty($data['slug']) && !empty($data['name_en'])) {
-            $data['slug'] = Str::slug($data['name_en']);
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('news-event-categories', 'public');
+            $data['image'] = $imagePath;
         }
+
+        // Ensure is_published is properly set
+        $data['is_published'] = isset($data['is_published']) ? (bool)$data['is_published'] : false;
 
         NewsEventCategory::create($data);
 
@@ -67,10 +71,27 @@ class NewsEventCategoryController extends Controller
     {
         $data = $request->validated();
 
-        // Generate slug if empty
-        if (empty($data['slug']) && !empty($data['name_en'])) {
-            $data['slug'] = Str::slug($data['name_en']);
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // Delete old image if exists
+            if ($newsEventCategory->image && Storage::disk('public')->exists($newsEventCategory->image)) {
+                Storage::disk('public')->delete($newsEventCategory->image);
+            }
+            
+            $imagePath = $request->file('image')->store('news-event-categories', 'public');
+            $data['image'] = $imagePath;
         }
+
+        // Handle image deletion if requested
+        if ($request->has('delete_image') && $request->delete_image == 1) {
+            if ($newsEventCategory->image && Storage::disk('public')->exists($newsEventCategory->image)) {
+                Storage::disk('public')->delete($newsEventCategory->image);
+            }
+            $data['image'] = null;
+        }
+
+        // Ensure is_published is properly set
+        $data['is_published'] = isset($data['is_published']) ? (bool)$data['is_published'] : false;
 
         $newsEventCategory->update($data);
 
@@ -84,6 +105,11 @@ class NewsEventCategoryController extends Controller
     public function destroy(NewsEventCategory $newsEventCategory)
     {
         try {
+            // Delete image if exists
+            if ($newsEventCategory->image && Storage::disk('public')->exists($newsEventCategory->image)) {
+                Storage::disk('public')->delete($newsEventCategory->image);
+            }
+            
             $newsEventCategory->delete();
 
             // Check if request is AJAX

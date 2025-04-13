@@ -14,7 +14,7 @@ class NewsEventCategory extends Model
         'name',
         'name_en',
         'name_np',
-        'slug',
+        'image',
         'description',
         'description_en',
         'description_np',

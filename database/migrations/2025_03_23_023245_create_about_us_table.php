@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('tagline_np')->nullable();
             $table->text('description_en')->nullable();
             $table->text('description_np')->nullable();
-            $table->integer('years_of_experience_en')->nullable();
-            $table->integer('years_of_experience_np')->nullable();
+            $table->string('years_of_experience_en')->nullable();
+            $table->string('years_of_experience_np')->nullable();
             $table->text('short_description_en')->nullable();
             $table->text('short_description_np')->nullable();
             $table->string('video_link')->nullable();

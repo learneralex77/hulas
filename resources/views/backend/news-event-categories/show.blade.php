@@ -35,10 +35,6 @@
                                     <div class="col-md-8">{{ $newsEventCategory->name }}</div>
                                 </div>
                                 <div class="row mb-2">
-                                    <div class="col-md-4 fw-semibold text-muted">Slug:</div>
-                                    <div class="col-md-8">{{ $newsEventCategory->slug }}</div>
-                                </div>
-                                <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">Display Order:</div>
                                     <div class="col-md-8">{{ $newsEventCategory->display_order }}</div>
                                 </div>
@@ -74,14 +70,36 @@
                     </div>
                 </div>
 
-                <div class="block block-rounded mt-4">
-                    <div class="block-header block-header-default">
-                        <h3 class="block-title">Description</h3>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded mt-4">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Description</h3>
+                            </div>
+                            <div class="block-content">
+                                <div class="row">
+                                    <div class="col-12">
+                                        {!! nl2br(e($newsEventCategory->description)) !!}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="block-content">
-                        <div class="row">
-                            <div class="col-12">
-                                {!! nl2br(e($newsEventCategory->description)) !!}
+                    
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded mt-4">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Category Image</h3>
+                            </div>
+                            <div class="block-content">
+                                @if ($newsEventCategory->image)
+                                    <img src="{{ asset('storage/' . $newsEventCategory->image) }}"
+                                        alt="{{ $newsEventCategory->name }}" class="img-fluid rounded">
+                                @else
+                                    <div class="alert alert-info">
+                                        <i class="fa fa-info-circle me-1"></i> No image available
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

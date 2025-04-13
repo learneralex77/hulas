@@ -22,20 +22,13 @@ class ContactUsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'full_name_en' => ['required', 'string', 'max:255'],
-            'full_name_np' => ['nullable', 'string', 'max:255'],
+            'full_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
-            'phone_number_en' => ['required', 'string', 'max:20'],
-            'phone_number_np' => ['nullable', 'string', 'max:20'],
-            'contact_remarks_en' => ['nullable', 'string'],
-            'contact_remarks_np' => ['nullable', 'string'],
+            'phone_number' => ['required', 'string', 'max:20'],
+            'service_interested_in' => ['nullable', 'string', 'max:255'],
+            'message' => ['nullable', 'string'],
             'is_contacted' => ['nullable', 'boolean'],
             'display_order' => ['nullable', 'integer', 'min:0'],
-            
-            // For backward compatibility
-            'full_name' => ['nullable', 'string', 'max:255'],
-            'phone_number' => ['nullable', 'string', 'max:20'],
-            'contact_remarks' => ['nullable', 'string'],
         ];
     }
 
@@ -47,13 +40,11 @@ class ContactUsRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'full_name_en' => 'English full name',
-            'full_name_np' => 'Nepali full name',
+            'full_name' => 'full name',
             'email' => 'email address',
-            'phone_number_en' => 'English phone number',
-            'phone_number_np' => 'Nepali phone number',
-            'contact_remarks_en' => 'English contact remarks',
-            'contact_remarks_np' => 'Nepali contact remarks',
+            'phone_number' => 'phone number',
+            'service_interested_in' => 'service interested in',
+            'message' => 'message',
             'is_contacted' => 'contacted status',
             'display_order' => 'display order',
         ];
@@ -67,26 +58,22 @@ class ContactUsRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'full_name_en.required' => 'The English full name is required.',
-            'full_name_en.string' => 'The English full name must be a string.',
-            'full_name_en.max' => 'The English full name may not be greater than 255 characters.',
-            
-            'full_name_np.string' => 'The Nepali full name must be a string.',
-            'full_name_np.max' => 'The Nepali full name may not be greater than 255 characters.',
+            'full_name.required' => 'The full name is required.',
+            'full_name.string' => 'The full name must be a string.',
+            'full_name.max' => 'The full name may not be greater than 255 characters.',
             
             'email.required' => 'The email address is required.',
             'email.email' => 'Please enter a valid email address.',
             'email.max' => 'The email address may not be greater than 255 characters.',
             
-            'phone_number_en.required' => 'The English phone number is required.',
-            'phone_number_en.string' => 'The English phone number must be a string.',
-            'phone_number_en.max' => 'The English phone number may not be greater than 20 characters.',
+            'phone_number.required' => 'The phone number is required.',
+            'phone_number.string' => 'The phone number must be a string.',
+            'phone_number.max' => 'The phone number may not be greater than 20 characters.',
             
-            'phone_number_np.string' => 'The Nepali phone number must be a string.',
-            'phone_number_np.max' => 'The Nepali phone number may not be greater than 20 characters.',
+            'service_interested_in.string' => 'The service interested in must be a string.',
+            'service_interested_in.max' => 'The service interested in may not be greater than 255 characters.',
             
-            'contact_remarks_en.string' => 'The English contact remarks must be a string.',
-            'contact_remarks_np.string' => 'The Nepali contact remarks must be a string.',
+            'message.string' => 'The message must be a string.',
             
             'display_order.integer' => 'The display order must be an integer.',
             'display_order.min' => 'The display order must be at least 0.',
@@ -102,26 +89,5 @@ class ContactUsRequest extends FormRequest
         $this->merge([
             'is_contacted' => $this->input('is_contacted') == 1,
         ]);
-        
-        // For backward compatibility - map 'full_name' to 'full_name_en' if full_name_en is not provided
-        if ($this->has('full_name') && !$this->has('full_name_en')) {
-            $this->merge([
-                'full_name_en' => $this->full_name,
-            ]);
-        }
-        
-        // For backward compatibility - map 'phone_number' to 'phone_number_en'
-        if ($this->has('phone_number') && !$this->has('phone_number_en')) {
-            $this->merge([
-                'phone_number_en' => $this->phone_number,
-            ]);
-        }
-        
-        // For backward compatibility - map 'contact_remarks' to 'contact_remarks_en'
-        if ($this->has('contact_remarks') && !$this->has('contact_remarks_en')) {
-            $this->merge([
-                'contact_remarks_en' => $this->contact_remarks,
-            ]);
-        }
     }
 }

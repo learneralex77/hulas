@@ -44,9 +44,6 @@ class AboutUs extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'mission_vision' => 'array',
-        'years_of_experience_en' => 'integer',
-        'years_of_experience_np' => 'integer',
         'is_published' => 'boolean',
         'display_order' => 'integer',
     ];
@@ -64,7 +61,16 @@ class AboutUs extends Model
      */
     public function getDescriptionAttribute()
     {
-        return $this->description_en ?? '';
+        $description = $this->description_en ?? '';
+        
+        // Log when this accessor is used to help diagnose issues
+        \Log::debug('AboutUs description accessor called', [
+            'id' => $this->id,
+            'description_en' => $this->description_en,
+            'description' => $description
+        ]);
+        
+        return $description;
     }
 
     /**
@@ -72,7 +78,16 @@ class AboutUs extends Model
      */
     public function getYearsOfExperienceAttribute()
     {
-        return $this->years_of_experience_en ?? 0;
+        $value = $this->years_of_experience_en ?? 0;
+        
+        // Log when this accessor is used to help diagnose issues
+        \Log::debug('AboutUs years_of_experience accessor called', [
+            'id' => $this->id,
+            'years_of_experience_en' => $this->years_of_experience_en,
+            'years_of_experience' => $value
+        ]);
+        
+        return $value;
     }
 
     /**
@@ -81,6 +96,57 @@ class AboutUs extends Model
     public function getShortDescriptionAttribute()
     {
         return $this->short_description_en ?? '';
+    }
+
+    /**
+     * Get the mission_vision attribute with proper JSON handling
+     */ 
+    public function getMissionVisionAttribute($value)
+    {
+        if (is_null($value)) {
+            return [];
+        }
+        
+        if (is_array($value)) {
+            return $value;
+        }
+        
+        try {
+            $decoded = json_decode($value, true);
+            return $decoded ?: [];
+        } catch (\Exception $e) {
+            \Log::error('Error decoding mission_vision JSON', [
+                'value' => $value,
+                'error' => $e->getMessage()
+            ]);
+            return [];
+        }
+    }
+    
+    /**
+     * Set the mission_vision attribute with proper JSON handling
+     */
+    public function setMissionVisionAttribute($value)
+    {
+        if (is_null($value)) {
+            $this->attributes['mission_vision'] = null;
+            return;
+        }
+        
+        if (is_string($value)) {
+            $this->attributes['mission_vision'] = $value;
+            return;
+        }
+        
+        try {
+            $this->attributes['mission_vision'] = json_encode($value);
+        } catch (\Exception $e) {
+            \Log::error('Error encoding mission_vision to JSON', [
+                'value' => $value,
+                'error' => $e->getMessage()
+            ]);
+            $this->attributes['mission_vision'] = json_encode([]);
+        }
     }
 
     /**

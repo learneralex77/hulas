@@ -6,6 +6,7 @@ use App\Models\AboutUs;
 use App\Http\Requests\AboutUsRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Artisan;
 
 class AboutUsController extends Controller
 {
@@ -31,18 +32,16 @@ class AboutUsController extends Controller
      */
     public function store(AboutUsRequest $request)
     {
-        $data = $request->validated();
-
-        // Handle image upload
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $data['image'] = $request->file('image')->store('about-us', 'public');
-        }
-
-        // Process mission and vision data
-        $missionVision = [];
-        if ($request->has('mission_vision_titles') && is_array($request->mission_vision_titles)) {
+        try {
+            // Get validated data
+            $data = $request->validated();
+            
+            // Process mission_vision data - simplify it
+            $missionVision = [];
             foreach ($request->mission_vision_titles as $index => $title) {
-                if (!empty($title) && isset($request->mission_vision_icons[$index]) && isset($request->mission_vision_descriptions[$index])) {
+                if (!empty($title) && 
+                    isset($request->mission_vision_icons[$index]) && 
+                    isset($request->mission_vision_descriptions[$index])) {
                     $missionVision[] = [
                         'title' => $title,
                         'icon' => $request->mission_vision_icons[$index],
@@ -50,13 +49,44 @@ class AboutUsController extends Controller
                     ];
                 }
             }
+            
+            // Create new model
+            $aboutUs = new AboutUs();
+            $aboutUs->tagline_en = $data['tagline_en'];
+            $aboutUs->tagline_np = $data['tagline_np'] ?? null;
+            $aboutUs->description_en = $data['description_en'];
+            $aboutUs->description_np = $data['description_np'] ?? null;
+            $aboutUs->years_of_experience_en = $data['years_of_experience_en'] ?? null;
+            $aboutUs->years_of_experience_np = $data['years_of_experience_np'] ?? null;
+            $aboutUs->short_description_en = $data['short_description_en'] ?? null;
+            $aboutUs->short_description_np = $data['short_description_np'] ?? null;
+            $aboutUs->video_link = $data['video_link'] ?? null;
+            $aboutUs->mission_vision = $missionVision;
+            $aboutUs->is_published = $request->boolean('is_published');
+            $aboutUs->display_order = $data['display_order'] ?? 0;
+
+            // Handle image upload
+            if ($request->hasFile('image') && $request->file('image')->isValid()) {
+                $aboutUs->image = $request->file('image')->store('about-us', 'public');
+            }
+
+            // Save the model
+            $aboutUs->save();
+            
+            // Clear cache
+            $this->clearCache();
+
+            // Redirect to index page with success message
+            return redirect('/admin/about-us')->with('success', 'About Us information created successfully.');
+            
+        } catch (\Exception $e) {
+            \Log::error('AboutUs create error: ' . $e->getMessage(), [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return redirect()->back()->withInput()->with('error', 'Error creating About Us: ' . $e->getMessage());
         }
-        $data['mission_vision'] = $missionVision;
-
-        AboutUs::create($data);
-
-        return redirect()->route('about-us.index')
-            ->with('success', 'About Us information created successfully.');
     }
 
     /**
@@ -80,31 +110,16 @@ class AboutUsController extends Controller
      */
     public function update(AboutUsRequest $request, AboutUs $aboutUs)
     {
-        $data = $request->validated();
-
-        // Handle image deletion if checkbox is checked
-        if ($request->has('delete_image') && $request->delete_image == 1) {
-            // Delete the old image if it exists
-            if ($aboutUs->image) {
-                Storage::disk('public')->delete($aboutUs->image);
-            }
-            $data['image'] = null;
-        }
-        // Handle image upload
-        elseif ($request->hasFile('image') && $request->file('image')->isValid()) {
-            // Delete the old image if it exists
-            if ($aboutUs->image) {
-                Storage::disk('public')->delete($aboutUs->image);
-            }
-
-            $data['image'] = $request->file('image')->store('about-us', 'public');
-        }
-
-        // Process mission and vision data
-        $missionVision = [];
-        if ($request->has('mission_vision_titles') && is_array($request->mission_vision_titles)) {
+        try {
+            // Get validated data 
+            $data = $request->validated();
+            
+            // Process mission_vision data - simplify it
+            $missionVision = [];
             foreach ($request->mission_vision_titles as $index => $title) {
-                if (!empty($title) && isset($request->mission_vision_icons[$index]) && isset($request->mission_vision_descriptions[$index])) {
+                if (!empty($title) && 
+                    isset($request->mission_vision_icons[$index]) && 
+                    isset($request->mission_vision_descriptions[$index])) {
                     $missionVision[] = [
                         'title' => $title,
                         'icon' => $request->mission_vision_icons[$index],
@@ -112,13 +127,56 @@ class AboutUsController extends Controller
                     ];
                 }
             }
+            
+            // Handle image deletion if checkbox is checked
+            if ($request->has('delete_image') && $request->boolean('delete_image')) {
+                // Delete the old image if it exists
+                if ($aboutUs->image) {
+                    Storage::disk('public')->delete($aboutUs->image);
+                }
+                $aboutUs->image = null;
+            }
+            // Handle image upload
+            elseif ($request->hasFile('image') && $request->file('image')->isValid()) {
+                // Delete the old image if it exists
+                if ($aboutUs->image) {
+                    Storage::disk('public')->delete($aboutUs->image);
+                }
+
+                $aboutUs->image = $request->file('image')->store('about-us', 'public');
+            }
+            
+            // Update basic fields
+            $aboutUs->tagline_en = $data['tagline_en'];
+            $aboutUs->tagline_np = $data['tagline_np'] ?? null;
+            $aboutUs->description_en = $data['description_en'];
+            $aboutUs->description_np = $data['description_np'] ?? null;
+            $aboutUs->years_of_experience_en = $data['years_of_experience_en'] ?? null;
+            $aboutUs->years_of_experience_np = $data['years_of_experience_np'] ?? null;
+            $aboutUs->short_description_en = $data['short_description_en'] ?? null;
+            $aboutUs->short_description_np = $data['short_description_np'] ?? null;
+            $aboutUs->video_link = $data['video_link'] ?? null;
+            $aboutUs->mission_vision = $missionVision;
+            $aboutUs->is_published = $request->boolean('is_published');
+            $aboutUs->display_order = $data['display_order'] ?? 0;
+            
+            // Save the model
+            $aboutUs->save();
+            
+            // Clear cache
+            $this->clearCache();
+
+            // Redirect to index page with success message
+            return redirect('/admin/about-us')->with('success', 'About Us information updated successfully.');
+            
+        } catch (\Exception $e) {
+            \Log::error('AboutUs update error: ' . $e->getMessage(), [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return redirect('/admin/about-us')->with('error', 'Error updating About Us: ' . $e->getMessage());
         }
-        $data['mission_vision'] = $missionVision;
-
-        $aboutUs->update($data);
-
-        return redirect()->route('about-us.index')
-            ->with('success', 'About Us information updated successfully.');
     }
 
     /**
@@ -133,6 +191,9 @@ class AboutUsController extends Controller
             }
 
             $aboutUs->delete();
+
+            // Clear cache to ensure changes are visible
+            $this->clearCache();
 
             // Check if request is AJAX
             if (request()->ajax()) {
@@ -156,6 +217,27 @@ class AboutUsController extends Controller
             // For form submit
             return redirect()->route('about-us.index')
                 ->with('error', 'Error deleting About Us information: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Clear Laravel caches to ensure updates are visible
+     */
+    private function clearCache()
+    {
+        try {
+            // Use queued jobs to prevent blocking if possible
+            \Log::info('Clearing cache in AboutUsController');
+            
+            Artisan::call('cache:clear');
+            Artisan::call('view:clear');
+            
+            \Log::info('Cache cleared successfully');
+        } catch (\Exception $e) {
+            // Log exception but don't interrupt the flow
+            \Log::error('Error clearing cache: ' . $e->getMessage(), [
+                'exception' => $e
+            ]);
         }
     }
 }

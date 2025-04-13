@@ -45,6 +45,10 @@
                                     <div class="col-md-4 fw-semibold text-muted">Phone Number:</div>
                                     <div class="col-md-8">{{ $contactUs->phone_number }}</div>
                                 </div>
+                                <div class="row mb-2">
+                                    <div class="col-md-4 fw-semibold text-muted">Service Interested In:</div>
+                                    <div class="col-md-8">{{ $contactUs->service_interested_in ?? 'N/A' }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -64,6 +68,20 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="row mb-2 mt-3">
+                                    <div class="col-12">
+                                        <form action="{{ route('contact-us.toggle-status', $contactUs) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm {{ $contactUs->is_contacted ? 'btn-alt-warning' : 'btn-alt-success' }}">
+                                                @if ($contactUs->is_contacted)
+                                                    <i class="fa fa-times me-1"></i> Mark as Not Contacted
+                                                @else
+                                                    <i class="fa fa-check me-1"></i> Mark as Contacted
+                                                @endif
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                                 <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">Created At:</div>
                                     <div class="col-md-8">{{ $contactUs->created_at->format('M d, Y H:i') }}</div>
@@ -79,12 +97,14 @@
 
                 <div class="block block-rounded mt-4">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Contact Remarks</h3>
+                        <h3 class="block-title">Message</h3>
                     </div>
                     <div class="block-content">
                         <div class="row">
                             <div class="col-12">
-                                {{ $contactUs->contact_remarks ?? 'No remarks provided.' }}
+                                <div class="p-3 bg-body-light rounded">
+                                    {{ $contactUs->message ?? 'No message provided.' }}
+                                </div>
                             </div>
                         </div>
                     </div>

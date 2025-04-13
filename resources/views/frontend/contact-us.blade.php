@@ -3,151 +3,262 @@
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')
 
-    <section>
-        <div class="w-full lg:h-[200px] bg-[#fefff5] py-12 px-8">
-            <div
-                class="relative mx-8 flex flex-col-reverse space-y-5 lg:space-y-0 lg:flex-row lg:justify-between lg:items-center">
-                <img src="./img/br-shape-3.png" class="spiral absolute top-10 left-96" alt="" />
-                <img src="./img/br-shape-4.png" class="circle absolute top-20 left-10" alt="" />
-                <img src="./img/br-shape-5.png" class="semi-circle absolute top-60 right-96" alt="" />
-                <div class="flex flex-col space-y-8">
-                    <h3 class="text-5xl font-extrabold">Contact us</h3>
-                    <div class="flex space-x-5 items-center">
-                        <a href="index.html" class="text-[#666] font-bold">Home</a>
-                        <img src="./img/right-arrow.png" class="w-3" alt="" />
-                        <a href="contact.html" class="text-accent font-bold">Contact</a>
-                    </div>
-                </div>
+ <!-- banner-section -->
+ <section class="relative">
+  <div class="mb-10">
+  <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
 
-                <img src="./img/contact-hero.png" alt="" />
-            </div>
-        </div>
-    </section>
+      alt="Banner Image"
+      class="h-60 w-full object-cover"
+    />
+  </div>
+  <div class="absolute w-full top-20">
+    <div class="flex flex-col space-y-8 ml-10">
+      <h3 class="text-4xl font-extrabold text-white">Contact us</h3>
+      <div class="flex space-x-5 items-center">
+        <a href="index.html" class="text-[#666] font-bold">Home</a>
+        <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
+        <a href="contact-us" class="text-accent font-bold"> Contact us</a>
+      </div>
+  </div>
+</section>
+<!-- banner-section -->
+
 
     <!-- cards section -->
     <section>
-        <div class="mt-16 mx-8 flex justify-center">
-            <div class="flex flex-col lg:flex-row gap-6 lg:items-center">
-                <!--  -->
-                <div class="bg-[#f3f3f3] xl:h-[130px] lg:h-[170px] shadow-md rounded-md p-3">
-                    <div class="flex flex-col justify-start sm:flex-row gap-4">
-                        <div class="flex justify-center">
-                            <div class="w-20 h-20 rounded-full bg-accent flex justify-center items-center">
-                                <img src="./images/footer/location.png" class="w-10 h-10" alt="Location Icon" />
-                            </div>
-                        </div>
+      <div class="mt-16 mx-8 flex justify-center">
+        <div class="flex flex-col lg:flex-row gap-6 justify-center lg:items-center">
+          <!--  -->
+          <div
+            class="bg-[#f3f3f3] xl:h-[130px] lg:h-[170px] shadow-md rounded-md p-3 flex flex-1 w-[340px] md:w-[400px] lg:w-[300px] xl:w-[400px]"
+          >
+            <div class="flex justify-start flex-row gap-4">
+              <div class="flex justify-center">
+                <div
+                  class="w-18 h-18 rounded-full bg-accent flex justify-center items-center"
+                >
+                <img src="{{ asset('assets/images/contact/location-pin-svgrepo-com.svg') }}" 
+                    class="w-10 h-10"
+                    alt="Location Icon"
+                  />
+                </div>
+              </div>
 
-                        <div class="flex flex-col items-center sm:items-start space-y-3">
-                            <p class="text-2xl font-bold">Our Location</p>
-                            <p class="text-[#666]">
-                                Bagdurbar, Sundhara (Near to China Town Gate) Kathmandu Nepal
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!--  -->
-                <div class="bg-[#f3f3f3] lg:h-[170px] xl:h-[130px] shadow-md rounded-md p-3">
-                    <div class="flex flex-col justify-start sm:flex-row gap-4">
-                        <div class="flex justify-center">
-                            <div class="w-20 h-20 rounded-full bg-accent flex justify-center items-center">
-                                <img src="./images/footer/mail.png" class="w-10 h-10" alt="" />
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center sm:items-start space-y-3">
-                            <p class="text-2xl font-bold">Email us</p>
-                            <p class="text-[#666]">
-                                info@hulasremittance.com,<br class="block sm:hidden" />
-                                csc@hulasremittance.com
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!--  -->
-                <div class="bg-[#f3f3f3] lg:h-[170px] xl:h-[130px] Fshadow-md rounded-md p-3">
-                    <div class="flex flex-col justify-start sm:flex-row gap-4">
-                        <div class="flex justify-center">
-                            <div class="w-20 h-20 rounded-full bg-accent flex justify-center items-center">
-                                <img src="./images/footer/phone-call.png" class="w-8 h-8" alt="" />
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center sm:items-start space-y-3">
-                            <p class="text-2xl font-bold">Call us</p>
-                            <p class="text-[#666]">
-                                +977 1 5361313, 5358225, 5352008
-                                <br class="hidden sm:block" />Toll Free Number 16600 111222
-                                (For NTC Users Only)
-                            </p>
-                        </div>
-                    </div>
-                </div>
+              <div class="flex flex-col items-center sm:items-start space-y-3">
+                <p class="text-xl text-black font-semibold">Our Location</p>
+                <p class="text-[#666]">
+                  @isset($setting->address_en)  
+                  {{ $setting->address_en }}
+                  @endisset
+
+                </p>
+              </div>
             </div>
+          </div>
+          <!--  -->
+          <div
+          class="bg-[#f3f3f3] xl:h-[130px] lg:h-[170px] shadow-md rounded-md p-3 flex flex-1 w-[340px] md:w-[400px] lg:w-[300px] xl:w-[400px]"
+          >
+          <div class="flex justify-start flex-row gap-4">
+          <div class="flex justify-center">
+                <div
+                class="w-18 h-18 rounded-full bg-accent flex justify-center items-center"
+                >
+                <img src="{{ asset('assets/images/contact/mail-svgrepo-com.png') }}" 
+
+                    class="w-10 h-10"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="flex flex-col items-center sm:items-start space-y-3">
+                <p class="text-xl font-bold text-black">Email us</p>
+                <p class="text-[#666]">
+                <br class="block sm:hidden" />
+                  @isset($setting->email)
+                  {{ $setting->email }}
+                  @endisset
+
+                  <br>
+                  
+                  @isset($setting->agent_notify_email)
+                  
+                  {{ $setting->agent_notify_email }}
+                  @endisset
+                </p>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+          <div
+          class="bg-[#f3f3f3] xl:h-[130px] lg:h-[170px] shadow-md rounded-md p-3 flex flex-1 w-[340px] md:w-[400px] lg:w-[300px] xl:w-[400px]"
+          >
+          <div class="flex justify-start flex-row gap-4">
+          <div class="flex justify-center">
+                <div
+                class="w-18 h-18 rounded-full bg-accent flex justify-center items-center"
+                >
+                <img src="{{ asset('assets/images/contact/phone-svgrepo-com.svg') }}" 
+
+                    class="w-10 h-10"
+                    alt=""
+                  />
+                </div>
+              </div>
+              <div class="flex flex-col items-center sm:items-start space-y-3">
+                <p class="text-xl font-bold text-black">Call us</p>
+                <p class="text-[#666]">
+                  @isset($setting->phone_number_en)
+                  {{ $setting->phone_number_en }}
+                  @endisset
+                  <br class="hidden sm:block" />
+                  @isset($setting->toll_free_number)
+                  {{ $setting->toll_free_number }}
+                  @endisset
+              
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
     <!-- cards section -->
 
     <!-- map section -->
     <section>
-        <div class="mt-16 flex justify-center w-full">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.6111886008625!2d85.31059677522961!3d27.698409576187725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18534e533eaf%3A0x4fec1318777796b7!2sHulas%20Remittance%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1698921349849!5m2!1sen!2snp"
-                class="w-full lg:h-[500px]" style="border: 0" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
+      <div class="mt-16 flex justify-center w-full">
+        <iframe
+        src="@isset($setting->google_maplink) {{ $setting->google_maplink }} @endisset"
+          class="w-full lg:h-[500px]"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
     </section>
     <!-- map section -->
 
     <!-- contact form  -->
     <section class="m-10">
-        <div class="mt-16 mx-10 sm:m-20">
-            <div class="flex flex-col space-y-6 justify-center items-center">
-                <h3 class="text-xl lg:text-3xl font-extrabold text-accent">
-                    Get in touch with us.
-                </h3>
-                <p class="max-w-sm lg:max-w-none text-black text-xl border-b-2 border-accent">
-                    Fill up the form and our team will get back to you within 24 hours.
-                </p>
-            </div>
+      <div class="mt-16 mx-10 sm:m-20">
+        <div class="flex flex-col space-y-6 justify-center items-center">
+          <h3 class="text-xl lg:text-3xl font-extrabold text-accent">
+            Get in touch with us.
+          </h3>
+          <p
+            class="max-w-sm lg:max-w-none text-black text-xl lg:border-b-2 lg:border-accent"
+          >
+          Have a question or need assistance? Reach out to us, and our team will get back to you as soon as possible. We’re here to help!
+          </p>
+          
+          <!-- Old alerts removed -->
+          
         </div>
-        <div class=" lg:flex lg:justify-center lg:mt-32  w-full">
-            <img src="./img/contact-form-bg.png" class="h-full" alt="" />
-            <div class=" lg:w-[70%] bg-white shadow-xl rounded-md p-6">
-                <form class="sm:mx-20">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        <div class="flex flex-col space-y-5">
-                            <label for="name" class="font-bold text-xl  text-[#3d5169]">Name</label>
-                            <input id="name" type="text" placeholder="What's your name?"
-                                class="w-full rounded-md bg-[#f5faff]" />
-                        </div>
-                        <div class="flex flex-col space-y-5">
-                            <label for="email" class="font-bold text-xl  text-[#3d5169]">Email</label>
-                            <input id="email" type="email" placeholder="What's your email?"
-                                class="w-full rounded-md bg-[#f5faff]" />
-                        </div>
-                        <div class="flex flex-col space-y-5">
-                            <label for="phone" class="font-bold text-xl  text-[#3d5169]">Phone</label>
-                            <input id="phone" type="tel" placeholder="Enter your phone"
-                                class="w-full rounded-md bg-[#f5faff]" />
-                        </div>
-                        <div class="flex flex-col space-y-5">
-                            <label for="service" class="font-bold text-xl text-[#3d5169]">Service interested in</label>
-                            <input id="service" type="text" placeholder="ex. Remittance"
-                                class="w-full rounded-md bg-[#f5faff]" />
-                        </div>
-                    </div>
-                    <div class="mt-5 flex flex-col space-y-4">
-                        <label for="query" class="font-bold text-xl text-[#3d5169]">Message</label>
-                        <textarea name="query" id="query" cols="20" rows="10" class="bg-[#f5faff] rounded-md"
-                            placeholder="Please enter your message..."></textarea>
-                    </div>
-                    <div class="w-full flex justify-center">
-                        <button type="submit"
-                            class="bg-black text-white  transition-all eas-in-out mt-5 w-44 py-4 px-8 flex justify-center tracking-wide hover:text-accent rounded-full cursor-pointer">
-                            Send Message
-                        </button>
-                    </div>
-                </form>
+      </div>
+      <div class="lg:flex lg:justify-center lg:mt-32 w-full">
+        <img src="{{ asset('assets/images/contact/contact-form-bg.png') }}" class="h-full" alt="" />
+        <div class="lg:w-[70%] bg-white shadow-xl rounded-md p-6">
+          <form class="sm:mx-20" action="{{ url('/contact-us') }}" method="POST" id="contact-us-form">
+            @csrf
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div class="flex flex-col space-y-5">
+                <label for="full_name" class="font-bold text-xl text-[#3d5169]"
+                  >Name</label
+                >
+                <input
+                  id="full_name"
+                  name="full_name"
+                  type="text"
+                  placeholder="What's your name?"
+                  class="w-full rounded-md bg-[#f5faff] @error('full_name') border-red-500 @enderror"
+                  value="{{ old('full_name') }}"
+                  required
+                />
+                @error('full_name')
+                  <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+              </div>
+              <div class="flex flex-col space-y-5">
+                <label for="email" class="font-bold text-xl text-[#3d5169]"
+                  >Email</label
+                >
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="What's your email?"
+                  class="w-full rounded-md bg-[#f5faff] @error('email') border-red-500 @enderror"
+                  value="{{ old('email') }}"
+                  required
+                />
+                @error('email')
+                  <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+              </div>
+              <div class="flex flex-col space-y-5">
+                <label for="phone_number" class="font-bold text-xl text-[#3d5169]"
+                  >Phone</label
+                >
+                <input
+                  id="phone_number"
+                  name="phone_number"
+                  type="tel"
+                  placeholder="Enter your phone"
+                  class="w-full rounded-md bg-[#f5faff] @error('phone_number') border-red-500 @enderror"
+                  value="{{ old('phone_number') }}"
+                  required
+                />
+                @error('phone_number')
+                  <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+              </div>
+              <div class="flex flex-col space-y-5">
+                <label for="service_interested_in" class="font-bold text-xl text-[#3d5169]"
+                  >Service interested in</label
+                >
+                <input
+                  id="service_interested_in"
+                  name="service_interested_in"
+                  type="text"
+                  placeholder="ex. Remittance"
+                  class="w-full rounded-md bg-[#f5faff] @error('service_interested_in') border-red-500 @enderror"
+                  value="{{ old('service_interested_in') }}"
+                />
+                @error('service_interested_in')
+                  <span class="text-red-500 text-sm">{{ $message }}</span>
+                @enderror
+              </div>
             </div>
+            <div class="mt-5 flex flex-col space-y-4">
+              <label for="message" class="font-bold text-xl text-[#3d5169]"
+                >Message</label
+              >
+              <textarea
+                name="message"
+                id="message"
+                cols="20"
+                rows="10"
+                class="bg-[#f5faff] rounded-md @error('message') border-red-500 @enderror"
+                placeholder="Please enter your message..."
+              >{{ old('message') }}</textarea>
+              @error('message')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+              @enderror
+            </div>
+            <div class="w-full flex justify-center">
+              <button
+                type="submit"
+                class="w-44 text-center bg-black text-accent hover:opacity-85 py-3 px-5 rounded-full cursor-pointer tracking-wide my-6"
+              >
+                Send Message
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </section>
     <!-- contact form  -->
 @endsection
@@ -156,4 +267,84 @@
 @push('scripts')
     <script type="module" src="/src/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    
+    <script>
+        // Execute as soon as the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submission handler
+            const form = document.getElementById('contact-us-form');
+            
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(form);
+                    
+                    // Submit form via fetch API
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Show success message
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: "Thank you for contacting us. We will get back to you soon!",
+                            showConfirmButton: true,
+                            confirmButtonText: 'OK',
+                            confirmButtonColor: '#10B981',
+                            timer: 5000,
+                            timerProgressBar: true
+                        });
+                        
+                        // Reset form
+                        form.reset();
+                    })
+                    .catch(error => {
+                        // Show error message
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: "There was a problem submitting your inquiry. Please try again later.",
+                            showConfirmButton: true,
+                            confirmButtonText: 'Try Again',
+                            confirmButtonColor: '#EF4444'
+                        });
+                    });
+                });
+            }
+            
+            // Check for success message in session
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: "{{ session('success') }}",
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#10B981',
+                    timer: 5000,
+                    timerProgressBar: true
+                });
+            @endif
+            
+            // Check for error message in session
+            @if(session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "{{ session('error') }}",
+                    showConfirmButton: true,
+                    confirmButtonText: 'Try Again',
+                    confirmButtonColor: '#EF4444'
+                });
+            @endif
+        });
+    </script>
 @endpush

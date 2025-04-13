@@ -43,6 +43,34 @@
         @enderror
     </div>
     <div class="col-md-6 mb-4">
+        <label class="form-label" for="address_en">Address (English)</label>
+        <textarea class="form-control @error('address_en') is-invalid @enderror" id="address_en" name="address_en" rows="3">{{ old('address_en', $setting->address_en ?? $setting->address ?? '') }}</textarea>
+        @error('address_en')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="col-md-6 mb-4">
+        <label class="form-label" for="address_np">Address (Nepali)</label>
+        <textarea class="form-control @error('address_np') is-invalid @enderror" id="address_np" name="address_np" rows="3">{{ old('address_np', $setting->address_np ?? '') }}</textarea>
+        @error('address_np')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="col-md-6 mb-4">
+        <label class="form-label" for="phone_number_en">Phone Number (English)</label>
+        <textarea class="form-control @error('phone_number_en') is-invalid @enderror" id="phone_number_en" name="phone_number_en" rows="2">{{ old('phone_number_en', $setting->phone_number_en ?? $setting->phone_number ?? '') }}</textarea>
+        @error('phone_number_en')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="col-md-6 mb-4">
+        <label class="form-label" for="phone_number_np">Phone Number (Nepali)</label>
+        <textarea class="form-control @error('phone_number_np') is-invalid @enderror" id="phone_number_np" name="phone_number_np" rows="2">{{ old('phone_number_np', $setting->phone_number_np ?? '') }}</textarea>
+        @error('phone_number_np')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="col-md-6 mb-4">
         <label class="form-label" for="google_maplink">Google Map Link</label>
         <input type="text" class="form-control @error('google_maplink') is-invalid @enderror" id="google_maplink" name="google_maplink" value="{{ old('google_maplink', $setting->google_maplink ?? '') }}">
         @error('google_maplink')
@@ -229,7 +257,3 @@
         </a>
     </div>
 </div>
-
-<!-- Hidden fields for backward compatibility -->
-<input type="hidden" name="title" value="{{ $setting->title_en ?? '' }}">
-<input type="hidden" name="description" value="{{ $setting->description_en ?? '' }}"> 

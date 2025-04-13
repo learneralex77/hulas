@@ -39,7 +39,8 @@ class PartnersController extends Controller
             $data['image'] = $request->file('image')->store('partners', 'public');
         }
 
-        $data['is_published'] = $request->has('is_published');
+        // Ensure is_published is properly set as boolean
+        $data['is_published'] = isset($data['is_published']) ? (bool)$data['is_published'] : false;
 
         Partner::create($data);
 
@@ -87,7 +88,8 @@ class PartnersController extends Controller
             unset($data['image']);
         }
 
-        $data['is_published'] = $request->has('is_published');
+        // Ensure is_published is properly set as boolean
+        $data['is_published'] = isset($data['is_published']) ? (bool)$data['is_published'] : false;
 
         $partner->update($data);
 

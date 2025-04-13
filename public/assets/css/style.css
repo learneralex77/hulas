@@ -3,7 +3,7 @@
 
 /* Define CSS Variables Correctly */
 :root {
-  --color-primary: #ffdd00;
+  --color-primary: rgb(32, 31, 31);
   --color-accent: #ffdd00;
   --color-bgPrimary: #ffffff;
 }
@@ -50,4 +50,133 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+* {
+  font-family: "Jost", sans-serif;
+}
+
+body {
+  /* background-color:rgb(247, 247, 239); */
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-bgPrimary {
+  color: var(--color-bgPrimary);
+}
+
+.swiper {
+  width: 100%;
+  height: 400px;
+}
+.swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.navbar-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000; /* Ensure it's above everything */
+}
+
+.navbar-burger {
+  position: relative;
+  z-index: 1100; /* Ensure it's clickable */
+}
+
+.section-breaker {
+  background-image: url("public/images/about-us/5568579.jpg");
+  background-color: #313131;
+  background-repeat: no-repeat;
+  background-size: cover; /* Resize the background image to cover the entire container */
+  width: 100%;
+}
+
+
+
+
+
+/* home-page-gallery */
+
+.swiper {
+  width: 100%;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper2 {
+  height: 50%;
+  width: 100%;
+}
+
+.mySwiper {
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.mySwiper .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#footer {
+  display: block;
+  visibility: visible;
+}
+
+/* our partners  */
+@keyframes carouselAnim {
+  0% {
+    transform: translateX(0%); /* Start at the first slide */
+  }
+  100% {
+    transform: translateX(-100%); /* Move the third slide out of view and start over */
+  }
+}
+
+.carousel {
+  display: flex;
+  width: 100%;  /* Adjust according to your container's size */
+  overflow: hidden;  /* Hide the content that is off-screen */
+}
+
+.carousel-item {
+  flex: 0 0 100%;  /* Each item takes up 100% of the width */
+  animation: carouselAnim 200s linear infinite;  /* 60 seconds for a full loop, slow pace */
+  transition: transform 0.5s ease;
+}
+
+
+.carousel-focus:hover {
+  transition: all 0.8s;
+  transform: scale(1.1);
 }

@@ -11,9 +11,15 @@ use App\Models\Page;
 use App\Models\Publication;
 use App\Models\Service;
 use App\Models\ServiceTranslation;
+use App\Models\Setting;
+use App\Models\ContactUs;
+use App\Models\NewsEventCategory;
 
+use App\Http\Requests\ContactUsRequest;
+use App\Http\Requests\BecomeAnAgentRequest;
 
 use App\Models\Partner;
+use App\Models\BecomeAnAgent;
 
 class FrontendController extends Controller
 {
@@ -29,16 +35,19 @@ class FrontendController extends Controller
         $services = Service::active()->orderBy('display_order', 'ASC')->get();
         $notices = Publication::active()->where('publication_type', 'notice')->orderBy('display_order', 'ASC')->get();
         $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
+        $newsAndEvents=NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
+
         $partners = Partner::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners'));
+        return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners','newsAndEvents'));
 
     }
 
     public function aboutHulasRemittance()
     {
+        $setting = Setting::first();
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
         $services=Service::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.about-hulas-page', compact('aboutUs','services'));
+        return view('frontend.about-hulas-page', compact('aboutUs','services','setting'));
     }
 
     public function aboutWesternUnion()
@@ -50,19 +59,34 @@ class FrontendController extends Controller
 
     public function becomeAnAgent()
     {
-        return view('frontend.become-an-agent');
+        $setting = Setting::first();
+        return view('frontend.become-an-agent',compact("setting"));
     }
     public function contactUs()
     {
-        return view('frontend.contact-us');
+        $setting = Setting::first();
+        return view('frontend.contact-us', compact('setting'));
     }
     public function findAnAgent()
     {
         return view('frontend.find-an-agent');
     }
+    public function forexRate()
+    {
+        return view('frontend.forex-rate');
+    }
     public function gallery()
     {
-        return view('frontend.gallery');
+        $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
+        return view('frontend.gallery', compact('galleries'));
+    }
+    public function galleryDetail($id = null)
+    {
+        if ($id) {
+            $gallery = Gallery::findOrFail($id);
+            return view('frontend.gallery-detail', compact('gallery'));
+        }
+        return redirect()->route('gallery');
     }
     public function grievances()
     {
@@ -80,11 +104,17 @@ class FrontendController extends Controller
     }
     public function newsAndEvents()
     {
-        return view('frontend.news-and-events');
+        $newsAndEvents=NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
+        return view('frontend.news-and-events', compact('newsAndEvents'));
     }
-    public function newsAndEventsDetailPage()
+    public function newsAndEventsDetailPage($id = null)
     {
-        return view('frontend.news-and-events-detail-page');
+        if ($id) {
+            $newsEvent = NewsEventCategory::findOrFail($id);
+            $otherNewsEvents = NewsEventCategory::active()->where('id', '!=', $id)->take(10)->get();
+            return view('frontend.news-and-events-detail-page', compact('newsEvent', 'otherNewsEvents'));
+        }
+        return redirect()->route('newsAndEvents');
     }
     public function organizationalStructure()
     {
@@ -105,5 +135,19 @@ class FrontendController extends Controller
     public function termsAndConditions()
     {
         return view('frontend.terms-and-conditions');
+    }
+
+    public function header()
+    { 
+       
+       $setting = Setting::first();
+       return view('frontend.layouts.partials.header', compact('setting'));
+    }
+
+    public function footer()
+    {
+        $setting = Setting::first();
+        $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
+        return view('frontend.layouts.partials.footer', compact('setting', 'aboutUs'));
     }
 }

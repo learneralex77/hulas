@@ -1,5 +1,18 @@
 <!--Content Section -->
 <div class="mb-4">
+    <!-- Debug Info (remove in production) -->
+    @if(app()->environment() !== 'production')
+    <div class="card mb-3 bg-light">
+        <div class="card-header">Debug Information</div>
+        <div class="card-body">
+            <pre style="max-height: 200px; overflow: auto;">Model Data: {{ json_encode(isset($aboutUs) ? $aboutUs->toArray() : [], JSON_PRETTY_PRINT) }}</pre>
+            @if(isset($aboutUs) && isset($aboutUs->mission_vision))
+            <pre style="max-height: 200px; overflow: auto;">Mission Vision: {{ json_encode($aboutUs->mission_vision, JSON_PRETTY_PRINT) }}</pre>
+            @endif
+        </div>
+    </div>
+    @endif
+    
     <h4 class="mb-3">Content</h4>
     <div class="row">
         <!-- Tagline -->
@@ -24,9 +37,10 @@
         <!-- Years of Experience -->
         <div class="col-md-6 mb-3">
             <label class="form-label" for="years_of_experience_en">Years of Experience (English)</label>
-            <input type="number" class="form-control @error('years_of_experience_en') is-invalid @enderror"
+            <input type="text" class="form-control @error('years_of_experience_en') is-invalid @enderror"
                 id="years_of_experience_en" name="years_of_experience_en"
-                value="{{ old('years_of_experience_en', $aboutUs->years_of_experience_en ?? $aboutUs->years_of_experience ?? '') }}" min="0">
+                value="{{ old('years_of_experience_en', $aboutUs->years_of_experience_en ?? $aboutUs->years_of_experience ?? '') }}">
+            <div class="form-text">Example: 100+, 25, etc.</div>
             @error('years_of_experience_en')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -34,9 +48,10 @@
 
         <div class="col-md-6 mb-3">
             <label class="form-label" for="years_of_experience_np">Years of Experience (Nepali)</label>
-            <input type="number" class="form-control @error('years_of_experience_np') is-invalid @enderror"
+            <input type="text" class="form-control @error('years_of_experience_np') is-invalid @enderror"
                 id="years_of_experience_np" name="years_of_experience_np"
-                value="{{ old('years_of_experience_np', $aboutUs->years_of_experience_np ?? '') }}" min="0">
+                value="{{ old('years_of_experience_np', $aboutUs->years_of_experience_np ?? '') }}">
+            <div class="form-text">Example: १००+, २५, etc.</div>
             @error('years_of_experience_np')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -263,6 +278,7 @@
 </div>
 
 <!-- Form Buttons -->
+<!-- 
 <div class="mb-3 mt-3">
     <button type="submit" class="btn btn-sm btn-success mb-0">
         <i class="fa fa-save"></i> {{ isset($aboutUs) ? 'Update' : 'Create' }} About Us
@@ -271,6 +287,7 @@
         <i class="fa fa-times"></i> Cancel
     </a>
 </div>
+-->
 
 <!-- Hidden fields for backward compatibility -->
 <input type="hidden" name="tagline" value="{{ $aboutUs->tagline_en ?? '' }}">

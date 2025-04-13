@@ -1,7 +1,7 @@
 <header>
   <div class="bg-white">
     <!-- Top Nav -->
-    <nav class="hidden w-full py-2 bg-white text-black border-b-2 px-10 lg:block">
+    <nav class="hidden w-full py-2 bg-white text-black border-black border-b-2 px-10 lg:block">
       <div class="w-full flex justify-between items-center">
         <!-- Contact Information Section -->
         <div class="flex space-x-8 items-center">
@@ -12,7 +12,10 @@
               alt="Location Icon"
             />
             <p class="text-xs">
-              Bagdurbar, Sundhara (Near to China Town Gate) Kathmandu, Nepal
+              
+            @isset($settings->address_en)  
+                  {{ $settings->address_en }}
+              @endisset
             </p>
           </div>
 
@@ -24,8 +27,9 @@
               alt="Phone Icon"
             />
             <p class="text-xs">
-              +977 1 5361313, 5358225, 5352008, Toll Free Number: 16600 111222
-              (For NTC Users Only)
+              @isset($settings->phone_number_en)
+                {{ $settings->phone_number_en }}
+              @endisset
             </p>
           </div>
 
@@ -37,34 +41,45 @@
               alt="Email Icon"
             />
             <p class="text-xs">
-              info@hulasremittance.com, csc@hulasremittance.com
+              @isset($settings->email)
+                {{ $settings->email }}
+                {{ $settings->agent_notify_email }}
+
+
+              @endisset
             </p>
           </div>
         </div>
 
         <!-- Social Media Links -->
         <div class="flex space-x-5 items-center">
-          <a rel="noopener noreferrer" href="#">
+          @isset($settings->facebook)
+          <a rel="noopener noreferrer" href="{{ $settings->facebook }}">
           <img
              src="{{ asset('assets/images/navbar/fb-icon.png') }}"
               class="w-6"
               alt="Facebook Icon"
             />
           </a>
-          <a rel="noopener noreferrer" href="#">
+          @endisset
+          @isset($settings->twitter)
+          <a rel="noopener noreferrer" href="{{ $settings->twitter }}">
        <img
              src="{{ asset('assets/images/navbar/x-icon.png') }}"
               class="w-4"
               alt="X (Twitter) Icon"
             />
           </a>
-          <a rel="noopener noreferrer" href="#">
+          @endisset
+          @isset($settings->linkedin)
+          <a rel="noopener noreferrer" href="{{ $settings->linkedin }}">
         <img
              src="{{ asset('assets/images/navbar/linked-in-icon.png') }}"
               class="w-5"
               alt="LinkedIn Icon"
             />
           </a>
+          @endisset
         </div>
       </div>
     </nav>
@@ -72,9 +87,8 @@
     <!-- Bottom Nav (Sticky) -->
     <nav class="sticky top-0 z-50 px-4 pr-8 py-2 flex justify-between items-center bg-white text-black shadow-lg">
       <!-- Company Logo -->
-      <a class="text-xl lg:pl-10 font-bold leading-none" href="index.html">
+      <a class="text-xl lg:pl-10 font-bold leading-none" href="{{ route('homepage') }}">
       <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}"
-
           class="w-56"
           alt="Hulas Remittance Logo"
         />
@@ -86,42 +100,42 @@
           <li class="mb-1">
             <a
               class="block p-4 text-sm font-semibold text-black hover:text-accent"
-              href="index.html"
+              href="{{ route('homepage') }}"
               >Home</a
             >
           </li>
           <li class="mb-1">
             <a
               class="block p-4 text-sm font-semibold text-black hover:text-accent"
-              href="about-us.html"
+              href="{{ route('aboutHulasRemittance') }}"
               >About us</a
             >
           </li>
           <li class="mb-1">
             <a
               class="block p-4 text-sm font-semibold text-black hover:text-accent"
-              href="become-an-agent.html"
+              href="{{ route('becomeAnAgent') }}"
               >Become an agent</a
             >
           </li>
           <li class="mb-1">
             <a
               class="block p-4 text-sm font-semibold text-black hover:text-accent"
-              href="find-an-agent.html"
+              href="{{ route('findAnAgent') }}"
               >Find an agent</a
             >
           </li>
           <li class="mb-1">
             <a
               class="block p-4 text-sm font-semibold text-black hover:text-accent"
-              href="gallery.html"
+              href="{{ route('gallery') }}"
               >Gallery</a
             >
           </li>
           <li class="mb-1">
             <a
               class="block p-4 text-sm font-semibold text-black hover:text-accent"
-              href="contact-us.html"
+              href="{{ route('contactUs') }}"
               >Contact us</a
             >
           </li>
@@ -158,10 +172,10 @@
         <a
           rel="noopener noreferrer"
           class="mr-auto text-lg font-bold leading-none"
-          href="index.html"
+          href="{{ route('homepage') }}"
         >
           <img
-            src="./images/logo/hulas-remittance-logo.jpg"
+            src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}"
             class="w-40"
             alt="Hulas Remittance Mobile Logo"
           />
@@ -192,7 +206,7 @@
             <a
               rel="noopener noreferrer"
               class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent"
-              href="index.html"
+              href="{{ route('homepage') }}"
               >Home</a
             >
           </li>
@@ -200,7 +214,7 @@
             <a
               rel="noopener noreferrer"
               class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent"
-              href="about-us.html"
+              href="{{ route('aboutHulasRemittance') }}"
               >About Us</a
             >
           </li>
@@ -208,7 +222,7 @@
             <a
               rel="noopener noreferrer"
               class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent"
-              href="home-become-an-agent.html"
+              href="{{ route('becomeAnAgent') }}"
               >Become an Agent</a
             >
           </li>
@@ -216,7 +230,15 @@
             <a
               rel="noopener noreferrer"
               class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent"
-              href="gallery.html"
+              href="{{ route('findAnAgent') }}"
+              >Find an Agent</a
+            >
+          </li>
+          <li class="mb-1">
+            <a
+              rel="noopener noreferrer"
+              class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent"
+              href="{{ route('gallery') }}"
               >Gallery</a
             >
           </li>
@@ -224,7 +246,7 @@
             <a
               rel="noopener noreferrer"
               class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded"
-              href="contact-us.html"
+              href="{{ route('contactUs') }}"
               >Contact</a
             >
           </li>
@@ -235,7 +257,7 @@
       <div class="mt-auto">
         <div class="flex justify-end">
           <img
-            src="./images/logo/WesternUnion_HorizontalLockup_YellowBlack.png"
+            src="{{ asset('assets/images/logo/WesternUnion_HorizontalLockup_YellowBlack.png') }}"
             class="w-44 h-5"
             alt="Western Union Logo"
           />
@@ -244,3 +266,5 @@
     </nav>
   </div>
 </header>
+
+

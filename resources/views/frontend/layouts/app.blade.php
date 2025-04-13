@@ -6,9 +6,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="AWT" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {{-- <meta name="description" content="{{ $settings->meta_description }}" />
     <meta name="keywords" content="{{ $settings->keywords }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- {!! $settings->schema_markup !!} -->
 
     <link rel="canonical" href="{{ $settings->canonical_url }}"> --}}
@@ -21,6 +21,10 @@
 
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
     {{-- select2 --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -199,7 +203,49 @@
 
     </script>
 
-    
+    <script>
+          // Wait for navbar to load then attach event listeners
+  setTimeout(() => {
+    const burger = document.querySelector(".navbar-burger");
+    const menu = document.querySelector(".navbar-menu");
+    const closeButton = document.querySelector(".navbar-close");
+    const backdrop = document.querySelector(".navbar-backdrop");
+
+    if (!burger || !menu) {
+      console.error(
+        "Navbar elements not found! Ensure your script runs after the DOM loads."
+      );
+      return;
+    }
+
+    burger.addEventListener("click", () => {
+      menu.classList.remove("hidden");
+      burger.classList.add("hidden");
+    });
+
+    [closeButton, backdrop].forEach((el) => {
+      if (el) {
+        el.addEventListener("click", () => {
+          menu.classList.add("hidden");
+          burger.classList.remove("hidden");
+        });
+      }
+    });
+
+    document.addEventListener("click", function (event) {
+      if (
+        !menu.classList.contains("hidden") &&
+        !menu.contains(event.target) &&
+        !burger.contains(event.target)
+      ) {
+        menu.classList.add("hidden");
+        burger.classList.remove("hidden");
+      }
+    });
+  }, 500);
+});
+
+    </script>
 </body>
 
 </html>

@@ -36,9 +36,19 @@
             </div>
         </div>
 
-     
-            
-
+        <div class="row">
+            <div class="col-12">
+                <div class="mb-4">
+                    <label class="form-label" for="short_description">Short Description</label>
+                    <textarea class="form-control @error('short_description') is-invalid @enderror" id="short_description" 
+                        name="short_description" rows="3">{{ old('short_description', $gallery->short_description ?? '') }}</textarea>
+                    <small class="text-muted">A brief description of this gallery</small>
+                    @error('short_description')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-4 col-sm-12">

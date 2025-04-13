@@ -13,16 +13,13 @@ return new class extends Migration
     {
         Schema::create('contact_us', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name_en');
-            $table->string('full_name_np')->nullable();
+            $table->string('full_name');
             $table->string('email');
-            $table->string('phone_number_en');
-            $table->string('phone_number_np')->nullable();
+            $table->string('phone_number');
+            $table->string('service_interested_in')->nullable();
             $table->integer('display_order')->default(0);
             $table->boolean('is_contacted')->default(false);
-            $table->text('contact_remarks_en')->nullable();
-            $table->text('contact_remarks_np')->nullable();
-
+            $table->text('message')->nullable();
             $table->timestamps();
         });
     }

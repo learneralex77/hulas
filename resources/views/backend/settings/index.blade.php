@@ -1,4 +1,7 @@
 @extends('backend.layouts.main')
+@php
+    use Illuminate\Support\Str;
+@endphp
 
 @section('title')
     Settings
@@ -71,23 +74,6 @@
                                         <p>{{ $setting->PO_Box ?? 'N/A' }}</p>
                                     </div>
                                     
-                                    <div class="mb-4">
-                                        <h5 class="fw-semibold mb-2">Working Hours</h5>
-                                        <p>{{ $setting->working_hours ?? 'N/A' }}</p>
-                                    </div>
-                                    
-                                    <div class="mb-2">
-                                        <h5 class="fw-semibold mb-2">Location Map</h5>
-                                        <p>
-                                            @if ($setting->map_location)
-                                                <a href="{{ $setting->map_location }}" target="_blank" class="btn btn-sm btn-alt-info">
-                                                    <i class="fa fa-map-marker-alt me-1"></i> View Map
-                                                </a>
-                                            @else
-                                                N/A
-                                            @endif
-                                        </p>
-                                    </div>
                                 </div>
                             </div>
 
@@ -97,23 +83,20 @@
                                 </div>
                                 <div class="block-content">
                                     <div class="mb-4">
-                                        <h5 class="fw-semibold mb-2">Meta Title</h5>
-                                        <p>{{ $setting->meta_title ?? 'N/A' }}</p>
+                                        <h5 class="fw-semibold mb-2">Title</h5>
+                                        <p>{{ $setting->title_en ?? 'N/A' }}</p>
                                     </div>
                                     
                                     <div class="mb-4">
-                                        <h5 class="fw-semibold mb-2">Meta Description</h5>
-                                        <p>{{ $setting->meta_description ?? 'N/A' }}</p>
+                                        <h5 class="fw-semibold mb-2">Description</h5>
+                                        <p>{{ isset($setting->description_en) ? Str::limit($setting->description_en, 100, '...') : 'N/A' }}</p>
                                     </div>
                                     
-                                    <div class="mb-4">
-                                        <h5 class="fw-semibold mb-2">Meta Keywords</h5>
-                                        <p>{{ $setting->meta_keywords ?? 'N/A' }}</p>
-                                    </div>
+                                 
                                     
                                     <div class="mb-2">
-                                        <h5 class="fw-semibold mb-2">Footer Text</h5>
-                                        <p>{{ $setting->footer_text ?? 'N/A' }}</p>
+                                        <h5 class="fw-semibold mb-2">Location Map</h5>
+                                        <p>{{ isset($setting->google_maplink) ? Str::limit($setting->google_maplink, 50, '...') : 'N/A' }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -157,6 +140,7 @@
                                                     class="btn btn-sm btn-alt-primary">
                                                     Visit Page
                                                 </a>
+                                                <p class="mt-2 small text-muted">{{ Str::limit($setting->facebook, 30, '...') }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -175,6 +159,7 @@
                                                     class="btn btn-sm btn-alt-info">
                                                     Visit Page
                                                 </a>
+                                                <p class="mt-2 small text-muted">{{ Str::limit($setting->twitter, 30, '...') }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -193,6 +178,7 @@
                                                     class="btn btn-sm btn-alt-primary">
                                                     Visit Page
                                                 </a>
+                                                <p class="mt-2 small text-muted">{{ Str::limit($setting->linkedin, 30, '...') }}</p>
                                             </div>
                                         </div>
                                     </div>

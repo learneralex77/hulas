@@ -110,8 +110,8 @@
                         <a href="forex-rate" class="hover:underline text-center">Forex Rate</a>
                         <a href="faq" class="hover:underline text-center">FAQ</a>
                         <a href="contact-us" class="hover:underline text-center">Contact us</a>
-                        <a href="terms-and-conditions" class="hover:underline text-center">Terms & Conditions</a>
-                        <a href="privacy-policy" class="hover:underline text-center">Privacy Policy</a>
+                        <a href="{{ route('termsAndConditions') }}" class="hover:underline text-center">Terms & Conditions</a>
+                        <a href="{{ route('privacyAndPolicy') }}" class="hover:underline text-center">Privacy Policy</a>
                     </div>
                     <div class=" text-[#ffffffcc] flex flex-col space-y-2">
                         <h4 class=" text-accent font-bold md:text-left text-center">Quick Links</h4>

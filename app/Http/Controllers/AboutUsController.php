@@ -33,27 +33,12 @@ class AboutUsController extends Controller
     public function store(AboutUsRequest $request)
     {
         try {
-            $data = $request->validated();
+            $data = $request->transformedValues();
 
             // Handle image upload
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
                 $data['image'] = $request->file('image')->store('about-us', 'public');
             }
-
-            // Process mission and vision data
-            $missionVision = [];
-            if ($request->has('mission_vision_titles') && is_array($request->mission_vision_titles)) {
-                foreach ($request->mission_vision_titles as $index => $title) {
-                    if (!empty($title) && isset($request->mission_vision_icons[$index]) && isset($request->mission_vision_descriptions[$index])) {
-                        $missionVision[] = [
-                            'title' => $title,
-                            'icon' => $request->mission_vision_icons[$index],
-                            'description' => $request->mission_vision_descriptions[$index],
-                        ];
-                    }
-                }
-            }
-            $data['mission_vision'] = $missionVision;
 
             // Make sure boolean values are properly set
             $data['is_published'] = $request->boolean('is_published');
@@ -94,7 +79,7 @@ class AboutUsController extends Controller
     public function update(AboutUsRequest $request, AboutUs $aboutUs)
     {
         try {
-            $data = $request->validated();
+            $data = $request->transformedValues();
 
             // Handle image deletion if checkbox is checked
             if ($request->has('delete_image') && $request->boolean('delete_image')) {
@@ -113,21 +98,6 @@ class AboutUsController extends Controller
 
                 $data['image'] = $request->file('image')->store('about-us', 'public');
             }
-
-            // Process mission and vision data
-            $missionVision = [];
-            if ($request->has('mission_vision_titles') && is_array($request->mission_vision_titles)) {
-                foreach ($request->mission_vision_titles as $index => $title) {
-                    if (!empty($title) && isset($request->mission_vision_icons[$index]) && isset($request->mission_vision_descriptions[$index])) {
-                        $missionVision[] = [
-                            'title' => $title,
-                            'icon' => $request->mission_vision_icons[$index],
-                            'description' => $request->mission_vision_descriptions[$index],
-                        ];
-                    }
-                }
-            }
-            $data['mission_vision'] = $missionVision;
 
             // Make sure boolean values are properly set
             $data['is_published'] = $request->boolean('is_published');

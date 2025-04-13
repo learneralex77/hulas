@@ -21,14 +21,25 @@
     </div>
   </section>
   <!-- banner-section -->
-
+  <section class="overflow-x-hidden">
+    <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+      <div class="flex flex-col items-center space-y-6">
+      <p class="text-2xl text-black font-bold md:text-4xl text-center">
+        Simple. Secure. Seamless.
+      </p>
+      <p class="p-2 text-lg text-[#737879] text-center max-w-3xl">
+        Fast, secure money transfers made easy with Hulas Remittance and trusted partners like Western Union.
+      </p>
+      </div>
+    </div>
+    </section>
   <!-- Card part for our news and Article -->
-  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-0 m-6 lg:m-20">
+  <div class="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-0 mx-10 sm:m-20 lg:mx-40 items-center">
 
     <!-- Send -->
     <div
-    class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition duration-300 border-t-4 border-accent cursor-pointer">
-    <div class="flex items-center justify-center w-16 h-16 bg-accent opacity text-blue-700 rounded-full mx-auto mb-4">
+    class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl border-t-4 border-blue-600 cursor-pointer hover:-translate-y-2 transition-transform ease-in-out duration-300 max-w-[420px] h-[300px]">
+    <div class="flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-full mx-auto mb-4">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
       <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -51,7 +62,7 @@
       </g>
       </svg>
     </div>
-    <h2 class="text-xl font-semibold text-center mb-2">Send Money</h2>
+    <h2 class="text-2xl text-black font-semibold text-center my-6">Send Money</h2>
     <p class="text-gray-600 text-center">
       Transfer money to your loved ones instantly — locally or internationally — with trusted partners and great rates.
     </p>
@@ -59,7 +70,7 @@
 
     <!-- Track -->
     <div
-    class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition duration-300 border-t-4 border-yellow-500 cursor-pointer">
+    class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl  border-t-4 border-yellow-500 cursor-pointer hover:-translate-y-2 transition-transform ease-in-out duration-300 max-w-[420px] h-[300px]">
     <div class="flex items-center justify-center w-16 h-16 bg-yellow-100 text-yellow-700 rounded-full mx-auto mb-4">
       <svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg"
       xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
@@ -73,7 +84,7 @@
       </g>
       </svg>
     </div>
-    <h2 class="text-xl font-semibold text-center mb-2">Track Money</h2>
+    <h2 class="text-2xl text-black font-semibold text-center my-6">Track Money</h2>
     <p class="text-gray-600 text-center">
       Monitor the status of your remittance in real-time and stay informed every step of the way.
     </p>
@@ -81,7 +92,7 @@
 
     <!-- Receive -->
     <div
-    class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl transition duration-300 border-t-4 border-green-600 cursor-pointer">
+    class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl border-t-4 border-green-600 cursor-pointer hover:-translate-y-2 transition-transform ease-in-out duration-300 max-w-[420px] h-[300px]">
     <div class="flex items-center justify-center w-16 h-16 bg-green-100 text-green-700 rounded-full mx-auto mb-4">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -105,7 +116,7 @@
       </g>
       </svg>
     </div>
-    <h2 class="text-xl font-semibold text-center mb-2">Receive Money</h2>
+    <h2 class="text-2xl text-black font-semibold text-center my-6">Receive Money</h2>
     <p class="text-gray-600 text-center">
       Recipients can collect their money quickly and safely at any of our partner locations or direct to their account.
     </p>

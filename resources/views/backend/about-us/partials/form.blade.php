@@ -1,5 +1,18 @@
 <!--Content Section -->
 <div class="mb-4">
+    <!-- Debug Info (remove in production) -->
+    @if(app()->environment() !== 'production')
+    <div class="card mb-3 bg-light">
+        <div class="card-header">Debug Information</div>
+        <div class="card-body">
+            <pre style="max-height: 200px; overflow: auto;">Model Data: {{ json_encode(isset($aboutUs) ? $aboutUs->toArray() : [], JSON_PRETTY_PRINT) }}</pre>
+            @if(isset($aboutUs) && isset($aboutUs->mission_vision))
+            <pre style="max-height: 200px; overflow: auto;">Mission Vision: {{ json_encode($aboutUs->mission_vision, JSON_PRETTY_PRINT) }}</pre>
+            @endif
+        </div>
+    </div>
+    @endif
+    
     <h4 class="mb-3">Content</h4>
     <div class="row">
         <!-- Tagline -->
@@ -265,6 +278,7 @@
 </div>
 
 <!-- Form Buttons -->
+<!-- 
 <div class="mb-3 mt-3">
     <button type="submit" class="btn btn-sm btn-success mb-0">
         <i class="fa fa-save"></i> {{ isset($aboutUs) ? 'Update' : 'Create' }} About Us
@@ -273,6 +287,7 @@
         <i class="fa fa-times"></i> Cancel
     </a>
 </div>
+-->
 
 <!-- Hidden fields for backward compatibility -->
 <input type="hidden" name="tagline" value="{{ $aboutUs->tagline_en ?? '' }}">

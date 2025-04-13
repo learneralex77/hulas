@@ -1,9 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('About Us JS loaded');
+    
     // Handle image preview
     const imageInput = document.getElementById('image');
     const imagePreview = document.getElementById('image-preview');
 
     if (imageInput && imagePreview) {
+        console.log('Image input and preview elements found');
         imageInput.addEventListener('change', function() {
             // Remove new image preview if exists
             const newPreview = imagePreview.querySelector('.new-image-preview');
@@ -40,15 +43,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 reader.readAsDataURL(file);
             }
         });
+    } else {
+        console.warn('Image input or preview element not found');
     }
 
     // Handle mission and vision dynamic fields
     const container = document.getElementById('mission-vision-container');
     const addButton = document.getElementById('add-mission-vision');
     let missionVisionCount = container ? container.querySelectorAll('.mission-vision-item').length : 1;
+    
+    console.log('Mission Vision count:', missionVisionCount);
 
     if (addButton && container) {
+        console.log('Mission Vision container and add button found');
         addButton.addEventListener('click', function() {
+            console.log('Add mission/vision button clicked');
             const newItem = document.createElement('div');
             newItem.className = 'mission-vision-item card p-3 bg-light mb-3';
 
@@ -161,17 +170,49 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Add remove button functionality
             removeButton.addEventListener('click', function() {
+                console.log('Remove mission/vision button clicked');
                 container.removeChild(newItem);
             });
 
             missionVisionCount++;
+            console.log('New mission/vision item added. Count:', missionVisionCount);
         });
+    } else {
+        console.warn('Mission Vision container or add button not found');
     }
 
     // Setup existing remove buttons for mission vision items
     document.querySelectorAll('.remove-mission-vision').forEach(button => {
+        console.log('Found existing remove button');
         button.addEventListener('click', function() {
+            console.log('Existing remove mission/vision button clicked');
             this.closest('.mission-vision-item').remove();
         });
     });
+    
+    // Debug form submission
+    const form = document.querySelector('form');
+    if (form) {
+        console.log('Form found');
+        form.addEventListener('submit', function(e) {
+            console.log('Form submitted', {
+                action: this.action,
+                method: this.method,
+                formData: new FormData(this)
+            });
+            
+            // Log mission vision fields
+            const titles = Array.from(this.querySelectorAll('input[name="mission_vision_titles[]"]')).map(el => el.value);
+            const icons = Array.from(this.querySelectorAll('input[name="mission_vision_icons[]"]')).map(el => el.value);
+            const descriptions = Array.from(this.querySelectorAll('textarea[name="mission_vision_descriptions[]"]')).map(el => el.value);
+            
+            console.log('Mission Vision Data:', {
+                titles,
+                icons,
+                descriptions
+            });
+        });
+    } else {
+        console.warn('Form not found');
+    }
 }); 

@@ -133,7 +133,8 @@ class AboutUsRequest extends FormRequest
     {
         // Convert boolean values explicitly
         $this->merge([
-            'is_published' => $this->has('is_published') ? (bool) $this->input('is_published') : false,
+            'is_published' => $this->has('is_published') ? true : false,
+            'display_order' => $this->input('display_order') ?? 0,
         ]);
 
         // For backward compatibility - map legacy fields to new ones
@@ -160,35 +161,16 @@ class AboutUsRequest extends FormRequest
                 'short_description_en' => $this->short_description,
             ]);
         }
-    }
-
-    /**
-     * Handle the AboutUs after validation.
-     * Configure all data before model persistence
-     */
-    public function transformedValues(): array
-    {
-        // Start with validated data
-        $data = $this->validated();
         
-        // Add mission vision items as JSON
-        $missionVision = [];
-        if ($this->has('mission_vision_titles') && is_array($this->mission_vision_titles)) {
-            foreach ($this->mission_vision_titles as $index => $title) {
-                if (!empty($title) && isset($this->mission_vision_icons[$index]) && isset($this->mission_vision_descriptions[$index])) {
-                    $missionVision[] = [
-                        'title' => $title,
-                        'icon' => $this->mission_vision_icons[$index],
-                        'description' => $this->mission_vision_descriptions[$index],
-                    ];
-                }
-            }
+        // Mission Vision arrays must be present
+        if (!$this->has('mission_vision_titles')) {
+            $this->merge(['mission_vision_titles' => []]);
         }
-        $data['mission_vision'] = $missionVision;
-        
-        // Ensure boolean values are correctly saved
-        $data['is_published'] = $this->boolean('is_published');
-        
-        return $data;
+        if (!$this->has('mission_vision_icons')) {
+            $this->merge(['mission_vision_icons' => []]);
+        }
+        if (!$this->has('mission_vision_descriptions')) {
+            $this->merge(['mission_vision_descriptions' => []]);
+        }
     }
 }

@@ -21,7 +21,7 @@
   </section>
   <!-- banner-section -->
 
-  <div class="grid items-center justify-center m-6 lg:m-16">
+  <div class="grid items-center justify-center m-6 lg:mx-16">
 
     <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
     </p>

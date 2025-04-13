@@ -199,52 +199,6 @@
         };
 
 
-
-
-    </script>
-
-    <script>
-          // Wait for navbar to load then attach event listeners
-  setTimeout(() => {
-    const burger = document.querySelector(".navbar-burger");
-    const menu = document.querySelector(".navbar-menu");
-    const closeButton = document.querySelector(".navbar-close");
-    const backdrop = document.querySelector(".navbar-backdrop");
-
-    if (!burger || !menu) {
-      console.error(
-        "Navbar elements not found! Ensure your script runs after the DOM loads."
-      );
-      return;
-    }
-
-    burger.addEventListener("click", () => {
-      menu.classList.remove("hidden");
-      burger.classList.add("hidden");
-    });
-
-    [closeButton, backdrop].forEach((el) => {
-      if (el) {
-        el.addEventListener("click", () => {
-          menu.classList.add("hidden");
-          burger.classList.remove("hidden");
-        });
-      }
-    });
-
-    document.addEventListener("click", function (event) {
-      if (
-        !menu.classList.contains("hidden") &&
-        !menu.contains(event.target) &&
-        !burger.contains(event.target)
-      ) {
-        menu.classList.add("hidden");
-        burger.classList.remove("hidden");
-      }
-    });
-  }, 500);
-});
-
     </script>
 </body>
 

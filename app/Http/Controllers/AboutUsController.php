@@ -33,27 +33,59 @@ class AboutUsController extends Controller
     public function store(AboutUsRequest $request)
     {
         try {
-            $data = $request->transformedValues();
+            // Get validated data
+            $data = $request->validated();
+            
+            // Process mission_vision data - simplify it
+            $missionVision = [];
+            foreach ($request->mission_vision_titles as $index => $title) {
+                if (!empty($title) && 
+                    isset($request->mission_vision_icons[$index]) && 
+                    isset($request->mission_vision_descriptions[$index])) {
+                    $missionVision[] = [
+                        'title' => $title,
+                        'icon' => $request->mission_vision_icons[$index],
+                        'description' => $request->mission_vision_descriptions[$index],
+                    ];
+                }
+            }
+            
+            // Create new model
+            $aboutUs = new AboutUs();
+            $aboutUs->tagline_en = $data['tagline_en'];
+            $aboutUs->tagline_np = $data['tagline_np'] ?? null;
+            $aboutUs->description_en = $data['description_en'];
+            $aboutUs->description_np = $data['description_np'] ?? null;
+            $aboutUs->years_of_experience_en = $data['years_of_experience_en'] ?? null;
+            $aboutUs->years_of_experience_np = $data['years_of_experience_np'] ?? null;
+            $aboutUs->short_description_en = $data['short_description_en'] ?? null;
+            $aboutUs->short_description_np = $data['short_description_np'] ?? null;
+            $aboutUs->video_link = $data['video_link'] ?? null;
+            $aboutUs->mission_vision = $missionVision;
+            $aboutUs->is_published = $request->boolean('is_published');
+            $aboutUs->display_order = $data['display_order'] ?? 0;
 
             // Handle image upload
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
-                $data['image'] = $request->file('image')->store('about-us', 'public');
+                $aboutUs->image = $request->file('image')->store('about-us', 'public');
             }
 
-            // Make sure boolean values are properly set
-            $data['is_published'] = $request->boolean('is_published');
-
-            AboutUs::create($data);
-
-            // Clear cache to ensure changes are visible
+            // Save the model
+            $aboutUs->save();
+            
+            // Clear cache
             $this->clearCache();
 
-            return redirect()->route('about-us.index')
-                ->with('success', 'About Us information created successfully.');
+            // Redirect to index page with success message
+            return redirect('/admin/about-us')->with('success', 'About Us information created successfully.');
+            
         } catch (\Exception $e) {
-            return redirect()->back()
-                ->withInput()
-                ->with('error', 'Error creating About Us: ' . $e->getMessage());
+            \Log::error('AboutUs create error: ' . $e->getMessage(), [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return redirect()->back()->withInput()->with('error', 'Error creating About Us: ' . $e->getMessage());
         }
     }
 
@@ -79,15 +111,30 @@ class AboutUsController extends Controller
     public function update(AboutUsRequest $request, AboutUs $aboutUs)
     {
         try {
-            $data = $request->transformedValues();
-
+            // Get validated data 
+            $data = $request->validated();
+            
+            // Process mission_vision data - simplify it
+            $missionVision = [];
+            foreach ($request->mission_vision_titles as $index => $title) {
+                if (!empty($title) && 
+                    isset($request->mission_vision_icons[$index]) && 
+                    isset($request->mission_vision_descriptions[$index])) {
+                    $missionVision[] = [
+                        'title' => $title,
+                        'icon' => $request->mission_vision_icons[$index],
+                        'description' => $request->mission_vision_descriptions[$index],
+                    ];
+                }
+            }
+            
             // Handle image deletion if checkbox is checked
             if ($request->has('delete_image') && $request->boolean('delete_image')) {
                 // Delete the old image if it exists
                 if ($aboutUs->image) {
                     Storage::disk('public')->delete($aboutUs->image);
                 }
-                $data['image'] = null;
+                $aboutUs->image = null;
             }
             // Handle image upload
             elseif ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -96,23 +143,39 @@ class AboutUsController extends Controller
                     Storage::disk('public')->delete($aboutUs->image);
                 }
 
-                $data['image'] = $request->file('image')->store('about-us', 'public');
+                $aboutUs->image = $request->file('image')->store('about-us', 'public');
             }
-
-            // Make sure boolean values are properly set
-            $data['is_published'] = $request->boolean('is_published');
-
-            $aboutUs->update($data);
-
-            // Clear cache to ensure changes are visible
+            
+            // Update basic fields
+            $aboutUs->tagline_en = $data['tagline_en'];
+            $aboutUs->tagline_np = $data['tagline_np'] ?? null;
+            $aboutUs->description_en = $data['description_en'];
+            $aboutUs->description_np = $data['description_np'] ?? null;
+            $aboutUs->years_of_experience_en = $data['years_of_experience_en'] ?? null;
+            $aboutUs->years_of_experience_np = $data['years_of_experience_np'] ?? null;
+            $aboutUs->short_description_en = $data['short_description_en'] ?? null;
+            $aboutUs->short_description_np = $data['short_description_np'] ?? null;
+            $aboutUs->video_link = $data['video_link'] ?? null;
+            $aboutUs->mission_vision = $missionVision;
+            $aboutUs->is_published = $request->boolean('is_published');
+            $aboutUs->display_order = $data['display_order'] ?? 0;
+            
+            // Save the model
+            $aboutUs->save();
+            
+            // Clear cache
             $this->clearCache();
 
-            return redirect()->route('about-us.index')
-                ->with('success', 'About Us information updated successfully.');
+            // Redirect to index page with success message
+            return redirect('/admin/about-us')->with('success', 'About Us information updated successfully.');
+            
         } catch (\Exception $e) {
-            return redirect()->back()
-                ->withInput()
-                ->with('error', 'Error updating About Us: ' . $e->getMessage());
+            \Log::error('AboutUs update error: ' . $e->getMessage(), [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return redirect('/admin/about-us')->with('error', 'Error updating About Us: ' . $e->getMessage());
         }
     }
 
@@ -163,11 +226,18 @@ class AboutUsController extends Controller
     private function clearCache()
     {
         try {
+            // Use queued jobs to prevent blocking if possible
+            \Log::info('Clearing cache in AboutUsController');
+            
             Artisan::call('cache:clear');
             Artisan::call('view:clear');
+            
+            \Log::info('Cache cleared successfully');
         } catch (\Exception $e) {
             // Log exception but don't interrupt the flow
-            \Log::error('Error clearing cache: ' . $e->getMessage());
+            \Log::error('Error clearing cache: ' . $e->getMessage(), [
+                'exception' => $e
+            ]);
         }
     }
 }

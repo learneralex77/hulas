@@ -115,40 +115,37 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    let url = "{{ route('become-an-agent.destroy', ':id') }}".replace(':id', agentId);
-
-                    $.ajax({
-                        url: url,
-                        type: 'DELETE',
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        success: function(response) {
-                            // Remove the agent row from the table
-                            $('#agent-row-' + agentId).remove();
-
-                            Swal.fire({
-                                title: 'Deleted!',
-                                text: 'Agent information has been deleted.',
-                                icon: 'success',
-                                timer: 3000,
-                                showConfirmButton: false,
-                                position: 'top-end',
-                                toast: true
-                            });
-                        },
-                        error: function(xhr, status, error) {
-                            Swal.fire({
-                                title: 'Error!',
-                                text: 'There was an error deleting the agent information.',
-                                icon: 'error',
-                                timer: 3000,
-                                showConfirmButton: false,
-                                position: 'top-end',
-                                toast: true
-                            });
-                        }
+                    // Get the CSRF token from the meta tag
+                    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                    
+                    // Create a form element
+                    const form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = "{{ url('admin/become-an-agent') }}/" + agentId;
+                    form.style.display = 'none';
+                    
+                    // Add CSRF token
+                    const csrfInput = document.createElement('input');
+                    csrfInput.type = 'hidden';
+                    csrfInput.name = '_token';
+                    csrfInput.value = token;
+                    form.appendChild(csrfInput);
+                    
+                    // Add method spoofing for DELETE
+                    const methodInput = document.createElement('input');
+                    methodInput.type = 'hidden';
+                    methodInput.name = '_method';
+                    methodInput.value = 'DELETE';
+                    form.appendChild(methodInput);
+                    
+                    // Append form to document and submit
+                    document.body.appendChild(form);
+                    
+                    form.addEventListener('submit', function() {
+                        console.log('Form submitted');
                     });
+                    
+                    form.submit();
                 }
             });
         }

@@ -24,6 +24,7 @@ use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\BecomeAnAgentController;
 use App\Http\Controllers\NewsEventCategoryController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ForexRateController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\PopupController;
 use App\Http\Controllers\PartnersController;
@@ -100,6 +101,26 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     // Settings Management Routes
     Route::resource('settings', SettingController::class);
+
+
+    Route::prefix('forex-rates')->name('forex-rate.')->group(function () {
+        Route::get('/', [ForexRateController::class, 'index'])->name('index');
+        Route::get('/create', [ForexRateController::class, 'create'])->name('create');
+        Route::post('/', [ForexRateController::class, 'store'])->name('store');
+
+        Route::get('/edit/{id}', [ForexRateController::class, 'edit'])->name('edit');
+        Route::put('/update/{id}', [ForexRateController::class, 'update'])->name('update');
+
+        Route::delete('/{forexRate}', [ForexRateController::class, 'destroy'])->name('destroy');
+        Route::delete('/time-slot/{timeSlot}', [ForexRateController::class, 'destroyTimeSlot'])
+            ->where('timeSlot', 'morning|afternoon')
+            ->name('destroy-time-slot');
+
+        Route::post('/add-row', [ForexRateController::class, 'addRateRow'])->name('add-row');
+    });
+
+
+
 
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

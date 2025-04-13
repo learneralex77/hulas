@@ -44,7 +44,6 @@ class AboutUs extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'mission_vision' => 'array',
         'is_published' => 'boolean',
         'display_order' => 'integer',
     ];
@@ -113,7 +112,8 @@ class AboutUs extends Model
         }
         
         try {
-            return json_decode($value, true) ?: [];
+            $decoded = json_decode($value, true);
+            return $decoded ?: [];
         } catch (\Exception $e) {
             \Log::error('Error decoding mission_vision JSON', [
                 'value' => $value,

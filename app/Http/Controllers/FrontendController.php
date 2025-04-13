@@ -139,9 +139,9 @@ class FrontendController extends Controller
 
     public function header()
     { 
-        $setting = Setting::first();
-      
-        return view('frontend.layouts.partials.header', compact('setting'));
+       
+       $setting = Setting::first();
+       return view('frontend.layouts.partials.header', compact('setting'));
     }
 
     public function footer()
@@ -149,81 +149,5 @@ class FrontendController extends Controller
         $setting = Setting::first();
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
         return view('frontend.layouts.partials.footer', compact('setting', 'aboutUs'));
-    }
-
-    /**
-     * Store a contact inquiry from the frontend form.
-     */
-    public function storeContactInquiry(ContactUsRequest $request)
-    {
-        try {
-            // Validate and get data
-            $data = $request->validated();
-            
-            // Set default values for backend fields
-            $data['is_contacted'] = false;
-            $data['display_order'] = 0;
-            
-            // Create contact inquiry
-            ContactUs::create($data);
-            
-            // Check if this is an AJAX request
-            if ($request->ajax()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Thank you for contacting us. We will get back to you soon!'
-                ]);
-            }
-            
-            // Regular form submission - redirect with success message
-            return redirect('/contact-us')
-                ->with('success', 'Thank you for contacting us. We will get back to you soon!');
-                
-        } catch (\Exception $e) {
-            // Log error and return with error message
-            \Log::error('Contact form submission error: ' . $e->getMessage());
-            
-            // Check if this is an AJAX request
-            if ($request->ajax()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'There was a problem submitting your inquiry. Please try again later.'
-                ], 422);
-            }
-            
-            // Regular form submission - redirect with error message
-            return redirect('/contact-us')
-                ->with('error', 'There was a problem submitting your inquiry. Please try again later.')
-                ->withInput();
-        }
-    }
-
-    /**
-     * Store an agent request from the frontend form.
-     */
-    public function storeAgentRequest(BecomeAnAgentRequest $request)
-    {
-        try {
-            // Validate and get data
-            $data = $request->validated();
-            
-            // Set default values for backend fields
-            $data['is_contacted'] = false;
-            
-            // Create agent request
-            BecomeAnAgent::create($data);
-            
-            // Redirect to the become-an-agent page with success message
-            return redirect('/become-an-agent')
-                ->with('success', 'Thank you for your interest in becoming an agent. We will contact you soon!');
-                
-        } catch (\Exception $e) {
-            // Log error and return with error message
-            \Log::error('Agent request form submission error: ' . $e->getMessage());
-            
-            return redirect('/become-an-agent')
-                ->with('error', 'There was a problem submitting your request. Please try again later.')
-                ->withInput();
-        }
     }
 }

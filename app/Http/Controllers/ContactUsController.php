@@ -30,13 +30,45 @@ class ContactUsController extends Controller
      */
     public function store(ContactUsRequest $request)
     {
-        // Use validated data from the form request
-        $data = $request->validated();
-
-        ContactUs::create($data);
-
-        return redirect()->route('contact-us.index')
-            ->with('success', 'Contact inquiry created successfully.');
+        try {
+            // Validate and get data
+            $data = $request->validated();
+            
+            // Set default values if not provided
+            $data['is_contacted'] = $data['is_contacted'] ?? false;
+            $data['display_order'] = $data['display_order'] ?? 0;
+    
+            // Create the contact inquiry
+            ContactUs::create($data);
+            
+            // For AJAX requests, return JSON response
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Contact inquiry submitted successfully.'
+                ]);
+            }
+            
+            // For regular form submissions, redirect back
+            return redirect()->back()
+                ->with('success', 'Contact inquiry submitted successfully.');
+        } catch (\Exception $e) {
+            // Log error
+            \Log::error('Contact form submission error: ' . $e->getMessage());
+            
+            // For AJAX requests
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'There was a problem submitting your inquiry. Please try again later.'
+                ], 422);
+            }
+            
+            // For regular form submissions
+            return redirect()->back()
+                ->with('error', 'There was a problem submitting your inquiry. Please try again later.')
+                ->withInput();
+        }
     }
 
     /**

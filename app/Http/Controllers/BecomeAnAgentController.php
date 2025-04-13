@@ -32,18 +32,27 @@ class BecomeAnAgentController extends Controller
     public function store(BecomeAnAgentRequest $request): RedirectResponse
     {
         try {
+            // Validate and get data
             $data = $request->validated();
             
             // Set default value for is_contacted
             $data['is_contacted'] = false;
             
+            // Create the record
             BecomeAnAgent::create($data);
 
-            return redirect()->route('become-an-agent.index')
-                ->with('success', 'Agent request created successfully.');
+            // Get the redirect URL from the referer or use a default
+            $redirect = url()->previous() ?: route('become-an-agent.index');
+            
+            return redirect($redirect)
+                ->with('success', 'Agent request submitted successfully.');
         } catch (\Exception $e) {
+            // Log error
+            \Log::error('Agent request form submission error: ' . $e->getMessage());
+            
             return redirect()->back()
-                ->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+                ->with('error', 'There was a problem submitting your request. Please try again later.')
+                ->withInput();
         }
     }
 

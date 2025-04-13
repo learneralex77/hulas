@@ -45,7 +45,7 @@
       </p>
       <div class="flex justify-center">
         <a href="{{ route('galleryDetail', $gallery->id) }}"
-        class="bg-black text-sm text-white hover:text-yellow-400 py-1 px-5 mt-2 rounded-sm cursor-pointer">
+        class="bg-black text-sm text-accent hover:opacity-85 py-1 px-5 mt-2 rounded-full cursor-pointer">
         <i class="fa-regular fa-eye"></i> View
         </a>
       </div>

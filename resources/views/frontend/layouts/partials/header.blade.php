@@ -45,7 +45,7 @@
         </a>
 
         <!-- Desktop Menu -->
-        <div class="hidden lg:flex justify-center items-center flex-grow">+
+        <div class="hidden lg:flex justify-center items-center flex-grow">
             <ul class="flex space-x-4" x-data="{ openMenu: null }">
                 @foreach ($menus as $i => $menu)
                     <li class="relative" @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">

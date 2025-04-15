@@ -1,5 +1,5 @@
 <header class="sticky -top-0 lg:-top-16 z-50">
-    <!---------- top-nav ---------->
+    <!-- Top Nav -->
     <nav class="hidden w-full py-1 bg-bgprimary border-b-2 px-10 lg:block">
         <div class="w-full p-2 flex justify-between items-center">
             <!-- address, toll free -->
@@ -35,98 +35,87 @@
             </div>
         </div>
     </nav>
-    <!---------- top-nav ---------->
+    <!-- End Top Nav -->
 
     <!-- Main Navigation -->
-    <nav class="relative px-4 pr-8 py-6 flex justify-between items-center bg-white shadow-lg">
+    <nav class="relative px-4 pr-8 py-3 flex justify-between items-center bg-white shadow-lg">
         <!-- Logo -->
         <a class="text-xl lg:pl-10 font-bold" href="homepage">
-            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-56" alt="Hulas Logo" />
+            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40 lg:w-56" alt="Hulas Logo" />
         </a>
 
-        <!-- Centered second child -->
+        <!-- Desktop Menu -->
         <div class="hidden lg:flex justify-center items-center flex-grow">
-            <!-- Your centered content -->
-            <div class="text-center">
-                <!-- Example content -->
-                <ul class="flex space-x-4" x-data="{ openMenu: null }">
-                    @foreach ($menus as $i => $menu)
-                        <li class="relative" @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">
-                            <button class="px-4 py-2 font-medium text-gray-700 hover:text-sky-600 focus:outline-none"
-                                @focus="openMenu = {{ $i }}" @blur="openMenu = null"
-                                aria-haspopup="{{ $menu->children->isNotEmpty() ? 'true' : 'false' }}"
-                                :aria-expanded="openMenu === {{ $i }}">
-                                {{ $menu->name_en }}
-                            </button>
-                            @if ($menu->children->isNotEmpty())
-                                <ul x-show="openMenu === {{ $i }}" x-transition
-                                    class="absolute left-0 mt-2 w-48 bg-white rounded shadow-lg z-20"
-                                    @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">
-                                    @foreach ($menu->children as $j => $child)
-                                        <li class="relative" x-data="{ openSub: false }" @mouseenter="openSub = true"
-                                            @mouseleave="openSub = false">
-                                            <button
-                                                class="w-full text-left px-4 py-2 hover:bg-sky-50 flex justify-between items-center"
-                                                @focus="openSub = true" @blur="openSub = false"
-                                                aria-haspopup="{{ $child->children->isNotEmpty() ? 'true' : 'false' }}"
-                                                :aria-expanded="openSub">
-                                                {{ $child->name_en }}
-                                                @if ($child->children->isNotEmpty())
-                                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
-                                                        viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2" d="M9 5l7 7-7 7" />
-                                                    </svg>
-                                                @endif
-                                            </button>
+            <ul class="flex space-x-4" x-data="{ openMenu: null }">
+                @foreach ($menus as $i => $menu)
+                    <li class="relative" @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">
+                        <button class="px-4 py-2 font-medium text-gray-700 hover:text-sky-600 focus:outline-none"
+                            @focus="openMenu = {{ $i }}" @blur="openMenu = null"
+                            aria-haspopup="{{ $menu->children->isNotEmpty() ? 'true' : 'false' }}"
+                            :aria-expanded="openMenu === {{ $i }}">
+                            {{ $menu->name_en }}
+                        </button>
+                        @if ($menu->children->isNotEmpty())
+                            <ul x-show="openMenu === {{ $i }}" x-transition
+                                class="absolute left-0 mt-2 w-48 bg-white rounded shadow-lg z-20"
+                                @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">
+                                @foreach ($menu->children as $j => $child)
+                                    <li class="relative" x-data="{ openSub: false }" @mouseenter="openSub = true"
+                                        @mouseleave="openSub = false">
+                                        <button
+                                            class="w-full text-left px-4 py-2 hover:bg-sky-50 flex justify-between items-center"
+                                            @focus="openSub = true" @blur="openSub = false"
+                                            aria-haspopup="{{ $child->children->isNotEmpty() ? 'true' : 'false' }}"
+                                            :aria-expanded="openSub">
+                                            {{ $child->name_en }}
                                             @if ($child->children->isNotEmpty())
-                                                <ul x-show="openSub" x-transition
-                                                    class="absolute left-full top-0 mt-0 ml-1 w-48 bg-white rounded shadow-lg z-30">
-                                                    @foreach ($child->children as $sub)
-                                                        <li>
-                                                            <a href="{{ url($sub->slug) }}"
-                                                                class="block px-4 py-2 hover:bg-sky-50">
-                                                                {{ $sub->name_en }}
-                                                            </a>
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
+                                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M9 5l7 7-7 7" />
+                                                </svg>
                                             @endif
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            @endif
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+                                        </button>
+                                        @if ($child->children->isNotEmpty())
+                                            <ul x-show="openSub" x-transition
+                                                class="absolute left-full top-0 mt-0 ml-1 w-48 bg-white rounded shadow-lg z-30">
+                                                @foreach ($child->children as $sub)
+                                                    <li>
+                                                        <a href="{{ url($sub->slug) }}"
+                                                            class="block px-4 py-2 hover:bg-sky-50">
+                                                            {{ $sub->name_en }}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                    </li>
+                @endforeach
+            </ul>
         </div>
+
+        <!-- Mobile Toggle -->
+        <div class="lg:hidden" id="burger-container">
+    <button id="burger" class="navbar-burger flex items-center text-[#ffdd00] p-3">
+        <svg class="block h-6 w-6 fill-current" viewBox="0 0 20 20">
+            <title>Mobile menu</title>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+        </svg>
+    </button>
+</div>
     </nav>
-
-
-
-
-    <!-- Mobile burger -->
-    <div class="lg:hidden block">
-        <button id="burger" class="navbar-burger flex items-center text-[#ffdd00] p-3">
-            <svg class="block h-6 w-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <title>Mobile menu</title>
-                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-            </svg>
-        </button>
-    </div>
-    </nav>
-    <!---------- bottom-nav ---------->
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="navbar-menu relative z-50 hidden">
         <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
-        <nav
-            class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
+        <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
             <div class="flex items-center mb-8">
                 <a rel="noopener noreferrer" class="mr-auto text-lg font-bold leading-none" href="index.html">
-                    <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40"
-                        alt="Logo" />
+                    <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40" alt="Logo" />
                 </a>
                 <button id="close-menu" class="navbar-close">
                     <svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
@@ -144,7 +133,6 @@
                                 class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded flex-grow">
                                 {{ $menu->name_en }}
                             </a>
-
                             @if ($menu->children->isNotEmpty())
                                 <button
                                     @click="openMenus['menu{{ $menuIndex }}'] = !openMenus['menu{{ $menuIndex }}']"
@@ -158,11 +146,8 @@
                                 </button>
                             @endif
                         </div>
-
                         @if ($menu->children->isNotEmpty())
-                            <ul x-show="openMenus['menu{{ $menuIndex }}']" x-transition
-                                class="ml-4 border-l border-gray-200">
-
+                            <ul x-show="openMenus['menu{{ $menuIndex }}']" x-transition class="ml-4 border-l border-gray-200">
                                 @foreach ($menu->children as $childIndex => $child)
                                     <li>
                                         <div class="flex items-center justify-between">
@@ -170,7 +155,6 @@
                                                 class="block p-3 pl-4 text-sm text-gray-700 hover:text-accent">
                                                 {{ $child->name_en }}
                                             </a>
-
                                             @if ($child->children->isNotEmpty())
                                                 <button
                                                     @click.stop="openMenus['child{{ $menuIndex }}_{{ $childIndex }}'] = !openMenus['child{{ $menuIndex }}_{{ $childIndex }}']"
@@ -187,11 +171,9 @@
                                                 </button>
                                             @endif
                                         </div>
-
                                         @if ($child->children->isNotEmpty())
                                             <ul x-show="openMenus['child{{ $menuIndex }}_{{ $childIndex }}']"
                                                 x-transition class="ml-4 border-l border-gray-200">
-
                                                 @foreach ($child->children as $sub)
                                                     <li>
                                                         <a href="{{ url($sub->slug) }}"
@@ -209,7 +191,6 @@
                     </li>
                 @endforeach
             </ul>
-
             <div class="mt-auto flex justify-end pt-4">
                 <img src="{{ asset('assets/images/logo/WesternUnion_HorizontalLockup_YellowBlack.png') }}"
                     class="w-44 h-5" alt="Western Union Logo" />
@@ -223,19 +204,24 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const burger = document.getElementById("burger");
+        const burgerContainer = document.getElementById("burger-container");
         const mobileMenu = document.getElementById("mobile-menu");
         const closeMenu = document.getElementById("close-menu");
         const backdrop = document.querySelector(".navbar-backdrop");
 
-        burger?.addEventListener("click", () => {
+        function openMobileMenu() {
             mobileMenu.classList.remove("hidden");
-        });
+            burgerContainer.classList.add("hidden");
+        }
 
-        [closeMenu, backdrop].forEach(el => {
-            el?.addEventListener("click", () => {
-                mobileMenu.classList.add("hidden");
-            });
-        });
+        function closeMobileMenu() {
+            mobileMenu.classList.add("hidden");
+            burgerContainer.classList.remove("hidden");
+        }
+
+        burger?.addEventListener("click", openMobileMenu);
+        closeMenu?.addEventListener("click", closeMobileMenu);
+        backdrop?.addEventListener("click", closeMobileMenu);
 
         document.addEventListener("click", (event) => {
             if (
@@ -243,7 +229,7 @@
                 !mobileMenu.contains(event.target) &&
                 !burger.contains(event.target)
             ) {
-                mobileMenu.classList.add("hidden");
+                closeMobileMenu();
             }
         });
     });

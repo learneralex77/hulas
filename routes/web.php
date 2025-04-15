@@ -42,6 +42,7 @@ Route::get('mission-and-vision', [FrontendController::class, 'missionAndVision']
 Route::get('news-and-events', [FrontendController::class, 'newsAndEvents'])->name('newsAndEvents');
 Route::get('news-and-events-detail-page/{id?}', [FrontendController::class, 'newsAndEventsDetailPage'])->name('newsAndEventsDetailPage');
 Route::get('organizational-structure', [FrontendController::class, 'organizationalStructure'])->name('organizationalStructure');
+Route::get('downloads', [FrontendController::class, 'downloads'])->name('downloads');
 Route::get('privacy-and-policy', [FrontendController::class, 'privacyAndPolicy'])->name('privacyAndPolicy');
 Route::get('terms-and-conditions', [FrontendController::class, 'termsAndConditions'])->name('termsAndConditions');
 Route::get('quick-links', [FrontendController::class, 'quickLinks'])->name('quickLinks');

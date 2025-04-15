@@ -39,19 +39,20 @@ class AppServiceProvider extends ServiceProvider
                 return Setting::first();
             });
             $menus = Cache::remember('menus', 60, function () {
-                return [
-                    'parents' => Menu::with('children')
-                        ->whereNull('parent_id')
-                        ->where('is_published', 1)
+                return Menu::with(['children' => function ($query) {
+                    $query->where('is_published', 1)
                         ->orderBy('display_order', 'asc')
-                        ->get(),
-
-                    'children' => Menu::whereNotNull('parent_id')
-                        ->where('is_published', 1)
-                        ->orderBy('display_order', 'asc')
-                        ->get(),
-                ];
+                        ->with(['children' => function ($subQuery) {
+                            $subQuery->where('is_published', 1)
+                                ->orderBy('display_order', 'asc');
+                        }]);
+                }])
+                    ->whereNull('parent_id')
+                    ->where('is_published', 1)
+                    ->orderBy('display_order', 'asc')
+                    ->get();
             });
+
 
             $quickLinks = Cache::remember('quick_links', 60, function () {
                 return QuickLink::where('is_published', 1)->get();

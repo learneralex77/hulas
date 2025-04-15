@@ -125,6 +125,10 @@ class FrontendController extends Controller
     {
         return view('frontend.organizational-structure');
     }
+    public function downloads()
+    {
+        return view('frontend.downloads');
+    }
     public function privacyAndPolicy()
     {
         return view('frontend.privacy-and-policy');

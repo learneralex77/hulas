@@ -13,7 +13,7 @@
 
     <link rel="canonical" href="{{ $settings->canonical_url }}"> --}}
 
-    <title>Hulas Remmittance::@yield('title')</title>
+    <title>Hulas Remmittance : : @yield('title')</title>
     <link rel="icon" href="{{ asset('assets/images/icon/icon.jpg') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])

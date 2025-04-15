@@ -1,6 +1,6 @@
 <header class="sticky -top-0 lg:-top-16 z-50">
     <!---------- top-nav ---------->
-    <nav class="hidden w-full bg-bgprimary border-b-2 px-10 lg:block">
+    <nav class="hidden w-full py-1 bg-bgprimary border-b-2 px-10 lg:block">
         <div class="w-full p-2 flex justify-between items-center">
             <!-- address, toll free -->
             <div class="flex space-x-8 items-center">
@@ -38,7 +38,7 @@
     <!---------- top-nav ---------->
 
     <!-- Main Navigation -->
-    <nav class="relative px-4 pr-8 py-2 flex justify-between items-center bg-white shadow-lg">
+    <nav class="relative px-4 pr-8 py-4 flex justify-between items-center bg-white shadow-lg">
         <a class="text-xl lg:pl-10 font-bold" href="homepage">
             <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-56" alt="Hulas Logo" />
         </a>

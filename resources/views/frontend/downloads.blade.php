@@ -61,16 +61,19 @@
   <!-- banner-section -->
 
   <div id="card-prototype" class="hidden">
-  <div class="bg-white p-4 rounded-lg shadow-md max-h-40 hover:shadow-xl cursor-pointer transition-all ease-in-out">
+    <div class="bg-white p-4 rounded-lg shadow-md max-h-40 hover:shadow-xl cursor-pointer transition-all ease-in-out">
     <div class="flex items-center gap-10 h-20">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1oX7_c8ln65NHhs86VmmAlH5ZnpeDdYR5CA&s" class="w-6" alt="icon">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1oX7_c8ln65NHhs86VmmAlH5ZnpeDdYR5CA&s"
+      class="w-6" alt="icon">
       <span class="font-bold file-name"></span>
     </div>
-    <button class="mt-2 bg-black text-white w-full p-2 rounded-lg flex items-center justify-center cursor-pointer download-btn">
-      <img src="/images/contact-us/download-minimalistic-svgrepo-com.svg" class="w-6 hover:scale-125 ease-in-out transition-all" alt="download">
+    <button
+      class="mt-2 bg-black text-white w-full p-2 rounded-lg flex items-center justify-center cursor-pointer download-btn">
+      <img src="/images/contact-us/download-minimalistic-svgrepo-com.svg"
+      class="w-6 hover:scale-125 ease-in-out transition-all" alt="download">
     </button>
+    </div>
   </div>
-</div>
 
 
 
@@ -191,30 +194,52 @@
 
   <script>
 
-function loadContent(category) {
-  const content = document.getElementById("content");
-  content.innerHTML = "";
-
-  const prototype = document.querySelector("#card-prototype > div");
-
-  contentData[category].forEach((item) => {
-    const clone = prototype.cloneNode(true);
-    clone.querySelector(".file-name").textContent = item.name;
-    clone.querySelector(".download-btn").addEventListener("click", () => downloadFile(item.file));
-    content.appendChild(clone);
-  });
-}
 
 
+    const contentData = {
+    forms: [
+      { name: "Personal Account Opening", file: "personal_account.pdf" },
+      { name: "Corporate Account Opening", file: "corporate_account.pdf" },
+      { name: "Fixed Deposit Form", file: "fixed_deposit.pdf" },
+      { name: "KYC Form", file: "kyc_form.pdf" },
+      { name: "Mobile Banking Form", file: "mobile_banking.pdf" },
+      { name: "Internet Banking Form", file: "internet_banking.pdf" },
+    ],
+    annualReports: [
+      { name: "Annual Report 2024", file: "annual_2024.pdf" },
+      { name: "Annual Report 2023", file: "annual_2023.pdf" },
+    ],
+    financialHighlights: [
+      { name: "Financial Statement Q1 2024", file: "q1_2024.pdf" },
+    ],
+    dividend: [
+      { name: "Dividend Declaration 2024", file: "dividend_2024.pdf" },
+    ],
+    shareCapital: [
+      { name: "Share Capital Details", file: "share_capital.pdf" },
+    ],
+    debenture: [{ name: "Debenture Details", file: "debenture.pdf" }],
+    };
+
+   
+
+    function downloadFile(filename) {
+    const link = document.createElement("a");
+    link.href = filename;
+    link.download = filename;
+    link.click();
+    }
+
+    loadContent("forms");
 
   </script>
   <script type="module" src="/src/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-<!-- ✅ jQuery (must come first) -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- ✅ jQuery (must come first) -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<!-- ✅ Select2 (depends on jQuery) -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <!-- ✅ Select2 (depends on jQuery) -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 @endpush

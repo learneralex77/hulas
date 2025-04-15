@@ -9,9 +9,8 @@
         <!-- Swiper CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     @endpush
-
     <!-- Slider Section -->
-    @isset($sliders->image)
+    @isset($sliders)
         <section id="home-slider">
             <div id="default-carousel" class="relative w-full" data-carousel="slide">
                 <!-- Carousel wrapper -->

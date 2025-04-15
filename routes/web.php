@@ -32,8 +32,8 @@ Route::get('contact-us', [FrontendController::class, 'contactUs'])->name('contac
 Route::post('contact-us', [App\Http\Controllers\ContactUsController::class, 'store'])->name('storeContactInquiry');
 
 Route::get('find-an-agent', [FrontendController::class, 'findAnAgent'])->name('findAnAgent');
+Route::get('services', [FrontendController::class, 'services'])->name('services');
 Route::get('forex-rate', [FrontendController::class, 'forexRate'])->name('forexRate');
-
 Route::get('gallery', [FrontendController::class, 'gallery'])->name('gallery');
 Route::get('gallery-detail/{id?}', [FrontendController::class, 'galleryDetail'])->name('galleryDetail');
 Route::get('grievances', [FrontendController::class, 'grievances'])->name('grievances');

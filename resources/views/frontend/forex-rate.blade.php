@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', 'Home')
-@section('meta', 'Welcome to Hulas Remittance')
+@section('title', 'Forex Rate')
+@section('meta', 'Forex Rate')
 @section('content')
 
  <!-- banner-section -->

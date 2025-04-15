@@ -1,6 +1,6 @@
 <header class="sticky -top-0 lg:-top-16 z-50">
     <!---------- top-nav ---------->
-    <nav class="hidden w-full py-2 bg-bgprimary border-b-2 px-10 lg:block">
+    <nav class="hidden w-full bg-bgprimary border-b-2 px-10 lg:block">
         <div class="w-full p-2 flex justify-between items-center">
             <!-- address, toll free -->
             <div class="flex space-x-8 items-center">
@@ -25,28 +25,34 @@
             </div>
             <!-- social -->
             <div class="flex space-x-5 items-center">
-                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/fb-icon.png') }}" class="w-6" alt="facebook Icon" /></a>
-                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/x-icon.png') }}" class="w-4" alt="X Icon" /></a>
-                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/linked-in-icon.png') }}" class="w-5" alt="Linkedin Icon" /></a>
+                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/fb-icon.png') }}"
+                        class="w-6" alt="facebook Icon" /></a>
+                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/x-icon.png') }}"
+                        class="w-4" alt="X Icon" /></a>
+                <a rel="noopener noreferrer" href="#"><img
+                        src="{{ asset('assets/images/navbar/linked-in-icon.png') }}" class="w-5"
+                        alt="Linkedin Icon" /></a>
             </div>
         </div>
     </nav>
     <!---------- top-nav ---------->
 
-    <!---------- bottom-nav ---------->
-    <nav class="relative px-4 pr-8 py-4 flex justify-between items-center bg-white shadow-lg">
-        <a class="text-xl lg:pl-10 font-bold leading-none" href="index.html">
-            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-56" alt="Hulas Remittance Logo" />
+    <!-- Main Navigation -->
+    <nav class="relative px-4 pr-8 py-2 flex justify-between items-center bg-white shadow-lg">
+        <a class="text-xl lg:pl-10 font-bold" href="homepage">
+            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-56" alt="Hulas Logo" />
         </a>
 
         <div class="hidden lg:block">
             <ul class="flex">
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="#">Home</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="about-us-page.html">About Us</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="become-an-agent.html">Become an Agent</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="agent-list.html">Find an Agent</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="#gallery">Gallery</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded" href="contact-us.html">Contact</a></li>
+                @foreach ([['Home', '#'], ['About Us', 'about-us-page.html'], ['Become an Agent', 'become-an-agent'], ['Find an Agent', 'find-an-agent'], ['Gallery', 'gallery'], ['Contact', 'contact-us']] as [$label, $link])
+                    <li class="mb-1">
+                        <a class="block p-4 text-sm font-semibold text-black hover:text-accent rounded"
+                            href="{{ $link }}">
+                            {{ $label }}
+                        </a>
+                    </li>
+                @endforeach
             </ul>
         </div>
 
@@ -65,28 +71,40 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="navbar-menu relative z-50 hidden">
         <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
-        <nav class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
+        <nav
+            class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
             <div class="flex items-center mb-8">
                 <a rel="noopener noreferrer" class="mr-auto text-lg font-bold leading-none" href="index.html">
-                    <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40" alt="Logo" />
+                    <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40"
+                        alt="Logo" />
                 </a>
                 <button id="close-menu" class="navbar-close">
-                    <svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    <svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
             <ul>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded" href="index.html">Home</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded" href="#about_us">About Us</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded" href="#become_agent">Become an Agent</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded" href="#gallery">Gallery</a></li>
-                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded" href="#contact_p">Contact</a></li>
-                <li class="mb-1"><a href="https://www.westernunion.com/us/en/send-money/app/price-estimator" target="_blank" class="block p-4 text-sm font-semibold text-accent rounded">Our Fees</a></li>
-                <li class="mb-1"><a href="https://www.westernunion.com/us/en/send-money-to-nepal.html" target="_blank" class="block p-4 text-sm font-semibold text-accent rounded">Forex Rates</a></li>
+                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded"
+                        href="index.html">Home</a></li>
+                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded"
+                        href="#about_us">About Us</a></li>
+                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded"
+                        href="#become_agent">Become an Agent</a></li>
+                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded"
+                        href="#gallery">Gallery</a></li>
+                <li class="mb-1"><a class="block p-4 text-sm font-semibold text-gray-400 hover:text-accent rounded"
+                        href="#contact_p">Contact</a></li>
+                <li class="mb-1"><a href="https://www.westernunion.com/us/en/send-money/app/price-estimator"
+                        target="_blank" class="block p-4 text-sm font-semibold text-accent rounded">Our Fees</a></li>
+                <li class="mb-1"><a href="https://www.westernunion.com/us/en/send-money-to-nepal.html" target="_blank"
+                        class="block p-4 text-sm font-semibold text-accent rounded">Forex Rates</a></li>
             </ul>
             <div class="mt-auto flex justify-end pt-4">
-                <img src="{{ asset('assets/images/logo/WesternUnion_HorizontalLockup_YellowBlack.png') }}" class="w-44 h-5" alt="Western Union Logo" />
+                <img src="{{ asset('assets/images/logo/WesternUnion_HorizontalLockup_YellowBlack.png') }}"
+                    class="w-44 h-5" alt="Western Union Logo" />
             </div>
         </nav>
     </div>

@@ -13,7 +13,7 @@ class ContactUsController extends Controller
      */
     public function index()
     {
-        $contacts = ContactUs::orderBy('display_order')->get();
+        $contacts = ContactUs::latest()->get();
         return view('backend.contact-us.index', compact('contacts'));
     }
 
@@ -41,30 +41,15 @@ class ContactUsController extends Controller
             // Create the contact inquiry
             ContactUs::create($data);
             
-            // For AJAX requests, return JSON response
-            if ($request->ajax()) {
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Contact inquiry submitted successfully.'
-                ]);
-            }
+            // Get the redirect URL from the referer or use a default
+            $redirect = url()->previous() ?: route('contact-us.index');
             
-            // For regular form submissions, redirect back
-            return redirect()->back()
+            return redirect($redirect)
                 ->with('success', 'Contact inquiry submitted successfully.');
         } catch (\Exception $e) {
             // Log error
             \Log::error('Contact form submission error: ' . $e->getMessage());
             
-            // For AJAX requests
-            if ($request->ajax()) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'There was a problem submitting your inquiry. Please try again later.'
-                ], 422);
-            }
-            
-            // For regular form submissions
             return redirect()->back()
                 ->with('error', 'There was a problem submitting your inquiry. Please try again later.')
                 ->withInput();

@@ -75,6 +75,10 @@ class FrontendController extends Controller
     {
         return view('frontend.forex-rate');
     }
+    public function services()
+    {
+        return view('frontend.services');
+    }
     public function gallery()
     {
         $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
@@ -112,7 +116,8 @@ class FrontendController extends Controller
         if ($id) {
             $newsEvent = NewsEventCategory::findOrFail($id);
             $otherNewsEvents = NewsEventCategory::active()->where('id', '!=', $id)->take(10)->get();
-            return view('frontend.news-and-events-detail-page', compact('newsEvent', 'otherNewsEvents'));
+            $setting = Setting::first();
+            return view('frontend.news-and-events-detail-page', compact('newsEvent', 'otherNewsEvents', 'setting'   ));
         }
         return redirect()->route('newsAndEvents');
     }

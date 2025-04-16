@@ -26,8 +26,10 @@
         <div class=" flex flex-col gap-6 md:flex-row  md:justify-center md:items-center">
             <!-- image -->
             <div class="flex-1 flex justify-center w-full">
+                @isset($aboutUs->image)
                 <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image"
                     class="w-full rounded-xl object-contain lg:object-fit" alt="About Us Image" />
+                @endisset
             </div>
 
             <!-- Text Container -->

@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="block-content">
-                <form action="{{ route('grievances.update', $grievance) }}" method="POST" class="needs-validation" novalidate>
+                <form action="{{ route('grievances.update', $grievance) }}" method="POST" class="js-validation">
                     @csrf
                     @method('PUT')
                     @include('backend.grievances.partials.form')

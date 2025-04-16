@@ -17,7 +17,6 @@
                     <p class="text-xs">
                         @isset($settings->phone_number_en)
                             {{ $settings->phone_number_en }}
-
                         @endisset
                     </p>
                 </div>
@@ -45,11 +44,9 @@
             </div>
         </div>
     </nav>
-    <!-- End Top Nav -->
 
     <!-- Main Navigation -->
     <nav class="relative px-4 pr-8 py-3 flex justify-between items-center bg-white shadow-lg">
-        <!-- Logo -->
         <a class="text-xl lg:pl-10 font-bold" href="homepage">
             <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-72 lg:w-56"
                 alt="Hulas Logo" />
@@ -60,13 +57,18 @@
             <ul class="flex space-x-4" x-data="{ openMenu: null }">
                 @foreach ($menus as $i => $menu)
                     <li class="relative" @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">
-                        <a href="{{ url($menu->slug) }}"
-                            class="px-4 py-2 font-medium text-gray-700 hover:text-sky-600 focus:outline-none"
+                        <button class="px-4 py-2 font-medium text-gray-700 hover:text-sky-600 focus:outline-none"
                             @focus="openMenu = {{ $i }}" @blur="openMenu = null"
                             aria-haspopup="{{ $menu->children->isNotEmpty() ? 'true' : 'false' }}"
-                            :aria-expanded="openMenu === {{ $i }}">
+                            :aria-expanded="openMenu === {{ $i }}" type="button">
                             {{ $menu->name_en }}
-                        </a>
+                        </button>
+
+                        @if ($menu->children->isEmpty())
+                            {{-- Only if there are no children, render it as a link --}}
+                            <a href="{{ url($menu->slug) }}" class="absolute inset-0 z-10" aria-hidden="true"
+                                tabindex="-1"></a>
+                        @endif
 
                         @if ($menu->children->isNotEmpty())
                             <ul x-show="openMenu === {{ $i }}" x-transition
@@ -75,7 +77,7 @@
                                 @foreach ($menu->children as $j => $child)
                                     <li class="relative" x-data="{ openSub: false }" @mouseenter="openSub = true"
                                         @mouseleave="openSub = false">
-                                        <a href="{{ url($child->slug) }}"
+                                        <a href="{{ $child->children->isEmpty() ? url($child->slug) : '#' }}"
                                             class="w-full block text-left px-4 py-2 hover:bg-sky-50 flex justify-between items-center"
                                             @focus="openSub = true" @blur="openSub = false"
                                             aria-haspopup="{{ $child->children->isNotEmpty() ? 'true' : 'false' }}"
@@ -110,6 +112,7 @@
                     </li>
                 @endforeach
             </ul>
+
         </div>
 
 
@@ -147,43 +150,44 @@
             <ul>
                 @foreach ($menus as $menuIndex => $menu)
                     <li class="mb-1" x-data="{ open: false }">
-                        <div class="flex items-center justify-between">
+                        @if ($menu->children->isEmpty())
                             <a href="{{ url($menu->slug) }}"
-                                class="block p-4 text-sm font-semibold text-gray-700 hover:text-sky-600 rounded flex-grow">
+                                class="block p-4 text-sm font-semibold text-gray-700 hover:text-sky-600 rounded">
                                 {{ $menu->name_en }}
                             </a>
-                            @if ($menu->children->isNotEmpty())
-                                <button @click="open = !open" class="p-4 focus:outline-none">
-                                    <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-90': open }"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 5l7 7-7 7" />
-                                    </svg>
-                                </button>
-                            @endif
-                        </div>
+                        @else
+                            <button @click="open = !open"
+                                class="flex items-center justify-between w-full p-4 text-sm font-semibold text-gray-700 rounded hover:text-sky-600 focus:outline-none">
+                                <span>{{ $menu->name_en }}</span>
+                                <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-90': open }"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        @endif
 
                         @if ($menu->children->isNotEmpty())
                             <ul x-show="open" x-transition class="ml-4 border-l border-gray-200">
                                 @foreach ($menu->children as $childIndex => $child)
                                     <li class="pt-1" x-data="{ openChild: false }">
-                                        <div class="flex items-center justify-between">
+                                        @if ($child->children->isEmpty())
                                             <a href="{{ url($child->slug) }}"
-                                                class="block p-3 pl-4 text-sm text-gray-700 hover:text-sky-600 flex-grow">
+                                                class="block p-3 pl-4 text-sm text-gray-700 hover:text-sky-600">
                                                 {{ $child->name_en }}
                                             </a>
-                                            @if ($child->children->isNotEmpty())
-                                                <button @click.stop="openChild = !openChild"
-                                                    class="p-3 focus:outline-none">
-                                                    <svg class="w-4 h-4 transition-transform"
-                                                        :class="{ 'rotate-90': openChild }" fill="none"
-                                                        stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2" d="M9 5l7 7-7 7" />
-                                                    </svg>
-                                                </button>
-                                            @endif
-                                        </div>
+                                        @else
+                                            <button @click="openChild = !openChild"
+                                                class="flex items-center justify-between w-full p-3 pl-4 text-sm text-gray-700 rounded hover:text-sky-600 focus:outline-none">
+                                                <span>{{ $child->name_en }}</span>
+                                                <svg class="w-4 h-4 transition-transform"
+                                                    :class="{ 'rotate-90': openChild }" fill="none"
+                                                    stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </button>
+                                        @endif
 
                                         @if ($child->children->isNotEmpty())
                                             <ul x-show="openChild" x-transition class="ml-4 border-l border-gray-200">
@@ -204,6 +208,8 @@
                     </li>
                 @endforeach
             </ul>
+
+
 
             <div class="mt-auto flex justify-end pt-4">
                 <img src="{{ asset('assets/images/logo/WesternUnion_HorizontalLockup_YellowBlack.png') }}"

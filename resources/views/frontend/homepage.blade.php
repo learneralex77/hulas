@@ -2,13 +2,11 @@
 @section('title', 'Home')
 @section('meta', 'Welcome to Hulas Remittance')
 @push('styles')
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 @endpush
-@section('content')
 
-    @push('styles')
-        <!-- Swiper CSS -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    @endpush
+@section('content')
     <!-- Slider Section -->
     @isset($sliders)
         <section id="home-slider">
@@ -83,9 +81,7 @@
         </section>
     @endisset
 
-    <!-- Slider Section -->
-
-    <!-- --------About-us-section-------- -->
+    <!-- --------About-us-section---------->
     <section class="overflow-x-hidden">
         <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
             <div class="flex flex-col items-center space-y-6">
@@ -107,9 +103,6 @@
             </div>
         </div>
     </section>
-
-
-    <!-- --------About-us-section-------- -->
     <section class="flex flex-col md:flex-row md:justify-center md:items-center lg:flex-row m-10 md:m-10 2xl:mx-40 gap-10">
         <div class="flex justify-center flex-1 flex-grow text-center">
             <div class="flex-1 flex justify-center w-full">

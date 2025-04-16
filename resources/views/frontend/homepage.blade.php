@@ -332,7 +332,6 @@
 
     <!-- --------Gallery and News Section-------- -->
     <div class="flex flex-col md:flex-row mx-10 lg:mx-40 px-4 gap-10 my-10">
-        @isset($galleries->featured_image)
 
             <div class="flex-1 overflow-hidden">
                 <div class="flex flex-row justify-between m-3">
@@ -371,9 +370,7 @@
                     </div>
                 </div>
             </div>
-        @endisset
 
-        @if (isset($newsAndEvents) && count($newsAndEvents) > 0)
             <div class="flex-1 w-full h-full">
                 <div class="flex justify-end">
                     <a href="{{ route('newsAndEvents') }}"
@@ -424,7 +421,6 @@
                     </div>
                 </div>
             </div>
-        @endif
     </div>
 
 

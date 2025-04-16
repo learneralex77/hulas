@@ -221,39 +221,7 @@
     }
   });
 
-  // Add items using DOM methods
-  contentData[category].forEach(item => {
-    const wrapper = document.createElement("div");
-    wrapper.className = "bg-white p-4 rounded-lg shadow-md max-h-40 hover:shadow-xl cursor-pointer transition-all ease-in-out";
-
-    const topRow = document.createElement("div");
-    topRow.className = "flex items-center gap-10 h-20";
-
-    const icon = document.createElement("img");
-    icon.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1oX7_c8ln65NHhs86VmmAlH5ZnpeDdYR5CA&s";
-    icon.className = "w-6";
-
-    const title = document.createElement("span");
-    title.className = "font-bold";
-    title.textContent = item.name;
-
-    topRow.appendChild(icon);
-    topRow.appendChild(title);
-
-    const downloadBtn = document.createElement("button");
-    downloadBtn.className = "mt-2 bg-black text-white w-full p-2 rounded-lg flex items-center justify-center cursor-pointer";
-    downloadBtn.onclick = () => downloadFile(item.file);
-
-    const downloadIcon = document.createElement("img");
-    downloadIcon.src = "/images/contact-us/download-minimalistic-svgrepo-com.svg";
-    downloadIcon.className = "w-6 hover:scale-125 ease-in-out transition-all";
-
-    downloadBtn.appendChild(downloadIcon);
-    wrapper.appendChild(topRow);
-    wrapper.appendChild(downloadBtn);
-    content.appendChild(wrapper);
-  });
-}
+ 
 
 
 

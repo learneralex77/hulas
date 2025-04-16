@@ -35,7 +35,6 @@
         At Hulas Remittance, we take every grievance seriously. If you've faced any issues, please let us know. Our
         team is here to listen and resolve your concerns quickly and fairly.
       </p>
-      <p class="text-gray-600 text-sm mb-6">Last updated: March 25, 2025</p>
 
       </div>
     </div>
@@ -43,7 +42,7 @@
 
     <div class="flex justify-center w-full">
     <div class="bg-white shadow-xl rounded-md p-6">
-      <form id="grievanceForm" action="{{ route('grievances.store') }}" method="POST" class="lg:mx-10">
+      <form id="grievanceForm" action="{{ url('/grievances') }}" method="POST" class="lg:mx-10">
       @csrf
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div class="flex flex-col space-y-5">
@@ -67,7 +66,7 @@
           maxlength="19"
           />
         @error('mobile_number')
-      <span class="text-red-500 text-sm">{{ $message }}</span>
+      <span class="text-red-500 text-sm ">{{ $message }}</span>
     @enderror
         </div>
         <div class="flex flex-col space-y-5">

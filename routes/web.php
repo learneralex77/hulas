@@ -15,6 +15,16 @@ Route::get('homepage', [FrontendController::class, 'homepage'])->name('homepage'
 
 Route::get('about-hulas-remittance', [FrontendController::class, 'aboutHulasRemittance'])->name('aboutHulasRemittance');
 Route::get('about-western-union', [FrontendController::class, 'aboutWesternUnion'])->name('aboutWesternUnion');
+<<<<<<< Updated upstream
+=======
+Route::get('mission-and-vision', [FrontendController::class, 'missionAndVision'])->name('missionAndVision');
+Route::get('message-from-director', [FrontendController::class, 'messageFromDirector'])->name('messageFromDirector');
+Route::get('organizational-structure', [FrontendController::class, 'organizationalStructure'])->name('organizationalStructure');
+
+Route::get('services', [FrontendController::class, 'services'])->name('services');
+Route::get('service-detail', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
+
+>>>>>>> Stashed changes
 
 Route::get('become-an-agent', [FrontendController::class, 'becomeAnAgent'])->name('becomeAnAgent');
 Route::post('become-an-agent', [BecomeAnAgentController::class, 'store'])->name('storeAgentRequest');

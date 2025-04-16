@@ -46,19 +46,20 @@
     </div>
     </section>
 
-    <div class="flex-wrap grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8 gap-6 md:gap-4 lg:gap-10 ">
+    <div class="flex flex-row flex-wrap justify-around gap-6 ">
     @isset($galleries)
     @foreach ($galleries as $gallery)
-    <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72">
+    <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72 p-3">
       <a href="#">
-      <img class="rounded-t-lg w-full h-48 object-contain"
+      <img class="rounded-t-lg w-full h-48 object-cover"
       src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg')  }}"
       alt="" />
       </a>
       <div class="p-3">
-      <div class="flex items-center mb-2">
-      <div class="mr-2"><i class="fa-regular fa-calendar-days fa-xl" style="color: #FFD43B;"></i> </div>
-      <span class="text-gray-600 text-sm">{{ $gallery->created_at->format('F d, Y') }}</span>
+      <div class="flex items-center mb-2 space-x-2">
+      <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"
+      class="w-4 h-4 object-contain" alt="date" /> <span
+      class="text-gray-600 text-sm">{{ $gallery->created_at->format('F d, Y') }}</span>
       </div>
       <h5 class="mb-2 text-lg font-bold text-gray-900">
       {{ $gallery->title_en }}

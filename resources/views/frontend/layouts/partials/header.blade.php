@@ -1,22 +1,22 @@
-<header class="sticky -top-0 lg:-top-16 z-50">
+<header class="sticky -top-0 lg:-top-12 z-50">
     <!-- Top Nav -->
-    <nav class="hidden w-full py-1 bg-bgprimary border-b-2 px-10 lg:block">
+    <nav class="hidden w-full py-1 bg-bgprimary border-black border-b-2 px-10 lg:block">
         <div class="w-full p-2 flex justify-between items-center">
             <!-- address, toll free -->
             <div class="flex space-x-8 items-center">
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/location-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($setting->address_en)
-                            {{ $setting->address_en }}
+                        @isset($settings->address_en)
+                            {{ $settings->address_en }}
                         @endisset
                     </p>
                 </div>
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/phone-call-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($setting->phone_number_en)
-                            {{ $setting->phone_number_en }}
+                        @isset($settings->phone_number_en)
+                            {{ $settings->phone_number_en }}
 
                         @endisset
                     </p>
@@ -24,11 +24,11 @@
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/mail-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($setting->email)
-                            {{ $setting->email }}
+                        @isset($settings->email)
+                            {{ $settings->email }}
                         @endisset
-                        @isset($setting->agent_notify_email)
-                            {{ $setting->agent_notify_email }}
+                        @isset($settings->agent_notify_email)
+                            {{ $settings->agent_notify_email }}
                         @endisset
                     </p>
                 </div>
@@ -56,7 +56,7 @@
         </a>
 
         <!-- Desktop Menu -->
-        <div class="hidden m-3 py-2 lg:flex justify-center items-center flex-grow">
+        <div class="hidden lg:flex justify-center items-center flex-grow py-3">
             <ul class="flex space-x-4" x-data="{ openMenu: null }">
                 @foreach ($menus as $i => $menu)
                     <li class="relative" @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">

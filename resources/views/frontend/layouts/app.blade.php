@@ -36,6 +36,8 @@
     {{-- flowbite --}}
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
 
+    {{-- flag-icon-css --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -61,8 +63,8 @@
     <div id="content">
         <!-- Go to Top Button -->
         <button id="goToTopBtn"
-            class="z-50 fixed bottom-4 right-4 bg-[#EF5824] text-white p-2 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-110 hover:bg-black-600 hidden">
-            <img src="{{ asset('assets/img/top-arrow.png') }}" alt="go-to-top-button" class="w-10 h-10"> </button>
+            class="z-50 fixed bottom-4 right-4 bg-accent text-white p-2 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-110 hover:bg-black-600 hidden">
+            <img src="{{ asset('assets/images/up-chevron-svgrepo-com.png') }}" alt="go-to-top-button" class="w-10 h-10"> </button>
 
         @include('frontend..layouts.partials.header')
 

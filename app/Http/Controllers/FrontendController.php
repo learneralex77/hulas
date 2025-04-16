@@ -81,9 +81,14 @@ class FrontendController extends Controller
     {
         return view('frontend.services');
     }
-    public function serviceDetail()
+    public function serviceDetail($id = null)
     {
-        return view('frontend.service-detail');
+        if ($id) {
+            $service = Service::findOrFail($id);
+            $setting = Setting::first();
+            return view('frontend.service-detail', compact('service', 'setting'));
+        }
+        return redirect()->route('services');
     }
     public function gallery()
     {

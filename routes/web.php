@@ -18,6 +18,7 @@ Route::get('message-from-director', [FrontendController::class, 'messageFromDire
 Route::get('organizational-structure', [FrontendController::class, 'organizationalStructure'])->name('organizationalStructure');
 
 Route::get('services', [FrontendController::class, 'services'])->name('services');
+Route::get('service-detail/{id?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
 
 Route::get('become-an-agent', [FrontendController::class, 'becomeAnAgent'])->name('becomeAnAgent');
 Route::post('become-an-agent', [BecomeAnAgentController::class, 'store'])->name('storeAgentRequest');

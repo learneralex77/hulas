@@ -36,7 +36,7 @@
                                     {{ $slider->short_description_en }}</p>
                                 <a href="{{ $slider->link ? $slider->link : '#' }}"
                                     class="px-6 py-1 sm:py-2 bg-accent w-34 sm:w-40 text-black border-2 rounded-full hover:opacity-85 font-semibold text-sm sm:text-lg">
-                                    Read More </a>
+                                    About Hulas </a>
                             </div>
                         </div>
                     @endforeach
@@ -98,7 +98,7 @@
                     Welcome To Hulas Remittance
                 </p>
                 @isset($aboutUs->short_description_en)
-                    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl line-clamp-2">
+                    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl line-clamp-3">
                         {{ $aboutUs->short_description_en }}
                     </p>
                 @endisset

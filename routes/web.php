@@ -17,12 +17,11 @@ Route::get('mission-and-vision', [FrontendController::class, 'missionAndVision']
 Route::get('message-from-director', [FrontendController::class, 'messageFromDirector'])->name('messageFromDirector');
 Route::get('organizational-structure', [FrontendController::class, 'organizationalStructure'])->name('organizationalStructure');
 
-Route::get('services', action: [FrontendController::class, 'services'])->name('services');
-Route::get('service-detail', action: [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
-
-
+Route::get('services', [FrontendController::class, 'services'])->name('services');
+Route::get('service-detail/{slug?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
 Route::get('become-an-agent', [FrontendController::class, 'becomeAnAgent'])->name('becomeAnAgent');
 Route::post('become-an-agent', [BecomeAnAgentController::class, 'store'])->name('storeAgentRequest');
+
 Route::post('backend/become-an-agent/{becomeAnAgent}/toggle-status', [BecomeAnAgentController::class, 'toggleContactStatus'])->name('become-an-agent.toggle-status');
 Route::resource('admin/become-an-agent', BecomeAnAgentController::class);
 

@@ -60,27 +60,10 @@
   </section>
   <!-- banner-section -->
 
-  <div id="card-prototype" class="hidden">
-    <div class="bg-white p-4 rounded-lg shadow-md max-h-40 hover:shadow-xl cursor-pointer transition-all ease-in-out">
-    <div class="flex items-center gap-10 h-20">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1oX7_c8ln65NHhs86VmmAlH5ZnpeDdYR5CA&s"
-      class="w-6" alt="icon">
-      <span class="font-bold file-name"></span>
-    </div>
-    <button
-      class="mt-2 bg-black text-white w-full p-2 rounded-lg flex items-center justify-center cursor-pointer download-btn">
-      <img src="/images/contact-us/download-minimalistic-svgrepo-com.svg"
-      class="w-6 hover:scale-125 ease-in-out transition-all" alt="download">
-    </button>
-    </div>
-  </div>
 
-
-
-
-  <div class="flex flex-col justify-center mx-auto bg-white p-6 rounded-lg md:mx-[50px] xl:mx-[100px] ">
-    <h2 class="text-2xl font-bold mb-2">Downloads</h2>
-    <hr class="text-gray-300 font-bold mb-4" />
+  <div class="flex flex-col justify-center mx-auto bg-white p-6 rounded-lg md:mx-[50px] xl:mx-[100px] max-w-screen-xl">
+  <h2 class="text-2xl font-bold mb-2 hidden md:block text-black">Categories</h2>
+    <hr class="text-gray-300 font-bold mb-4 hidden md:block" />
     <div class="flex flex-col lg:flex-row gap-6 w-full">
     <!-- Dropdown for small screens -->
     <div class="relative lg:hidden w-full md:hidden text-left">
@@ -159,7 +142,10 @@
       </ul>
       </div>
       <!-- Content Area -->
-      <div id="content" class="flex-2 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+       <div class="w-full flex-[2]">
+<div id="content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full max-w-screen-xl mx-auto p-4"></div>
+
+       </div>
     </div>
     </div>
   </div>
@@ -193,9 +179,6 @@
   </script>
 
   <script>
-
-
-
     const contentData = {
     forms: [
       { name: "Personal Account Opening", file: "personal_account.pdf" },
@@ -221,7 +204,58 @@
     debenture: [{ name: "Debenture Details", file: "debenture.pdf" }],
     };
 
-   
+    function loadContent(category) {
+  const content = document.getElementById("content");
+  content.innerHTML = "";
+
+  // Clear previous highlights
+  document.querySelectorAll('.category-button, #sidebar li').forEach(el => {
+    el.classList.remove("selected");
+  });
+
+  // Highlight selected category
+  const allItems = [...document.querySelectorAll(".category-button"), ...document.querySelectorAll("#sidebar li")];
+  allItems.forEach(el => {
+    if (el.innerText.toLowerCase().includes(category.toLowerCase())) {
+      el.classList.add("selected");
+    }
+  });
+
+  // Add items using DOM methods
+  contentData[category].forEach(item => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "bg-white p-4 rounded-lg shadow-md max-h-40 hover:shadow-xl cursor-pointer transition-all ease-in-out";
+
+    const topRow = document.createElement("div");
+    topRow.className = "flex items-center gap-10 h-20";
+
+    const icon = document.createElement("img");
+    icon.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1oX7_c8ln65NHhs86VmmAlH5ZnpeDdYR5CA&s";
+    icon.className = "w-6";
+
+    const title = document.createElement("span");
+    title.className = "font-bold";
+    title.textContent = item.name;
+
+    topRow.appendChild(icon);
+    topRow.appendChild(title);
+
+    const downloadBtn = document.createElement("button");
+    downloadBtn.className = "mt-2 bg-black text-white w-full p-2 rounded-lg flex items-center justify-center cursor-pointer";
+    downloadBtn.onclick = () => downloadFile(item.file);
+
+    const downloadIcon = document.createElement("img");
+    downloadIcon.src = "/images/contact-us/download-minimalistic-svgrepo-com.svg";
+    downloadIcon.className = "w-6 hover:scale-125 ease-in-out transition-all";
+
+    downloadBtn.appendChild(downloadIcon);
+    wrapper.appendChild(topRow);
+    wrapper.appendChild(downloadBtn);
+    content.appendChild(wrapper);
+  });
+}
+
+
 
     function downloadFile(filename) {
     const link = document.createElement("a");

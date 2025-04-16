@@ -22,19 +22,17 @@
 
                             <!-- Text Overlay -->
                             <div
-                                class="absolute inset-0 flex flex-col space-y-3 items-left text-left bg-black/20 py-10 sm:py-20 md:py-40 px-20 md:pb-50 md:px-30">
-                                <h2 class="text-white text-xl sm:text-3xl md:text-5xl font-bold" style="
+                                class="absolute inset-0 flex flex-col space-y-2 md:space-y-3 items-left text-left bg-black/20 py-10 sm:py-20 md:py-40 px-20 md:pb-50 md:px-30">
+                                <h2 class="text-white text-base sm:text-xl md::text-3xl md:text-5xl font-bold" style="
                                               text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
                                               -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                              ">Reliable Services</h2>
+                                              ">{{ $slider->name_en }}</h2>
                                 <p class=" text-white text-lg sm:text-xl md:text-2xl max-w-3xl" style="
                                                   -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                              ">Experience secure and
-                                    hassle-free money transfers with Hulas Remittance — trusted by millions across Nepal since 2005.
-                                </p>
-                                <a href="{{ route('aboutHulasRemittance') }}"
-                                    class="px-6 py-2 bg-accent w-40 text-black border-2 rounded-full hover:opacity-85 font-semibold text-lg">
-                                    About Hulas </a>
+                                              ">{{ $slider->short_description_en }}</p>
+                                <a href="{{ $slider->link ? $slider->link : '#' }}"
+                                    class="px-6 py-1 sm:py-2 bg-accent w-34 sm:w-40 text-black border-2 rounded-full hover:opacity-85 font-semibold text-sm sm:text-lg">
+                                    Read More </a>
                             </div>
                         </div>
                     @endforeach

@@ -40,7 +40,7 @@
 
         <!-- 2nd part -->
         <!-- Main div for second part -->
-        <div class="flex-1 flex flex-col w-full h-full gap-4 m-6">
+        <div class="flex-1 flex  justify-center flex-col h-full gap-4 m-6">
             <div class="flex flex-col gap-2">
                 <h3 class="font-bold text-xl text-black border-l-accent border-l-[4px] px-3">About us</h3>
                 <p class="px-3">{{ Str::limit($newsEvent->description_en, 150) }}</p>
@@ -85,7 +85,7 @@
 
             </div>
             <div class="flex justify-end">
-                <a href="{{ route('newsAndEvents') }}" class="bg-black items-center text-accent px-4 py-2 rounded-full cursor-pointer hover:opacity-85 w-54">
+                <a href="{{ route('newsAndEvents') }}" class="bg-black text-center items-center text-accent px-4 py-2 rounded-full cursor-pointer hover:opacity-85 w-54">
                     Explore News Articles
                 </a>
             </div>

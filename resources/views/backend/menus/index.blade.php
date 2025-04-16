@@ -45,7 +45,7 @@
                                     </td>
                                     <td class="d-none d-sm-table-cell">{{ $menu->slug }}</td>
                                     <td class="text-center">{{ $menu->display_order }}</td>
-                                    <td class="d-none d-lg-table-cell">{{ $menu->parent ? $menu->parent->bname : '-' }}</td>
+                                    <td class="d-none d-lg-table-cell">{{ $menu->parent ? $menu->parent->name_en : '-' }}</td>
                                     <td class="text-center">
                                         @if ($menu->is_published)
                                             <span class="badge bg-success">Published</span>

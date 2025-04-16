@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\BecomeAnAgentController;
+use App\Http\Controllers\DownloadController;
 
 Route::get('/', function () {
     return redirect(route('homepage'));
@@ -30,6 +31,7 @@ Route::post('contact-us', [App\Http\Controllers\ContactUsController::class, 'sto
 Route::post('backend/contact-us/{contactUs}/toggle-status', [App\Http\Controllers\ContactUsController::class, 'toggleContactStatus'])->name('contact-us.toggle-status');
 
 Route::get('downloads', [FrontendController::class, 'downloads'])->name('downloads');
+Route::get('/downloads/file/{download}', [FrontendController::class, 'downloadFile'])->name('frontend.downloads.download');
 
 Route::get('news-and-events', [FrontendController::class, 'newsAndEvents'])->name('newsAndEvents');
 Route::get('news-and-events-detail-page/{id?}', [FrontendController::class, 'newsAndEventsDetailPage'])->name('newsAndEventsDetailPage');

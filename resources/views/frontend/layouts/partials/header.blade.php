@@ -17,7 +17,7 @@
                     <p class="text-xs">
                         @isset($setting->phone_number_en)
                             {{ $setting->phone_number_en }}
-                
+
                         @endisset
                     </p>
                 </div>
@@ -51,12 +51,12 @@
     <nav class="relative px-4 pr-8 py-3 flex justify-between items-center bg-white shadow-lg">
         <!-- Logo -->
         <a class="text-xl lg:pl-10 font-bold" href="homepage">
-            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40 lg:w-56"
+            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-72 lg:w-56"
                 alt="Hulas Logo" />
         </a>
 
         <!-- Desktop Menu -->
-        <div class="hidden lg:flex justify-center items-center flex-grow">
+        <div class="hidden m-3 py-2 lg:flex justify-center items-center flex-grow">
             <ul class="flex space-x-4" x-data="{ openMenu: null }">
                 @foreach ($menus as $i => $menu)
                     <li class="relative" @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">

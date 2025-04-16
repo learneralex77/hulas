@@ -25,7 +25,7 @@
                                 class="absolute inset-0 flex flex-col space-y-3 items-left text-left bg-black/10 py-10 sm:py-20 md:py-40 px-20 md:pb-50 md:px-30">
                                 <h2 class="text-white text-xl sm:text-3xl md:text-5xl font-bold"      style="
                                   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                  -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                  -webkit-text-stroke: 1px rgba(19, 18, 18, 0.24);
                                   ">Reliable Services</h2>
                                 <p class=" text-white text-lg sm:text-xl md:text-2xl max-w-3xl"      style="
                                       -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);

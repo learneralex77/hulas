@@ -22,19 +22,18 @@
 
                             <!-- Text Overlay -->
                             <div
-                                class="absolute inset-0 flex flex-col space-y-3 items-left text-left bg-black/10 py-10 sm:py-20 md:py-40 px-20 md:pb-50 md:px-30">
-                                <h2 class="text-white text-xl sm:text-3xl md:text-5xl font-bold"      style="
-                                  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                  -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                  ">Reliable Services</h2>
-                                <p class=" text-white text-lg sm:text-xl md:text-2xl max-w-3xl"      style="
-                                      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                  ">Experience secure and
+                                class="absolute inset-0 flex flex-col space-y-3 items-left text-left bg-black/20 py-10 sm:py-20 md:py-40 px-20 md:pb-50 md:px-30">
+                                <h2 class="text-white text-xl sm:text-3xl md:text-5xl font-bold" style="
+                                              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                              ">Reliable Services</h2>
+                                <p class=" text-white text-lg sm:text-xl md:text-2xl max-w-3xl" style="
+                                                  -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                              ">Experience secure and
                                     hassle-free money transfers with Hulas Remittance — trusted by millions across Nepal since 2005.
                                 </p>
                                 <a href="{{ route('aboutHulasRemittance') }}"
-                                    class="px-6 py-2 bg-accent w-40 text-black border-2 rounded-full hover:opacity-85 font-semibold text-lg"
-                               >
+                                    class="px-6 py-2 bg-accent w-40 text-black border-2 rounded-full hover:opacity-85 font-semibold text-lg">
                                     About Hulas </a>
                             </div>
                         </div>
@@ -86,9 +85,9 @@
         <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
             <div class="flex flex-col items-center space-y-6">
                 <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-                          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                          ">
+                              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                              ">
                     Our Introduction
                 </h1>
 
@@ -133,9 +132,9 @@
                 <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                     <div class="flex flex-col items-center space-y-6">
                         <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-                                              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                              ">
+                                                      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                                      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                      ">
                             Our Services
                         </h1>
 
@@ -274,9 +273,9 @@
                 <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                     <div class="flex flex-col items-center space-y-6">
                         <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
-                                              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                              ">
+                                                      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                                      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                      ">
                             Our partners & Supporters
                         </h1>
 
@@ -294,27 +293,27 @@
             <div class="w-full overflow-hidden relative">
                 <div class="w-full h-full absolute">
                     <div class="w-1/4 h-full absolute z-50 left-0" style="
-                                              background: linear-gradient(
-                                              to right,
-                                              #fff8cc 0%,
-                                              rgba(255, 255, 255, 0) 100%
-                                              );
-                                              ">
+                                                      background: linear-gradient(
+                                                      to right,
+                                                      #fff8cc 0%,
+                                                      rgba(255, 255, 255, 0) 100%
+                                                      );
+                                                      ">
                     </div>
                     <div class="w-1/4 h-full absolute z-50 right-0" style="
-                                              background: linear-gradient(
-                                              to left,
-                                              #fff8cc 0%,
-                                              rgba(255, 255, 255, 0) 100%
-                                              );
-                                              ">
+                                                      background: linear-gradient(
+                                                      to left,
+                                                      #fff8cc 0%,
+                                                      rgba(255, 255, 255, 0) 100%
+                                                      );
+                                                      ">
                     </div>
                 </div>
 
                 <div class="carousel-items flex items-center justify-center w-full" style="
-                                              width: fit-content;
-                                              animation: carouselAnim 10s infinite alternate linear;
-                                              ">
+                                                      width: fit-content;
+                                                      animation: carouselAnim 10s infinite alternate linear;
+                                                      ">
                     @foreach ($partners as $partner)
                         <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
                             style="width: 270px">

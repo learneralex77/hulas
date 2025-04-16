@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', isset($service) ? $service->name_en : 'Service Detail')
-@section('meta', isset($service) ? $service->name_en : 'Service Detail')
+@section('title', $service->name_en)
+@section('meta', $service->name_en)
 @section('content')
 
   <!-- banner-section -->
@@ -11,13 +11,13 @@
     </div>
     <div class="absolute w-full top-20">
     <div class="flex flex-col space-y-8 ml-10">
-      <h3 class="text-4xl font-extrabold text-white">{{ isset($service) ? $service->name_en : 'Service Detail' }}</h3>
+      <h3 class="text-4xl font-extrabold text-white">{{ $service->name_en }}</h3>
       <div class="flex space-x-5 items-center">
       <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
       <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
       <a href="{{ route('services') }}" class="text-white font-bold">Services</a>
       <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-      <a href="{{ route('serviceDetail', isset($service) ? $service->id : '') }}" class="text-accent font-bold">{{ isset($service) ? $service->name_en : 'Service Detail' }}</a>
+      <a href="{{ route('serviceDetail', $service->slug) }}" class="text-accent font-bold">{{ $service->name_en }}</a>
       </div>
     </div>
     </div>
@@ -28,13 +28,9 @@
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
     <div class="flex flex-col items-center space-y-6">
       <p class="text-2xl text-black font-bold md:text-4xl text-center">
-      {{ isset($service) ? $service->name_en : 'Service Detail' }} </p>
+      {{ $service->name_en }} </p>
       <p class="p-2 text-lg text-[#737879] text-center max-w-3xl">
-      @if(isset($service))
-        {!! \Illuminate\Support\Str::limit(strip_tags($service->description_en), 150) !!}
-      @else
-        Fast, secure money transfers made easy with Hulas Remittance and trusted partners like Western Union.
-      @endif
+      Fast, secure money transfers made easy with Hulas Remittance and trusted partners like Western Union.
       </p>
     </div>
     </div>
@@ -43,11 +39,11 @@
   <section class="flex flex-col md:flex-row md:justify-center md:items-center lg:flex-row m-10 md:m-10 2xl:mx-40 gap-10">
     <div class="flex justify-center flex-1 flex-grow text-center">
     <div class="flex-1 flex justify-center w-full">
-      @if(isset($service) && $service->file)
-        <img src="{{ asset('storage' . $service->file) }}" alt="{{ $service->name_en }}"
+      @if($service->file)
+        <img src="{{ asset('storage/' . $service->file) }}" alt="{{ $service->name_en }}"
         class="w-full max-w-md h-80 rounded-md object-cover bg-gray-100" />
       @else
-        <img src="{{ asset('assets/images/about-us/about-img-1.webp') }}" alt="Service Image"
+        <img src="{{ asset('assets/images/about-us/about-img-1.webp') }}" alt="{{ $service->name_en }}"
         class="w-full max-w-md h-80 rounded-md object-cover bg-gray-100" />
       @endif
     </div>
@@ -55,17 +51,7 @@
 
     <div class="flex flex-2 flex-col space-y-6">
     <p class="text-gray-600 text-base lg:text-lg text-justify">
-      @if(isset($service))
-        {!! $service->description_en !!}
-      @else
-        We are committed to investing in technology to make transferring money as easy and efficient as possible
-
-        With our services, users are able to complete transactions. We are proud to be Nepali provider of these services,
-        and with number of transactions facilitated by us increasing daily, there are no signs of slowing down!
-
-        We're here to provide cost effective and hassle free remittance services to the customers, riding with innovative
-        and latest technology.
-      @endif
+      {!! $service->description_en !!}
     </p>
     </div>
   </section>

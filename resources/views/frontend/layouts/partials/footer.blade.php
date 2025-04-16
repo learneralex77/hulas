@@ -87,9 +87,10 @@
                                 <p>
                                     @isset($settings->email)
                                     {{ $settings->email }}
+                                    @endisset
                                     @isset($settings->agent_notify_email)
                                     {{ $settings->agent_notify_email }}
-                                    @endisset
+                                   
                                     @endisset
                                 </p>
                             </div>
@@ -99,17 +100,17 @@
                 <div class="flex flex-1 flex-col lg:flex-row justify-around items-center lg:justify-between gap-6">
                     <div class="text-[#ffffffcc] flex flex-col space-y-2">
                         <h4 class=" text-accent font-bold md:text-left  text-center items-center">Important Links</h4>
-                        <a href="homepage" class="hover:underline text-center">Home</a>
-                        <a href="about-hulas-remittance" class="hover:underline text-center">About Hulas Remittance</a>
-                        <a href="about-western-union" class="hover:underline text-center">About Western Union</a>
-                        <a href="find-an-agent" class="hover:underline text-center">Agents List</a>
-                        <a href="gallery" class="hover:underline text-center">Gallery</a>
+                        <a href="{{ route('homepage') }}" class="hover:underline text-center">Home</a>
+                        <a href="{{ route('aboutHulasRemittance') }}" class="hover:underline text-center">About Hulas Remittance</a>
+                        <a href="{{ route('aboutWesternUnion') }}" class="hover:underline text-center">About Western Union</a>
+                        <a href="{{ route('findAnAgent') }}" class="hover:underline text-center">Agents List</a>
+                        <a href="{{ route('gallery') }}" class="hover:underline text-center">Gallery</a>
                     </div>
                     <div class=" text-[#ffffffcc] flex flex-col space-y-2">
                         <h4 class=" text-accent font-bold md:text-left text-center">Navigate</h4>
-                        <a href="forex-rate" class="hover:underline text-center">Forex Rate</a>
-                        <a href="faq" class="hover:underline text-center">FAQ</a>
-                        <a href="contact-us" class="hover:underline text-center">Contact us</a>
+                        <a href="{{ route('forexRate') }}" class="hover:underline text-center">Forex Rate</a>
+                        <a href="#" class="hover:underline text-center">FAQ</a>
+                        <a href="{{ route('contactUs') }}" class="hover:underline text-center">Contact us</a>
                         <a href="{{ route('termsAndConditions') }}" class="hover:underline text-center">Terms & Conditions</a>
                         <a href="{{ route('privacyAndPolicy') }}" class="hover:underline text-center">Privacy Policy</a>
                     </div>

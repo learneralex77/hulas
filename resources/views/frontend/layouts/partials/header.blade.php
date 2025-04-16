@@ -53,11 +53,11 @@
         </a>
 
         <!-- Desktop Menu -->
-        <div class="hidden lg:flex justify-center items-center flex-grow">
+        <div class="hidden lg:flex justify-end items-center flex-end flex-grow">
             <ul class="flex space-x-4" x-data="{ openMenu: null }">
                 @foreach ($menus as $i => $menu)
                     <li class="relative" @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">
-                        <button class="px-4 py-2 font-medium text-gray-700 hover:text-sky-600 focus:outline-none"
+                        <button class="px-4 py-2 font-semibold text-gray-700 hover:text-accent focus:outline-none cursor-pointer"
                             @focus="openMenu = {{ $i }}" @blur="openMenu = null"
                             aria-haspopup="{{ $menu->children->isNotEmpty() ? 'true' : 'false' }}"
                             :aria-expanded="openMenu === {{ $i }}" type="button">

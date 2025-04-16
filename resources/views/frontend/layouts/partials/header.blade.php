@@ -7,19 +7,29 @@
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/location-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        Bagdurbar, Sundhara (Near to China Town Gate) Kathmandu, Nepal
+                        @isset($setting->address_en)
+                            {{ $setting->address_en }}
+                        @endisset
                     </p>
                 </div>
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/phone-call-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        +977 1 5361313, 5358225, 5352008, Toll Free Number: 16600 111222 (For NTC Users Only)
+                        @isset($setting->phone_number_en)
+                            {{ $setting->phone_number_en }}
+                
+                        @endisset
                     </p>
                 </div>
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/mail-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        info@hulasremittance.com, csc@hulasremittance.com
+                        @isset($setting->email)
+                            {{ $setting->email }}
+                        @endisset
+                        @isset($setting->agent_notify_email)
+                            {{ $setting->agent_notify_email }}
+                        @endisset
                     </p>
                 </div>
             </div>

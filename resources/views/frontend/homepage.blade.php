@@ -29,10 +29,10 @@
                                               ">{{ $slider->name_en }}</h2>
                                 <p class=" text-white text-lg sm:text-xl md:text-2xl max-w-3xl" style="
                                                   -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                              ">{{ $slider->description_en }}</p>
-                                <a href="{{ route('aboutHulasRemittance') }}"
+                                              ">{{ $slider->short_description_en }}</p>
+                                <a href="{{ $slider->link ? $slider->link : '#' }}"
                                     class="px-6 py-1 sm:py-2 bg-accent w-34 sm:w-40 text-black border-2 rounded-full hover:opacity-85 font-semibold text-sm sm:text-lg">
-                                    About Hulas </a>
+                                    Read More </a>
                             </div>
                         </div>
                     @endforeach

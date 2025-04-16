@@ -125,7 +125,7 @@
             </div>
 
             <!-- bottom footer -->
-            <div class="flex flex-col md:flex-row md:justify-between items-center gap-6">
+            <div class="flex flex-col md:flex-row md:justify-between items-center gap-6 lg:px-10">
                 <p>&copy; 2025 Hulas Remittance Pvt.Ltd.&nbsp;All rights reserved.</p>
                 <p>
                     Designed and crafted by

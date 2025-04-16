@@ -1,6 +1,6 @@
-<header class="sticky -top-0 lg:-top-16 z-50">
+<header class="sticky -top-0 lg:-top-12 z-50">
     <!-- Top Nav -->
-    <nav class="hidden w-full py-1 bg-bgprimary border-b-2 px-10 lg:block">
+    <nav class="hidden w-full py-1 bg-bgprimary border-black border-b-2 px-10 lg:block">
         <div class="w-full p-2 flex justify-between items-center">
             <!-- address, toll free -->
             <div class="flex space-x-8 items-center">
@@ -17,7 +17,7 @@
                     <p class="text-xs">
                         @isset($settings->phone_number_en)
                             {{ $settings->phone_number_en }}
-                
+
                         @endisset
                     </p>
                 </div>
@@ -51,12 +51,12 @@
     <nav class="relative px-4 pr-8 py-3 flex justify-between items-center bg-white shadow-lg">
         <!-- Logo -->
         <a class="text-xl lg:pl-10 font-bold" href="homepage">
-            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40 lg:w-56"
+            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-72 lg:w-56"
                 alt="Hulas Logo" />
         </a>
 
         <!-- Desktop Menu -->
-        <div class="hidden lg:flex justify-center items-center flex-grow">
+        <div class="hidden lg:flex justify-center items-center flex-grow py-3">
             <ul class="flex space-x-4" x-data="{ openMenu: null }">
                 @foreach ($menus as $i => $menu)
                     <li class="relative" @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">

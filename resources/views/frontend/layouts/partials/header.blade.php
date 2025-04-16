@@ -1,6 +1,6 @@
-<header class="sticky -top-0 lg:-top-16 z-50">
+<header class="sticky -top-0 lg:-top-12 z-50">
     <!-- Top Nav -->
-    <nav class="hidden w-full py-1 bg-bgprimary border-b-2 px-10 lg:block">
+    <nav class="hidden w-full py-1 bg-bgprimary border-black border-b-2 px-10 lg:block">
         <div class="w-full p-2 flex justify-between items-center">
             <!-- address, toll free -->
             <div class="flex space-x-8 items-center">
@@ -56,7 +56,7 @@
         </a>
 
         <!-- Desktop Menu -->
-        <div class="hidden lg:flex justify-center items-center flex-grow">
+        <div class="hidden lg:flex justify-center items-center flex-grow py-3">
             <ul class="flex space-x-4" x-data="{ openMenu: null }">
                 @foreach ($menus as $i => $menu)
                     <li class="relative" @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">

@@ -34,7 +34,7 @@
 
             <!-- Text Container -->
             <div class="flex md:flex-2 flex-col space-y-6">
-                <h2 class="text-xl lg:text-2xl font-bold text-acccent ">
+                <h2 class="text-xl lg:text-2xl font-bold text-black">
                     About Hulas Remittance
                 </h2>
                 <div class="text-lg">
@@ -50,7 +50,7 @@
                             @endisset
                         </p>
                         <p class="text-accent text-center text-lg">
-                            Years Experience
+                            Years of Experience
                         </p>
                     </div>
                 </div>

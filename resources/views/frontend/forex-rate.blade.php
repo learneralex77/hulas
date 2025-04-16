@@ -60,7 +60,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/usa.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-us w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">US Dollar</p>
           </div>
         </th>
@@ -70,7 +70,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/japan.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-jp w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">JPY (Japanees Yen)</p>
           </div>
         </th>
@@ -80,7 +80,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/uk.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-gb w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">
             GBP (UK Pound Sterling)
           </p>
@@ -92,7 +92,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/newzland.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-nz w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">Newzland Dollar</p>
           </div>
         </th>
@@ -102,7 +102,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/canada.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-ca w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">Canadian Dollar</p>
           </div>
         </th>
@@ -112,7 +112,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/european-flag.png" class="w-8" alt="" />
+          <span class="flag-icon flag-icon-eu w-8 h-8"></span>
           <p class="text-base text-[#212529]">EUR(European Euro)</p>
           </div>
         </th>
@@ -122,7 +122,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/switzerland.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-ch w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">CHF(Swiss Franc)</p>
           </div>
         </th>
@@ -132,7 +132,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/australia-circle.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-au w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">AUD(Australian Dollar)</p>
           </div>
         </th>
@@ -142,7 +142,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/singapore-circle.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-sg w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">SGD(Singapore Dollar)</p>
           </div>
         </th>
@@ -152,7 +152,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/china-circle.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-cn w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">CNY(Chinese Yuan)</p>
           </div>
         </th>
@@ -162,7 +162,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/saudi-arabia.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-sa w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">
             SAR(Saudi Arabian Riyal)
           </p>
@@ -174,7 +174,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/qatar.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-qa w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">QAR(Qatari Riyal)</p>
           </div>
         </th>
@@ -184,7 +184,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/thailand.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-th w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">THB(Thai Baht)</p>
           </div>
         </th>
@@ -194,7 +194,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/united-arab-emirates.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-ae w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">AED(UAE Dirham)</p>
           </div>
         </th>
@@ -204,7 +204,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/malaysia.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-my w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">MYR(Malasian Ringgit)</p>
           </div>
         </th>
@@ -214,7 +214,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/south-korea.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-kr w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">KRW(South Korean Won)</p>
           </div>
         </th>
@@ -224,7 +224,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/sweden.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-se w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">SEK(Swedish Kroner)</p>
           </div>
         </th>
@@ -234,7 +234,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/denmark.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-dk w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">DKK(Danish Kroner)</p>
           </div>
         </th>
@@ -244,7 +244,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/hong-kong.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-hk w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">HKD(Hong Kong Dollar)</p>
           </div>
         </th>
@@ -254,7 +254,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/kuwait.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-kw w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">KWD(Kuwaity Dinar)</p>
           </div>
         </th>
@@ -264,7 +264,7 @@
         <tr class="bg-white">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/bahrain.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-bh w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">BHD(Bahrain Dinar)</p>
           </div>
         </th>
@@ -274,7 +274,7 @@
         <tr class="bg-white">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/india.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-in w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">IND(Indian Rupee)</p>
           </div>
         </th>
@@ -307,7 +307,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/usa.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-us w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">US Dollar</p>
           </div>
         </th>
@@ -317,7 +317,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/japan.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-jp w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">JPY (Japanees Yen)</p>
           </div>
         </th>
@@ -327,7 +327,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/uk.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-gb w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">
             GBP (UK Pound Sterling)
           </p>
@@ -339,7 +339,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/newzland.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-nz w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">Newzland Dollar</p>
           </div>
         </th>
@@ -349,7 +349,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/canada.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-ca w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">Canadian Dollar</p>
           </div>
         </th>
@@ -359,7 +359,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/european-flag.png" class="w-8" alt="" />
+          <span class="flag-icon flag-icon-eu w-8 h-8"></span>
           <p class="text-base text-[#212529]">EUR(European Euro)</p>
           </div>
         </th>
@@ -369,7 +369,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/switzerland.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-ch w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">CHF(Swiss Franc)</p>
           </div>
         </th>
@@ -379,7 +379,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/australia-circle.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-au w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">AUD(Australian Dollar)</p>
           </div>
         </th>
@@ -389,7 +389,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/singapore-circle.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-sg w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">SGD(Singapore Dollar)</p>
           </div>
         </th>
@@ -399,7 +399,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/china-circle.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-cn w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">CNY(Chinese Yuan)</p>
           </div>
         </th>
@@ -409,7 +409,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/saudi-arabia.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-sa w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">
             SAR(Saudi Arabian Riyal)
           </p>
@@ -421,7 +421,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/qatar.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-qa w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">QAR(Qatari Riyal)</p>
           </div>
         </th>
@@ -431,7 +431,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/thailand.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-th w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">THB(Thai Baht)</p>
           </div>
         </th>
@@ -441,7 +441,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/united-arab-emirates.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-ae w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">AED(UAE Dirham)</p>
           </div>
         </th>
@@ -451,7 +451,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/malaysia.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-my w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">MYR(Malasian Ringgit)</p>
           </div>
         </th>
@@ -461,7 +461,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/south-korea.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-kr w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">KRW(South Korean Won)</p>
           </div>
         </th>
@@ -471,7 +471,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/sweden.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-se w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">SEK(Swedish Kroner)</p>
           </div>
         </th>
@@ -481,7 +481,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/denmark.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-dk w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">DKK(Danish Kroner)</p>
           </div>
         </th>
@@ -491,7 +491,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/hong-kong.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-hk w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">HKD(Hong Kong Dollar)</p>
           </div>
         </th>
@@ -501,7 +501,7 @@
         <tr class="bg-white border-b">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/kuwait.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-kw w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">KWD(Kuwaity Dinar)</p>
           </div>
         </th>
@@ -511,7 +511,7 @@
         <tr class="bg-white">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/bahrain.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-bh w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">BHD(Bahrain Dinar)</p>
           </div>
         </th>
@@ -521,7 +521,7 @@
         <tr class="bg-white">
         <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
           <div class="flex space-x-3 items-center">
-          <img src="./img/flags/india.png" class="w-8 rounded-full" alt="" />
+          <span class="flag-icon flag-icon-in w-8 h-8 rounded-full"></span>
           <p class="text-base text-[#212529]">IND(Indian Rupee)</p>
           </div>
         </th>

@@ -90,7 +90,7 @@
                                     @endisset
                                     @isset($settings->agent_notify_email)
                                     {{ $settings->agent_notify_email }}
-                                   
+
                                     @endisset
                                 </p>
                             </div>
@@ -125,11 +125,13 @@
             </div>
 
             <!-- bottom footer -->
-            <div class="flex flex-col md:flex-row md:justify-between items-center gap-6">
+            <div class="flex flex-col md:flex-row md:justify-between items-center gap-6 lg:px-10">
                 <p>&copy; 2025 Hulas Remittance Pvt.Ltd.&nbsp;All rights reserved.</p>
                 <p>
                     Designed and crafted by
-                    <a href="https://dev.awt.cloud/" class="text-[#0000cc] font-bold">AWT</a>
+                    <a href="https://dev.awt.cloud/" class="text-[#0000cc] font-bold"  style="
+                                              -webkit-text-stroke: 1px rgba(255, 255, 255, 0.315);
+                                              ">AWT</a>
                 </p>
                 <a href="https://www.westernunion.com/np/en/home.html">
                     <img src="{{ asset('assets/images/logo/WesternUnion_HorizontalLockup_YellowWhite.png') }}"

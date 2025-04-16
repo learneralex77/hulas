@@ -22,19 +22,21 @@
 
                             <!-- Text Overlay -->
                             <div
-                                class="absolute inset-0 flex flex-col space-y-3 items-left text-left bg-black/20 py-10 sm:py-20 md:py-40 px-20 md:pb-50 md:px-30">
-                                <h2 class="text-white text-xl sm:text-3xl md:text-5xl font-bold" style="
+                                class="absolute inset-0 flex flex-col space-y-2 md:space-y-3 items-left text-left bg-black/20 py-10 sm:py-20 md:py-40 px-20 md:pb-50 md:px-30">
+                                <h2 class="text-white text-base sm:text-xl md::text-3xl md:text-5xl font-bold"
+                                    style="
                                               text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
                                               -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                              ">Reliable Services</h2>
-                                <p class=" text-white text-lg sm:text-xl md:text-2xl max-w-3xl" style="
+                                              ">
+                                    {{ $slider->name_en }}</h2>
+                                <p class=" text-white text-lg sm:text-xl md:text-2xl max-w-3xl"
+                                    style="
                                                   -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                              ">Experience secure and
-                                    hassle-free money transfers with Hulas Remittance — trusted by millions across Nepal since 2005.
-                                </p>
-                                <a href="{{ route('aboutHulasRemittance') }}"
-                                    class="px-6 py-2 bg-accent w-40 text-black border-2 rounded-full hover:opacity-85 font-semibold text-lg">
-                                    About Hulas </a>
+                                              ">
+                                    {{ $slider->short_description_en }}</p>
+                                <a href="{{ $slider->link ? $slider->link : '#' }}"
+                                    class="px-6 py-1 sm:py-2 bg-accent w-34 sm:w-40 text-black border-2 rounded-full hover:opacity-85 font-semibold text-sm sm:text-lg">
+                                    Read More </a>
                             </div>
                         </div>
                     @endforeach
@@ -84,7 +86,8 @@
     <section class="overflow-x-hidden">
         <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
             <div class="flex flex-col items-center space-y-6">
-                <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+                <h1 class="font-bold text-accent uppercase text-lg tracking-wider"
+                    style="
                               text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
                               -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
                               ">
@@ -131,7 +134,8 @@
             <section class="overflow-x-hidden">
                 <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                     <div class="flex flex-col items-center space-y-6">
-                        <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+                        <h1 class="font-bold text-accent uppercase text-lg tracking-wider"
+                            style="
                                                       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
                                                       -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
                                                       ">
@@ -267,163 +271,162 @@
     </section>
 
     <!----------Our Partners Section---------->
-    @isset($partner->name)
-        <section class="my-10">
-            <div class="overflow-x-hidden">
-                <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                    <div class="flex flex-col items-center space-y-6">
-                        <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider" style="
+    <section class="my-10">
+        <div class="overflow-x-hidden">
+            <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+                <div class="flex flex-col items-center space-y-6">
+                    <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider"
+                        style="
                                                       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
                                                       -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
                                                       ">
-                            Our partners & Supporters
-                        </h1>
+                        Our partners & Supporters
+                    </h1>
 
-                        <p class="text-2xl text-black font-bold md:text-4xl text-center">
-                            In Collaboration with Our Esteemed Partners and Supporters
-                        </p>
-                        <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-                            We are proud to collaborate with trusted partners and supporters
-                            who share our vision and strengthen our mission.
-                        </p>
-                    </div>
+                    <p class="text-2xl text-black font-bold md:text-4xl text-center">
+                        In Collaboration with Our Esteemed Partners and Supporters
+                    </p>
+                    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+                        We are proud to collaborate with trusted partners and supporters
+                        who share our vision and strengthen our mission.
+                    </p>
                 </div>
             </div>
+        </div>
 
-            <div class="w-full overflow-hidden relative">
-                <div class="w-full h-full absolute">
-                    <div class="w-1/4 h-full absolute z-50 left-0" style="
+        <div class="w-full overflow-hidden relative">
+            <div class="w-full h-full absolute">
+                <div class="w-1/4 h-full absolute z-50 left-0"
+                    style="
                                                       background: linear-gradient(
                                                       to right,
                                                       #fff8cc 0%,
                                                       rgba(255, 255, 255, 0) 100%
                                                       );
                                                       ">
-                    </div>
-                    <div class="w-1/4 h-full absolute z-50 right-0" style="
+                </div>
+                <div class="w-1/4 h-full absolute z-50 right-0"
+                    style="
                                                       background: linear-gradient(
                                                       to left,
                                                       #fff8cc 0%,
                                                       rgba(255, 255, 255, 0) 100%
                                                       );
                                                       ">
-                    </div>
                 </div>
+            </div>
 
-                <div class="carousel-items flex items-center justify-center w-full" style="
+            <div class="carousel-items flex items-center justify-center w-full"
+                style="
                                                       width: fit-content;
                                                       animation: carouselAnim 10s infinite alternate linear;
                                                       ">
-                    @foreach ($partners as $partner)
-                        <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
-                            style="width: 270px">
-                            <img src="{{ asset('storage/' . $partner->image) }}" class="h-40 w-40 rounded-xl shadow-2xl"
-                                alt="Partners Icon" />
-                            <h4 class="tracking-wide text-lg m-3">{{ $partner->name_en ?? $partner->name }}</h4>
-                        </div>
-                    @endforeach
+                @foreach ($partners as $partner)
+                    <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
+                        style="width: 270px">
+                        <img src="{{ asset('storage/' . $partner->image) }}" class="h-40 w-40 rounded-xl shadow-2xl"
+                            alt="Partners Icon" />
+                        <h4 class="tracking-wide text-lg m-3">{{ $partner->name_en ?? $partner->name }}</h4>
+                    </div>
+                @endforeach
 
 
 
-        </section>
-        <!----------Our Partners Section---------->
-    @endisset
+    </section>
+    <!----------Our Partners Section---------->
 
     <!-- --------Gallery and News Section-------- -->
     <div class="flex flex-col md:flex-row mx-10 lg:mx-40 px-4 gap-10 my-10">
-        @isset($galleries->featured_image)
 
-            <div class="flex-1 overflow-hidden">
-                <div class="flex flex-row justify-between m-3">
-                    <h1 class="font-bold text-accent uppercase text-lg lg:text-2xl tracking-wider"
-                        style=" text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01); -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096); ">
-                        Image Gallery
-                    </h1>
-                    <a href="{{ route('gallery') }}"
-                        class="bg-black items-center text-accent px-6 py-3 rounded-full cursor-pointer hover:opacity-85">
-                        Explore Gallery
-                    </a>
-                </div>
-
-                <div style=" --swiper-navigation-color: #fff; --swiper-pagination-color: #fff; "
-                    class="swiper mySwiper2 w-full h-1/2 aspect-[16/9]">
-                    <div class="swiper-wrapper h-[800px] lg:h-[400px]">
-                        @foreach ($galleries as $gallery)
-                            <div class="swiper-slide">
-                                <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
-                                    class="w-full h-full object-contain" alt="{{ $gallery->title_en }}" />
-                            </div>
-                        @endforeach
-
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-                <div thumbsSlider="" class="swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        @foreach ($galleries as $index => $gallery)
-                            <div class="swiper-slide">
-                                <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
-                                    alt="{{ $gallery->title_en }}" />
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
+        <div class="flex-1 overflow-hidden">
+            <div class="flex flex-row justify-between m-3">
+                <h1 class="font-bold text-accent uppercase text-lg lg:text-2xl tracking-wider"
+                    style=" text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01); -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096); ">
+                    Image Gallery
+                </h1>
+                <a href="{{ route('gallery') }}"
+                    class="bg-black items-center text-accent px-6 py-3 rounded-full cursor-pointer hover:opacity-85">
+                    Explore Gallery
+                </a>
             </div>
-        @endisset
 
-        @if (isset($newsAndEvents) && count($newsAndEvents) > 0)
-            <div class="flex-1 w-full h-full">
-                <div class="flex justify-end">
-                    <a href="{{ route('newsAndEvents') }}"
-                        class="bg-black items-center text-accent px-4 py-3 rounded-full cursor-pointer hover:opacity-85">
-                        Explore News Articles
-                    </a>
-                </div>
-                <div class="drop-shadow-xl shadow-gray-100 bg-white rounded-lg m-3">
-                    <!-- Heading for scroll -->
-                    <div class="flex flex-row bg-white rounded m-3 p-3">
-                        <!-- Explore part -->
-                        <div class="mx-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"
-                                fill="currentColor">
-                                <path d="M3 6h14M3 12h14M3 18h14" stroke="black" stroke-width="2" stroke-linecap="round" />
-                                <circle cx="20" cy="6" r="1.5" fill="black" />
-                                <circle cx="20" cy="12" r="1.5" fill="black" />
-                                <circle cx="20" cy="18" r="1.5" fill="black" />
-                            </svg>
+            <div style=" --swiper-navigation-color: #fff; --swiper-pagination-color: #fff; "
+                class="swiper mySwiper2 w-full h-1/2 aspect-[16/9]">
+                <div class="swiper-wrapper h-[800px] lg:h-[400px]">
+                    @foreach ($galleries as $gallery)
+                        <div class="swiper-slide">
+                            <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
+                                class="w-full h-full object-contain" alt="{{ $gallery->title_en }}" />
                         </div>
-                        <h1 class="font-bold text-lg text-black">All News and Articles</h1>
-                    </div>
+                    @endforeach
 
-                    <!-- Content inside the heading -->
-                    <div class="overflow-y-scroll h-[420px] m-3 sticky bg-white">
-                        @foreach ($newsAndEvents as $news)
-                            <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
-                                <div class="h-auto w-30">
-                                    <img src="{{ isset($news->image) ? asset('storage/' . $news->image) : asset('assets/images/placeholder.jpg') }}"
-                                        alt="{{ $news->title_en ?? 'News Image' }}" class="h-full w-full rounded-lg object-cover" />
-                                </div>
-
-                                <div class="flex flex-col gap-3">
-                                    <a href="{{ route('newsAndEventsDetailPage', $news->id) }}"
-                                        class="line-clamp-2 font-semibold hover:text-accent transition-colors duration-200 cursor-pointer">
-                                        {{ $news->name_en ?? 'News Title' }}
-                                    </a>
-                                    <div class="flex space-x-2">
-                                        <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"
-                                            class="w-4 h-4 object-contain" alt="date" />
-                                        <p class="text-xs text-gray-500">
-                                            {{ isset($news->created_at) ? $news->created_at->format('jS F Y') : 'Date not available' }}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <div thumbsSlider="" class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    @foreach ($galleries as $index => $gallery)
+                        <div class="swiper-slide">
+                            <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
+                                alt="{{ $gallery->title_en }}" />
+                        </div>
+                    @endforeach
                 </div>
             </div>
-        @endif
+        </div>
+
+        <div class="flex-1 w-full h-full">
+            <div class="flex justify-end">
+                <a href="{{ route('newsAndEvents') }}"
+                    class="bg-black items-center text-accent px-4 py-3 rounded-full cursor-pointer hover:opacity-85">
+                    Explore News Articles
+                </a>
+            </div>
+            <div class="drop-shadow-xl shadow-gray-100 bg-white rounded-lg m-3">
+                <!-- Heading for scroll -->
+                <div class="flex flex-row bg-white rounded m-3 p-3">
+                    <!-- Explore part -->
+                    <div class="mx-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"
+                            fill="currentColor">
+                            <path d="M3 6h14M3 12h14M3 18h14" stroke="black" stroke-width="2" stroke-linecap="round" />
+                            <circle cx="20" cy="6" r="1.5" fill="black" />
+                            <circle cx="20" cy="12" r="1.5" fill="black" />
+                            <circle cx="20" cy="18" r="1.5" fill="black" />
+                        </svg>
+                    </div>
+                    <h1 class="font-bold text-lg text-black">All News and Articles</h1>
+                </div>
+
+                <!-- Content inside the heading -->
+                <div class="overflow-y-scroll h-[420px] m-3 sticky bg-white">
+                    @foreach ($newsAndEvents as $news)
+                        <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
+                            <div class="h-auto w-30">
+                                <img src="{{ isset($news->image) ? asset('storage/' . $news->image) : asset('assets/images/placeholder.jpg') }}"
+                                    alt="{{ $news->title_en ?? 'News Image' }}"
+                                    class="h-full w-full rounded-lg object-cover" />
+                            </div>
+
+                            <div class="flex flex-col gap-3">
+                                <a href="{{ route('newsAndEventsDetailPage', $news->id) }}"
+                                    class="line-clamp-2 font-semibold hover:text-accent transition-colors duration-200 cursor-pointer">
+                                    {{ $news->name_en ?? 'News Title' }}
+                                </a>
+                                <div class="flex space-x-2">
+                                    <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"
+                                        class="w-4 h-4 object-contain" alt="date" />
+                                    <p class="text-xs text-gray-500">
+                                        {{ isset($news->created_at) ? $news->created_at->format('jS F Y') : 'Date not available' }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -528,7 +531,7 @@
     </script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             const buttons = document.querySelectorAll(".modal-button");
 
             buttons.forEach((button) => {

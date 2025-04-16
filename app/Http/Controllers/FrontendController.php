@@ -20,6 +20,8 @@ use App\Http\Requests\BecomeAnAgentRequest;
 
 use App\Models\Partner;
 use App\Models\BecomeAnAgent;
+use App\Models\Download;
+use Illuminate\Support\Facades\Storage;
 
 class FrontendController extends Controller
 {
@@ -131,8 +133,24 @@ class FrontendController extends Controller
     }
     public function downloads()
     {
-        return view('frontend.downloads');
+        $downloads = Download::active()->orderBy('display_order', 'ASC')
+            ->paginate(6);
+
+        return view('frontend.downloads', compact('downloads'));
     }
+
+    public function downloadFile(Download $download)
+    {
+        if (!$download->file || !Storage::disk('public')->exists($download->file)) {
+            return redirect()->back()->with('error', 'File not found.');
+        }
+
+        $path = Storage::disk('public')->path($download->file);
+        $fileName = basename($download->file);
+
+        return response()->download($path, $fileName);
+    }
+
     public function privacyAndPolicy()
     {
         return view('frontend.privacy-and-policy');
@@ -151,8 +169,8 @@ class FrontendController extends Controller
     }
 
     public function header()
-    { 
-       
+    {
+
        $setting = Setting::first();
        return view('frontend.layouts.partials.header', compact('setting'));
     }

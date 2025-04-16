@@ -11,35 +11,68 @@
     </div>
     <div class="absolute w-full top-20">
     <div class="flex flex-col space-y-8 ml-10">
-      <h3 class="text-4xl font-extrabold text-white">Services</h3>
+      <h3 class="text-4xl font-extrabold text-white">Send Money</h3>
       <div class="flex space-x-5 items-center">
       <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
       <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-      <a href="{{ route('services') }}" class="text-accent font-bold"> Services</a>
+      <a href="" class="text-accent font-bold"> Send Money</a>
       </div>
     </div>
     </div>
   </section>
   <!-- banner-section -->
+
   <section class="overflow-x-hidden">
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
     <div class="flex flex-col items-center space-y-6">
       <p class="text-2xl text-black font-bold md:text-4xl text-center">
-      Simple. Secure. Seamless.
-      </p>
+      Send Money </p>
       <p class="p-2 text-lg text-[#737879] text-center max-w-3xl">
       Fast, secure money transfers made easy with Hulas Remittance and trusted partners like Western Union.
       </p>
     </div>
     </div>
   </section>
+
+  <section class="flex flex-col md:flex-row md:justify-center md:items-center lg:flex-row m-10 md:m-10 2xl:mx-40 gap-10">
+    <div class="flex justify-center flex-1 flex-grow text-center">
+    <div class="flex-1 flex justify-center w-full">
+      <img src="{{ asset('assets/images/about-us/about-img-1.webp') }}" alt="Service Image"
+      class="w-full max-w-md h-80 rounded-md object-cover bg-gray-100" />
+    </div>
+    </div>
+
+    <div class="flex flex-2 flex-col space-y-6">
+    <p class="text-gray-600 text-base lg:text-lg text-justify">
+      We are committed to investing in technology to make transferring money as easy and efficient as possible
+
+      With our services, users are able to complete transactions. We are proud to be Nepali provider of these services,
+      and with number of transactions facilitated by us increasing daily, there are no signs of slowing down!
+
+      We're here to provide cost effective and hassle free remittance services to the customers, riding with innovative
+      and latest technology.
+    </p>
+    </div>
+  </section>
+
+
   <!-- Card part for our news and Article -->
+
+  <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+    <div class="flex flex-col items-center space-y-6">
+      <p class="text-2xl text-black font-bold md:text-4xl text-center">
+        How It Works
+      </p>
+      <p class="p-2 text-lg text-[#737879] text-center max-w-3xl">
+        Just follow these three simple steps to send money with ease.
+      </p>
+    </div>
+  </div>
   <section class="flex justify-center">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-0 mx-10 sm:m-20 xl:mx-40 items-center">
 
     <!-- Send -->
-     <a href="service-detail"> 
-      <div
+    <div
       class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl border-t-4 border-blue-600 cursor-pointer hover:-translate-y-2 transition-transform ease-in-out duration-300 max-w-[420px] h-[300px]">
       <div class="flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-full mx-auto mb-4">
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,14 +97,12 @@
         </g>
       </svg>
       </div>
-      <h2 class="text-2xl text-black font-semibold text-center my-6">Send Money</h2>
+      <h2 class="text-2xl text-black font-semibold text-center my-6">Enter Details</h2>
       <p class="text-gray-600 text-center">
-      Transfer money to your loved ones instantly — locally or internationally — with trusted partners and great
+      Fill in recipient information and enter the amount you want to send.
       rates.
       </p>
     </div>
-    </a>
-   
 
     <!-- Track -->
     <div
@@ -89,9 +120,9 @@
         </g>
       </svg>
       </div>
-      <h2 class="text-2xl text-black font-semibold text-center my-6">Track Money</h2>
+      <h2 class="text-2xl text-black font-semibold text-center my-6">Choose & Review</h2>
       <p class="text-gray-600 text-center">
-      Monitor the status of your remittance in real-time and stay informed every step of the way.
+      Select your payment method and confirm the exchange rate and fees.
       </p>
     </div>
 
@@ -121,18 +152,14 @@
         </g>
       </svg>
       </div>
-      <h2 class="text-2xl text-black font-semibold text-center my-6">Receive Money</h2>
+      <h2 class="text-2xl text-black font-semibold text-center my-6">Send Money</h2>
       <p class="text-gray-600 text-center">
-      Recipients can collect their money quickly and safely at any of our partner locations or direct to their
-      account.
+      Confirm and send the money instantly. You're all set!
       </p>
     </div>
 
     </div>
   </section>
-
-
-
 @endsection
 
 

@@ -103,6 +103,13 @@
     </a>
 </li>
 
+<li class="{{ request()->is('backend/grievances*') ? 'open' : '' }}">
+    <a class="nav-main-link {{ request()->is('backend/grievances*') ? 'active' : '' }}" href="{{ route('grievances.index') }}">
+        <i class="nav-main-link-icon fa fa-clipboard-list"></i>
+        <span class="nav-main-link-name">Grievances</span>
+    </a>
+</li>
+
 <li class="{{ request()->is('districts*') ? 'open' : '' }}">
     <a class="nav-main-link {{ request()->is('districts*') ? 'active' : '' }}" href="{{ route('districts.index') }}">
         <i class="nav-main-link-icon fa fa-map-marker-alt"></i>

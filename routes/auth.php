@@ -28,6 +28,7 @@ use App\Http\Controllers\ForexRateController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\PopupController;
 use App\Http\Controllers\PartnersController;
+use App\Http\Controllers\GrievanceController;
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('dashboard', DashboardController::class)->name('dashboard');
@@ -135,6 +136,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     // Partner Management Routes
     Route::resource('partners', PartnersController::class);
+
+    // Grievance Management Routes
+    Route::resource('grievances', GrievanceController::class);
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');

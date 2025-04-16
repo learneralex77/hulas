@@ -7,16 +7,16 @@
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/location-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($setting->address_en)
-                            {{ $setting->address_en }}
+                        @isset($settings->address_en)
+                            {{ $settings->address_en }}
                         @endisset
                     </p>
                 </div>
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/phone-call-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($setting->phone_number_en)
-                            {{ $setting->phone_number_en }}
+                        @isset($settings->phone_number_en)
+                            {{ $settings->phone_number_en }}
                 
                         @endisset
                     </p>
@@ -24,11 +24,11 @@
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/mail-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($setting->email)
-                            {{ $setting->email }}
+                        @isset($settings->email)
+                            {{ $settings->email }}
                         @endisset
-                        @isset($setting->agent_notify_email)
-                            {{ $setting->agent_notify_email }}
+                        @isset($settings->agent_notify_email)
+                            {{ $settings->agent_notify_email }}
                         @endisset
                     </p>
                 </div>

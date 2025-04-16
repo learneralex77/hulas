@@ -68,7 +68,7 @@
     }" @image-gallery-next.window="imageGalleryNext()" @image-gallery-prev.window="imageGalleryPrev()"
     @keyup.right.window="imageGalleryNext();" @keyup.left.window="imageGalleryPrev();"
     class="w-full h-full select-none mt-5 mb-5">
-    <div class="max-w-6xl mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view" style="
+    <div class="max-w-6xl my-20 mx-auto duration-1000 delay-300 opacity-0 select-none ease animate-fade-in-view" style="
         translate: none;
         rotate: none;
         opacity: 1;
@@ -78,7 +78,7 @@
     <!-- Heading for the image -->
 
     <div class="mx-12">
-      <h2 class="text-2xl font-bold mb-2">{{ $gallery->title_en }}</h2>
+      <h2 class="text-2xl font-bold mb-2 text-black">{{ $gallery->title_en }}</h2>
       @if($gallery->short_description)
       <p class="text-gray-600 mb-4">{{ $gallery->short_description }}</p>
       @endif

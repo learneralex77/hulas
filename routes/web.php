@@ -19,6 +19,9 @@ Route::get('organizational-structure', [FrontendController::class, 'organization
 
 Route::get('services', [FrontendController::class, 'services'])->name('services');
 Route::get('service-detail/{slug?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
+Route::get('services', [FrontendController::class, 'services'])->name('services');
+Route::get('service-detail/{slug?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
+
 Route::get('become-an-agent', [FrontendController::class, 'becomeAnAgent'])->name('becomeAnAgent');
 Route::post('become-an-agent', [BecomeAnAgentController::class, 'store'])->name('storeAgentRequest');
 
@@ -41,6 +44,7 @@ Route::get('gallery', [FrontendController::class, 'gallery'])->name('gallery');
 Route::get('gallery-detail/{id?}', [FrontendController::class, 'galleryDetail'])->name('galleryDetail');
 
 Route::get('grievances', [FrontendController::class, 'grievances'])->name('grievances');
+Route::post('grievances', [App\Http\Controllers\GrievanceController::class, 'store'])->name('grievances.store');
 
 Route::get('privacy-and-policy', [FrontendController::class, 'privacyAndPolicy'])->name('privacyAndPolicy');
 Route::get('terms-and-conditions', [FrontendController::class, 'termsAndConditions'])->name('termsAndConditions');
@@ -53,6 +57,7 @@ Route::get('forex-rate', [FrontendController::class, 'forexRate'])->name('forexR
 
 Route::get('header', [FrontendController::class, 'header'])->name('header');
 
+// Admin routes moved to auth.php
 require __DIR__ . '/auth.php';
 
 

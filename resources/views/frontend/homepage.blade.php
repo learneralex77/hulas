@@ -4,6 +4,37 @@
 @push('styles')
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        .carousel {
+            display: flex;
+            width: 100%;
+            /* Adjust according to your container's size */
+            overflow: hidden;
+            /* Hide the content that is off-screen */
+        }
+
+        .carousel-item {
+            flex: 0 0 100%;
+            /* Each item takes up 100% of the width */
+            animation: carouselAnim 200s linear infinite;
+            /* 60 seconds for a full loop, slow pace */
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-focus:hover {
+            transition: all 0.8s;
+            transform: scale(1.1);
+        }
+
+        .carousel-container {
+            display: flex;
+            animation: scrollOnce 30s linear infinite;
+        }
+
+        .carousel-container.reverse {
+            animation: scrollBack 30s linear infinite;
+        }
+    </style> 
 @endpush
 
 @section('content')
@@ -270,16 +301,14 @@
         </div>
     </section>
 
-    <!----------Our Partners Section---------->
+
+ <!----------Our Partners Section---------->
     <section class="my-10">
         <div class="overflow-x-hidden">
             <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                 <div class="flex flex-col items-center space-y-6">
                     <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider"
-                        style="
-                                                      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                                      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                      ">
+                        style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01); -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);">
                         Our partners & Supporters
                     </h1>
 
@@ -295,32 +324,18 @@
         </div>
 
         <div class="w-full overflow-hidden relative">
-            <div class="w-full h-full absolute">
+            <!-- Fading sides -->
+            <div class="w-full h-full absolute pointer-events-none">
                 <div class="w-1/4 h-full absolute z-50 left-0"
-                    style="
-                                                      background: linear-gradient(
-                                                      to right,
-                                                      #fff8cc 0%,
-                                                      rgba(255, 255, 255, 0) 100%
-                                                      );
-                                                      ">
+                    style="background: linear-gradient(to right, #fff8cc 0%, rgba(255, 255, 255, 0) 100%);">
                 </div>
                 <div class="w-1/4 h-full absolute z-50 right-0"
-                    style="
-                                                      background: linear-gradient(
-                                                      to left,
-                                                      #fff8cc 0%,
-                                                      rgba(255, 255, 255, 0) 100%
-                                                      );
-                                                      ">
+                    style="background: linear-gradient(to left, #fff8cc 0%, rgba(255, 255, 255, 0) 100%);">
                 </div>
             </div>
 
-            <div class="carousel-items flex items-center justify-center w-full"
-                style="
-                                                      width: fit-content;
-                                                      animation: carouselAnim 10s infinite alternate linear;
-                                                      ">
+            <!-- Scrolling container -->
+            <div class="carousel-container w-full" style="animation: scrollOnce 30s linear infinite;">
                 @foreach ($partners as $partner)
                     <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
                         style="width: 270px">
@@ -329,11 +344,11 @@
                         <h4 class="tracking-wide text-lg m-3">{{ $partner->name_en ?? $partner->name }}</h4>
                     </div>
                 @endforeach
+            </div>
 
-
-
+        </div>
     </section>
-    <!----------Our Partners Section---------->
+
 
     <!-- --------Gallery and News Section-------- -->
     <div class="flex flex-col md:flex-row mx-10 lg:mx-40 px-4 gap-10 my-10">

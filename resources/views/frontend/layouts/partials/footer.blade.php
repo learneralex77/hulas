@@ -4,7 +4,7 @@
             <!-- logo and desc -->
             <div class="w-full flex flex-col space-y-2 lg:space-y-0 lg:flex-row lg:justify-between ">
                 <div class="flex justify-center lg:justify-left">
-                    <a class="text-3xl text-white font-bold" href="index.html">
+                    <a class="text-3xl text-white font-bold" href="{{ route('homepage') }}">
                         <img src="{{ asset('assets/images/logo/hulas.png') }}" class="w-56" alt="Logo" />
                     </a>
                 </div>

@@ -29,7 +29,6 @@
             <input type="text" class="form-control @error('years_of_experience_en') is-invalid @enderror"
                 id="years_of_experience_en" name="years_of_experience_en"
                 value="{{ old('years_of_experience_en', $aboutUs->years_of_experience_en ?? $aboutUs->years_of_experience ?? '') }}">
-            <div class="form-text">Example: 100+, 25, etc.</div>
             @error('years_of_experience_en')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -40,7 +39,6 @@
             <input type="text" class="form-control @error('years_of_experience_np') is-invalid @enderror"
                 id="years_of_experience_np" name="years_of_experience_np"
                 value="{{ old('years_of_experience_np', $aboutUs->years_of_experience_np ?? '') }}">
-            <div class="form-text">Example: १००+, २५, etc.</div>
             @error('years_of_experience_np')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror

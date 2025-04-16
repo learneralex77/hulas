@@ -40,6 +40,7 @@ Route::get('gallery', [FrontendController::class, 'gallery'])->name('gallery');
 Route::get('gallery-detail/{id?}', [FrontendController::class, 'galleryDetail'])->name('galleryDetail');
 
 Route::get('grievances', [FrontendController::class, 'grievances'])->name('grievances');
+Route::post('grievances', [App\Http\Controllers\GrievanceController::class, 'store'])->name('grievances.store');
 
 Route::get('privacy-and-policy', [FrontendController::class, 'privacyAndPolicy'])->name('privacyAndPolicy');
 Route::get('terms-and-conditions', [FrontendController::class, 'termsAndConditions'])->name('termsAndConditions');
@@ -52,6 +53,7 @@ Route::get('forex-rate', [FrontendController::class, 'forexRate'])->name('forexR
 
 Route::get('header', [FrontendController::class, 'header'])->name('header');
 
+// Admin routes moved to auth.php
 require __DIR__ . '/auth.php';
 
 

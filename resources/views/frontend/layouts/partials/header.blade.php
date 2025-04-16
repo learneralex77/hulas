@@ -53,7 +53,7 @@
 
     <!-- Main Navigation -->
     <nav class="relative px-4 pr-8 py-3 flex justify-between items-center bg-white shadow-lg">
-        <a class="text-xl lg:pl-10 font-bold" href="homepage">
+        <a class="text-xl lg:pl-10 font-bold" href="{{ route('homepage') }}">
             <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40 lg:w-56"
                 alt="Hulas Logo" />
         </a>
@@ -140,7 +140,7 @@
         <nav
             class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
             <div class="flex items-center mb-8">
-                <a href="{{ url('/') }}" class="mr-auto text-lg font-bold leading-none">
+                <a href="{{ route('homepage') }}" class="mr-auto text-lg font-bold leading-none">
                     <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40"
                         alt="Logo" />
                 </a>

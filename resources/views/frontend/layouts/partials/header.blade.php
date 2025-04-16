@@ -34,30 +34,36 @@
             </div>
             <!-- social -->
             <div class="flex space-x-5 items-center">
-                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/fb-icon.png') }}"
-                        class="w-6" alt="facebook Icon" /></a>
-                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/x-icon.png') }}"
-                        class="w-4" alt="X Icon" /></a>
-                <a rel="noopener noreferrer" href="#"><img
+                @isset($settings->facebook)
+                    <a rel="noopener noreferrer" href="{{ $settings->facebook }}"><img src="{{ asset('assets/images/navbar/fb-icon.png') }}"
+                            class="w-6" alt="facebook Icon" /></a>
+                @endisset
+                @isset($settings->twitter)
+                    <a rel="noopener noreferrer" href="{{ $settings->twitter }}"><img src="{{ asset('assets/images/navbar/x-icon.png') }}"
+                            class="w-4" alt="X Icon" /></a>
+                @endisset
+                @isset($settings->linkedin)
+                    <a rel="noopener noreferrer" href="{{ $settings->linkedin }}"><img
                         src="{{ asset('assets/images/navbar/linked-in-icon.png') }}" class="w-5"
                         alt="Linkedin Icon" /></a>
+                @endisset
             </div>
         </div>
     </nav>
 
     <!-- Main Navigation -->
     <nav class="relative px-4 pr-8 py-3 flex justify-between items-center bg-white shadow-lg">
-        <a class="text-xl lg:pl-10 font-bold" href="homepage">
-            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-72 lg:w-56"
+        <a class="text-xl lg:pl-10 font-bold" href="{{ route('homepage') }}">
+            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40 lg:w-56"
                 alt="Hulas Logo" />
         </a>
 
         <!-- Desktop Menu -->
-        <div class="hidden lg:flex justify-center items-center flex-grow py-3">
+        <div class="hidden lg:flex justify-end items-center flex-end flex-grow">
             <ul class="flex space-x-4" x-data="{ openMenu: null }">
                 @foreach ($menus as $i => $menu)
                     <li class="relative" @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">
-                        <button class="px-4 py-2 font-medium text-gray-700 hover:text-sky-600 focus:outline-none"
+                        <button class="px-4 py-2 font-semibold text-gray-700 hover:text-accent focus:outline-none cursor-pointer"
                             @focus="openMenu = {{ $i }}" @blur="openMenu = null"
                             aria-haspopup="{{ $menu->children->isNotEmpty() ? 'true' : 'false' }}"
                             :aria-expanded="openMenu === {{ $i }}" type="button">
@@ -134,7 +140,7 @@
         <nav
             class="fixed top-0 right-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
             <div class="flex items-center mb-8">
-                <a href="{{ url('/') }}" class="mr-auto text-lg font-bold leading-none">
+                <a href="{{ route('homepage') }}" class="mr-auto text-lg font-bold leading-none">
                     <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40"
                         alt="Logo" />
                 </a>

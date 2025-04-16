@@ -79,7 +79,16 @@ class FrontendController extends Controller
     }
     public function services()
     {
-        return view('frontend.services');
+        $services = \App\Models\Service::active()->orderByDisplayOrder()->get();
+        return view('frontend.services', compact('services'));
+    }
+    public function serviceDetail($slug = null)
+    {
+        if ($slug) {
+            $service = \App\Models\Service::active()->where('slug', $slug)->firstOrFail();
+            return view('frontend.service-detail', compact('service'));
+        }
+        return redirect()->route('services');
     }
     public function gallery()
     {

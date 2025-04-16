@@ -129,7 +129,7 @@
                     Welcome To Hulas Remittance
                 </p>
                 @isset($aboutUs->short_description_en)
-                    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl line-clamp-2">
+                    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl line-clamp-3">
                         {{ $aboutUs->short_description_en }}
                     </p>
                 @endisset

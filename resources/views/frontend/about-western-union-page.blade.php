@@ -21,7 +21,7 @@
     </section>
     <!-- banner-section -->
 
-    <!-- About Hulas Remittance -->
+    <!-- About Western Union -->
     <section class="m-6 md:m-10 2xl:mx-30">
         <div class=" flex flex-col gap-6 md:flex-row  md:justify-center md:items-center">
             <!-- image -->
@@ -144,7 +144,7 @@
                             {{ $service->description_en }}
                         </p>
                         <div class="flex justify-center">
-                            <a href="{{ $service->slug ? route('services.show', $service->slug) : '#' }}" class="bg-black hover:opacity-85 text-accent px-4 py-2 tracking-wide rounded-full text-sm text-center">Read more</a>
+                            <a href="{{ $service->slug ? route('serviceDetail', $service->slug) : '#' }}" class="bg-black hover:opacity-85 text-accent px-4 py-2 tracking-wide rounded-full text-sm text-center">Read more</a>
                         </div>
                     </div>
                     @endforeach

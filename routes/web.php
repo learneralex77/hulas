@@ -24,6 +24,9 @@ Route::get('organizational-structure', [FrontendController::class, 'organization
 Route::get('services', [FrontendController::class, 'services'])->name('services');
 Route::get('service-detail', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 Route::get('become-an-agent', [FrontendController::class, 'becomeAnAgent'])->name('becomeAnAgent');

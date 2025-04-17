@@ -36,35 +36,72 @@
             align-items: center;
         }
 
-        .loader {
-            width: 45px;
-            height: 40px;
-            background:
-                linear-gradient(#0000 calc(1 * 100% / 6), #000 0 calc(3 * 100% / 6), #0000 0),
-                linear-gradient(#0000 calc(2 * 100% / 6), #000 0 calc(4 * 100% / 6), #0000 0),
-                linear-gradient(#0000 calc(3 * 100% / 6), #000 0 calc(5 * 100% / 6), #0000 0);
-            background-size: 10px 400%;
-            background-repeat: no-repeat;
-            animation: matrix 1s infinite linear;
-        }
+/* From Uiverse.io by satyamchaudharydev */
+.loading {
+ --speed-of-animation: 0.9s;
+ --gap: 6px;
+ --first-color: #4c86f9;
+ --second-color: #49a84c;
+ --third-color: #f6bb02;
+ --fourth-color: #f6bb02;
+ --fifth-color: #2196f3;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 100px;
+ gap: 6px;
+ height: 100px;
+}
 
-        @keyframes matrix {
-            0% {
-                background-position: 0% 100%, 50% 100%, 100% 100%
-            }
+.loading span {
+ width: 8px;
+ height: 100px;
+ background: var(--first-color);
+ animation: scale var(--speed-of-animation) ease-in-out infinite;
+}
 
-            100% {
-                background-position: 0% 0%, 50% 0%, 100% 0%
-            }
-        }
+.loading span:nth-child(2) {
+ background: var(--second-color);
+ animation-delay: -0.8s;
+}
+
+.loading span:nth-child(3) {
+ background: var(--third-color);
+ animation-delay: -0.7s;
+}
+
+.loading span:nth-child(4) {
+ background: var(--fourth-color);
+ animation-delay: -0.6s;
+}
+
+.loading span:nth-child(5) {
+ background: var(--fifth-color);
+ animation-delay: -0.5s;
+}
+
+@keyframes scale {
+ 0%, 40%, 100% {
+  transform: scaleY(0.05);
+ }
+
+ 20% {
+  transform: scaleY(1);
+ }
+}
     </style>
 </head>
 
 <body>
     <!-- Preloader -->
     <div id="preloader">
-        <div class="loader"></div>
-    </div>
+<div class="loading">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+</div>    </div>
 
     <!-- Content -->
     <div id="content" class="wrapper">
@@ -108,7 +145,7 @@
             const now = new Date().getTime();
             const elapsed = now - preloaderStartTime;
 
-            const delay = Math.max(0, 1000 - elapsed); // wait until 1 second total
+            const delay = Math.max(0, 1000 - elapsed);
 
             setTimeout(() => {
                 const preloader = document.getElementById('preloader');
@@ -118,12 +155,12 @@
             }, delay);
         }
 
-        // Preloader hide logic
+
         window.onload = function () {
-            showPreloader(); // Show preloader immediately on load
+            showPreloader();
             setTimeout(function () {
-                hidePreloader(); // Hide after at least 1 second
-            }, 1000); // Ensures it stays for at least 1 second
+                hidePreloader();
+            }, 100);
         }
 
         const Toast = Swal.mixin({
@@ -189,7 +226,7 @@
             JsLoadingOverlay.hide();
         }
 
-        // Go to top button logic
+
         let goToTopBtn = document.getElementById("goToTopBtn");
 
         window.onscroll = function () {

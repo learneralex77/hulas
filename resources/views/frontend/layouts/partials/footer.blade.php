@@ -1,5 +1,5 @@
 <footer>
-    <div class="bg-black text-[#ffffffcc] p-12 text-sm">
+    <div class="bg-black text-[#ffffffcc] text-sm">
         <div class="flex flex-col space-y-10">
             <!-- logo and desc -->
             <div class="w-full flex flex-col space-y-2 lg:space-y-0 lg:flex-row lg:justify-between ">

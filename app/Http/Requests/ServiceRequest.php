@@ -37,7 +37,7 @@ class ServiceRequest extends FormRequest
             // Translation arrays
             'names' => ['required', 'array', 'min:1'],
             'names.*' => ['required', 'string', 'max:255'],
-            'icons.*' => ['nullable', 'string', 'max:255'],
+            'icons.*' => ['nullable', 'file', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
             'descriptions.*' => ['nullable', 'string'],
             'external_links.*' => ['nullable', 'url', 'max:255'],
         ];
@@ -118,6 +118,10 @@ class ServiceRequest extends FormRequest
             
             'icons.*.string' => 'The icon must be a string.',
             'icons.*.max' => 'The icon may not be greater than 255 characters.',
+            
+            'icons.*.file' => 'The icon file must be a valid file.',
+            'icons.*.mimes' => 'The icon file must be one of the following types: JPEG, PNG, JPG, GIF, SVG, WebP.',
+            'icons.*.max' => 'The icon file may not be greater than 2MB.',
             
             'descriptions.*.string' => 'The description must be a string.',
             

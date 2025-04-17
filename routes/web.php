@@ -20,7 +20,7 @@ Route::get('organizational-structure', [FrontendController::class, 'organization
 Route::get('services', [FrontendController::class, 'services'])->name('services');
 Route::get('service-detail/{slug?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
 Route::get('services', [FrontendController::class, 'services'])->name('services');
-Route::get('service-detail/{slug?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
+Route::get('service/{slug?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
 
 Route::get('become-an-agent', [FrontendController::class, 'becomeAnAgent'])->name('becomeAnAgent');
 Route::post('become-an-agent', [BecomeAnAgentController::class, 'store'])->name('storeAgentRequest');

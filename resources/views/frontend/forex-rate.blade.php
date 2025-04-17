@@ -1,12 +1,8 @@
 @extends('frontend.layouts.app')
 @section('title', 'Forex Rate')
 @section('meta', 'Forex Rate')
-@push('styles')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.6.6/css/flag-icons.min.css" />
-@endpush
 
 @section('content')
-
     <!-- banner-section -->
     <section class="relative">
         <div class="mb-10">
@@ -20,6 +16,32 @@
                     <a href="index.html" class="text-[#666] font-bold">Home</a>
                     <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
                     <a href="forex-rate" class="text-accent font-bold">Forex Rate</a>
+
+
+NP
+
+Skip navigation
+Search
+
+
+
+Create
+
+
+Avatar image
+
+                    NP
+
+                    Skip navigation
+                    Search
+
+
+
+                    Create
+
+
+                    Avatar image
+
                 </div>
             </div>
     </section>

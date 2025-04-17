@@ -50,21 +50,21 @@
     @isset($galleries)
     @foreach ($galleries as $gallery)
     <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72 p-3">
-      <a href="#">
+      <a href="{{ route('galleryDetail', $gallery->id) }}">
       <img class="rounded-t-lg w-full h-48 object-cover"
       src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg')  }}"
-      alt="" />
+      alt="Gallery Image" />
       </a>
       <div class="p-3">
-      <div class="flex items-center mb-2 space-x-2">
+      <div class="flex items-center mb-2 space-x-2 text-sm">
       <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"
-      class="w-4 h-4 object-contain" alt="date" /> <span
-      class="text-gray-600 text-sm">{{ $gallery->created_at->format('F d, Y') }}</span>
+      class="w-3 h-3 object-contain" alt="date" /> <span
+      class="text-gray-600 text-xs">{{ $gallery->created_at->format('F d, Y') }}</span>
       </div>
       <h5 class="mb-2 text-lg font-bold text-gray-900">
       {{ $gallery->title_en }}
       </h5>
-      <p class="text-gray-700 line-clamp-4 leading-tight text-sm">
+      <p class="text-gray-700 line-clamp-4 leading-tight text-sm h-22">
       {{ $gallery->short_description }}
       </p>
       <div class="flex justify-center">

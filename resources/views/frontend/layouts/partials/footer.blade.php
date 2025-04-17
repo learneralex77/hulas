@@ -99,7 +99,7 @@
                 </div>
                 <div class="flex flex-1 flex-col lg:flex-row justify-around items-center lg:justify-between gap-6">
                     <div class="text-[#ffffffcc] flex flex-col space-y-2">
-                        <h4 class=" text-accent font-bold md:text-left  text-center items-center">Important Links</h4>
+                        <h4 class=" text-accent font-bold md:text-left  text-center items-center">Quick Links</h4>
                         <a href="{{ route('homepage') }}" class="hover:underline text-center">Home</a>
                         <a href="{{ route('aboutHulasRemittance') }}" class="hover:underline text-center">About Hulas Remittance</a>
                         <a href="{{ route('aboutWesternUnion') }}" class="hover:underline text-center">About Western Union</a>
@@ -115,7 +115,7 @@
                         <a href="{{ route('privacyAndPolicy') }}" class="hover:underline text-center">Privacy Policy</a>
                     </div>
                     <div class=" text-[#ffffffcc] flex flex-col space-y-2">
-                        <h4 class=" text-accent font-bold md:text-left text-center">Quick Links</h4>
+                        <h4 class=" text-accent font-bold md:text-left text-center">Important Links</h4>
                         <a href="https://www.nrb.org.np/" target="_blank" class="hover:underline text-center">Nepal
                             Rastra Bank</a>
                         <a href="https://www.nrb.org.np/forex/" target="_blank"

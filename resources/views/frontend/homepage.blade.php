@@ -32,9 +32,9 @@
         }
 
         .carousel-container.reverse {
-            animation: scrollBack 30s linear infinite;
+            animation: scrollBack 0s linear infinite;
         }
-    </style> 
+    </style>
 @endpush
 
 @section('content')
@@ -335,7 +335,7 @@
             </div>
 
             <!-- Scrolling container -->
-            <div class="carousel-container w-full" style="animation: scrollOnce 30s linear infinite;">
+            <div class="carousel-container w-full" style="animation: scrollOnce 20s linear infinite;">
                 @foreach ($partners as $partner)
                     <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
                         style="width: 270px">

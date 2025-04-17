@@ -12,10 +12,13 @@ class AgentDetailsImport implements ToModel, WithHeadingRow
     {
         return new AgentDetail([
             'district_id' => $this->getDistrictId($row['district']), // Map district name to ID
-            'state_agent_name' => strval($row['state_agent_name']),
-            'address' => strval($row['address'] ?? ''),
+            'state_agent_name-en' => strval($row['state_agent_name']),
+            'state_agent_name_np' => strval($row['state_agent_name']),
+            'address_en' => strval($row['address'] ?? ''),
+            'address_np' => strval($row['address'] ?? ''),
             'contact_no' => strval($row['contact_number'] ?? ''), // Map contact_number to contact_no
-            'contact_person' => strval($row['contact_person'] ?? ''),
+            'contact_person_en' => strval($row['contact_person'] ?? ''),
+            'contact_person_np' => strval($row['contact_person'] ?? ''),
             'display_order' => (int) ($row['display_order'] ?? 0),
             'is_published' => strtolower($row['published']) === 'yes', // Convert Yes/No to boolean
         ]);
@@ -24,7 +27,7 @@ class AgentDetailsImport implements ToModel, WithHeadingRow
     // Helper function to map district name to ID
     private function getDistrictId(string $districtName): int
     {
-        $district = \App\Models\District::where('name', $districtName)->first();
+        $district = \App\Models\District::where('name_en', $districtName)->first();
         if (!$district) {
             throw new \Exception("District not found: {$districtName}");
         }

@@ -111,35 +111,12 @@ class AgentDetailController extends Controller
         return Excel::download(new AgentDetailsExport, 'agent_details.xlsx');
     }
 
-    // public function import(Request $request)
-    // {
-    //     $request->validate([
-    //         'file' => 'required|mimes:xlsx,csv,xls',
-    //     ]);
-
-    //     // Store file
-    //     $filePath = $request->file('file')->storeAs('imports', time() . '-' . $request->file('file')->getClientOriginalName());
-    //     // Temporarily add this to your import method
-    //     $file = $request->file('file');
-
-    //     // Get storage path
-    //     $fullPath = storage_path('app/' . $filePath);
-
-    //     // 🚨 Critical fix: Use IMPORT not LOAD
-    //     Excel::import(new AgentDetailsImport, $fullPath);
-
-    //     // Cleanup
-    //     Storage::delete($filePath);
-
-    //     return redirect()->route('agent-details.index')
-    //         ->with('success', 'Agent details imported successfully.');
-    // }
     public function import(Request $request)
     {
         $request->validate(['file' => 'required|mimes:xlsx,csv,xls']);
 
         // Store file
-        $filePath = $request->file('file')->store('imports'); // Relative path
+        $filePath = $request->file('file')->store('imports'); 
 
         try {
             // Import data using relative path

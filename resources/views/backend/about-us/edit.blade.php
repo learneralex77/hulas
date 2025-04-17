@@ -16,28 +16,12 @@
                 </div>
             </div>
             <div class="block-content">
-                <!-- Debug info (remove in production) -->
-                @if(app()->environment() !== 'production')
-                <div class="alert alert-info mb-3">
-                    <p class="mb-0">Current about-us ID: {{ $aboutUs->id }}</p>
-                    <p class="mb-0">Form submission URL: {{ route('about-us.update', $aboutUs->id) }}</p>
-                </div>
-                @endif
+            
                 
                 <form id="aboutusForm" action="{{ route('about-us.update', $aboutUs->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     @include('backend.about-us.partials.form')
-                    
-                    <!-- Submit directly from here for testing -->
-                    <div class="mb-3 mt-3">
-                        <button type="submit" class="btn btn-success mb-0">
-                            <i class="fa fa-save"></i> Update About Us
-                        </button>
-                        <a href="{{ route('about-us.index') }}" class="btn btn-danger ms-2 mb-0">
-                            <i class="fa fa-times"></i> Cancel
-                        </a>
-                    </div>
                 </form>
             </div>
         </div>

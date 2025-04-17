@@ -33,6 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <label class="form-label" for="descriptions_${detailIndex}">Description</label>
             <textarea class="form-control" id="descriptions_${detailIndex}" name="descriptions[]" rows="3"></textarea>
         </div>
+
+        <div class="mb-2">
+            <label class="form-label" for="external_links_${detailIndex}">External Link</label>
+            <input type="url" class="form-control" id="external_links_${detailIndex}" name="external_links[]" placeholder="https://example.com">
+        </div>
     `;
 
         container.appendChild(newDetail);

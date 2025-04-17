@@ -108,6 +108,7 @@
                     $names = $service->translation_names;
                     $icons = $service->translation_icons ?? [];
                     $descriptions = $service->translation_descriptions ?? [];
+                    $externalLinks = $service->external_link ?? [];
                 @endphp
                 
                 @foreach ($names as $index => $name)
@@ -157,6 +158,18 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="mb-2">
+                            <label class="form-label ps-0" for="external_links_{{ $index }}">External Link</label>
+                            <input type="url"
+                                class="form-control @error('external_links.' . $index) is-invalid @enderror"
+                                id="external_links_{{ $index }}" name="external_links[]"
+                                value="{{ old('external_links.' . $index, $externalLinks[$index] ?? '') }}"
+                                placeholder="https://example.com">
+                            @error('external_links.' . $index)
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                 @endforeach
             @else
@@ -187,6 +200,16 @@
                         <textarea class="form-control @error('descriptions.0') is-invalid @enderror" id="descriptions_0" name="descriptions[]"
                             rows="3">{{ old('descriptions.0') }}</textarea>
                         @error('descriptions.0')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label ps-0" for="external_links_0">External Link</label>
+                        <input type="url" class="form-control @error('external_links.0') is-invalid @enderror"
+                            id="external_links_0" name="external_links[]" value="{{ old('external_links.0') }}"
+                            placeholder="https://example.com">
+                        @error('external_links.0')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

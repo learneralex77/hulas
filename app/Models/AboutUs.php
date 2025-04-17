@@ -61,16 +61,7 @@ class AboutUs extends Model
      */
     public function getDescriptionAttribute()
     {
-        $description = $this->description_en ?? '';
-        
-        // Log when this accessor is used to help diagnose issues
-        \Log::debug('AboutUs description accessor called', [
-            'id' => $this->id,
-            'description_en' => $this->description_en,
-            'description' => $description
-        ]);
-        
-        return $description;
+        return $this->description_en ?? '';
     }
 
     /**
@@ -78,16 +69,7 @@ class AboutUs extends Model
      */
     public function getYearsOfExperienceAttribute()
     {
-        $value = $this->years_of_experience_en ?? 0;
-        
-        // Log when this accessor is used to help diagnose issues
-        \Log::debug('AboutUs years_of_experience accessor called', [
-            'id' => $this->id,
-            'years_of_experience_en' => $this->years_of_experience_en,
-            'years_of_experience' => $value
-        ]);
-        
-        return $value;
+        return $this->years_of_experience_en ?? 0;
     }
 
     /**

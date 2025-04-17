@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('become_an_agent', function (Blueprint $table) {
             $table->id();
-            $table->string('title_en')->nullable();
-            $table->string('title_np')->nullable();
-            $table->text('description_en')->nullable();
-            $table->text('description_np')->nullable();
-            $table->json('images')->nullable()->comment('Multiple images stored as JSON array');
-            $table->integer('display_order')->default(0);
-            $table->boolean('is_published')->default(true);
+            $table->string('name');
+            $table->string('contact_number');
+            $table->string('email');
+            $table->string('district');
+            $table->text('message');
+            $table->boolean('is_contacted')->default(false);
             $table->timestamps();
         });
     }

@@ -48,7 +48,7 @@
     <!-- Main Navigation -->
     <nav class="relative px-4 pr-8 py-3 flex justify-between items-center bg-white shadow-lg">
         <a class="text-xl lg:pl-10 font-bold" href="homepage">
-            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-72 lg:w-56"
+            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-56"
                 alt="Hulas Logo" />
         </a>
 
@@ -118,7 +118,7 @@
 
         <!-- Mobile Toggle -->
         <div class="lg:hidden" id="burger-container">
-            <button id="burger" class="navbar-burger flex items-center text-[#ffdd00] p-3">
+            <button id="burger" class="navbar-burger flex items-center text-[#ffdd00] p-3 cursor-pointer">
                 <svg class="block h-6 w-6 fill-current" viewBox="0 0 20 20">
                     <title>Mobile menu</title>
                     <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
@@ -127,7 +127,6 @@
         </div>
     </nav>
 
-    <!-- Mobile Menu -->
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="navbar-menu relative z-50 hidden" x-data="{ openMenus: {} }">
         <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
@@ -152,12 +151,12 @@
                     <li class="mb-1" x-data="{ open: false }">
                         @if ($menu->children->isEmpty())
                             <a href="{{ url($menu->slug) }}"
-                                class="block p-4 text-sm font-semibold text-gray-700 hover:text-sky-600 rounded">
+                                class="block p-4 text-sm font-semibold text-gray-700 hover:text-accent rounded">
                                 {{ $menu->name_en }}
                             </a>
                         @else
                             <button @click="open = !open"
-                                class="flex items-center justify-between w-full p-4 text-sm font-semibold text-gray-700 rounded hover:text-sky-600 focus:outline-none">
+                                class="flex items-center justify-between w-full p-4 text-sm font-semibold text-gray-700 rounded hover:text-accent focus:outline-none">
                                 <span>{{ $menu->name_en }}</span>
                                 <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-90': open }"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -173,12 +172,12 @@
                                     <li class="pt-1" x-data="{ openChild: false }">
                                         @if ($child->children->isEmpty())
                                             <a href="{{ url($child->slug) }}"
-                                                class="block p-3 pl-4 text-sm text-gray-700 hover:text-sky-600">
+                                                class="block p-3 pl-4 text-sm text-gray-700 hover:text-accent">
                                                 {{ $child->name_en }}
                                             </a>
                                         @else
                                             <button @click="openChild = !openChild"
-                                                class="flex items-center justify-between w-full p-3 pl-4 text-sm text-gray-700 rounded hover:text-sky-600 focus:outline-none">
+                                                class="flex items-center justify-between w-full p-3 pl-4 text-sm text-gray-700 rounded hover:text-accent focus:outline-none">
                                                 <span>{{ $child->name_en }}</span>
                                                 <svg class="w-4 h-4 transition-transform"
                                                     :class="{ 'rotate-90': openChild }" fill="none"
@@ -194,7 +193,7 @@
                                                 @foreach ($child->children as $sub)
                                                     <li>
                                                         <a href="{{ url($sub->slug) }}"
-                                                            class="block p-3 pl-6 text-sm text-gray-600 hover:text-sky-600">
+                                                            class="block p-3 pl-6 text-sm text-gray-600 hover:text-accent">
                                                             {{ $sub->name_en }}
                                                         </a>
                                                     </li>

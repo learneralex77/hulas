@@ -30,6 +30,11 @@ class TeamRequest extends FormRequest
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'description_en' => ['nullable', 'string'],
             'description_np' => ['nullable', 'string'],
+            'address_en' => ['nullable', 'string', 'max:255'],
+            'address_np' => ['nullable', 'string', 'max:255'],
+            'phone_number_en' => ['nullable', 'string', 'max:20'],
+            'phone_number_np' => ['nullable', 'string', 'max:20'],
+            'email' => ['nullable', 'email', 'max:255'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
             'delete_image' => ['nullable', 'boolean'],
@@ -50,6 +55,11 @@ class TeamRequest extends FormRequest
             'image' => 'team member image',
             'description_en' => 'English description',
             'description_np' => 'Nepali description',
+            'address_en' => 'English address',
+            'address_np' => 'Nepali address',
+            'phone_number_en' => 'English phone number',
+            'phone_number_np' => 'Nepali phone number',
+            'email' => 'email address',
             'display_order' => 'display order',
             'is_published' => 'published status',
             'delete_image' => 'delete image option',
@@ -82,6 +92,21 @@ class TeamRequest extends FormRequest
             
             'description_en.string' => 'The English description must be a string.',
             'description_np.string' => 'The Nepali description must be a string.',
+            
+            'address_en.string' => 'The English address must be a string.',
+            'address_en.max' => 'The English address may not be greater than 255 characters.',
+            
+            'address_np.string' => 'The Nepali address must be a string.',
+            'address_np.max' => 'The Nepali address may not be greater than 255 characters.',
+            
+            'phone_number_en.string' => 'The English phone number must be a string.',
+            'phone_number_en.max' => 'The English phone number may not be greater than 20 characters.',
+            
+            'phone_number_np.string' => 'The Nepali phone number must be a string.',
+            'phone_number_np.max' => 'The Nepali phone number may not be greater than 20 characters.',
+            
+            'email.email' => 'The email must be a valid email address.',
+            'email.max' => 'The email may not be greater than 255 characters.',
             
             'display_order.integer' => 'The display order must be a number.',
             'display_order.min' => 'The display order must be at least 0.',

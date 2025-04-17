@@ -53,21 +53,21 @@
 
                             <!-- Text Overlay -->
                             <div
-                                class="absolute inset-0 flex flex-col space-y-2 md:space-y-3 items-left text-left bg-black/20 py-10 sm:py-20 md:py-40 px-20 md:pb-50 md:px-30">
+                                class="absolute inset-0 flex flex-col space-y-1 md:space-y-3 items-left text-left bg-black/20 py-10 sm:py-20 md:py-40 px-20 md:pb-50 md:px-30">
                                 <h2 class="text-white text-base sm:text-xl md::text-3xl md:text-5xl font-bold"
                                     style="
                                               text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
                                               -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
                                               ">
                                     {{ $slider->name_en }}</h2>
-                                <p class=" text-white text-lg sm:text-xl md:text-2xl max-w-3xl"
+                                <p class=" text-white text-base leading-4 sm:leading-6 sm:text-xl md:text-2xl max-w-3xl"
                                     style="
                                                   -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
                                               ">
                                     {{ $slider->short_description_en }}</p>
                                 <a href="{{ $slider->link ? $slider->link : '#' }}"
-                                    class="px-6 py-1 sm:py-2 bg-accent w-34 sm:w-40 text-black border-2 rounded-full hover:opacity-85 font-semibold text-sm sm:text-lg">
-                                    Read More </a>
+                                    class="px-3 sm:px-6 py-1 sm:py-2 bg-accent w-34 sm:w-40 text-center text-black border-2 rounded-full hover:opacity-85 font-semibold text-sm sm:text-lg">
+                                About Hulas </a>
                             </div>
                         </div>
                     @endforeach
@@ -158,7 +158,7 @@
         @endisset
     </section>
 
-    <!----------Services Section---------->
+    <!----------Services-Section---------->
     @isset($service->name_en)
 
         <section class="m-10 items-center">
@@ -303,7 +303,7 @@
 
 
  <!----------Our Partners Section---------->
-    <section class="my-10">
+    <section class="my-10 z-30">
         <div class="overflow-x-hidden">
             <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                 <div class="flex flex-col items-center space-y-6">
@@ -355,18 +355,18 @@
 
         <div class="flex-1 overflow-hidden">
             <div class="flex flex-row justify-between m-3">
-                <h1 class="font-bold text-accent uppercase text-lg lg:text-2xl tracking-wider"
+                <h1 class="font-bold text-accent uppercase text-lg lg:text-2xl tracking-wider sm:text-left text-center"
                     style=" text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01); -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096); ">
-                    Image Gallery
+                 Gallery
                 </h1>
                 <a href="{{ route('gallery') }}"
-                    class="bg-black items-center text-accent px-6 py-3 rounded-full cursor-pointer hover:opacity-85">
+                    class="bg-black w-40 sm:w-full items-center text-accent px-6 py-2 rounded-full cursor-pointer hover:opacity-85">
                     Explore Gallery
                 </a>
             </div>
 
             <div style=" --swiper-navigation-color: #fff; --swiper-pagination-color: #fff; "
-                class="swiper mySwiper2 w-full h-1/2 aspect-[16/9]">
+                class="swiper mySwiper2 w-full h-1/2 aspect-[16/9] m-2">
                 <div class="swiper-wrapper h-[800px] lg:h-[400px]">
                     @foreach ($galleries as $gallery)
                         <div class="swiper-slide">
@@ -383,7 +383,8 @@
                 <div class="swiper-wrapper">
                     @foreach ($galleries as $index => $gallery)
                         <div class="swiper-slide">
-                            <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
+                            <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}" 
+                            class="w-full h-full object-cover"
                                 alt="{{ $gallery->title_en }}" />
                         </div>
                     @endforeach
@@ -394,7 +395,7 @@
         <div class="flex-1 w-full h-full">
             <div class="flex justify-end">
                 <a href="{{ route('newsAndEvents') }}"
-                    class="bg-black items-center text-accent px-4 py-3 rounded-full cursor-pointer hover:opacity-85">
+                    class="bg-black items-center text-accent px-4 py-2 rounded-full cursor-pointer hover:opacity-85">
                     Explore News Articles
                 </a>
             </div>
@@ -472,7 +473,6 @@
             </div>
         </div>
     </div>
-    <!-- Modal Section-->
 
 @endsection
 

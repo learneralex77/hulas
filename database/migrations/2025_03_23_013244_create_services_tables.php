@@ -28,8 +28,9 @@ return new class extends Migration
 
             // Fields from service_translations
             $table->text('translation_names')->nullable(); // JSON array of translated names
-            $table->text('translation_icons')->nullable(); // JSON array of translated icons
+            $table->string('translation_icons')->nullable(); // For storing image file path (supports all types including .webp)
             $table->text('translation_descriptions')->nullable(); // JSON array of translated descriptions
+            $table->text('external_link')->nullable(); // JSON array of external links
             $table->string('language_code')->default('en'); // Default language code
 
             $table->timestamps();

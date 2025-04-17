@@ -20,7 +20,7 @@ Route::get('organizational-structure', [FrontendController::class, 'organization
 Route::get('services', [FrontendController::class, 'services'])->name('services');
 Route::get('service-detail/{slug?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
 Route::get('services', [FrontendController::class, 'services'])->name('services');
-Route::get('service-detail/{slug?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
+Route::get('service/{slug?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
 
 Route::get('become-an-agent', [FrontendController::class, 'becomeAnAgent'])->name('becomeAnAgent');
 Route::post('become-an-agent', [BecomeAnAgentController::class, 'store'])->name('storeAgentRequest');
@@ -41,7 +41,7 @@ Route::get('news-and-events', [FrontendController::class, 'newsAndEvents'])->nam
 Route::get('news-and-events-detail-page/{id?}', [FrontendController::class, 'newsAndEventsDetailPage'])->name('newsAndEventsDetailPage');
 
 Route::get('gallery', [FrontendController::class, 'gallery'])->name('gallery');
-Route::get('gallery-detail/{id?}', [FrontendController::class, 'galleryDetail'])->name('galleryDetail');
+Route::get('gallery-detail/{slug?}', [FrontendController::class, 'galleryDetail'])->name('galleryDetail');
 
 Route::get('grievances', [FrontendController::class, 'grievances'])->name('grievances');
 Route::post('grievances', [App\Http\Controllers\GrievanceController::class, 'store'])->name('grievances.store');

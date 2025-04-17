@@ -17,7 +17,7 @@
       <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
       <a href="{{ route('gallery') }}" class="text-white font-bold">Gallery</a>
       <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-      <a href="{{ route('galleryDetail', $gallery->id) }}" class="text-accent font-bold">{{ $gallery->title_en }}</a>
+      <a href="{{ route('galleryDetail', $gallery->slug) }}" class="text-accent font-bold">{{ $gallery->title_en }}</a>
       </div>
     </div>
   </section>

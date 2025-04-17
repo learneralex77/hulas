@@ -133,7 +133,7 @@ class AboutUsRequest extends FormRequest
     {
         // Convert boolean values explicitly
         $this->merge([
-            'is_published' => $this->has('is_published') ? true : false,
+            'is_published' => $this->input('is_published') == 1,
             'display_order' => $this->input('display_order') ?? 0,
         ]);
 

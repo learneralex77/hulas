@@ -80,6 +80,7 @@ class ServiceController extends Controller
                 'translation_names' => json_encode($request->input('names', [])),
                 'translation_icons' => json_encode($request->input('icons', [])),
                 'translation_descriptions' => json_encode($request->input('descriptions', [])),
+                'external_link' => json_encode($request->input('external_links', [])),
             ];
             
             // Create the service
@@ -159,6 +160,7 @@ class ServiceController extends Controller
                 'translation_names' => json_encode($request->input('names', [])),
                 'translation_icons' => json_encode($request->input('icons', [])),
                 'translation_descriptions' => json_encode($request->input('descriptions', [])),
+                'external_link' => json_encode($request->input('external_links', [])),
             ];
 
             // Handle file upload

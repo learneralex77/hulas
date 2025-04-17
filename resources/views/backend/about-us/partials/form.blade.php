@@ -103,7 +103,7 @@
             <div class="form-check form-switch">
                 <input type="hidden" name="is_published" value="0">
                 <input class="form-check-input" type="checkbox" id="is_published" name="is_published" value="1" 
-                    {{ old('is_published', $aboutUs->is_published ?? 1) ? 'checked' : '' }}>
+                    {{ old('is_published', $aboutUs->is_published ?? 0) ? 'checked' : '' }}>
                 <label class="form-check-label" for="is_published">Published</label>
             </div>
             @error('is_published')

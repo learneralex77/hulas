@@ -36,6 +36,53 @@
             </div>
         </div>
 
+        <!-- Row: Address fields -->
+        <div class="row g-2 mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="address_en">Address(English)</label>
+                <input type="text" class="form-control form-control-sm @error('address_en') is-invalid @enderror" id="address_en" name="address_en" value="{{ old('address_en', $team->address_en ?? '') }}">
+                @error('address_en')
+                    <div class="invalid-feedback small">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="address_np">Address(Nepali)</label>
+                <input type="text" class="form-control form-control-sm @error('address_np') is-invalid @enderror" id="address_np" name="address_np" value="{{ old('address_np', $team->address_np ?? '') }}">
+                @error('address_np')
+                    <div class="invalid-feedback small">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        <!-- Row: Phone Number fields -->
+        <div class="row g-2 mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="phone_number_en">Phone Number(English)</label>
+                <input type="text" class="form-control form-control-sm @error('phone_number_en') is-invalid @enderror" id="phone_number_en" name="phone_number_en" value="{{ old('phone_number_en', $team->phone_number_en ?? '') }}">
+                @error('phone_number_en')
+                    <div class="invalid-feedback small">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="phone_number_np">Phone Number(Nepali)</label>
+                <input type="text" class="form-control form-control-sm @error('phone_number_np') is-invalid @enderror" id="phone_number_np" name="phone_number_np" value="{{ old('phone_number_np', $team->phone_number_np ?? '') }}">
+                @error('phone_number_np')
+                    <div class="invalid-feedback small">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
+        <!-- Row: Email field -->
+        <div class="row g-2 mb-3">
+            <div class="col-md-12">
+                <label class="form-label" for="email">Email</label>
+                <input type="email" class="form-control form-control-sm @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $team->email ?? '') }}">
+                @error('email')
+                    <div class="invalid-feedback small">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+
         <!-- Row 3: Image field -->
         <div class="mb-3">
             <label class="form-label" for="image">Image</label>

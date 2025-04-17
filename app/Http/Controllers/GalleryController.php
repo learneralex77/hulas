@@ -6,6 +6,7 @@ use App\Models\Gallery;
 use App\Http\Requests\GalleryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class GalleryController extends Controller
 {
@@ -33,6 +34,17 @@ class GalleryController extends Controller
     {
         try {
             $data = $request->validated();
+
+            // Generate slug from title
+            $slug = Str::slug($request->input('title_en'));
+            
+            // Check if slug already exists
+            $count = Gallery::where('slug', $slug)->count();
+            if ($count > 0) {
+                $slug = $slug . '-' . ($count + 1);
+            }
+            
+            $data['slug'] = $slug;
 
             // Handle featured image upload
             if ($request->hasFile('featured_image')) {
@@ -90,6 +102,22 @@ class GalleryController extends Controller
     {
         try {
             $data = $request->validated();
+
+            // Generate slug from title if title has changed
+            if ($request->input('title_en') !== $gallery->title_en) {
+                $slug = Str::slug($request->input('title_en'));
+                
+                // Check if slug already exists for other galleries
+                $count = Gallery::where('slug', $slug)
+                    ->where('id', '!=', $gallery->id)
+                    ->count();
+                
+                if ($count > 0) {
+                    $slug = $slug . '-' . ($count + 1);
+                }
+                
+                $data['slug'] = $slug;
+            }
 
             // Handle featured image deletion
             if ($request->has('delete_featured_image') && $request->delete_featured_image == 1 && !$request->hasFile('featured_image')) {

@@ -377,7 +377,7 @@
                     @foreach ($galleries as $gallery)
                         <div class="swiper-slide">
                             <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
-                                class="w-full h-full object-contain" alt="{{ $gallery->title_en }}" />
+                                class="w-full h-full !object-cover" alt="{{ $gallery->title_en }}" />
                         </div>
                     @endforeach
 
@@ -390,7 +390,7 @@
                     @foreach ($galleries as $index => $gallery)
                         <div class="swiper-slide">
                             <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
-                                class="w-full h-full object-cover" alt="{{ $gallery->title_en }}" />
+                                class="!w-full !h-full !object-cover" alt="{{ $gallery->title_en }}" />
                         </div>
                     @endforeach
                 </div>
@@ -404,7 +404,7 @@
                     Explore News Articles
                 </a>
             </div>
-            <div class="drop-shadow-xl shadow-gray-100 bg-white rounded-lg m-3">
+            <div class="drop-shadow-xl shadow-gray-100 bg-white rounded-lg">
                 <!-- Heading for scroll -->
                 <div class="flex flex-row bg-white rounded m-3 p-3">
                     <!-- Explore part -->
@@ -474,7 +474,7 @@
 
                     <!-- <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
                                                     class="mx-auto w-full h-full" /> -->
-                    <div class="swiper !h-[60vh] mx-auto w-[100%] popupSwiper rounded-lg">
+                    <div class="swiper !h-[40vh] md:!h-[60vh] mx-auto w-[100%] popupSwiper rounded-lg">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <a href="homepage">

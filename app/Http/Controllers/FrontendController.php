@@ -130,8 +130,25 @@ class FrontendController extends Controller
     public function missionAndVision()
     {
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
-        $missions = json_decode($aboutUs->mission_vision, true);
-        return view('frontend.mission-and-vision', compact('missions'));
+        
+        // Handle mission_vision safely (could be array or string)
+        $missions = [];
+        if ($aboutUs && $aboutUs->mission_vision) {
+            // No need to decode, the accessor in the model will handle this
+            $missions = $aboutUs->mission_vision;
+        }
+        
+        // Handle vision safely (could be array or string)
+        $visions = [];
+        if ($aboutUs && isset($aboutUs->vision)) {
+            if (is_string($aboutUs->vision)) {
+                $visions = json_decode($aboutUs->vision, true) ?? [];
+            } elseif (is_array($aboutUs->vision)) {
+                $visions = $aboutUs->vision;
+            }
+        }
+        
+        return view('frontend.mission-and-vision', compact('aboutUs', 'missions', 'visions'));
     }
     public function newsAndEvents()
     {

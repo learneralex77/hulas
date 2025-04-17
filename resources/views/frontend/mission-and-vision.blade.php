@@ -16,12 +16,16 @@
                 <h2 class="text-2xl font-bold text-gray-800">
                     Our Corporate Mission
                 </h2>
-                <p class="text-gray-700 mt-2">
+                <p class="text-gray-700 mt-2 text-justify">
                     @isset($missions)
                         @foreach ($missions as $mission)
-                            {{ $mission['description'] }}
+                            {{ $mission['description'] ?? '' }}
+                            @if(!$loop->last)<br><br>@endif
                         @endforeach
+                    @else
+                        To provide accessible, affordable, and innovative remittance solutions that safeguard the interests of individuals, businesses, and society, while upholding trust, transparency, and efficiency as a responsible enterprise.
                     @endisset
+                </p>
                     <!-- To provide accessible, affordable, and innovative general insurance
                     solutions that safeguard the interests of individuals, businesses,
                     and society, while upholding trust, transparency, and efficiency as

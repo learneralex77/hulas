@@ -60,6 +60,8 @@ Route::get('header', [FrontendController::class, 'header'])->name('header');
 // Admin routes moved to auth.php
 require __DIR__ . '/auth.php';
 
+// Routes for services
+
 
 
 

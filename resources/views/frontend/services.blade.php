@@ -42,9 +42,7 @@
       <a href="{{ route('serviceDetail', $service->slug) }}">
         <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl border-t-4 border-blue-600 cursor-pointer hover:-translate-y-2 transition-transform ease-in-out duration-300 max-w-[420px] h-[300px]">
           <div class="flex items-center justify-center w-16 h-16 bg-blue-100 text-blue-700 rounded-full mx-auto mb-4">
-            @if(isset($service->icon) && !empty($service->icon))
-              <img src="{{ asset('storage/' . $service->icon) }}" alt="{{ $service->name_en }}" class="w-10 h-10 object-contain">
-            @elseif(isset($service->file) && !empty($service->file))
+            @if(isset($service->file) && !empty($service->file))
               <img src="{{ asset('storage/' . $service->file) }}" alt="{{ $service->name_en }}" class="w-10 h-10 object-contain">
             @else
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

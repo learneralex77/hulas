@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="AWT" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {{-- <meta name="description" content="{{ $settings->meta_description }}" />
+    {{--
+    <meta name="description" content="{{ $settings->meta_description }}" />
     <meta name="keywords" content="{{ $settings->keywords }}">
     <!-- {!! $settings->schema_markup !!} -->
 
@@ -21,10 +22,7 @@
 
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
     {{-- select2 --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
@@ -60,16 +58,17 @@
     </div>
 
     <!-- Your main content -->
-    <div id="content">
+    <div id="content" class="wrapper">
         <!-- Go to Top Button -->
         <button id="goToTopBtn"
             class="z-50 fixed bottom-4 right-4 bg-accent text-white p-2 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-110 hover:bg-black-600 hidden">
-            <img src="{{ asset('assets/images/up-chevron-svgrepo-com.png') }}" alt="go-to-top-button" class="w-10 h-10"> </button>
+            <img src="{{ asset('assets/images/up-chevron-svgrepo-com.png') }}" alt="go-to-top-button" class="w-10 h-10">
+        </button>
 
         @include('frontend..layouts.partials.header')
-
-        @yield('content')
-
+        <main>
+            @yield('content')
+        </main>
         @include('frontend..layouts.partials.footer')
 
         <script src="{{ asset('assets/js/main.js') }}"></script>
@@ -118,7 +117,7 @@
                     e.preventDefault();
             }
 
-            $(document).ready(function() {
+            $(document).ready(function () {
                 $('.select').select2({
                     theme: "w-full border-2 rounded-md form-control",
                 });
@@ -140,7 +139,7 @@
                 }
             });
 
-            $(function() {
+            $(function () {
                 $('.overlayButton').click(displayOverlay);
             });
 
@@ -168,7 +167,7 @@
     </div>
 
     <script>
-        window.onload = function() {
+        window.onload = function () {
             const preloader = document.getElementById('preloader');
             const content = document.getElementById('content');
 
@@ -180,7 +179,7 @@
         let goToTopBtn = document.getElementById("goToTopBtn");
 
         // When the user scrolls down 100px from the top of the document, show the button
-        window.onscroll = function() {
+        window.onscroll = function () {
             scrollFunction()
         };
 
@@ -193,14 +192,12 @@
         }
 
         // When the user clicks on the button, scroll to the top of the document
-        goToTopBtn.onclick = function() {
+        goToTopBtn.onclick = function () {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         };
-
-
     </script>
 </body>
 

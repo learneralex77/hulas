@@ -17,7 +17,7 @@ use App\Models\NewsEventCategory;
 
 use App\Http\Requests\ContactUsRequest;
 use App\Http\Requests\BecomeAnAgentRequest;
-
+use App\Models\AgentDetail;
 use App\Models\Partner;
 use App\Models\BecomeAnAgent;
 use App\Models\Download;
@@ -62,7 +62,8 @@ class FrontendController extends Controller
     public function becomeAnAgent()
     {
         $setting = Setting::first();
-        return view('frontend.become-an-agent',compact("setting"));
+
+        return view('frontend.become-an-agent',compact('settings'));
     }
     public function contactUs()
     {
@@ -71,7 +72,9 @@ class FrontendController extends Controller
     }
     public function findAnAgent()
     {
-        return view('frontend.find-an-agent');
+        $agentDetails = AgentDetail::orderBy('display_order')->get();
+
+        return view('frontend.find-an-agent', compact('agentDetails'));
     }
     public function forexRate()
     {

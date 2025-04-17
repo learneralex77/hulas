@@ -118,8 +118,8 @@
                             <p class="font-semibold">Location:</p>
 
                             <p>
-                                @isset($setting->address_en)
-                                    {{ $setting->address_en }}
+                                @isset($settings->address_en)
+                                    {{ $settings->address_en }}
                                 @endisset
 
                             </p>
@@ -134,8 +134,8 @@
                         <div class="flex flex-col space-y-2">
                             <p class="font-semibold">Toll Free Number:</p>
                             <p>
-                                @isset($setting->phone_number_en)
-                                    {{ $setting->phone_number_en }}
+                                @isset($settings->phone_number_en)
+                                    {{ $settings->phone_number_en }}
                                 @endisset
                             </p>
                         </div>
@@ -147,9 +147,9 @@
                         <div class="flex flex-col space-y-2">
                             <p class="font-semibold">Email:</p>
                             <p>
-                                @isset($setting->email)
-                                    {{ $setting->email }}<br>
-                                    {{ $setting->agent_notify_email }}
+                                @isset($settings->email)
+                                    {{ $settings->email }}<br>
+                                    {{ $settings->agent_notify_email }}
 
                                 @endisset
                             </p>

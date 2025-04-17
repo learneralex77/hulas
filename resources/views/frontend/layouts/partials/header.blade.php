@@ -3,15 +3,19 @@
     <nav class="hidden w-full py-1 bg-bgprimary border-black border-b-2 px-10 lg:block">
         <div class="w-full p-2 flex justify-between items-center">
             <!-- address, toll free -->
+            @isset($settings->address_en)
             <div class="flex space-x-8 items-center">
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/location-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($settings->address_en)
+                       
                             {{ $settings->address_en }}
-                        @endisset
+                        
                     </p>
                 </div>
+                @endisset
+
+                @isset($settings->phone_number_en)
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/phone-call-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
@@ -20,6 +24,9 @@
                         @endisset
                     </p>
                 </div>
+                @endisset
+
+                @isset($settings->email)
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/mail-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
@@ -31,17 +38,24 @@
                         @endisset
                     </p>
                 </div>
+                @endisset
             </div>
             <!-- social -->
+            @isset($settings->facebook_url)
             <div class="flex space-x-5 items-center">
-                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/fb-icon.png') }}"
+                <a rel="noopener noreferrer" href="{{ $settings->facebook }}"><img src="{{ asset('assets/images/navbar/fb-icon.png') }}"
                         class="w-6" alt="facebook Icon" /></a>
-                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/x-icon.png') }}"
+                @isset($settings->twitter)
+                <a rel="noopener noreferrer" href="{{ $settings->twitter }}"><img src="{{ asset('assets/images/navbar/x-icon.png') }}"
                         class="w-4" alt="X Icon" /></a>
-                <a rel="noopener noreferrer" href="#"><img
+                @endisset
+                @isset($settings->linkedin)
+                <a rel="noopener noreferrer" href="{{ $settings->linkedin }}"><img
                         src="{{ asset('assets/images/navbar/linked-in-icon.png') }}" class="w-5"
                         alt="Linkedin Icon" /></a>
+                @endisset
             </div>
+            @endisset
         </div>
     </nav>
 

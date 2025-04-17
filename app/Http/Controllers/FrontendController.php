@@ -31,8 +31,7 @@ class FrontendController extends Controller
     {
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
         $aboutUs1 = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
-        $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
-        $popupPaths = $popup->pluck('photo')->map(fn($path) => asset('storage' . $path));
+        $popups = Popup::active()->orderByDisplayOrder()->get();
         $howToBecameAnAgent = Page::where('slug', 'how-become-an-agent')->first();
         $sliders = Slider::active()->orderBy('display_order', 'ASC')->get();
         $services = Service::active()->orderBy('display_order', 'ASC')->get();
@@ -41,7 +40,7 @@ class FrontendController extends Controller
         $newsAndEvents = NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
 
         $partners = Partner::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners', 'newsAndEvents'));
+        return view('frontend.homepage', compact('aboutUs', 'popups', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners', 'newsAndEvents'));
     }
 
     public function aboutHulasRemittance()

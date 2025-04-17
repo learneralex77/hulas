@@ -471,42 +471,32 @@
                         <span class="sr-only">Close modal</span>
                     </button>
 
-
-                    <!-- <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
-                                                    class="mx-auto w-full h-full" /> -->
                     <div class="swiper !h-[40vh] md:!h-[60vh] mx-auto w-[100%] popupSwiper rounded-lg">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <a href="homepage">
-                                    <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
-                                        class=" w-full object-contain" />
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="homepage">
-                                    <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
-                                        class=" w-full object-contain" />
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="homepage">
-                                    <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
-                                        class=" w-full object-contain" />
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="homepage">
-                                    <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" alt="Hulas Logo"
-                                        class="w-full object-fit" />
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="homepage">
-                                    <img src="{{ asset('assets/images/modal.png') }}" alt="Hulas Logo"
-                                        class="w-full object-fit" />
-                                </a>
-                            </div>
-
+                            @if(isset($popups) && count($popups) > 0)
+                                @foreach($popups as $popup)
+                                    <div class="swiper-slide">
+                                        @if($popup->link)
+                                            <a href="{{ $popup->link }}" target="_blank">
+                                                <img src="{{ asset('storage/' . $popup->image) }}" 
+                                                    alt="{{ $popup->name_en }}" 
+                                                    class="w-full h-full object-contain" />
+                                            </a>
+                                        @else
+                                            <img src="{{ asset('storage/' . $popup->image) }}" 
+                                                alt="{{ $popup->name_en }}" 
+                                                class="w-full h-full object-contain" />
+                                        @endif
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="swiper-slide">
+                                    <a href="homepage">
+                                        <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" alt="Hulas Logo"
+                                            class="w-full h-full object-contain" />
+                                    </a>
+                                </div>
+                            @endif
                         </div>
 
                         <!-- Swiper pagination dots -->
@@ -592,11 +582,13 @@
     </script>
 
     <script>
-        // Show modal on page load
+        // Show modal on page load only if popups exist
         window.addEventListener("DOMContentLoaded", () => {
-            const modal = document.getElementById("popup-modal");
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
+            @if(isset($popups) && count($popups) > 0)
+                const modal = document.getElementById("popup-modal");
+                modal.classList.remove("hidden");
+                modal.classList.add("flex");
+            @endif
         });
 
         // Close modal when clicking the close button
@@ -617,18 +609,21 @@
         });
 
         document.addEventListener("DOMContentLoaded", function () {
-            const swiper = new Swiper(".popupSwiper", {
-                loop: true,
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-                autoplay: {
-                    delay: 2000,
-                },
-            });
+            const swiperContainer = document.querySelector(".popupSwiper");
+            if (swiperContainer) {
+                const swiper = new Swiper(".popupSwiper", {
+                    loop: true,
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                    },
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                });
+            }
         });
-
     </script>
 
 @endpush

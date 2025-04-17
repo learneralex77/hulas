@@ -78,10 +78,32 @@ class ServiceController extends Controller
                 'is_published' => $request->boolean('is_published'),
                 'file' => $filePath,
                 'translation_names' => json_encode($request->input('names', [])),
-                'translation_icons' => json_encode($request->input('icons', [])),
                 'translation_descriptions' => json_encode($request->input('descriptions', [])),
                 'external_link' => json_encode($request->input('external_links', [])),
             ];
+            
+            // Handle translation_icons as image files
+            $iconPaths = [];
+            if ($request->hasFile('icons')) {
+                foreach ($request->file('icons') as $index => $iconFile) {
+                    if ($iconFile) {
+                        $iconPath = $iconFile->store('service_icons', 'public');
+                        $iconPaths[$index] = $iconPath;
+                    }
+                }
+            }
+            
+            // Handle any non-file icon inputs (text values that might be present)
+            if ($request->has('icons')) {
+                foreach ($request->input('icons', []) as $index => $iconInput) {
+                    // If it's a string value and not a file, add it to the paths
+                    if (is_string($iconInput) && !empty($iconInput) && !$request->hasFile("icons.$index")) {
+                        $iconPaths[$index] = $iconInput;
+                    }
+                }
+            }
+            
+            $data['translation_icons'] = json_encode($iconPaths);
             
             // Create the service
             $service = Service::create($data);
@@ -158,10 +180,37 @@ class ServiceController extends Controller
                 'display_order' => $request->input('display_order'),
                 'is_published' => $request->boolean('is_published'),
                 'translation_names' => json_encode($request->input('names', [])),
-                'translation_icons' => json_encode($request->input('icons', [])),
                 'translation_descriptions' => json_encode($request->input('descriptions', [])),
                 'external_link' => json_encode($request->input('external_links', [])),
             ];
+
+            // Handle translation_icons as image files
+            if ($request->hasFile('icons')) {
+                $iconPaths = json_decode($service->translation_icons, true) ?? [];
+                foreach ($request->file('icons') as $index => $iconFile) {
+                    if ($iconFile) {
+                        // Delete old icon if exists
+                        if (isset($iconPaths[$index])) {
+                            Storage::disk('public')->delete($iconPaths[$index]);
+                        }
+                        
+                        $iconPath = $iconFile->store('service_icons', 'public');
+                        $iconPaths[$index] = $iconPath;
+                    }
+                }
+                
+                // Handle any non-file icon inputs (text values that might be present)
+                if ($request->has('icons')) {
+                    foreach ($request->input('icons', []) as $index => $iconInput) {
+                        // If it's a string value and not a file, add it to the paths
+                        if (is_string($iconInput) && !empty($iconInput) && !$request->hasFile("icons.$index")) {
+                            $iconPaths[$index] = $iconInput;
+                        }
+                    }
+                }
+                
+                $data['translation_icons'] = json_encode($iconPaths);
+            }
 
             // Handle file upload
             if ($request->hasFile('file')) {

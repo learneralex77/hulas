@@ -21,12 +21,13 @@ use App\Models\AgentDetail;
 use App\Models\Partner;
 use App\Models\BecomeAnAgent;
 use App\Models\Download;
+use App\Models\Team;
 use Illuminate\Support\Facades\Storage;
 
 class FrontendController extends Controller
 {
 
-        public function homepage()
+    public function homepage()
     {
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
         $aboutUs1 = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
@@ -37,33 +38,32 @@ class FrontendController extends Controller
         $services = Service::active()->orderBy('display_order', 'ASC')->get();
         $notices = Publication::active()->where('publication_type', 'notice')->orderBy('display_order', 'ASC')->get();
         $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
-        $newsAndEvents=NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
+        $newsAndEvents = NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
 
         $partners = Partner::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners','newsAndEvents'));
-
+        return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners', 'newsAndEvents'));
     }
 
     public function aboutHulasRemittance()
     {
         $setting = Setting::first();
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
-        $services=Service::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.about-hulas-page', compact('aboutUs','services','setting'));
+        $services = Service::active()->orderBy('display_order', 'ASC')->get();
+        return view('frontend.about-hulas-page', compact('aboutUs', 'services', 'setting'));
     }
 
     public function aboutWesternUnion()
     {
         $aboutUs1 = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
-        $services=Service::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.about-western-union-page', compact('aboutUs1','services'));
+        $services = Service::active()->orderBy('display_order', 'ASC')->get();
+        return view('frontend.about-western-union-page', compact('aboutUs1', 'services'));
     }
 
     public function becomeAnAgent()
     {
-        $setting = Setting::first();
+        $settings = Setting::first();
 
-        return view('frontend.become-an-agent',compact('settings'));
+        return view('frontend.become-an-agent', compact('settings'));
     }
     public function contactUs()
     {
@@ -76,10 +76,23 @@ class FrontendController extends Controller
 
         return view('frontend.find-an-agent', compact('agentDetails'));
     }
+    
     public function forexRate()
     {
-        return view('frontend.forex-rate');
+        // Get today's forex rate, or the latest one if today's not available
+        $forexRate = \App\Models\ForexRate::orderBy('date', 'desc')->first();
+
+        $morningRates = collect($forexRate->slots['morning'] ?? [])->filter(function ($rate) {
+            return $rate['is_published'] ?? false;
+        });
+
+        $afternoonRates = collect($forexRate->slots['afternoon'] ?? [])->filter(function ($rate) {
+            return $rate['is_published'] ?? false;
+        });
+
+        return view('frontend.forex-rate', compact('forexRate', 'morningRates', 'afternoonRates'));
     }
+
     public function services()
     {
         $services = \App\Models\Service::active()->orderByDisplayOrder()->get();
@@ -122,7 +135,7 @@ class FrontendController extends Controller
     }
     public function newsAndEvents()
     {
-        $newsAndEvents=NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
+        $newsAndEvents = NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
         return view('frontend.news-and-events', compact('newsAndEvents'));
     }
     public function newsAndEventsDetailPage($id = null)
@@ -131,13 +144,15 @@ class FrontendController extends Controller
             $newsEvent = NewsEventCategory::findOrFail($id);
             $otherNewsEvents = NewsEventCategory::active()->where('id', '!=', $id)->take(10)->get();
             $setting = Setting::first();
-            return view('frontend.news-and-events-detail-page', compact('newsEvent', 'otherNewsEvents', 'setting'   ));
+            return view('frontend.news-and-events-detail-page', compact('newsEvent', 'otherNewsEvents', 'setting'));
         }
         return redirect()->route('newsAndEvents');
     }
     public function organizationalStructure()
     {
-        return view('frontend.organizational-structure');
+        $boardOfDirectors = Team::active()->where('type', Team::TYPE_BOD)->orderByDisplayOrder()->get();
+        $managementTeam = Team::active()->where('type', Team::TYPE_MANAGEMENT)->orderByDisplayOrder()->get();
+        return view('frontend.organizational-structure', compact('boardOfDirectors', 'managementTeam'));
     }
     public function downloads()
     {
@@ -165,7 +180,8 @@ class FrontendController extends Controller
     }
     public function quickLinks()
     {
-        return view('frontend.quick-links');
+        $quickLinks = Page::where('slug', 'quick-links')->get();
+        return view('frontend.quick-links', compact('quickLinks'));
     }
     public function sitemap()
     {
@@ -179,8 +195,8 @@ class FrontendController extends Controller
     public function header()
     {
 
-       $setting = Setting::first();
-       return view('frontend.layouts.partials.header', compact('setting'));
+        $setting = Setting::first();
+        return view('frontend.layouts.partials.header', compact('setting'));
     }
 
     public function footer()

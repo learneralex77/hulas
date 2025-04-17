@@ -7,57 +7,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="AWT" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {{--
-    <meta name="description" content="{{ $settings->meta_description }}" />
-    <meta name="keywords" content="{{ $settings->keywords }}">
-    <!-- {!! $settings->schema_markup !!} -->
-
-    <link rel="canonical" href="{{ $settings->canonical_url }}"> --}}
 
     <title>Hulas Remmittance : : @yield('title')</title>
     <link rel="icon" href="{{ asset('assets/images/icon/icon.jpg') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
-    {{-- select2 --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-    {{-- fontawesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    {{-- flowbite --}}
+        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
-
-    {{-- flag-icon-css --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css" />
-
 
     @yield('styles')
     @stack('styles')
+
+    <style>
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background-color: #fff;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader {
+            width: 45px;
+            height: 40px;
+            background:
+                linear-gradient(#0000 calc(1 * 100% / 6), #000 0 calc(3 * 100% / 6), #0000 0),
+                linear-gradient(#0000 calc(2 * 100% / 6), #000 0 calc(4 * 100% / 6), #0000 0),
+                linear-gradient(#0000 calc(3 * 100% / 6), #000 0 calc(5 * 100% / 6), #0000 0);
+            background-size: 10px 400%;
+            background-repeat: no-repeat;
+            animation: matrix 1s infinite linear;
+        }
+
+        @keyframes matrix {
+            0% {
+                background-position: 0% 100%, 50% 100%, 100% 100%
+            }
+
+            100% {
+                background-position: 0% 0%, 50% 0%, 100% 0%
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <div id="preloader"
-        class="flex-col gap-4 w-full h-screen flex items-center justify-center bg-white fixed inset-0 z-50">
-        <div
-            class="w-20 h-20 border-4 border-transparent text-blue-400 text-4xl animate-spin flex items-center justify-center border-t-blue-400 rounded-full">
-            <div
-                class="w-16 h-16 border-4 border-transparent text-red-400 text-2xl animate-spin flex items-center justify-center border-t-red-400 rounded-full">
-            </div>
-        </div>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
     </div>
 
-    <!-- Your main content -->
+    <!-- Content -->
     <div id="content" class="wrapper">
         <!-- Go to Top Button -->
         <button id="goToTopBtn"
@@ -66,132 +75,131 @@
         </button>
 
         @include('frontend..layouts.partials.header')
+
         <main>
             @yield('content')
         </main>
+
         @include('frontend..layouts.partials.footer')
-
-        <script src="{{ asset('assets/js/main.js') }}"></script>
-        {{-- jquery --}}
-        <script src="{{ asset('plugins/jquery/jquery.min.js') }}" type="text/javascript"></script>
-
-        {{-- jquery ui --}}
-        <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
-
-        {{-- sweetalert --}}
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-        {{-- select2 --}}
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-
-        {{-- loading overlay --}}
-        <script src="{{ asset('plugins/js-loading-overlay/js-loading-overlay.min.js') }}"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
-
-        {{-- flowbite --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-
-
-        <script>
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                showCloseButton: true,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            });
-
-            function inpNum(e) {
-                e = e || window.event;
-                var charCode = (typeof e.which == "undefined") ? e.keyCode : e.which;
-                var charStr = String.fromCharCode(charCode);
-                if (!charStr.match(/^[0-9]+$/))
-                    e.preventDefault();
-            }
-
-            $(document).ready(function () {
-                $('.select').select2({
-                    theme: "w-full border-2 rounded-md form-control",
-                });
-
-                const hasSuccessMessage = "{{ session()->has('success') ? true : false }}";
-                if (hasSuccessMessage) {
-                    Toast.fire({
-                        icon: 'success',
-                        title: "{{ session('success') }}"
-                    })
-                }
-
-                const hasErrorMessage = "{{ session()->has('error') ? true : false }}";
-                if (hasErrorMessage) {
-                    Toast.fire({
-                        icon: 'error',
-                        title: "{{ session('error') }}"
-                    })
-                }
-            });
-
-            $(function () {
-                $('.overlayButton').click(displayOverlay);
-            });
-
-            function displayOverlay() {
-                JsLoadingOverlay.show({
-                    'overlayBackgroundColor': '#666666',
-                    'overlayOpacity': 0.6,
-                    'spinnerIcon': 'ball-pulse-sync',
-                    'spinnerColor': '#000066',
-                    'spinnerSize': '2x',
-                    'overlayIDName': 'overlay',
-                    'spinnerIDName': 'spinner',
-                    'spinnerZIndex': 99999,
-                    'overlayZIndex': 99998
-                });
-            }
-
-            function hideOverlay() {
-                JsLoadingOverlay.hide();
-            }
-        </script>
-
-        @yield('scripts')
-        @stack('scripts')
     </div>
 
+    <!-- Scripts -->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('plugins/js-loading-overlay/js-loading-overlay.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+
     <script>
-        window.onload = function () {
+        let preloaderStartTime;
+
+        function showPreloader() {
+            preloaderStartTime = new Date().getTime();
             const preloader = document.getElementById('preloader');
-            const content = document.getElementById('content');
+            if (preloader) {
+                preloader.style.display = 'flex';
+            }
+        }
 
-            preloader.style.display = 'none'; // Hide preloader
-            content.classList.remove('hidden'); // Show content
-        };
+        function hidePreloader() {
+            const now = new Date().getTime();
+            const elapsed = now - preloaderStartTime;
 
-        // Get the button
+            const delay = Math.max(0, 1000 - elapsed); // wait until 1 second total
+
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                if (preloader) {
+                    preloader.style.display = 'none';
+                }
+            }, delay);
+        }
+
+        // Preloader hide logic
+        window.onload = function () {
+            showPreloader(); // Show preloader immediately on load
+            setTimeout(function () {
+                hidePreloader(); // Hide after at least 1 second
+            }, 1000); // Ensures it stays for at least 1 second
+        }
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            showCloseButton: true,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        });
+
+        function inpNum(e) {
+            e = e || window.event;
+            var charCode = (typeof e.which == "undefined") ? e.keyCode : e.which;
+            var charStr = String.fromCharCode(charCode);
+            if (!charStr.match(/^[0-9]+$/))
+                e.preventDefault();
+        }
+
+        $(document).ready(function () {
+            $('.select').select2({
+                theme: "w-full border-2 rounded-md form-control",
+            });
+
+            const hasSuccessMessage = "{{ session()->has('success') ? true : false }}";
+            if (hasSuccessMessage) {
+                Toast.fire({
+                    icon: 'success',
+                    title: "{{ session('success') }}"
+                });
+            }
+
+            const hasErrorMessage = "{{ session()->has('error') ? true : false }}";
+            if (hasErrorMessage) {
+                Toast.fire({
+                    icon: 'error',
+                    title: "{{ session('error') }}"
+                });
+            }
+
+            $('.overlayButton').click(displayOverlay);
+        });
+
+        function displayOverlay() {
+            JsLoadingOverlay.show({
+                overlayBackgroundColor: '#666666',
+                overlayOpacity: 0.6,
+                spinnerIcon: 'ball-pulse-sync',
+                spinnerColor: '#000066',
+                spinnerSize: '2x',
+                overlayIDName: 'overlay',
+                spinnerIDName: 'spinner',
+                spinnerZIndex: 99999,
+                overlayZIndex: 99998
+            });
+        }
+
+        function hideOverlay() {
+            JsLoadingOverlay.hide();
+        }
+
+        // Go to top button logic
         let goToTopBtn = document.getElementById("goToTopBtn");
 
-        // When the user scrolls down 100px from the top of the document, show the button
         window.onscroll = function () {
-            scrollFunction()
-        };
-
-        function scrollFunction() {
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 goToTopBtn.classList.remove("hidden");
             } else {
                 goToTopBtn.classList.add("hidden");
             }
-        }
+        };
 
-        // When the user clicks on the button, scroll to the top of the document
         goToTopBtn.onclick = function () {
             window.scrollTo({
                 top: 0,
@@ -199,6 +207,9 @@
             });
         };
     </script>
+
+    @yield('scripts')
+    @stack('scripts')
 </body>
 
 </html>

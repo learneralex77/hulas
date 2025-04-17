@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
     addButton.addEventListener('click', function() {
         const newDetail = document.createElement('div');
         newDetail.className = 'service-detail-item border rounded p-2 mb-2';
+        
+        // Set a data attribute for the index to keep track
+        newDetail.dataset.index = detailIndex;
+        
         newDetail.innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-2">
             <h5 class="mb-0">Additional Entry #${detailIndex}</h5>
@@ -20,23 +24,24 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="row mb-2">
             <div class="col-md-6">
                 <label class="form-label" for="names_${detailIndex}">Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="names_${detailIndex}" name="names[]" required>
+                <input type="text" class="form-control" id="names_${detailIndex}" name="names[${detailIndex}]" required>
             </div>
 
             <div class="col-md-6">
-                <label class="form-label" for="icons_${detailIndex}">Icon (FontAwesome Class)</label>
-                <input type="text" class="form-control" id="icons_${detailIndex}" name="icons[]" placeholder="fa fa-example">
+                <label class="form-label" for="icons_${detailIndex}">Icon Image</label>
+                <input type="file" class="form-control" id="icons_${detailIndex}" name="icons[${detailIndex}]" accept="image/jpeg,image/png,image/jpg,image/gif,image/svg+xml,image/webp">
+                <small class="text-muted">Allowed file types: JPEG, PNG, JPG, GIF, SVG, WebP (max 2MB)</small>
             </div>
         </div>
 
         <div class="mb-2">
             <label class="form-label" for="descriptions_${detailIndex}">Description</label>
-            <textarea class="form-control" id="descriptions_${detailIndex}" name="descriptions[]" rows="3"></textarea>
+            <textarea class="form-control" id="descriptions_${detailIndex}" name="descriptions[${detailIndex}]" rows="3"></textarea>
         </div>
 
         <div class="mb-2">
             <label class="form-label" for="external_links_${detailIndex}">External Link</label>
-            <input type="url" class="form-control" id="external_links_${detailIndex}" name="external_links[]" placeholder="https://example.com">
+            <input type="url" class="form-control" id="external_links_${detailIndex}" name="external_links[${detailIndex}]" placeholder="https://example.com">
         </div>
     `;
 

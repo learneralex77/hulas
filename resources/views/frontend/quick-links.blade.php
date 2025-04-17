@@ -8,34 +8,26 @@
     <h1 class="mb-5 mt-20 font-bold text-2xl text-center text-black">Quick Links</h1>
     <!-- Card -->
     <div class="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-6 rounded-2xl text-left">
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-200 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-50 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-50 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-50 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-50 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-50 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-50 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
+      @if(isset($quickLinks) && $quickLinks->count() > 0)
+        @foreach($quickLinks as $quickLink)
+          @if(isset($quickLink->external_link) && !empty($quickLink->external_link))
+            <a href="{{ $quickLink->external_link }}" target="_blank" class="block">
+              <div class="px-4 py-4 rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer hover:bg-gradient-to-r from-amber-100 to-amber-200 hover:-translate-y-1 transition-transform ease-in-out duration-300">
+                {{ $quickLink->name_en ?? 'Quick Link' }}
+              </div>
+            </a>
+          @else
+            <div class="px-4 py-4 rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md">
+              {{ $quickLink->name_en ?? 'Quick Link' }}
+              <p class="text-sm text-gray-500 mt-1">No link available</p>
+            </div>
+          @endif
+        @endforeach
+      @else
+        <div class="col-span-2 text-center py-8">
+          <p class="text-gray-500">No quick links available at the moment.</p>
+        </div>
+      @endif
     </div>
   </div>
 @endsection

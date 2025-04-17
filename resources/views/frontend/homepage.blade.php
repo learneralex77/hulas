@@ -158,7 +158,7 @@
         @endisset
     </section>
 
-    <!----------Services Section---------->
+    <!----------Services-Section---------->
     @isset($service->name_en)
 
         <section class="m-10 items-center">
@@ -303,7 +303,7 @@
 
 
  <!----------Our Partners Section---------->
-    <section class="my-10">
+    <section class="my-10 z-30">
         <div class="overflow-x-hidden">
             <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                 <div class="flex flex-col items-center space-y-6">
@@ -366,7 +366,7 @@
             </div>
 
             <div style=" --swiper-navigation-color: #fff; --swiper-pagination-color: #fff; "
-                class="swiper mySwiper2 w-full h-1/2 aspect-[16/9]">
+                class="swiper mySwiper2 w-full h-1/2 aspect-[16/9] m-2">
                 <div class="swiper-wrapper h-[800px] lg:h-[400px]">
                     @foreach ($galleries as $gallery)
                         <div class="swiper-slide">
@@ -383,7 +383,8 @@
                 <div class="swiper-wrapper">
                     @foreach ($galleries as $index => $gallery)
                         <div class="swiper-slide">
-                            <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}" class="w-full h-full object-cover"
+                            <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}" 
+                            class="w-full h-full object-cover"
                                 alt="{{ $gallery->title_en }}" />
                         </div>
                     @endforeach
@@ -472,7 +473,6 @@
             </div>
         </div>
     </div>
-    <!-- Modal Section-->
 
 @endsection
 

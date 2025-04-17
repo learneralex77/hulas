@@ -21,6 +21,7 @@ use App\Models\AgentDetail;
 use App\Models\Partner;
 use App\Models\BecomeAnAgent;
 use App\Models\Download;
+use App\Models\Team;
 use Illuminate\Support\Facades\Storage;
 
 class FrontendController extends Controller
@@ -149,7 +150,9 @@ class FrontendController extends Controller
     }
     public function organizationalStructure()
     {
-        return view('frontend.organizational-structure');
+        $boardOfDirectors = Team::active()->where('type', Team::TYPE_BOD)->orderByDisplayOrder()->get();
+        $managementTeam = Team::active()->where('type', Team::TYPE_MANAGEMENT)->orderByDisplayOrder()->get();
+        return view('frontend.organizational-structure', compact('boardOfDirectors', 'managementTeam'));
     }
     public function downloads()
     {
@@ -177,7 +180,8 @@ class FrontendController extends Controller
     }
     public function quickLinks()
     {
-        return view('frontend.quick-links');
+        $quickLinks = Page::where('slug', 'quick-links')->get();
+        return view('frontend.quick-links', compact('quickLinks'));
     }
     public function sitemap()
     {

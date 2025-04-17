@@ -37,7 +37,7 @@ class ServiceRequest extends FormRequest
             // Translation arrays
             'names' => ['required', 'array', 'min:1'],
             'names.*' => ['required', 'string', 'max:255'],
-            'icons.*' => ['nullable', 'file', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
+            'icons.*' => ['nullable'],
             'descriptions.*' => ['nullable', 'string'],
             'external_links.*' => ['nullable', 'url', 'max:255'],
         ];
@@ -165,6 +165,17 @@ class ServiceRequest extends FormRequest
                 !isset($this->input('names')[0]) || 
                 trim($this->input('names')[0]) === '') {
                 $validator->errors()->add('names.0', 'The first service name is required and cannot be empty.');
+            }
+            
+            // Validate icon files if present
+            if ($this->hasFile('icons')) {
+                foreach ($this->file('icons') as $index => $file) {
+                    if ($file) {
+                        $validator->validate([
+                            "icons.{$index}" => ['file', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
+                        ]);
+                    }
+                }
             }
         });
     }

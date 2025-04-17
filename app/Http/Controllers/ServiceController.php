@@ -92,6 +92,17 @@ class ServiceController extends Controller
                     }
                 }
             }
+            
+            // Handle any non-file icon inputs (text values that might be present)
+            if ($request->has('icons')) {
+                foreach ($request->input('icons', []) as $index => $iconInput) {
+                    // If it's a string value and not a file, add it to the paths
+                    if (is_string($iconInput) && !empty($iconInput) && !$request->hasFile("icons.$index")) {
+                        $iconPaths[$index] = $iconInput;
+                    }
+                }
+            }
+            
             $data['translation_icons'] = json_encode($iconPaths);
             
             // Create the service
@@ -187,6 +198,17 @@ class ServiceController extends Controller
                         $iconPaths[$index] = $iconPath;
                     }
                 }
+                
+                // Handle any non-file icon inputs (text values that might be present)
+                if ($request->has('icons')) {
+                    foreach ($request->input('icons', []) as $index => $iconInput) {
+                        // If it's a string value and not a file, add it to the paths
+                        if (is_string($iconInput) && !empty($iconInput) && !$request->hasFile("icons.$index")) {
+                            $iconPaths[$index] = $iconInput;
+                        }
+                    }
+                }
+                
                 $data['translation_icons'] = json_encode($iconPaths);
             }
 

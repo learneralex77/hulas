@@ -61,15 +61,15 @@
                                 class="absolute inset-0 flex flex-col space-y-1 md:space-y-3 items-left text-left bg-black/20 py-10 sm:py-20 md:py-40 px-20 md:pb-50 md:px-30">
                                 <h2 class="text-white text-base sm:text-xl md::text-3xl md:text-5xl font-bold"
                                     style="
-                                                                                                                                                          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                                                                                                                                          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                                                                                                                          ">
+                                                                                                                                                                                  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                                                                                                                                                                  -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                                                                                                                                                  ">
                                     {{ $slider->name_en }}
                                 </h2>
                                 <p class=" text-white text-base leading-4 sm:leading-6 sm:text-xl md:text-2xl max-w-3xl"
                                     style="
-                                                                                                                                                              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                                                                                                                          ">
+                                                                                                                                                                                      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                                                                                                                                                  ">
                                     {{ $slider->short_description_en }}
                                 </p>
                                 <a href="{{ $slider->link ? $slider->link : '#' }}"
@@ -125,9 +125,9 @@
         <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
             <div class="flex flex-col items-center space-y-6">
                 <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-                                                                  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                                                  -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                                  ">
+                                                                          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                                                          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                                          ">
                     Our Introduction
                 </h1>
 
@@ -173,9 +173,9 @@
                     <div class="flex flex-col items-center space-y-6">
                         <h1 class="font-bold text-accent uppercase text-lg tracking-wider"
                             style="
-                                                                                                                              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                                                                                                              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                                                                                              ">
+                                                                                                                                              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                                                                                                                              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                                                                                                              ">
                             Our Services
                         </h1>
 
@@ -456,12 +456,12 @@
         <!-- Overlay -->
         <div class="fixed inset-0 bg-black opacity-80 z-40"></div>
 
-        <div class="relative p-4 sm:w-[60%] lg:w-[40%] max-h-full z-50">
+        <div class="relative p-4 w-[80%] lg:w-[40%] max-h-full z-50">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm ">
                 <div class="p-3 md:p-4 space-y-4 relative">
                     <button type="button z-50"
-                        class="absolute top-2 right-2 z-[999] text-gray-400 bg-transparent cursor-pointer hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 flex justify-center items-center"
+                        class="absolute top-2 right-2 z-[999] text-black bg-transparent cursor-pointer hover:bg-accent opacity-85 rounded-lg text-sm w-8 h-8 flex justify-center items-center"
                         id="close-modal">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -470,27 +470,41 @@
                         </svg>
                         <span class="sr-only">Close modal</span>
                     </button>
+
+
                     <!-- <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
-                                            class="mx-auto w-full h-full" /> -->
+                                                    class="mx-auto w-full h-full" /> -->
                     <div class="swiper !h-[60vh] mx-auto w-[100%] popupSwiper rounded-lg">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
-                                    class=" w-full object-contain" />
+                                <a href="homepage">
+                                    <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
+                                        class=" w-full object-contain" />
+                                </a>
                             </div>
                             <div class="swiper-slide">
-                                <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
-                                    class="w-full object-contain" />
+                                <a href="homepage">
+                                    <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
+                                        class=" w-full object-contain" />
+                                </a>
                             </div>
                             <div class="swiper-slide">
-                                <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
-                                class="w-full object-contain" />
-                                </div>
-                            <div class="swiper-slide">
-                                <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" alt="Hulas Logo"  class="w-full object-fit" />
+                                <a href="homepage">
+                                    <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
+                                        class=" w-full object-contain" />
+                                </a>
                             </div>
                             <div class="swiper-slide">
-                                <img src="{{ asset('assets/images/modal.png') }}" alt="Hulas Logo"  class="w-full object-fit" />
+                                <a href="homepage">
+                                    <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" alt="Hulas Logo"
+                                        class="w-full object-fit" />
+                                </a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="homepage">
+                                    <img src="{{ asset('assets/images/modal.png') }}" alt="Hulas Logo"
+                                        class="w-full object-fit" />
+                                </a>
                             </div>
 
                         </div>

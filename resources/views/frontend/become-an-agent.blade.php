@@ -22,7 +22,7 @@
                 </div>
         </section>
         <!-- banner-section -->
-        <div class="mx-6 md:mx-10 lg:mx-20 xl:mx-40 mb-20">
+        <div class="mx-6 md:mx-10 lg:mx-20 xl:mx-40 pb-20">
             <!-- form section  -->
             <section class="overflow-x-hidden">
                 <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
@@ -61,10 +61,16 @@
                                     @enderror
                                 </div>
 
-                            <p>
-                                @isset($setting->address_en)
-                                    {{ $setting->address_en }}
-                                @endisset
+                                <div class="flex flex-col space-y-3 w-full">
+                                    <label for="contact_number" class="font-bold text-xl text-[#3d5169]">Contact
+                                        Number</label>
+                                    <input type="tel" placeholder="Contact Number" id="contact_number" name="contact_number"
+                                        class="bg-[#f5faff] rounded-md" required />
+                                    @error('contact_number')
+                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
 
                             <div class="flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-5">
                                 <div class="flex flex-col space-y-3 w-full">
@@ -85,34 +91,6 @@
                                 </div>
                             </div>
 
-<<<<<<< Updated upstream
-                            <p>Kathmandu, Nepal</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-row gap-6 justify-between space-x-5 items-center">
-                        <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center">
-                            <img src="{{ asset('assets/images/contact/phone-svgrepo-com.svg') }}" class="w-8" alt="Phone Icon" />
-                        </div>
-                        <div class="flex flex-col space-y-2">
-                            <p class="font-semibold">Toll Free Number:</p>
-                            <p>
-                                @isset($settings->phone_number_en)
-                                    {{ $settings->phone_number_en }}
-                                @endisset
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex flex-row gap-6 justify-between space-x-5 items-center">
-                        <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center">
-                            <img src="{{ asset('assets/images/contact/mail-svgrepo-com.png') }}" class="w-8" alt="Contact Icon" />
-                        </div>
-                        <div class="flex flex-col space-y-2">
-                            <p class="font-semibold">Email:</p>
-                            <p>
-                                @isset($setting->email)
-                                    {{ $setting->email }}<br>
-                                    {{ $setting->agent_notify_email }}
-=======
                             <div class="flex flex-col space-y-3">
                                 <label for="message" class="font-bold text-xl text-[#3d5169]">Message</label>
                                 <textarea name="message" id="message" cols="20" rows="10" class="bg-[#f5faff] rounded-md"
@@ -121,7 +99,6 @@
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
->>>>>>> Stashed changes
 
                             <button type="submit"
                                 class="w-44 flex justify-center items-center bg-black text-accent hover:opacity-85 py-3 px-5 rounded-full cursor-pointer">

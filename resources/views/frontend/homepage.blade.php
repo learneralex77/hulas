@@ -61,20 +61,20 @@
                                 class="absolute inset-0 flex flex-col space-y-1 md:space-y-3 items-left text-left bg-black/20 py-10 sm:py-20 md:py-40 px-20 md:pb-50 md:px-30">
                                 <h2 class="text-white text-base sm:text-xl md::text-3xl md:text-5xl font-bold"
                                     style="
-                                                                                                                                                          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                                                                                                                                          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                                                                                                                          ">
+                                                                                                                                                                                  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                                                                                                                                                                  -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                                                                                                                                                  ">
                                     {{ $slider->name_en }}
                                 </h2>
                                 <p class=" text-white text-base leading-4 sm:leading-6 sm:text-xl md:text-2xl max-w-3xl"
                                     style="
-                                                                                                                                                              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                                                                                                                          ">
+                                                                                                                                                                                      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                                                                                                                                                  ">
                                     {{ $slider->short_description_en }}
                                 </p>
                                 <a href="{{ $slider->link ? $slider->link : '#' }}"
                                     class="px-3 sm:px-6 py-1 sm:py-2 bg-accent w-34 sm:w-40 text-center text-black border-2 rounded-full hover:opacity-85 font-semibold text-sm sm:text-lg">
-                                    About Hulas </a>
+                                    Read more </a>
                             </div>
                         </div>
                     @endforeach
@@ -125,9 +125,9 @@
         <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
             <div class="flex flex-col items-center space-y-6">
                 <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-                                                                  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                                                  -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                                  ">
+                                                                          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                                                          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                                          ">
                     Our Introduction
                 </h1>
 
@@ -173,9 +173,9 @@
                     <div class="flex flex-col items-center space-y-6">
                         <h1 class="font-bold text-accent uppercase text-lg tracking-wider"
                             style="
-                                                                                                                              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                                                                                                              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                                                                                              ">
+                                                                                                                                              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                                                                                                                              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                                                                                                              ">
                             Our Services
                         </h1>
 
@@ -377,7 +377,7 @@
                     @foreach ($galleries as $gallery)
                         <div class="swiper-slide">
                             <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
-                                class="w-full h-full object-contain" alt="{{ $gallery->title_en }}" />
+                                class="w-full h-full !object-cover" alt="{{ $gallery->title_en }}" />
                         </div>
                     @endforeach
 
@@ -390,7 +390,7 @@
                     @foreach ($galleries as $index => $gallery)
                         <div class="swiper-slide">
                             <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
-                                class="w-full h-full object-cover" alt="{{ $gallery->title_en }}" />
+                                class="!w-full !h-[100px] !object-cover" alt="{{ $gallery->title_en }}" />
                         </div>
                     @endforeach
                 </div>
@@ -404,7 +404,7 @@
                     Explore News Articles
                 </a>
             </div>
-            <div class="drop-shadow-xl shadow-gray-100 bg-white rounded-lg m-3">
+            <div class="drop-shadow-xl shadow-gray-100 bg-white rounded-lg">
                 <!-- Heading for scroll -->
                 <div class="flex flex-row bg-white rounded m-3 p-3">
                     <!-- Explore part -->
@@ -449,19 +449,18 @@
         </div>
     </div>
 
-
     <!-- Modal Section-->
     <div id="popup-modal" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <!-- Overlay -->
         <div class="fixed inset-0 bg-black opacity-80 z-40"></div>
 
-        <div class="relative p-4 sm:w-[60%] lg:w-[40%] max-h-full z-50">
+        <div class="relative p-4 w-[80%] lg:w-[40%] max-h-full z-50">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm ">
                 <div class="p-3 md:p-4 space-y-4 relative">
                     <button type="button z-50"
-                        class="absolute top-2 right-2 z-[999] text-gray-400 bg-transparent cursor-pointer hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 flex justify-center items-center"
+                        class="absolute top-2 right-2 z-[999] text-black bg-transparent cursor-pointer hover:bg-accent opacity-85 rounded-lg text-sm w-8 h-8 flex justify-center items-center"
                         id="close-modal">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -470,29 +469,33 @@
                         </svg>
                         <span class="sr-only">Close modal</span>
                     </button>
-                    <!-- <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
-                                            class="mx-auto w-full h-full" /> -->
-                    <div class="swiper !h-[60vh] mx-auto w-[100%] popupSwiper rounded-lg">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
-                                    class=" w-full object-contain" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
-                                    class="w-full object-contain" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{ asset('assets/images/agent/agent.jpg') }}" alt="Modal Image" srcset=""
-                                class="w-full object-contain" />
-                                </div>
-                            <div class="swiper-slide">
-                                <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" alt="Hulas Logo"  class="w-full object-fit" />
-                            </div>
-                            <div class="swiper-slide">
-                                <img src="{{ asset('assets/images/modal.png') }}" alt="Hulas Logo"  class="w-full object-fit" />
-                            </div>
 
+                    <div class="swiper !h-[40vh] md:!h-[60vh] mx-auto w-[100%] popupSwiper rounded-lg">
+                        <div class="swiper-wrapper">
+                            @if(isset($popups) && count($popups) > 0)
+                                @foreach($popups as $popup)
+                                    <div class="swiper-slide">
+                                        @if($popup->link)
+                                            <a href="{{ $popup->link }}" target="_blank">
+                                                <img src="{{ asset('storage/' . $popup->image) }}" 
+                                                    alt="{{ $popup->name_en }}" 
+                                                    class="w-full h-full object-contain" />
+                                            </a>
+                                        @else
+                                            <img src="{{ asset('storage/' . $popup->image) }}" 
+                                                alt="{{ $popup->name_en }}" 
+                                                class="w-full h-full object-contain" />
+                                        @endif
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="swiper-slide">
+                                    <a href="homepage">
+                                        <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" alt="Hulas Logo"
+                                            class="w-full h-full object-contain" />
+                                    </a>
+                                </div>
+                            @endif
                         </div>
 
                         <!-- Swiper pagination dots -->
@@ -578,11 +581,13 @@
     </script>
 
     <script>
-        // Show modal on page load
+        // Show modal on page load only if popups exist
         window.addEventListener("DOMContentLoaded", () => {
-            const modal = document.getElementById("popup-modal");
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
+            @if(isset($popups) && count($popups) > 0)
+                const modal = document.getElementById("popup-modal");
+                modal.classList.remove("hidden");
+                modal.classList.add("flex");
+            @endif
         });
 
         // Close modal when clicking the close button
@@ -603,18 +608,21 @@
         });
 
         document.addEventListener("DOMContentLoaded", function () {
-            const swiper = new Swiper(".popupSwiper", {
-                loop: true,
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-                autoplay: {
-                    delay: 2000,
-                },
-            });
+            const swiperContainer = document.querySelector(".popupSwiper");
+            if (swiperContainer) {
+                const swiper = new Swiper(".popupSwiper", {
+                    loop: true,
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                    },
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                });
+            }
         });
-
     </script>
 
 @endpush

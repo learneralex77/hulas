@@ -18,6 +18,11 @@ class Team extends Model
         'description_en',
         'description_np',
         'description', // Keep for backward compatibility
+        'address_en',
+        'address_np',
+        'phone_number_en',
+        'phone_number_np',
+        'email',
         'display_order',
         'is_published'
     ];

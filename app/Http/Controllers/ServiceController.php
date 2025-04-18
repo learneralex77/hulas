@@ -35,6 +35,34 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
         try {
+            // Start with file upload preparation - do this outside the transaction
+            $filePath = null;
+            $iconPaths = [];
+            
+            // Process main file upload first
+            if ($request->hasFile('file') && $request->file('file')->isValid()) {
+                $filePath = $request->file('file')->store('services', 'public');
+            }
+            
+            // Process icon file uploads - collect them before DB transaction
+            if ($request->hasFile('icons')) {
+                foreach ($request->file('icons') as $index => $iconFile) {
+                    if ($iconFile && $iconFile->isValid()) {
+                        $iconPaths[$index] = $iconFile->store('service_icons', 'public');
+                    }
+                }
+            }
+            
+            // Make sure all entries in names array have corresponding icon paths entries
+            if ($request->has('names')) {
+                foreach (array_keys($request->input('names', [])) as $index) {
+                    if (!isset($iconPaths[$index])) {
+                        $iconPaths[$index] = null;
+                    }
+                }
+            }
+            
+            // Now start the database transaction - with file uploads already done
             DB::beginTransaction();
 
             // Create slug from name_en
@@ -46,28 +74,8 @@ class ServiceController extends Controller
                 $slug = $slug . '-' . ($count + 1);
             }
 
-            // Handle file upload
-            $filePath = null;
-            if ($request->hasFile('file')) {
-                $file = $request->file('file');
-                
-                // Log file details
-                \Log::info('File upload details:', [
-                    'original_name' => $file->getClientOriginalName(),
-                    'mime_type' => $file->getClientMimeType(),
-                    'size' => $file->getSize(),
-                    'extension' => $file->getClientOriginalExtension(),
-                ]);
-                
-                // Store file and get path
-                $filePath = $file->store('services', 'public');
-                
-                // Log successful upload
-                \Log::info('File stored at: ' . $filePath);
-            }
-
-            // Prepare data for service creation
-            $data = [
+            // Create the service with all data at once
+            $service = Service::create([
                 'name_en' => $request->input('name_en'),
                 'name_np' => $request->input('name_np'),
                 'icon' => $request->input('icon'),
@@ -78,12 +86,10 @@ class ServiceController extends Controller
                 'is_published' => $request->boolean('is_published'),
                 'file' => $filePath,
                 'translation_names' => json_encode($request->input('names', [])),
-                'translation_icons' => json_encode($request->input('icons', [])),
                 'translation_descriptions' => json_encode($request->input('descriptions', [])),
-            ];
-            
-            // Create the service
-            $service = Service::create($data);
+                'external_link' => json_encode($request->input('external_links', [])),
+                'translation_icons' => json_encode($iconPaths),
+            ]);
 
             DB::commit();
 
@@ -92,13 +98,6 @@ class ServiceController extends Controller
                 ->with('success', 'Service created successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
-            
-            // Log the error for debugging
-            \Log::error('Service creation error: ' . $e->getMessage(), [
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
-                'trace' => $e->getTraceAsString()
-            ]);
             
             return redirect()
                 ->back()
@@ -129,9 +128,58 @@ class ServiceController extends Controller
     public function update(ServiceRequest $request, Service $service)
     {
         try {
+            // Process file uploads first - outside the transaction
+            $filePath = $service->file;
+            
+            // Fix the json_decode error - check if already an array
+            $iconPaths = $service->translation_icons;
+            if (is_string($iconPaths)) {
+                $iconPaths = json_decode($iconPaths, true) ?? [];
+            } elseif (!is_array($iconPaths)) {
+                $iconPaths = [];
+            }
+            
+            // Handle main file upload if needed
+            if ($request->hasFile('file') && $request->file('file')->isValid()) {
+                // Delete old file if exists
+                if ($service->file) {
+                    Storage::disk('public')->delete($service->file);
+                }
+                
+                $filePath = $request->file('file')->store('services', 'public');
+            }
+            
+            // Process icon uploads
+            if ($request->hasFile('icons')) {
+                foreach ($request->file('icons') as $index => $iconFile) {
+                    if ($iconFile && $iconFile->isValid()) {
+                        // Delete old icon if exists
+                        if (isset($iconPaths[$index])) {
+                            Storage::disk('public')->delete($iconPaths[$index]);
+                        }
+                        
+                        $iconPaths[$index] = $iconFile->store('service_icons', 'public');
+                    }
+                }
+            }
+            
+            // Process icon paths to match names array structure
+            if ($request->has('names')) {
+                $names = $request->input('names', []);
+                $processedIconPaths = [];
+                
+                foreach ($names as $index => $name) {
+                    $processedIconPaths[$index] = $iconPaths[$index] ?? null;
+                }
+                
+                $iconPaths = $processedIconPaths;
+            }
+            
+            // Start database transaction after file handling
             DB::beginTransaction();
 
-            // Update slug if name_en changed
+            // Update slug if name changed
+            $slug = $service->slug;
             if ($request->input('name_en') !== $service->name_en) {
                 $slug = Str::slug($request->input('name_en'));
                 
@@ -143,53 +191,24 @@ class ServiceController extends Controller
                 if ($count > 0) {
                     $slug = $slug . '-' . ($count + 1);
                 }
-                
-                $service->slug = $slug;
             }
 
-            // Prepare update data
-            $data = [
+            // Update in a single operation
+            $service->update([
                 'name_en' => $request->input('name_en'),
                 'name_np' => $request->input('name_np'),
                 'icon' => $request->input('icon'),
                 'description_en' => $request->input('description_en'),
                 'description_np' => $request->input('description_np'),
+                'slug' => $slug,
                 'display_order' => $request->input('display_order'),
                 'is_published' => $request->boolean('is_published'),
+                'file' => $filePath,
                 'translation_names' => json_encode($request->input('names', [])),
-                'translation_icons' => json_encode($request->input('icons', [])),
                 'translation_descriptions' => json_encode($request->input('descriptions', [])),
-            ];
-
-            // Handle file upload
-            if ($request->hasFile('file')) {
-                $file = $request->file('file');
-                
-                // Log file details
-                \Log::info('File upload details (update):', [
-                    'original_name' => $file->getClientOriginalName(),
-                    'mime_type' => $file->getClientMimeType(),
-                    'size' => $file->getSize(),
-                    'extension' => $file->getClientOriginalExtension(),
-                ]);
-                
-                // Delete old file if exists
-                if ($service->file) {
-                    Storage::disk('public')->delete($service->file);
-                }
-                
-                // Store file and get path
-                $filePath = $file->store('services', 'public');
-                
-                // Log successful upload
-                \Log::info('File stored at: ' . $filePath);
-                
-                // Add file path to update data
-                $data['file'] = $filePath;
-            }
-
-            // Update service
-            $service->update($data);
+                'external_link' => json_encode($request->input('external_links', [])),
+                'translation_icons' => json_encode($iconPaths),
+            ]);
 
             DB::commit();
 
@@ -198,13 +217,6 @@ class ServiceController extends Controller
                 ->with('success', 'Service updated successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
-            
-            // Log the error for debugging
-            \Log::error('Service update error: ' . $e->getMessage(), [
-                'file' => $e->getFile(),
-                'line' => $e->getLine(),
-                'trace' => $e->getTraceAsString()
-            ]);
             
             return redirect()
                 ->back()

@@ -108,10 +108,11 @@
                     $names = $service->translation_names;
                     $icons = $service->translation_icons ?? [];
                     $descriptions = $service->translation_descriptions ?? [];
+                    $externalLinks = $service->external_link ?? [];
                 @endphp
                 
                 @foreach ($names as $index => $name)
-                    <div class="service-detail-item border rounded p-2 mb-2">
+                    <div class="service-detail-item border rounded p-2 mb-2" data-index="{{ $index }}">
                         @if ($index > 0)
                             <div class="d-flex justify-content-between align-items-center mb-2">
                                 <h5 class="mb-0 ps-0">Additional Entry #{{ $index }}</h5>
@@ -127,7 +128,7 @@
                                         class="text-danger">*</span></label>
                                 <input type="text"
                                     class="form-control @error('names.' . $index) is-invalid @enderror"
-                                    id="names_{{ $index }}" name="names[]"
+                                    id="names_{{ $index }}" name="names[{{ $index }}]"
                                     value="{{ old('names.' . $index, $name) }}"
                                     required>
                                 @error('names.' . $index)
@@ -136,46 +137,65 @@
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label ps-0" for="icons_{{ $index }}">Icon (FontAwesome
-                                    Class)</label>
-                                <input type="text"
+                                <label class="form-label ps-0" for="icons_{{ $index }}">Icon Image</label>
+                                <input type="file"
                                     class="form-control @error('icons.' . $index) is-invalid @enderror"
-                                    id="icons_{{ $index }}" name="icons[]"
-                                    value="{{ old('icons.' . $index, $icons[$index] ?? '') }}"
-                                    placeholder="fa fa-example">
+                                    id="icons_{{ $index }}" name="icons[{{ $index }}]"
+                                    accept="image/jpeg,image/png,image/jpg,image/gif,image/svg+xml,image/webp">
+                                <small class="text-muted">Allowed file types: JPEG, PNG, JPG, GIF, SVG, WebP (max 2MB)</small>
                                 @error('icons.' . $index)
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                @if (isset($icons[$index]) && !empty($icons[$index]))
+                                    <div class="mt-1">
+                                        <a href="{{ asset('storage/' . $icons[$index]) }}" target="_blank" class="btn btn-sm btn-alt-info">
+                                            <i class="fa fa-eye"></i> View Current Icon
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
 
                         <div class="mb-2">
                             <label class="form-label ps-0" for="descriptions_{{ $index }}">Description</label>
                             <textarea class="form-control @error('descriptions.' . $index) is-invalid @enderror"
-                                id="descriptions_{{ $index }}" name="descriptions[]" rows="3">{{ old('descriptions.' . $index, $descriptions[$index] ?? '') }}</textarea>
+                                id="descriptions_{{ $index }}" name="descriptions[{{ $index }}]" rows="3">{{ old('descriptions.' . $index, $descriptions[$index] ?? '') }}</textarea>
                             @error('descriptions.' . $index)
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-2">
+                            <label class="form-label ps-0" for="external_links_{{ $index }}">External Link</label>
+                            <input type="url"
+                                class="form-control @error('external_links.' . $index) is-invalid @enderror"
+                                id="external_links_{{ $index }}" name="external_links[{{ $index }}]"
+                                value="{{ old('external_links.' . $index, $externalLinks[$index] ?? '') }}"
+                                placeholder="https://example.com">
+                            @error('external_links.' . $index)
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
                 @endforeach
             @else
-                <div class="service-detail-item border rounded p-2 mb-2">
+                <div class="service-detail-item border rounded p-2 mb-2" data-index="0">
                     <div class="row mb-2">
                         <div class="col-md-6">
                             <label class="form-label ps-0" for="names_0">Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('names.0') is-invalid @enderror"
-                                id="names_0" name="names[]" value="{{ old('names.0') }}" required aria-required="true">
+                                id="names_0" name="names[0]" value="{{ old('names.0') }}" required aria-required="true">
                             @error('names.0')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label ps-0" for="icons_0">Icon (FontAwesome Class)</label>
-                            <input type="text" class="form-control @error('icons.0') is-invalid @enderror"
-                                id="icons_0" name="icons[]" value="{{ old('icons.0') }}"
-                                placeholder="fa fa-example">
+                            <label class="form-label ps-0" for="icons_0">Icon Image</label>
+                            <input type="file" class="form-control @error('icons.0') is-invalid @enderror"
+                                id="icons_0" name="icons[0]" 
+                                accept="image/jpeg,image/png,image/jpg,image/gif,image/svg+xml,image/webp">
+                            <small class="text-muted">Allowed file types: JPEG, PNG, JPG, GIF, SVG, WebP (max 2MB)</small>
                             @error('icons.0')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -184,9 +204,19 @@
 
                     <div class="mb-2">
                         <label class="form-label ps-0" for="descriptions_0">Description</label>
-                        <textarea class="form-control @error('descriptions.0') is-invalid @enderror" id="descriptions_0" name="descriptions[]"
+                        <textarea class="form-control @error('descriptions.0') is-invalid @enderror" id="descriptions_0" name="descriptions[0]"
                             rows="3">{{ old('descriptions.0') }}</textarea>
                         @error('descriptions.0')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label ps-0" for="external_links_0">External Link</label>
+                        <input type="url" class="form-control @error('external_links.0') is-invalid @enderror"
+                            id="external_links_0" name="external_links[0]" value="{{ old('external_links.0') }}"
+                            placeholder="https://example.com">
+                        @error('external_links.0')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

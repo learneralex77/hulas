@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name_en');
             $table->string('name_np')->nullable();         
+            $table->string('image')->nullable();
             $table->integer('display_order')->default(0);
-            $table->string('slug')->nullable();
             $table->text('description_en')->nullable();
             $table->text('description_np')->nullable();
             $table->boolean('is_published')->default(true);

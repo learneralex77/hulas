@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\QuickLink;
 use App\Http\Requests\QuickLinkRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class QuickLinkController extends Controller
 {
@@ -32,6 +33,9 @@ class QuickLinkController extends Controller
     {
         $data = $request->validated();
         QuickLink::create($data);
+        
+        // Clear the quick_links cache
+        Cache::forget('quick_links');
 
         return redirect()->route('quick-links.index')
             ->with('success', 'Quick Link created successfully.');
@@ -60,6 +64,9 @@ class QuickLinkController extends Controller
     {
         $data = $request->validated();
         $quickLink->update($data);
+        
+        // Clear the quick_links cache
+        Cache::forget('quick_links');
 
         return redirect()->route('quick-links.index')
             ->with('success', 'Quick Link updated successfully.');
@@ -72,6 +79,9 @@ class QuickLinkController extends Controller
     {
         try {
             $quickLink->delete();
+            
+            // Clear the quick_links cache
+            Cache::forget('quick_links');
 
             // Check if request is AJAX
             if (request()->ajax()) {

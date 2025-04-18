@@ -54,15 +54,15 @@ class AppServiceProvider extends ServiceProvider
             });
 
 
-            $quickLinks = Cache::remember('quick_links', 60, function () {
-                return QuickLink::where('is_published', 1)->get();
-            });
+            // $quickLinks = Cache::remember('quick_links', 60, function () {
+            //     return QuickLink::where('is_published', 1)->get();
+            // });
 
 
             $view->with([
                 'settings' => $settings,
                 'menus' => $menus,
-                'quickLinks' => $quickLinks,
+                // 'quickLinks' => $quickLinks,
             ]);
         });
         Schema::defaultStringLength(191);

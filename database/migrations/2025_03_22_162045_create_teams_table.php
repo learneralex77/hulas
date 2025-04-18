@@ -19,6 +19,11 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('description_en')->nullable();
             $table->text('description_np')->nullable();
+            $table->string('address_en')->nullable();
+            $table->string('address_np')->nullable();
+            $table->string('phone_number_en')->nullable();
+            $table->string('phone_number_np')->nullable();
+            $table->string('email')->nullable();
             $table->integer('display_order')->default(0);
             $table->boolean('is_published')->default(true);
             $table->timestamps();

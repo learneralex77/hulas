@@ -116,7 +116,7 @@ class AgentDetailController extends Controller
         $request->validate(['file' => 'required|mimes:xlsx,csv,xls']);
 
         // Store file
-        $filePath = $request->file('file')->store('imports'); 
+        $filePath = $request->file('file')->store('imports');
 
         try {
             // Import data using relative path

@@ -37,8 +37,9 @@ class ServiceRequest extends FormRequest
             // Translation arrays
             'names' => ['required', 'array', 'min:1'],
             'names.*' => ['required', 'string', 'max:255'],
-            'icons.*' => ['nullable', 'string', 'max:255'],
+            'icons.*' => ['nullable'],
             'descriptions.*' => ['nullable', 'string'],
+            'external_links.*' => ['nullable', 'url', 'max:255'],
         ];
 
         // Check that the slug generated from the first name would be unique
@@ -80,6 +81,7 @@ class ServiceRequest extends FormRequest
             'names.*' => 'service detail name',
             'icons.*' => 'service detail icon',
             'descriptions.*' => 'service detail description',
+            'external_links.*' => 'external link',
             'display_order' => 'display order',
             'is_published' => 'published status',
             'file' => 'file',
@@ -117,7 +119,14 @@ class ServiceRequest extends FormRequest
             'icons.*.string' => 'The icon must be a string.',
             'icons.*.max' => 'The icon may not be greater than 255 characters.',
             
+            'icons.*.file' => 'The icon file must be a valid file.',
+            'icons.*.mimes' => 'The icon file must be one of the following types: JPEG, PNG, JPG, GIF, SVG, WebP.',
+            'icons.*.max' => 'The icon file may not be greater than 2MB.',
+            
             'descriptions.*.string' => 'The description must be a string.',
+            
+            'external_links.*.url' => 'The external link must be a valid URL (e.g., https://example.com).',
+            'external_links.*.max' => 'The external link may not be greater than 255 characters.',
             
             'display_order.required' => 'The display order is required.',
             'display_order.integer' => 'The display order must be a number.',

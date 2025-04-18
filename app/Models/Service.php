@@ -23,6 +23,7 @@ class Service extends Model
         'translation_names',
         'translation_icons',
         'translation_descriptions',
+        'external_link',
         'language_code',
     ];
 
@@ -55,6 +56,14 @@ class Service extends Model
     }
 
     /**
+     * Get all the external links for this service.
+     */
+    public function getExternalLinks()
+    {
+        return json_decode($this->external_link, true) ?? [];
+    }
+
+    /**
      * Get the translation_names attribute with JSON decoding
      */
     public function getTranslationNamesAttribute($value)
@@ -74,6 +83,14 @@ class Service extends Model
      * Get the translation_descriptions attribute with JSON decoding
      */
     public function getTranslationDescriptionsAttribute($value)
+    {
+        return json_decode($value, true) ?? [];
+    }
+
+    /**
+     * Get the external_link attribute with JSON decoding
+     */
+    public function getExternalLinkAttribute($value)
     {
         return json_decode($value, true) ?? [];
     }

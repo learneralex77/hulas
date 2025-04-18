@@ -109,8 +109,8 @@
                         <div class="flex flex-col space-y-2">
                             <p class="font-semibold">Toll Free Number:</p>
                             <p>
-                                @isset($setting->phone_number_en)
-                                    {{ $setting->phone_number_en }}
+                                @isset($settings->phone_number_en)
+                                    {{ $settings->phone_number_en }}
                                 @endisset
                             </p>
                         </div>

@@ -3,48 +3,12 @@
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')
 
-<<<<<<< Updated upstream
-  <div class="mb-10 ml-20 mr-20 min-h-[500px]">
-    <!-- Heading -->
-    <h1 class="mb-5 mt-20 font-bold text-2xl text-center text-black">Quick Links</h1>
-    <!-- Card -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 gap-6 rounded-2xl text-left">
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-200 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-50 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-50 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-50 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-50 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-50 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-    <div
-      class="px-2 py-3  rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md hover:shadow-lg cursor-pointer  hover:bg-linear-to-r from-amber-100 to-amber-50 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-      <a href="#">Nepal Rastra Bank</a>
-    </div>
-=======
   <div class="min-h-screen">
     <!-- banner-section -->
     <section class="relative">
     <div class="mb-10">
       <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
       alt="Banner Image" class="h-60 w-full object-cover" />
->>>>>>> Stashed changes
     </div>
     <div class="absolute w-full top-20">
       <div class="flex flex-col space-y-8 ml-10">
@@ -80,7 +44,7 @@
 
         <!-- Card -->
         <div
-          class="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-10 rounded-2xl text-left">
+          class="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-10 rounded-2xl text-left my-10">
           @if(isset($quickLinks) && $quickLinks->count() > 0)
           @foreach($quickLinks as $quickLink)
           @if(isset($quickLink->external_link) && !empty($quickLink->external_link))
@@ -103,7 +67,7 @@
           </div>
         @endif
         </div>
-     </div>
+  </div>
   </div>
 
 

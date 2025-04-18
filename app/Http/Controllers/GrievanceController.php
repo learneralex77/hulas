@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\GrievanceRequest;
+use App\Http\Requests\GrievanceRequest;
 use App\Models\Grievance;
 use Illuminate\Http\Request;
 

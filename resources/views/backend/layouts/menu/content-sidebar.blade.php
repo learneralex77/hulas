@@ -175,7 +175,7 @@
 
 <li class="{{ request()->routeIs('forex-rate.index*') ? 'open' : '' }}">
     <a class="nav-main-link {{ request()->routeIs('forex-rate.index*') ? 'active' : '' }}" href="{{ route('forex-rate.index') }}">
-        <i class="nav-main-link-icon fa fa-cog"></i>
+        <i class="nav-main-link-icon fa fa-money-bill"></i>
         <span class="nav-main-link-name">Forex Rates</span>
     </a>
 </li>

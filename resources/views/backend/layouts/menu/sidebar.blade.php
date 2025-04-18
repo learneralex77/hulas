@@ -9,11 +9,9 @@
                 <span class="smini-visible fw-bold tracking-wide fs-lg">
                     Hulas  Remittance
                 </span>
-
-                <a class="link-fx fw-bold tracking-wide mx-auto" href="/">
+                <a class="link-fx fw-bold tracking-wide mx-auto" href="{{ route('homepage') }}">
                     <span class="smini-hidden">
-                        {{-- <span class="fs-4 text-dual">code</span><span class="fs-4 text-primary">base</span> --}}
-                        <img src="{{ asset('images/logo.png') }}" alt="AWT" style="height:50px">
+                        <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" alt="Hulas Remittance" style="height:30px">
                     </span>
                 </a>
             </div>
@@ -43,21 +41,8 @@
                 <!-- END Visible only in mini mode -->
 
                 <!-- Visible only in normal mode -->
-                <div class="smini-hidden text-center mx-auto">
-                    <a class="img-link" href="void:;">
-                        <img class="img-avatar" src="{{ asset('images/avatar15.jpg') }}" alt="">
-                    </a>
+                <!-- <div class="smini-hidden text-center mx-auto">
                     <ul class="list-inline mt-3 mb-0">
-                        <li class="list-inline-item">
-                            <a class="link-fx text-dual fs-sm fw-semibold text-uppercase"
-                                href="void:;">{{ auth()->check() ? auth()->user()->username : 'Guest' }}</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="link-fx text-dual" data-toggle="layout" data-action="dark_mode_toggle"
-                                href="void:;">
-                                <i class="fa fa-moon"></i>
-                            </a>
-                        </li>
                         <li class="list-inline-item">
                             <form id="logoutForm" method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -70,9 +55,9 @@
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
                 <!-- END Visible only in normal mode -->
-            </div>
+            <!-- </div> -->
             <!-- END Side User -->
 
             <!-- Side Navigation -->

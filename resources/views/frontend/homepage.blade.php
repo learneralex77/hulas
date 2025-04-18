@@ -74,7 +74,7 @@
                                 </p>
                                 <a href="{{ $slider->link ? $slider->link : '#' }}"
                                     class="px-3 sm:px-6 py-1 sm:py-2 bg-accent w-34 sm:w-40 text-center text-black border-2 rounded-full hover:opacity-85 font-semibold text-sm sm:text-lg">
-                                    About Hulas </a>
+                                    Read more </a>
                             </div>
                         </div>
                     @endforeach

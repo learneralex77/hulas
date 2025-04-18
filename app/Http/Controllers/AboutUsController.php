@@ -157,11 +157,11 @@ class AboutUsController extends Controller
                         'description' => $request->mission_vision_descriptions[$index],
                     ];
                     
-                    // Check if image should be deleted
-                    if (isset($request->mission_vision_delete_images[$index]) && 
-                        $request->boolean('mission_vision_delete_images.' . $index) && 
-                        isset($missionVisionImages[$index])) {
-                        
+                    // Check if image should be deleted - simplify the condition
+                    $deleteImage = isset($request->mission_vision_delete_images[$index]) && 
+                                  $request->mission_vision_delete_images[$index] == 1;
+                    
+                    if ($deleteImage && isset($missionVisionImages[$index])) {
                         // Delete the stored file
                         Storage::disk('public')->delete($missionVisionImages[$index]);
                         $missionVisionImages[$index] = null;

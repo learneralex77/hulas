@@ -134,21 +134,17 @@ class FrontendController extends Controller
         // Handle mission_vision safely (could be array or string)
         $missions = [];
         if ($aboutUs && $aboutUs->mission_vision) {
-            // No need to decode, the accessor in the model will handle this
+            // decode granu pardaina, the accessor in the model will handle this
             $missions = $aboutUs->mission_vision;
         }
         
-        // Handle vision safely (could be array or string)
-        $visions = [];
-        if ($aboutUs && isset($aboutUs->vision)) {
-            if (is_string($aboutUs->vision)) {
-                $visions = json_decode($aboutUs->vision, true) ?? [];
-            } elseif (is_array($aboutUs->vision)) {
-                $visions = $aboutUs->vision;
-            }
+        // Get mission_vision_images from about_us
+        $mission_vision_images = [];
+        if ($aboutUs && $aboutUs->mission_vision_images) {
+            $mission_vision_images = $aboutUs->mission_vision_images;
         }
         
-        return view('frontend.mission-and-vision', compact('aboutUs', 'missions', 'visions'));
+        return view('frontend.mission-and-vision', compact('aboutUs', 'missions', 'mission_vision_images'));
     }
     public function newsAndEvents()
     {
@@ -197,8 +193,7 @@ class FrontendController extends Controller
     }
     public function quickLinks()
     {
-        // Get fresh data directly from the database instead of potentially using cached data
-        $quickLinks = QuickLink::active()->orderByDisplayOrder()->get();       
+        $quickLinks = QuickLink::active()->orderBy('display_order', 'ASC')->get();       
 
         return view('frontend.quick-links', compact('quickLinks'));
     }

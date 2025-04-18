@@ -29,7 +29,7 @@
 @endsection
 
 @section('scripts')
-    <!-- <script src="{{ asset('js/about-us.js') }}"></script> -->
+    <script src="{{ asset('js/about-us.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Edit page loaded');

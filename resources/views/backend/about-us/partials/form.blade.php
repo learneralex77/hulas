@@ -237,13 +237,14 @@
                                     <div class="form-check mt-2">
                                         <input class="form-check-input" 
                                                type="checkbox" 
-                                               name="mission_vision_delete_images[]" 
+                                               name="mission_vision_delete_images[{{ $index }}]" 
                                                id="mission_vision_delete_images_{{ $index }}" 
                                                value="1">
-                                        <input type="hidden" name="mission_vision_delete_images[]" value="0">
                                         <label class="form-check-label" for="mission_vision_delete_images_{{ $index }}">
                                             Delete current icon image
                                         </label>
+                                        <!-- Hidden field ensures we get a value even if unchecked -->
+                                        <input type="hidden" name="mission_vision_delete_images_indices[]" value="{{ $index }}">
                                     </div>
                                 </div>
                             @endif

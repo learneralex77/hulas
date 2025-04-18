@@ -3,53 +3,54 @@
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')
 
-  <!-- banner-section -->
-  <section class="relative">
+  <div class="min-h-screen">
+    <!-- banner-section -->
+    <section class="relative">
     <div class="mb-10">
-    <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image" alt="Banner Image"
-      class="h-60 w-full object-cover" />
+      <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
+      alt="Banner Image" class="h-60 w-full object-cover" />
     </div>
     <div class="absolute w-full top-20">
-    <div class="flex flex-col space-y-8 ml-10">
+      <div class="flex flex-col space-y-8 ml-10">
       <h3 class="text-4xl font-extrabold text-white">Gallery</h3>
       <div class="flex space-x-5 items-center">
-      <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
-      <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-      <a href="{{ route('gallery') }}" class="text-accent font-bold">Gallery</a>
+        <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
+        <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
+        <a href="{{ route('gallery') }}" class="text-accent font-bold">Gallery</a>
       </div>
-    </div>
-  </section>
-  <!-- banner-section -->
+      </div>
+    </section>
+    <!-- banner-section -->
 
-  <div class="grid items-center justify-center m-6 lg:mx-16">
+    <div class="mx-6 md:mx-10 lg:mx-20 xl:mx-40 mb-20">
+    <div class="grid items-center justify-center m-6">
+      <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+      </p>
 
-    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-    </p>
-
-    <section class="overflow-x-hidden">
-    <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-      <div class="flex flex-col items-center space-y-6">
-      <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+      <section class="overflow-x-hidden">
+      <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+        <div class="flex flex-col items-center space-y-6">
+        <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
       -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
       ">
-        gallery </h1>
+          gallery </h1>
 
-      <p class="text-2xl text-black font-bold md:text-4xl text-center">
-        Moments That Matter
-      </p>
-      <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-        Browse highlights from our events, community initiatives, and everyday moments that reflect the spirit of
-        Hulas Remittance.
-      </p>
+        <p class="text-2xl text-black font-bold md:text-4xl text-center">
+          Moments That Matter
+        </p>
+        <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+          Browse highlights from our events, community initiatives, and everyday moments that reflect the spirit of
+          Hulas Remittance.
+        </p>
+        </div>
       </div>
-    </div>
-    </section>
+      </section>
 
-    <div class="flex flex-row flex-wrap justify-around gap-6 ">
-    @isset($galleries)
-    @foreach ($galleries as $gallery)
-    <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72 p-3">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center gap-4 text-center mx-auto">
+      @isset($galleries)
+      @foreach ($galleries as $gallery)
+      <div class="bg-white border border-gray-200 rounded-lg shadow-sm max-w-72 p-3">
       <a href="{{ route('galleryDetail', $gallery->slug) }}">
       <img class="rounded-t-lg w-full h-48 object-cover"
       src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg')  }}"
@@ -74,12 +75,15 @@
       </a>
       </div>
       </div>
-    </div>
-  @endforeach
-  @endisset
+      </div>
+    @endforeach
+    @endisset
 
+      </div>
+    </div>
     </div>
   </div>
+
 @endsection
 
 

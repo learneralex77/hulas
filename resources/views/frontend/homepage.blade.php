@@ -390,7 +390,7 @@
                     @foreach ($galleries as $index => $gallery)
                         <div class="swiper-slide">
                             <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
-                                class="!w-full !h-full !object-cover" alt="{{ $gallery->title_en }}" />
+                                class="!w-full !h-[100px] !object-cover" alt="{{ $gallery->title_en }}" />
                         </div>
                     @endforeach
                 </div>

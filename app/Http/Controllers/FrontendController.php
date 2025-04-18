@@ -10,6 +10,7 @@ use App\Models\Gallery;
 use App\Models\Page;
 use App\Models\Publication;
 use App\Models\Service;
+use App\Models\QuickLink;
 use App\Models\ServiceTranslation;
 use App\Models\Setting;
 use App\Models\ContactUs;
@@ -94,13 +95,13 @@ class FrontendController extends Controller
 
     public function services()
     {
-        $services = \App\Models\Service::active()->orderByDisplayOrder()->get();
+        $services = Service::active()->orderByDisplayOrder()->get();
         return view('frontend.services', compact('services'));
     }
     public function serviceDetail($slug = null)
     {
         if ($slug) {
-            $service = \App\Models\Service::active()->where('slug', $slug)->firstOrFail();
+            $service = Service::active()->where('slug', $slug)->firstOrFail();
             return view('frontend.service-detail', compact('service'));
         }
         return redirect()->route('services');
@@ -196,7 +197,9 @@ class FrontendController extends Controller
     }
     public function quickLinks()
     {
-        $quickLinks = Page::where('slug', 'quick-links')->get();
+        // Get fresh data directly from the database instead of potentially using cached data
+        $quickLinks = QuickLink::active()->orderByDisplayOrder()->get();       
+
         return view('frontend.quick-links', compact('quickLinks'));
     }
     public function sitemap()

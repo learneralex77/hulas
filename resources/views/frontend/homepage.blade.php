@@ -74,7 +74,7 @@
                                 </p>
                                 <a href="{{ $slider->link ? $slider->link : '#' }}"
                                     class="px-3 sm:px-6 py-1 sm:py-2 bg-accent w-34 sm:w-40 text-center text-black border-2 rounded-full hover:opacity-85 font-semibold text-sm sm:text-lg">
-                                    About Hulas </a>
+                                    Read more </a>
                             </div>
                         </div>
                     @endforeach
@@ -390,7 +390,7 @@
                     @foreach ($galleries as $index => $gallery)
                         <div class="swiper-slide">
                             <img src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg') }}"
-                                class="!w-full !h-full !object-cover" alt="{{ $gallery->title_en }}" />
+                                class="!w-full !h-[100px] !object-cover" alt="{{ $gallery->title_en }}" />
                         </div>
                     @endforeach
                 </div>

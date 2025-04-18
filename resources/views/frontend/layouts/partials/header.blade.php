@@ -19,9 +19,9 @@
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/phone-call-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($settings->phone_number_en)
+                        
                             {{ $settings->phone_number_en }}
-                        @endisset
+                        
                     </p>
                 </div>
                 @endisset
@@ -30,9 +30,9 @@
                 <div class="flex space-x-3 items-center">
                     <img src="{{ asset('assets/images/navbar/mail-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($settings->email)
+                      
                             {{ $settings->email }}
-                        @endisset
+                     
                         @isset($settings->agent_notify_email)
                             {{ $settings->agent_notify_email }}
                         @endisset
@@ -41,7 +41,7 @@
                 @endisset
             </div>
             <!-- social -->
-            @isset($settings->facebook_url)
+            @isset($settings->facebook)
             <div class="flex space-x-5 items-center">
                 <a rel="noopener noreferrer" href="{{ $settings->facebook }}"><img src="{{ asset('assets/images/navbar/fb-icon.png') }}"
                         class="w-6" alt="facebook Icon" /></a>

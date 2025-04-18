@@ -23,8 +23,7 @@
     <!-- banner-section -->
 
     <div class="mx-6 md:mx-10 lg:mx-20 xl:mx-40 mb-20">
-    <div class="grid items-center justify-center m-6 lg:mx-16">
-
+    <div class="grid items-center justify-center m-6">
       <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
       </p>
 
@@ -48,19 +47,11 @@
       </div>
       </section>
 
-<<<<<<< Updated upstream
-    <div class="flex flex-row flex-wrap justify-around gap-6 ">
-    @isset($galleries)
-    @foreach ($galleries as $gallery)
-    <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72 p-3">
-      <a href="{{ route('galleryDetail', $gallery->slug) }}">
-=======
-      <div class="flex flex-row flex-wrap justify-around gap-6 ">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center gap-4 text-center mx-auto">
       @isset($galleries)
       @foreach ($galleries as $gallery)
-      <div class="bg-white border border-gray-200 rounded-lg shadow-sm w-72 p-3">
+      <div class="bg-white border border-gray-200 rounded-lg shadow-sm max-w-72 p-3">
       <a href="{{ route('galleryDetail', $gallery->slug) }}">
->>>>>>> Stashed changes
       <img class="rounded-t-lg w-full h-48 object-cover"
       src="{{ $gallery->featured_image ? asset('storage/' . $gallery->featured_image) : asset('assets/images/placeholder.jpg')  }}"
       alt="Gallery Image" />

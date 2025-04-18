@@ -61,23 +61,10 @@
                                     @enderror
                                 </div>
 
-<<<<<<< Updated upstream
                             <p>
                                 @isset($setting->address_en)
                                     {{ $setting->address_en }}
                                 @endisset
-=======
-                                <div class="flex flex-col space-y-3 w-full">
-                                    <label for="contact_number" class="font-bold text-xl text-[#3d5169]">Contact
-                                        Number</label>
-                                    <input type="tel" placeholder="Contact Number" id="contact_number" name="contact_number"
-                                        class="bg-[#f5faff] rounded-md" required />
-                                    @error('contact_number')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
->>>>>>> Stashed changes
 
                             <div class="flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-5">
                                 <div class="flex flex-col space-y-3 w-full">

@@ -136,11 +136,11 @@
                     </h2>
                     <div class="flex flex-col space-y-10 items-left lg:items-center lg:justify-center sm:px-10 lg:px-0">
                         <div class="flex flex-row gap-6 justify-between space-x-5 items-center">
-                            <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center">
+                            <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center flex-1">
                                 <img src="{{ asset(path: 'assets/images/contact/location-pin-svgrepo-com.svg') }}"
                                     class="w-8" alt="Location Icon" />
                             </div>
-                            <div class="flex flex-col space-y-1">
+                            <div class="flex flex-col space-y-1 flex-2">
                                 <p class="font-semibold">Location:</p>
 
                                 <p>
@@ -154,11 +154,11 @@
                             </div>
                         </div>
                         <div class="flex flex-row gap-6 justify-between space-x-5 items-center">
-                            <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center">
-                                <img src="{{ asset('assets/images/contact/phone-svgrepo-com.svg') }}" class="w-8"
+                            <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center flex-1">
+                                <img src="{{ asset('assets/images/contact/phone-svgrepo-com.svg') }}" class="w-8 h-8"
                                     alt="Phone Icon" />
                             </div>
-                            <div class="flex flex-col space-y-2">
+                            <div class="flex flex-col space-y-2 flex-2">
                                 <p class="font-semibold">Toll Free Number:</p>
                                 <p>
                                     @isset($settings->phone_number_en)
@@ -168,11 +168,11 @@
                             </div>
                         </div>
                         <div class="flex flex-row gap-6 justify-between space-x-5 items-center">
-                            <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center">
-                                <img src="{{ asset('assets/images/contact/mail-svgrepo-com.png') }}" class="w-8"
-                                    alt="Contact Icon" />
+                            <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center flex-1">
+                                <img src="{{ asset('assets/images/contact/mail-svgrepo-com.png') }}" class="w-8 h-8"
+                                    alt="Email Icon" />
                             </div>
-                            <div class="flex flex-col space-y-2">
+                            <div class="flex flex-col space-y-2 flex-2">
                                 <p class="font-semibold">Email:</p>
                                 <p>
                                     @isset($settings->email)

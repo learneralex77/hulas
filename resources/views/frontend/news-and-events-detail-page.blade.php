@@ -3,8 +3,7 @@
 @section('meta', $newsEvent->description_en)
 @section('content')
 
-    <div class="min-h-screen">
-
+    <div class="min-h-screen"> 
         <!-- banner-section -->
         <section class="relative">
             <div class="mb-10">
@@ -29,7 +28,7 @@
         <!-- new start -->
         <div class="mx-6 md:mx-10 lg:mx-20 xl:mx-40 mb-20">
 
-            <div class="flex flex-col max-h-1/4 lg:flex-row m-10 lg:mx-20 xl:mx-40 ">
+            <div class="flex flex-col max-h-1/4 lg:flex-row">
                 <!-- 1st part -->
                 <div class="flex-1 lg:flex-2 m-6 h-full justify-center">
                     <!-- Image -->
@@ -87,7 +86,7 @@
                     </div>
                     <div class="flex justify-end">
                         <a href="{{ route('newsAndEvents') }}"
-                            class="bg-black text-center items-center text-accent px-4 py-2 rounded-full cursor-pointer hover:opacity-85 w-54">
+                            class="bg-black text-center items-center text-accent px-4 py-2 rounded-full cursor-pointer hover:opacity-85 w-54 font-semibold">
                             Explore News Articles
                         </a>
                     </div>

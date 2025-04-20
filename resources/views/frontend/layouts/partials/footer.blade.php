@@ -48,9 +48,9 @@
                         <p class="text-center md:text-left">
                             A Principal Agent of Western Union in Nepal.</p>
                         <p class="text-center md:text-left">
-                            @isset($aboutUs->description_en)
-                                {{ $aboutUs->description_en }}
-                            @endisset
+                        @isset($aboutUs->description_en)
+    {{ \Illuminate\Support\Str::words($aboutUs->description_en, 50, '...') }}
+@endisset
                         </p>
                     </div>
 

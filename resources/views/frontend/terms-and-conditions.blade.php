@@ -4,6 +4,11 @@
 @section('content')
 
     <div class="p-8 text-justify max-w-4xl mx-auto my-20 bg-white">
+
+    
+
+
+
         <h1 class="text-2xl  font-bold mb-4 ">Terms and Conditions</h1>
         <hr class="border-accent">
 

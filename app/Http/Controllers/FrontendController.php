@@ -54,11 +54,10 @@ class FrontendController extends Controller
 
     public function aboutWesternUnion()
     {
-        $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
-        $aboutUsForFooter = AboutUs::active()->orderBy('display_order', 'ASC')->first();
+        $aboutUs1 = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
         $services = Service::active()->orderBy('display_order', 'ASC')->get();
         $settings = Setting::first();
-        return view('frontend.about-western-union-page', compact('aboutUs', 'aboutUsForFooter', 'services', 'settings'));
+        return view('frontend.about-western-union-page', compact('aboutUs1', 'services', 'settings'));
     }
 
     public function becomeAnAgent()

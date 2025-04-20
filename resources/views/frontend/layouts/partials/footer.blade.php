@@ -1,5 +1,5 @@
 <footer>
-    <div class="bg-black text-[#ffffffcc] text-sm">
+    <div class="bg-black text-[#ffffffcc] text-sm mx-10">
         <div class="flex flex-col space-y-10">
             <!-- logo and desc -->
             <div class="w-full flex flex-col space-y-2 lg:space-y-0 lg:flex-row lg:justify-between ">
@@ -42,9 +42,9 @@
                 </div>
             </div>
             <!-- description -->
-            <div class="flex flex-col md:flex-row justify-left gap-6">
+            <div class="flex flex-col md:flex-row justify-left md:justify-center gap-6">
                 <div class="flex flex-1 flex-col lg:flex-row justify-around gap-6 mx-10 lg:mx-0">
-                    <div class="max-w-xs pr-0 lg:pr-8 flex flex-col text-center items-center space-y-5 flex-1">
+                    <div class=" pr-0 lg:pr-8 flex flex-col text-center items-center space-y-5 flex-1">
                         <p class="text-center md:text-left">
                             A Principal Agent of Western Union in Nepal.</p>
                         <p class="text-center md:text-left">
@@ -55,7 +55,7 @@
                     </div>
 
                     <!-- contact details-->
-                    <div class="text-[#ffffffcc] flex flex-col space-y-5 justify-left flex-1">
+                    <div class="text-[#ffffffcc] flex flex-col space-y-5 lg:justify-left flex-1 lg:px-6 justify-center">
                         <div class="flex flex-row gap-6 space-x-5 justify-left">
                             <img src="{{ asset('assets/images/footer/location.png') }}" class="w-6 h-6"
                                 alt="Location Icon" />
@@ -107,7 +107,7 @@
 
                 <!-- links -->
                 <div
-                    class="flex flex-1 flex-col lg:flex-row justify-center lg:justify-start items-center lg:items-start gap-10 text-center lg:text-left">
+                    class=" flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-center md:text-left items-center gap-10 mx-auto lg:mx-3 ">
                     <div class="text-[#ffffffcc] flex flex-col space-y-2">
                         <h4 class=" text-accent font-bold text-left">Quick Links</h4>
                         <a href="{{ route('homepage') }}" class="hover:underline text-left ">Home</a>
@@ -139,7 +139,7 @@
             </div>
 
             <!-- bottom footer -->
-            <div class="flex flex-col md:flex-row md:justify-between items-center gap-6 lg:px-10">
+            <div class="flex flex-col md:flex-row md:justify-between items-center gap-6 lg:px-10 text-xs">
                 <p>&copy; 2025 Hulas Remittance Pvt.Ltd.&nbsp;All rights reserved.</p>
                 <p>
                     Designed and crafted by

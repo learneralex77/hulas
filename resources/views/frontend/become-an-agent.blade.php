@@ -52,7 +52,7 @@
                         <div class="flex flex-col space-y-5 lg:space-y-0 lg:flex-row lg:space-x-5">
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="name" class="font-bold text-xl text-[#3d5169]">Name</label>
-                                <input id="name" name="name" placeholder="Name" type="text" class="rounded-md bg-[#f5faff]"
+                                <input id="name" name="name" placeholder="Name" type="text" class="rounded-md bg-[#fffdf1]"
                                     required />
                                 @error('name')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -62,7 +62,7 @@
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="contact_number" class="font-bold text-xl text-[#3d5169]">Contact Number</label>
                                 <input type="tel" placeholder="Contact Number" id="contact_number" name="contact_number"
-                                    class="bg-[#f5faff] rounded-md" required />
+                                    class="bg-[#fffdf1] rounded-md" required />
                                 @error('contact_number')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
@@ -73,7 +73,7 @@
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="email" class="font-bold text-xl text-[#3d5169]">Email</label>
                                 <input type="email" placeholder="Email" id="email" name="email"
-                                    class="bg-[#f5faff] rounded-md" required />
+                                    class="bg-[#fffdf1] rounded-md" required />
                                 @error('email')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
@@ -81,7 +81,7 @@
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="district" class="font-bold text-xl text-[#3d5169]">District</label>
                                 <input id="district" name="district" placeholder="District" type="text"
-                                    class="rounded-md bg-[#f5faff]" required />
+                                    class="rounded-md bg-[#fffdf1]" required />
                                 @error('district')
                                     <span class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
@@ -90,7 +90,7 @@
 
                         <div class="flex flex-col space-y-3">
                             <label for="message" class="font-bold text-xl text-[#3d5169]">Message</label>
-                            <textarea name="message" id="message" cols="20" rows="10" class="bg-[#f5faff] rounded-md"
+                            <textarea name="message" id="message" cols="20" rows="10" class="bg-[#fffdf1] rounded-md"
                                 placeholder="Please enter your message..." required></textarea>
                             @error('message')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>

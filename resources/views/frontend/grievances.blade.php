@@ -52,7 +52,7 @@
           <div class="flex flex-col space-y-5">
           <label for="name" class="font-bold text-lg text-[#3d5169]">Name</label>
           <input id="name" name="name" type="text" placeholder="Your name"
-            class="w-full rounded-md bg-[#f5faff] @error('name') border-red-500 @enderror"
+            class="w-full rounded-md bg-[#fffae2] @error('name') border-red-500 @enderror"
             value="{{ old('name') }}" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required />
           @error('name')
         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -61,7 +61,7 @@
           <div class="flex flex-col space-y-5">
           <label for="mobile_number" class="font-bold text-lg text-[#3d5169]">Mobile Number</label>
           <input id="mobile_number" name="mobile_number" type="text" placeholder="Your mobile number"
-            class="w-full rounded-md bg-[#f5faff] @error('mobile_number') border-red-500 @enderror"
+            class="w-full rounded-md bg-[#fffae2] @error('mobile_number') border-red-500 @enderror"
             value="{{ old('mobile_number') }}" required inputmode="numeric" pattern="\d{10}" minlength="10"
             maxlength="19" />
           @error('mobile_number')
@@ -71,7 +71,7 @@
           <div class="flex flex-col space-y-5">
           <label for="city" class="font-bold text-lg text-[#3d5169]">City</label>
           <input id="city" name="city" type="text" placeholder="Your city"
-            class="w-full rounded-md bg-[#f5faff] @error('city') border-red-500 @enderror"
+            class="w-full rounded-md bg-[#fffae2] @error('city') border-red-500 @enderror"
             value="{{ old('city') }}" required oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" />
           @error('city')
         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -81,7 +81,7 @@
         <div class="mt-5 flex flex-col space-y-4">
           <label for="message" class="font-bold text-lg text-[#3d5169]">Your Message</label>
           <textarea id="message" name="message" cols="20" rows="10"
-          class="bg-[#f5faff] rounded-md @error('message') border-red-500 @enderror" minlength="10"
+          class="bg-[#fffae2] rounded-md @error('message') border-red-500 @enderror" minlength="10"
           placeholder="Please enter your message..." required>{{ old('message') }}</textarea>
           @error('message')
         <span class="text-red-500 text-sm">{{ $message }}</span>

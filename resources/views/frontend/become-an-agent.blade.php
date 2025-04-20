@@ -27,9 +27,9 @@
             <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                 <div class="flex flex-col items-center space-y-6">
                     <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-                                                  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                                  -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                  ">
+                                                          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                                          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                          ">
                         Partner With us </h1>
 
                     <p class="text-2xl text-black font-bold md:text-4xl text-center">
@@ -111,8 +111,8 @@
                 <div class="flex flex-col space-y-10 items-left lg:items-left lg:justify-center sm:px-10 lg:px-0">
                     <div class="flex flex-row gap-6 justify-left space-x-5 items-center">
                         <div class="min-w-16 h-16 rounded-full bg-accent flex justify-center items-center">
-                            <img src="{{ asset(path: 'assets/images/contact/location-pin-svgrepo-com.svg') }}" class="w-8 min-w-8 h-8"
-                                alt="Location Icon" />
+                            <img src="{{ asset(path: 'assets/images/contact/location-pin-svgrepo-com.svg') }}"
+                                class="w-8 min-w-8 h-8" alt="Location Icon" />
                         </div>
                         <div class="flex flex-col space-y-1">
                             <p class="font-semibold">Location:</p>
@@ -134,9 +134,10 @@
                         <div class="flex flex-col space-y-2">
                             <p class="font-semibold">Toll Free Number:</p>
                             <p>
-                                @isset($settings->contact_number)
-                                    {{ $settings->contact_number }}
+                                @isset($settings->phone_number_en)
+                                    {{ $settings->phone_number_en }}
                                 @endisset
+
                             </p>
                             </p>
                         </div>
@@ -150,10 +151,10 @@
                             <p class="font-semibold">Email:</p>
                             <p>
                                 @isset($settings->email)
-                                    hulas@gmail.com hulas@gmail.com
-                                    hulas@gmail.com
-                                    hulas@gmail.com
-                                @endisset
+                                    {{ $settings->email }}<br>
+                                    {{ $settings->agent_notify_email }}
+
+                                       @endisset
                             </p>
                         </div>
 
@@ -197,6 +198,6 @@
                     confirmButtonColor: '#EF4444'
                 });
             @endif
-                                                    });
+                                                            });
     </script>
 @endpush

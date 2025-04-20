@@ -37,7 +37,7 @@
   <section class="flex justify-center">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-0 mx-10 sm:m-20 xl:mx-40 items-center">
 
-    @if(count($services) > 0)
+    @isset($services)
       @foreach($services as $service)
       <a href="{{ route('serviceDetail', $service->slug) }}">
         <div class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl border-t-4 border-blue-600 cursor-pointer hover:-translate-y-2 transition-transform ease-in-out duration-300 max-w-[420px] h-[300px]">
@@ -72,7 +72,7 @@
       <div class="col-span-3 text-center py-12">
         <p class="text-lg text-gray-600">No services available at the moment. Please check back later.</p>
       </div>
-    @endif
+    @endisset
 
     </div>
   </section>

@@ -149,13 +149,14 @@
                         </div>
                         <div class="flex flex-col space-y-2">
                             <p class="font-semibold">Email:</p>
+                            @isset($settings->email)
+
                             <p>
-                                @isset($settings->email)
                                     {{ $settings->email }}<br>
                                     {{ $settings->agent_notify_email }}
 
-                                       @endisset
                             </p>
+                            @endisset
                         </div>
 
                     </div>

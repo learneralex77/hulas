@@ -27,33 +27,40 @@
   <section class="overflow-x-hidden">
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
     <div class="flex flex-col items-center space-y-6">
+      @isset($service->name_en)
       <p class="text-2xl text-black font-bold md:text-4xl text-center">
       {{ $service->name_en }} </p>
-      <p class="p-2 text-lg text-[#737879] text-center max-w-3xl">
-      @isset($service->description_en)
-        {{ $service->description_en }}
       @endisset
+      @isset($service->description_en)
+      <p class="p-2 text-lg text-[#737879] text-center max-w-3xl">
+      
+        {{ $service->description_en }}
       </p>
+      @endisset
     </div>
     </div>
   </section>
 
   <section class="flex flex-col md:flex-row md:justify-center md:items-center lg:flex-row m-10 md:m-10 2xl:mx-40 gap-10">
     <div class="flex justify-center flex-1 flex-grow text-center">
+    @isset($service->file)
     <div class="flex-1 flex justify-center w-full">
-      @isset($service->file)
+     
         <img src="{{ asset('storage/' . $service->file) }}" alt="{{ $service->name_en }}"
         class="w-full max-w-md h-80 rounded-md object-cover bg-gray-100" />
-     @endisset
+
     </div>
+    @endisset
     </div>
 
     <div class="flex flex-2 flex-col space-y-6">
+    @isset($service->description_en)
     <p class="text-gray-600 text-base lg:text-lg text-justify">
-      @isset($service->description_en)
-        {!! $service->description_en !!}
-      @endisset
+     
+        {{ $service->description_en }}
+     
     </p>
+    @endisset
     </div>
   </section>
 

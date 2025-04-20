@@ -33,14 +33,21 @@
                 </div>
             </div>
             <!-- social -->
+
             <div class="flex space-x-5 items-center">
-                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/fb-icon.png') }}"
+                @isset($settings->facebook)
+                <a rel="noopener noreferrer" href="{{ $settings->facebook }}"><img src="{{ asset('assets/images/navbar/fb-icon.png') }}"
                         class="w-6" alt="facebook Icon" /></a>
-                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/x-icon.png') }}"
+                @endisset    
+                @isset($settings->twitter)    
+                <a rel="noopener noreferrer" href="{{ $settings->twitter }}"><img src="{{ asset('assets/images/navbar/x-icon.png') }}"
                         class="w-4" alt="X Icon" /></a>
-                <a rel="noopener noreferrer" href="#"><img
+                @endisset
+                @isset($settings->linkedin)
+                <a rel="noopener noreferrer" href="{{ $settings->linkedin }}"><img
                         src="{{ asset('assets/images/navbar/linked-in-icon.png') }}" class="w-5"
                         alt="Linkedin Icon" /></a>
+                @endisset
             </div>
         </div>
     </nav>

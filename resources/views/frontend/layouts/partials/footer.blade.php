@@ -47,11 +47,13 @@
                     <div class="max-w-xs pr-0 lg:pr-8 flex flex-col text-center items-center space-y-5">
                         <p class="text-center md:text-left">
                             A Principal Agent of Western Union in Nepal.</p>
+                        @isset($aboutUs->description_en)    
                         <p class="text-center md:text-left">
-                            @isset($aboutUs->description_en)
+                            
                                 {{ $aboutUs->description_en }}
-                            @endisset
+                          
                         </p>
+                        @endisset
                     </div>
                     <div class="text-[#ffffffcc] flex flex-col space-y-5 items-left lg:items-center ">
                         <div class="flex flex-row gap-6 space-x-5 items-center">
@@ -113,7 +115,7 @@
                     <div class=" text-[#ffffffcc] flex flex-col space-y-2">
                         <h4 class=" text-accent font-bold md:text-left text-center">Navigate</h4>
                         <a href="{{ route('forexRate') }}" class="hover:underline text-center">Forex Rate</a>
-                        <a href="#" class="hover:underline text-center">FAQ</a>
+                        <a href="{{ route('organizationalStructure') }}" class="hover:underline text-center">Organizational Structure</a>
                         <a href="{{ route('contactUs') }}" class="hover:underline text-center">Contact us</a>
                         <a href="{{ route('termsAndConditions') }}" class="hover:underline text-center">Terms &
                             Conditions</a>

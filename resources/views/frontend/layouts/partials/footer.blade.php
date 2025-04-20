@@ -47,12 +47,16 @@
                     <div class="max-w-xs pr-0 lg:pr-8 flex flex-col text-center items-center space-y-5">
                         <p class="text-center md:text-left">
                             A Principal Agent of Western Union in Nepal.</p>
-                        @isset($aboutUs->description_en)    
+                        @isset($aboutUsForFooter->description_en)    
                         <p class="text-center md:text-left">
-                            
-                                {{ $aboutUs->description_en }}
-                          
+                            {{ $aboutUsForFooter->description_en }}
                         </p>
+                        @else
+                            @isset($aboutUs->description_en)    
+                            <p class="text-center md:text-left">
+                                {{ $aboutUs->description_en }}
+                            </p>
+                            @endisset
                         @endisset
                     </div>
                     <div class="text-[#ffffffcc] flex flex-col space-y-5 items-left lg:items-center ">

@@ -149,9 +149,11 @@
             <section class="flex flex-col md:flex-row md:justify-center md:items-center lg:flex-row gap-10">
                 <div class="flex justify-center flex-1 flex-grow text-center">
                     <div class="flex-1 flex justify-center w-full">
-                        <img src="{{ asset('assets/images/about-us/about-img-1.webp') }}" alt="About Us Image"
-                            class="w-full max-w-md h-80 rounded-md object-cover bg-gray-100"
-                            onerror="this.onerror=null;this.src='{{ asset('assets/images/placeholder.webp') }}';" />
+                        @isset($aboutUs->image)
+                            <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image"
+                                class="w-full max-w-md h-80 rounded-md object-cover bg-gray-100"
+                                onerror="this.onerror=null;this.src='{{ asset('assets/images/placeholder.webp') }}';" />
+                        @endisset
                     </div>
                 </div>
 
@@ -620,21 +622,25 @@
 
         //modal swiper
         document.addEventListener("DOMContentLoaded", function () {
-            const swiperContainer = document.querySelector(".popupSwiper");
-            if (swiperContainer) {
-                const swiper = new Swiper(".popupSwiper", {
-                    loop: true,
-                    pagination: {
-                        el: ".swiper-pagination",
-                        clickable: true,
-                    },
-                    autoplay: {
-                        delay: 3000,
-                        disableOnInteraction: false,
-                    },
-                });
-            }
+    const swiperContainer = document.querySelector(".popupSwiper");
+    if (swiperContainer) {
+        const swiper = new Swiper(".popupSwiper", {
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
         });
+
+        // Explicitly start autoplay
+        swiper.autoplay.start();
+    }
+});
+
     </script>
 
 @endpush

@@ -70,8 +70,8 @@
                                         class="h-auto w-4" />
                                     <p class="text-sm text-gray-500">{{ $newsAndEvent->created_at->format('F d, Y') }}</p>
                                 </div>
-                                <p class="text-gray-600 text-justify truncate whitespace-nowrap overflow-hidden">
-                                    {{ Str::words($newsAndEvent->description_en, 30, '...') }}
+                                <p class="text-gray-600 text-justify line-clamp-2">
+                                    {{$newsAndEvent->description_en}}
                                 </p>
                             </div>
                         </a>

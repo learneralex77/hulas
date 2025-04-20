@@ -36,14 +36,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('frontend.*', function ($view) {
-            $settings = Cache::remember('settings', 60, function () {
+            $settings = Cache::remember('settings', 1, function () {
                 return Setting::first();
             });
-            $aboutUs = Cache::remember('AboutUs', 60, function () {
+            $aboutUs = Cache::remember('AboutUs', 1, function () {
                 return AboutUs::first();
             });
 
-            $menus = Cache::remember('menus', 60, function () {
+            $menus = Cache::remember('menus', 1, function () {
                 return Menu::with(['children' => function ($query) {
                     $query->where('is_published', 1)
                         ->orderBy('display_order', 'asc')
@@ -59,9 +59,16 @@ class AppServiceProvider extends ServiceProvider
             });
 
 
-            // $quickLinks = Cache::remember('quick_links', 60, function () {
-            //     return QuickLink::where('is_published', 1)->get();
-            // });
+           
+
+                $footerQuickLinks = Cache::remember('footer_quick_links', 0, function () {
+                $allQuickLinks = QuickLink::active()->orderByDisplayOrder()->get();
+                return [
+                    'quickLinks' => $allQuickLinks->take(5),
+                    'extraLinks' => $allQuickLinks->count() > 5 ? $allQuickLinks->slice(5, 5) : collect(),
+                    'moreLinks' => $allQuickLinks->count() > 10 ? $allQuickLinks->slice(10) : collect(),
+                ];
+            });
 
 
             $view->with([
@@ -69,6 +76,7 @@ class AppServiceProvider extends ServiceProvider
                 'aboutUs'=> $aboutUs,
                 'menus' => $menus,
                 // 'quickLinks' => $quickLinks,
+                'footerQuickLinks' => $footerQuickLinks,
             ]);
         });
         Schema::defaultStringLength(191);

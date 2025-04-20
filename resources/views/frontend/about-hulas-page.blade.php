@@ -85,14 +85,15 @@
                         @endisset
 
                         <!-- Twitter -->
+                        @isset($setting->twitter)
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="{{ isset($setting->twitter) ? $setting->twitter : '#' }}">
+                            <a href="{{ $setting->twitter }}">
                                 <img src="{{ asset('assets/images/social-media-icons/icons8-x-50.png') }}"
                                     alt="Twitter Icon" class="w-5 h-5">
                             </a>
                         </div>
-
+                        @endisset
                     </div>
                 </div>
             </div>

@@ -53,42 +53,44 @@
                         @isset($newsEvent->description_en)
                         <p class="px-3">{{ Str::limit($newsEvent->description_en, 150) }}</p>
                         @endisset
+                        @isset($setting->facebook)
                         <div class="flex flex-row gap-4 px-3">
                             <!-- Facebook -->
                             <div
                                 class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                                @isset($setting->facebook)
+                               
                                     <a href="{{ $setting->facebook }}">
                               
                                     <img src="{{ asset('assets/images/social-media-icons/facebook-black.svg') }}"
                                         alt="Facebook Icon" class="w-6 h-6">
                                 </a>
-                                @endisset
+                                    @endisset
                             </div>
 
                             <!-- Linkdin -->
+                            @isset($setting->linkedin)  
                             <div
                                 class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                                @isset($setting->linkedin)
                                     <a href="{{ $setting->linkedin }}">
                                 
                                     <img src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.svg') }}"
                                         alt="Linkdin Icon" class="w-4 h-4">
                                 </a>
-                                @endisset
                             </div>
+                            @endisset
+
 
                             <!-- Twitter -->
+                            @isset($setting->twitter)
                             <div
                                 class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                                @isset($setting->twitter)
-                                    <a href="{{ $setting->twitter }}">
+                                <a href="{{ $setting->twitter }}">
                                 
                                     <img src="{{ asset('assets/images/social-media-icons/icons8-x-50.png') }}"
                                         alt="Twitter Icon" class="w-5 h-5">
                                 </a>
-                                @endisset
                             </div>
+                            @endisset
 
                         </div>
 

@@ -116,13 +116,12 @@
                         </div>
                         <div class="flex flex-col space-y-1">
                             <p class="font-semibold">Location:</p>
+                            @isset($setting->address_en)
                             <p>
-                                @isset($setting->address_en)
+                               
                                     {{ $setting->address_en }}
-                                @endisset
                             </p>
-
-                            <p>Kathmandu, Nepal</p>
+                            @endisset
                         </div>
                     </div>
                     <div class="flex flex-row gap-6 justify-left space-x-5 items-center">
@@ -133,8 +132,9 @@
                         </div>
                         <div class="flex flex-col space-y-2">
                             <p class="font-semibold">Toll Free Number:</p>
+                            @isset($settings->phone_number_en)
                             <p>
-                                @isset($settings->phone_number_en)
+                               
                                     {{ $settings->phone_number_en }}
                                 @endisset
 

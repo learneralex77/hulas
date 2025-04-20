@@ -47,16 +47,11 @@
                     <div class="max-w-xs pr-0 lg:pr-8 flex flex-col text-center items-center space-y-5">
                         <p class="text-center md:text-left">
                             A Principal Agent of Western Union in Nepal.</p>
-                        @isset($aboutUsForFooter->description_en)    
+                        @isset($aboutUs->description_en)    
                         <p class="text-center md:text-left">
-                            {{ $aboutUsForFooter->description_en }}
+                            {{ $aboutUs->description_en }}
                         </p>
-                        @else
-                            @isset($aboutUs->description_en)    
-                            <p class="text-center md:text-left">
-                                {{ $aboutUs->description_en }}
-                            </p>
-                            @endisset
+                        
                         @endisset
                     </div>
                     <div class="text-[#ffffffcc] flex flex-col space-y-5 items-left lg:items-center ">
@@ -76,7 +71,7 @@
                             <div class="flex flex-1">
                                 <img src="{{ asset('assets/images/footer/phone-call.png') }}" class="w-6" alt="" />
                             </div>
-                            <div class="flex flex-col space-y-2 flex-2">
+                            <div class="flex flex-col ">
                                 <p>
                                     @isset($settings->phone_number_en)
                                         {{ $settings->phone_number_en }}
@@ -88,14 +83,15 @@
                                 </p> -->
                             </div>
                         </div>
-                        <div class="flex flex-row gap-6 space-x-5 items-center">
+                        <div class="flex flex-row gap-6 space-x-1 items-center">
                             <img src="{{ asset('assets/images/footer/mail.png') }}" class="w-6" alt="" />
-                            <div class="flex flex-col space-y-2">
-                                <p>Email:</p>
+                            <div class="flex flex-col flex-2">
+                               
                                 <p>
                                     @isset($settings->email)
                                         {{ $settings->email }}
                                     @endisset
+                                    <br>
                                     @isset($settings->agent_notify_email)
                                         {{ $settings->agent_notify_email }}
 

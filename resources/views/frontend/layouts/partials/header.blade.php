@@ -5,23 +5,29 @@
             <!-- address, toll free -->
             <div class="flex space-x-8 items-center">
                 <div class="flex space-x-3 items-center">
+                @isset($settings->address_en)
                     <img src="{{ asset('assets/images/navbar/location-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($settings->address_en)
+                       
                             {{ $settings->address_en }}
-                        @endisset
+                     
                     </p>
+                    @endisset
                 </div>
                 <div class="flex space-x-3 items-center">
+                @isset($settings->phone_number_en)
                     <img src="{{ asset('assets/images/navbar/phone-call-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($settings->phone_number_en)
+                        
                             {{ $settings->phone_number_en }}
-                        @endisset
+                     
                     </p>
+                    @endisset
                 </div>
                 <div class="flex space-x-3 items-center">
+                    @isset($settings->email)
                     <img src="{{ asset('assets/images/navbar/mail-icon.png') }}" class="w-5" alt="" />
+                    @endisset
                     <p class="text-xs">
                         @isset($settings->email)
                             {{ $settings->email }}

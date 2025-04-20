@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <label class="form-label ps-0" for="images-${nextIndex}">Image <span class="text-danger">*</span></label>
                     <input class="form-control" type="file" id="images-${nextIndex}" name="images[]" accept="image/*" required>
                     <div class="form-text">
-                        Allowed types: JPG, PNG, GIF, WebP. Max size: 2MB.
+                        Allowed types: JPG, PNG, GIF, WebP.   .
                     </div>
                 </div>
                 <div class="preview-container mb-1"></div>

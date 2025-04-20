@@ -109,7 +109,7 @@
                     @endif
                     <input type="file" class="form-control @error('featured_image') is-invalid @enderror"
                         id="featured_image" name="featured_image" accept="image/jpeg,image/png,image/jpg,image/gif,image/webp">
-                    <small class="text-muted d-block mt-1">Allowed formats: JPG, PNG, GIF, WebP (max: 2MB)</small>
+                    <small class="text-muted d-block mt-1">Allowed formats: JPG, PNG, GIF, WebP </small>
                     @error('featured_image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -124,7 +124,7 @@
                         id="gallery_images" name="gallery_images[]" multiple accept="image/jpeg,image/png,image/jpg,image/gif,image/webp">
                     <small class="text-muted d-block">You can select multiple images
                         {{ isset($gallery) ? 'to add to the gallery' : 'for the gallery' }}</small>
-                    <small class="text-muted d-block mt-1">Allowed formats: JPG, PNG, GIF, WebP (max: 2MB)</small>
+                    <small class="text-muted d-block mt-1">Allowed formats: JPG, PNG, GIF, WebP  </small>
                     @error('gallery_images')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -163,7 +163,7 @@
         <div class="row">
             <div class="col-12 mb-3">
                 <button type="submit" class="btn btn-sm btn-success" id="submit-btn">
-                    <i class="fa fa-save"></i> {{ isset($gallery) ? 'Update' : 'Create' }} Gallery
+                    <i class="fa fa-save"></i> {{ isset($gallery) && $gallery->exists ? 'Update' : 'Create' }} Gallery
                 </button>
                 <a href="{{ route('galleries.index') }}" class="btn btn-sm btn-danger ms-2">
                     <i class="fa fa-times"></i> Cancel

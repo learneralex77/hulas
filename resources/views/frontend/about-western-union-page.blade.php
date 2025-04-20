@@ -13,9 +13,9 @@
             <div class="flex flex-col space-y-8 ml-10">
                 <h3 class="text-4xl font-extrabold text-white">About Western Union</h3>
                 <div class="flex space-x-5 items-center">
-                    <a href="index.html" class="text-white font-bold">Home</a>
+                    <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
                     <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-                    <a href="about-western-union.html" class="text-accent font-bold">About Western Union</a>
+                    <a href="{{ route('aboutWesternUnion') }}" class="text-accent font-bold">About Western Union</a>
                 </div>
             </div>
     </section>
@@ -26,8 +26,8 @@
         <div class=" flex flex-col gap-6 md:flex-row  md:justify-center md:items-center">
             <!-- image -->
             <div class="flex-1 flex justify-center w-full">
-                @isset($aboutUs1->image)
-                <img src="{{ asset('storage/' . $aboutUs1->image) }}" alt="About Us Image"
+                @isset($aboutUs->image)
+                <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image"
                     class="w-full rounded-xl object-contain lg:object-fit" alt="About Us Image" />
                 @endisset
             </div>
@@ -38,15 +38,15 @@
                     About Western Union
                 </h2>
                 <div class="text-lg">
-                    <p> @isset($aboutUs1->description_en) {{ $aboutUs1->description_en }} @endisset</p>
+                    <p> @isset($aboutUs->description_en) {{ $aboutUs->description_en }} @endisset</p>
                 </div>
                 <!-- Years of experience -->
                 <div class="flex flex-col items-center space-y-3 lg:space-y-0 lg:flex-row lg:space-x-4">
                     <div
                         class="w-60 md:w-40 lg:w-60 bg-black rounded-xl flex justify-start lg:justify-center items-center flex-col space-y-2 lg:space-y-4 p-3">
                         <p class="text-accent font-bold text-2xl">
-                            @isset($aboutUs1->years_of_experience_en)
-                                {{ $aboutUs1->years_of_experience_en }}
+                            @isset($aboutUs->years_of_experience_en)
+                                {{ $aboutUs->years_of_experience_en }}
                             @endisset
                         </p>
                         <p class="text-accent text-center text-lg">

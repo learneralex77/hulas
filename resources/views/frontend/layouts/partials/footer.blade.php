@@ -61,6 +61,8 @@
                                 alt="Location Icon" />
                             <div class="flex flex-col space-y-1 justify-left text-left">
                                 <p>
+                                
+                                <b>Address:</b> <br />
                                     @isset($settings->address_en)
                                         {{ $settings->address_en }}
                                     @endisset
@@ -74,7 +76,7 @@
                                 alt="Phone call" />
                             <div class="flex flex-col space-y-1 justify-left text-left">
                                 <p>
-                                    Phone no: <br />
+                                   <b>Phone no:</b>  <br />
                                     @isset($settings->phone_number_en)
                                         {{ $settings->phone_number_en }}
                                     @endisset
@@ -88,7 +90,7 @@
                         <div class="flex flex-row gap-6 space-x-5 justify-left">
                             <img src="{{ asset('assets/images/footer/mail.png') }}" class="w-6 h-6 " alt="Email Icon" />
                             <div class="flex flex-col space-y-1 justify-left text-left">
-                                <p>Email:</p>
+                                <p><b> Email:</b> </p>
                                 <p>
                                     @isset($settings->email)
                                         {{ $settings->email }}

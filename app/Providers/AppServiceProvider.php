@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Menu;
 use App\Models\Product;
 use App\Models\Setting;
+use App\Models\AboutUs;
 use App\Models\QuickLink;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
@@ -38,6 +39,10 @@ class AppServiceProvider extends ServiceProvider
             $settings = Cache::remember('settings', 60, function () {
                 return Setting::first();
             });
+            $aboutUs = Cache::remember('AboutUs', 60, function () {
+                return AboutUs::first();
+            });
+
             $menus = Cache::remember('menus', 60, function () {
                 return Menu::with(['children' => function ($query) {
                     $query->where('is_published', 1)
@@ -61,6 +66,7 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with([
                 'settings' => $settings,
+                'aboutUs'=> $aboutUs,
                 'menus' => $menus,
                 // 'quickLinks' => $quickLinks,
             ]);

@@ -27,8 +27,8 @@ class GalleryRequest extends FormRequest
             'title_np' => ['nullable','string', 'max:255'],
             'short_description' => ['nullable', 'string'],
             'slug' => ['nullable', 'string', 'max:255'],
-            'featured_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
-            'gallery_images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
+            'featured_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
+            'gallery_images.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
             'links' => ['nullable', 'string'],
             'is_featured' => ['nullable', 'boolean'],
             'display_order' => ['nullable', 'integer'],
@@ -93,27 +93,13 @@ class GalleryRequest extends FormRequest
 
             'featured_image.image' => 'The featured image must be an image file.',
             'featured_image.mimes' => 'The featured image must be a file of type: jpeg, png, jpg, gif, webp.',
-            'featured_image.max' => 'The featured image may not be greater than 5MB.',
 
-            'gallery_images.*.image' => 'Each gallery image must be an image file.',
-            'gallery_images.*.mimes' => 'Each gallery image must be a file of type: jpeg, png, jpg, gif, webp.',
-            'gallery_images.*.max' => 'Each gallery image may not be greater than 5MB.',
+            'gallery_images.*.image' => 'All gallery images must be image files.',
+            'gallery_images.*.mimes' => 'All gallery images must be files of type: jpeg, png, jpg, gif, webp.',
 
             'links.string' => 'The links must be a string.',
 
             'display_order.integer' => 'The display order must be a valid number.',
         ];
-    }
-
-    /**
-     * Prepare the data for validation.
-     */
-    protected function prepareForValidation(): void
-    {
-        // Boolean values need to be explicitly set since checkboxes don't send values when unchecked
-        $this->merge([
-            'is_featured' => $this->has('is_featured'),
-            'is_published' => $this->has('is_published'),
-        ]);
     }
 }

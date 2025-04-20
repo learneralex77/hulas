@@ -22,38 +22,34 @@
                     <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end">
                         <div class="p-4">
                             <p class="fs-3 fw-semibold text-white">
-                                <i class="fa fa-bell opacity-50"></i> You have <a class="link-fx text-white"
-                                    href="javascript:void(0)">5 new notifications</a>!
+                                <i class="fa fa-bell opacity-50"></i> Welcome to <span class="fw-bold">Hulas Remittance</span> Admin Panel
                             </p>
                             <p class="text-white-75 fw-medium">
-                                Copyright &copy; <span data-toggle="year-copy"></span>
+                                Copyright &copy; <span data-toggle="year-copy"></span> Hulas Remittance
                             </p>
                         </div>
                     </div>
                     <div class="hero-static col-md-6 col-xl-4 d-flex align-items-center bg-body-extra-light">
-                        <div class="content content-full">
+                        <div class="content content-full pt-4">
                             <!-- Header -->
-                            <div class="px-4 py-2 mb-4">
-                                <a class="link-fx fw-bold" href="index.html">
-                                    <i class="fa fa-fire"></i>
-                                    <span class="fs-4 text-body-color">code</span><span class="fs-4">base</span>
+                            <div class="px-4 py-2 mb-4 text-center">
+                                <h1 class="h3 fw-bold mb-1">Hulas Remittance</h1>
+                                <a class="link-fx fw-bold" href="index.html"></a>
                                 </a>
+                                
+                                <!-- <h2 class="h5 fw-medium text-muted mb-3">Admin Login</h2> -->
 
                                 <!-- Session Status -->
                                 <x-auth-session-status class="mb-4" :status="session('status')" />
-
-                                <h1 class="h3 fw-bold mt-4 mb-2">Welcome back, Admin</h1>
-                                <h2 class="h5 fw-medium text-muted mb-4">Please enter your password</h2>
-                                <img class="img-avatar img-avatar96" src="assets/media/avatars/avatar15.jpg"
-                                    alt="">
-
+                                
+                                <div class="d-flex justify-content-center mb-3">
+                                    <img class="img-avatar img-avatar96" src="{{ asset('assets/images/logo/hulas_cover.jpg') }}" alt="">
+                                </div>
                             </div>
                             <!-- END Header -->
 
-                            <!-- Unlock Form -->
-                            <!-- jQuery Validation functionality is initialized with .js-validation-lock class in js/pages/op_auth_lock.min.js which was auto compiled from _js/pages/op_auth_lock.js -->
-                            <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                            <form method="POST" action="{{ route('login') }}">
+                            <!-- Login Form -->
+                            <form method="POST" action="{{ route('login') }}" class="px-4">
                                 @csrf
 
                                 <!-- Email Address -->
@@ -97,7 +93,7 @@
                                     </x-primary-button>
                                 </div>
                             </form>
-                            <!-- END Unlock Form -->
+                            <!-- END Login Form -->
                         </div>
                     </div>
                 </div>

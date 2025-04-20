@@ -43,7 +43,6 @@ class NewsEventCategoryRequest extends FormRequest
                 'nullable',
                 'image',
                 'mimes:jpeg,png,jpg,gif,webp',
-                'max:2048',
             ],
             'description_en' => ['nullable', 'string'],
             'description_np' => ['nullable', 'string'],
@@ -105,7 +104,6 @@ class NewsEventCategoryRequest extends FormRequest
             
             'image.image' => 'The file must be a valid image.',
             'image.mimes' => 'The image must be a valid format (jpeg, png, jpg, gif, webp).',
-            'image.max' => 'The image may not be greater than 2MB.',
             
             'display_order.integer' => 'The display order must be a number.',
             'display_order.min' => 'The display order must be at least 0.',

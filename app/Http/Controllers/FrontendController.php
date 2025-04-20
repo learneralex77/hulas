@@ -54,9 +54,11 @@ class FrontendController extends Controller
 
     public function aboutWesternUnion()
     {
-        $aboutUs1 = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
+        $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
+        $aboutUsForFooter = AboutUs::active()->orderBy('display_order', 'ASC')->first();
         $services = Service::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.about-western-union-page', compact('aboutUs1', 'services'));
+        $settings = Setting::first();
+        return view('frontend.about-western-union-page', compact('aboutUs', 'aboutUsForFooter', 'services', 'settings'));
     }
 
     public function becomeAnAgent()
@@ -209,14 +211,13 @@ class FrontendController extends Controller
     public function header()
     {
 
-        $setting = Setting::first();
-        return view('frontend.layouts.partials.header', compact('setting'));
+        // $setting = Setting::first();
+        return view('frontend.layouts.partials.header');
     }
 
     public function footer()
     {
-        $setting = Setting::first();
-        $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
-        return view('frontend.layouts.partials.footer', compact('setting', 'aboutUs'));
+        // $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
+        return view('frontend.layouts.partials.footer');
     }
 }

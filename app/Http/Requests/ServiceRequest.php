@@ -32,7 +32,7 @@ class ServiceRequest extends FormRequest
             'description_np' => ['nullable', 'string'],
             'display_order' => ['required', 'integer', 'min:0'],
             'is_published' => ['boolean'],
-            'file' => ['nullable', 'file', 'mimes:jpeg,png,jpg,gif,svg,pdf,webp', 'max:2048'],
+            'file' => ['nullable', 'file', 'mimes:jpeg,png,jpg,gif,svg,pdf,webp'],
             
             // Translation arrays
             'names' => ['required', 'array', 'min:1'],
@@ -121,7 +121,6 @@ class ServiceRequest extends FormRequest
             
             'icons.*.file' => 'The icon file must be a valid file.',
             'icons.*.mimes' => 'The icon file must be one of the following types: JPEG, PNG, JPG, GIF, SVG, WebP.',
-            'icons.*.max' => 'The icon file may not be greater than 2MB.',
             
             'descriptions.*.string' => 'The description must be a string.',
             
@@ -134,7 +133,6 @@ class ServiceRequest extends FormRequest
             
             'file.file' => 'The uploaded file is invalid.',
             'file.mimes' => 'The file must be one of the following types: JPEG, PNG, JPG, GIF, SVG, PDF, WebP.',
-            'file.max' => 'The file may not be greater than 2MB.',
         ];
     }
 

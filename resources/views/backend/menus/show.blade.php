@@ -75,11 +75,11 @@
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">Created At:</div>
-                                    <div class="col-md-8">{{ $menu->created_at->format('M d, Y H:i') }}</div>
+                                    <div class="col-md-8">{{ $menu->created_at ? $menu->created_at->format('M d, Y H:i') : 'Not recorded' }}</div>
                                 </div>
                                 <div class="row mb-2">
                                     <div class="col-md-4 fw-semibold text-muted">Updated At:</div>
-                                    <div class="col-md-8">{{ $menu->updated_at->format('M d, Y H:i') }}</div>
+                                    <div class="col-md-8">{{ $menu->updated_at ? $menu->updated_at->format('M d, Y H:i') : 'Not recorded' }}</div>
                                 </div>
                             </div>
                         </div>

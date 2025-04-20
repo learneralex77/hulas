@@ -13,12 +13,12 @@
             <div class="flex flex-col space-y-8 ml-10">
                 <h3 class="text-4xl font-extrabold text-white">Forex Rate</h3>
                 <div class="flex space-x-5 items-center">
-                    <a href="index.html" class="text-[#666] font-bold">Home</a>
+                    <a href="{{ route('homepage') }}" class="text-[#666] font-bold">Home</a>
                     <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-                    <a href="forex-rate" class="text-accent font-bold">Forex Rate</a>
+                    <a href="{{ route('forexRate') }}" class="text-accent font-bold">Forex Rate</a>
 
 
-NP
+<!-- NP
 
 Skip navigation
 Search
@@ -40,7 +40,7 @@ Avatar image
                     Create
 
 
-                    Avatar image
+                    Avatar image -->
 
                 </div>
             </div>
@@ -72,7 +72,9 @@ Avatar image
                                 Currency Rate for Remittance
                             </th>
                             <th scope="col" class="px-2 md:px-6 py-3"></th>
+                            @isset($forexRate->date)
                             <th scope="col" class="px-2 md:px-6 py-3">{{ $forexRate->date }}</th>
+                            @endisset
                         </tr>
                     </thead>
                     <thead class="text-xs text-white uppercase bg-gray-500">

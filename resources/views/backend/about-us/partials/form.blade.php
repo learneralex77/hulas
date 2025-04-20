@@ -125,7 +125,7 @@
             <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image"
                 accept="image/*">
             <div class="form-text">
-                Allowed types: JPG, PNG, GIF. Max size: 2MB.
+                Allowed types: JPG, PNG, GIF.   .
                 @if (isset($aboutUs) && $aboutUs->image)
                     Leave empty to keep the current image.
                 @endif

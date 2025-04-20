@@ -3,34 +3,35 @@
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')
 
-    <!-- banner-section -->
-    <section class="relative">
-        <div class="mb-10">
-            <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
-                alt="Banner Image" class="h-60 w-full object-cover" />
-        </div>
-        <div class="absolute w-full top-20">
-            <div class="flex flex-col space-y-8 ml-10">
-                <h3 class="text-4xl font-extrabold text-white">Become an agent</h3>
-                <div class="flex space-x-5 items-center">
-                    <a href="index.html" class="text-white font-bold">Home</a>
-                    <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-                    <a href="become-an-agent.html" class="text-accent font-bold">Become an agent</a>
-                </div>
-            </div>
-    </section>
-    <!-- banner-section -->
 
-    <!-- form section  -->
-    <section class="flex flex-col m-6 sm:m-10 md:m-20 xl:mx-40">
-        <section class="overflow-x-hidden">
-            <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                <div class="flex flex-col items-center space-y-6">
-                    <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-                                  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                  -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                  ">
-                        Partner With us </h1>
+    <div class="min-h-screen">
+        <!-- banner-section -->
+        <section class="relative">
+            <div class="mb-10">
+                <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
+                    alt="Banner Image" class="h-60 w-full object-cover" />
+            </div>
+            <div class="absolute w-full top-20">
+                <div class="flex flex-col space-y-8 ml-10">
+                    <h3 class="text-4xl font-extrabold text-white">Become an agent</h3>
+                    <div class="flex space-x-5 items-center">
+                        <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
+                        <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
+                        <a href="{{ route('becomeAnAgent') }}" class="text-accent font-bold">Become an agent</a>
+                    </div>
+                </div>
+        </section>
+        <!-- banner-section -->
+        <div class="mx-6 md:mx-10 lg:mx-20 xl:mx-40 pb-20">
+            <!-- form section  -->
+            <section class="overflow-x-hidden">
+                <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+                    <div class="flex flex-col items-center space-y-6">
+                        <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+                      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                      ">
+                            Partner With us </h1>
 
                     <p class="text-2xl text-black font-bold md:text-4xl text-center">
                         Fill up the form </p>
@@ -59,6 +60,16 @@
                                 @enderror
                             </div>
 
+                                <div class="flex flex-col space-y-3 w-full">
+                                    <label for="contact_number" class="font-bold text-xl text-[#3d5169]">Contact
+                                        Number</label>
+                                    <input type="tel" placeholder="Contact Number" id="contact_number" name="contact_number"
+                                        class="bg-[#f5faff] rounded-md" required />
+                                    @error('contact_number')
+                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="contact_number" class="font-bold text-xl text-[#3d5169]">Contact Number</label>
                                 <input type="tel" placeholder="Contact Number" id="contact_number" name="contact_number"
@@ -88,14 +99,14 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col space-y-3">
-                            <label for="message" class="font-bold text-xl text-[#3d5169]">Message</label>
-                            <textarea name="message" id="message" cols="20" rows="10" class="bg-[#f5faff] rounded-md"
-                                placeholder="Please enter your message..." required></textarea>
-                            @error('message')
-                                <span class="text-red-500 text-sm">{{ $message }}</span>
-                            @enderror
-                        </div>
+                            <div class="flex flex-col space-y-3">
+                                <label for="message" class="font-bold text-xl text-[#3d5169]">Message</label>
+                                <textarea name="message" id="message" cols="20" rows="10" class="bg-[#f5faff] rounded-md"
+                                    placeholder="Please enter your message..." required></textarea>
+                                @error('message')
+                                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                                @enderror
+                            </div>
 
                         <button type="submit"
                             class="w-44 flex justify-center items-center bg-black text-accent hover:opacity-85 py-3 px-5 rounded-full cursor-pointer">

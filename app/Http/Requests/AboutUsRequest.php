@@ -35,7 +35,7 @@ class AboutUsRequest extends FormRequest
             'delete_image' => ['nullable', 'boolean'],
             'mission_vision_titles.*' => ['required', 'string', 'max:255'],
             'mission_vision_icons.*' => ['nullable', 'string', 'max:255'],
-            'mission_vision_image_files.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
+            'mission_vision_image_files.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp'],
             'mission_vision_delete_images.*' => ['nullable', 'boolean'],
             'mission_vision_descriptions.*' => ['required', 'string'],
             'is_published' => ['boolean'],

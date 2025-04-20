@@ -33,26 +33,22 @@
                     </div>
 
                     <div class="p-2">
-                        <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
-                            href="void:;">
-                            <span>Profile</span>
-                            <i class="fa fa-fw fa-user opacity-25"></i>
-                        </a>
-
-                        <div class="dropdown-divider"></div>
+                       
 
                         <!-- Toggle Side Overlay -->
                         <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
                         <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
-                            href="void:;" data-toggle="layout" data-action="side_overlay_toggle">
+                            href="{{ route('settings.index') }}">
                             <span>Settings</span>
                             <i class="fa fa-fw fa-wrench opacity-25"></i>
                         </a>
                         <!-- END Side Overlay -->
-
                         <div class="dropdown-divider"></div>
+                        <form id="logoutForm" method="POST" action="{{ route('logout') }}" style="display: none;">
+                            @csrf
+                        </form>
                         <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1"
-                            onclick="document.getElementById('logoutBtn').click()">
+                            href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
                             <span>Sign Out</span>
                             <i class="fa fa-fw fa-sign-out-alt opacity-25"></i>
                         </a>

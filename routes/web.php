@@ -24,7 +24,6 @@ Route::get('services/{slug?}', [FrontendController::class, 'serviceDetail'])->na
 Route::get('become-an-agent', [FrontendController::class, 'becomeAnAgent'])->name('becomeAnAgent');
 Route::post('become-an-agent', [BecomeAnAgentController::class, 'store'])->name('storeAgentRequest');
 
-Route::post('backend/become-an-agent/{becomeAnAgent}/toggle-status', [BecomeAnAgentController::class, 'toggleContactStatus'])->name('become-an-agent.toggle-status');
 Route::resource('admin/become-an-agent', BecomeAnAgentController::class);
 
 Route::get('find-an-agent', [FrontendController::class, 'findAnAgent'])->name('findAnAgent');

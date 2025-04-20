@@ -13,9 +13,9 @@
             <div class="flex flex-col space-y-8 ml-10">
                 <h3 class="text-4xl font-extrabold text-white">About Hulas Remittance</h3>
                 <div class="flex space-x-5 items-center">
-                    <a href="index.html" class="text-white font-bold">Home</a>
+                    <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
                     <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-                    <a href="about-hulas-remittance.html" class="text-accent font-bold">About Hulas Remittance</a>
+                    <a href="{{ route('aboutHulasRemittance') }}" class="text-accent font-bold">About Hulas Remittance</a>
                 </div>
             </div>
     </section>

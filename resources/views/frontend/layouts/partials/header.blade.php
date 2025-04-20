@@ -57,7 +57,7 @@
             <ul class="flex space-x-4" x-data="{ openMenu: null }">
                 @foreach ($menus as $i => $menu)
                     <li class="relative" @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">
-                        <button class="px-4 py-2 font-medium text-gray-700 hover:text-sky-600 focus:outline-none"
+                        <button class="px-4 py-2 font-medium hover:text-accent cursor-pointer focus:outline-none"
                             @focus="openMenu = {{ $i }}" @blur="openMenu = null"
                             aria-haspopup="{{ $menu->children->isNotEmpty() ? 'true' : 'false' }}"
                             :aria-expanded="openMenu === {{ $i }}" type="button">
@@ -78,7 +78,7 @@
                                     <li class="relative" x-data="{ openSub: false }" @mouseenter="openSub = true"
                                         @mouseleave="openSub = false">
                                         <a href="{{ $child->children->isEmpty() ? url($child->slug) : '#' }}"
-                                            class="w-full block text-left px-4 py-2 hover:bg-sky-50 flex justify-between items-center"
+                                            class="w-full  text-left px-4 py-2 hover:text-accent cursor-pointer flex justify-between items-center"
                                             @focus="openSub = true" @blur="openSub = false"
                                             aria-haspopup="{{ $child->children->isNotEmpty() ? 'true' : 'false' }}"
                                             :aria-expanded="openSub">

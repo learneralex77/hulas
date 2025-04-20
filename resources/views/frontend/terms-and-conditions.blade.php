@@ -3,10 +3,9 @@
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')
 
-    <div class="p-8 text-justify max-w-4xl mx-auto  bg-white mt-10 text-base">
+    <div class="p-8 text-justify max-w-4xl mx-auto my-20 bg-white">
         <h1 class="text-2xl  font-bold mb-4 ">Terms and Conditions</h1>
         <hr class="border-accent">
-
 
         <h2 class="text-xl font-semibold mt-6"> <span class="text-accent  mr-2">➜</span>Introduction</h2>
         <p class="mt-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores cupiditate rem eum vel,

@@ -42,9 +42,9 @@
                 </div>
             </div>
             <!-- description -->
-            <div class="flex flex-col md:flex-row justify-around gap-6">
-                <div class="flex flex-1 flex-col lg:flex-row items-center justify-around gap-6">
-                    <div class="max-w-xs pr-0 lg:pr-8 flex flex-col text-center items-center space-y-5">
+            <div class="flex flex-col md:flex-row justify-left gap-6">
+                <div class="flex flex-1 flex-col lg:flex-row justify-around gap-6 mx-10 lg:mx-0">
+                    <div class="max-w-xs pr-0 lg:pr-8 flex flex-col text-center items-center space-y-5 flex-1">
                         <p class="text-center md:text-left">
                             A Principal Agent of Western Union in Nepal.</p>
                         <p class="text-center md:text-left">
@@ -53,10 +53,13 @@
                             @endisset
                         </p>
                     </div>
-                    <div class="text-[#ffffffcc] flex flex-col space-y-5 items-left lg:items-center ">
-                        <div class="flex flex-row gap-6 space-x-5 items-center">
-                            <img src="{{ asset('assets/images/footer/location.png') }}" class="w-6" alt="" />
-                            <div class="flex flex-col space-y-1">
+
+                    <!-- contact details-->
+                    <div class="text-[#ffffffcc] flex flex-col space-y-5 justify-left flex-1">
+                        <div class="flex flex-row gap-6 space-x-5 justify-left">
+                            <img src="{{ asset('assets/images/footer/location.png') }}" class="w-6 h-6"
+                                alt="Location Icon" />
+                            <div class="flex flex-col space-y-1 justify-left text-left">
                                 <p>
                                     @isset($settings->address_en)
                                         {{ $settings->address_en }}
@@ -66,12 +69,12 @@
                                 <p>Kathmandu, Nepal</p>
                             </div>
                         </div>
-                        <div class="flex flex-row gap-6 space-x-5 items-center">
-                            <div class="flex flex-1">
-                                <img src="{{ asset('assets/images/footer/phone-call.png') }}" class="w-6" alt="" />
-                            </div>
-                            <div class="flex flex-col space-y-2 flex-2">
+                        <div class="flex flex-row gap-6 space-x-5 justify-left">
+                            <img src="{{ asset('assets/images/footer/phone-call.png') }}" class="w-6 h-6"
+                                alt="Phone call" />
+                            <div class="flex flex-col space-y-1 justify-left text-left">
                                 <p>
+                                    Phone no: <br />
                                     @isset($settings->phone_number_en)
                                         {{ $settings->phone_number_en }}
                                     @endisset
@@ -82,9 +85,9 @@
                                 </p> -->
                             </div>
                         </div>
-                        <div class="flex flex-row gap-6 space-x-5 items-center">
-                            <img src="{{ asset('assets/images/footer/mail.png') }}" class="w-6" alt="" />
-                            <div class="flex flex-col space-y-2">
+                        <div class="flex flex-row gap-6 space-x-5 justify-left">
+                            <img src="{{ asset('assets/images/footer/mail.png') }}" class="w-6 h-6 " alt="Email Icon" />
+                            <div class="flex flex-col space-y-1 justify-left text-left">
                                 <p>Email:</p>
                                 <p>
                                     @isset($settings->email)
@@ -99,32 +102,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-1 flex-col lg:flex-row justify-around items-center lg:justify-between gap-6">
+
+                <!-- links -->
+                <div
+                    class="flex flex-1 flex-col lg:flex-row justify-center lg:justify-start items-center lg:items-start gap-10 text-center lg:text-left">
                     <div class="text-[#ffffffcc] flex flex-col space-y-2">
-                        <h4 class=" text-accent font-bold md:text-left  text-center items-center">Quick Links</h4>
-                        <a href="{{ route('homepage') }}" class="hover:underline text-center">Home</a>
-                        <a href="{{ route('aboutHulasRemittance') }}" class="hover:underline text-center">About Hulas
+                        <h4 class=" text-accent font-bold text-left">Quick Links</h4>
+                        <a href="{{ route('homepage') }}" class="hover:underline text-left ">Home</a>
+                        <a href="{{ route('aboutHulasRemittance') }}" class="hover:underline text-left ">About Hulas
                             Remittance</a>
-                        <a href="{{ route('aboutWesternUnion') }}" class="hover:underline text-center">About Western
+                        <a href="{{ route('aboutWesternUnion') }}" class="hover:underline text-left ">About Western
                             Union</a>
-                        <a href="{{ route('findAnAgent') }}" class="hover:underline text-center">Agents List</a>
-                        <a href="{{ route('gallery') }}" class="hover:underline text-center">Gallery</a>
+                        <a href="{{ route('findAnAgent') }}" class="hover:underline text-left ">Agents
+                            List</a>
+                        <a href="{{ route('gallery') }}" class="hover:underline text-left ">Gallery</a>
                     </div>
-                    <div class=" text-[#ffffffcc] flex flex-col space-y-2">
-                        <h4 class=" text-accent font-bold md:text-left text-center">Navigate</h4>
-                        <a href="{{ route('forexRate') }}" class="hover:underline text-center">Forex Rate</a>
-                        <a href="#" class="hover:underline text-center">FAQ</a>
-                        <a href="{{ route('contactUs') }}" class="hover:underline text-center">Contact us</a>
-                        <a href="{{ route('termsAndConditions') }}" class="hover:underline text-center">Terms &
+                    <div class="text-[#ffffffcc] flex flex-col space-y-2 text-center lg:text-left">
+                        <h4 class=" text-accent font-bold text-left ">Navigate</h4>
+                        <a href="{{ route('forexRate') }}" class="hover:underline text-left  ">Forex Rate</a>
+                        <a href="#" class="hover:underline text-left ">FAQ</a>
+                        <a href="{{ route('contactUs') }}" class="hover:underline text-left ">Contact us</a>
+                        <a href="{{ route('termsAndConditions') }}" class="hover:underline text-left ">Terms &
                             Conditions</a>
-                        <a href="{{ route('privacyAndPolicy') }}" class="hover:underline text-center">Privacy Policy</a>
+                        <a href="{{ route('privacyAndPolicy') }}" class="hover:underline text-left ">Privacy Policy</a>
                     </div>
-                    <div class=" text-[#ffffffcc] flex flex-col space-y-2">
-                        <h4 class=" text-accent font-bold md:text-left text-center">Important Links</h4>
-                        <a href="https://www.nrb.org.np/" target="_blank" class="hover:underline text-center">Nepal
+                    <div class="text-[#ffffffcc] flex flex-col space-y-2">
+                        <h4 class="text-accent font-bold text-left">Important Links</h4>
+                        <a href="https://www.nrb.org.np/" target="_blank" class="hover:underline text-left ">Nepal
                             Rastra Bank</a>
                         <a href="https://www.nrb.org.np/forex/" target="_blank"
-                            class="hover:underline text-center">Foreign Exchange Rates</a>
+                            class="hover:underline text-left ">Foreign Exchange Rates</a>
                     </div>
                 </div>
             </div>
@@ -134,14 +141,12 @@
                 <p>&copy; 2025 Hulas Remittance Pvt.Ltd.&nbsp;All rights reserved.</p>
                 <p>
                     Designed and crafted by
-                    <a href="https://dev.awt.cloud/" class="text-[#0000cc] font-bold" style="
-                                              -webkit-text-stroke: 1px rgba(255, 255, 255, 0.315);
-                                              ">AWT</a>
+                    <a href="https://dev.awt.cloud/" class="text-[#0000cc] font-bold" ">AWT</a>
                 </p>
-                <a href="https://www.westernunion.com/np/en/home.html">
-                    <img src="{{ asset('assets/images/logo/WesternUnion_HorizontalLockup_YellowWhite.png') }}"
-                        class="w-44 h-5" alt="Western Union Icon" />
-                </a>
+                <a href=" https://www.westernunion.com/np/en/home.html">
+                        <img src="{{ asset('assets/images/logo/WesternUnion_HorizontalLockup_YellowWhite.png') }}"
+                            class="w-44 h-5" alt="Western Union Icon" />
+                    </a>
             </div>
         </div>
     </div>

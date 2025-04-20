@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Support\Str;
+@endphp
 <footer>
     <div class="bg-black text-[#ffffffcc] text-sm">
         <div class="flex flex-col space-y-10">
@@ -49,8 +52,8 @@
                             A Principal Agent of Western Union in Nepal.</p>
                         <p class="text-center md:text-left">
                         @isset($aboutUs->description_en)
-    {{ \Illuminate\Support\Str::words($aboutUs->description_en, 50, '...') }}
-@endisset
+                         {{ Str::words($aboutUs->description_en, 50, '...') }}
+                        @endisset
                         </p>
                     </div>
 

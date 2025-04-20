@@ -109,7 +109,7 @@ class FrontendController extends Controller
     }
     public function gallery()
     {
-        $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
+        $galleries = Gallery::active()->where('is_published', 1)->get();
         return view('frontend.gallery', compact('galleries'));
     }
     public function galleryDetail($slug = null)

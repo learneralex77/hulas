@@ -3,35 +3,34 @@
 @section('meta', 'Welcome to Hulas Remittance')
 @section('content')
 
-
-    <div class="min-h-screen">
-        <!-- banner-section -->
-        <section class="relative">
-            <div class="mb-10">
-                <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
-                    alt="Banner Image" class="h-60 w-full object-cover" />
-            </div>
-            <div class="absolute w-full top-20">
-                <div class="flex flex-col space-y-8 ml-10">
-                    <h3 class="text-4xl font-extrabold text-white">Become an agent</h3>
-                    <div class="flex space-x-5 items-center">
-                        <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
-                        <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-                        <a href="{{ route('becomeAnAgent') }}" class="text-accent font-bold">Become an agent</a>
-                    </div>
+    <!-- banner-section -->
+    <section class="relative">
+        <div class="mb-10">
+            <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
+                alt="Banner Image" class="h-60 w-full object-cover" />
+        </div>
+        <div class="absolute w-full top-20">
+            <div class="flex flex-col space-y-8 ml-10">
+                <h3 class="text-4xl font-extrabold text-white">Become an agent</h3>
+                <div class="flex space-x-5 items-center">
+                    <a href="index.html" class="text-white font-bold">Home</a>
+                    <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
+                    <a href="become-an-agent.html" class="text-accent font-bold">Become an agent</a>
                 </div>
-        </section>
-        <!-- banner-section -->
-        <div class="mx-6 md:mx-10 lg:mx-20 xl:mx-40 pb-20">
-            <!-- form section  -->
-            <section class="overflow-x-hidden">
-                <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                    <div class="flex flex-col items-center space-y-6">
-                        <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-                      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                      ">
-                            Partner With us </h1>
+            </div>
+    </section>
+    <!-- banner-section -->
+
+    <!-- form section  -->
+    <section class="flex flex-col m-6 sm:m-10 md:m-20 xl:mx-40">
+        <section class="overflow-x-hidden">
+            <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+                <div class="flex flex-col items-center space-y-6">
+                    <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+                                                          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                                          -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                          ">
+                        Partner With us </h1>
 
                     <p class="text-2xl text-black font-bold md:text-4xl text-center">
                         Fill up the form </p>
@@ -44,7 +43,7 @@
                 </div>
             </div>
         </section>
-        <div class="flex flex-col justify-around lg:flex-row gap-10 rounded-lg">
+        <div class="flex flex-col justify-center lg:flex-row gap-10 rounded-lg">
             <!-- <div class="lg:flex lg:justify-center lg:mt-32"> -->
             <div class="flex flex-2 bg-white shadow-xl rounded-md p-6 w-full">
                 <form class="w-full" method="POST" action="{{ route('storeAgentRequest') }}" id="agent-request-form">
@@ -60,16 +59,6 @@
                                 @enderror
                             </div>
 
-                                <div class="flex flex-col space-y-3 w-full">
-                                    <label for="contact_number" class="font-bold text-xl text-[#3d5169]">Contact
-                                        Number</label>
-                                    <input type="tel" placeholder="Contact Number" id="contact_number" name="contact_number"
-                                        class="bg-[#f5faff] rounded-md" required />
-                                    @error('contact_number')
-                                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
                             <div class="flex flex-col space-y-3 w-full">
                                 <label for="contact_number" class="font-bold text-xl text-[#3d5169]">Contact Number</label>
                                 <input type="tel" placeholder="Contact Number" id="contact_number" name="contact_number"
@@ -99,17 +88,17 @@
                             </div>
                         </div>
 
-                            <div class="flex flex-col space-y-3">
-                                <label for="message" class="font-bold text-xl text-[#3d5169]">Message</label>
-                                <textarea name="message" id="message" cols="20" rows="10" class="bg-[#f5faff] rounded-md"
-                                    placeholder="Please enter your message..." required></textarea>
-                                @error('message')
-                                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                                @enderror
-                            </div>
+                        <div class="flex flex-col space-y-3">
+                            <label for="message" class="font-bold text-xl text-[#3d5169]">Message</label>
+                            <textarea name="message" id="message" cols="20" rows="10" class="bg-[#f5faff] rounded-md"
+                                placeholder="Please enter your message..." required></textarea>
+                            @error('message')
+                                <span class="text-red-500 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
 
                         <button type="submit"
-                            class="w-44 flex justify-center items-center bg-black text-accent hover:opacity-85 py-3 px-5 rounded-full cursor-pointer">
+                            class="w-44 flex justify-center items-center bg-black text-accent hover:opacity-85 py-3 px-5 rounded-full cursor-pointer font-semibold">
                             Submit
                         </button>
                     </div>
@@ -121,9 +110,9 @@
                 </h2>
                 <div class="flex flex-col space-y-10 items-left lg:items-left lg:justify-center sm:px-10 lg:px-0">
                     <div class="flex flex-row gap-6 justify-left space-x-5 items-center">
-                        <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center">
-                            <img src="{{ asset(path: 'assets/images/contact/location-pin-svgrepo-com.svg') }}" class="w-8"
-                                alt="Location Icon" />
+                        <div class="min-w-16 h-16 rounded-full bg-accent flex justify-center items-center">
+                            <img src="{{ asset(path: 'assets/images/contact/location-pin-svgrepo-com.svg') }}"
+                                class="w-8 min-w-8 h-8" alt="Location Icon" />
                         </div>
                         <div class="flex flex-col space-y-1">
                             <p class="font-semibold">Location:</p>
@@ -138,8 +127,8 @@
                     </div>
                     <div class="flex flex-row gap-6 justify-left space-x-5 items-center">
 
-                        <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center">
-                            <img src="{{ asset('assets/images/contact/phone-svgrepo-com.svg') }}" class="w-8"
+                        <div class="min-w-16 h-16 rounded-full bg-accent flex justify-center items-center">
+                            <img src="{{ asset('assets/images/contact/phone-svgrepo-com.svg') }}" class="w-8 min-w-8 h-8 "
                                 alt="Phone Icon" />
                         </div>
                         <div class="flex flex-col space-y-2">
@@ -148,32 +137,31 @@
                                 @isset($settings->phone_number_en)
                                     {{ $settings->phone_number_en }}
                                 @endisset
+
+                            </p>
                             </p>
                         </div>
                     </div>
                     <div class="flex flex-row gap-6 justify-left space-x-5 items-center">
-                            <div class="w-16 h-16 rounded-full bg-accent flex justify-center items-center ">
-                                <img src="{{ asset('assets/images/contact/mail-svgrepo-com.png') }}" class="w-8"
-                                    alt="Contact Icon" />
-                            </div>
-                            <div class="flex flex-col space-y-2">
-                                <p class="font-semibold">Email:</p>
-                                <p>
-                                    @isset($settings->email)
-                                        {{ $settings->email }}<br>
-                                        {{ $settings->agent_notify_email }}
+                        <div class="min-w-16 h-16 rounded-full bg-accent flex justify-center items-center">
+                            <img src="{{ asset('assets/images/contact/mail-svgrepo-com.png') }}" class="w-8 min-w-8 h-8"
+                                alt="Contact Icon" />
+                        </div>
+                        <div class="flex flex-col space-y-2">
+                            <p class="font-semibold">Email:</p>
+                            <p>
+                                @isset($settings->email)
+                                    {{ $settings->email }}<br>
+                                    {{ $settings->agent_notify_email }}
 
-                                    @endisset
-                                </p>
-                            </div>
+                                       @endisset
+                            </p>
+                        </div>
+
                     </div>
                 </div>
-                </div>
-                </p>
             </div>
-        </div>
-        </div>
-        </div>
+            </p>
         </div>
     </section>
     <!-- form section  -->
@@ -210,6 +198,6 @@
                     confirmButtonColor: '#EF4444'
                 });
             @endif
-                                    });
+                                                            });
     </script>
 @endpush

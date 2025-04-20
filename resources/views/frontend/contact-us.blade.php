@@ -106,7 +106,7 @@
     </section>
     <!-- cards section -->
 
-    <!-- map section -->
+    <!-- map section -->b
     <section>
       <div class="mt-16 flex justify-center w-full">
       <iframe src="@isset($setting->google_maplink) {{ $setting->google_maplink }} @endisset"
@@ -141,7 +141,7 @@
           <div class="flex flex-col space-y-5">
           <label for="full_name" class="font-bold text-xl text-[#3d5169]">Name</label>
           <input id="full_name" name="full_name" type="text" placeholder="What's your name?"
-            class="w-full rounded-md bg-[#f5faff] @error('full_name') border-red-500 @enderror"
+            class="w-full rounded-md bg-[#fffae2] @error('full_name') border-red-500 @enderror"
             value="{{ old('full_name') }}" required />
           @error('full_name')
         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -150,7 +150,7 @@
           <div class="flex flex-col space-y-5">
           <label for="email" class="font-bold text-xl text-[#3d5169]">Email</label>
           <input id="email" name="email" type="email" placeholder="What's your email?"
-            class="w-full rounded-md bg-[#f5faff] @error('email') border-red-500 @enderror"
+            class="w-full rounded-md bg-[#fffae2] @error('email') border-red-500 @enderror"
             value="{{ old('email') }}" required />
           @error('email')
         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -159,7 +159,7 @@
           <div class="flex flex-col space-y-5">
           <label for="phone_number" class="font-bold text-xl text-[#3d5169]">Phone</label>
           <input id="phone_number" name="phone_number" type="tel" placeholder="Enter your phone"
-            class="w-full rounded-md bg-[#f5faff] @error('phone_number') border-red-500 @enderror"
+            class="w-full rounded-md bg-[#fffae2] @error('phone_number') border-red-500 @enderror"
             value="{{ old('phone_number') }}" required />
           @error('phone_number')
         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -169,7 +169,7 @@
           <label for="service_interested_in" class="font-bold text-xl text-[#3d5169]">Service interested
             in</label>
           <input id="service_interested_in" name="service_interested_in" type="text" placeholder="ex. Remittance"
-            class="w-full rounded-md bg-[#f5faff] @error('service_interested_in') border-red-500 @enderror"
+            class="w-full rounded-md bg-[#fffae2] @error('service_interested_in') border-red-500 @enderror"
             value="{{ old('service_interested_in') }}" />
           @error('service_interested_in')
         <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -179,7 +179,7 @@
         <div class="mt-5 flex flex-col space-y-4">
           <label for="message" class="font-bold text-xl text-[#3d5169]">Message</label>
           <textarea name="message" id="message" cols="20" rows="10"
-          class="bg-[#f5faff] rounded-md @error('message') border-red-500 @enderror"
+          class="bg-[#fffae2] rounded-md @error('message') border-red-500 @enderror"
           placeholder="Please enter your message...">{{ old('message') }}</textarea>
           @error('message')
         <span class="text-red-500 text-sm">{{ $message }}</span>

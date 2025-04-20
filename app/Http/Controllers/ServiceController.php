@@ -35,32 +35,89 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
         try {
+            \Log::info('Starting service creation process', [
+                'has_names' => $request->has('names'),
+                'names' => $request->input('names'),
+                'indices' => $request->input('service_detail_indices')
+            ]);
+            
             // Start with file upload preparation - do this outside the transaction
             $filePath = null;
-            $iconPaths = [];
             
             // Process main file upload first
             if ($request->hasFile('file') && $request->file('file')->isValid()) {
                 $filePath = $request->file('file')->store('services', 'public');
+                \Log::info('Main file uploaded', ['path' => $filePath]);
             }
             
-            // Process icon file uploads - collect them before DB transaction
+            // Get the form data
+            $names = $request->input('names', []);
+            $descriptions = $request->input('descriptions', []);
+            $externalLinks = $request->input('external_links', []);
+            
+            // Use service_detail_indices if provided to ensure correct array order
+            $detailIndices = $request->input('service_detail_indices');
+            if (!empty($detailIndices) && is_string($detailIndices)) {
+                try {
+                    $indices = json_decode($detailIndices, true);
+                    if (is_array($indices) && !empty($indices)) {
+                        \Log::info('Using provided indices', ['indices' => $indices]);
+                        
+                        // Reindex names, descriptions, and externalLinks
+                        $names = array_values($names);
+                        $descriptions = array_values($descriptions);
+                        $externalLinks = array_values($externalLinks);
+                    }
+                } catch (\Exception $e) {
+                    \Log::error('Error parsing service detail indices', ['error' => $e->getMessage()]);
+                }
+            }
+            
+            // Make sure we have at least one name
+            if (empty($names)) {
+                throw new \Exception('At least one service name is required');
+            }
+            
+            // Initialize iconPaths array for all indices
+            $iconPaths = [];
+            foreach (array_keys($names) as $index) {
+                $iconPaths[$index] = null;
+            }
+            
+            // Process icon file uploads for each index
             if ($request->hasFile('icons')) {
                 foreach ($request->file('icons') as $index => $iconFile) {
                     if ($iconFile && $iconFile->isValid()) {
-                        $iconPaths[$index] = $iconFile->store('service_icons', 'public');
+                        try {
+                            $iconPaths[$index] = $iconFile->store('service_icons', 'public');
+                            \Log::info('Icon uploaded', ['index' => $index, 'path' => $iconPaths[$index]]);
+                        } catch (\Exception $e) {
+                            \Log::error('Error uploading icon', [
+                                'index' => $index, 
+                                'error' => $e->getMessage()
+                            ]);
+                        }
                     }
                 }
             }
             
-            // Make sure all entries in names array have corresponding icon paths entries
-            if ($request->has('names')) {
-                foreach (array_keys($request->input('names', [])) as $index) {
-                    if (!isset($iconPaths[$index])) {
-                        $iconPaths[$index] = null;
-                    }
+            // Make sure all arrays have entries for all indices
+            foreach (array_keys($names) as $index) {
+                if (!isset($descriptions[$index])) {
+                    $descriptions[$index] = null;
+                }
+                if (!isset($externalLinks[$index])) {
+                    $externalLinks[$index] = null;
                 }
             }
+            
+            \Log::info('Final arrays for creation', [
+                'names' => $names,
+                'names_count' => count($names),
+                'icons' => $iconPaths,
+                'descriptions_count' => count($descriptions),
+                'links_count' => count($externalLinks)
+            ]);
             
             // Now start the database transaction - with file uploads already done
             DB::beginTransaction();
@@ -85,19 +142,28 @@ class ServiceController extends Controller
                 'display_order' => $request->input('display_order'),
                 'is_published' => $request->boolean('is_published'),
                 'file' => $filePath,
-                'translation_names' => json_encode($request->input('names', [])),
-                'translation_descriptions' => json_encode($request->input('descriptions', [])),
-                'external_link' => json_encode($request->input('external_links', [])),
-                'translation_icons' => json_encode($iconPaths),
+                'translation_names' => json_encode(array_values($names)),
+                'translation_descriptions' => json_encode(array_values($descriptions)),
+                'external_link' => json_encode(array_values($externalLinks)),
+                'translation_icons' => json_encode(array_values($iconPaths)),
             ]);
 
             DB::commit();
+            \Log::info('Service created successfully', [
+                'service_id' => $service->id,
+                'saved_names' => $names,
+                'saved_icons' => $iconPaths
+            ]);
 
             return redirect()
                 ->route('services.index')
                 ->with('success', 'Service created successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
+            \Log::error('Service creation failed', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
             
             return redirect()
                 ->back()
@@ -128,16 +194,25 @@ class ServiceController extends Controller
     public function update(ServiceRequest $request, Service $service)
     {
         try {
+            \Log::info('Starting service update process', [
+                'service_id' => $service->id,
+                'has_names' => $request->has('names'),
+                'names' => $request->input('names'),
+                'indices' => $request->input('service_detail_indices')
+            ]);
+            
             // Process file uploads first - outside the transaction
             $filePath = $service->file;
             
             // Fix the json_decode error - check if already an array
-            $iconPaths = $service->translation_icons;
-            if (is_string($iconPaths)) {
-                $iconPaths = json_decode($iconPaths, true) ?? [];
-            } elseif (!is_array($iconPaths)) {
-                $iconPaths = [];
+            $existingIconPaths = $service->translation_icons;
+            if (is_string($existingIconPaths)) {
+                $existingIconPaths = json_decode($existingIconPaths, true) ?? [];
+            } elseif (!is_array($existingIconPaths)) {
+                $existingIconPaths = [];
             }
+            
+            \Log::info('Existing icon paths', ['paths' => $existingIconPaths]);
             
             // Handle main file upload if needed
             if ($request->hasFile('file') && $request->file('file')->isValid()) {
@@ -147,33 +222,93 @@ class ServiceController extends Controller
                 }
                 
                 $filePath = $request->file('file')->store('services', 'public');
+                \Log::info('Updated main file', ['path' => $filePath]);
             }
             
-            // Process icon uploads
-            if ($request->hasFile('icons')) {
-                foreach ($request->file('icons') as $index => $iconFile) {
-                    if ($iconFile && $iconFile->isValid()) {
-                        // Delete old icon if exists
-                        if (isset($iconPaths[$index])) {
-                            Storage::disk('public')->delete($iconPaths[$index]);
-                        }
+            // Get the names, descriptions, and external links from the request
+            $names = $request->input('names', []);
+            $descriptions = $request->input('descriptions', []);
+            $externalLinks = $request->input('external_links', []);
+            
+            // Use service_detail_indices if provided to ensure correct array order
+            $detailIndices = $request->input('service_detail_indices');
+            if (!empty($detailIndices) && is_string($detailIndices)) {
+                try {
+                    $indices = json_decode($detailIndices, true);
+                    if (is_array($indices) && !empty($indices)) {
+                        \Log::info('Using provided indices for update', ['indices' => $indices]);
                         
-                        $iconPaths[$index] = $iconFile->store('service_icons', 'public');
+                        // Reindex arrays to ensure they are in the correct order
+                        $names = array_values($names);
+                        $descriptions = array_values($descriptions);
+                        $externalLinks = array_values($externalLinks);
+                    }
+                } catch (\Exception $e) {
+                    \Log::error('Error parsing service detail indices', ['error' => $e->getMessage()]);
+                }
+            }
+            
+            // Make sure we have at least one name
+            if (empty($names)) {
+                throw new \Exception('At least one service name is required');
+            }
+            
+            // Initialize finalIconPaths with null values for all indices in names array
+            $finalIconPaths = [];
+            foreach (array_keys($names) as $index) {
+                $finalIconPaths[$index] = null;
+            }
+            
+            // Preserve existing icons for indices that haven't changed
+            // We need to adjust this based on the new indices
+            if (count($existingIconPaths) > 0) {
+                foreach (array_keys($names) as $newIndex) {
+                    if ($newIndex < count($existingIconPaths) && isset($existingIconPaths[$newIndex])) {
+                        $finalIconPaths[$newIndex] = $existingIconPaths[$newIndex];
                     }
                 }
             }
             
-            // Process icon paths to match names array structure
-            if ($request->has('names')) {
-                $names = $request->input('names', []);
-                $processedIconPaths = [];
-                
-                foreach ($names as $index => $name) {
-                    $processedIconPaths[$index] = $iconPaths[$index] ?? null;
+            // Process icon uploads - only update the ones that have new files
+            if ($request->hasFile('icons')) {
+                foreach ($request->file('icons') as $index => $iconFile) {
+                    if ($iconFile && $iconFile->isValid()) {
+                        try {
+                            // Delete old icon if exists
+                            if (isset($finalIconPaths[$index]) && $finalIconPaths[$index]) {
+                                Storage::disk('public')->delete($finalIconPaths[$index]);
+                            }
+                            
+                            $finalIconPaths[$index] = $iconFile->store('service_icons', 'public');
+                            \Log::info('Updated icon', ['index' => $index, 'path' => $finalIconPaths[$index]]);
+                        } catch (\Exception $e) {
+                            \Log::error('Error updating icon', [
+                                'index' => $index, 
+                                'error' => $e->getMessage()
+                            ]);
+                        }
+                    }
                 }
-                
-                $iconPaths = $processedIconPaths;
             }
+            
+            // Make sure all arrays have entries for all indices
+            foreach (array_keys($names) as $index) {
+                if (!isset($descriptions[$index])) {
+                    $descriptions[$index] = null;
+                }
+                if (!isset($externalLinks[$index])) {
+                    $externalLinks[$index] = null;
+                }
+            }
+            
+            \Log::info('Final arrays for update', [
+                'names' => $names,
+                'names_count' => count($names),
+                'existing_icons' => $existingIconPaths,
+                'final_icons' => $finalIconPaths,
+                'descriptions_count' => count($descriptions),
+                'links_count' => count($externalLinks)
+            ]);
             
             // Start database transaction after file handling
             DB::beginTransaction();
@@ -204,19 +339,29 @@ class ServiceController extends Controller
                 'display_order' => $request->input('display_order'),
                 'is_published' => $request->boolean('is_published'),
                 'file' => $filePath,
-                'translation_names' => json_encode($request->input('names', [])),
-                'translation_descriptions' => json_encode($request->input('descriptions', [])),
-                'external_link' => json_encode($request->input('external_links', [])),
-                'translation_icons' => json_encode($iconPaths),
+                'translation_names' => json_encode(array_values($names)),
+                'translation_descriptions' => json_encode(array_values($descriptions)),
+                'external_link' => json_encode(array_values($externalLinks)),
+                'translation_icons' => json_encode(array_values($finalIconPaths)),
             ]);
 
             DB::commit();
+            \Log::info('Service updated successfully', [
+                'service_id' => $service->id,
+                'saved_names' => $names,
+                'saved_icons' => $finalIconPaths
+            ]);
 
             return redirect()
                 ->route('services.index')
                 ->with('success', 'Service updated successfully.');
         } catch (\Exception $e) {
             DB::rollBack();
+            \Log::error('Service update failed', [
+                'service_id' => $service->id,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
             
             return redirect()
                 ->back()

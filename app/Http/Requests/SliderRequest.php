@@ -30,7 +30,7 @@ class SliderRequest extends FormRequest
             'link' => ['nullable', 'string', 'max:255'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:5120'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
             'delete_image' => ['nullable', 'boolean'],
         ];
 
@@ -81,7 +81,6 @@ class SliderRequest extends FormRequest
             'name_en.max' => 'The English slider name may not be greater than 255 characters.',
             'name_en.unique' => 'A slider with this English name already exists.',
             
-            'name_np.required' => 'The Nepali slider name is required.',
             'name_np.string' => 'The Nepali slider name must be a string.',
             'name_np.max' => 'The Nepali slider name may not be greater than 255 characters.',
             'name_np.unique' => 'A slider with this Nepali name already exists.',
@@ -97,7 +96,6 @@ class SliderRequest extends FormRequest
             
             'image.image' => 'The file must be an image.',
             'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif, webp.',
-            'image.max' => 'The image may not be greater than 2MB.',
         ];
     }
 

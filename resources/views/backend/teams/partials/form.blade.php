@@ -99,7 +99,7 @@
                 <small class="text-muted fs-xs d-block mb-2">Leave empty to keep the current image</small>
             @endif
             <input type="file" class="form-control form-control-sm @error('image') is-invalid @enderror" id="image" name="image">
-            <small class="text-muted fs-xs">Recommended size: 300x300px, Max: 2MB</small>
+            <small class="text-muted fs-xs">Recommended size: 300x300px,    </small>
             @error('image')
                 <div class="invalid-feedback small">{{ $message }}</div>
             @enderror

@@ -37,7 +37,7 @@
                 <label class="form-label ps-0" for="file">File (Image or PDF)</label>
                 <input type="file" class="form-control @error('file') is-invalid @enderror" id="file"
                     name="file" accept="image/jpeg,image/png,image/jpg,image/gif,image/svg+xml,application/pdf,image/webp">
-                <small class="text-muted">Allowed file types: JPEG, PNG, JPG, GIF, SVG, PDF, WebP (max 2MB)</small>
+                <small class="text-muted">Allowed file types: JPEG, PNG, JPG, GIF, SVG, PDF, WebP     </small>
                 @error('file')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -121,6 +121,10 @@
                                     <i class="fa fa-times"></i>
                                 </button>
                             </div>
+                        @else
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="mb-0 ps-0">Primary Entry</h5>
+                            </div>
                         @endif
                         <div class="row mb-2">
                             <div class="col-md-6">
@@ -142,7 +146,7 @@
                                     class="form-control @error('icons.' . $index) is-invalid @enderror"
                                     id="icons_{{ $index }}" name="icons[{{ $index }}]"
                                     accept="image/jpeg,image/png,image/jpg,image/gif,image/svg+xml,image/webp">
-                                <small class="text-muted">Allowed file types: JPEG, PNG, JPG, GIF, SVG, WebP (max 2MB)</small>
+                                <small class="text-muted">Allowed file types: JPEG, PNG, JPG, GIF, SVG, WebP     </small>
                                 @error('icons.' . $index)
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -180,6 +184,9 @@
                 @endforeach
             @else
                 <div class="service-detail-item border rounded p-2 mb-2" data-index="0">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5 class="mb-0 ps-0">Primary Entry</h5>
+                    </div>
                     <div class="row mb-2">
                         <div class="col-md-6">
                             <label class="form-label ps-0" for="names_0">Name <span class="text-danger">*</span></label>
@@ -195,7 +202,7 @@
                             <input type="file" class="form-control @error('icons.0') is-invalid @enderror"
                                 id="icons_0" name="icons[0]" 
                                 accept="image/jpeg,image/png,image/jpg,image/gif,image/svg+xml,image/webp">
-                            <small class="text-muted">Allowed file types: JPEG, PNG, JPG, GIF, SVG, WebP (max 2MB)</small>
+                            <small class="text-muted">Allowed file types: JPEG, PNG, JPG, GIF, SVG, WebP     </small>
                             @error('icons.0')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -232,6 +239,8 @@
             <a href="{{ route('services.index') }}" class="btn btn-sm btn-danger ms-2">
                 <i class="fa fa-times"></i> Cancel
             </a>
+            <!-- Hidden input to keep track of indices -->
+            <input type="hidden" id="service-detail-indices" name="service_detail_indices" value="[]">
         </div>
     </div>
 </div>

@@ -43,7 +43,7 @@
                                 <x-auth-session-status class="mb-4" :status="session('status')" />
                                 
                                 <div class="d-flex justify-content-center mb-3">
-                                    <img class="img-avatar img-avatar96" src="assets/media/avatars/avatar15.jpg" alt="">
+                                    <img class="img-avatar img-avatar96" src="{{ asset('assets/images/logo/hulas_cover.jpg') }}" alt="">
                                 </div>
                             </div>
                             <!-- END Header -->

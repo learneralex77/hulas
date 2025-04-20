@@ -142,7 +142,7 @@
 
                     <div class="mt-2">
                         <small class="text-muted">Recommended image size: 1200x800 pixels</small><br>
-                        <small class="text-muted">Allowed formats: JPG, PNG, GIF, WebP (max: 2MB)</small>
+                        <small class="text-muted">Allowed formats: JPG, PNG, GIF, WebP  </small>
                     </div>
                 </div>
             </div>

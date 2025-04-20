@@ -43,7 +43,7 @@
                 
                 <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
                     name="image" accept="image/jpeg,image/png,image/jpg,image/gif,image/webp">
-                <small class="text-muted d-block mt-1">Allowed formats: JPG, PNG, GIF, WebP (max: 2MB)</small>
+                <small class="text-muted d-block mt-1">Allowed formats: JPG, PNG, GIF, WebP  </small>
                 @error('image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

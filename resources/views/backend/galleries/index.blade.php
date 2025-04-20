@@ -78,6 +78,12 @@
                                                 onclick="deleteGallery({{ $gallery->id }})" title="Delete">
                                                 <i class="fa fa-trash"></i>
                                             </button>
+                                            <!-- Alternative delete form -->
+                                            <form id="delete-form-{{ $gallery->id }}" action="{{ route('galleries.destroy', $gallery->id) }}" 
+                                                  method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -118,12 +124,14 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         let url = "{{ route('galleries.destroy', ':id') }}".replace(':id', galleryId);
-
+                        let token = $('meta[name="csrf-token"]').attr('content');
+                        
                         $.ajax({
                             url: url,
-                            type: 'DELETE',
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            type: 'POST',
+                            data: {
+                                "_token": token,
+                                "_method": "DELETE"
                             },
                             success: function(response) {
                                 // Remove the gallery row from the table
@@ -140,15 +148,24 @@
                                 });
                             },
                             error: function(xhr, status, error) {
+                                console.error('Delete error:', xhr.responseText);
+                                let errorMessage = 'There was an error deleting the gallery.';
+                                
+                                if (xhr.responseJSON && xhr.responseJSON.message) {
+                                    errorMessage = xhr.responseJSON.message;
+                                }
+                                
                                 Swal.fire({
                                     title: 'Error!',
-                                    text: 'There was an error deleting the gallery.',
+                                    text: errorMessage,
                                     icon: 'error',
-                                    timer: 3000,
-                                    showConfirmButton: false,
-                                    position: 'top-end',
-                                    toast: true
+                                    showConfirmButton: true
                                 });
+                                
+                                // Fallback to form submission if AJAX fails
+                                if (xhr.status === 419) { // CSRF token mismatch
+                                    document.getElementById('delete-form-' + galleryId).submit();
+                                }
                             }
                         });
                     }

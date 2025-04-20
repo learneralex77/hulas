@@ -78,7 +78,7 @@
                     <div id="image-preview-container" class="mt-2" style="display: none; max-width: 100%;">
                         <img id="image-preview" src="#" alt="Image Preview" class="img-thumbnail" style="max-width: 100%; max-height: 150px; object-fit: contain;">
                     </div>
-                    <small class="text-muted">Accepted formats: jpeg, png, jpg, gif, webp. Max size: 2MB</small>
+                    <small class="text-muted">Accepted formats: jpeg, png, jpg, gif, webp.   </small>
                     @error('image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

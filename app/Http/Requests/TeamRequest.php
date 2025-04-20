@@ -27,7 +27,7 @@ class TeamRequest extends FormRequest
             'type' => ['required', Rule::in(array_keys(Team::getTypes()))],
             'name_en' => ['required', 'string', 'max:255'],
             'name_np' => ['nullable', 'string', 'max:255'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
             'description_en' => ['nullable', 'string'],
             'description_np' => ['nullable', 'string'],
             'address_en' => ['nullable', 'string', 'max:255'],
@@ -87,8 +87,7 @@ class TeamRequest extends FormRequest
             'name_np.max' => 'The Nepali name may not be greater than 255 characters.',
             
             'image.image' => 'The file must be an image.',
-            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif.',
-            'image.max' => 'The image may not be greater than 2MB.',
+            'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif, webp.',
             
             'description_en.string' => 'The English description must be a string.',
             'description_np.string' => 'The Nepali description must be a string.',

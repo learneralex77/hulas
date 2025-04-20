@@ -19,9 +19,14 @@ class FormDataPersistenceMiddleware
         
         // For POST requests and PUT requests (form submissions)
         if ($request->isMethod('post') || $request->isMethod('put')) {
-            // Store form data with a unique identifier based on the route
+            // Remove file objects from form data to prevent serialization issues
             $formData = $request->except(['_token', '_method']);
-            session([$formIdentifier => $formData]);
+            
+            // Filter out file objects recursively
+            $safeFormData = $this->filterFileObjects($formData);
+            
+            // Store form data with a unique identifier based on the route
+            session([$formIdentifier => $safeFormData]);
             
             // Store the referer for tracking the form's origin
             session([$formIdentifier . '_referer' => $request->path()]);
@@ -47,6 +52,20 @@ class FormDataPersistenceMiddleware
         if ($response instanceof \Illuminate\Http\RedirectResponse && $response->getSession() && $response->getSession()->has('success')) {
             session()->forget($formIdentifier);
             session()->forget($formIdentifier . '_referer');
+        }
+        
+        // Check if we're redirecting back with input and errors
+        if ($response->isRedirect() && session()->has('errors')) {
+            // Strip file data from old input to prevent serialization issues
+            $oldInput = session()->get('_old_input', []);
+            
+            if (is_array($oldInput)) {
+                // Remove any file upload fields and objects
+                $safeInput = $this->filterFileObjects($oldInput);
+                
+                // Update the session
+                session()->flash('_old_input', $safeInput);
+            }
         }
         
         return $response;
@@ -80,6 +99,57 @@ class FormDataPersistenceMiddleware
         if (preg_match('/menus\/create/', $path) || 
             preg_match('/menus\/(\d+)\/edit/', $path)) {
             return true;
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Filter out any file objects from the data
+     */
+    private function filterFileObjects($data)
+    {
+        if (!is_array($data)) {
+            return $data;
+        }
+        
+        $result = [];
+        foreach ($data as $key => $value) {
+            // Skip if the value is an object or an array that contains objects
+            if (is_object($value) || $this->isUploadedFile($key)) {
+                continue;
+            }
+            
+            // Recursively filter arrays
+            if (is_array($value)) {
+                $filteredValue = $this->filterFileObjects($value);
+                if (!empty($filteredValue)) {
+                    $result[$key] = $filteredValue;
+                }
+            } else {
+                $result[$key] = $value;
+            }
+        }
+        
+        return $result;
+    }
+    
+    /**
+     * Check if the field key is a common file upload field
+     */
+    private function isUploadedFile($key): bool
+    {
+        $fileFields = [
+            'featured_image', 'gallery_images', 'image', 'images', 
+            'thumbnail', 'photo', 'photos', 'file', 'files', 
+            'attachment', 'attachments', 'document', 'documents',
+            'cover', 'banner', 'logo'
+        ];
+        
+        foreach ($fileFields as $fileField) {
+            if ($key === $fileField || strpos($key, $fileField . '_') === 0 || strpos($key, $fileField . '.') === 0) {
+                return true;
+            }
         }
         
         return false;

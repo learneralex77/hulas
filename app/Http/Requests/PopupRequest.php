@@ -28,7 +28,7 @@ class PopupRequest extends FormRequest
             'link' => ['nullable', 'string', 'max:255'],
             'display_order' => ['nullable', 'integer', 'min:0'],
             'is_published' => ['nullable', 'boolean'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp'],
             'delete_image' => ['nullable', 'boolean'],
         ];
 
@@ -89,7 +89,6 @@ class PopupRequest extends FormRequest
             
             'image.image' => 'The file must be an image.',
             'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif, webp.',
-            'image.max' => 'The image may not be greater than 2MB.',
         ];
     }
 

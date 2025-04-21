@@ -146,9 +146,11 @@
             <section class="flex flex-col md:flex-row md:justify-center md:items-center lg:flex-row gap-10">
                 <div class="flex justify-center flex-1 flex-grow text-center">
                     <div class="flex-1 flex justify-center w-full">
-                        <img src="{{ asset('assets/images/about-us/about-img-1.webp') }}" alt="About Us Image"
-                            class="w-full max-w-md h-80 rounded-md object-cover bg-gray-100"
-                            onerror="this.onerror=null;this.src='{{ asset('assets/images/placeholder.webp') }}';" />
+                        @isset($aboutUs->image)
+                            <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image"
+                                class="w-full max-w-md h-80 rounded-md object-cover bg-gray-100"
+                                onerror="this.onerror=null;this.src='{{ asset('assets/images/placeholder.webp') }}';" />
+                        @endisset
                     </div>
                 </div>
 
@@ -346,6 +348,7 @@
                     </div>
 
                     <!-- Scrolling container -->
+                    @isset($partners)1`
                     <div class="carousel-container w-full" style="animation: scrollOnce 20s linear infinite;">
                         @foreach ($partners as $partner)
                             <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
@@ -356,7 +359,7 @@
                             </div>
                         @endforeach
                     </div>
-
+                    @endisset
                 </div>
             </section>
         </div>
@@ -382,6 +385,7 @@
 
                     <div style=" --swiper-navigation-color: #fff; --swiper-pagination-color: #fff; "
                         class="swiper mySwiper2 w-full h-1/2 aspect-[16/9] m-2">
+                        @isset($galleries)
                         <div class="swiper-wrapper h-[800px] lg:h-[400px]">
                             @foreach ($galleries as $gallery)
                                 <div class="swiper-slide">
@@ -391,9 +395,11 @@
                             @endforeach
 
                         </div>
+                        @endisset
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
+                    @isset($galleries)
                     <div thumbsSlider="" class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             @foreach ($galleries as $index => $gallery)
@@ -404,6 +410,7 @@
                             @endforeach
                         </div>
                     </div>
+                    @endisset
                 </div>
 
                 <div class="flex-1 w-full h-full">
@@ -431,6 +438,7 @@
                         </div>
 
                         <!-- Content inside the heading -->
+                        @isset($newsAndEvents)
                         <div class="overflow-y-scroll h-[420px] m-3 sticky bg-white">
                             @foreach ($newsAndEvents as $news)
                                 <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
@@ -456,6 +464,7 @@
                                 </div>
                             @endforeach
                         </div>
+                        @endisset
                     </div>
                 </div>
             </div>
@@ -484,28 +493,19 @@
 
                         <div class="swiper !h-[40vh] md:!h-[60vh] mx-auto w-[100%] popupSwiper rounded-lg">
                             <div class="swiper-wrapper">
-                                @if(isset($popups) && count($popups) > 0)
+                                @isset($popups)
                                     @foreach($popups as $popup)
                                         <div class="swiper-slide">
-                                            @if($popup->link)
+                                            @isset($popup->link)
                                                 <a href="{{ $popup->link }}" target="_blank">
                                                     <img src="{{ asset('storage/' . $popup->image) }}" alt="{{ $popup->name_en }}"
                                                         class="w-full h-full object-contain" />
                                                 </a>
-                                            @else
-                                                <img src="{{ asset('storage/' . $popup->image) }}" alt="{{ $popup->name_en }}"
-                                                    class="w-full h-full object-contain" />
-                                            @endif
+                                            @endisset
+                                           
                                         </div>
                                     @endforeach
-                                @else
-                                    <div class="swiper-slide">
-                                        <a href="homepage">
-                                            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}"
-                                                alt="Hulas Logo" class="w-full h-full object-contain" />
-                                        </a>
-                                    </div>
-                                @endif
+                                @endisset
                             </div>
 
                             <!-- Swiper pagination dots -->
@@ -623,21 +623,25 @@
 
         //modal swiper
         document.addEventListener("DOMContentLoaded", function () {
-            const swiperContainer = document.querySelector(".popupSwiper");
-            if (swiperContainer) {
-                const swiper = new Swiper(".popupSwiper", {
-                    loop: true,
-                    pagination: {
-                        el: ".swiper-pagination",
-                        clickable: true,
-                    },
-                    autoplay: {
-                        delay: 2000,
-                        disableOnInteraction: false,
-                    },
-                });
-            }
+    const swiperContainer = document.querySelector(".popupSwiper");
+    if (swiperContainer) {
+        const swiper = new Swiper(".popupSwiper", {
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
         });
+
+        // Explicitly start autoplay
+        swiper.autoplay.start();
+    }
+});
+
     </script>
 
 @endpush

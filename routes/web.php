@@ -36,7 +36,7 @@ Route::get('downloads', [FrontendController::class, 'downloads'])->name('downloa
 Route::get('/downloads/file/{download}', [FrontendController::class, 'downloadFile'])->name('frontend.downloads.download');
 
 Route::get('news-and-events', [FrontendController::class, 'newsAndEvents'])->name('newsAndEvents');
-Route::get('news-and-events-detail-page/{id?}', [FrontendController::class, 'newsAndEventsDetailPage'])->name('newsAndEventsDetailPage');
+Route::get('news-and-events-detail-page/{slug?}', [FrontendController::class, 'newsAndEventsDetailPage'])->name('newsAndEventsDetailPage');
 
 Route::get('gallery', [FrontendController::class, 'gallery'])->name('gallery');
 Route::get('gallery-detail/{slug?}', [FrontendController::class, 'galleryDetail'])->name('galleryDetail');

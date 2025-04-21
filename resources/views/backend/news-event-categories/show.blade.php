@@ -104,6 +104,20 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Add slug info to the detail page -->
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="block block-rounded">
+                            <div class="block-header block-header-default">
+                                <h3 class="block-title">Slug</h3>
+                            </div>
+                            <div class="block-content">
+                                <p>{{ $newsEventCategory->slug ?: 'No slug set' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -37,18 +37,20 @@
                 <h2 class="text-xl lg:text-2xl font-bold text-black">
                     About Hulas Remittance
                 </h2>
+                @isset($aboutUs->description_en)
                 <div class="text-lg">
-                    <p> @isset($aboutUs->description) {{ $aboutUs->description }} @endisset</p>
+                    <p>  {{ $aboutUs->description_en }} </p>
                 </div>
+                @endisset
                 <!-- Years of experience -->
                 <div class="flex flex-col items-center space-y-3 lg:space-y-0 lg:flex-row lg:space-x-4">
                     <div
                         class="w-60 md:w-40 lg:w-60 bg-black rounded-xl flex justify-start lg:justify-center items-center flex-col space-y-2 lg:space-y-4 p-3">
+                        @isset($aboutUs->years_of_experience_en)
                         <p class="text-accent font-bold text-2xl">
-                            @isset($aboutUs->years_of_experience_en)
                             {{ $aboutUs->years_of_experience_en }}
-                            @endisset
                         </p>
+                        @endisset
                         <p class="text-accent text-center text-lg">
                             Years of Experience
                         </p>
@@ -60,33 +62,38 @@
                 <div>
                     <div class="flex flex-row gap-4 mx-3">
                         <!-- Facebook -->
+                        @isset($setting->facebook)
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="{{ isset($setting->facebook) ? $setting->facebook : '#' }}">
+                            <a href="{{ $setting->facebook }}">
                                 <img src="{{ asset('assets/images/social-media-icons/facebook-black.svg') }}"
                                     alt="Facebook Icon" class="w-6 h-6">
                             </a>
                         </div>
+                        @endisset
+
 
                         <!-- Linkdin -->
+                        @isset($setting->linkedin)
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="{{ isset($setting->linkedin) ? $setting->linkedin : '#' }}">
+                            <a href="{{ $setting->linkedin }}">
                                 <img src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.svg') }}"
                                     alt="Linkdin Icon" class="w-4 h-4">
                             </a>
                         </div>
-
+                        @endisset
 
                         <!-- Twitter -->
+                        @isset($setting->twitter)
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="{{ isset($setting->twitter) ? $setting->twitter : '#' }}">
+                            <a href="{{ $setting->twitter }}">
                                 <img src="{{ asset('assets/images/social-media-icons/icons8-x-50.png') }}"
                                     alt="Twitter Icon" class="w-5 h-5">
                             </a>
                         </div>
-
+                        @endisset
                     </div>
                 </div>
             </div>

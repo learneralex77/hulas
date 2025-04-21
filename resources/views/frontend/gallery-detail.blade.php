@@ -78,10 +78,12 @@
     <!-- Heading for the image -->
 
     <div class="mx-12">
+      @isset($gallery->title_en)
       <h2 class="text-2xl font-bold mb-2 text-black">{{ $gallery->title_en }}</h2>
-      @if($gallery->short_description)
+      @endisset
+      @isset($gallery->short_description)
       <p class="text-gray-600 mb-4">{{ $gallery->short_description }}</p>
-      @endif
+      @endisset
     </div>
     <div class="mx-10 p-4 flex">
 

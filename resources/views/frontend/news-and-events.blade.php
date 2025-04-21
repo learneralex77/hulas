@@ -56,7 +56,7 @@
                 class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-6 sm:m-10 lg:mx-20 2xl:mx-[100px] space-x-3">
                 @isset($newsAndEvents)
                     @foreach ($newsAndEvents as $newsAndEvent)
-                        <a href="{{ route('newsAndEventsDetailPage', $newsAndEvent->id) }}">
+                        <a href="{{ route('newsAndEventsDetailPage', $newsAndEvent->slug) }}">
                             <div
                                 class="bg-white rounded-sm shadow-lg p-3 mx-3 flex flex-col gap-3 text-left hover:-translate-y-2 transition-transform ease-in-out duration-300 border-l-accent border-l-[4px] border-l-accent">
                                 <img src="{{ $newsAndEvent->image ? asset('storage/' . $newsAndEvent->image) : asset('assets/images/placeholder.jpg')  }}"
@@ -70,8 +70,8 @@
                                         class="h-auto w-4" />
                                     <p class="text-sm text-gray-500">{{ $newsAndEvent->created_at->format('F d, Y') }}</p>
                                 </div>
-                                <p class="text-gray-600 text-justify truncate whitespace-nowrap overflow-hidden">
-                                    {{ Str::words($newsAndEvent->description_en, 30, '...') }}
+                                <p class="text-gray-600 text-justify line-clamp-2">
+                                    {{$newsAndEvent->description_en}}
                                 </p>
                             </div>
                         </a>

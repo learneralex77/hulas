@@ -4,8 +4,6 @@
     Gallery Management
 @endsection
 
-
-
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -91,85 +89,84 @@
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
 
-    @section('scripts')
-        <script>
-            // Success message
-            @if (session('success'))
-                Swal.fire({
-                    title: 'Success!',
-                    text: '{{ session('success') }}',
-                    icon: 'success',
-                    timer: 3000,
-                    showConfirmButton: false,
-                    position: 'top-end',
-                    toast: true
-                });
-            @endif
+@section('scripts')
+    <script>
+        // Success message
+        @if (session('success'))
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ session('success') }}',
+                icon: 'success',
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top-end',
+                toast: true
+            });
+        @endif
 
-            function deleteGallery(galleryId) {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        let url = "{{ route('galleries.destroy', ':id') }}".replace(':id', galleryId);
-                        let token = $('meta[name="csrf-token"]').attr('content');
-                        
-                        $.ajax({
-                            url: url,
-                            type: 'POST',
-                            data: {
-                                "_token": token,
-                                "_method": "DELETE"
-                            },
-                            success: function(response) {
-                                // Remove the gallery row from the table
-                                $('#gallery-row-' + galleryId).remove();
+        function deleteGallery(galleryId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let url = "{{ route('galleries.destroy', ':id') }}".replace(':id', galleryId);
+                    let token = $('meta[name="csrf-token"]').attr('content');
+                    
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {
+                            "_token": token,
+                            "_method": "DELETE"
+                        },
+                        success: function(response) {
+                            // Remove the gallery row from the table
+                            $('#gallery-row-' + galleryId).remove();
 
-                                Swal.fire({
-                                    title: 'Deleted!',
-                                    text: 'Gallery has been deleted.',
-                                    icon: 'success',
-                                    timer: 3000,
-                                    showConfirmButton: false,
-                                    position: 'top-end',
-                                    toast: true
-                                });
-                            },
-                            error: function(xhr, status, error) {
-                                console.error('Delete error:', xhr.responseText);
-                                let errorMessage = 'There was an error deleting the gallery.';
-                                
-                                if (xhr.responseJSON && xhr.responseJSON.message) {
-                                    errorMessage = xhr.responseJSON.message;
-                                }
-                                
-                                Swal.fire({
-                                    title: 'Error!',
-                                    text: errorMessage,
-                                    icon: 'error',
-                                    showConfirmButton: true
-                                });
-                                
-                                // Fallback to form submission if AJAX fails
-                                if (xhr.status === 419) { // CSRF token mismatch
-                                    document.getElementById('delete-form-' + galleryId).submit();
-                                }
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Gallery has been deleted.',
+                                icon: 'success',
+                                timer: 3000,
+                                showConfirmButton: false,
+                                position: 'top-end',
+                                toast: true
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Delete error:', xhr.responseText);
+                            let errorMessage = 'There was an error deleting the gallery.';
+                            
+                            if (xhr.responseJSON && xhr.responseJSON.message) {
+                                errorMessage = xhr.responseJSON.message;
                             }
-                        });
-                    }
-                });
-            }
-        </script>
-    @endsection
+                            
+                            Swal.fire({
+                                title: 'Error!',
+                                text: errorMessage,
+                                icon: 'error',
+                                showConfirmButton: true
+                            });
+                            
+                            // Fallback to form submission if AJAX fails
+                            if (xhr.status === 419) { // CSRF token mismatch
+                                document.getElementById('delete-form-' + galleryId).submit();
+                            }
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+@endsection

@@ -61,7 +61,7 @@
                 @endif
             </div>
             <h2 class="text-2xl text-black font-semibold text-center my-6">{{ $label }}</h2>
-            <p class="text-gray-600 text-left"><span class="text-accent font-bold">✓</span> {{ $description }}</p>
+            <p class="text-gray-600 text-left"><span class="text-accent  mr-2">➜</span> {{ $description }}</p>
         </div>
     @endforeach
 </div>

@@ -50,11 +50,12 @@
                     <div class=" pr-0 lg:pr-8 flex flex-col text-center items-center space-y-5 flex-1">
                         <p class="text-center md:text-left">
                             A Principal Agent of Western Union in Nepal.</p>
+                        
+                            @isset($aboutUs->description_en)
                         <p class="text-center md:text-left">
-                        @isset($aboutUs->description_en)
                          {{ Str::words($aboutUs->description_en, 50, '...') }}
-                        @endisset
                         </p>
+                            @endisset
                     </div>
 
                     <!-- contact details-->
@@ -63,13 +64,15 @@
                             <img src="{{ asset('assets/images/footer/location.png') }}" class="w-6 h-6"
                                 alt="Location Icon" />
                             <div class="flex flex-col space-y-1 justify-left text-left">
+                            @isset($settings->address_en)
                                 <p>
                                 
                                 <b>Address:</b> <br />
-                                    @isset($settings->address_en)
+                                   
                                         {{ $settings->address_en }}
-                                    @endisset
+                                   
                                 </p>
+                                @endisset
 
                                 <!-- <p>Kathmandu, Nepal</p> -->
                             </div>
@@ -78,12 +81,14 @@
                             <img src="{{ asset('assets/images/footer/phone-call.png') }}" class="w-6 h-6"
                                 alt="Phone call" />
                             <div class="flex flex-col space-y-1 justify-left text-left">
+                            @isset($settings->phone_number_en)
                                 <p>
                                    <b>Phone no:</b>  <br />
-                                    @isset($settings->phone_number_en)
+                                   
                                         {{ $settings->phone_number_en }}
-                                    @endisset
+                                   
                                 </p>
+                                @endisset
                                 <!-- <p>
                                     Toll Free Number: <br />
                                     16600 111222 <br />(For NTC Users Only)
@@ -93,6 +98,7 @@
                         <div class="flex flex-row gap-6 space-x-5 justify-left">
                             <img src="{{ asset('assets/images/footer/mail.png') }}" class="w-6 h-6 " alt="Email Icon" />
                             <div class="flex flex-col space-y-1 justify-left text-left">
+                            @isset($settings->email)
                                 <p><b> Email:</b> </p>
                                 <p>
                                     @isset($settings->email)
@@ -103,6 +109,7 @@
 
                                     @endisset
                                 </p>
+                            @endisset
                             </div>
                         </div>
                     </div>
@@ -111,6 +118,7 @@
                 <!-- links -->
                 <div
                     class=" flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-center md:text-left items-center gap-10 mx-auto lg:mx-3 ">
+                    
                     <div class="text-[#ffffffcc] flex flex-col space-y-2">
                         <h4 class=" text-accent font-bold text-left">Quick Links</h4>
                         @forelse($footerQuickLinks['quickLinks'] as $quickLink)

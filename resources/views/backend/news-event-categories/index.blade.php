@@ -25,6 +25,7 @@
                                 <th class="text-left"">S.N.</th>
                                 <th class="d-none d-sm-table-cell" style="width: 80px;">Image</th>
                                 <th>Name</th>
+                                <th>Slug</th>
                                 <th class="text-left">Display Order</th>
                                 <th>Status</th>
                                 <th style="width: 20%;">Actions</th>
@@ -46,6 +47,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $category->name }}</td>
+                                    <td>{{ $category->slug }}</td>
                                     <td class="text-center">{{ $category->display_order }}</td>
                                     <td class="text-center">
                                         @if ($category->is_published)

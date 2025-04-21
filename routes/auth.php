@@ -61,6 +61,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     // News & Event Category Management Routes
     Route::resource('news-event-categories', NewsEventCategoryController::class);
+    Route::get('news-event-categories-generate-slugs', [NewsEventCategoryController::class, 'generateSlugs'])->name('news-event-categories.generate-slugs');
 
     // Publication Management Routes
     Route::resource('publications', PublicationController::class);

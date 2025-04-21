@@ -152,11 +152,11 @@ class FrontendController extends Controller
         $newsAndEvents = NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
         return view('frontend.news-and-events', compact('newsAndEvents'));
     }
-    public function newsAndEventsDetailPage($id = null)
+    public function newsAndEventsDetailPage($slug = null)
     {
-        if ($id) {
-            $newsEvent = NewsEventCategory::findOrFail($id);
-            $otherNewsEvents = NewsEventCategory::active()->where('id', '!=', $id)->take(10)->get();
+        if ($slug) {
+            $newsEvent = NewsEventCategory::where('slug', $slug)->firstOrFail();
+            $otherNewsEvents = NewsEventCategory::active()->where('id', '!=', $newsEvent->id)->take(10)->get();
             $setting = Setting::first();
             return view('frontend.news-and-events-detail-page', compact('newsEvent', 'otherNewsEvents', 'setting'));
         }

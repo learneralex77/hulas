@@ -6,6 +6,7 @@ use App\Models\NewsEventCategory;
 use App\Http\Requests\NewsEventCategoryRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class NewsEventCategoryController extends Controller
 {
@@ -135,5 +136,23 @@ class NewsEventCategoryController extends Controller
             return redirect()->route('news-event-categories.index')
                 ->with('error', 'Error deleting category: ' . $e->getMessage());
         }
+    }
+
+    /**
+     * Generate slugs for all existing news event categories.
+     */
+    public function generateSlugs()
+    {
+        $categories = NewsEventCategory::whereNull('slug')->orWhere('slug', '')->get();
+        $count = 0;
+
+        foreach ($categories as $category) {
+            $category->slug = NewsEventCategory::generateUniqueSlug($category->name_en);
+            $category->save();
+            $count++;
+        }
+
+        return redirect()->route('news-event-categories.index')
+            ->with('success', "{$count} categories updated with slugs.");
     }
 }

@@ -116,10 +116,10 @@
                         </div>
                         <div class="flex flex-col space-y-1">
                             <p class="font-semibold">Location:</p>
-                            @isset($setting->address_en)
+                            @isset($settings->address_en)
                             <p>
                                
-                                    {{ $setting->address_en }}
+                                    {{ $settings->address_en }}
                             </p>
                             @endisset
                         </div>

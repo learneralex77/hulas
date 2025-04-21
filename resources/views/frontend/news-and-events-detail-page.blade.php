@@ -133,7 +133,7 @@
                                         </div>
 
                                         <div class="flex flex-col gap-3">
-                                            <a href="{{ route('newsAndEventsDetailPage', $otherNewsEvent->id) }}"
+                                            <a href="{{ route('newsAndEventsDetailPage', $otherNewsEvent->slug) }}"
                                                 class="line-clamp-2 text-lg font-semibold cursor-pointer hover:text-accent transition-colors duration-200">
                                                 {{ $otherNewsEvent->name_en }}
                                             </a>

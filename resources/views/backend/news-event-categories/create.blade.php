@@ -4,8 +4,6 @@
     Create News & Event Category
 @endsection
 
-
-
 @section('content')
     <div class="content">
         <div class="block block-rounded">

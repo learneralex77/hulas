@@ -106,7 +106,7 @@
     </section>
     <!-- cards section -->
 
-    <!-- map section -->b
+    <!-- map section -->
     <section>
       <div class="mt-16 flex justify-center w-full">
       <iframe src="@isset($setting->google_maplink) {{ $setting->google_maplink }} @endisset"

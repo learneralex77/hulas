@@ -36,14 +36,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('frontend.*', function ($view) {
-            $settings = Cache::remember('settings', 1, function () {
+            $settings = Cache::remember('settings', 0, function () {
                 return Setting::first();
             });
-            $aboutUs = Cache::remember('AboutUs', 1, function () {
+            $aboutUs = Cache::remember('AboutUs', 0, function () {
                 return AboutUs::first();
             });
 
-            $menus = Cache::remember('menus', 1, function () {
+            $menus = Cache::remember('menus', 0, function () {
                 return Menu::with(['children' => function ($query) {
                     $query->where('is_published', 1)
                         ->orderBy('display_order', 'asc')

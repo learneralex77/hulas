@@ -62,15 +62,15 @@
                                     class="absolute inset-0 flex flex-col space-y-1 md:space-y-3 items-left text-left bg-black/20 py-10 sm:py-20 md:py-40 px-20 md:pb-50 md:px-30">
                                     <h2 class="text-white text-base sm:text-xl md::text-3xl md:text-5xl font-bold"
                                         style="
-                                                                                                                                                                                                                                              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                                                                                                                                                                                                                              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                                                                                                                                                                                                              ">
+                                                                                                                                                                                                                                                                                  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                                                                                                                                                                                                                                                                  -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                                                                                                                                                                                                                                                  ">
                                         {{ $slider->name_en }}
                                     </h2>
                                     <p class=" text-white text-base leading-4 sm:leading-6 sm:text-xl md:text-2xl max-w-3xl"
                                         style="
-                                                                                                                                                                                                                                                  -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                                                                                                                                                                                                              ">
+                                                                                                                                                                                                                                                                                      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                                                                                                                                                                                                                                                                  ">
                                         {{ $slider->short_description_en }}
                                     </p>
                                     <a href="{{ $slider->link ? $slider->link : '#' }}"
@@ -127,10 +127,7 @@
             <section class="overflow-x-hidden">
                 <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                     <div class="flex flex-col items-center space-y-6">
-                        <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-                                                                                              text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                                                                              -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                                                              ">
+                        <h1 class="font-bold text-accent uppercase text-lg tracking-wider">
                             Our Introduction
                         </h1>
 
@@ -167,7 +164,9 @@
                     </div>
                 @endisset
             </section>
+        </div>
 
+        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
             <!----------Services-Section---------->
             @isset($service->name_en)
 
@@ -175,22 +174,18 @@
                     <section class="overflow-x-hidden">
                         <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                             <div class="flex flex-col items-center space-y-6">
-                                <h1 class="font-bold text-accent uppercase text-lg tracking-wider"
-                                    style="
-                                                                                                                                                                                      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-                                                                                                                                                                                      -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-                                                                                                                                                                                      ">
+                                <h class="font-bold text-accent uppercase text-lg tracking-wider"> ">
                                     Our Services
-                                </h1>
+                                    </h1>
 
-                                <p class="text-2xl text-black font-bold md:text-4xl text-center">
-                                    Simple. Secure. Seamless.
-                                </p>
-                                <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-                                    Fast, secure money transfers made easy with Hulas Remittance and trusted partners like
-                                    Western
-                                    Union.
-                                </p>
+                                    <p class="text-2xl text-black font-bold md:text-4xl text-center">
+                                        Simple. Secure. Seamless.
+                                    </p>
+                                    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+                                        Fast, secure money transfers made easy with Hulas Remittance and trusted partners like
+                                        Western
+                                        Union.
+                                    </p>
                             </div>
                         </div>
                     </section>
@@ -239,14 +234,15 @@
                     </div>
                 </section>
             @endisset
+        </div>
+        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
 
             <!----------Become an agent Section---------->
             <section class="lg:mx-40 left-10 flex flex-col space-y-10 m-10">
                 <div class="overflow-x-hidden">
                     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                         <div class="flex flex-col items-center space-y-6">
-                            <h1 class="font-bold text-accent uppercase text-lg tracking-wider"
-                                style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01); -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);">
+                            <h1 class="font-bold text-accent uppercase text-lg tracking-wider">
                                 Become an Agent
                             </h1>
 
@@ -313,14 +309,17 @@
                 </div>
             </section>
 
+        </div>
+
+        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
+
 
             <!----------Our Partners Section---------->
             <section class="my-10 z-30">
                 <div class="overflow-x-hidden">
                     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                         <div class="flex flex-col items-center space-y-6">
-                            <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider"
-                                style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01); -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);">
+                            <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider">
                                 Our partners & Supporters
                             </h1>
 
@@ -360,15 +359,16 @@
 
                 </div>
             </section>
-
+        </div>
+        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
 
             <!-- --------Gallery and News Section-------- -->
             <div class="flex flex-col md:flex-row px-4 gap-10 ">
 
                 <div class="flex-1 overflow-hidden">
                     <div class="flex flex-row justify-between m-3">
-                        <h1 class="font-bold text-accent uppercase text-lg lg:text-2xl tracking-wider sm:text-left text-center"
-                            style=" text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01); -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096); ">
+                        <h1
+                            class="font-bold text-accent uppercase text-lg lg:text-2xl tracking-wider sm:text-left text-center">
                             Gallery
                         </h1>
                         <div class="flex justify-end">
@@ -460,6 +460,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Modal Section-->
         <div id="popup-modal" tabindex="-1" aria-hidden="true"
             class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -599,7 +600,7 @@
                 modal.classList.remove("hidden");
                 modal.classList.add("flex");
             @endif
-                            });
+                                        });
 
         // Close modal when clicking the close button
         document.getElementById("close-modal").addEventListener("click", () => {
@@ -631,7 +632,7 @@
                         clickable: true,
                     },
                     autoplay: {
-                        delay: 3000,
+                        delay: 2000,
                         disableOnInteraction: false,
                     },
                 });

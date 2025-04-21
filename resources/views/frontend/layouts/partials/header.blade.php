@@ -1,6 +1,6 @@
 <header class="sticky -top-0 lg:-top-12 z-50">
     <!-- Top Nav -->
-    <nav class="hidden w-full py-1 bg-bgprimary border-black border-b-2 px-10 lg:block">
+    <nav class="hidden w-full  bg-bgprimary border-black border-b-2 px-10 lg:block">
         <div class="w-full p-2 flex justify-between items-center">
             <!-- address, toll free -->
             <div class="flex space-x-8 items-center">

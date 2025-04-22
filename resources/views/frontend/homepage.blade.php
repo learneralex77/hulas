@@ -126,16 +126,15 @@
             <!-- --------About-us-section---------->
             <section class="overflow-x-hidden">
                 <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                    <div class="flex flex-col items-center space-y-6">
-                        <h1 class="font-bold text-accent uppercase text-lg tracking-wider">
+                    <div class="flex flex-col items-center">
+                        <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
                             Our Introduction
                         </h1>
-
-                        <p class="text-2xl text-black font-bold md:text-4xl text-center">
+                        <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
                             Welcome To Hulas Remittance
                         </p>
                         @isset($aboutUs->short_description_en)
-                            <p class="p-2 text-lg text-[#737879] text-center max-w-4xl line-clamp-3">
+                            <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
                                 {{ $aboutUs->short_description_en }}
                             </p>
                         @endisset
@@ -146,9 +145,11 @@
             <section class="flex flex-col md:flex-row md:justify-center md:items-center lg:flex-row gap-10">
                 <div class="flex justify-center flex-1 flex-grow text-center">
                     <div class="flex-1 flex justify-center w-full">
-                        <img src="{{ asset('assets/images/about-us/about-img-1.webp') }}" alt="About Us Image"
-                            class="w-full max-w-md h-80 rounded-md object-cover bg-gray-100"
-                            onerror="this.onerror=null;this.src='{{ asset('assets/images/placeholder.webp') }}';" />
+                        @isset($aboutUs->image)
+                            <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image"
+                                class="w-full max-w-md h-80 rounded-md object-cover bg-gray-100"
+                                onerror="this.onerror=null;this.src='{{ asset('assets/images/placeholder.webp') }}';" />
+                        @endisset
                     </div>
                 </div>
 
@@ -173,16 +174,16 @@
                 <section class="m-10 items-center">
                     <section class="overflow-x-hidden">
                         <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                            <div class="flex flex-col items-center space-y-6">
-                                <h class="font-bold text-accent uppercase text-lg tracking-wider"> ">
-                                    Our Services
+                            <div class="flex flex-col items-center">
+                            <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
+                            Our Services
                                     </h1>
 
-                                    <p class="text-2xl text-black font-bold md:text-4xl text-center">
-                                        Simple. Secure. Seamless.
+                                    <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
+                                    Simple. Secure. Seamless.
                                     </p>
-                                    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-                                        Fast, secure money transfers made easy with Hulas Remittance and trusted partners like
+                                    <p class="p-2 text-base lg:text-lg  text-center lg:max-w-4xl line-clamp-3">
+                                    Fast, secure money transfers made easy with Hulas Remittance and trusted partners like
                                         Western
                                         Union.
                                     </p>
@@ -235,21 +236,21 @@
                 </section>
             @endisset
         </div>
-        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
 
+        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
             <!----------Become an agent Section---------->
             <section class="lg:mx-40 left-10 flex flex-col space-y-10 m-10">
                 <div class="overflow-x-hidden">
                     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                        <div class="flex flex-col items-center space-y-6">
-                            <h1 class="font-bold text-accent uppercase text-lg tracking-wider">
+                        <div class="flex flex-col items-center">
+                        <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
                                 Become an Agent
                             </h1>
 
-                            <p class="text-2xl text-black font-bold md:text-4xl text-center">
-                                Join Our Network of Trusted Agents
+                            <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
+                            Join Our Network of Trusted Agents
                             </p>
-                            <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+                            <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
                                 Take the next step in your career by becoming an agent. Help us expand
                                 our reach while enjoying flexible opportunities and competitive
                                 rewards.
@@ -311,22 +312,19 @@
 
         </div>
 
-        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
-
-
             <!----------Our Partners Section---------->
             <section class="my-10 z-30">
                 <div class="overflow-x-hidden">
                     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                        <div class="flex flex-col items-center space-y-6">
-                            <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider">
+                        <div class="flex flex-col items-center">
+                        <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
                                 Our partners & Supporters
                             </h1>
 
-                            <p class="text-2xl text-black font-bold md:text-4xl text-center">
-                                In Collaboration with Our Esteemed Partners and Supporters
+                            <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
+                            In Collaboration with Our Esteemed Partners and Supporters
                             </p>
-                            <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+                            <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
                                 We are proud to collaborate with trusted partners and supporters
                                 who share our vision and strengthen our mission.
                             </p>
@@ -346,25 +344,23 @@
                     </div>
 
                     <!-- Scrolling container -->
+                    @isset($partners)1`
                     <div class="carousel-container w-full" style="animation: scrollOnce 20s linear infinite;">
                         @foreach ($partners as $partner)
-                            <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
-                                style="width: 270px">
-                                <img src="{{ asset('storage/' . $partner->image) }}" class="h-40 w-40 rounded-xl shadow-2xl"
+                            <div class="carousel-focus flex !items-center flex-col relative mx-5 my-10 px-4 py-3 w-60">
+                                <img src="{{ asset('storage/' . $partner->image) }}" class="min-h-40 min-w-40 rounded-xl shadow-2xl !object-fill "
                                     alt="Partners Icon" />
                                 <h4 class="tracking-wide text-lg m-3">{{ $partner->name_en ?? $partner->name }}</h4>
                             </div>
                         @endforeach
                     </div>
-
+                    @endisset
                 </div>
             </section>
-        </div>
-        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
 
+        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40 mb-10">
             <!-- --------Gallery and News Section-------- -->
             <div class="flex flex-col md:flex-row px-4 gap-10 ">
-
                 <div class="flex-1 overflow-hidden">
                     <div class="flex flex-row justify-between m-3">
                         <h1
@@ -382,6 +378,7 @@
 
                     <div style=" --swiper-navigation-color: #fff; --swiper-pagination-color: #fff; "
                         class="swiper mySwiper2 w-full h-1/2 aspect-[16/9] m-2">
+                        @isset($galleries)
                         <div class="swiper-wrapper h-[800px] lg:h-[400px]">
                             @foreach ($galleries as $gallery)
                                 <div class="swiper-slide">
@@ -391,9 +388,11 @@
                             @endforeach
 
                         </div>
+                        @endisset
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                     </div>
+                    @isset($galleries)
                     <div thumbsSlider="" class="swiper mySwiper">
                         <div class="swiper-wrapper">
                             @foreach ($galleries as $index => $gallery)
@@ -404,6 +403,7 @@
                             @endforeach
                         </div>
                     </div>
+                    @endisset
                 </div>
 
                 <div class="flex-1 w-full h-full">
@@ -431,6 +431,7 @@
                         </div>
 
                         <!-- Content inside the heading -->
+                        @isset($newsAndEvents)
                         <div class="overflow-y-scroll h-[420px] m-3 sticky bg-white">
                             @foreach ($newsAndEvents as $news)
                                 <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
@@ -456,6 +457,7 @@
                                 </div>
                             @endforeach
                         </div>
+                        @endisset
                     </div>
                 </div>
             </div>
@@ -484,28 +486,19 @@
 
                         <div class="swiper !h-[40vh] md:!h-[60vh] mx-auto w-[100%] popupSwiper rounded-lg">
                             <div class="swiper-wrapper">
-                                @if(isset($popups) && count($popups) > 0)
+                                @isset($popups)
                                     @foreach($popups as $popup)
                                         <div class="swiper-slide">
-                                            @if($popup->link)
+                                            @isset($popup->link)
                                                 <a href="{{ $popup->link }}" target="_blank">
                                                     <img src="{{ asset('storage/' . $popup->image) }}" alt="{{ $popup->name_en }}"
                                                         class="w-full h-full object-contain" />
                                                 </a>
-                                            @else
-                                                <img src="{{ asset('storage/' . $popup->image) }}" alt="{{ $popup->name_en }}"
-                                                    class="w-full h-full object-contain" />
-                                            @endif
+                                            @endisset
+                                           
                                         </div>
                                     @endforeach
-                                @else
-                                    <div class="swiper-slide">
-                                        <a href="homepage">
-                                            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}"
-                                                alt="Hulas Logo" class="w-full h-full object-contain" />
-                                        </a>
-                                    </div>
-                                @endif
+                                @endisset
                             </div>
 
                             <!-- Swiper pagination dots -->
@@ -519,8 +512,6 @@
             </div>
         </div>
     </div>
-
-
 @endsection
 
 
@@ -623,21 +614,25 @@
 
         //modal swiper
         document.addEventListener("DOMContentLoaded", function () {
-            const swiperContainer = document.querySelector(".popupSwiper");
-            if (swiperContainer) {
-                const swiper = new Swiper(".popupSwiper", {
-                    loop: true,
-                    pagination: {
-                        el: ".swiper-pagination",
-                        clickable: true,
-                    },
-                    autoplay: {
-                        delay: 2000,
-                        disableOnInteraction: false,
-                    },
-                });
-            }
+    const swiperContainer = document.querySelector(".popupSwiper");
+    if (swiperContainer) {
+        const swiper = new Swiper(".popupSwiper", {
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
         });
+
+        // Explicitly start autoplay
+        swiper.autoplay.start();
+    }
+});
+
     </script>
 
 @endpush

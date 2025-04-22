@@ -12,7 +12,7 @@
     </div>
     <div class="absolute w-full top-20">
       <div class="flex flex-col space-y-8 ml-10">
-      <h3 class="text-4xl font-extrabold text-white">Contact us</h3>
+      <h3 class="text-2xl md:text-4xl font-extrabold text-white">Contact us</h3>
       <div class="flex space-x-5 items-center">
         <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
@@ -119,18 +119,22 @@
     <!-- contact form  -->
     <section class="">
       <div class="mt-16 mx-10 sm:m-20">
-      <div class="flex flex-col space-y-6 justify-center items-center">
-        <h3 class="text-xl lg:text-3xl font-extrabold text-accent">
-        Get in touch with us.
-        </h3>
-        <p class="max-w-sm lg:max-w-none text-black text-xl lg:border-b-2 lg:border-accent">
-        Have a question or need assistance? Reach out to us, and our team will get back to you as soon as possible.
-        We're here to help!
-        </p>
-
-        <!-- Old alerts removed -->
-
-      </div>
+      <section class="overflow-x-hidden">
+        <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
+        <div class="flex flex-col items-center">
+          <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
+          Find a Nearby Agent
+          </h1>
+          <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
+          Get in touch with us.
+          </p>
+          <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
+          Have a question or need assistance? 
+          We're here to help!
+          </p>
+        </div>
+        </div>
+      </section>
       </div>
       <div class="lg:flex lg:justify-center lg:mt-20 w-full">
       <img src="{{ asset('assets/images/contact/contact-form-bg.png') }}" class="h-full" alt="" />

@@ -11,7 +11,7 @@
             </div>
             <div class="absolute w-full top-20">
                 <div class="flex flex-col space-y-8 ml-10">
-                    <h3 class="text-4xl font-extrabold text-white">Sitemap</h3>
+                    <h3 class="text-2xl md:text-4xl font-extrabold text-white">Sitemap</h3>
                     <div class="flex space-x-5 items-center">
                         <a href="homepage" class="text-white font-bold">Home</a>
                         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>

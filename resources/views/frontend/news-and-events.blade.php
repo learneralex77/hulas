@@ -12,7 +12,7 @@
             </div>
             <div class="absolute w-full top-20">
                 <div class="flex flex-col space-y-8 ml-10">
-                    <h3 class="text-4xl font-extrabold text-white">News and Events</h3>
+                    <h3 class="text-2xl md:text-4xl font-extrabold text-white">News and Events</h3>
                     <div class="flex space-x-5 items-center">
                         <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
                         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
@@ -25,24 +25,21 @@
         <div class="mx-6 md:mx-10 lg:mx-20 xl:mx-40 mb-20">
             <section class="overflow-x-hidden">
                 <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                    <div class="flex flex-col items-center space-y-6">
+                    <div class="flex flex-col items-center">
 
                         <!-- Sub Heading -->
-                        <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
-            -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
-          ">
-                            News & Events
+                        <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
+                        News & Events
                         </h1>
 
                         <!-- Main Title -->
-                        <p class="text-2xl text-black font-bold md:text-4xl text-center">
+                        <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
                             Stay Informed with Hulas Updates
                         </p>
 
                         <!-- Description -->
-                        <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-                            Catch up on the latest news, important announcements, and exciting events from Hulas Remittance.
+                        <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
+                        Catch up on the latest news, important announcements, and exciting events from Hulas Remittance.
                             Stay
                             connected to what's happening locally and around the world.
                         </p>
@@ -53,12 +50,12 @@
 
             <!-- Card part for our news and Article -->
             <div
-                class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-6 sm:m-10 lg:mx-20 2xl:mx-[100px] space-x-3">
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 m-6 sm:m-10 lg:mx-20 2xl:mx-[100px] space-x-3">
                 @isset($newsAndEvents)
                     @foreach ($newsAndEvents as $newsAndEvent)
                         <a href="{{ route('newsAndEventsDetailPage', $newsAndEvent->id) }}">
                             <div
-                                class="bg-white rounded-sm shadow-lg p-3 mx-3 flex flex-col gap-3 text-left hover:-translate-y-2 transition-transform ease-in-out duration-300 border-l-accent border-l-[4px] border-l-accent">
+                                class="bg-white rounded-sm shadow-lg p-3 mx-3 flex flex-col gap-3 text-left hover:-translate-y-2 transition-transform ease-in-out duration-300 border-l-accent border-l-[4px] border-l-accent min-h-[300px]">
                                 <img src="{{ $newsAndEvent->image ? asset('storage/' . $newsAndEvent->image) : asset('assets/images/placeholder.jpg')  }}"
                                     alt="News Image" class="rounded-md w-full h-44 object-cover" />
 
@@ -70,8 +67,8 @@
                                         class="h-auto w-4" />
                                     <p class="text-sm text-gray-500">{{ $newsAndEvent->created_at->format('F d, Y') }}</p>
                                 </div>
-                                <p class="text-gray-600 text-justify truncate whitespace-nowrap overflow-hidden">
-                                    {{ Str::words($newsAndEvent->description_en, 30, '...') }}
+                                <p class="text-gray-600 text-justify overflow-hidden line-clamp-3">
+                                    {{ $newsAndEvent->description_en }}
                                 </p>
                             </div>
                         </a>

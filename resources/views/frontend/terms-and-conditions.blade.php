@@ -12,7 +12,7 @@
             </div>
             <div class="absolute w-full top-20">
                 <div class="flex flex-col space-y-8 ml-10">
-                    <h3 class="text-4xl font-extrabold text-white">Terms & Conditions</h3>
+                    <h3 class="text-2xl md:text-4xl font-extrabold text-white">Terms & Conditions</h3>
                     <div class="flex space-x-5 items-center">
                         <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
                         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
@@ -23,7 +23,7 @@
         <!-- banner-section -->
         <div class="mx-6 md:m-10 lg:mx-20 xl:mx-40">
 
-            <div class="p-8 text-justify max-w-4xl mx-auto bg-white">
+            <div class="p-8 text-justify mx-auto bg-white">
                 <h1 class="text-2xl  font-bold mb-4 ">Terms and Conditions</h1>
                 <hr class="border-accent">
 

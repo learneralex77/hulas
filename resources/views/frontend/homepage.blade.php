@@ -126,16 +126,15 @@
             <!-- --------About-us-section---------->
             <section class="overflow-x-hidden">
                 <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                    <div class="flex flex-col items-center space-y-6">
-                        <h1 class="font-bold text-accent uppercase text-lg tracking-wider">
+                    <div class="flex flex-col items-center">
+                        <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
                             Our Introduction
                         </h1>
-
-                        <p class="text-2xl text-black font-bold md:text-4xl text-center">
+                        <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
                             Welcome To Hulas Remittance
                         </p>
                         @isset($aboutUs->short_description_en)
-                            <p class="p-2 text-lg text-[#737879] text-center max-w-4xl line-clamp-3">
+                            <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
                                 {{ $aboutUs->short_description_en }}
                             </p>
                         @endisset
@@ -175,16 +174,16 @@
                 <section class="m-10 items-center">
                     <section class="overflow-x-hidden">
                         <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                            <div class="flex flex-col items-center space-y-6">
-                                <h class="font-bold text-accent uppercase text-lg tracking-wider"> ">
-                                    Our Services
+                            <div class="flex flex-col items-center">
+                            <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
+                            Our Services
                                     </h1>
 
-                                    <p class="text-2xl text-black font-bold md:text-4xl text-center">
-                                        Simple. Secure. Seamless.
+                                    <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
+                                    Simple. Secure. Seamless.
                                     </p>
-                                    <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-                                        Fast, secure money transfers made easy with Hulas Remittance and trusted partners like
+                                    <p class="p-2 text-base lg:text-lg  text-center lg:max-w-4xl line-clamp-3">
+                                    Fast, secure money transfers made easy with Hulas Remittance and trusted partners like
                                         Western
                                         Union.
                                     </p>
@@ -237,21 +236,21 @@
                 </section>
             @endisset
         </div>
-        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
 
+        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
             <!----------Become an agent Section---------->
             <section class="lg:mx-40 left-10 flex flex-col space-y-10 m-10">
                 <div class="overflow-x-hidden">
                     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                        <div class="flex flex-col items-center space-y-6">
-                            <h1 class="font-bold text-accent uppercase text-lg tracking-wider">
+                        <div class="flex flex-col items-center">
+                        <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
                                 Become an Agent
                             </h1>
 
-                            <p class="text-2xl text-black font-bold md:text-4xl text-center">
-                                Join Our Network of Trusted Agents
+                            <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
+                            Join Our Network of Trusted Agents
                             </p>
-                            <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+                            <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
                                 Take the next step in your career by becoming an agent. Help us expand
                                 our reach while enjoying flexible opportunities and competitive
                                 rewards.
@@ -313,22 +312,19 @@
 
         </div>
 
-        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
-
-
             <!----------Our Partners Section---------->
             <section class="my-10 z-30">
                 <div class="overflow-x-hidden">
                     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                        <div class="flex flex-col items-center space-y-6">
-                            <h1 class="font-bold text-[#FDDC2B] uppercase text-lg tracking-wider">
+                        <div class="flex flex-col items-center">
+                        <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
                                 Our partners & Supporters
                             </h1>
 
-                            <p class="text-2xl text-black font-bold md:text-4xl text-center">
-                                In Collaboration with Our Esteemed Partners and Supporters
+                            <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
+                            In Collaboration with Our Esteemed Partners and Supporters
                             </p>
-                            <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+                            <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
                                 We are proud to collaborate with trusted partners and supporters
                                 who share our vision and strengthen our mission.
                             </p>
@@ -351,9 +347,8 @@
                     @isset($partners)1`
                     <div class="carousel-container w-full" style="animation: scrollOnce 20s linear infinite;">
                         @foreach ($partners as $partner)
-                            <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3"
-                                style="width: 270px">
-                                <img src="{{ asset('storage/' . $partner->image) }}" class="h-40 w-40 rounded-xl shadow-2xl"
+                            <div class="carousel-focus flex !items-center flex-col relative mx-5 my-10 px-4 py-3 w-60">
+                                <img src="{{ asset('storage/' . $partner->image) }}" class="min-h-40 min-w-40 rounded-xl shadow-2xl !object-fill "
                                     alt="Partners Icon" />
                                 <h4 class="tracking-wide text-lg m-3">{{ $partner->name_en ?? $partner->name }}</h4>
                             </div>
@@ -362,12 +357,10 @@
                     @endisset
                 </div>
             </section>
-        </div>
-        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
 
+        <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40 mb-10">
             <!-- --------Gallery and News Section-------- -->
             <div class="flex flex-col md:flex-row px-4 gap-10 ">
-
                 <div class="flex-1 overflow-hidden">
                     <div class="flex flex-row justify-between m-3">
                         <h1
@@ -476,12 +469,12 @@
             <!-- Overlay -->
             <div class="fixed inset-0 bg-black opacity-80 z-40"></div>
 
-            <div class="relative p-4 w-[80%] lg:w-[40%] max-h-full z-50">
+            <div class="relative p-4 w-[80%] lg:w-[50%] max-h-full z-50">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow-sm ">
                     <div class="p-3 md:p-4 space-y-4 relative">
                         <button type="button z-50"
-                            class="absolute top-2 right-2 z-[999] text-black bg-transparent cursor-pointer hover:bg-accent opacity-85 rounded-lg text-sm w-8 h-8 flex justify-center items-center"
+                            class="absolute top-2 right-2 z-[999] text-black bg-transparent cursor-pointer hover:text-accent opacity-85 rounded-lg text-sm w-8 h-8 flex justify-center items-center"
                             id="close-modal">
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 14 14">
@@ -519,8 +512,6 @@
             </div>
         </div>
     </div>
-
-
 @endsection
 
 

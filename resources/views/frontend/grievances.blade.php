@@ -13,7 +13,7 @@
     </div>
     <div class="absolute w-full top-20">
       <div class="flex flex-col space-y-8 ml-10">
-      <h3 class="text-4xl font-extrabold text-white">Grievances</h3>
+      <h3 class="text-2xl md:text-4xl font-extrabold text-white">Grievances</h3>
       <div class="flex space-x-5 items-center">
         <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
@@ -29,13 +29,15 @@
     <section class="flex flex-col justify-center m-6">
       <section class="overflow-x-hidden">
       <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-        <div class="flex flex-col items-center space-y-6">
-        <h1 class="font-bold text-accent uppercase text-lg tracking-wider">
-          Your Concerns Matter
+        <div class="flex flex-col items-center">
+        <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
+        Grievances
         </h1>
-
-        <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
-          At Hulas Remittance, we take every grievance seriously. If you've faced any issues, please let us know.
+        <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
+          Your Concerns Matter
+        </p>
+        <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
+        At Hulas Remittance, we take every grievance seriously. If you've faced any issues, please let us know.
           Our
           team is here to listen and resolve your concerns quickly and fairly.
         </p>

@@ -12,7 +12,7 @@
             </div>
             <div class="absolute w-full top-20">
                 <div class="flex flex-col space-y-8 ml-10">
-                    <h3 class="text-4xl font-extrabold text-white">{{ $newsEvent->name_en }}</h3>
+                    <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ $newsEvent->name_en }}</h3>
                     <div class="flex space-x-5 items-center">
                         <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
                         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
@@ -57,8 +57,8 @@
                         <div class="flex flex-row gap-4 px-3">
                             <!-- Facebook -->
                             <div
-                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                               
+                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
+                                @isset($setting->facebook)
                                     <a href="{{ $setting->facebook }}">
                               
                                     <img src="{{ asset('assets/images/social-media-icons/facebook-black.svg') }}"
@@ -70,7 +70,8 @@
                             <!-- Linkdin -->
                             @isset($setting->linkedin)  
                             <div
-                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
+                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
+                                @isset($setting->linkedin)
                                     <a href="{{ $setting->linkedin }}">
                                 
                                     <img src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.svg') }}"
@@ -83,9 +84,10 @@
                             <!-- Twitter -->
                             @isset($setting->twitter)
                             <div
-                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                                <a href="{{ $setting->twitter }}">
-                                
+                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
+                                @isset($setting->twitter)
+                                    <a href="{{ $setting->twitter }}">
+                                @endisset
                                     <img src="{{ asset('assets/images/social-media-icons/icons8-x-50.png') }}"
                                         alt="Twitter Icon" class="w-5 h-5">
                                 </a>

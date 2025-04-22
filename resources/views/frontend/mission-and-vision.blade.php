@@ -10,13 +10,21 @@
             class="h-60 w-full object-cover" />
     </div>
 
-    <div class="absolute w-full top-20">
-        <div class="flex flex-col space-y-8 ml-10">
-            <h3 class="text-4xl font-extrabold text-white">Mission and Vision</h3>
-            <div class="flex space-x-5 items-center">
-                <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
-                <p class="text-white text-base font-bold hover:cursor-pointer">></p>
-                <a href="{{ route('missionAndVision') }}" class="text-accent font-bold">Mission and Vision</a>
+    <!-- banner-section -->
+    <section class="relative">
+        <div class="mb-10">
+            <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
+                alt="Banner Image" class="h-60 w-full object-cover" />
+        </div>
+     
+        <div class="absolute w-full top-20">
+            <div class="flex flex-col space-y-8 ml-10">
+                <h3 class="text-2xl md:text-4xl font-extrabold text-white">Mission and Vision</h3>
+                <div class="flex space-x-5 items-center">
+                    <a href="{{ route("homepage") }}" class="text-white font-bold">Home</a>
+                    <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
+                    <a href="{{ route("missionAndVision") }}" class="text-accent font-bold">Mission and Vision</a>
+                </div>
             </div>
         </div>
 </section>

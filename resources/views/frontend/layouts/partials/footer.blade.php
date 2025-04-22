@@ -46,7 +46,7 @@
             </div>
             <!-- description -->
             <div class="flex flex-col md:flex-row justify-left md:justify-center gap-6">
-                <div class="flex flex-1 flex-col lg:flex-row justify-around gap-6 mx-10 lg:mx-0">
+                <div class="flex flex-1 flex-col lg:flex-row justify-around gap-6 lg:mx-0">
                     <div class=" pr-0 lg:pr-8 flex flex-col text-center items-center space-y-5 flex-1">
                         <p class="text-center md:text-left">
                             A Principal Agent of Western Union in Nepal.</p>

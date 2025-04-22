@@ -50,7 +50,7 @@
                         <div class="flex flex-row gap-4 px-3">
                             <!-- Facebook -->
                             <div
-                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
+                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
                                 @isset($setting->facebook)
                                     <a href="{{ $setting->facebook }}">
                                 @endisset
@@ -61,7 +61,7 @@
 
                             <!-- Linkdin -->
                             <div
-                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
+                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
                                 @isset($setting->linkedin)
                                     <a href="{{ $setting->linkedin }}">
                                 @endisset
@@ -72,7 +72,7 @@
 
                             <!-- Twitter -->
                             <div
-                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
+                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
                                 @isset($setting->twitter)
                                     <a href="{{ $setting->twitter }}">
                                 @endisset

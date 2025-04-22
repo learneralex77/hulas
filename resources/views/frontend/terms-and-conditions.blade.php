@@ -23,7 +23,7 @@
         <!-- banner-section -->
         <div class="mx-6 md:m-10 lg:mx-20 xl:mx-40">
 
-            <div class="p-8 text-justify max-w-4xl mx-auto bg-white">
+            <div class="p-8 text-justify mx-auto bg-white">
                 <h1 class="text-2xl  font-bold mb-4 ">Terms and Conditions</h1>
                 <hr class="border-accent">
 

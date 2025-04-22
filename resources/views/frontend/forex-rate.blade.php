@@ -3,11 +3,13 @@
 @section('meta', 'Forex Rate')
 
 @section('content')
+<div class="min-h-screen">
+
     <!-- banner-section -->
     <section class="relative">
         <div class="mb-10">
-            <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image" alt="Banner Image"
-                class="h-60 w-full object-cover" />
+            <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
+                alt="Banner Image" class="h-60 w-full object-cover" />
         </div>
         <div class="absolute w-full top-20">
             <div class="flex flex-col space-y-8 ml-10">
@@ -17,45 +19,22 @@
                     <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
                     <a href="{{ route('forexRate') }}" class="text-accent font-bold">Forex Rate</a>
 
-
-<!-- NP
-
-Skip navigation
-Search
-
-
-
-Create
-
-
-Avatar image
-
-                    NP
-
-                    Skip navigation
-                    Search
-
-
-
-                    Create
-
-
-                    Avatar image -->
-
                 </div>
             </div>
     </section>
     <!-- banner-section -->
+    <div class="flex flex-col gap-10 mx-6 md:m-10 lg:mx-20 xl:mx-40">
 
     <!-- live exchange rates -->
     <section>
         <div class="overflow-x-hidden">
-            <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                <div class="flex flex-col items-center space-y-6">
-
-                    <p class="text-xl font-bold md:text-2xl lg:text-3xl">
+            <div class="p-4 md:ml-8 lg:my-4 lg:mb-2">
+                <div class="flex flex-col items-center">
+                    <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
+                        Forex rate </h1>
+                    <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
                         Live Exchange Rates </p>
-                    <p class="text-xl text-[#737879] text-center max-w-4xl">
+                    <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
                         Exchange money across the world in real time with lowest fees
 
                     </p>
@@ -73,7 +52,7 @@ Avatar image
                             </th>
                             <th scope="col" class="px-2 md:px-6 py-3"></th>
                             @isset($forexRate->date)
-                            <th scope="col" class="px-2 md:px-6 py-3">{{ $forexRate->date }}</th>
+                                <th scope="col" class="px-2 md:px-6 py-3">{{ $forexRate->date }}</th>
                             @endisset
                         </tr>
                     </thead>
@@ -85,21 +64,21 @@ Avatar image
                         </tr>
                     </thead>
                     @foreach ($forexRate->slots['morning'] ?? [] as $row)
-                        <tr>
-                            <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                <div class="flex items-center space-x-3">
-                                    @php
-                                        $flag = 'flag-icon w-8 h-8 rounded-full flag-icon-' . $row['flag'];
-                                    @endphp
+                                    <tr>
+                                        <th scope="row" class="px-2 md:px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                            <div class="flex items-center space-x-3">
+                                                @php
+                                                    $flag = 'flag-icon w-8 h-8 rounded-full flag-icon-' . $row['flag'];
+                                                @endphp
 
-                                    <span class="{{ trim($flag) }}"></span>
-                                    <span class="text-base text-[#212529]">{{ $row['currency'] }}</span>
-                                </div>
-                            </th>
+                                                <span class="{{ trim($flag) }}"></span>
+                                                <span class="text-base text-[#212529]">{{ $row['currency'] }}</span>
+                                            </div>
+                                        </th>
 
-                            <td class="px-2 md:px-6 py-4">{{ $row['unit'] }}</td>
-                            <td class="px-2 md:px-6 py-4 text-center">{{ $row['buying_rate'] }}</td>
-                        </tr>
+                                        <td class="px-2 md:px-6 py-4">{{ $row['unit'] }}</td>
+                                        <td class="px-2 md:px-6 py-4 text-center">{{ $row['buying_rate'] }}</td>
+                                    </tr>
                     @endforeach
 
 
@@ -142,6 +121,8 @@ Avatar image
             @endisset
         </div>
     </section>
+    </div>
+    </div>
 
 @endsection
 

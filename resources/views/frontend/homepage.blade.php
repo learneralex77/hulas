@@ -469,12 +469,12 @@
             <!-- Overlay -->
             <div class="fixed inset-0 bg-black opacity-80 z-40"></div>
 
-            <div class="relative p-4 w-[80%] lg:w-[40%] max-h-full z-50">
+            <div class="relative p-4 w-[80%] lg:w-[50%] max-h-full z-50">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow-sm ">
                     <div class="p-3 md:p-4 space-y-4 relative">
                         <button type="button z-50"
-                            class="absolute top-2 right-2 z-[999] text-black bg-transparent cursor-pointer hover:bg-accent opacity-85 rounded-lg text-sm w-8 h-8 flex justify-center items-center"
+                            class="absolute top-2 right-2 z-[999] text-black bg-transparent cursor-pointer hover:text-accent opacity-85 rounded-lg text-sm w-8 h-8 flex justify-center items-center"
                             id="close-modal">
                             <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 14 14">

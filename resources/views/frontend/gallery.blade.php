@@ -59,12 +59,17 @@
       class="w-3 h-3 object-contain" alt="date" /> <span
       class="text-gray-600 text-xs">{{ $gallery->created_at->format('F d, Y') }}</span>
       </div>
+      @isset($gallery->title_en)
       <h5 class="mb-2 text-lg font-bold text-gray-900">
       {{ $gallery->title_en }}
       </h5>
+      @endisset
+      @isset($gallery->short_description)
       <p class="text-gray-700 line-clamp-4 leading-tight text-sm h-22">
       {{ $gallery->short_description }}
       </p>
+      @endisset
+      
       <div class="flex justify-center">
       <a href="{{ route('galleryDetail', $gallery->slug) }}"
       class="bg-black text-sm text-accent hover:opacity-85 py-1 px-5 mt-2 rounded-full cursor-pointer">

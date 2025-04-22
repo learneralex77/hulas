@@ -25,30 +25,34 @@
     <section class="m-6 md:m-10 2xl:mx-30">
         <div class=" flex flex-col gap-6 md:flex-row  md:justify-center md:items-center">
             <!-- image -->
+            @isset($aboutUs1->image)
             <div class="flex-1 flex justify-center w-full">
-                @isset($aboutUs->image)
-                <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image"
+               
+                <img src="{{ asset('storage/' . $aboutUs1->image) }}" alt="About Us Image"
                     class="w-full rounded-xl object-contain lg:object-fit" alt="About Us Image" />
-                @endisset
             </div>
-
+            @endisset
             <!-- Text Container -->
             <div class="flex md:flex-2 flex-col space-y-6">
                 <h2 class="text-xl lg:text-2xl font-bold text-black ">
                     About Western Union
                 </h2>
+                @isset($aboutUs1->description_en)
                 <div class="text-lg">
-                    <p> @isset($aboutUs->description_en) {{ $aboutUs->description_en }} @endisset</p>
+                    <p>  {{ $aboutUs1->description_en }} </p>
                 </div>
+                @endisset
                 <!-- Years of experience -->
                 <div class="flex flex-col items-center space-y-3 lg:space-y-0 lg:flex-row lg:space-x-4">
                     <div
                         class="w-60 md:w-40 lg:w-60 bg-black rounded-xl flex justify-start lg:justify-center items-center flex-col space-y-2 lg:space-y-4 p-3">
+                        @isset($aboutUs1->years_of_experience_en)
                         <p class="text-accent font-bold text-2xl">
-                            @isset($aboutUs->years_of_experience_en)
-                                {{ $aboutUs->years_of_experience_en }}
-                            @endisset
+                        
+                                {{ $aboutUs1->years_of_experience_en }}
+                            
                         </p>
+                        @endisset
                         <p class="text-accent text-center text-lg">
                             Years of Experience
                         </p>
@@ -60,33 +64,36 @@
                 <div>
                     <div class="flex flex-row gap-4 mx-3">
                         <!-- Facebook -->
+                        @isset($settings->facebook)
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="{{ isset($settings->facebook) ? $settings->facebook : '#' }}">
+                            <a href="{{ $settings->facebook }}">
                                 <img src="{{ asset('assets/images/social-media-icons/facebook-black.svg') }}"
                                     alt="Facebook Icon" class="w-6 h-6">
                             </a>
                         </div>
-
+                        @endisset
                         <!-- Linkdin -->
+                        @isset($settings->linkedin)
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="{{ isset($settings->linkedin) ? $settings->linkedin : '#' }}">
+                            <a href="{{ $settings->linkedin }}">
                                 <img src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.svg') }}"
                                     alt="Linkdin Icon" class="w-4 h-4">
                             </a>
                         </div>
-
+                        @endisset
 
                         <!-- Twitter -->
+                        @isset($settings->twitter)
                         <div
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
-                            <a href="{{ isset($settings->twitter) ? $settings->twitter : '#' }}">
+                            <a href="{{ $settings->twitter }}">
                                 <img src="{{ asset('assets/images/social-media-icons/icons8-x-50.png') }}"
                                     alt="Twitter Icon" class="w-5 h-5">
                             </a>
                         </div>
-
+                        @endisset
                     </div>
                 </div>
             </div>

@@ -107,13 +107,15 @@
     <!-- cards section -->
 
     <!-- map section -->
+    @isset($setting->google_maplink)
     <section>
       <div class="mt-16 flex justify-center w-full">
-      <iframe src="@isset($setting->google_maplink) {{ $setting->google_maplink }} @endisset"
+      <iframe src="{{ $setting->google_maplink }}"
         class="w-full lg:h-[500px]" style="border: 0" allowfullscreen="" loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </section>
+    @endisset
     <!-- map section -->
 
     <!-- contact form  -->

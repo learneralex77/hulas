@@ -16,7 +16,7 @@
                     <div class="flex space-x-5 items-center">
                         <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
                         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-                        <a href="{{ route("contactUs") }}" class="text-accent font-bold"> Terms and Conditions</a>
+                        <a href="{{ route("termsAndConditions") }}" class="text-accent font-bold"> Terms and Conditions</a>
                     </div>
                 </div>
         </section>

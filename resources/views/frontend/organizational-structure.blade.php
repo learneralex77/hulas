@@ -46,6 +46,7 @@
     </section>
 
     <!-- Board of Directors Section -->
+    @isset($boardOfDirectors)
     @if($boardOfDirectors->count() > 0)
     <section class="py-8">
         <div class="container mx-auto px-4">
@@ -102,8 +103,10 @@
         </div>
     </section>
     @endif
+    @endisset
 
     <!-- Management Team Section -->
+    @isset($managementTeam)
     @if($managementTeam->count() > 0)
     <section class="py-8">
         <div class="container mx-auto px-4">
@@ -160,7 +163,7 @@
         </div>
     </section>
     @endif
-
+    @endisset
 @endsection
 
 

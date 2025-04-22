@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Support\Str;
+@endphp
 <footer>
     <div class="bg-black text-[#ffffffcc] text-sm mx-10">
         <div class="flex flex-col space-y-10">
@@ -47,11 +50,12 @@
                     <div class=" pr-0 lg:pr-8 flex flex-col text-center items-center space-y-5 flex-1">
                         <p class="text-center md:text-left">
                             A Principal Agent of Western Union in Nepal.</p>
-                        <p class="text-center md:text-left">
+                        
                             @isset($aboutUs->description_en)
-                                {{ $aboutUs->description_en }}
-                            @endisset
+                        <p class="text-center md:text-left">
+                         {{ Str::words($aboutUs->description_en, 50, '...') }}
                         </p>
+                            @endisset
                     </div>
 
                     <!-- contact details-->
@@ -60,27 +64,31 @@
                             <img src="{{ asset('assets/images/footer/location.png') }}" class="w-6 h-6"
                                 alt="Location Icon" />
                             <div class="flex flex-col space-y-1 justify-left text-left">
+                            @isset($settings->address_en)
                                 <p>
                                 
                                 <b>Address:</b> <br />
-                                    @isset($settings->address_en)
+                                   
                                         {{ $settings->address_en }}
-                                    @endisset
+                                   
                                 </p>
+                                @endisset
 
-                                <p>Kathmandu, Nepal</p>
+                                <!-- <p>Kathmandu, Nepal</p> -->
                             </div>
                         </div>
                         <div class="flex flex-row gap-6 space-x-5 justify-left">
                             <img src="{{ asset('assets/images/footer/phone-call.png') }}" class="w-6 h-6"
                                 alt="Phone call" />
                             <div class="flex flex-col space-y-1 justify-left text-left">
+                            @isset($settings->phone_number_en)
                                 <p>
                                    <b>Phone no:</b>  <br />
-                                    @isset($settings->phone_number_en)
+                                   
                                         {{ $settings->phone_number_en }}
-                                    @endisset
+                                   
                                 </p>
+                                @endisset
                                 <!-- <p>
                                     Toll Free Number: <br />
                                     16600 111222 <br />(For NTC Users Only)
@@ -90,6 +98,7 @@
                         <div class="flex flex-row gap-6 space-x-5 justify-left">
                             <img src="{{ asset('assets/images/footer/mail.png') }}" class="w-6 h-6 " alt="Email Icon" />
                             <div class="flex flex-col space-y-1 justify-left text-left">
+                            @isset($settings->email)
                                 <p><b> Email:</b> </p>
                                 <p>
                                     @isset($settings->email)
@@ -100,6 +109,7 @@
 
                                     @endisset
                                 </p>
+                            @endisset
                             </div>
                         </div>
                     </div>
@@ -108,33 +118,39 @@
                 <!-- links -->
                 <div
                     class=" flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 text-center md:text-left items-center gap-10 mx-auto lg:mx-3 ">
+                    
                     <div class="text-[#ffffffcc] flex flex-col space-y-2">
                         <h4 class=" text-accent font-bold text-left">Quick Links</h4>
-                        <a href="{{ route('homepage') }}" class="hover:underline text-left ">Home</a>
-                        <a href="{{ route('aboutHulasRemittance') }}" class="hover:underline text-left ">About Hulas
-                            Remittance</a>
-                        <a href="{{ route('aboutWesternUnion') }}" class="hover:underline text-left ">About Western
-                            Union</a>
-                        <a href="{{ route('findAnAgent') }}" class="hover:underline text-left ">Agents
-                            List</a>
-                        <a href="{{ route('gallery') }}" class="hover:underline text-left ">Gallery</a>
+                        @forelse($footerQuickLinks['quickLinks'] as $quickLink)
+                            @if($quickLink->external_link)
+                                <a href="{{ $quickLink->external_link }}" target="_blank" class="hover:underline text-left">{{ $quickLink->name_en }}</a>
+                            @endif
+                        @empty
+                            <a href="{{ route('homepage') }}" class="hover:underline text-left">Home</a>
+                            <a href="{{ route('aboutHulasRemittance') }}" class="hover:underline text-left">About Hulas Remittance</a>
+                            <a href="{{ route('contactUs') }}" class="hover:underline text-left">Contact us</a>
+                        @endforelse
                     </div>
+                    
+                    @if(isset($footerQuickLinks['extraLinks']))
                     <div class="text-[#ffffffcc] flex flex-col space-y-2 text-center lg:text-left">
-                        <h4 class=" text-accent font-bold text-left ">Navigate</h4>
-                        <a href="{{ route('forexRate') }}" class="hover:underline text-left  ">Forex Rate</a>
-                        <a href="#" class="hover:underline text-left ">FAQ</a>
-                        <a href="{{ route('contactUs') }}" class="hover:underline text-left ">Contact us</a>
-                        <a href="{{ route('termsAndConditions') }}" class="hover:underline text-left ">Terms &
-                            Conditions</a>
-                        <a href="{{ route('privacyAndPolicy') }}" class="hover:underline text-left ">Privacy Policy</a>
+                        @foreach($footerQuickLinks['extraLinks'] as $link)
+                            @if($link->external_link)
+                                <a href="{{ $link->external_link }}" target="_blank" class="hover:underline text-left">{{ $link->name_en }}</a>
+                            @endif
+                        @endforeach
                     </div>
-                    <div class="text-[#ffffffcc] flex flex-col space-y-2">
-                        <h4 class="text-accent font-bold text-left">Important Links</h4>
-                        <a href="https://www.nrb.org.np/" target="_blank" class="hover:underline text-left ">Nepal
-                            Rastra Bank</a>
-                        <a href="https://www.nrb.org.np/forex/" target="_blank"
-                            class="hover:underline text-left ">Foreign Exchange Rates</a>
+                    @endif
+                    
+                    @if(isset($footerQuickLinks['moreLinks']))
+                    <div class="text-[#ffffffcc] flex flex-col space-y-2 text-center lg:text-left">
+                        @foreach($footerQuickLinks['moreLinks'] as $link)
+                            @if($link->external_link)
+                                <a href="{{ $link->external_link }}" target="_blank" class="hover:underline text-left">{{ $link->name_en }}</a>
+                            @endif
+                        @endforeach
                     </div>
+                    @endif
                 </div>
             </div>
 

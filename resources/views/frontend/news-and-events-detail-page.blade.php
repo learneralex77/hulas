@@ -32,13 +32,17 @@
                 <!-- 1st part -->
                 <div class="flex-1 lg:flex-2 m-6 h-full justify-center">
                     <!-- Image -->
+                    @isset($newsEvent->image)
                     <img src="{{ $newsEvent->image ? asset('storage/' . $newsEvent->image) : asset('assets/images/placeholder.jpg') }}"
                         alt="{{ $newsEvent->name_en }}"
                         class="w-full object-contain max-w-full xl:max-w-[700px] rounded-lg" />
-                    <!-- Content -->
+                    @endisset
+                        <!-- Content -->
+                    @isset($newsEvent->description_en)
                     <p class="mt-5 w-full">
                         {!! $newsEvent->description_en !!}
                     </p>
+                    @endisset
                 </div>
 
                 <!-- 2nd part -->
@@ -46,31 +50,39 @@
                 <div class="flex-1 flex  justify-center flex-col h-full gap-4 m-6">
                     <div class="flex flex-col gap-2">
                         <h3 class="font-bold text-xl text-black border-l-accent border-l-[4px] px-3">About us</h3>
+                        @isset($newsEvent->description_en)
                         <p class="px-3">{{ Str::limit($newsEvent->description_en, 150) }}</p>
+                        @endisset
+                        @isset($setting->facebook)
                         <div class="flex flex-row gap-4 px-3">
                             <!-- Facebook -->
                             <div
                                 class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
                                 @isset($setting->facebook)
                                     <a href="{{ $setting->facebook }}">
-                                @endisset
+                              
                                     <img src="{{ asset('assets/images/social-media-icons/facebook-black.svg') }}"
                                         alt="Facebook Icon" class="w-6 h-6">
                                 </a>
+                                    @endisset
                             </div>
 
                             <!-- Linkdin -->
+                            @isset($setting->linkedin)  
                             <div
                                 class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
                                 @isset($setting->linkedin)
                                     <a href="{{ $setting->linkedin }}">
-                                @endisset
+                                
                                     <img src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.svg') }}"
                                         alt="Linkdin Icon" class="w-4 h-4">
                                 </a>
                             </div>
+                            @endisset
+
 
                             <!-- Twitter -->
+                            @isset($setting->twitter)
                             <div
                                 class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
                                 @isset($setting->twitter)
@@ -80,6 +92,7 @@
                                         alt="Twitter Icon" class="w-5 h-5">
                                 </a>
                             </div>
+                            @endisset
 
                         </div>
 
@@ -122,7 +135,7 @@
                                         </div>
 
                                         <div class="flex flex-col gap-3">
-                                            <a href="{{ route('newsAndEventsDetailPage', $otherNewsEvent->id) }}"
+                                            <a href="{{ route('newsAndEventsDetailPage', $otherNewsEvent->slug) }}"
                                                 class="line-clamp-2 text-lg font-semibold cursor-pointer hover:text-accent transition-colors duration-200">
                                                 {{ $otherNewsEvent->name_en }}
                                             </a>

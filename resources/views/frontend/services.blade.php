@@ -92,7 +92,7 @@
       <div class="col-span-3 text-center py-12">
       <p class="text-lg text-gray-600">No services available at the moment. Please check back later.</p>
       </div>
-    @endif
+    @endisset
 
       </div>
     </section>

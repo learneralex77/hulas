@@ -40,30 +40,26 @@
         </section>
 
         <!-- Card -->
-        <div
-          class="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-10 rounded-2xl text-left my-10">
-          @if(isset($quickLinks) && $quickLinks->count() > 0)
-          @foreach($quickLinks as $quickLink)
-          @if(isset($quickLink->external_link) && !empty($quickLink->external_link))
-          <a href="{{ $quickLink->external_link }}" target="_blank" class="block">
+        <div class="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-10 rounded-2xl text-left my-10">
+  @isset($quickLinks)
+    @foreach($quickLinks as $quickLink)
+      @isset($quickLink->external_link)
+        <a href="{{ $quickLink->external_link }}" target="_blank" class="block">
           <div
           class="px-4 py-4 rounded-t-xl text-xl font-semibold border-b-[4px] hover:border-gray-800 border-accent bg-white shadow-md hover:shadow-lg cursor-pointer hover:bg-gradient-to-r from-amber-50 to-amber-100 hover:-translate-y-1 transition-transform ease-in-out duration-300">
           {{ $quickLink->name_en ?? 'Quick Link' }}
           </div>
-          </a>
-        @else
-          <div class="px-4 py-4 rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md">
+        </a>
+      @else
+        <div class="px-4 py-4 rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md">
           {{ $quickLink->name_en ?? 'Quick Link' }}
           <p class="text-sm text-gray-500 mt-1">No link available</p>
-          </div>
-        @endif
-        @endforeach
-        @else
-          <div class="col-span-2 text-center py-8">
-          <p class="text-gray-500">No quick links available at the moment.</p>
-          </div>
-        @endif
         </div>
+      @endisset
+    @endforeach
+  @endisset
+</div>
+
   </div>
   </div>
 

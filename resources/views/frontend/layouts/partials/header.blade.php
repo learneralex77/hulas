@@ -48,8 +48,7 @@
     <!-- Main Navigation -->
     <nav class="relative px-4 pr-8 py-3 flex justify-between items-center bg-white shadow-lg">
         <a class="text-xl lg:pl-10 font-bold" href="homepage">
-            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-56"
-                alt="Hulas Logo" />
+            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-56" alt="Hulas Logo" />
         </a>
 
         <!-- Desktop Menu -->
@@ -221,6 +220,7 @@
 
 <!-- Mobile Nav Toggle Script -->
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const burger = document.getElementById("burger");

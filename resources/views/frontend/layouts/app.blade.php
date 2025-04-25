@@ -21,10 +21,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css" />
-
-    @yield('styles')
-    @stack('styles')
-
     <style>
         #preloader {
             position: fixed;
@@ -36,80 +32,168 @@
             align-items: center;
         }
 
-/* From Uiverse.io by satyamchaudharydev */
-.loading {
- --speed-of-animation: 0.9s;
- --gap: 6px;
- --first-color: #4c86f9;
- --second-color: #49a84c;
- --third-color: #f6bb02;
- --fourth-color: #f6bb02;
- --fifth-color: #2196f3;
- display: flex;
- justify-content: center;
- align-items: center;
- width: 100px;
- gap: 6px;
- height: 100px;
-}
+        /* From Uiverse.io by satyamchaudharydev */
+        .loading {
+            --speed-of-animation: 0.9s;
+            --gap: 6px;
+            --first-color: #4c86f9;
+            --second-color: #49a84c;
+            --third-color: #f6bb02;
+            --fourth-color: #f6bb02;
+            --fifth-color: #2196f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            gap: 6px;
+            height: 100px;
+        }
 
-.loading span {
- width: 8px;
- height: 100px;
- background: var(--first-color);
- animation: scale var(--speed-of-animation) ease-in-out infinite;
-}
+        .loading span {
+            width: 8px;
+            height: 100px;
+            background: var(--first-color);
+            animation: scale var(--speed-of-animation) ease-in-out infinite;
+        }
 
-.loading span:nth-child(2) {
- background: var(--second-color);
- animation-delay: -0.8s;
-}
+        .loading span:nth-child(2) {
+            background: var(--second-color);
+            animation-delay: -0.8s;
+        }
 
-.loading span:nth-child(3) {
- background: var(--third-color);
- animation-delay: -0.7s;
-}
+        .loading span:nth-child(3) {
+            background: var(--third-color);
+            animation-delay: -0.7s;
+        }
 
-.loading span:nth-child(4) {
- background: var(--fourth-color);
- animation-delay: -0.6s;
-}
+        .loading span:nth-child(4) {
+            background: var(--fourth-color);
+            animation-delay: -0.6s;
+        }
 
-.loading span:nth-child(5) {
- background: var(--fifth-color);
- animation-delay: -0.5s;
-}
+        .loading span:nth-child(5) {
+            background: var(--fifth-color);
+            animation-delay: -0.5s;
+        }
 
-@keyframes scale {
- 0%, 40%, 100% {
-  transform: scaleY(0.05);
- }
+        @keyframes scale {
 
- 20% {
-  transform: scaleY(1);
- }
-}
+            0%,
+            40%,
+            100% {
+                transform: scaleY(0.05);
+            }
+
+            20% {
+                transform: scaleY(1);
+            }
+        }
+
+                button.back-to-top {
+            margin: 0 !important;
+            padding: 0 !important;
+            background: #fff;
+            height: 0px;
+            width: 0px;
+            overflow: hidden;
+            border-radius: 50px;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            color: transparent;
+            clear: both;
+            visibility: hidden;
+            position: fixed;
+            cursor: pointer;
+            display: block;
+            border: none;
+            right: 50px;
+            bottom: 75px;
+            font-size: 0px;
+            outline: 0 !important;
+            z-index: 99;
+            -webkit-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+        }
+
+        button.back-to-top:hover,
+        button.back-to-top:active,
+        button.back-to-top:focus,
+        {
+        outline: 0 !important;
+        }
+
+        button.back-to-top::before,
+        button.back-to-top::after {
+            content: "";
+            display: block;
+            vertical-align: middle;
+            border-bottom: solid 10px #008391;
+            border-left: solid 10px transparent;
+            line-height: 0;
+            border-right: solid 10px transparent;
+            height: 0;
+            margin: 18px auto 0;
+            width: 0;
+            border-radius: 20px;
+            visibility: hidden;
+        }
+
+        button.back-to-top.show::after,
+        button.back-to-top.show::before {
+            visibility: visible;
+        }
+
+        button.back-to-top::after {
+            border-bottom-color: #fff;
+            position: relative;
+            top: -24px;
+        }
+
+        button.back-to-top.show {
+            display: block;
+            background: #fff;
+            color: #00ab6c;
+            font-size: 25px;
+            right: 25px;
+            bottom: 50px;
+            height: 50px;
+            width: 50px;
+            visibility: visible;
+            box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.25);
+            -webkit-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.25);
+            -moz-box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.25);
+        }
+
+        button.back-to-top.show:active {
+            box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.25);
+            -webkit-box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.25);
+            -moz-box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.25);
+        }
     </style>
+
+    @yield('styles')
+    @stack('styles')
+
 </head>
 
 <body>
     <!-- Preloader -->
     <div id="preloader">
-<div class="loading">
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-  <span></span>
-</div>    </div>
+        <div class="loading">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
 
     <!-- Content -->
     <div id="content" class="wrapper">
-        <!-- Go to Top Button -->
-        <button id="goToTopBtn"
-            class="z-50 fixed bottom-4 right-4 bg-accent text-white p-2 rounded-full shadow-lg transform transition-transform duration-300 hover:scale-110 hover:bg-black-600 hidden">
-            <img src="{{ asset('assets/images/up-chevron-svgrepo-com.png') }}" alt="go-to-top-button" class="w-10 h-10">
-        </button>
+           <button class="back-to-top">^</button>
+
+
+
 
         @include('frontend..layouts.partials.header')
 
@@ -156,9 +240,9 @@
         }
 
 
-        window.onload = function () {
+        window.onload = function() {
             showPreloader();
-            setTimeout(function () {
+            setTimeout(function() {
                 hidePreloader();
             }, 100);
         }
@@ -184,7 +268,7 @@
                 e.preventDefault();
         }
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.select').select2({
                 theme: "w-full border-2 rounded-md form-control",
             });
@@ -229,7 +313,7 @@
 
         let goToTopBtn = document.getElementById("goToTopBtn");
 
-        window.onscroll = function () {
+        window.onscroll = function() {
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
                 goToTopBtn.classList.remove("hidden");
             } else {
@@ -237,7 +321,7 @@
             }
         };
 
-        goToTopBtn.onclick = function () {
+        goToTopBtn.onclick = function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'

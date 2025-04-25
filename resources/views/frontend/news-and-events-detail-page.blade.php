@@ -51,19 +51,19 @@
                         @isset($setting->facebook)
                         <a href="{{ $setting->facebook }}">
                             @endisset
-                        <img src="{{ asset('assets/images/social-media-icons/facebook-black.svg') }}" 
+                        <img src="{{ asset('assets/images/social-media-icons/facebook-black.svg') }}"
                              alt="Facebook Icon"
                                 class="w-6 h-6">
                         </a>
                     </div>
-                    
+
                     <!-- Linkdin -->
                     <div
                         class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full hover:cursor-pointer transition ease-in-out duration-200">
                         @isset($setting->linkedin)
                         <a href="{{ $setting->linkedin }}">
                             @endisset
-                        <img src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.svg') }}" 
+                        <img src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.svg') }}"
                              alt="Linkdin Icon"
                                 class="w-4 h-4">
                         </a>
@@ -75,7 +75,7 @@
                         @isset($setting->twitter)
                         <a href="{{ $setting->twitter }}">
                             @endisset
-                        <img src="{{ asset('assets/images/social-media-icons/icons8-x-50.png') }}" 
+                        <img src="{{ asset('assets/images/social-media-icons/icons8-x-50.png') }}"
                         alt="Twitter Icon"
                                 class="w-5 h-5">
                         </a>
@@ -139,7 +139,6 @@
             </div>
         </div>
     </div>
-
     <!-- End in here -->
 @endsection
 

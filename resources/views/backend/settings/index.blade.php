@@ -26,10 +26,6 @@
                             <i class="fa fa-pencil-alt"></i> Edit
                         </a>
 
-                        <button type="button" class="btn btn-sm btn-danger"
-                            onclick="deleteSettings({{ $settings->first()->id }})">
-                            <i class="fa fa-trash"></i> Delete
-                        </button>
                     @endif
                 </div>
             </div>

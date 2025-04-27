@@ -87,7 +87,7 @@
         <label class="form-label" for="logo">Main Logo</label>
         <input type="file" class="form-control @error('logo') is-invalid @enderror" id="logo" name="logo" accept="image/*">
         <div class="form-text">
-            Allowed types: JPG, PNG, GIF. Max size: 2MB.
+            Allowed types: JPG, PNG, GIF.   .
             @if(isset($setting) && $setting->logo)
                 Leave empty to keep the current logo.
             @endif
@@ -114,7 +114,7 @@
         <label class="form-label" for="primary_logo">Primary Logo</label>
         <input type="file" class="form-control @error('primary_logo') is-invalid @enderror" id="primary_logo" name="primary_logo" accept="image/*">
         <div class="form-text">
-            Allowed types: JPG, PNG, GIF. Max size: 2MB.
+            Allowed types: JPG, PNG, GIF.   .
             @if(isset($setting) && $setting->primary_logo)
                 Leave empty to keep the current logo.
             @endif
@@ -141,7 +141,7 @@
         <label class="form-label" for="secondary_logo">Secondary Logo</label>
         <input type="file" class="form-control @error('secondary_logo') is-invalid @enderror" id="secondary_logo" name="secondary_logo" accept="image/*">
         <div class="form-text">
-            Allowed types: JPG, PNG, GIF. Max size: 2MB.
+            Allowed types: JPG, PNG, GIF.   .
             @if(isset($setting) && $setting->secondary_logo)
                 Leave empty to keep the current logo.
             @endif

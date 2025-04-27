@@ -35,7 +35,7 @@ class UpdatePartnerRequest extends FormRequest
                 'max:255',
                 Rule::unique('partners', 'name_np')->ignore($this->route('partner'))
             ],
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp',
             'delete_image' => 'nullable|boolean',
             'is_published' => 'boolean',
             'display_order' => 'integer',
@@ -78,7 +78,6 @@ class UpdatePartnerRequest extends FormRequest
             
             'image.image' => 'The file must be an image.',
             'image.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif, webp.',
-            'image.max' => 'The image may not be greater than 2MB.',
         ];
     }
 
@@ -88,13 +87,8 @@ class UpdatePartnerRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         // Set boolean values correctly
-        if ($this->has('is_published')) {
-            $this->merge([
-                'is_published' => $this->is_published == '1' || $this->is_published === true || $this->is_published === 'true',
-            ]);
-        }
-        
         $this->merge([
+            'is_published' => $this->has('is_published'),
             'delete_image' => $this->has('delete_image'),
         ]);
         

@@ -45,7 +45,7 @@
                 <small class="text-muted">Leave empty to keep the current image</small>
             @endif
             <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
-            <small class="text-muted">Accepted formats: jpeg, png, jpg, gif, webp. Max size: 2MB</small>
+            <small class="text-muted">Accepted formats: jpeg, png, jpg, gif, webp.   </small>
             @error('image')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -71,7 +71,6 @@
         <div class="mb-4">
             <label class="form-label d-block">Status</label>
             <div class="form-check form-switch">
-                <input type="hidden" name="is_published" value="0">
                 <input class="form-check-input" type="checkbox" id="is_published" name="is_published"
                     value="1" {{ old('is_published', $partner->is_published ?? 1) ? 'checked' : '' }}>
                 <label class="form-check-label" for="is_published">Published</label>

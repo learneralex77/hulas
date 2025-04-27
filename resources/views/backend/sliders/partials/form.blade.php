@@ -75,7 +75,7 @@
                         <small class="text-muted">Leave empty to keep the current image</small>
                     @endif
                     <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
-                    <small class="text-muted">Accepted formats: jpeg, png, jpg, gif, webp. Max size: 2MB</small>
+                    <small class="text-muted">Accepted formats: jpeg, png, jpg, gif, webp.   </small>
                     @error('image')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

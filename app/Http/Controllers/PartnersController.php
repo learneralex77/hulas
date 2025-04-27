@@ -71,20 +71,21 @@ class PartnersController extends Controller
     {
         $data = $request->validated();
 
-        // Handle image deletion
-        if ($request->has('delete_image') && $partner->image) {
-            Storage::disk('public')->delete($partner->image);
-            $data['image'] = null;
-        } elseif ($request->hasFile('image') && $request->file('image')->isValid()) {
-            // Delete old image if exists and a new one is uploaded
+        // Handle image upload
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Delete old image if exists
             if ($partner->image) {
                 Storage::disk('public')->delete($partner->image);
             }
             $data['image'] = $request->file('image')->store('partners', 'public');
-        }
-
-        // Remove image from data if it's still an UploadedFile object (not valid or stored)
-        if (isset($data['image']) && is_object($data['image'])) {
+        } elseif ($request->has('delete_image') && $request->delete_image) {
+            // Delete image if delete_image is checked
+            if ($partner->image) {
+                Storage::disk('public')->delete($partner->image);
+            }
+            $data['image'] = null;
+        } else {
+            // Keep existing image
             unset($data['image']);
         }
 

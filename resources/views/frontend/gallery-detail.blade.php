@@ -11,7 +11,7 @@
     </div>
     <div class="absolute w-full top-20">
     <div class="flex flex-col space-y-8 ml-10">
-      <h3 class="text-4xl font-extrabold text-white">{{ $gallery->title_en }}</h3>
+      <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ $gallery->title_en }}</h3>
       <div class="flex space-x-5 items-center">
       <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
       <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
@@ -78,10 +78,12 @@
     <!-- Heading for the image -->
 
     <div class="mx-12">
+      @isset($gallery->title_en)
       <h2 class="text-2xl font-bold mb-2 text-black">{{ $gallery->title_en }}</h2>
-      @if($gallery->short_description)
+      @endisset
+      @isset($gallery->short_description)
       <p class="text-gray-600 mb-4">{{ $gallery->short_description }}</p>
-      @endif
+      @endisset
     </div>
     <div class="mx-10 p-4 flex">
 

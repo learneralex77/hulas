@@ -34,6 +34,7 @@ class AboutUs extends Model
         'video_link',
         'image',
         'mission_vision',
+        'mission_vision_images',
         'is_published',
         'display_order',
     ];
@@ -46,6 +47,8 @@ class AboutUs extends Model
     protected $casts = [
         'is_published' => 'boolean',
         'display_order' => 'integer',
+        'mission_vision' => 'array',
+        'mission_vision_images' => 'array',
     ];
    
     /**
@@ -85,24 +88,36 @@ class AboutUs extends Model
      */ 
     public function getMissionVisionAttribute($value)
     {
-        if (is_null($value)) {
-            return [];
+        // Start with empty array as default
+        $result = [];
+
+        // Null check
+        if ($value === null) {
+            return $result;
         }
         
+        // If already an array, return as is
         if (is_array($value)) {
             return $value;
         }
         
-        try {
-            $decoded = json_decode($value, true);
-            return $decoded ?: [];
-        } catch (\Exception $e) {
-            \Log::error('Error decoding mission_vision JSON', [
-                'value' => $value,
-                'error' => $e->getMessage()
-            ]);
-            return [];
+        // If it's a string, try to decode JSON
+        if (is_string($value)) {
+            try {
+                $decoded = json_decode($value, true);
+                if (is_array($decoded)) {
+                    return $decoded;
+                }
+            } catch (\Exception $e) {
+                \Log::error('Error decoding mission_vision JSON', [
+                    'value' => $value,
+                    'error' => $e->getMessage()
+                ]);
+            }
         }
+        
+        // Default to empty array
+        return $result;
     }
     
     /**
@@ -128,6 +143,69 @@ class AboutUs extends Model
                 'error' => $e->getMessage()
             ]);
             $this->attributes['mission_vision'] = json_encode([]);
+        }
+    }
+
+    /**
+     * Get the mission_vision_images attribute with proper JSON handling
+     */ 
+    public function getMissionVisionImagesAttribute($value)
+    {
+        // Start with empty array as default
+        $result = [];
+
+        // Null check
+        if ($value === null) {
+            return $result;
+        }
+        
+        // If already an array, return as is
+        if (is_array($value)) {
+            return $value;
+        }
+        
+        // If it's a string, try to decode JSON
+        if (is_string($value)) {
+            try {
+                $decoded = json_decode($value, true);
+                if (is_array($decoded)) {
+                    return $decoded;
+                }
+            } catch (\Exception $e) {
+                \Log::error('Error decoding mission_vision_images JSON', [
+                    'value' => $value,
+                    'error' => $e->getMessage()
+                ]);
+            }
+        }
+        
+        // Default to empty array
+        return $result;
+    }
+    
+    /**
+     * Set the mission_vision_images attribute with proper JSON handling
+     */
+    public function setMissionVisionImagesAttribute($value)
+    {
+        if (is_null($value)) {
+            $this->attributes['mission_vision_images'] = null;
+            return;
+        }
+        
+        if (is_string($value)) {
+            $this->attributes['mission_vision_images'] = $value;
+            return;
+        }
+        
+        try {
+            $this->attributes['mission_vision_images'] = json_encode($value);
+        } catch (\Exception $e) {
+            \Log::error('Error encoding mission_vision_images to JSON', [
+                'value' => $value,
+                'error' => $e->getMessage()
+            ]);
+            $this->attributes['mission_vision_images'] = json_encode([]);
         }
     }
 

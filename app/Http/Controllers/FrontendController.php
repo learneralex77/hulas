@@ -10,6 +10,7 @@ use App\Models\Gallery;
 use App\Models\Page;
 use App\Models\Publication;
 use App\Models\Service;
+use App\Models\QuickLink;
 use App\Models\ServiceTranslation;
 use App\Models\Setting;
 use App\Models\ContactUs;
@@ -31,8 +32,7 @@ class FrontendController extends Controller
     {
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
         $aboutUs1 = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
-        $popup = Popup::active()->orderBy('display_order', 'ASC')->get();
-        $popupPaths = $popup->pluck('photo')->map(fn($path) => asset('storage' . $path));
+        $popups = Popup::active()->orderByDisplayOrder()->get();
         $howToBecameAnAgent = Page::where('slug', 'how-become-an-agent')->first();
         $sliders = Slider::active()->orderBy('display_order', 'ASC')->get();
         $services = Service::active()->orderBy('display_order', 'ASC')->get();
@@ -41,7 +41,7 @@ class FrontendController extends Controller
         $newsAndEvents = NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
 
         $partners = Partner::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.homepage', compact('aboutUs', 'popup', 'popupPaths', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners', 'newsAndEvents'));
+        return view('frontend.homepage', compact('aboutUs', 'popups', 'howToBecameAnAgent', 'sliders', 'services', 'notices', 'galleries', 'partners', 'newsAndEvents'));
     }
 
     public function aboutHulasRemittance()
@@ -56,7 +56,8 @@ class FrontendController extends Controller
     {
         $aboutUs1 = AboutUs::active()->orderBy('display_order', 'ASC')->skip(1)->first();
         $services = Service::active()->orderBy('display_order', 'ASC')->get();
-        return view('frontend.about-western-union-page', compact('aboutUs1', 'services'));
+        $settings = Setting::first();
+        return view('frontend.about-western-union-page', compact('aboutUs1', 'services', 'settings'));
     }
 
     public function becomeAnAgent()
@@ -95,20 +96,20 @@ class FrontendController extends Controller
 
     public function services()
     {
-        $services = \App\Models\Service::active()->orderByDisplayOrder()->get();
+        $services = Service::active()->orderByDisplayOrder()->get();
         return view('frontend.services', compact('services'));
     }
     public function serviceDetail($slug = null)
     {
         if ($slug) {
-            $service = \App\Models\Service::active()->where('slug', $slug)->firstOrFail();
+            $service = Service::active()->where('slug', $slug)->firstOrFail();
             return view('frontend.service-detail', compact('service'));
         }
         return redirect()->route('services');
     }
     public function gallery()
     {
-        $galleries = Gallery::active()->where('is_published', 1)->take(9)->latest()->get();
+        $galleries = Gallery::active()->where('is_published', 1)->get();
         return view('frontend.gallery', compact('galleries'));
     }
     public function galleryDetail($slug = null)
@@ -130,19 +131,32 @@ class FrontendController extends Controller
     public function missionAndVision()
     {
         $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
-        $missions = json_decode($aboutUs->mission_vision, true);
-        return view('frontend.mission-and-vision', compact('missions'));
+        
+        // Handle mission_vision safely (could be array or string)
+        $missions = [];
+        if ($aboutUs && $aboutUs->mission_vision) {
+            // decode granu pardaina, the accessor in the model will handle this
+            $missions = $aboutUs->mission_vision;
+        }
+        
+        // Get mission_vision_images from about_us
+        $mission_vision_images = [];
+        if ($aboutUs && $aboutUs->mission_vision_images) {
+            $mission_vision_images = $aboutUs->mission_vision_images;
+        }
+        
+        return view('frontend.mission-and-vision', compact('aboutUs', 'missions', 'mission_vision_images'));
     }
     public function newsAndEvents()
     {
         $newsAndEvents = NewsEventCategory::active()->orderBy('display_order', 'ASC')->get();
         return view('frontend.news-and-events', compact('newsAndEvents'));
     }
-    public function newsAndEventsDetailPage($id = null)
+    public function newsAndEventsDetailPage($slug = null)
     {
-        if ($id) {
-            $newsEvent = NewsEventCategory::findOrFail($id);
-            $otherNewsEvents = NewsEventCategory::active()->where('id', '!=', $id)->take(10)->get();
+        if ($slug) {
+            $newsEvent = NewsEventCategory::where('slug', $slug)->firstOrFail();
+            $otherNewsEvents = NewsEventCategory::active()->where('id', '!=', $newsEvent->id)->take(10)->get();
             $setting = Setting::first();
             return view('frontend.news-and-events-detail-page', compact('newsEvent', 'otherNewsEvents', 'setting'));
         }
@@ -180,7 +194,8 @@ class FrontendController extends Controller
     }
     public function quickLinks()
     {
-        $quickLinks = Page::where('slug', 'quick-links')->get();
+        $quickLinks = QuickLink::active()->orderBy('display_order', 'ASC')->get();       
+
         return view('frontend.quick-links', compact('quickLinks'));
     }
     public function sitemap()
@@ -195,14 +210,13 @@ class FrontendController extends Controller
     public function header()
     {
 
-        $setting = Setting::first();
-        return view('frontend.layouts.partials.header', compact('setting'));
+        // $setting = Setting::first();
+        return view('frontend.layouts.partials.header');
     }
 
     public function footer()
     {
-        $setting = Setting::first();
-        $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
-        return view('frontend.layouts.partials.footer', compact('setting', 'aboutUs'));
+        // $aboutUs = AboutUs::active()->orderBy('display_order', 'ASC')->first();
+        return view('frontend.layouts.partials.footer');
     }
 }

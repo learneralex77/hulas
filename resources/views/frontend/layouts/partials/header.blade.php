@@ -1,27 +1,33 @@
 <header class="sticky -top-0 lg:-top-12 z-50">
     <!-- Top Nav -->
-    <nav class="hidden w-full py-1 bg-bgprimary border-black border-b-2 px-10 lg:block">
+    <nav class="hidden w-full  bg-bgprimary border-black border-b-2 px-10 lg:block">
         <div class="w-full p-2 flex justify-between items-center">
             <!-- address, toll free -->
             <div class="flex space-x-8 items-center">
                 <div class="flex space-x-3 items-center">
+                @isset($settings->address_en)
                     <img src="{{ asset('assets/images/navbar/location-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($settings->address_en)
+
                             {{ $settings->address_en }}
-                        @endisset
+
                     </p>
+                    @endisset
                 </div>
                 <div class="flex space-x-3 items-center">
+                @isset($settings->phone_number_en)
                     <img src="{{ asset('assets/images/navbar/phone-call-icon.png') }}" class="w-5" alt="" />
                     <p class="text-xs">
-                        @isset($settings->phone_number_en)
+
                             {{ $settings->phone_number_en }}
-                        @endisset
+
                     </p>
+                    @endisset
                 </div>
                 <div class="flex space-x-3 items-center">
+                    @isset($settings->email)
                     <img src="{{ asset('assets/images/navbar/mail-icon.png') }}" class="w-5" alt="" />
+                    @endisset
                     <p class="text-xs">
                         @isset($settings->email)
                             {{ $settings->email }}
@@ -33,22 +39,30 @@
                 </div>
             </div>
             <!-- social -->
+
             <div class="flex space-x-5 items-center">
-                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/fb-icon.png') }}"
+                @isset($settings->facebook)
+                <a rel="noopener noreferrer" href="{{ $settings->facebook }}"><img src="{{ asset('assets/images/navbar/fb-icon.png') }}"
                         class="w-6" alt="facebook Icon" /></a>
-                <a rel="noopener noreferrer" href="#"><img src="{{ asset('assets/images/navbar/x-icon.png') }}"
+                @endisset
+                @isset($settings->twitter)
+                <a rel="noopener noreferrer" href="{{ $settings->twitter }}"><img src="{{ asset('assets/images/navbar/x-icon.png') }}"
                         class="w-4" alt="X Icon" /></a>
-                <a rel="noopener noreferrer" href="#"><img
+                @endisset
+                @isset($settings->linkedin)
+                <a rel="noopener noreferrer" href="{{ $settings->linkedin }}"><img
                         src="{{ asset('assets/images/navbar/linked-in-icon.png') }}" class="w-5"
                         alt="Linkedin Icon" /></a>
+                @endisset
             </div>
         </div>
     </nav>
 
     <!-- Main Navigation -->
     <nav class="relative px-4 pr-8 py-3 flex justify-between items-center bg-white shadow-lg">
-        <a class="text-xl lg:pl-10 font-bold" href="homepage">
-            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-56" alt="Hulas Logo" />
+        <a class="text-xl lg:pl-10 font-bold" href="{{ route('homepage') }}">
+            <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-56"
+                alt="Hulas Logo" />
         </a>
 
         <!-- Desktop Menu -->
@@ -56,7 +70,7 @@
             <ul class="flex space-x-4" x-data="{ openMenu: null }">
                 @foreach ($menus as $i => $menu)
                     <li class="relative" @mouseenter="openMenu = {{ $i }}" @mouseleave="openMenu = null">
-                        <button class="px-4 py-2 font-medium text-gray-700 hover:text-sky-600 focus:outline-none"
+                        <button class="px-4 py-2 font-medium hover:text-accent cursor-pointer focus:outline-none"
                             @focus="openMenu = {{ $i }}" @blur="openMenu = null"
                             aria-haspopup="{{ $menu->children->isNotEmpty() ? 'true' : 'false' }}"
                             :aria-expanded="openMenu === {{ $i }}" type="button">
@@ -77,7 +91,7 @@
                                     <li class="relative" x-data="{ openSub: false }" @mouseenter="openSub = true"
                                         @mouseleave="openSub = false">
                                         <a href="{{ $child->children->isEmpty() ? url($child->slug) : '#' }}"
-                                            class="w-full block text-left px-4 py-2 hover:bg-sky-50 flex justify-between items-center"
+                                            class="w-full  text-left px-4 py-2 hover:text-accent cursor-pointer flex justify-between items-center"
                                             @focus="openSub = true" @blur="openSub = false"
                                             aria-haspopup="{{ $child->children->isNotEmpty() ? 'true' : 'false' }}"
                                             :aria-expanded="openSub">

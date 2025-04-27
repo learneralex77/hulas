@@ -38,15 +38,30 @@ class AboutUsController extends Controller
             
             // Process mission_vision data - simplify it
             $missionVision = [];
+            $missionVisionImages = [];
+            
             foreach ($request->mission_vision_titles as $index => $title) {
                 if (!empty($title) && 
-                    isset($request->mission_vision_icons[$index]) && 
                     isset($request->mission_vision_descriptions[$index])) {
+                    
+                    // Add basic mission vision data
                     $missionVision[] = [
                         'title' => $title,
-                        'icon' => $request->mission_vision_icons[$index],
+                        'icon' => $request->mission_vision_icons[$index] ?? null,
                         'description' => $request->mission_vision_descriptions[$index],
                     ];
+                    
+                    // Handle image upload for this item
+                    $imagePath = null;
+                    if ($request->hasFile('mission_vision_image_files') && 
+                        isset($request->file('mission_vision_image_files')[$index]) && 
+                        $request->file('mission_vision_image_files')[$index]->isValid()) {
+                        
+                        $imagePath = $request->file('mission_vision_image_files')[$index]->store('about-us/mission-vision', 'public');
+                    }
+                    
+                    // Store the image path or null
+                    $missionVisionImages[$index] = $imagePath;
                 }
             }
             
@@ -62,6 +77,7 @@ class AboutUsController extends Controller
             $aboutUs->short_description_np = $data['short_description_np'] ?? null;
             $aboutUs->video_link = $data['video_link'] ?? null;
             $aboutUs->mission_vision = $missionVision;
+            $aboutUs->mission_vision_images = $missionVisionImages;
             $aboutUs->is_published = $request->boolean('is_published');
             $aboutUs->display_order = $data['display_order'] ?? 0;
 
@@ -114,17 +130,56 @@ class AboutUsController extends Controller
             // Get validated data 
             $data = $request->validated();
             
+            // Get current mission vision images with safer type handling
+            $missionVisionImages = [];
+            
+            // Safely handle the mission_vision_images attribute
+            $rawImages = $aboutUs->getRawOriginal('mission_vision_images');
+            if ($rawImages !== null) {
+                if (is_string($rawImages)) {
+                    $missionVisionImages = json_decode($rawImages, true) ?? [];
+                } elseif (is_array($rawImages)) {
+                    $missionVisionImages = $rawImages;
+                }
+            }
+            
             // Process mission_vision data - simplify it
             $missionVision = [];
+            
             foreach ($request->mission_vision_titles as $index => $title) {
                 if (!empty($title) && 
-                    isset($request->mission_vision_icons[$index]) && 
                     isset($request->mission_vision_descriptions[$index])) {
+                    
+                    // Add basic mission vision data
                     $missionVision[] = [
                         'title' => $title,
-                        'icon' => $request->mission_vision_icons[$index],
+                        'icon' => $request->mission_vision_icons[$index] ?? null,
                         'description' => $request->mission_vision_descriptions[$index],
                     ];
+                    
+                    // Check if image should be deleted - simplify the condition
+                    $deleteImage = isset($request->mission_vision_delete_images[$index]) && 
+                                  $request->mission_vision_delete_images[$index] == 1;
+                    
+                    if ($deleteImage && isset($missionVisionImages[$index])) {
+                        // Delete the stored file
+                        Storage::disk('public')->delete($missionVisionImages[$index]);
+                        $missionVisionImages[$index] = null;
+                    }
+                    
+                    // Handle new image upload for this item
+                    if ($request->hasFile('mission_vision_image_files') && 
+                        isset($request->file('mission_vision_image_files')[$index]) && 
+                        $request->file('mission_vision_image_files')[$index]->isValid()) {
+                        
+                        // Delete old image if exists
+                        if (isset($missionVisionImages[$index]) && $missionVisionImages[$index]) {
+                            Storage::disk('public')->delete($missionVisionImages[$index]);
+                        }
+                        
+                        // Store new image
+                        $missionVisionImages[$index] = $request->file('mission_vision_image_files')[$index]->store('about-us/mission-vision', 'public');
+                    }
                 }
             }
             
@@ -157,6 +212,7 @@ class AboutUsController extends Controller
             $aboutUs->short_description_np = $data['short_description_np'] ?? null;
             $aboutUs->video_link = $data['video_link'] ?? null;
             $aboutUs->mission_vision = $missionVision;
+            $aboutUs->mission_vision_images = $missionVisionImages;
             $aboutUs->is_published = $request->boolean('is_published');
             $aboutUs->display_order = $data['display_order'] ?? 0;
             

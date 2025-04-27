@@ -34,7 +34,9 @@ class AboutUsRequest extends FormRequest
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,webp', 'max:2048'],
             'delete_image' => ['nullable', 'boolean'],
             'mission_vision_titles.*' => ['required', 'string', 'max:255'],
-            'mission_vision_icons.*' => ['required', 'string', 'max:255'],
+            'mission_vision_icons.*' => ['nullable', 'string', 'max:255'],
+            'mission_vision_image_files.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp'],
+            'mission_vision_delete_images.*' => ['nullable', 'boolean'],
             'mission_vision_descriptions.*' => ['required', 'string'],
             'is_published' => ['boolean'],
             'display_order' => ['integer', 'min:0'],
@@ -68,6 +70,8 @@ class AboutUsRequest extends FormRequest
             'delete_image' => 'delete image option',
             'mission_vision_titles.*' => 'mission/vision title',
             'mission_vision_icons.*' => 'mission/vision icon',
+            'mission_vision_image_files.*' => 'mission/vision icon image',
+            'mission_vision_delete_images.*' => 'delete mission/vision image option',
             'mission_vision_descriptions.*' => 'mission/vision description',
             'is_published' => 'publish status',
             'display_order' => 'display order',
@@ -81,7 +85,7 @@ class AboutUsRequest extends FormRequest
      */
     public function messages(): array
     {
-        return [
+        $messages = [
             'tagline_en.required' => 'The English tagline is required.',
             'tagline_en.string' => 'The English tagline must be a string.',
             'tagline_en.max' => 'The English tagline may not be greater than 255 characters.',
@@ -115,13 +119,20 @@ class AboutUsRequest extends FormRequest
             'mission_vision_titles.*.string' => 'Each mission/vision title must be a string.',
             'mission_vision_titles.*.max' => 'Each mission/vision title may not be greater than 255 characters.',
             
-            'mission_vision_icons.*.required' => 'Each mission/vision icon is required.',
             'mission_vision_icons.*.string' => 'Each mission/vision icon must be a string.',
-            'mission_vision_icons.*.max' => 'Each mission/vision icon may not be greater than 255 characters.',
+            
+            'mission_vision_image_files.*.image' => 'The mission/vision icon must be an image.',
+            'mission_vision_image_files.*.mimes' => 'The mission/vision icon must be a file of type: jpeg, png, jpg, gif, svg, webp.',
+            'mission_vision_image_files.*.max' => 'The mission/vision icon may not be greater than 2MB.',
+            
+            'mission_vision_delete_images.*.boolean' => 'Each delete mission/vision image option must be a boolean.',
             
             'mission_vision_descriptions.*.required' => 'Each mission/vision description is required.',
             'mission_vision_descriptions.*.string' => 'Each mission/vision description must be a string.',
         ];
+        
+        // Merge with existing messages
+        return array_merge(parent::messages(), $messages);
     }
     
     /**

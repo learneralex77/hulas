@@ -34,15 +34,13 @@ class DownloadRequest extends FormRequest
             $rules['file'] = [
                 'required',
                 'file',
-                'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,csv,zip,jpg,jpeg,png,gif,webp',
-                'max:10240'
+                'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,csv,zip,jpg,jpeg,png,gif,webp'
             ];
         } else {
             $rules['file'] = [
                 'nullable',
                 'file',
-                'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,csv,zip,jpg,jpeg,png,gif,webp',
-                'max:10240'
+                'mimes:pdf,doc,docx,xls,xlsx,ppt,pptx,csv,zip,jpg,jpeg,png,gif,webp'
             ];
         }
 

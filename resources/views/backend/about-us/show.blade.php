@@ -108,12 +108,28 @@
                     <div class="col-md-12">
                         <h4 class="mb-4">Mission & Vision</h4>
                         <div class="row">
-                            @foreach ($aboutUs->mission_vision as $item)
+                            @php
+                                $missionVisionImages = isset($aboutUs->mission_vision_images) ? $aboutUs->mission_vision_images : [];
+                                if (is_string($missionVisionImages)) {
+                                    $missionVisionImages = json_decode($missionVisionImages, true) ?? [];
+                                }
+                            @endphp
+                            
+                            @foreach ($aboutUs->mission_vision as $index => $item)
                                 <div class="col-md-4 mb-4">
                                     <div class="block block-rounded h-100">
                                         <div class="block-header block-header-default">
                                             <h3 class="block-title">
-                                                <i class="fa fa-{{ $item['icon'] ?? 'check' }} me-1"></i>
+                                                @if (!empty($missionVisionImages) && isset($missionVisionImages[$index]) && $missionVisionImages[$index])
+                                                    <img src="{{ asset('storage/' . $missionVisionImages[$index]) }}" 
+                                                         alt="{{ $item['title'] ?? 'Icon' }}" 
+                                                         class="img-fluid rounded me-1"
+                                                         style="max-height: 24px; max-width: 24px; vertical-align: middle;">
+                                                @elseif (!empty($item['icon']))
+                                                    <i class="fa fa-{{ $item['icon'] }} me-1"></i>
+                                                @else
+                                                    <i class="fa fa-check me-1"></i>
+                                                @endif
                                                 {{ $item['title'] ?? 'Untitled' }}
                                             </h3>
                                         </div>

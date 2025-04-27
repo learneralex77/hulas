@@ -125,7 +125,7 @@
             <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image"
                 accept="image/*">
             <div class="form-text">
-                Allowed types: JPG, PNG, GIF. Max size: 2MB.
+                Allowed types: JPG, PNG, GIF.   .
                 @if (isset($aboutUs) && $aboutUs->image)
                     Leave empty to keep the current image.
                 @endif
@@ -191,18 +191,63 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label" for="mission_vision_icons_{{ $index }}">Icon <span
-                                    class="text-danger">*</span></label>
+                            <label class="form-label" for="mission_vision_icons_{{ $index }}">Icon (Optional)</label>
                             <input type="text"
                                 class="form-control @error('mission_vision_icons.' . $index) is-invalid @enderror"
                                 id="mission_vision_icons_{{ $index }}" name="mission_vision_icons[]"
-                                value="{{ old('mission_vision_icons.' . $index, $item['icon'] ?? '') }}" required>
+                                value="{{ old('mission_vision_icons.' . $index, $item['icon'] ?? '') }}">
                             <div class="form-text">
-                                Enter a Font Awesome icon name (e.g., "check", "flag").
+                                Enter a Font Awesome icon name (e.g., "check", "flag") or leave empty to use uploaded image.
                             </div>
                             @error('mission_vision_icons.' . $index)
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label class="form-label" for="mission_vision_image_files_{{ $index }}">Icon Image</label>
+                            <input type="file"
+                                class="form-control @error('mission_vision_image_files.' . $index) is-invalid @enderror"
+                                id="mission_vision_image_files_{{ $index }}" name="mission_vision_image_files[]"
+                                accept="image/*">
+                            <div class="form-text">
+                                Upload an image to use instead of a Font Awesome icon. Recommended size: 64x64px.
+                            </div>
+                            @error('mission_vision_image_files.' . $index)
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            
+                            @php
+                                $missionVisionImages = isset($aboutUs->mission_vision_images) ? $aboutUs->mission_vision_images : [];
+                                if (is_string($missionVisionImages)) {
+                                    $missionVisionImages = json_decode($missionVisionImages, true) ?? [];
+                                }
+                            @endphp
+                            
+                            @if (isset($aboutUs) && !empty($missionVisionImages) && isset($missionVisionImages[$index]) && $missionVisionImages[$index])
+                                <div class="mt-2">
+                                    <p class="mb-1">Current Icon Image:</p>
+                                    <img src="{{ asset('storage/' . $missionVisionImages[$index]) }}" 
+                                         alt="Mission Vision Icon" 
+                                         class="img-fluid rounded"
+                                         style="max-height: 64px; max-width: 64px;">
+                                    
+                                    <div class="form-check mt-2">
+                                        <input class="form-check-input" 
+                                               type="checkbox" 
+                                               name="mission_vision_delete_images[{{ $index }}]" 
+                                               id="mission_vision_delete_images_{{ $index }}" 
+                                               value="1">
+                                        <label class="form-check-label" for="mission_vision_delete_images_{{ $index }}">
+                                            Delete current icon image
+                                        </label>
+                                        <!-- Hidden field ensures we get a value even if unchecked -->
+                                        <input type="hidden" name="mission_vision_delete_images_indices[]" value="{{ $index }}">
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
 
@@ -234,16 +279,31 @@
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label" for="mission_vision_icons_0">Icon <span
-                                class="text-danger">*</span></label>
+                        <label class="form-label" for="mission_vision_icons_0">Icon (Optional)</label>
                         <input type="text"
                             class="form-control @error('mission_vision_icons.0') is-invalid @enderror"
                             id="mission_vision_icons_0" name="mission_vision_icons[]"
-                            value="{{ old('mission_vision_icons.0') }}" required>
+                            value="{{ old('mission_vision_icons.0') }}">
                         <div class="form-text">
-                            Enter a Font Awesome icon name (e.g., "check", "flag").
+                            Enter a Font Awesome icon name (e.g., "check", "flag") or leave empty to use uploaded image.
                         </div>
                         @error('mission_vision_icons.0')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <label class="form-label" for="mission_vision_image_files_0">Icon Image</label>
+                        <input type="file"
+                            class="form-control @error('mission_vision_image_files.0') is-invalid @enderror"
+                            id="mission_vision_image_files_0" name="mission_vision_image_files[]"
+                            accept="image/*">
+                        <div class="form-text">
+                            Upload an image to use instead of a Font Awesome icon. Recommended size: 64x64px.
+                        </div>
+                        @error('mission_vision_image_files.0')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

@@ -39,11 +39,16 @@ class NewsEventCategoryRequest extends FormRequest
                 'max:255',
                 Rule::unique('news_event_categories', 'name_np')->ignore($key),
             ],
+            'slug' => [
+                'nullable',
+                'string',
+                'max:255',
+                Rule::unique('news_event_categories', 'slug')->ignore($key),
+            ],
             'image' => [
                 'nullable',
                 'image',
                 'mimes:jpeg,png,jpg,gif,webp',
-                'max:2048',
             ],
             'description_en' => ['nullable', 'string'],
             'description_np' => ['nullable', 'string'],
@@ -78,6 +83,7 @@ class NewsEventCategoryRequest extends FormRequest
         return [
             'name_en' => 'English Name',
             'name_np' => 'Nepali Name',
+            'slug' => 'Slug',
             'image' => 'Image',
             'description_en' => 'English Description',
             'description_np' => 'Nepali Description',
@@ -103,9 +109,12 @@ class NewsEventCategoryRequest extends FormRequest
             'name_np.max' => 'The Nepali name may not be greater than 255 characters.',
             'name_np.unique' => 'A category with this Nepali name already exists.',
             
+            'slug.string' => 'The slug must be a string.',
+            'slug.max' => 'The slug may not be greater than 255 characters.',
+            'slug.unique' => 'This slug is already in use.',
+            
             'image.image' => 'The file must be a valid image.',
             'image.mimes' => 'The image must be a valid format (jpeg, png, jpg, gif, webp).',
-            'image.max' => 'The image may not be greater than 2MB.',
             
             'display_order.integer' => 'The display order must be a number.',
             'display_order.min' => 'The display order must be at least 0.',

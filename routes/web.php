@@ -17,15 +17,13 @@ Route::get('mission-and-vision', [FrontendController::class, 'missionAndVision']
 Route::get('message-from-director', [FrontendController::class, 'messageFromDirector'])->name('messageFromDirector');
 Route::get('organizational-structure', [FrontendController::class, 'organizationalStructure'])->name('organizationalStructure');
 
+
 Route::get('services', [FrontendController::class, 'services'])->name('services');
-Route::get('service-detail/{slug?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
-Route::get('services', [FrontendController::class, 'services'])->name('services');
-Route::get('service/{slug?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
+Route::get('services/{slug?}', [FrontendController::class, 'serviceDetail'])->name('serviceDetail');
 
 Route::get('become-an-agent', [FrontendController::class, 'becomeAnAgent'])->name('becomeAnAgent');
 Route::post('become-an-agent', [BecomeAnAgentController::class, 'store'])->name('storeAgentRequest');
 
-Route::post('backend/become-an-agent/{becomeAnAgent}/toggle-status', [BecomeAnAgentController::class, 'toggleContactStatus'])->name('become-an-agent.toggle-status');
 Route::resource('admin/become-an-agent', BecomeAnAgentController::class);
 
 Route::get('find-an-agent', [FrontendController::class, 'findAnAgent'])->name('findAnAgent');
@@ -38,7 +36,7 @@ Route::get('downloads', [FrontendController::class, 'downloads'])->name('downloa
 Route::get('/downloads/file/{download}', [FrontendController::class, 'downloadFile'])->name('frontend.downloads.download');
 
 Route::get('news-and-events', [FrontendController::class, 'newsAndEvents'])->name('newsAndEvents');
-Route::get('news-and-events-detail-page/{id?}', [FrontendController::class, 'newsAndEventsDetailPage'])->name('newsAndEventsDetailPage');
+Route::get('news-and-events-detail-page/{slug?}', [FrontendController::class, 'newsAndEventsDetailPage'])->name('newsAndEventsDetailPage');
 
 Route::get('gallery', [FrontendController::class, 'gallery'])->name('gallery');
 Route::get('gallery-detail/{slug?}', [FrontendController::class, 'galleryDetail'])->name('galleryDetail');
@@ -59,6 +57,8 @@ Route::get('header', [FrontendController::class, 'header'])->name('header');
 
 // Admin routes moved to auth.php
 require __DIR__ . '/auth.php';
+
+// Routes for services
 
 
 

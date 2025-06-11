@@ -6,21 +6,49 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="AWT" />
+    <meta name="description" content="{{ $settings->meta_description }}" />
+    <meta name="keywords" content="{{ $settings->keywords }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- {!! $settings->schema_markup !!} -->
 
-    <title>Hulas Remmittance : : @yield('title')</title>
-    <link rel="icon" href="{{ asset('assets/images/icon/icon.jpg') }}">
+    <link rel="canonical" href="{{ $settings->canonical_url }}">
+
+    <title>Hulas Remittance :: @yield('title')</title>
+    <link rel="icon" href="{{ asset('assets/img/small-logo.png') }}">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <link href="{{ asset('assets/css/navbar.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+
+    {{-- jquery --}}
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}" type="text/javascript"></script>
+
+    {{-- jquery ui --}}
+    <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
+
+    {{-- jquery validation --}}
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/additional-methods.min.js"></script>
+
+    {{-- select2 --}}
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    {{-- fontawesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {{-- flag icons --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+    {{-- sajan date picker --}}
+    <link href="https://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/css/nepali.datepicker.v4.0.1.min.css"
+        rel="stylesheet" type="text/css" />
+
+    {{-- flowbite --}}
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" /> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css" />
     <style>
         #preloader {
             position: fixed;
@@ -88,7 +116,67 @@
                 transform: scaleY(1);
             }
         }
+
+        /* Make Select2 container responsive */
+        .select2-container {
+            width: 100% !important;
+            max-width: 100%;
+            margin: 10px 0;
+        }
+
+        /* Style the selection box */
+        .select2-container--classic .select2-selection--single {
+            padding: 10px 14px;
+            height: auto !important;
+            min-height: 48px;
+            border: 2px solid #6C757D;
+            border-radius: 6px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        /* Style dropdown options */
+        .select2-container--classic .select2-results__option {
+            padding: 10px 12px;
+            font-size: 1rem;
+        }
+
+        /* Style the dropdown box */
+        .select2-container--classic .select2-dropdown {
+            border: 2px solid #6C757D;
+            border-top: none;
+            font-size: 1rem;
+        }
+
+        /* Style the dropdown arrow */
+        .select2-selection__arrow {
+            height: 100% !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+
+        /* Responsive font & padding on smaller screens */
+        @media (max-width: 576px) {
+            .select2-container--classic .select2-selection--single {
+                padding: 8px 12px;
+                font-size: 0.875rem;
+            }
+
+            .select2-container--classic .select2-results__option {
+                padding: 8px 10px;
+                font-size: 0.875rem;
+            }
+
+            .select2-container--classic .select2-dropdown {
+                font-size: 0.875rem;
+            }
+        }
     </style>
+
 
     @yield('styles')
     @stack('styles')
@@ -253,3 +341,4 @@
 </body>
 
 </html>
+

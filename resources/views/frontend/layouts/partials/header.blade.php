@@ -62,15 +62,13 @@
                 <!-- Language Switcher -->
                 <div class="flex space-x-2 items-center border-l pl-4">
                     <a href="{{ route('locale', 'en') }}" 
-                       class="flex items-center space-x-1 {{ app()->getLocale() == 'en' ? 'font-bold text-accent' : 'text-gray-600' }}">
+                       class="{{ app()->getLocale() == 'en' ? 'opacity-100' : 'opacity-50' }} hover:opacity-100 transition-opacity">
                         <span class="flag-icon flag-icon-us"></span>
-                        <span class="text-xs">{{ __('header.language.en') }}</span>
                     </a>
                     <span class="text-gray-400">|</span>
                     <a href="{{ route('locale', 'np') }}" 
-                       class="flex items-center space-x-1 {{ app()->getLocale() == 'np' ? 'font-bold text-accent' : 'text-gray-600' }}">
+                       class="{{ app()->getLocale() == 'np' ? 'opacity-100' : 'opacity-50' }} hover:opacity-100 transition-opacity">
                         <span class="flag-icon flag-icon-np"></span>
-                        <span class="text-xs">{{ __('header.language.np') }}</span>
                     </a>
                 </div>
             </div>
@@ -181,6 +179,18 @@
                     <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40"
                         alt="{{ __('header.logo_alt') }}" />
                 </a>
+                <!-- Language Switcher for Mobile -->
+                <div class="flex space-x-2 items-center mr-4">
+                    <a href="{{ route('locale', 'en') }}" 
+                       class="{{ app()->getLocale() == 'en' ? 'opacity-100' : 'opacity-50' }} hover:opacity-100 transition-opacity">
+                        <span class="flag-icon flag-icon-us"></span>
+                    </a>
+                    <span class="text-gray-400">|</span>
+                    <a href="{{ route('locale', 'np') }}" 
+                       class="{{ app()->getLocale() == 'np' ? 'opacity-100' : 'opacity-50' }} hover:opacity-100 transition-opacity">
+                        <span class="flag-icon flag-icon-np"></span>
+                    </a>
+                </div>
                 <button id="close-menu" class="navbar-close">
                     <svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

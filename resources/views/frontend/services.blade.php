@@ -1,22 +1,22 @@
 @extends('frontend.layouts.app')
-@section('title', 'Services')
-@section('meta', 'Services')
+@section('title', __('services.title'))
+@section('meta', __('services.meta_description'))
 @section('content')
 
   <div class="min-h-screen">
     <!-- banner-section -->
     <section class="relative">
     <div class="mb-10">
-      <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
-      alt="Banner Image" class="h-60 w-full object-cover" />
+      <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="{{ __('services.title') }}"
+      class="h-60 w-full object-cover" />
     </div>
     <div class="absolute w-full top-20">
       <div class="flex flex-col space-y-8 ml-10">
-      <h3 class="text-2xl md:text-4xl font-extrabold text-white">Services</h3>
+      <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ __('services.title') }}</h3>
       <div class="flex space-x-5 items-center">
-        <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
+        <a href="{{ route('homepage') }}" class="text-white font-bold">{{ __('services.breadcrumb.home') }}</a>
         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-        <a href="{{ route('services') }}" class="text-accent font-bold"> Services</a>
+        <a href="{{ route('services') }}" class="text-accent font-bold">{{ __('services.breadcrumb.services') }}</a>
       </div>
       </div>
     </div>
@@ -28,18 +28,18 @@
       <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
       <div class="flex flex-col items-center">
         <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
-        Services
+          {{ __('services.section_title') }}
         </h1>
         <p class="text-2xl text-black font-bold md:text-4xl text-center">
-        Simple. Secure. Seamless.
+          {{ __('services.section_subtitle') }}
         </p>
         <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
-        Fast, secure money transfers made easy with Hulas Remittance and trusted partners like Western Union.
+          {{ __('services.section_description') }}
         </p>
       </div>
       </div>
     </section>
-    <!-- Card part for our news and Article -->
+    <!-- Card part for our services -->
     <section class="flex justify-center mb-10">
       <div
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
@@ -52,8 +52,9 @@
       <div
       class="flex items-center justify-center w-16 h-16 lg:w-20 lg:h-20 bg-[#f7e177] text-accent rounded-full mx-auto mb-4">
       @if(isset($service->file) && !empty($service->file))
-      <img src="{{ asset('storage/' . $service->file) }}" alt="{{ $service->name_en }}"
-      class="w-10 h-10 object-contain">
+      <img src="{{ asset('storage/' . $service->file) }}" 
+           alt="{{ app()->getLocale() === 'np' ? $service->name_np : $service->name_en }}"
+           class="w-10 h-10 object-contain">
     @else
       <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -78,11 +79,17 @@
       </svg>
     @endif
       </div>
-      <h2 class="text-2xl text-black font-semibold text-center my-3">{{ $service->name_en }}</h2>
+      <h2 class="text-2xl text-black font-semibold text-center my-3">
+        {{ app()->getLocale() === 'np' ? $service->name_np : $service->name_en }}
+      </h2>
       <p class="text-gray-600 text-center line-clamp-5">
-      @if(isset($service->description_en))
-      {{ \Illuminate\Support\Str::limit($service->description_en, 120) }}
-    @endif
+      @if(app()->getLocale() === 'np' && isset($service->description_np))
+        {{ \Illuminate\Support\Str::limit($service->description_np, 120) }}
+      @elseif(isset($service->description_en))
+        {{ \Illuminate\Support\Str::limit($service->description_en, 120) }}
+      @else
+        {{ __('services.no_description') }}
+      @endif
       </p>
       </div>
       </a>
@@ -90,9 +97,9 @@
     @else
       <!-- Fallback for empty services -->
       <div class="col-span-3 text-center py-12">
-      <p class="text-lg text-gray-600">No services available at the moment. Please check back later.</p>
+      <p class="text-lg text-gray-600">{{ __('services.no_services') }}</p>
       </div>
-    @endisset
+    @endif
 
       </div>
     </section>
@@ -100,7 +107,6 @@
   </div>
 
 @endsection
-
 
 @push('scripts')
   <script type="module" src="/src/main.js"></script>

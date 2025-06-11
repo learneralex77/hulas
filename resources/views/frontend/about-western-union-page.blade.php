@@ -1,21 +1,21 @@
 @extends('frontend.layouts.app')
-@section('title', 'Home')
-@section('meta', 'Welcome to Hulas Remittance')
+@section('title', __('about-western-union.page_title'))
+@section('meta', __('about-western-union.meta_description'))
 @section('content')
 
     <!-- banner-section -->
     <section class="relative">
         <div class="mb-10">
-            <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
-                alt="Banner Image" class="h-60 w-full object-cover" />
+            <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="{{ __('about-western-union.banner.image_alt') }}"
+                class="h-60 w-full object-cover" />
         </div>
         <div class="absolute w-full top-20">
             <div class="flex flex-col space-y-8 ml-10">
-                <h3 class="text-2xl md:text-4xl font-extrabold text-white">About Western Union</h3>
+                <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ __('about-western-union.banner.title') }}</h3>
                 <div class="flex space-x-5 items-center">
-                    <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
+                    <a href="{{ route('homepage') }}" class="text-white font-bold">{{ __('about-western-union.breadcrumb.home') }}</a>
                     <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-                    <a href="{{ route('aboutWesternUnion') }}" class="text-accent font-bold">About Western Union</a>
+                    <a href="{{ route('aboutWesternUnion') }}" class="text-accent font-bold">{{ __('about-western-union.breadcrumb.about_western_union') }}</a>
                 </div>
             </div>
     </section>
@@ -27,19 +27,24 @@
             <!-- image -->
             @isset($aboutUs1->image)
             <div class="flex-1 flex justify-center w-full">
-               
-                <img src="{{ asset('storage/' . $aboutUs1->image) }}" alt="About Us Image"
-                    class="w-full rounded-xl object-contain lg:object-fit" alt="About Us Image" />
+                <img src="{{ asset('storage/' . $aboutUs1->image) }}" alt="{{ __('about-western-union.main_section.image_alt') }}"
+                    class="w-full rounded-xl object-contain lg:object-fit" />
             </div>
             @endisset
             <!-- Text Container -->
             <div class="flex md:flex-2 flex-col space-y-6">
                 <h2 class="text-xl lg:text-2xl font-bold text-black ">
-                    About Western Union
+                    {{ __('about-western-union.main_section.title') }}
                 </h2>
                 @isset($aboutUs1->description_en)
                 <div class="text-lg">
-                    <p>  {{ $aboutUs1->description_en }} </p>
+                    <p>
+                        @if(app()->getLocale() == 'np')
+                            {{ $aboutUs1->description_np }}
+                        @else
+                            {{ $aboutUs1->description_en }}
+                        @endif
+                    </p>
                 </div>
                 @endisset
                 <!-- Years of experience -->
@@ -48,13 +53,15 @@
                         class="w-60 md:w-40 lg:w-60 bg-black rounded-xl flex justify-start lg:justify-center items-center flex-col space-y-2 lg:space-y-4 p-3">
                         @isset($aboutUs1->years_of_experience_en)
                         <p class="text-accent font-bold text-2xl">
-                        
+                            @if(app()->getLocale() == 'np')
+                                {{ $aboutUs1->years_of_experience_np }}
+                            @else
                                 {{ $aboutUs1->years_of_experience_en }}
-                            
+                            @endif
                         </p>
                         @endisset
                         <p class="text-accent text-center text-lg">
-                            Years of Experience
+                            {{ __('about-western-union.main_section.years_experience') }}
                         </p>
                     </div>
                 </div>
@@ -69,7 +76,7 @@
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
                             <a href="{{ $settings->facebook }}">
                                 <img src="{{ asset('assets/images/social-media-icons/facebook-black.svg') }}"
-                                    alt="Facebook Icon" class="w-6 h-6">
+                                    alt="{{ __('about-western-union.social_media.facebook') }}" class="w-6 h-6">
                             </a>
                         </div>
                         @endisset
@@ -79,7 +86,7 @@
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
                             <a href="{{ $settings->linkedin }}">
                                 <img src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.svg') }}"
-                                    alt="Linkdin Icon" class="w-4 h-4">
+                                    alt="{{ __('about-western-union.social_media.linkedin') }}" class="w-4 h-4">
                             </a>
                         </div>
                         @endisset
@@ -90,7 +97,7 @@
                             class="flex items-center justify-center w-10 h-10 border-1 rounded-full hover:cursor-pointer transition ease-in-out duration-200">
                             <a href="{{ $settings->twitter }}">
                                 <img src="{{ asset('assets/images/social-media-icons/icons8-x-50.png') }}"
-                                    alt="Twitter Icon" class="w-5 h-5">
+                                    alt="{{ __('about-western-union.social_media.twitter') }}" class="w-5 h-5">
                             </a>
                         </div>
                         @endisset
@@ -108,14 +115,14 @@
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
       <div class="flex flex-col items-center">
       <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
-        Our Services
+        {{ __('about-western-union.services_section.title') }}
       </h1>
 
       <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
-      Simple. Secure. Seamless.
+        {{ __('about-western-union.services_section.subtitle') }}
       </p>
       <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
-      Fast, secure money transfers made easy with Hulas Remittance and trusted partners like Western Union.
+        {{ __('about-western-union.services_section.description') }}
       </p>
       </div>
     </div>
@@ -136,19 +143,29 @@
                         <div class="flex flex-col items-center">
                             @if ($service->file)
                             <img src="{{ asset('storage/' . $service->file) }}"
-                                alt="{{ $service->name_en }}" class="w-full h-[200px] rounded-lg object-cover" />
+                                alt="{{ app()->getLocale() == 'np' ? $service->name_np : $service->name_en }}" class="w-full h-[200px] rounded-lg object-cover" />
                             @else
                             <div class="w-full h-[200px] rounded-lg bg-gray-200 flex items-center justify-center">
                                 <i class="{{ $service->icon ?? 'fa fa-briefcase' }} text-5xl text-gray-400"></i>
                             </div>
                             @endif
                         </div>
-                        <h3 class="text-lg font-bold text-center">{{ $service->name_en }}</h3>
+                        <h3 class="text-lg font-bold text-center">
+                            @if(app()->getLocale() == 'np')
+                                {{ $service->name_np }}
+                            @else
+                                {{ $service->name_en }}
+                            @endif
+                        </h3>
                         <p class="text-base md:text-lg text-black text-center">
-                            {{ $service->description_en }}
+                            @if(app()->getLocale() == 'np')
+                                {{ $service->description_np }}
+                            @else
+                                {{ $service->description_en }}
+                            @endif
                         </p>
                         <div class="flex justify-center">
-                            <a href="{{ $service->slug ? route('serviceDetail', $service->slug) : '#' }}" class="bg-black hover:opacity-85 text-accent px-4 py-2 tracking-wide rounded-full text-sm text-center font-semibold">Read more</a>
+                            <a href="{{ $service->slug ? route('serviceDetail', $service->slug) : '#' }}" class="bg-black hover:opacity-85 text-accent px-4 py-2 tracking-wide rounded-full text-sm text-center font-semibold">{{ __('about-western-union.services_section.read_more') }}</a>
                         </div>
                     </div>
                     @endforeach
@@ -169,12 +186,11 @@
     <div
         class="flex flex-col lg:flex-row bg-accent items-center justify-around gap-10 text-black rounded-sm mx-6 my-10 md:m-10 lg:mx-20 px-10 py-10">
         <div class="flex flex-col gap-6 text-center">
-            <h1 class="text-2xl lg:text-5xl font-extrabold tracking-wide">Let's Get You Started
+            <h1 class="text-2xl lg:text-5xl font-extrabold tracking-wide">{{ __('about-western-union.cta_section.title') }}
             </h1>
-            <p class="line-clamp-2 text-lg lg:text-xl"> Whether you're sending money, becoming an agent, or just exploring—Hulas Remittance is here to help every step of the way.</p>
+            <p class="line-clamp-2 text-lg lg:text-xl">{{ __('about-western-union.cta_section.description') }}</p>
         </div>
-        <a href="{{ route('findAnAgent') }}" class="px-6 py-4 bg-black text-accent rounded-full cursor-pointer text-center text-xl w-60 inline-block font-bold hover:opacity-85">Find an
-            agent</a>
+        <a href="{{ route('findAnAgent') }}" class="px-6 py-4 bg-black text-accent rounded-full cursor-pointer text-center text-xl w-60 inline-block font-bold hover:opacity-85">{{ __('about-western-union.cta_section.button') }}</a>
     </div>
     <!-- Section breaker -->
 
@@ -205,20 +221,8 @@
         }
 
         function updateServicesSliderPosition() {
-            const position = -servicesCurrentSlide * servicesCardWidth;
-            servicesSliderContent.style.transform = `translateX(${position}px)`;
+            servicesSliderContent.style.transform = `translateX(-${servicesCurrentSlide * servicesCardWidth}px)`;
         }
-
-        // Initialize slider positions on page load
-        window.addEventListener('load', function() {
-            // Only initialize if elements exist
-            if (servicesSliderContent && servicesCards.length > 0) {
-                updateServicesSliderPosition();
-            }
-        });
     </script>
-
-    <script type="module" src="/src/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 @endpush
 

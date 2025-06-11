@@ -6,27 +6,31 @@
             <div class="flex space-x-8 items-center">
                 <div class="flex space-x-3 items-center">
                 @isset($settings->address_en)
-                    <img src="{{ asset('assets/images/navbar/location-icon.png') }}" class="w-5" alt="" />
+                    <img src="{{ asset('assets/images/navbar/location-icon.png') }}" class="w-5" alt="{{ __('header.address') }}" />
                     <p class="text-xs">
-
+                        @if(app()->getLocale() == 'np')
+                            {{ $settings->address_np }}
+                        @else
                             {{ $settings->address_en }}
-
+                        @endif
                     </p>
                     @endisset
                 </div>
                 <div class="flex space-x-3 items-center">
                 @isset($settings->phone_number_en)
-                    <img src="{{ asset('assets/images/navbar/phone-call-icon.png') }}" class="w-5" alt="" />
+                    <img src="{{ asset('assets/images/navbar/phone-call-icon.png') }}" class="w-5" alt="{{ __('header.phone') }}" />
                     <p class="text-xs">
-
+                        @if(app()->getLocale() == 'np')
+                            {{ $settings->phone_number_np }}
+                        @else
                             {{ $settings->phone_number_en }}
-
+                        @endif
                     </p>
                     @endisset
                 </div>
                 <div class="flex space-x-3 items-center">
                     @isset($settings->email)
-                    <img src="{{ asset('assets/images/navbar/mail-icon.png') }}" class="w-5" alt="" />
+                    <img src="{{ asset('assets/images/navbar/mail-icon.png') }}" class="w-5" alt="{{ __('header.email') }}" />
                     @endisset
                     <p class="text-xs">
                         @isset($settings->email)
@@ -43,17 +47,32 @@
             <div class="flex space-x-5 items-center">
                 @isset($settings->facebook)
                 <a rel="noopener noreferrer" href="{{ $settings->facebook }}"><img src="{{ asset('assets/images/navbar/fb-icon.png') }}"
-                        class="w-6" alt="facebook Icon" /></a>
+                        class="w-6" alt="{{ __('footer.social_media.facebook') }}" /></a>
                 @endisset
                 @isset($settings->twitter)
                 <a rel="noopener noreferrer" href="{{ $settings->twitter }}"><img src="{{ asset('assets/images/navbar/x-icon.png') }}"
-                        class="w-4" alt="X Icon" /></a>
+                        class="w-4" alt="{{ __('footer.social_media.twitter') }}" /></a>
                 @endisset
                 @isset($settings->linkedin)
                 <a rel="noopener noreferrer" href="{{ $settings->linkedin }}"><img
                         src="{{ asset('assets/images/navbar/linked-in-icon.png') }}" class="w-5"
-                        alt="Linkedin Icon" /></a>
+                        alt="{{ __('footer.social_media.linkedin') }}" /></a>
                 @endisset
+                
+                <!-- Language Switcher -->
+                <div class="flex space-x-2 items-center border-l pl-4">
+                    <a href="{{ route('locale', 'en') }}" 
+                       class="flex items-center space-x-1 {{ app()->getLocale() == 'en' ? 'font-bold text-accent' : 'text-gray-600' }}">
+                        <span class="flag-icon flag-icon-us"></span>
+                        <span class="text-xs">{{ __('header.language.en') }}</span>
+                    </a>
+                    <span class="text-gray-400">|</span>
+                    <a href="{{ route('locale', 'np') }}" 
+                       class="flex items-center space-x-1 {{ app()->getLocale() == 'np' ? 'font-bold text-accent' : 'text-gray-600' }}">
+                        <span class="flag-icon flag-icon-np"></span>
+                        <span class="text-xs">{{ __('header.language.np') }}</span>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -62,7 +81,7 @@
     <nav class="relative px-4 pr-8 py-3 flex justify-between items-center bg-white shadow-lg">
         <a class="text-xl lg:pl-10 font-bold" href="{{ route('homepage') }}">
             <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-56"
-                alt="Hulas Logo" />
+                alt="{{ __('header.logo_alt') }}" />
         </a>
 
         <!-- Desktop Menu -->
@@ -74,7 +93,11 @@
                             @focus="openMenu = {{ $i }}" @blur="openMenu = null"
                             aria-haspopup="{{ $menu->children->isNotEmpty() ? 'true' : 'false' }}"
                             :aria-expanded="openMenu === {{ $i }}" type="button">
-                            {{ $menu->name_en }}
+                            @if(app()->getLocale() == 'np')
+                                {{ $menu->name_np }}
+                            @else
+                                {{ $menu->name_en }}
+                            @endif
                         </button>
 
                         @if ($menu->children->isEmpty())
@@ -95,7 +118,11 @@
                                             @focus="openSub = true" @blur="openSub = false"
                                             aria-haspopup="{{ $child->children->isNotEmpty() ? 'true' : 'false' }}"
                                             :aria-expanded="openSub">
-                                            {{ $child->name_en }}
+                                            @if(app()->getLocale() == 'np')
+                                                {{ $child->name_np }}
+                                            @else
+                                                {{ $child->name_en }}
+                                            @endif
                                             @if ($child->children->isNotEmpty())
                                                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
@@ -112,7 +139,11 @@
                                                     <li>
                                                         <a href="{{ url($sub->slug) }}"
                                                             class="block px-4 py-2 hover:bg-sky-50">
-                                                            {{ $sub->name_en }}
+                                                            @if(app()->getLocale() == 'np')
+                                                                {{ $sub->name_np }}
+                                                            @else
+                                                                {{ $sub->name_en }}
+                                                            @endif
                                                         </a>
                                                     </li>
                                                 @endforeach
@@ -133,7 +164,7 @@
         <div class="lg:hidden" id="burger-container">
             <button id="burger" class="navbar-burger flex items-center text-[#ffdd00] p-3 cursor-pointer">
                 <svg class="block h-6 w-6 fill-current" viewBox="0 0 20 20">
-                    <title>Mobile menu</title>
+                    <title>{{ __('header.mobile_menu') }}</title>
                     <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
                 </svg>
             </button>
@@ -148,7 +179,7 @@
             <div class="flex items-center mb-8">
                 <a href="{{ url('/') }}" class="mr-auto text-lg font-bold leading-none">
                     <img src="{{ asset('assets/images/logo/hulas-remittance-logo.jpg') }}" class="w-40"
-                        alt="Logo" />
+                        alt="{{ __('header.logo_alt') }}" />
                 </a>
                 <button id="close-menu" class="navbar-close">
                     <svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
@@ -165,12 +196,22 @@
                         @if ($menu->children->isEmpty())
                             <a href="{{ url($menu->slug) }}"
                                 class="block p-4 text-sm font-semibold text-gray-700 hover:text-accent rounded">
-                                {{ $menu->name_en }}
+                                @if(app()->getLocale() == 'np')
+                                    {{ $menu->name_np }}
+                                @else
+                                    {{ $menu->name_en }}
+                                @endif
                             </a>
                         @else
                             <button @click="open = !open"
                                 class="flex items-center justify-between w-full p-4 text-sm font-semibold text-gray-700 rounded hover:text-accent focus:outline-none">
-                                <span>{{ $menu->name_en }}</span>
+                                <span>
+                                    @if(app()->getLocale() == 'np')
+                                        {{ $menu->name_np }}
+                                    @else
+                                        {{ $menu->name_en }}
+                                    @endif
+                                </span>
                                 <svg class="w-4 h-4 transition-transform" :class="{ 'rotate-90': open }"
                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -186,12 +227,22 @@
                                         @if ($child->children->isEmpty())
                                             <a href="{{ url($child->slug) }}"
                                                 class="block p-3 pl-4 text-sm text-gray-700 hover:text-accent">
-                                                {{ $child->name_en }}
+                                                @if(app()->getLocale() == 'np')
+                                                    {{ $child->name_np }}
+                                                @else
+                                                    {{ $child->name_en }}
+                                                @endif
                                             </a>
                                         @else
                                             <button @click="openChild = !openChild"
                                                 class="flex items-center justify-between w-full p-3 pl-4 text-sm text-gray-700 rounded hover:text-accent focus:outline-none">
-                                                <span>{{ $child->name_en }}</span>
+                                                <span>
+                                                    @if(app()->getLocale() == 'np')
+                                                        {{ $child->name_np }}
+                                                    @else
+                                                        {{ $child->name_en }}
+                                                    @endif
+                                                </span>
                                                 <svg class="w-4 h-4 transition-transform"
                                                     :class="{ 'rotate-90': openChild }" fill="none"
                                                     stroke="currentColor" viewBox="0 0 24 24">
@@ -207,7 +258,11 @@
                                                     <li>
                                                         <a href="{{ url($sub->slug) }}"
                                                             class="block p-3 pl-6 text-sm text-gray-600 hover:text-accent">
-                                                            {{ $sub->name_en }}
+                                                            @if(app()->getLocale() == 'np')
+                                                                {{ $sub->name_np }}
+                                                            @else
+                                                                {{ $sub->name_en }}
+                                                            @endif
                                                         </a>
                                                     </li>
                                                 @endforeach

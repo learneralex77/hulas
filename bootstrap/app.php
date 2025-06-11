@@ -6,6 +6,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 use App\Http\Middleware\FormDataPersistenceMiddleware;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\FileUploadSerialization;
+use App\Http\Middleware\Language;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -26,6 +27,9 @@ return Application::configure(basePath: dirname(__DIR__))
             'auth' => Authenticate::class,
             'guest' => RedirectIfAuthenticated::class,
         ]);
+        
+        // Register the Language middleware for web routes
+        $middleware->web(Language::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // Define helper function at the top level

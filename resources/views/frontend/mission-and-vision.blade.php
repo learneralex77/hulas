@@ -1,32 +1,24 @@
 @extends('frontend.layouts.app')
-@section('title', 'Home')
-@section('meta', 'Welcome to Hulas Remittance')
+@section('title', __('mission-vision.title'))
+@section('meta', __('mission-vision.meta_description'))
 @section('content')
 
 <!-- banner-section -->
 <section class="relative">
     <div class="mb-10">
-        <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
+        <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="{{ __('mission-vision.title') }}"
             class="h-60 w-full object-cover" />
     </div>
-
-    <!-- banner-section -->
-    <section class="relative">
-        <div class="mb-10">
-            <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
-                alt="Banner Image" class="h-60 w-full object-cover" />
-        </div>
-     
-        <div class="absolute w-full top-20">
-            <div class="flex flex-col space-y-8 ml-10">
-                <h3 class="text-2xl md:text-4xl font-extrabold text-white">Mission and Vision</h3>
-                <div class="flex space-x-5 items-center">
-                    <a href="{{ route("homepage") }}" class="text-white font-bold">Home</a>
-                    <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-                    <a href="{{ route("missionAndVision") }}" class="text-accent font-bold">Mission and Vision</a>
-                </div>
+    <div class="absolute w-full top-20">
+        <div class="flex flex-col space-y-8 ml-10">
+            <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ __('mission-vision.title') }}</h3>
+            <div class="flex space-x-5 items-center">
+                <a href="{{ route("homepage") }}" class="text-white font-bold">{{ __('mission-vision.breadcrumb.home') }}</a>
+                <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
+                <a href="{{ route("missionAndVision") }}" class="text-accent font-bold">{{ __('mission-vision.breadcrumb.mission_vision') }}</a>
             </div>
         </div>
+    </div>
 </section>
 <!-- banner-section -->
 
@@ -35,23 +27,20 @@
 @endphp
 
 <div class="flex flex-col md:flex-row flex-2 items-center justify-center lg:justify-around gap-6 lg:gap-10 m-10 md:m">
-    @foreach (['Mission', 'Vision'] as $index => $label)
+    @foreach (['mission', 'vision'] as $type)
         @php
-            $iconPath = $mission_vision_images[$index] ?? null;
-            $description = $data[$index]['description'] ?? "Our $label is to provide reliable and efficient remittance services to connect people across borders.";
-            if ($label === 'Vision') {
-                $description = $data[$index]['description'] ?? 'Our vision is to be the leading remittance service provider, known for reliability and excellence in financial services.';
-            }
+            $iconPath = $mission_vision_images[$loop->index] ?? null;
+            $description = $data[$loop->index]['description'] ?? __("mission-vision.$type.description");
         @endphp
 
         <div
             class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl border-t-4 border-accent cursor-pointer hover:-translate-y-2 transition-transform ease-in-out duration-300 w-full h-[300px]">
             <div class="flex items-center justify-center w-16 h-16 bg-accent text-blue-700 rounded-full mx-auto mb-4">
                 @if ($iconPath)
-                    <img src="{{ asset('storage/' . $iconPath) }}" alt="{{ $label }} Icon" class="h-8 w-8">
+                    <img src="{{ asset('storage/' . $iconPath) }}" alt="{{ __("mission-vision.$type.title") }} Icon" class="h-8 w-8">
                 @else
                     {{-- Default SVG --}}
-                    @if ($label === 'Mission')
+                    @if ($type === 'mission')
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 16V21M12 21H7M12 21H17M17 13H17.01M12 13H12.01M7 13H7.01M7 8H7.01M12 8H12.01M17 8H17.01M3 3L21 21"
                                 stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -68,8 +57,8 @@
                     @endif
                 @endif
             </div>
-            <h2 class="text-2xl text-black font-semibold text-center my-6">{{ $label }}</h2>
-            <p class="text-gray-600 text-left"><span class="text-accent  mr-2">➜</span> {{ $description }}</p>
+            <h2 class="text-2xl text-black font-semibold text-center my-6">{{ __("mission-vision.$type.title") }}</h2>
+            <p class="text-gray-600 text-left"><span class="text-accent mr-2">➜</span> {{ $description }}</p>
         </div>
     @endforeach
 </div>

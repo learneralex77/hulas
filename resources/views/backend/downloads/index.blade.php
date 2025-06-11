@@ -4,8 +4,6 @@
     Download Management
 @endsection
 
-
-
 @section('content')
     <div class="content">
         <div class="block block-rounded">
@@ -34,7 +32,7 @@
                             @foreach ($downloads as $download)
                                 <tr id="download-row-{{ $download->id }}">
                                     <td class="text-center">{{ $loop->iteration }}</td>
-                                    <td>{{ $download->name }}</td>
+                                    <td>{{ $download->name_en }}</td>
                                     <td>
                                         @if ($download->file)
                                             <a href="{{ route('downloads.download-file', $download) }}"
@@ -74,8 +72,6 @@
                         </tbody>
                     </table>
                 </div>
-
-
             </div>
         </div>
     </div>

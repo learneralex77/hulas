@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', $newsEvent->name_en)
-@section('meta', $newsEvent->description_en)
+@section('title', app()->getLocale() === 'np' ? $newsEvent->name_np : $newsEvent->name_en)
+@section('meta', app()->getLocale() === 'np' ? $newsEvent->description_np : $newsEvent->description_en)
 @section('content')
 
     <div class="min-h-screen">
@@ -12,13 +12,13 @@
             </div>
             <div class="absolute w-full top-20">
                 <div class="flex flex-col space-y-8 ml-10">
-                    <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ $newsEvent->name_en }}</h3>
+                    <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ app()->getLocale() === 'np' ? $newsEvent->name_np : $newsEvent->name_en }}</h3>
                     <div class="flex space-x-5 items-center">
-                        <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
+                        <a href="{{ route('homepage') }}" class="text-white font-bold">{{ __('news-and-events.breadcrumb.home') }}</a>
                         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-                        <a href="{{ route('newsAndEvents') }}" class="text-white font-bold">News and Events</a>
+                        <a href="{{ route('newsAndEvents') }}" class="text-white font-bold">{{ __('news-and-events.breadcrumb.news_and_events') }}</a>
                         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-                        <a href="#" class="text-accent font-bold">{{ $newsEvent->name_en }}</a>
+                        <a href="#" class="text-accent font-bold">{{ app()->getLocale() === 'np' ? $newsEvent->name_np : $newsEvent->name_en }}</a>
                     </div>
                 </div>
             </div>
@@ -27,80 +27,69 @@
 
         <!-- new start -->
         <div class="mx-6 md:mx-10 lg:mx-20 xl:mx-40 mb-20">
-
             <div class="flex flex-col max-h-1/4 lg:flex-row">
                 <!-- 1st part -->
                 <div class="flex-1 lg:flex-2 m-6 h-full justify-center">
                     <!-- Image -->
-                    @isset($newsEvent->image)
-                    <img src="{{ $newsEvent->image ? asset('storage/' . $newsEvent->image) : asset('assets/images/placeholder.jpg') }}"
-                        alt="{{ $newsEvent->name_en }}"
-                        class="w-full object-contain max-w-full xl:max-w-[700px] rounded-lg" />
-                    @endisset
-                        <!-- Content -->
-                    @isset($newsEvent->description_en)
-                    <p class="mt-5 w-full">
-                        {!! $newsEvent->description_en !!}
-                    </p>
-                    @endisset
+                    @if($newsEvent->image)
+                        <img src="{{ asset('storage/' . $newsEvent->image) }}"
+                            alt="{{ app()->getLocale() === 'np' ? $newsEvent->name_np : $newsEvent->name_en }}"
+                            class="w-full object-contain max-w-full xl:max-w-[700px] rounded-lg" />
+                    @endif
+                    <!-- Content -->
+                    @if($newsEvent->description_en)
+                        <p class="mt-5 w-full">
+                            {!! app()->getLocale() === 'np' ? $newsEvent->description_np : $newsEvent->description_en !!}
+                        </p>
+                    @endif
                 </div>
 
                 <!-- 2nd part -->
                 <!-- Main div for second part -->
-                <div class="flex-1 flex  justify-center flex-col h-full gap-4 m-6">
+                <div class="flex-1 flex justify-center flex-col h-full gap-4 m-6">
                     <div class="flex flex-col gap-2">
-                        <h3 class="font-bold text-xl text-black border-l-accent border-l-[4px] px-3">About us</h3>
-                        @isset($newsEvent->description_en)
-                        <p class="px-3">{{ Str::limit($newsEvent->description_en, 150) }}</p>
-                        @endisset
-                        @isset($setting->facebook)
-                        <div class="flex flex-row gap-4 px-3">
-                            <!-- Facebook -->
-                            <div
-                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
-                                @isset($setting->facebook)
-                                    <a href="{{ $setting->facebook }}">
+                        <h3 class="font-bold text-xl text-black border-l-accent border-l-[4px] px-3">{{ __('news-and-events.detail_page.about_us') }}</h3>
+                        @if($newsEvent->description_en)
+                            <p class="px-3">{{ Str::limit(app()->getLocale() === 'np' ? $newsEvent->description_np : $newsEvent->description_en, 150) }}</p>
+                        @endif
+                        @if($setting->facebook)
+                            <div class="flex flex-row gap-4 px-3">
+                                <!-- Facebook -->
+                                <div class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
+                                    @if($setting->facebook)
+                                        <a href="{{ $setting->facebook }}">
+                                            <img src="{{ asset('assets/images/social-media-icons/facebook-black.svg') }}"
+                                                alt="Facebook Icon" class="w-6 h-6">
+                                        </a>
+                                    @endif
+                                </div>
 
-                                    <img src="{{ asset('assets/images/social-media-icons/facebook-black.svg') }}"
-                                        alt="Facebook Icon" class="w-6 h-6">
-                                </a>
-                                    @endisset
+                                <!-- LinkedIn -->
+                                @if($setting->linkedin)
+                                    <div class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
+                                        <a href="{{ $setting->linkedin }}">
+                                            <img src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.svg') }}"
+                                                alt="LinkedIn Icon" class="w-4 h-4">
+                                        </a>
+                                    </div>
+                                @endif
+
+                                <!-- Twitter -->
+                                @if($setting->twitter)
+                                    <div class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
+                                        <a href="{{ $setting->twitter }}">
+                                            <img src="{{ asset('assets/images/social-media-icons/icons8-x-50.png') }}"
+                                                alt="Twitter Icon" class="w-5 h-5">
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
-
-                            <!-- Linkdin -->
-                            @isset($setting->linkedin)
-                            <div
-                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
-                                @isset($setting->linkedin)
-                                    <a href="{{ $setting->linkedin }}">
-
-                                    <img src="{{ asset('assets/images/social-media-icons/linkedin-svgrepo-com.svg') }}"
-                                        alt="Linkdin Icon" class="w-4 h-4">
-                                </a>
-                            </div>
-                            @endisset
-
-
-                            <!-- Twitter -->
-                            @isset($setting->twitter)
-                            <div
-                                class="flex items-center justify-center w-10 h-10 border-1 border-primary rounded-full cursor-pointer hover:opacity-80 transition ease-in-out duration-200">
-                                @isset($setting->twitter)
-                                    <a href="{{ $setting->twitter }}">
-                                @endisset
-                                    <img src="{{ asset('assets/images/social-media-icons/icons8-x-50.png') }}"
-                                        alt="Twitter Icon" class="w-5 h-5">
-                                </a>
-                            </div>
-                            @endisset
-
-                        </div>
-
+                        @endif
                     </div>
                     <div class="flex justify-end">
                         <a href="{{ route('newsAndEvents') }}"
                             class="bg-black text-center items-center text-accent px-4 py-2 rounded-full cursor-pointer hover:opacity-85 w-54 font-semibold">
-                            Explore News Articles
+                            {{ __('news-and-events.detail_page.explore_news') }}
                         </a>
                     </div>
                     <div class="drop-shadow-xl shadow-gray-100 bg-white rounded-lg">
@@ -119,49 +108,47 @@
                                     <circle cx="20" cy="18" r="1.5" fill="black" />
                                 </svg>
                             </div>
-                            <h1 class="font-bold text-lg tracking-wide">All News and Articles</h1>
+                            <h1 class="font-bold text-lg tracking-wide">{{ __('news-and-events.detail_page.all_news') }}</h1>
                         </div>
 
                         <!-- Content inside the heading -->
                         <div class="overflow-y-scroll h-[430px] m-3 sticky bg-white">
                             <!-- Content Repeated -->
-                            @isset($otherNewsEvents)
-                                @forelse($otherNewsEvents as $otherNewsEvent)
+                            @if($otherNewsEvents)
+                                @foreach($otherNewsEvents as $otherNewsEvent)
                                     <div class="flex flex-row gap-10 p-2 border-l-accent border-l-[4px] my-2 shadow-sm h-25">
                                         <div class="h-auto w-30">
                                             <img src="{{ $otherNewsEvent->image ? asset('storage/' . $otherNewsEvent->image) : asset('assets/images/placeholder.jpg') }}"
-                                                alt="{{ $otherNewsEvent->name_en }}"
+                                                alt="{{ app()->getLocale() === 'np' ? $otherNewsEvent->name_np : $otherNewsEvent->name_en }}"
                                                 class="h-full w-full rounded-lg object-cover" />
                                         </div>
 
                                         <div class="flex flex-col gap-3">
                                             <a href="{{ route('newsAndEventsDetailPage', $otherNewsEvent->slug) }}"
                                                 class="line-clamp-2 text-lg font-semibold cursor-pointer hover:text-accent transition-colors duration-200">
-                                                {{ $otherNewsEvent->name_en }}
+                                                {{ app()->getLocale() === 'np' ? $otherNewsEvent->name_np : $otherNewsEvent->name_en }}
                                             </a>
                                             <div class="flex space-x-2">
                                                 <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"
-                                                    class="w-4 h-4 object-contain" alt="date">
+                                                    class="w-4 h-4 object-contain" alt="{{ __('news-and-events.date') }}">
                                                 <p class="text-xs text-gray-500">{{ $otherNewsEvent->created_at->format('d F Y') }}
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
-                                @empty
-                                    <div class="p-4 text-center">
-                                        <p>No other news or events available at the moment.</p>
-                                    </div>
-                                @endforelse
-                            @endisset
+                                @endforeach
+                            @else
+                                <div class="p-4 text-center">
+                                    <p>{{ __('news-and-events.empty_state.message') }}</p>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End in here -->
 @endsection
-
 
 @push('scripts')
     <script type="module" src="/src/main.js"></script>

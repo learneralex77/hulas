@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', 'News and Events')
-@section('meta', 'Latest News and Events from Hulas Remittance')
+@section('title', __('news-and-events.title'))
+@section('meta', __('news-and-events.meta_description'))
 @section('content')
 
     <div class="min-h-screen">
@@ -12,11 +12,11 @@
             </div>
             <div class="absolute w-full top-20">
                 <div class="flex flex-col space-y-8 ml-10">
-                    <h3 class="text-2xl md:text-4xl font-extrabold text-white">News and Events</h3>
+                    <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ __('news-and-events.title') }}</h3>
                     <div class="flex space-x-5 items-center">
-                        <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
+                        <a href="{{ route('homepage') }}" class="text-white font-bold">{{ __('news-and-events.breadcrumb.home') }}</a>
                         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-                        <a href="{{ route('newsAndEvents') }}" class="text-accent font-bold"> News and Events</a>
+                        <a href="{{ route('newsAndEvents') }}" class="text-accent font-bold">{{ __('news-and-events.breadcrumb.news_and_events') }}</a>
                     </div>
                 </div>
             </div>
@@ -29,19 +29,17 @@
 
                         <!-- Sub Heading -->
                         <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
-                        News & Events
+                            {{ __('news-and-events.section.sub_heading') }}
                         </h1>
 
                         <!-- Main Title -->
                         <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
-                            Stay Informed with Hulas Updates
+                            {{ __('news-and-events.section.main_title') }}
                         </p>
 
                         <!-- Description -->
                         <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
-                        Catch up on the latest news, important announcements, and exciting events from Hulas Remittance.
-                            Stay
-                            connected to what's happening locally and around the world.
+                            {{ __('news-and-events.section.description') }}
                         </p>
 
                     </div>
@@ -60,22 +58,22 @@
                                     alt="News Image" class="rounded-md w-full h-44 object-cover" />
 
                                 <h4 class="text-lg font-semibold line-clamp-1 text-left">
-                                    {{ $newsAndEvent->name_en }}
+                                    {{ app()->getLocale() === 'np' ? $newsAndEvent->name_np : $newsAndEvent->name_en }}
                                 </h4>
                                 <div class="flex space-x-2">
-                                    <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="date"
+                                    <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}" alt="{{ __('news-and-events.date') }}"
                                         class="h-auto w-4" />
                                     <p class="text-sm text-gray-500">{{ $newsAndEvent->created_at->format('F d, Y') }}</p>
                                 </div>
                                 <p class="text-gray-600 text-justify overflow-hidden line-clamp-3">
-                                    {{ $newsAndEvent->description_en }}
+                                    {{ app()->getLocale() === 'np' ? $newsAndEvent->description_np : $newsAndEvent->description_en }}
                                 </p>
                             </div>
                         </a>
                     @endforeach
                 @else
                     <div class="col-span-4 text-center py-10">
-                        <p class="text-lg text-gray-600">No news or events available at the moment.</p>
+                        <p class="text-lg text-gray-600">{{ __('news-and-events.empty_state.message') }}</p>
                     </div>
                 @endisset
             </div>
@@ -83,7 +81,6 @@
     </div>
 
 @endsection
-
 
 @push('scripts')
     <script type="module" src="/src/main.js"></script>

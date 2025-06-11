@@ -1,23 +1,28 @@
 @extends('frontend.layouts.app')
-@section('title', $service->name_en)
-@section('meta', $service->name_en)
+@section('title', app()->getLocale() === 'np' ? $service->name_np : $service->name_en)
+@section('meta', app()->getLocale() === 'np' ? $service->description_np : $service->description_en)
 @section('content')
 
   <!-- banner-section -->
   <section class="relative">
     <div class="mb-10">
-    <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image" alt="Banner Image"
-      class="h-60 w-full object-cover" />
+    <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" 
+         alt="{{ app()->getLocale() === 'np' ? $service->name_np : $service->name_en }}"
+         class="h-60 w-full object-cover" />
     </div>
     <div class="absolute w-full top-20">
     <div class="flex flex-col space-y-8 ml-10">
-      <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ $service->name_en }}</h3>
+      <h3 class="text-2xl md:text-4xl font-extrabold text-white">
+        {{ app()->getLocale() === 'np' ? $service->name_np : $service->name_en }}
+      </h3>
       <div class="flex space-x-5 items-center">
-      <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
+      <a href="{{ route('homepage') }}" class="text-white font-bold">{{ __('service-detail.breadcrumb.home') }}</a>
       <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-      <a href="{{ route('services') }}" class="text-white font-bold">Services</a>
+      <a href="{{ route('services') }}" class="text-white font-bold">{{ __('service-detail.breadcrumb.services') }}</a>
       <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-      <a href="{{ route('serviceDetail', $service->slug) }}" class="text-accent font-bold">{{ $service->name_en }}</a>
+      <a href="{{ route('serviceDetail', $service->slug) }}" class="text-accent font-bold">
+        {{ app()->getLocale() === 'np' ? $service->name_np : $service->name_en }}
+      </a>
       </div>
     </div>
     </div>
@@ -28,17 +33,20 @@
     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
     <div class="flex flex-col items-center">
       <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
-      {{ $service->name_en }}
+        {{ app()->getLocale() === 'np' ? $service->name_np : $service->name_en }}
       </h1>
       <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
-      {{ $service->name_en }}
+        {{ app()->getLocale() === 'np' ? $service->name_np : $service->name_en }}
       </p>
       <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
-      @isset($service->description_en)
-      {{ $service->description_en }}
-    @endisset
+        @if(app()->getLocale() === 'np' && isset($service->description_np))
+          {{ $service->description_np }}
+        @elseif(isset($service->description_en))
+          {{ $service->description_en }}
+        @else
+          {{ __('service-detail.no_description') }}
+        @endif
       </p>
-      @endisset
     </div>
     </div>
   </section>
@@ -47,38 +55,38 @@
     <div class="flex justify-center flex-1 flex-grow text-center">
     @isset($service->file)
     <div class="flex-1 flex justify-center w-full">
-      @isset($service->file)
-      <img src="{{ asset('storage/' . $service->file) }}" alt="{{ $service->name_en }}"
-      class="w-full max-w-md h-80 rounded-md object-cover bg-gray-100" />
-    @endisset
+      <img src="{{ asset('storage/' . $service->file) }}" 
+           alt="{{ app()->getLocale() === 'np' ? $service->name_np : $service->name_en }}"
+           class="w-full max-w-md h-80 rounded-md object-cover bg-gray-100" />
     </div>
     @endisset
     </div>
 
     <div class="flex flex-2 flex-col space-y-6">
-    @isset($service->description_en)
-    <p class="text-gray-600 text-base lg:text-lg text-justify">
-      @isset($service->description_en)
-      {!! $service->description_en !!}
-    @endisset
-    </p>
-    @endisset
+      <p class="text-gray-600 text-base lg:text-lg text-justify">
+        @if(app()->getLocale() === 'np' && isset($service->description_np))
+          {!! $service->description_np !!}
+        @elseif(isset($service->description_en))
+          {!! $service->description_en !!}
+        @else
+          {{ __('service-detail.no_description') }}
+        @endif
+      </p>
     </div>
   </section>
 
 
-  <!-- Card part for our news and Article -->
-
+  <!-- How it works section -->
   <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
     <div class="flex flex-col items-center">
     <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
-      Steps
+      {{ __('service-detail.how_it_works.title') }}
     </h1>
     <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
-      How It Works
+      {{ __('service-detail.how_it_works.subtitle') }}
     </p>
     <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
-      Just follow these simple steps to send money with ease.
+      {{ __('service-detail.how_it_works.description') }}
     </p>
     </div>
   </div>
@@ -89,36 +97,48 @@
     @foreach($service->translation_names as $index => $name)
     <!-- Service item -->
     @php
-    $hasLink = isset($service->external_link) && isset($service->external_link[$index]) && !empty($service->external_link[$index]);
-    $cardTag = $hasLink ? 'a' : 'div';
-    $cardAttr = $hasLink ? 'href="' . $service->external_link[$index] . '" target="_blank"' : '';
-  @endphp
+      $hasLink = isset($service->external_link) && isset($service->external_link[$index]) && !empty($service->external_link[$index]);
+      $cardTag = $hasLink ? 'a' : 'div';
+      $cardAttr = $hasLink ? 'href="' . $service->external_link[$index] . '" target="_blank"' : '';
+
+      // Get the localized name based on current locale
+      $localizedName = app()->getLocale() === 'np' ? 
+        (isset($service->translation_names_np[$index]) ? $service->translation_names_np[$index] : $name) : 
+        $name;
+
+      // Get the localized description based on current locale
+      $localizedDesc = null;
+      if (app()->getLocale() === 'np' && isset($service->translation_descriptions_np)) {
+        $localizedDesc = isset($service->translation_descriptions_np[$index]) ? 
+          $service->translation_descriptions_np[$index] : 
+          (isset($service->translation_descriptions[$index]) ? $service->translation_descriptions[$index] : null);
+      } else {
+        $localizedDesc = isset($service->translation_descriptions[$index]) ? 
+          $service->translation_descriptions[$index] : null;
+      }
+    @endphp
     <{{ $cardTag }} {!! $cardAttr !!} class="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl border-t-4 border-accent
       cursor-pointer hover:-translate-y-2 transition-transform ease-in-out duration-300 max-w-[420px] h-[300px] block
       no-underline">
       <div class="flex items-center justify-center w-16 h-16 bg-[#f7e177] text-accent rounded-full mx-auto mb-4">
       @isset($service->translation_icons)
       @if(isset($service->translation_icons[$index]))
-      <img src="{{ asset('storage/' . $service->translation_icons[$index]) }}" alt="{{ $name }}"
-      class="w-10 h-10 object-contain">
-    @endif
-    @endisset
+      <img src="{{ asset('storage/' . $service->translation_icons[$index]) }}" 
+           alt="{{ $localizedName }}"
+           class="w-10 h-10 object-contain">
+      @endif
+      @endisset
       </div>
-      <h2 class="text-2xl text-black font-semibold text-center my-6">{{ $name }}</h2>
-      @isset($service->translation_descriptions)
-      @if(isset($service->translation_descriptions[$index]))
-      <p class="text-gray-600 text-center">
-      {{ $service->translation_descriptions[$index] }}
-      </p>
-    @endif
-    @endisset
+      <h2 class="text-2xl text-black font-semibold text-center my-6">{{ $localizedName }}</h2>
+      @if($localizedDesc)
+        <p class="text-gray-600 text-center">{{ $localizedDesc }}</p>
+      @endif
     </{{ $cardTag }}>
-  @endforeach
-  @endisset
+    @endforeach
+    @endisset
     </div>
   </section>
 @endsection
-
 
 @push('scripts')
   <script type="module" src="/src/main.js"></script>

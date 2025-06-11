@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', 'Home')
-@section('meta', 'Welcome to Hulas Remittance')
+@section('title', __('quick-links.title'))
+@section('meta', __('quick-links.meta_description'))
 @section('content')
 
   <div class="min-h-screen">
@@ -12,11 +12,11 @@
     </div>
     <div class="absolute w-full top-20">
       <div class="flex flex-col space-y-8 ml-10">
-      <h3 class="text-2xl md:text-4xl font-extrabold text-white">Quick Links</h3>
+      <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ __('quick-links.title') }}</h3>
       <div class="flex space-x-5 items-center">
-        <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
+        <a href="{{ route('homepage') }}" class="text-white font-bold">{{ __('quick-links.breadcrumb.home') }}</a>
         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-        <a href="{{ route('quickLinks') }}" class="text-accent font-bold">Quick Links</a>
+        <a href="{{ route('quickLinks') }}" class="text-accent font-bold">{{ __('quick-links.breadcrumb.quick_links') }}</a>
       </div>
       </div>
     </section>
@@ -27,14 +27,14 @@
           <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
           <div class="flex flex-col items-center">
           <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
-          Quick Links </h1>
+          {{ __('quick-links.section.title') }}</h1>
 
           <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
-          Quick Access to Services
-            </p>
-            <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
-            Easily navigate to our most commonly used pages and services.
-            </p>
+          {{ __('quick-links.section.subtitle') }}
+          </p>
+          <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
+          {{ __('quick-links.section.description') }}
+          </p>
           </div>
           </div>
         </section>
@@ -47,25 +47,27 @@
         <a href="{{ $quickLink->external_link }}" target="_blank" class="block">
           <div
           class="px-4 py-4 rounded-t-xl text-xl font-semibold border-b-[4px] hover:border-gray-800 border-accent bg-white shadow-md hover:shadow-lg cursor-pointer hover:bg-gradient-to-r from-amber-50 to-amber-100 hover:-translate-y-1 transition-transform ease-in-out duration-300">
-          {{ $quickLink->name_en ?? 'Quick Link' }}
+          {{ app()->getLocale() == 'en' ? $quickLink->name_en : (isset($quickLink->name_np) ? $quickLink->name_np : $quickLink->name_en) }}
           </div>
         </a>
       @else
         <div class="px-4 py-4 rounded-t-xl text-xl font-semibold border-b-[4px] border-accent bg-white shadow-md">
-          {{ $quickLink->name_en ?? 'Quick Link' }}
-          <p class="text-sm text-gray-500 mt-1">No link available</p>
+          {{ app()->getLocale() == 'en' ? $quickLink->name_en : (isset($quickLink->name_np) ? $quickLink->name_np : $quickLink->name_en) }}
+          <p class="text-sm text-gray-500 mt-1">{{ __('quick-links.external_link.not_available') }}</p>
         </div>
       @endisset
     @endforeach
+  @else
+    <div class="col-span-full text-center text-gray-500">
+      {{ __('quick-links.no_links') }}
+    </div>
   @endisset
 </div>
 
   </div>
   </div>
 
-
 @endsection
-
 
 @push('scripts')
 @endpush

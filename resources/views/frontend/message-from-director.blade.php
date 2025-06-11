@@ -1,26 +1,26 @@
 @extends('frontend.layouts.app')
-@section('title', 'Home')
-@section('meta', 'Welcome to Hulas Remittance')
+@section('title', __('message-from-director.page_title'))
+@section('meta', __('message-from-director.meta_description'))
 @section('content')
 
 
  <!-- banner-section -->
  <section class="relative">
   <div class="mb-10">
-  <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
-
-      alt="Banner Image"
-      class="h-60 w-full object-cover"
+    <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" 
+         alt="{{ __('message-from-director.banner.image_alt') }}"
+         class="h-60 w-full object-cover"
     />
   </div>
   <div class="absolute w-full top-20">
     <div class="flex flex-col space-y-8 ml-10">
-      <h3 class="text-2xl md:text-4xl font-extrabold text-white">Message from the director</h3>
+      <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ __('message-from-director.banner.title') }}</h3>
       <div class="flex space-x-5 items-center">
-        <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
+        <a href="{{ route('homepage') }}" class="text-white font-bold">{{ __('message-from-director.breadcrumb.home') }}</a>
         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-        <a href="{{ route('messageFromDirector') }}" class="text-accent font-bold"> Message from the director</a>
+        <a href="{{ route('messageFromDirector') }}" class="text-accent font-bold">{{ __('message-from-director.breadcrumb.message_from_director') }}</a>
       </div>
+    </div>
   </div>
 </section>
 <!-- banner-section -->
@@ -35,26 +35,22 @@
                 <!-- Director's Image -->
                 <div class="">
                     <img src="https://www.1stformationsblog.co.uk/wp-content/uploads/2022/09/Shutterstock_1361250623-2.jpg"
-                        alt="Director Image" class="md:w-2xl lg:w-full" rounded-lg />
+                        alt="{{ __('message-from-director.main_section.director_image_alt') }}" 
+                        class="md:w-2xl lg:w-full rounded-lg" />
                     <hr class="w-full border-t-4 border-accent mt-4" />
                 </div>
 
                 <!-- Director's Message -->
                 <div class="lg:pl-10 text-base">
-                    <!-- Header -->
                     <p class="text-gray-700 mt-4 lg:text-justify leading-relaxed w-full md:w-full">
-                        It is my pleasure to welcome you to our organization. Our
-                        commitment to excellence, innovation, and integrity drives
-                        everything we do. With a dedicated team and a vision for the
-                        future, we strive to create meaningful impact in our industry.
+                        {{ __('message-from-director.main_section.welcome_message') }}
                     </p>
                     <p class="text-gray-700 mt-4 text-justify leading-relaxed">
-                        We value your trust and support as we continue on this journey.
-                        Thank you for being part of our story.
+                        {{ __('message-from-director.main_section.thank_you_message') }}
                     </p>
                     <br />
-                    <p class="text-gray-800 font-bold">John Doe</p>
-                    <p class="text-gray-600">Hulas Remittance</p>
+                    <p class="text-gray-800 font-bold">{{ __('message-from-director.main_section.director_name') }}</p>
+                    <p class="text-gray-600">{{ __('message-from-director.main_section.company_name') }}</p>
                 </div>
             </div>
         </div>

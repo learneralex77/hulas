@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
-@section('title', 'Downloads')
-@section('meta', 'Download the latest forms and resources from Hulas Remittance')
+@section('title', __('downloads.title'))
+@section('meta', __('downloads.meta_description'))
 
 @section('content')
     <!-- banner-section -->
@@ -12,11 +12,11 @@
         </div>
         <div class="absolute w-full top-20">
             <div class="flex flex-col space-y-8 ml-10">
-                <h3 class="text-2xl md:text-4xl font-extrabold text-white">Downloads</h3>
+                <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ __('downloads.title') }}</h3>
                 <div class="flex space-x-5 items-center">
-                    <a href="{{ url('/homepage') }}" class="text-white font-bold">Home</a>
+                    <a href="{{ url('/homepage') }}" class="text-white font-bold">{{ __('downloads.breadcrumb.home') }}</a>
                     <p class="text-white text-base font-bold">></p>
-                    <a href="{{ url('/downloads') }}" class="text-accent font-bold">Downloads</a>
+                    <a href="{{ url('/downloads') }}" class="text-accent font-bold">{{ __('downloads.breadcrumb.downloads') }}</a>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
     <!-- banner-section -->
 
     <div class="flex flex-col justify-center mx-auto bg-white p-6 rounded-lg md:mx-[50px] xl:mx-[100px] max-w-screen-xl">
-        <h2 class="text-2xl font-bold mb-2 hidden md:block text-black">Downloads</h2>
+        <h2 class="text-2xl font-bold mb-2 hidden md:block text-black">{{ __('downloads.title') }}</h2>
         <hr class="text-gray-300 font-bold mb-4 hidden md:block" />
 
         <!-- Downloads Grid -->
@@ -52,11 +52,11 @@
                                 'fas fa-file-archive text-yellow-500 text-3xl': fileType === 'archive',
                                 'fas fa-file-alt text-gray-500 text-3xl': fileType === 'default'
                             }"></i>
-                        <h5 class="ml-4 text-xl font-bold text-gray-900">{{ $download->name_en }}</h5>
+                        <h5 class="ml-4 text-xl font-bold text-gray-900">{{ app()->getLocale() === 'np' ? $download->name_np : $download->name_en }}</h5>
                     </div>
                     <div class="flex space-x-2 mb-2 pl-2">
                         <img src="{{ asset('assets/images/news-and-events/calender-svgrepo-com.png') }}"
-                            class="w-4 h-4 object-contain" alt="date" />
+                            class="w-4 h-4 object-contain" alt="{{ __('downloads.download_date') }}" />
                         <p class="text-sm text-gray-500">
                             {{ isset($download->created_at) ? $download->created_at->format('jS F Y') : 'Date not available' }}
                         </p>
@@ -68,14 +68,13 @@
                             class="fas fa-download text-xl transition-transform duration-300 ease-in-out transform group-hover:-translate-x-8"></i>
                         <span
                             class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out ml-8">
-                            <span>Download</span>
+                            <span>{{ __('downloads.download_button') }}</span>
                         </span>
                     </a>
                 </div>
             @empty
                 <div class="col-span-full text-center flex flex-col items-center justify-center h-64">
-                    <h3 class="text-lg text-gray-500 mb-4">We're preparing new content for you. It will be available here
-                        soon.</h3>
+                    <h3 class="text-lg text-gray-500 mb-4">{{ __('downloads.empty_state.message') }}</h3>
                 </div>
             @endforelse
         </div>

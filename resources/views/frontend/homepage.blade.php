@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', 'Home')
-@section('meta', 'Welcome to Hulas Remittance')
+@section('title', __('home.home'))
+@section('meta', __('home.meta_description'))
 @push('styles')
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -65,17 +65,25 @@
                                                                                                                                                                                                                                                                                   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
                                                                                                                                                                                                                                                                                   -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
                                                                                                                                                                                                                                                                                   ">
-                                        {{ $slider->name_en }}
+                                        {!! app()->getLocale() == 'en' 
+                                            ? $slider->name_en 
+                                            : (isset($slider->name_np) 
+                                                ? $slider->name_np 
+                                                : $slider->name_en) !!}
                                     </h2>
                                     <p class=" text-white text-base leading-4 sm:leading-6 sm:text-xl md:text-2xl max-w-3xl"
                                         style="
                                                                                                                                                                                                                                                                                       -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
                                                                                                                                                                                                                                                                                   ">
-                                        {{ $slider->short_description_en }}
+                                        {!! app()->getLocale() == 'en' 
+                                            ? $slider->short_description_en 
+                                            : (isset($slider->short_description_np) 
+                                                ? $slider->short_description_np 
+                                                : $slider->short_description_en) !!}
                                     </p>
                                     <a href="{{ $slider->link ? $slider->link : '#' }}"
                                         class="px-3 sm:px-6 py-1 sm:py-2 bg-accent w-34 sm:w-40 text-center text-black border-2 rounded-full hover:opacity-85 font-semibold text-sm sm:text-lg">
-                                        Read more </a>
+                                        {{ __('home.read_more') }}</a>
                                 </div>
                             </div>
                         @endforeach
@@ -85,7 +93,7 @@
                         @isset($sliders)
                             @foreach ($sliders as $key => $slider)
                                 <button type="button" class="w-3 h-3 rounded-full" aria-current="{{ $key === 0 ? 'true' : 'false' }}"
-                                    aria-label="Slide {{ $key + 1 }}" data-carousel-slide-to="{{ $key }}">
+                                    aria-label="{{ __('home.slide') }} {{ $key + 1 }}" data-carousel-slide-to="{{ $key }}">
                                 </button>
                             @endforeach
                         @endisset
@@ -101,7 +109,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 1 1 5l4 4" />
                             </svg>
-                            <span class="sr-only">Previous</span>
+                            <span class="sr-only">{{ __('home.previous') }}</span>
                         </span>
                     </button>
                     <button type="button"
@@ -114,7 +122,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="m1 9 4-4-4-4" />
                             </svg>
-                            <span class="sr-only">Next</span>
+                            <span class="sr-only">{{ __('home.next') }}</span>
                         </span>
                     </button>
                 </div>
@@ -128,14 +136,18 @@
                 <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                     <div class="flex flex-col items-center">
                         <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
-                            Our Introduction
+                            {{ __('home.our_introduction') }}
                         </h1>
                         <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
-                            Welcome To Hulas Remittance
+                            {{ __('home.welcome') }}
                         </p>
                         @isset($aboutUs->short_description_en)
                             <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
-                                {{ $aboutUs->short_description_en }}
+                                {!! app()->getLocale() == 'en' 
+                                    ? $aboutUs->short_description_en 
+                                    : (isset($aboutUs->short_description_np) 
+                                        ? $aboutUs->short_description_np 
+                                        : $aboutUs->short_description_en) !!}
                             </p>
                         @endisset
                     </div>
@@ -156,11 +168,15 @@
                 @isset($aboutUs)
                     <div class="flex flex-2 flex-col space-y-6">
                         <p class="text-gray-600 text-base lg:text-lg text-justify line-clamp-11">
-                            {{ $aboutUs->description_en ?? $aboutUs->description }}
+                            {!! app()->getLocale() == 'en' 
+                                ? ($aboutUs->description_en ?? $aboutUs->description)
+                                : (isset($aboutUs->description_np) 
+                                    ? $aboutUs->description_np 
+                                    : ($aboutUs->description_en ?? $aboutUs->description)) !!}
                         </p>
                         <a href="{{ route('aboutHulasRemittance') }}"
                             class="text-center text-accent hover:opacity-85 text-md drop-shadow-sm cursor-pointer bg-black px-6 py-2 w-40 rounded-full font-bold">
-                            Read more
+                            {{ __('home.read_more') }}
                         </a>
                     </div>
                 @endisset
@@ -176,16 +192,14 @@
                         <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                             <div class="flex flex-col items-center">
                             <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
-                            Our Services
+                            {{ __('home.our_services') }}
                                     </h1>
 
                                     <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
-                                    Simple. Secure. Seamless.
+                                    {{ __('home.simple_secure_seamless') }}
                                     </p>
                                     <p class="p-2 text-base lg:text-lg  text-center lg:max-w-4xl line-clamp-3">
-                                    Fast, secure money transfers made easy with Hulas Remittance and trusted partners like
-                                        Western
-                                        Union.
+                                    {{ __('home.services_description') }}
                                     </p>
                             </div>
                         </div>
@@ -244,16 +258,14 @@
                     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                         <div class="flex flex-col items-center">
                         <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
-                                Become an Agent
+                                {{ __('home.become_an_agent') }}
                             </h1>
 
                             <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
-                            Join Our Network of Trusted Agents
+                            {{ __('home.join_our_network_of_trusted_agents') }}
                             </p>
                             <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
-                                Take the next step in your career by becoming an agent. Help us expand
-                                our reach while enjoying flexible opportunities and competitive
-                                rewards.
+                                {{ __('home.take_the_next_step_in_your_career_by_becoming_an_agent_help_us_expand_our_reach_while_enjoying_flexible_opportunities_and_competitive_rewards') }}
                             </p>
                         </div>
                     </div>
@@ -267,18 +279,24 @@
                             @php
                                 $steps = [
                                     [
-                                        'title' => 'Select sender country',
-                                        'desc' => 'from where you are receiving the remittance.',
+                                        'title' => __('home.select_sender_country'),
+                                        'desc' => __('home.select_sender_country_desc'),
                                     ],
                                     [
-                                        'title' => 'Enter control number',
-                                        'desc' => 'of 12 – 16 digits received from the sender.',
+                                        'title' => __('home.enter_control_number'),
+                                        'desc' => __('home.enter_control_number_desc'),
                                     ],
-                                    ['title' => 'Enter amount', 'desc' => 'you are expecting from the sender.'],
-                                    ['title' => 'Track your money', 'desc' => 'in real time, directly in the app.'],
                                     [
-                                        'title' => 'Receive money and bonus',
-                                        'desc' => 'straight in your IME account, along with other rewards.',
+                                        'title' => __('home.enter_amount'),
+                                        'desc' => __('home.enter_amount_desc'),
+                                    ],
+                                    [
+                                        'title' => __('home.track_your_money'),
+                                        'desc' => __('home.track_your_money_desc'),
+                                    ],
+                                    [
+                                        'title' => __('home.receive_money_and_bonus'),
+                                        'desc' => __('home.receive_money_and_bonus_desc'),
                                     ],
                                 ];
                             @endphp
@@ -304,7 +322,7 @@
                             class="w-full max-w-[600px] rounded-md object-contain xl:object-fit mb-6" />
                         <a href="{{ route('becomeAnAgent') }}"
                             class="px-6 py-2 bg-accent text-black border-2 rounded-full hover:opacity-85 font-bold tracking-wide text-base">
-                            Apply to become an agent
+                            {{ __('home.apply_to_become_an_agent') }}
                         </a>
                     </div>
                 </div>
@@ -318,15 +336,14 @@
                     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
                         <div class="flex flex-col items-center">
                         <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
-                                Our partners & Supporters
+                                {{ __('home.our_partners_supporters') }}
                             </h1>
 
                             <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
-                            In Collaboration with Our Esteemed Partners and Supporters
+                            {{ __('home.in_collaboration_with_our_esteemed_partners_and_supporters') }}
                             </p>
                             <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
-                                We are proud to collaborate with trusted partners and supporters
-                                who share our vision and strengthen our mission.
+                                {{ __('home.we_are_proud_to_collaborate_with_trusted_partners_and_supporters_who_share_our_vision_and_strengthen_our_mission') }}
                             </p>
                         </div>
                     </div>
@@ -365,13 +382,13 @@
                     <div class="flex flex-row justify-between m-3">
                         <h1
                             class="font-bold text-accent uppercase text-lg lg:text-2xl tracking-wider sm:text-left text-center">
-                            Gallery
+                            {{ __('home.gallery') }}
                         </h1>
                         <div class="flex justify-end">
 
                             <a href="{{ route('gallery') }}"
                                 class="bg-black sm:w-full items-center text-accent px-6 py-2 rounded-full cursor-pointer hover:opacity-85 font-semibold">
-                                Explore Gallery
+                                {{ __('home.explore_gallery') }}
                             </a>
                         </div>
                     </div>
@@ -410,7 +427,7 @@
                     <div class="flex justify-end">
                         <a href="{{ route('newsAndEvents') }}"
                             class="bg-black items-center text-accent px-4 py-2 rounded-full cursor-pointer hover:opacity-85 font-semibold">
-                            Explore News Articles
+                            {{ __('home.explore_news_articles') }}
                         </a>
                     </div>
                     <div class="drop-shadow-xl shadow-gray-100 bg-white rounded-lg">
@@ -427,7 +444,7 @@
                                     <circle cx="20" cy="18" r="1.5" fill="black" />
                                 </svg>
                             </div>
-                            <h1 class="font-bold text-lg text-black">All News and Articles</h1>
+                            <h1 class="font-bold text-lg text-black">{{ __('home.all_news_and_articles') }}</h1>
                         </div>
 
                         <!-- Content inside the heading -->
@@ -481,7 +498,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>
-                            <span class="sr-only">Close modal</span>
+                            <span class="sr-only">{{ __('home.close_modal') }}</span>
                         </button>
 
                         <div class="swiper !h-[40vh] md:!h-[60vh] mx-auto w-[100%] popupSwiper rounded-lg">

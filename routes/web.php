@@ -55,6 +55,8 @@ Route::get('forex-rate', [FrontendController::class, 'forexRate'])->name('forexR
 
 Route::get('header', [FrontendController::class, 'header'])->name('header');
 
+Route::get('lang/{lang}', [App\Http\Controllers\Frontend\LanguageController::class, 'switchLang'])->name('locale');
+
 // Admin routes moved to auth.php
 require __DIR__ . '/auth.php';
 

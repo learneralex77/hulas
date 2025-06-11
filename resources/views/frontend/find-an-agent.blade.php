@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
-@section('title', 'Home')
-@section('meta', 'Welcome to Hulas Remittance')
+@section('title', __('find-agent.title'))
+@section('meta', __('find-agent.meta_title'))
 @section('content')
 
 
@@ -21,16 +21,16 @@
         <!-- banner-section -->
         <section class="relative">
             <div class="mb-10">
-                <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="About Us Image"
-                    alt="Banner Image" class="h-60 w-full object-cover" />
+                <img src="{{ asset('assets/images/become-an-agent/breadcrumb-serv.jpg') }}" alt="{{ __('find-agent.title') }}"
+                    class="h-60 w-full object-cover" />
             </div>
             <div class="absolute w-full top-20">
                 <div class="flex flex-col space-y-8 ml-10">
-                    <h3 class="text-2xl md:text-4xl font-extrabold text-white">Find an agent</h3>
+                    <h3 class="text-2xl md:text-4xl font-extrabold text-white">{{ __('find-agent.intro.title') }}</h3>
                     <div class="flex space-x-5 items-center">
-                        <a href="{{ route('homepage') }}" class="text-white font-bold">Home</a>
+                        <a href="{{ route('homepage') }}" class="text-white font-bold">{{ __('find-agent.breadcrumb.home') }}</a>
                         <p class="text-white text-base fony-bold hover:cursor-pointer">></p>
-                        <a href="{{ route('findAnAgent') }}" class="text-accent font-bold">Find an agent</a>
+                        <a href="{{ route('findAnAgent') }}" class="text-accent font-bold">{{ __('find-agent.breadcrumb.find_agent') }}</a>
                     </div>
                 </div>
         </section>
@@ -40,55 +40,60 @@
             <div class="">
                 <section class="overflow-x-hidden">
                     <div class="p-4 md:ml-8 lg:my-4 lg:mx-20 lg:mb-2">
-                        <div class="flex flex-col items-center">
-                            <h1 class="font-bold text-accent uppercase text-base lg:text-lg tracking-wider">
-                                Find a Nearby Agent
+                        <div class="flex flex-col items-center space-y-6">
+                            <h1 class="font-bold text-accent uppercase text-lg tracking-wider" style="
+                                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.01);
+                                -webkit-text-stroke: 1px rgba(19, 18, 18, 0.096);
+                                ">
+                                {{ __('find-agent.intro.title') }}
                             </h1>
-                            <p class="text-2xl text-black font-bold md:text-4xl text-center mt-3">
-                                Secure service, trusted agents.
+
+                            <p class="text-2xl text-black font-bold md:text-4xl text-center">
+                                {{ __('find-agent.intro.subtitle') }}
                             </p>
-                            <p class="p-2 text-base lg:text-lg text-center lg:max-w-4xl line-clamp-3">
-                                Locate your nearest Hulas Remittance agent with ease. Use the table below to find trusted
-                                partners
-                                ready
-                                to help
-                                you send or receive money—quickly and securely.
+
+                            <p class="p-2 text-lg text-[#737879] text-center max-w-4xl">
+                                {{ __('find-agent.intro.description') }}
                             </p>
                         </div>
                     </div>
                 </section>
 
-                <div class="container mx-auto py-8">
-                    <table id="myTable" class="display">
-                        <thead>
-                            <tr>
-                                <th>District</th>
-                                <th>Agent Name (EN)</th>
-                                <th>Address (EN)</th>
-                                <th>Contact No (EN)</th>
-                                <th>Contact Person (EN)</th>
-                            </tr>
-                            <tr>
-                                <th><input type="text" class="p-1 m-1 w-36" placeholder="Search District" /></th>
-                                <th><input type="text" class="p-1 m-1 w-36" placeholder="Search Agent Name" /></th>
-                                <th><input type="text" class="p-1 m-1 w-36" placeholder="Search Address" /></th>
-                                <th><input type="text" class="p-1 m-1 w-36" placeholder="Search Contact No" /></th>
-                                <th><input type="text" class="p-1 m-1 w-36" placeholder="Search Person" /></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($agentDetails as $agent)
-                                <tr>
-                                    <td>{{ $agent->district_id }}</td>
-                                    <td>{{ $agent->state_agent_name_en }}</td>
-                                    <td>{{ $agent->address_en }}</td>
-                                    <td>{{ $agent->contact_no_en }}</td>
-                                    <td>{{ $agent->contact_person_en }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
+                <div class="my-8">
+                    <div>
+                        <div class="container mx-auto py-8">
+                            <table id="myTable" class="display">
+                                <thead>
+                                    <tr>
+                                        <th>{{ __('find-agent.table.district.label') }}</th>
+                                        <th>{{ __('find-agent.table.agent_name.label') }}</th>
+                                        <th>{{ __('find-agent.table.address.label') }}</th>
+                                        <th>{{ __('find-agent.table.contact_no.label') }}</th>
+                                        <th>{{ __('find-agent.table.contact_person.label') }}</th>
+                                    </tr>
+                                    <tr>
+                                        <th><input type="text" class="p-1 m-1 w-36" placeholder="{{ __('find-agent.table.district.search_placeholder') }}" /></th>
+                                        <th><input type="text" class="p-1 m-1 w-36" placeholder="{{ __('find-agent.table.agent_name.search_placeholder') }}" /></th>
+                                        <th><input type="text" class="p-1 m-1 w-36" placeholder="{{ __('find-agent.table.address.search_placeholder') }}" /></th>
+                                        <th><input type="text" class="p-1 m-1 w-36" placeholder="{{ __('find-agent.table.contact_no.search_placeholder') }}" /></th>
+                                        <th><input type="text" class="p-1 m-1 w-36" placeholder="{{ __('find-agent.table.contact_person.search_placeholder') }}" /></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($agentDetails as $agent)
+                                        <tr>
+                                            <td>{{ $agent->district->name ?? $agent->district_id }}</td>
+                                            <td>{!! app()->getLocale() == 'en' ? $agent->state_agent_name_en : (isset($agent->state_agent_name_np) ? $agent->state_agent_name_np : $agent->state_agent_name_en) !!}</td>
+                                            <td>{!! app()->getLocale() == 'en' ? $agent->address_en : (isset($agent->address_np) ? $agent->address_np : $agent->address_en) !!}</td>
+                                            <td>{!! app()->getLocale() == 'en' ? $agent->contact_no_en : (isset($agent->contact_no_np) ? $agent->contact_no_np : $agent->contact_no_en) !!}</td>
+                                            <td>{!! app()->getLocale() == 'en' ? $agent->contact_person_en : (isset($agent->contact_person_np) ? $agent->contact_person_np : $agent->contact_person_en) !!}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
 
-                    </table>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
